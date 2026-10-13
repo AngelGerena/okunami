@@ -18,6 +18,7 @@ import {
   QrBtn, SaveBtn, ShareBtn, SocialLinks, Title, el, useCard, useContactActions,
 } from './blocks';
 import { addressLine, mapsHref, prettyUrl, webHref } from '../lib/links';
+import { Chat, Duotone, Intro, Local, ServiceMenu, Sheet, Status, Studio, Trust } from './sig7';
 
 export interface TemplateMeta { id: TemplateId; name: string; blurb: string; bestFor: string; niche?: string; }
 
@@ -166,6 +167,15 @@ export const TEMPLATES: TemplateMeta[] = [
   { id: 'railmark',   name: 'Glam Rail Leaf Mark',  niche: 'Beauty Consultants', blurb: 'The glam rail with your photo cut into a two-petal leaf mark.', bestFor: 'Farmasi influencers, beauty sellers' },
   { id: 'railblob',   name: 'Glam Rail Blob',       niche: 'Beauty Consultants', blurb: 'The glam rail with a soft organic photo shape that slowly morphs.', bestFor: 'Bold personal brands, creators' },
   { id: 'sunset',     name: 'Sunset Bloom', niche: 'Beauty Consultants', blurb: 'A peach-to-coral sky and a round portrait on a white sheet.', bestFor: 'Beauty influencers, skincare' },
+  { id: 'sheet',   name: 'Profile Sheet',     niche: 'Beauty', blurb: 'Full photo with a white panel that slides up over it, like a phone contact card.', bestFor: 'Med spas, salons, any owner' },
+  { id: 'studio',  name: 'Monochrome Studio', niche: 'Creative', blurb: 'Black-and-white portrait, a huge name over it and a numbered link list.', bestFor: 'Designers, stylists, luxury brands' },
+  { id: 'intro',   name: 'Video Intro',       niche: 'Professional', blurb: 'A short intro video up top, then one clear booking button.', bestFor: 'Coaches, consultants, pastors' },
+  { id: 'duotone', name: 'Duotone',           niche: 'Fitness', blurb: 'Your photo in two brand colors with a bold condensed name.', bestFor: 'Trainers, barbers, youth ministries' },
+  { id: 'trust',   name: 'Trust Builder',     niche: 'Home services', blurb: 'Reviews, credentials and clear prices, built to earn the call.', bestFor: 'Inspectors, contractors, clinics' },
+  { id: 'local',   name: 'Local',             niche: 'Food and shops', blurb: 'A map with your pin, hours and one-tap directions.', bestFor: 'Cafes, restaurants, shops' },
+  { id: 'menu',    name: 'Service Menu',      niche: 'Beauty', blurb: 'Swipeable service cards with prices and a booking button.', bestFor: 'Salons, nails, barbers, spas' },
+  { id: 'status',  name: 'Live Status',       niche: 'Home services', blurb: 'An availability badge, hours and service area up front.', bestFor: 'Mobile notaries, cleaners, handymen' },
+  { id: 'chat',    name: 'Conversation',      niche: 'Professional', blurb: 'Your card as a text thread with quick replies and a message box.', bestFor: 'Travel agents, creators, assistants' },
 ];
 
 /* ------------------------------------------------------------ 1 Editorial Cover */
@@ -462,4 +472,5 @@ export const TEMPLATE_COMPONENTS: Record<TemplateId, () => ReactElement> = {
   runway: Runway, silkcurve: SilkCurve, boldblock: BoldBlock, sunset: Sunset, glamrail: GlamRailLeaf,
   aperture: Aperture, viewfinder: Viewfinder, lensring: LensRing, rangefinder: Rangefinder, safelight: Safelight, carbonpro: CarbonPro, modedial: ModeDial, pianoblack: PianoBlack, filmstrip: FilmStrip, softbox: Softbox,
   railbleed: GlamRailBleed, railcircle: GlamRailCircle, railarch: GlamRailArch, railoval: GlamRailOval, railmark: GlamRailMark, railblob: GlamRailBlob,
+  sheet: Sheet, studio: Studio, intro: Intro, duotone: Duotone, trust: Trust, local: Local, menu: ServiceMenu, status: Status, chat: Chat,
 };
