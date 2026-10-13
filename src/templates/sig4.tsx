@@ -284,14 +284,17 @@ export function Ledger() {
 /* ================================================================ CHURCH: HYMN BOARD */
 export function HymnBoard() {
   const { data } = useCard();
-  const times = (data.hours || 'Sundays 10am').split(/,|and|&/).map((t) => t.trim()).filter(Boolean).slice(0, 3);
+  // Standard AM/PM everywhere: "9am" reads as "9:00 AM".
+  const ampm = (t: string) => t.replace(/\b(\d{1,2})(?::(\d{2}))?\s*([ap])\.?m\.?\b/gi, (_m, h, mm, ap) => `${h}:${mm || '00'} ${ap.toUpperCase()}M`);
+  const times = (data.hours || 'Sundays 10am').split(/,|\band\b|&/).map((t) => ampm(t.trim())).filter(Boolean).slice(0, 3);
   return (
     <div className="tpl tpl-hb">
       <div className="pad stack center">
         <section className="hb__board">
+          <span className="hb__rays" aria-hidden />
           <span className="hb__cross" aria-hidden />
           <h1 className="hb__church">{data.business || 'Our Church'}</h1>
-          <p className="hb__label">SERVICES</p>
+          <p className="hb__label"><i aria-hidden />Service times<i aria-hidden /></p>
           <div className="hb__slots">{times.map((t, i) => <span key={i} className="hb__slot">{t}</span>)}</div>
           {data.tagline && <p className="hb__verse">{data.tagline}</p>}
         </section>

@@ -241,3 +241,24 @@
 
 /* thumbnails: finished states */
 .tpl-card .ic__needle, .dcard .ic__needle, .mx-mini .ic__needle { transform: rotate(200deg); transition: none; }
+
+/* ---------- HYMN BOARD: royal navy, gold leaf and a glowing cross */
+.tpl-hb { background: radial-gradient(120% 50% at 50% 0%, color-mix(in srgb, var(--c-accentDetail) 14%, var(--c-pageBg)), var(--c-pageBg) 60%); }
+.hb__board { overflow: hidden; color: #F6EFDD !important; padding: 34px 20px 26px !important; border-radius: 140px 140px 14px 14px !important;
+  background: radial-gradient(90% 60% at 50% 0%, color-mix(in srgb, var(--c-heroBand) 55%, #3a4f8a) 0%, transparent 70%), linear-gradient(180deg, color-mix(in srgb, var(--c-heroBand) 85%, #000), var(--c-heroBand)) !important;
+  box-shadow: inset 0 0 0 6px color-mix(in srgb, var(--c-heroBand) 70%, #000), inset 0 0 0 7.5px var(--c-accentDetail), inset 0 0 0 12px color-mix(in srgb, var(--c-heroBand) 70%, #000), inset 0 0 0 13px color-mix(in srgb, var(--c-accentDetail) 50%, transparent), 0 28px 50px -26px rgba(0,0,0,.75) !important; }
+.hb__rays { position: absolute; left: 50%; top: -60px; width: 420px; height: 300px; margin-left: -210px; background: repeating-conic-gradient(from 180deg at 50% 0%, rgba(255,236,180,.10) 0deg 6deg, transparent 6deg 14deg); -webkit-mask: radial-gradient(closest-side, #000, transparent); mask: radial-gradient(closest-side, #000, transparent); pointer-events: none; }
+.hb__cross { width: 26px !important; height: 52px !important; filter: drop-shadow(0 0 10px color-mix(in srgb, var(--c-accentDetail) 80%, transparent)); }
+.hb__cross::before, .hb__cross::after { background: linear-gradient(180deg, #FBE7A6, var(--c-accentDetail) 55%, #8A6A16) !important; }
+.hb__cross::before { left: 10px !important; width: 6px !important; height: 52px !important; }
+.hb__cross::after { top: 13px !important; width: 26px !important; height: 6px !important; }
+.hb__church { font-family: var(--f-display); font-size: 27px !important; font-weight: 700; letter-spacing: .04em; background: linear-gradient(180deg, #FFF7DA, #E9CF7C 55%, #C9A227); -webkit-background-clip: text; background-clip: text; color: transparent !important; text-wrap: balance; }
+.hb__label { display: flex; align-items: center; justify-content: center; gap: 10px; color: var(--c-accentDetail); opacity: 1 !important; text-transform: uppercase; }
+.hb__label i { width: 34px; height: 1px; background: linear-gradient(90deg, transparent, var(--c-accentDetail)); }
+.hb__label i:last-child { transform: scaleX(-1); }
+.hb__slot { background: linear-gradient(180deg, #FFFDF6, #F1E9D6) !important; color: color-mix(in srgb, var(--c-heroBand) 90%, #000) !important; font-family: var(--f-display) !important; font-size: 17px !important; letter-spacing: .03em; border-radius: 8px !important; box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--c-accentDetail) 70%, transparent), 0 6px 14px -8px rgba(0,0,0,.6) !important; }
+.hb__verse { color: #EADFC4; }
+.hb__pastor { padding: 12px; border-radius: 16px; background: var(--c-cardBg); box-shadow: 0 10px 24px -18px rgba(var(--shadow-rgb), .5); }
+.hb__img { width: 76px !important; height: 76px !important; box-shadow: 0 0 0 2px var(--c-pageBg), 0 0 0 4px var(--c-accentDetail); }
+.hb__mins article { border-left: 3px solid var(--c-accentDetail); }
+.tpl-hb .fb--primary { background-image: linear-gradient(180deg, color-mix(in srgb, var(--c-btnPrimaryBg) 80%, #fff), var(--c-btnPrimaryBg)); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--c-accentDetail) 60%, transparent), 0 10px 20px -12px rgba(0,0,0,.6); }

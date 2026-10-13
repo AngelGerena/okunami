@@ -9,7 +9,7 @@ import { Estate, Garden, Marquee, Passport, Scoreboard, Signature } from './sig-
 import { Cmdk, GoldLeaf, Hologram, Lash, Liquid, Mission, NowServing, Perfume, Pole, Poster, RoseGold, Starfield, Swatch, Synthwave } from './sig2-a';
 import { Celestial, Constelacion, Escenario, Frecuencia, Salmo, Santuario, Vitral } from './worship/Worship';
 import { Bag, CaseFile, Cluster, ContactSheet, Diner, Flash, FloorPlan, HangTag, HymnBoard, Ledger, OrderTicket, Postcard, Stopwatch, YardSign } from './sig4';
-import { Bamboo, Blowout, Chalkboard, Clipper, Lotus, Magazine, NeonSign, Polish, Razor, Shimmer, Stations, Stones, Tips } from './sig3';
+import { Growth, Bamboo, Blowout, Chalkboard, Clipper, Lotus, Magazine, NeonSign, Polish, Razor, Shimmer, Stations, Stones, Tips } from './sig3';
 import { BoldBlock, CoverSplit, GlamRailArch, GlamRailBleed, GlamRailBlob, GlamRailCircle, GlamRailLeaf, GlamRailMark, GlamRailOval, Halo, Leaf, NeonPulse, Plum, RoseGlass, Runway, SilkCurve, Sunset, SwatchBar } from './sig5';
 import { Boarding, Confetti, Inbox, Invitation, Monogram, Planner, Recipe, Stained, Toolbelt, Trading, Turntable, Vinyl, Waveform } from './sig2-b';
 import {
@@ -73,7 +73,7 @@ export const TEMPLATES: TemplateMeta[] = [
   { id: 'hologram',   name: 'Hologram',        niche: 'Tech', blurb: 'A 3D holographic ID card you can grab and spin.', bestFor: 'Tech, founders, creators' },
   { id: 'mission',    name: 'Mission Control', niche: 'Tech', blurb: 'Live clock, gauges and toggle switches for every action.', bestFor: 'IT, operations, engineers' },
   { id: 'poster',     name: 'Glitch Poster',   niche: 'Tech', blurb: 'Brutalist poster with RGB split type and a scrolling ticker.', bestFor: 'Designers, agencies, streetwear' },
-  { id: 'liquid',     name: 'Liquid Metal',    niche: 'Tech', blurb: 'Molten chrome blobs that merge and split behind glass.', bestFor: 'Startups, product people' },
+  { id: 'liquid',     name: 'Liquid Metal',    niche: 'Tech', blurb: 'Neon city skyline, molten chrome and a glowing chrome portrait ring.', bestFor: 'Startups, product people' },
   { id: 'starfield',  name: 'Starfield',       niche: 'Tech', blurb: 'Warp-speed intro that settles into drifting stars.', bestFor: 'Tech, aerospace, gaming' },
   { id: 'cmdk',       name: 'Command Palette', niche: 'Tech', blurb: 'A searchable, keyboard-first card like a developer tool.', bestFor: 'Developers, product, SaaS' },
   { id: 'synthwave',  name: 'Synthwave',       niche: 'Tech', blurb: 'Retro sunset, neon grid and chrome type.', bestFor: 'DJs, gamers, creators' },
@@ -105,6 +105,7 @@ export const TEMPLATES: TemplateMeta[] = [
   { id: 'polish',     name: 'Polish Shelf',   niche: 'Nail Spas', blurb: 'A shelf of polish bottles; each one is a service and price.', bestFor: 'Nail salons and spas' },
   { id: 'shimmer',    name: 'Shimmer',        niche: 'Nail Spas', blurb: 'Twinkling glitter and a glossy service menu.', bestFor: 'Nail artists, lash studios' },
   { id: 'tips',       name: 'Tip Chart',      niche: 'Nail Spas', blurb: 'Your work shown inside real nail shapes: almond, coffin, stiletto.', bestFor: 'Nail artists' },
+  { id: 'growth',     name: 'Growth Chart',   niche: 'Finance', blurb: 'A rising bar chart and trend line beside your photo, with numbered services.', bestFor: 'Financial advisors, insurance, loan officers' },
   { id: 'blowout',    name: 'Blowout',        niche: 'Hair Salons', blurb: 'Flowing hair strands sweep across an editorial portrait.', bestFor: 'Stylists, blowout bars' },
   { id: 'stations',   name: 'Salon Stations', niche: 'Hair Salons', blurb: 'Three lit salon mirrors, your photo in the center chair.', bestFor: 'Salons with a team' },
   { id: 'magazine',   name: 'Cover Story',    niche: 'Hair Salons', blurb: 'Your salon on a fashion magazine cover, services as cover lines.', bestFor: 'Salons, stylists, makeup artists' },
@@ -121,7 +122,7 @@ export const TEMPLATES: TemplateMeta[] = [
   { id: 'postcard',     name: 'Postcard',       niche: 'Community', blurb: 'A picture postcard, with a handwritten note and stamp on the back.', bestFor: 'Nonprofits, travel, community groups' },
   { id: 'floorplan',    name: 'Floor Plan',     niche: 'Real Estate', blurb: 'Your services as rooms on an architectural floor plan.', bestFor: 'Realtors, builders, designers' },
   { id: 'ledger',       name: 'Ledger',         niche: 'Finance', blurb: 'A green ledger page with checked-off services and your signature.', bestFor: 'Accountants, insurance, advisors' },
-  { id: 'hymnboard',    name: 'Hymn Board',     niche: 'Churches', blurb: 'A wooden hymn board showing your service times.', bestFor: 'Churches and ministries' },
+  { id: 'hymnboard',    name: 'Hymn Board',     niche: 'Churches', blurb: 'A royal navy and gold-leaf board with your service times under a glowing cross.', bestFor: 'Churches and ministries' },
   { id: 'cluster',      name: 'Dashboard',      niche: 'Auto', blurb: 'A car instrument cluster; gauges sweep up and warning lights are your buttons.', bestFor: 'Mechanics, detailers, dealers' },
   { id: 'stopwatch',    name: 'Stopwatch',      niche: 'Fitness', blurb: 'A running stopwatch, with your programs as laps.', bestFor: 'Trainers, run clubs, coaches' },
   { id: 'diner',        name: 'Diner',          niche: 'Restaurants', blurb: 'A retro diner sign, checkered floor and a specials board.', bestFor: 'Diners, cafes, breakfast spots' },
@@ -440,7 +441,7 @@ export const TEMPLATE_COMPONENTS: Record<TemplateId, () => ReactElement> = {
   pole: Pole, goldleaf: GoldLeaf, lash: Lash, rosegold: RoseGold, swatch: Swatch, nowserving: NowServing, perfume: Perfume,
   vinyl: Vinyl, boarding: Boarding, recipe: Recipe, toolbelt: Toolbelt, stained: Stained, trading: Trading,
   turntable: Turntable, waveform: Waveform, confetti: Confetti, invitation: Invitation, monogram: Monogram, inbox: Inbox, planner: Planner,
-  razor: Razor, chalkboard: Chalkboard, neonsign: NeonSign, clipper: Clipper, polish: Polish, shimmer: Shimmer, tips: Tips,
+  razor: Razor, chalkboard: Chalkboard, neonsign: NeonSign, clipper: Clipper, growth: Growth, polish: Polish, shimmer: Shimmer, tips: Tips,
   blowout: Blowout, stations: Stations, magazine: Magazine, stones: Stones, lotus: Lotus, bamboo: Bamboo,
   casefile: CaseFile, contactsheet: ContactSheet, flash: Flash, orderticket: OrderTicket, hangtag: HangTag, bag: Bag, postcard: Postcard,
   floorplan: FloorPlan, ledger: Ledger, hymnboard: HymnBoard, cluster: Cluster, stopwatch: Stopwatch, diner: Diner, yardsign: YardSign,

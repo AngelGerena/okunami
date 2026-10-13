@@ -48,21 +48,15 @@ function d(
 /* ----------------------------------------------------------- designs reused across niches */
 const MAINFRAME = d('tech', 'Mainframe', 'Boot sequence, neon grid, glitch name, holographic tilt, keyboard commands.', ['#0B1020', '#22E3FF', '#EEF3FA'], 'dark', ['Space Grotesk', 'IBM Plex Sans'], ['chamfer', 'regular', 'hud', 'scanline'], 'tech', 0.35);
 const QUANTUM = d('quantum', 'Quantum', 'Orbiting rings circle your photo in 3D, particle dust, frosted glass tiles.', ['#0A0F1F', '#8B7CFF', '#F1F0FA'], 'dark', ['Syncopate', 'Manrope'], ['pill', 'regular', 'glass', 'none'], 'tech', 1, true);
-const TERMINAL = d('terminal', 'Terminal', 'A glowing CRT screen types out who you are, command by command.', ['#050A06', '#39FF88', '#EEF5EF'], 'dark', ['VT323', 'IBM Plex Mono'], ['square', 'regular', 'outline', 'scanline'], 'tech', 0, true);
 const CYBER = d('cyber', 'Neon District', 'Cyberpunk panels, falling neon rain, slashed buttons and glitch type.', ['#12031F', '#FF2BD6', '#F7F0FA'], 'dark', ['Chakra Petch', 'Rajdhani'], ['chamfer', 'large', 'neon', 'none'], 'tech', 0.2, true);
 const AURORA = d('aurora', 'Aurora', 'Living northern-lights color behind floating glass, like a spatial app.', ['#0E1330', '#5EEAD4', '#EEF4F7'], 'dark', ['Sora', 'Inter'], ['pill', 'large', 'glass', 'none'], 'tech', 1.3, true);
 const RADAR = d('radar', 'Radar', 'A sweeping radar screen where every contact option is a blip.', ['#04130C', '#4ADE80', '#EEF5F0'], 'dark', ['Orbitron', 'Rajdhani'], ['chamfer', 'regular', 'hud', 'none'], 'tech', 0.3, true);
-const CIRCUIT = d('circuit', 'Circuit', 'Your photo on a chip, with live current running through gold traces to each action.', ['#0E1411', '#F5B942', '#EEF4F0'], 'dark', ['Space Grotesk', 'IBM Plex Sans'], ['chamfer', 'regular', 'solid', 'circuit'], 'tech', 0.3, true);
-const BLUEPRINT = d('blueprint', 'Blueprint', 'A drafted blueprint that draws itself: dimension lines, title block, spec sheet.', ['#123C7A', '#FFFFFF', '#EEF3FA'], 'light', ['Space Grotesk', 'IBM Plex Sans'], ['square', 'regular', 'outline', 'none'], 'tech', 0, true);
 const SIGNATURE = d('signature', 'Signature', 'Letterpress card and a wax seal with your initials that stamps down as it opens.', ['#2A1E1A', '#8A1C2C', '#F4EDE3'], 'light', ['Cormorant Garamond', 'Manrope'], ['pill', 'regular', 'outline', 'paper'], 'calm', 0.8, true);
 const VANITY = d('vanity', 'Vanity Mirror', 'Your photo in a Hollywood vanity mirror with bulbs that light up one by one.', ['#1B1416', '#F4C98B', '#F7F1EC'], 'dark', ['Bodoni Moda', 'Jost'], ['pill', 'regular', 'solid', 'satin'], 'bright', 1, true);
 const GLOSS = d('gloss', 'Chrome Gloss', 'Iridescent holographic chrome, bubbly glossy buttons and sparkles.', ['#2A2350', '#FF7AC8', '#F6F2FF'], 'light', ['Unbounded', 'Outfit'], ['pill', 'large', 'raised', 'satin'], 'bright', 1.3, true);
 const HOLOGRAM = d('hologram', 'Hologram', 'A 3D holographic ID card you can grab and spin.', ['#0A0E1A', '#7DF9FF', '#EEF3F8'], 'dark', ['Sora', 'Inter'], ['pill', 'regular', 'glass', 'none'], 'tech', 1, true);
 const MISSION = d('mission', 'Mission Control', 'Live clock, gauges and toggle switches for every action.', ['#0B0F0D', '#FF8A00', '#EEF1EF'], 'dark', ['Rajdhani', 'IBM Plex Sans'], ['rounded', 'regular', 'inset', 'none'], 'tech', 0.5, true);
-const POSTER = d('poster', 'Glitch Poster', 'Brutalist poster with RGB split type and a scrolling ticker.', ['#111111', '#FF3B30', '#F2F0EA'], 'light', ['Anton', 'Space Grotesk'], ['square', 'large', 'solid', 'none'], 'tech', 0, true);
-const LIQUID = d('liquid', 'Liquid Metal', 'Molten chrome blobs merge and split behind glass.', ['#15161A', '#B8C1D6', '#EFF1F5'], 'dark', ['Syne', 'Manrope'], ['pill', 'large', 'glass', 'satin'], 'tech', 1.3, true);
-const STARFIELD = d('starfield', 'Starfield', 'A warp-speed intro that settles into drifting stars.', ['#05070F', '#A5B4FC', '#EEF0F8'], 'dark', ['Orbitron', 'Inter'], ['pill', 'regular', 'glass', 'none'], 'tech', 1, true);
-const CMDK = d('cmdk', 'Command Palette', 'A searchable, keyboard-first card like a developer tool.', ['#0F1115', '#7C9CFF', '#F1F3F7'], 'dark', ['Inter', 'Inter'], ['rounded', 'regular', 'solid', 'none'], 'tech', 0.7, true);
+const LIQUID = d('liquid', 'Liquid Metal', 'Neon city skyline, molten chrome and a glowing chrome portrait ring.', ['#120A2E', '#FF3EA5', '#F1EEF8'], 'dark', ['Syne', 'Manrope'], ['pill', 'large', 'glass', 'satin'], 'tech', 1.3, true);
 const SYNTHWAVE = d('synthwave', 'Synthwave', 'Retro sunset, neon grid and chrome type.', ['#1A0B2E', '#FF4FD8', '#F6F0FA'], 'dark', ['Monoton', 'Rajdhani'], ['pill', 'large', 'neon', 'none'], 'tech', 1, true);
 const VINYL = d('vinyl', 'Vinyl Sleeve', 'Your photo as an album cover while the record slides out.', ['#141414', '#F2C14E', '#F2EFE8'], 'dark', ['Syne', 'Space Grotesk'], ['pill', 'large', 'solid', 'grain'], 'tech', 0.6, true);
 const WAVEFORM = d('waveform', 'Waveform', 'A playing waveform with a scrubber and tracklist.', ['#0D0D12', '#FF5A36', '#F3F1EE'], 'dark', ['Space Grotesk', 'Inter'], ['pill', 'large', 'solid', 'none'], 'tech', 1, true);
@@ -71,12 +65,11 @@ const BOARDING = d('boarding', 'Boarding Pass', 'A first-class boarding pass wit
 const CONFETTI = d('confetti', 'Confetti', 'A confetti burst and a run-of-show timeline.', ['#2B1A4A', '#FF6FB5', '#FFF7FB'], 'light', ['Bricolage Grotesque', 'Outfit'], ['pill', 'large', 'raised', 'none'], 'bright', 1.3, true);
 const INVITATION = d('invitation', 'Invitation', 'An envelope that opens to reveal your card.', ['#3E4A3D', '#C9A27E', '#F7F3EC'], 'light', ['Cormorant Garamond', 'Manrope'], ['pill', 'regular', 'solid', 'paper'], 'calm', 1, true);
 const MONOGRAM = d('monogram', 'Monogram', 'Your initials inside a blooming floral wreath.', ['#4A3B47', '#D8A7B1', '#FBF7F4'], 'light', ['Cormorant Garamond', 'Manrope'], ['pill', 'regular', 'solid', 'none'], 'calm', 1.2, true);
-const INBOX = d('inbox', 'Inbox', 'An email inbox where every message is a way to reach you.', ['#1D3557', '#E76F51', '#F4F6F9'], 'light', ['Inter', 'Inter'], ['rounded', 'regular', 'solid', 'none'], 'calm', 0.8, true);
 const PLANNER = d('planner', 'Planner', 'A ring-bound planner with your week and a to-do list.', ['#2F3E46', '#F4A261', '#F8F4EC'], 'light', ['Fraunces', 'Figtree'], ['rounded', 'regular', 'solid', 'paper'], 'calm', 0.9, true);
 const TRADING = d('trading', 'Trading Card', 'A holo trading card that flips to show your stats.', ['#12151F', '#FFD23F', '#F1F3F8'], 'dark', ['Bebas Neue', 'Barlow'], ['rounded', 'large', 'solid', 'none'], 'bright', 0.7, true);
 const MARQUEE = d('marquee', 'Marquee', 'A theater marquee with chasing bulbs and your name in lights.', ['#1A0E08', '#FFC53D', '#F7F0E6'], 'dark', ['Limelight', 'Work Sans'], ['rounded', 'large', 'raised', 'none'], 'bright', 0.6, true);
 
-export const NICHES: Niche[] = [
+const NICHE_LIST: Niche[] = [
   /* ================================================================ TECH */
   {
     id: 'tech', name: 'Tech and IT', group: 'Tech', icon: 'screen',
@@ -90,7 +83,7 @@ export const NICHES: Niche[] = [
     ],
     tagline: 'Building what runs your business',
     suggestedLinks: ['github', 'linkedin', 'x', 'youtube', 'discord', 'calendly'],
-    designs: [MAINFRAME, HOLOGRAM, QUANTUM, CMDK, CYBER, AURORA, STARFIELD, MISSION, LIQUID, TERMINAL, SYNTHWAVE, POSTER, RADAR, CIRCUIT],
+    designs: [MAINFRAME, HOLOGRAM, QUANTUM, CYBER, AURORA, MISSION, LIQUID, SYNTHWAVE, RADAR],
   },
   {
     id: 'engineering', name: 'Architects and Engineers', group: 'Tech', icon: 'tools',
@@ -104,7 +97,7 @@ export const NICHES: Niche[] = [
     ],
     tagline: 'Measured twice. Built once.',
     suggestedLinks: ['linkedin', 'behance', 'houzz', 'google'],
-    designs: [BLUEPRINT, MISSION, CIRCUIT, QUANTUM],
+    designs: [MISSION, QUANTUM],
   },
   {
     id: 'gaming', name: 'Gamers and Streamers', group: 'Tech', icon: 'star',
@@ -118,7 +111,7 @@ export const NICHES: Niche[] = [
     ],
     tagline: 'Live most nights',
     suggestedLinks: ['twitch', 'kick', 'youtube', 'discord', 'tiktok', 'x'],
-    designs: [SYNTHWAVE, CYBER, STARFIELD, TERMINAL, MAINFRAME, RADAR],
+    designs: [SYNTHWAVE, CYBER, MAINFRAME, RADAR],
   },
 
   /* ================================================================ BEAUTY AND GROOMING */
@@ -137,12 +130,9 @@ export const NICHES: Niche[] = [
     designs: [
       d('neonsign', 'Neon Sign', 'Your shop name as a flickering neon sign on brick.', ['#121014', '#FF3D6E', '#F2EEE9'], 'dark', ['Monoton', 'Barlow'], ['pill', 'large', 'neon', 'none'], 'bright', 1, true),
       d('razor', 'Straight Razor', 'A chrome straight razor opens over an engraved steel price plate.', ['#141517', '#C8A45A', '#EFEEEB'], 'dark', ['Playfair Display', 'Barlow'], ['rounded', 'large', 'solid', 'brushed'], 'bright', 0.4, true),
-      d('clipper', 'Clipper Guards', 'A buzzing clipper and guard sizes that label each service.', ['#0F1113', '#3BE3A8', '#EEF1EF'], 'dark', ['Bebas Neue', 'Barlow'], ['rounded', 'large', 'solid', 'carbon'], 'bright', 0.5, true),
       d('chalkboard', 'Chalkboard', 'A wood-framed chalk menu with hand-written prices.', ['#2A1E14', '#E0B34A', '#F3EDE3'], 'light', ['Caveat', 'Lato'], ['rounded', 'large', 'solid', 'paper'], 'bright', 0.6, true),
       d('pole', 'Barber Pole', 'A spinning 3D barber pole beside your shop name, with a price list.', ['#15213A', '#C8102E', '#F4EFE6'], 'light', ['Abril Fatface', 'Lato'], ['rounded', 'large', 'solid', 'none'], 'bright', 0.6, true),
-      d('nowserving', 'Now Serving', 'A take-a-number machine; the ticket books the next chair.', ['#141414', '#FF3B30', '#F2F0EB'], 'dark', ['Bebas Neue', 'Barlow'], ['rounded', 'large', 'raised', 'none'], 'bright', 0.5, true),
       d('fade', 'Fade', 'Streetwear barber: giant stacked name, letterboard price list, razor details.', ['#0D0D0D', '#E8FF3A', '#F2F2EE'], 'dark', ['Anton', 'Archivo'], ['square', 'large', 'solid', 'none'], 'bright', 0, true),
-      d('oldschool', 'Old School', 'Vintage barbershop badge, pole stripes and a hand-lettered price card.', ['#1D2B4F', '#B3262E', '#F3EBDD'], 'light', ['Abril Fatface', 'Lato'], ['rounded', 'large', 'solid', 'paper'], 'bright', 0.6, true),
       d('barber', 'Chair', 'Animated barber pole, book-a-chair up front, price list and fresh cuts.', ['#111827', '#E0B34A', '#F4F1EA'], 'dark', ['Oswald', 'Karla'], ['rounded', 'large', 'solid', 'brushed'], 'bright', 0.5),
       MARQUEE,
     ],
@@ -188,8 +178,6 @@ export const NICHES: Niche[] = [
       d('shimmer', 'Shimmer', 'Twinkling glitter and a glossy service menu.', ['#1A1024', '#F7A8D8', '#FBF3FA'], 'dark', ['Unbounded', 'Outfit'], ['pill', 'large', 'gradient', 'satin'], 'bright', 1.4, true),
       d('tips', 'Tip Chart', 'Your work shown inside real nail shapes: almond, coffin, stiletto.', ['#3C2A3F', '#E07A9B', '#FCF6F7'], 'light', ['DM Serif Display', 'DM Sans'], ['pill', 'regular', 'solid', 'none'], 'bright', 1.2, true),
       d('lash', 'Lash Line', 'Lashes draw themselves over your photo, one by one.', ['#2B1B2E', '#E7A4C0', '#FCF6F8'], 'light', ['Playfair Display', 'DM Sans'], ['pill', 'regular', 'solid', 'none'], 'bright', 1.4, true),
-      d('rosegold', 'Rose Gold', 'Brushed rose-gold plate with a light sweep and engraved name.', ['#4A2C2A', '#E0A899', '#FBF4F1'], 'light', ['Cormorant Garamond', 'Manrope'], ['pill', 'regular', 'gradient', 'brushed'], 'calm', 1.2, true),
-      d('blush', 'Blush', 'Morphing pastel blobs, a tilted polaroid stack and soft pill buttons.', ['#7A3E5C', '#FFB5C8', '#FFF6F8'], 'light', ['Playfair Display', 'DM Sans'], ['pill', 'regular', 'solid', 'none'], 'bright', 1.5, true),
       GLOSS,
       VANITY,
     ],
@@ -269,7 +257,6 @@ export const NICHES: Niche[] = [
     designs: [
       d('stones', 'Hot Stones', 'Balanced warm stones with rising steam.', ['#3B2F2A', '#C08457', '#F6F1EA'], 'light', ['Cormorant Garamond', 'Manrope'], ['pill', 'regular', 'solid', 'paper'], 'calm', 1.2, true),
       d('lotus', 'Lotus', 'A lotus blooms on a rippling pond, with a gentle breathing guide.', ['#2E3A4A', '#E7A6B8', '#F4F6F8'], 'light', ['Italiana', 'Mulish'], ['pill', 'regular', 'solid', 'none'], 'calm', 1.4, true),
-      d('bamboo', 'Bamboo', 'Swaying bamboo and rice-paper panels, calm and zen.', ['#26352A', '#9DBF6B', '#F4F2EA'], 'light', ['Marcellus', 'Mulish'], ['pill', 'regular', 'solid', 'linen'], 'calm', 1, true),
       d('silk', 'Silk', 'Slow flowing silk waves and a calm treatment menu.', ['#3E5A57', '#B9D4CC', '#F5F8F6'], 'light', ['Italiana', 'Mulish'], ['pill', 'regular', 'solid', 'none'], 'calm', 1.4, true),
       d('perfume', 'Perfume', 'A glass bottle with your spa name on the label.', ['#3B3A4F', '#C8B6E2', '#F8F6FB'], 'light', ['Italiana', 'Mulish'], ['pill', 'regular', 'solid', 'satin'], 'calm', 1.3, true),
     ],
@@ -289,8 +276,6 @@ export const NICHES: Niche[] = [
     tagline: 'Helping families find home',
     suggestedLinks: ['zillow', 'instagram', 'facebook', 'youtube', 'google'],
     designs: [
-      d('floorplan', 'Floor Plan', 'Your services as rooms on an architectural floor plan.', ['#1D2A3A', '#C9A96E', '#F5F3EE'], 'light', ['DM Serif Display', 'Work Sans'], ['square', 'regular', 'solid', 'none'], 'calm', 0.3, true),
-      d('estate', 'Estate', 'Full-screen listing slideshow with slow cinematic zoom and gold hairlines.', ['#15130F', '#C9A96E', '#F5F1EA'], 'dark', ['Cinzel', 'Lato'], ['square', 'regular', 'outline', 'none'], 'calm', 0.2, true),
       d('realestate', 'Keystone', 'Property hero, agent card, home-value call to action, listings strip.', ['#14213D', '#B8925A', '#F6F4EF'], 'light', ['DM Serif Display', 'Work Sans'], ['rounded', 'regular', 'solid', 'none'], 'calm', 0.7),
       SIGNATURE,
     ],
@@ -308,7 +293,7 @@ export const NICHES: Niche[] = [
     tagline: 'Plain answers. Real coverage.',
     suggestedLinks: ['linkedin', 'facebook', 'google', 'calendly'],
     designs: [
-      d('ledger', 'Ledger', 'A green ledger page with checked-off services and your signature.', ['#1E4D3A', '#B08D57', '#F3F6F0'], 'light', ['Libre Baskerville', 'Work Sans'], ['rounded', 'regular', 'solid', 'none'], 'calm', 0.5, true),
+      d('growth', 'Growth Chart', 'A rising bar chart and trend line beside your photo, with numbered services.', ['#0F2A3D', '#1F9D63', '#F3F6F4'], 'light', ['Fraunces', 'Figtree'], ['rounded', 'large', 'solid', 'none'], 'calm', 0.9, true),
       d('advisor', 'Advisor', 'License badge, book a review, get a quote, clear services.', ['#0B3D5C', '#2BA88A', '#F3F7F9'], 'light', ['DM Serif Display', 'Work Sans'], ['rounded', 'regular', 'solid', 'none'], 'calm', 0.8),
       SIGNATURE,
       d('aurora', 'Aurora', 'Modern glass panels for fintech and advisors who want to look ahead.', ['#0B2447', '#34D399', '#EEF6F4'], 'dark', ['Sora', 'Inter'], ['pill', 'large', 'glass', 'none'], 'calm', 1.2, true),
@@ -369,7 +354,6 @@ export const NICHES: Niche[] = [
       d('cluster', 'Dashboard', 'A car instrument cluster; gauges sweep up and warning lights are your buttons.', ['#0C0E10', '#FF3B30', '#EEF0F2'], 'dark', ['Orbitron', 'Rajdhani'], ['rounded', 'large', 'solid', 'carbon'], 'tech', 0.4, true),
       d('toolbelt', 'Toolbelt', 'A leather tool belt for mobile mechanics.', ['#2A2A2A', '#FF6A13', '#F1EFEA'], 'dark', ['Oswald', 'Source Sans 3'], ['rounded', 'large', 'solid', 'carbon'], 'bright', 0.6, true),
       d('mechanic', 'Garage', 'Hazard stripe, giant call button, services grid, shop hours.', ['#C2410C', '#FFB000', '#F1EFEA'], 'dark', ['Oswald', 'Source Sans 3'], ['chamfer', 'large', 'solid', 'carbon'], 'bright', 0.3),
-      d('circuit', 'Circuit', 'Electrical-diagnostics look with live traces, for auto electricians and EV techs.', ['#101418', '#FF6A13', '#F0EFEC'], 'dark', ['Space Grotesk', 'IBM Plex Sans'], ['chamfer', 'regular', 'solid', 'carbon'], 'tech', 0.3, true),
     ],
   },
   {
@@ -388,7 +372,6 @@ export const NICHES: Niche[] = [
       d('yardsign', 'Yard Sign', 'A lawn sign with your number big enough to read from the street.', ['#1F3A5F', '#F2A900', '#F3F5F8'], 'light', ['Archivo Black', 'Hanken Grotesk'], ['rounded', 'large', 'solid', 'none'], 'bright', 0.6, true),
       d('toolbelt', 'Toolbelt', 'A leather belt with a pocket for every action.', ['#3B2A1E', '#F2A900', '#F5F0E8'], 'dark', ['Oswald', 'Source Sans 3'], ['rounded', 'large', 'solid', 'linen'], 'bright', 0.6, true),
       d('handyman', 'Toolbox', 'Call or text first, job checklist, licensed badge, before and after.', ['#1F4D3A', '#F2A900', '#F7F5EE'], 'light', ['Bricolage Grotesque', 'Hanken Grotesk'], ['rounded', 'large', 'solid', 'none'], 'bright', 0.9),
-      d('blueprint', 'Blueprint', 'A drafted blueprint with dimension lines and a spec sheet.', ['#1E3A5F', '#F2A900', '#F0F4F8'], 'light', ['Space Grotesk', 'IBM Plex Sans'], ['square', 'regular', 'outline', 'none'], 'bright', 0, true),
     ],
   },
   {
@@ -490,7 +473,6 @@ export const NICHES: Niche[] = [
       SYNTHWAVE,
       CYBER,
       AURORA,
-      POSTER,
     ],
   },
   {
@@ -506,9 +488,6 @@ export const NICHES: Niche[] = [
     tagline: 'Light, story and a little magic',
     suggestedLinks: ['instagram', 'pinterest', 'behance', 'tiktok', 'google'],
     designs: [
-      d('contactsheet', 'Contact Sheet', 'A film contact sheet with your pick circled in red grease pencil.', ['#141414', '#E5484D', '#EDEBE6'], 'dark', ['Space Grotesk', 'Inter'], ['square', 'regular', 'outline', 'none'], 'calm', 0.1, true),
-      d('photo', 'Darkroom', 'Gallery first. Minimal type, masonry grid, book a session.', ['#111111', '#E8C07D', '#F2F0EC'], 'dark', ['Bodoni Moda', 'Jost'], ['square', 'regular', 'outline', 'none'], 'calm', 0.1),
-      d('estate', 'Cinema', 'Your work as a full-screen slideshow with slow cinematic zoom.', ['#0E0E0E', '#E8C07D', '#F2F0EC'], 'dark', ['Italiana', 'Jost'], ['square', 'regular', 'outline', 'none'], 'calm', 0.1, true),
     ],
   },
   {
@@ -573,7 +552,7 @@ export const NICHES: Niche[] = [
     ],
     tagline: 'Your time back, handled.',
     suggestedLinks: ['linkedin', 'instagram', 'calendly', 'facebook'],
-    designs: [INBOX, PLANNER, d('cmdk', 'Command Palette', 'A searchable card for tech-savvy assistants.', ['#1F2433', '#8B7CFF', '#F3F2FA'], 'light', ['Inter', 'Inter'], ['rounded', 'regular', 'solid', 'none'], 'calm', 0.7, true), SIGNATURE],
+    designs: [PLANNER, SIGNATURE],
   },
   {
     id: 'tattoo', name: 'Tattoo and Art', group: 'Creative', icon: 'art',
@@ -628,7 +607,6 @@ export const NICHES: Niche[] = [
     designs: [
       d('bag', 'Shopping Bag', 'A branded shopping bag with gift-tag categories.', ['#0F5257', '#F2A541', '#F7F3EC'], 'light', ['Fraunces', 'Figtree'], ['pill', 'regular', 'solid', 'paper'], 'bright', 1, true),
       d('retail', 'Storefront', 'Striped awning, hours, category tiles, visit or shop online.', ['#0F5257', '#FF6F59', '#F4F8F6'], 'light', ['Fraunces', 'Figtree'], ['soft', 'regular', 'solid', 'none'], 'bright', 1),
-      d('garden', 'Garden', 'A growing, blooming vine for florists and plant shops.', ['#2F4A2E', '#E3729A', '#F7F4EC'], 'light', ['Fraunces', 'Figtree'], ['pill', 'regular', 'solid', 'none'], 'calm', 1.2, true),
     ],
   },
 
@@ -646,8 +624,7 @@ export const NICHES: Niche[] = [
     tagline: 'There is a place for you here',
     suggestedLinks: ['youtube', 'facebook', 'instagram', 'spotify', 'paypal', 'cashapp', 'zelle'],
     designs: [
-      d('hymnboard', 'Hymn Board', 'A wooden hymn board showing your service times.', ['#3B2A1E', '#D4AF37', '#F7F3EC'], 'light', ['Marcellus', 'Mulish'], ['pill', 'regular', 'solid', 'none'], 'calm', 1, true),
-      d('stained', 'Stained Glass', 'A glowing stained-glass window around your photo.', ['#2B2350', '#E0B84A', '#F7F4EE'], 'light', ['Marcellus', 'Mulish'], ['pill', 'regular', 'solid', 'none'], 'calm', 1, true),
+      d('hymnboard', 'Hymn Board', 'A royal navy and gold-leaf board with your service times under a glowing cross.', ['#14213D', '#C9A227', '#F7F4EE'], 'light', ['Cinzel', 'Mulish'], ['pill', 'regular', 'solid', 'none'], 'calm', 1, true),
       d('church', 'Sanctuary', 'Light rays, service times, watch live, give, prayer requests.', ['#3A2C6B', '#D4AF37', '#F7F5FB'], 'light', ['Marcellus', 'Mulish'], ['pill', 'regular', 'solid', 'none'], 'calm', 1.1),
       d('marquee', 'Marquee', 'Your church name in lights, for conferences and youth events.', ['#1A0E08', '#FFC53D', '#F7F0E6'], 'dark', ['Limelight', 'Work Sans'], ['rounded', 'large', 'raised', 'none'], 'bright', 0.6, true),
     ],
@@ -689,10 +666,12 @@ export const NICHES: Niche[] = [
     designs: [
       d('postcard', 'Postcard', 'A picture postcard, with a handwritten note and stamp on the back.', ['#1F5E3B', '#E4572E', '#F6F1E7'], 'light', ['Caveat', 'Nunito Sans'], ['pill', 'regular', 'solid', 'paper'], 'calm', 1, true),
       d('church', 'Sanctuary', 'Warm green and orange for causes and community groups.', ['#1F5E3B', '#F28C28', '#F4F8F3'], 'light', ['Lora', 'Nunito Sans'], ['pill', 'regular', 'solid', 'none'], 'calm', 1.1),
-      d('garden', 'Garden', 'A growing vine for community gardens and green causes.', ['#1F5E3B', '#F28C28', '#F4F8F3'], 'light', ['Fraunces', 'Figtree'], ['pill', 'regular', 'solid', 'none'], 'calm', 1.2, true),
     ],
   },
 ];
+
+/** Niches shown in the app. A niche with no designs (for example while its new designs are being made) stays hidden. */
+export const NICHES: Niche[] = NICHE_LIST.filter((n) => n.designs.length > 0);
 
 /** Every distinct design, for "Browse all designs". */
 export const ALL_DESIGNS: { niche: Niche; design: Design }[] = NICHES.flatMap((n) => n.designs.map((design) => ({ niche: n, design })));
