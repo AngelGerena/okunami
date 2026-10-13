@@ -693,5 +693,8 @@ export const ES: Record<string, string> = {
   "Join-my-team link": "Enlace para unirse a tu equipo",
   "Your store link. Shows as the Shop my picks button on the Glam designs.": "El enlace de tu tienda. Aparece como el botón Compra mis favoritos en los diseños Glam.",
   "Your sign-up link for new team members. Shows as the Join my team button.": "Tu enlace de inscripción para nuevos miembros del equipo. Aparece como el botón Únete a mi equipo.",
-  "The Darkroom Collection: black and red camera gear, gloss, chrome and carbon fiber, with your portfolio below.": "La Colección Cuarto Oscuro: equipo de cámara en negro y rojo, brillo, cromo y fibra de carbono, con tu portafolio debajo."
+  "The Darkroom Collection: black and red camera gear, gloss, chrome and carbon fiber, with your portfolio below.": "La Colección Cuarto Oscuro: equipo de cámara en negro y rojo, brillo, cromo y fibra de carbono, con tu portafolio debajo.",
+  "Edit my card": "Editar mi tarjeta",
+  "Only you see this": "Solo tú ves esto",
+  "Edit my card. Only you can see this button.": "Editar mi tarjeta. Solo tú puedes ver este botón."
 };
