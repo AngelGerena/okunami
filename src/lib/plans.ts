@@ -44,10 +44,10 @@ export const PLANS: PlanDef[] = [
     features: ['Up to 3 cards', 'All {designs} designs', 'Every new OKUNAMI Drop, 3 to 5 designs every other month', 'Brand kit and custom fonts', 'No badge', 'Tap and save stats (coming soon)'] },
   { id: 'plus', name: 'Pro Plus', price: 16, yearly: 149, per: 'month', cards: PLUS_CARDS,
     pitch: 'Everything in Pro, plus hands-on help from me.',
-    features: ['Everything in Pro', '1 card', 'Event sections (coming soon)', 'Multiple languages on your card (coming soon)', 'Connect a domain you already own (coming soon)', 'Two done-for-you edits a month by Finesse Media'] },
+    features: ['Everything in Pro', '1 card', 'Event sections (coming soon)', 'Multiple languages on your card (coming soon)', 'Connect a domain you already own', 'Two done-for-you edits a month by Finesse Media'] },
   { id: 'team', name: 'Business', price: TEAM.monthly, yearly: TEAM.yearly, per: 'card / month', perCard: true,
     pitch: 'Matching cards for your whole team. Pay only for the cards you need.',
-    features: ['Everything in Pro', 'Pay per card, from 3 cards', 'Matching designs with brand lock (coming soon)', 'Team admin (coming soon)', 'Priority support, straight from me'] },
+    features: ['Everything in Pro', 'Pay per card, from 3 cards', 'Connect a domain you already own', 'Matching designs with brand lock (coming soon)', 'Team admin (coming soon)', 'Priority support, straight from me'] },
 ];
 
 /** How many cards an account may have. Keep in step with fc_card_limit() in the database. */
@@ -82,3 +82,10 @@ export const STUDIO_CONTACT = {
 /** Business customers who want a different number of cards message me directly (the billing portal can change quantity too, but this keeps it personal). */
 export const MORE_CARDS_CONTACT = (cards: number) => 'https://wa.me/14079609004?text=' + encodeURIComponent(`Hi Angel, my OKUNAMI Business account has ${cards} cards and I'd like to change that number.`);
 export const BUSINESS_CONTACT = 'https://wa.me/14079609004?text=' + encodeURIComponent("Hi Angel, I'd like to move my OKUNAMI account to Business.");
+
+/* Your own domain (vcard.theirsite.com). Keep in step with fc_domain_allowed() (migration 0018)
+   and supabase/functions/okunami-domain (prices) and _shared/domains.ts (DOMAIN_TARGET). */
+export const DOMAIN_PLANS: PlanId[] = ['plus', 'team'];
+export const DOMAIN_TARGET = 'okunami.netlify.app';
+export const DOMAIN_PRICE = { hookup: 39, register: 49 };
+export const canUseDomain = (plan: PlanId) => DOMAIN_PLANS.includes(plan);

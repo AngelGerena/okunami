@@ -121,3 +121,10 @@
 .adm-field > label { font-size: 13px; font-weight: 800; }
 .adm-num { width: 110px; min-height: 46px; padding: 0 12px; border-radius: 12px; border: 1.5px solid var(--line); background: var(--white); font: inherit; font-size: 18px; font-weight: 800; }
 .adm-num:focus { outline: none; border-color: var(--ink); }
+
+/* ---------- domain hookups */
+.adm-list > .adm-dom { grid-template-columns: minmax(0, 1fr) auto; align-items: start; }
+.adm-dom__meta { display: flex; flex-wrap: wrap; gap: 4px 14px; margin-top: 6px; font-size: 13px; color: var(--muted); }
+.adm-dom__meta span { display: inline-flex; align-items: center; gap: 5px; overflow-wrap: anywhere; }
+.adm-dom__note input { margin-top: 10px; width: 100%; max-width: 420px; min-height: 40px; padding: 0 12px; border: 1.5px solid var(--line); border-radius: 10px; background: var(--paper-2); font-size: 14px; }
+@media (max-width: 700px) { .adm-list > .adm-dom { grid-template-columns: 1fr; } .adm-dom .adm-row__acts { justify-content: flex-start; } }

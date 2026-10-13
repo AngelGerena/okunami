@@ -18,6 +18,7 @@ import './styles/worship-engine.css';
 import './styles/worship-okunami.css';
 import './styles/miami.css';
 import './styles/admin.css';
+import './styles/domain.css';
 
 const root = createRoot(document.getElementById('root')!);
 root.render(configError
