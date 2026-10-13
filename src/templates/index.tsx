@@ -9,6 +9,7 @@ import { Estate, Garden, Marquee, Passport, Scoreboard, Signature } from './sig-
 import { Cmdk, GoldLeaf, Hologram, Lash, Liquid, Mission, NowServing, Perfume, Pole, Poster, RoseGold, Starfield, Swatch, Synthwave } from './sig2-a';
 import { Celestial, Constelacion, Escenario, Frecuencia, Salmo, Santuario, Vitral } from './worship/Worship';
 import { Bag, CaseFile, Cluster, ContactSheet, Diner, Flash, FloorPlan, HangTag, HymnBoard, Ledger, OrderTicket, Postcard, Stopwatch, YardSign } from './sig4';
+import { Aperture, CarbonPro, FilmStrip, LensRing, ModeDial, PianoBlack, Rangefinder, Safelight, Softbox, Viewfinder } from './sig6';
 import { Growth, Bamboo, Blowout, Chalkboard, Clipper, Lotus, Magazine, NeonSign, Polish, Razor, Shimmer, Stations, Stones, Tips } from './sig3';
 import { BoldBlock, CoverSplit, GlamRailArch, GlamRailBleed, GlamRailBlob, GlamRailCircle, GlamRailLeaf, GlamRailMark, GlamRailOval, Halo, Leaf, NeonPulse, Plum, RoseGlass, Runway, SilkCurve, Sunset, SwatchBar } from './sig5';
 import { Boarding, Confetti, Inbox, Invitation, Monogram, Planner, Recipe, Stained, Toolbelt, Trading, Turntable, Vinyl, Waveform } from './sig2-b';
@@ -135,6 +136,17 @@ export const TEMPLATES: TemplateMeta[] = [
   { id: 'constelacion', name: 'Constelación',     niche: 'Worship', blurb: 'Twinkling stars, a crown constellation and orbiting rings around your photo.', bestFor: 'Psalmists, ministries' },
   { id: 'escenario',    name: 'Escenario',        niche: 'Worship', blurb: 'An edge-to-edge portrait under swaying stage spotlights.', bestFor: 'Worship leaders, singers' },
   { id: 'salmo',        name: 'Salmo OS',         niche: 'Worship', blurb: 'Your portrait in an app window with a pixel reveal and CRT glow.', bestFor: 'Worship tech teams, creators' },
+  // ---- darkroom collection (photographers)
+  { id: 'aperture',    name: 'Aperture',      niche: 'Photo and Video', blurb: 'Carbon fiber and a turning lens iris around your photo, chrome pull buttons with red knobs.', bestFor: 'Photographers, videographers' },
+  { id: 'viewfinder',  name: 'Viewfinder',    niche: 'Photo and Video', blurb: 'Your photo as a live camera screen with focus brackets and exposure readouts, and a red shutter button.', bestFor: 'Photographers, content creators' },
+  { id: 'lensring',    name: 'Red Ring Lens', niche: 'Photo and Video', blurb: 'Your photo seen through a pro lens: knurled grip, red ring, glass reflections and rim text.', bestFor: 'Portrait and wedding photographers' },
+  { id: 'rangefinder', name: 'Rangefinder',   niche: 'Photo and Video', blurb: 'Brushed chrome top plate, black leather and a black-and-white framed portrait.', bestFor: 'Documentary and street photographers' },
+  { id: 'safelight',   name: 'Safelight',     niche: 'Photo and Video', blurb: 'A red darkroom glow with your print hanging on the line.', bestFor: 'Film and fine art photographers' },
+  { id: 'carbonpro',   name: 'Carbon Pro',    niche: 'Photo and Video', blurb: 'Carbon fiber, red racing stripes, a slanted full-bleed photo and glowing toggle switches.', bestFor: 'Sports and automotive photographers' },
+  { id: 'modedial',    name: 'Mode Dial',     niche: 'Photo and Video', blurb: 'A glossy camera mode dial around your photo, with M, A, S and P keys for each action.', bestFor: 'Photographers, camera creators' },
+  { id: 'pianoblack',  name: 'Piano Black',   niche: 'Photo and Video', blurb: 'High-gloss black with your photo reflected below and a red light line.', bestFor: 'Editorial and fashion photographers' },
+  { id: 'filmstrip',   name: 'Film Strip',    niche: 'Photo and Video', blurb: 'A tilted 35mm strip with your frame in red, poster type and film-leader buttons.', bestFor: 'Film photographers, videographers' },
+  { id: 'softbox',     name: 'Studio Softbox', niche: 'Photo and Video', blurb: 'A glowing softbox lights you on a red seamless backdrop.', bestFor: 'Headshot and studio photographers' },
   // ---- glam collection
   { id: 'halo',       name: 'Blush Halo',   niche: 'Beauty Consultants', blurb: 'A glowing round portrait, soft blush ground, stacked shop and join buttons.', bestFor: 'Beauty influencers, direct sellers' },
   { id: 'leaf',       name: 'The Leaf',     niche: 'Beauty Consultants', blurb: 'A giant soft petal, a leaf-shaped portrait and big serif link rows.', bestFor: 'Beauty influencers, skincare sellers' },
@@ -448,5 +460,6 @@ export const TEMPLATE_COMPONENTS: Record<TemplateId, () => ReactElement> = {
   santuario: Santuario, celestial: Celestial, vitral: Vitral, frecuencia: Frecuencia, constelacion: Constelacion, escenario: Escenario, salmo: Salmo,
   halo: Halo, leaf: Leaf, coversplit: CoverSplit, plum: Plum, neonpulse: NeonPulse, roseglass: RoseGlass, swatchbar: SwatchBar,
   runway: Runway, silkcurve: SilkCurve, boldblock: BoldBlock, sunset: Sunset, glamrail: GlamRailLeaf,
+  aperture: Aperture, viewfinder: Viewfinder, lensring: LensRing, rangefinder: Rangefinder, safelight: Safelight, carbonpro: CarbonPro, modedial: ModeDial, pianoblack: PianoBlack, filmstrip: FilmStrip, softbox: Softbox,
   railbleed: GlamRailBleed, railcircle: GlamRailCircle, railarch: GlamRailArch, railoval: GlamRailOval, railmark: GlamRailMark, railblob: GlamRailBlob,
 };

@@ -477,7 +477,7 @@ const NICHE_LIST: Niche[] = [
   },
   {
     id: 'photo', name: 'Photo and Video', group: 'Creative', icon: 'camera',
-    blurb: 'Gallery-first and cinematic designs.',
+    blurb: 'The Darkroom Collection: black and red camera gear, gloss, chrome and carbon fiber, with your portfolio below.',
     highlightsTitle: 'Sessions',
     highlights: [
       { icon: 'camera', title: 'Portraits', subtitle: 'Headshots and families' },
@@ -488,6 +488,16 @@ const NICHE_LIST: Niche[] = [
     tagline: 'Light, story and a little magic',
     suggestedLinks: ['instagram', 'pinterest', 'behance', 'tiktok', 'google'],
     designs: [
+      d('aperture', 'Aperture', 'Carbon fiber and a turning lens iris around your photo, chrome pull buttons with red knobs.', ['#0B0B0B', '#E10600', '#F4F2F2'], 'dark', ['Barlow Condensed', 'Manrope'], ['pill', 'large', 'solid', 'none'], 'tech', 1, true),
+      d('viewfinder', 'Viewfinder', 'Your photo as a live camera screen with focus brackets and exposure readouts, and a red shutter button.', ['#0B0B0B', '#FF2A2A', '#F4F2F2'], 'dark', ['Sora', 'Manrope'], ['rounded', 'large', 'solid', 'none'], 'tech', 1, true),
+      d('lensring', 'Red Ring Lens', 'Your photo seen through a pro lens: knurled grip, red ring, glass reflections and rim text.', ['#0B0B0B', '#D7141A', '#F4F2F2'], 'dark', ['Michroma', 'Manrope'], ['pill', 'large', 'solid', 'none'], 'tech', 1, true),
+      d('rangefinder', 'Rangefinder', 'Brushed chrome top plate, black leather and a black-and-white framed portrait.', ['#0B0B0B', '#E31B23', '#F4F2F2'], 'dark', ['Cormorant Garamond', 'Jost'], ['rounded', 'large', 'solid', 'none'], 'calm', 0.6, true),
+      d('safelight', 'Safelight', 'A red darkroom glow with your print hanging on the line.', ['#0B0B0B', '#E01E1E', '#F4F2F2'], 'dark', ['Bodoni Moda', 'Jost'], ['rounded', 'large', 'solid', 'none'], 'calm', 0.6, true),
+      d('carbonpro', 'Carbon Pro', 'Carbon fiber, red racing stripes, a slanted full-bleed photo and glowing toggle switches.', ['#0B0B0B', '#E10600', '#F4F2F2'], 'dark', ['Barlow Condensed', 'Barlow'], ['rounded', 'large', 'solid', 'carbon'], 'tech', 0.6, true),
+      d('modedial', 'Mode Dial', 'A glossy camera mode dial around your photo, with M, A, S and P keys for each action.', ['#0B0B0B', '#FF3B30', '#F4F2F2'], 'dark', ['Rajdhani', 'Manrope'], ['rounded', 'large', 'raised', 'none'], 'tech', 1, true),
+      d('pianoblack', 'Piano Black', 'High-gloss black with your photo reflected below and a red light line.', ['#0B0B0B', '#E5141B', '#F4F2F2'], 'dark', ['Italiana', 'Jost'], ['rounded', 'large', 'solid', 'satin'], 'calm', 1, true),
+      d('filmstrip', 'Film Strip', 'A tilted 35mm strip with your frame in red, poster type and film-leader buttons.', ['#0B0B0B', '#E10600', '#F4F2F2'], 'dark', ['Anton', 'Manrope'], ['square', 'large', 'solid', 'none'], 'tech', 0, true),
+      d('softbox', 'Studio Softbox', 'A glowing softbox lights you on a red seamless backdrop.', ['#0B0B0B', '#E3141B', '#F4F2F2'], 'dark', ['Syne', 'Manrope'], ['rounded', 'large', 'solid', 'none'], 'bright', 1, true),
     ],
   },
   {
@@ -721,6 +731,7 @@ export const TEMPLATE_EXTRA_FONTS: Partial<Record<TemplateId, string[]>> = {
   orderticket: ['Space Mono'],
   ledger: ['Homemade Apple'],
   postcard: ['Caveat'],
+  viewfinder: ['Share Tech Mono'], lensring: ['Michroma'], modedial: ['Rajdhani'], filmstrip: ['IBM Plex Mono'],
   santuario: ['Cinzel', 'JetBrains Mono'], celestial: ['Cinzel', 'JetBrains Mono'], vitral: ['Cinzel', 'JetBrains Mono'],
   frecuencia: ['Cinzel', 'JetBrains Mono'], constelacion: ['Cinzel', 'JetBrains Mono'], escenario: ['Cinzel', 'JetBrains Mono'], salmo: ['Cinzel', 'JetBrains Mono'],
 };
