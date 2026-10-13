@@ -151,3 +151,21 @@
 .grl__name { font-family: var(--f-display); font-weight: 600; font-size: min(46px, 11.5vw); line-height: .98; color: var(--c-name); overflow-wrap: break-word; }
 .grl__tag { font-size: 15px; color: var(--c-body); }
 .tpl-grl .fb { border-radius: 0 20px 0 20px; }
+
+/* Glam Rail photo shapes, one per look */
+.grl--leafcorner { border-radius: 0 64px 0 64px; }
+.grl--bleed { position: relative; margin: -20px -18px 0; width: calc(100% + 36px); height: 380px; border-radius: 0; box-shadow: none; }
+.grl__fade { position: absolute; left: 0; right: 0; bottom: 0; height: 120px; background: linear-gradient(180deg, transparent, var(--c-pageBg)); pointer-events: none; }
+.grl--bleed + div { margin-top: -54px; position: relative; }
+.grl--circle { width: 236px; height: 236px; align-self: center; border-radius: 50%; padding: 7px; background: var(--c-pageBg); box-shadow: 0 0 0 2px var(--c-accentDetail), 0 22px 44px -18px color-mix(in srgb, var(--c-accentDetail) 75%, transparent); }
+.grl--circle .grl__img { border-radius: 50%; }
+.grl--arch { height: 330px; border-radius: 999px 999px 10px 10px; outline: 1.5px solid var(--c-accentDetail); outline-offset: 6px; margin: 8px 6px 6px; width: auto; }
+.grl--oval { width: 214px; height: 290px; align-self: center; border-radius: 50%; padding: 6px; background: var(--c-pageBg); box-shadow: 0 0 0 1.5px var(--c-accentDetail), 0 0 0 7px var(--c-pageBg), 0 0 0 8px color-mix(in srgb, var(--c-accentDetail) 55%, transparent); }
+.grl--oval .grl__img { border-radius: 50%; }
+.grl--blob { height: 300px; border-radius: 63% 37% 54% 46% / 55% 48% 52% 45%; animation: grlBlob 12s ease-in-out infinite; }
+@keyframes grlBlob { 50% { border-radius: 40% 60% 42% 58% / 48% 58% 42% 52%; } }
+.grl--mark { height: auto; border-radius: 0; box-shadow: none; overflow: visible; margin: -4px -18px 0 -8px; width: calc(100% + 26px); }
+.grl__mark { display: block; width: 100%; height: auto; filter: drop-shadow(0 16px 22px color-mix(in srgb, var(--c-accentDetail) 35%, transparent)); }
+.grl__markleft { fill: var(--c-accentDetail); }
+.grl__markbg { fill: var(--c-iconBg); }
+@media (prefers-reduced-motion: reduce) { .grl--blob { animation: none; } }

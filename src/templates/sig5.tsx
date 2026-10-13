@@ -1,3 +1,4 @@
+import { useId } from 'react';
 /* =================================================================
    The Glam Collection: clean, minimal designs for beauty influencers
    and direct sellers (Farmasi-style "shop my picks" and "join my team").
@@ -327,7 +328,25 @@ export function Sunset() {
 
 /* ================================================================ GLAM RAIL
    The Side Rail layout, made for beauty sellers: shop and join sit in the rail beside call and WhatsApp. */
-export function GlamRail() {
+type RailShape = 'leafcorner' | 'bleed' | 'circle' | 'arch' | 'oval' | 'mark' | 'blob';
+
+/* The beauty-brand leaf mark, traced from the two-petal logo. Her photo fills the right petal; the left petal is solid accent. */
+const MARK_RIGHT = 'M488 695C448 691 430 683 428 671C426 661 430 655 461 624C511 573 555 513 582 460C610 405 614 397 642 361C672 321 698 298 738 278C748 273 759 267 763 265C778 256 790 251 810 244C837 235 843 231 843 222C843 206 809 197 770 203C741 208 729 206 723 196C719 188 722 180 740 157C755 138 760 133 775 121C783 115 794 106 798 101C835 68 881 46 941 31C977 22 1042 21 1054 29C1065 36 1065 47 1054 64C1049 70 1046 75 1024 101C1016 111 999 137 992 148C987 159 982 170 974 193C970 204 965 220 962 228C959 235 954 248 952 256C950 263 945 276 942 285C938 294 927 326 916 358C903 400 895 420 891 430C887 438 881 451 878 458C864 489 842 526 823 549C818 555 811 564 807 569C792 589 786 594 756 616C724 641 720 643 680 662C652 675 634 680 584 688C573 690 560 692 554 693C543 695 499 697 488 695Z';
+const MARK_LEFT = 'M68 655C34 651 24 632 44 613C49 607 72 588 95 571C108 560 128 540 139 527C144 521 153 509 160 501C192 461 214 418 241 339C267 262 282 232 329 169C359 129 375 116 416 90C473 56 517 40 585 26C596 24 668 23 683 25C715 29 717 46 688 70C672 84 656 100 645 113C640 119 631 131 625 139C594 176 583 193 571 220C567 229 559 244 555 252C539 280 525 311 516 335C512 348 505 365 500 375C496 384 485 411 476 434C452 493 447 504 430 524C394 569 396 567 361 593C328 618 322 621 294 633C271 642 248 649 223 654C213 656 82 657 68 655Z';
+function MarkPortrait() {
+  const { data } = useCard();
+  const id = 'grlmark' + useId().replace(/[^a-zA-Z0-9]/g, '');
+  return (
+    <svg className="grl__mark" viewBox="200 10 880 700" role="img" aria-label={data.fullName || 'Portrait'}>
+      <defs><clipPath id={id}><path d={MARK_RIGHT} /></clipPath></defs>
+      <path d={MARK_LEFT} className="grl__markleft" {...el('accentDetail')} />
+      <path d={MARK_RIGHT} className="grl__markbg" {...el('iconBg')} />
+      {data.photoUrl && <image href={data.photoUrl} x="430" y="110" width="640" height="600" preserveAspectRatio="xMidYMin slice" clipPath={`url(#${id})`} />}
+    </svg>
+  );
+}
+
+function GlamRail({ shape = 'leafcorner' }: { shape?: RailShape }) {
   const { data, actions } = useCard();
   const { shop, join, contacts, first, last } = useGlam();
   const rail = [
@@ -344,7 +363,9 @@ export function GlamRail() {
         <span className="rail__vert">{data.business || data.fullName}</span>
       </nav>
       <div className="rail__main stack grl__main">
-        <div className="grl__frame" {...el('iconBg')}><Photo className="grl__img" /></div>
+        {shape === 'mark'
+          ? <div className="grl__frame grl--mark"><MarkPortrait /></div>
+          : <div className={`grl__frame grl--${shape}`} {...el('iconBg')}><Photo className="grl__img" />{shape === 'bleed' && <span className="grl__fade" {...el('pageBg')} />}</div>}
         <div>
           <h1 className="grl__name" {...el('name')}>{first}{last && <><br /><span {...el('accentDetail')}>{last}</span></>}</h1>
           <Title className="gl-role" />
@@ -358,3 +379,11 @@ export function GlamRail() {
     </div>
   );
 }
+
+export const GlamRailLeaf = () => <GlamRail shape="leafcorner" />;
+export const GlamRailBleed = () => <GlamRail shape="bleed" />;
+export const GlamRailCircle = () => <GlamRail shape="circle" />;
+export const GlamRailArch = () => <GlamRail shape="arch" />;
+export const GlamRailOval = () => <GlamRail shape="oval" />;
+export const GlamRailMark = () => <GlamRail shape="mark" />;
+export const GlamRailBlob = () => <GlamRail shape="blob" />;

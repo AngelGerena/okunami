@@ -77,7 +77,7 @@ export type TemplateId =
   // worship collection
   | 'santuario' | 'celestial' | 'vitral' | 'frecuencia' | 'constelacion' | 'escenario' | 'salmo'
   // glam collection (beauty consultants)
-  | 'halo' | 'leaf' | 'coversplit' | 'plum' | 'neonpulse' | 'roseglass' | 'swatchbar' | 'runway' | 'silkcurve' | 'boldblock' | 'sunset' | 'glamrail';
+  | 'halo' | 'leaf' | 'coversplit' | 'plum' | 'neonpulse' | 'roseglass' | 'swatchbar' | 'runway' | 'silkcurve' | 'boldblock' | 'sunset' | 'glamrail' | 'railbleed' | 'railcircle' | 'railarch' | 'railoval' | 'railmark' | 'railblob';
 
 export interface SocialLink { id: string; network: string; value: string; }   // value = handle or full URL
 export interface Highlight { id: string; icon: string; title: string; subtitle: string; }

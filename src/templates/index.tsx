@@ -10,7 +10,7 @@ import { Cmdk, GoldLeaf, Hologram, Lash, Liquid, Mission, NowServing, Perfume, P
 import { Celestial, Constelacion, Escenario, Frecuencia, Salmo, Santuario, Vitral } from './worship/Worship';
 import { Bag, CaseFile, Cluster, ContactSheet, Diner, Flash, FloorPlan, HangTag, HymnBoard, Ledger, OrderTicket, Postcard, Stopwatch, YardSign } from './sig4';
 import { Bamboo, Blowout, Chalkboard, Clipper, Lotus, Magazine, NeonSign, Polish, Razor, Shimmer, Stations, Stones, Tips } from './sig3';
-import { BoldBlock, CoverSplit, GlamRail, Halo, Leaf, NeonPulse, Plum, RoseGlass, Runway, SilkCurve, Sunset, SwatchBar } from './sig5';
+import { BoldBlock, CoverSplit, GlamRailArch, GlamRailBleed, GlamRailBlob, GlamRailCircle, GlamRailLeaf, GlamRailMark, GlamRailOval, Halo, Leaf, NeonPulse, Plum, RoseGlass, Runway, SilkCurve, Sunset, SwatchBar } from './sig5';
 import { Boarding, Confetti, Inbox, Invitation, Monogram, Planner, Recipe, Stained, Toolbelt, Trading, Turntable, Vinyl, Waveform } from './sig2-b';
 import {
   Arrow, Btn, Business, CalendarDays, ContactList, Crisis, Dock, Footer, Highlights, LocationCard, Logo, Name, Photo,
@@ -146,6 +146,12 @@ export const TEMPLATES: TemplateMeta[] = [
   { id: 'silkcurve',  name: 'Silk Curve',   niche: 'Beauty Consultants', blurb: 'A soft photo top that flows into the page on one smooth curve.', bestFor: 'Beauty influencers, spas' },
   { id: 'boldblock',  name: 'Bold Block',   niche: 'Beauty Consultants', blurb: 'Huge stacked poster type over a photo block, square buttons.', bestFor: 'Bold personal brands, team leaders' },
   { id: 'glamrail',   name: 'Glam Rail',    niche: 'Beauty Consultants', blurb: 'A slim brand rail with shop, join, call and WhatsApp always in reach.', bestFor: 'Beauty influencers, team leaders' },
+  { id: 'railbleed',  name: 'Glam Rail Full Bleed', niche: 'Beauty Consultants', blurb: 'The glam rail with an edge-to-edge photo that fades into the page.', bestFor: 'Beauty influencers, team leaders' },
+  { id: 'railcircle', name: 'Glam Rail Circle',     niche: 'Beauty Consultants', blurb: 'The glam rail with a big round portrait in a glowing ring.', bestFor: 'Beauty influencers, team leaders' },
+  { id: 'railarch',   name: 'Glam Rail Arch',       niche: 'Beauty Consultants', blurb: 'The glam rail with an arched portrait and a fine outline.', bestFor: 'Luxury beauty, fragrance' },
+  { id: 'railoval',   name: 'Glam Rail Oval',       niche: 'Beauty Consultants', blurb: 'The glam rail with a cameo oval portrait in a double frame.', bestFor: 'Luxury beauty, skincare' },
+  { id: 'railmark',   name: 'Glam Rail Leaf Mark',  niche: 'Beauty Consultants', blurb: 'The glam rail with your photo cut into a two-petal leaf mark.', bestFor: 'Farmasi influencers, beauty sellers' },
+  { id: 'railblob',   name: 'Glam Rail Blob',       niche: 'Beauty Consultants', blurb: 'The glam rail with a soft organic photo shape that slowly morphs.', bestFor: 'Bold personal brands, creators' },
   { id: 'sunset',     name: 'Sunset Bloom', niche: 'Beauty Consultants', blurb: 'A peach-to-coral sky and a round portrait on a white sheet.', bestFor: 'Beauty influencers, skincare' },
 ];
 
@@ -440,5 +446,6 @@ export const TEMPLATE_COMPONENTS: Record<TemplateId, () => ReactElement> = {
   floorplan: FloorPlan, ledger: Ledger, hymnboard: HymnBoard, cluster: Cluster, stopwatch: Stopwatch, diner: Diner, yardsign: YardSign,
   santuario: Santuario, celestial: Celestial, vitral: Vitral, frecuencia: Frecuencia, constelacion: Constelacion, escenario: Escenario, salmo: Salmo,
   halo: Halo, leaf: Leaf, coversplit: CoverSplit, plum: Plum, neonpulse: NeonPulse, roseglass: RoseGlass, swatchbar: SwatchBar,
-  runway: Runway, silkcurve: SilkCurve, boldblock: BoldBlock, sunset: Sunset, glamrail: GlamRail,
+  runway: Runway, silkcurve: SilkCurve, boldblock: BoldBlock, sunset: Sunset, glamrail: GlamRailLeaf,
+  railbleed: GlamRailBleed, railcircle: GlamRailCircle, railarch: GlamRailArch, railoval: GlamRailOval, railmark: GlamRailMark, railblob: GlamRailBlob,
 };
