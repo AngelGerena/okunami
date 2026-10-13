@@ -86,6 +86,13 @@ export const store = {
     return data ? fromRow(data as Row) : null;
   },
 
+  /** Fire-and-forget: the server sends a one-time welcome email the first time a member publishes. Never throws. */
+  welcome(cardId: string): void {
+    if (IS_DEMO) return;
+    const lang = document.documentElement.lang === 'es' ? 'es' : 'en';
+    supabase.functions.invoke('okunami-welcome', { body: { cardId, lang } }).catch(() => { /* the email is a nicety; publishing already worked */ });
+  },
+
   async publicCard(slug: string): Promise<Card | null> {
     if (IS_DEMO) {
       // Mirror the server rule: a Lite card set to a Pro design shows the free fallback publicly.

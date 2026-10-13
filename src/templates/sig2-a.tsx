@@ -133,6 +133,17 @@ export function Liquid() {
   return (
     <div className="tpl tpl-lm">
       <svg className="lm__defs" aria-hidden><filter id="lmGoo"><feGaussianBlur in="SourceGraphic" stdDeviation="14" /><feColorMatrix values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 22 -9" /></filter></svg>
+      <div className="lm__sky" aria-hidden />
+      <svg className="lm__city" viewBox="0 0 390 220" preserveAspectRatio="none" aria-hidden>
+        <defs>
+          <pattern id="lmWin" width="10" height="12" patternUnits="userSpaceOnUse"><rect x="3" y="3" width="3" height="4" className="lm__win" /></pattern>
+          <linearGradient id="lmHorizon" x1="0" x2="1"><stop offset="0" className="lm__stopA" /><stop offset="1" className="lm__stopB" /></linearGradient>
+        </defs>
+        <path className="lm__bldg back" d="M0 220V120h22V96h18v24h14V70h26v50h12V104h20V58h30v62h16V90h24v30h18V40h28v80h14V100h22v20h20V76h26v44h18V96h20v124Z" />
+        <path className="lm__bldg" d="M0 220V150h30V128h24v22h18V112h30v108ZM102 220V138h22V96h34v42h16v82ZM174 220V120h20V84h12V60h4v24h12v36h20v100ZM242 220V146h26V118h30v28h14V132h22v88ZM334 220V108h34v30h22v82Z" />
+        <rect className="lm__lights" x="0" y="60" width="390" height="160" fill="url(#lmWin)" />
+        <rect x="0" y="214" width="390" height="6" fill="url(#lmHorizon)" className="lm__horizon" />
+      </svg>
       <div className="lm__blobs" aria-hidden><i /><i /><i /><i /></div>
       <div className="pad stack center">
         <div className="lm__ring"><Photo className="lm__img" /></div>
@@ -280,9 +291,9 @@ export function Pole() {
             <Logo className="bp3__logo" />
             <h1 className="bp3__name" {...el('name')}>{data.business || data.fullName || 'Barber Shop'}</h1>
             {data.tagline && <p className="bp3__tag" {...el('caption')}>{data.tagline}</p>}
-            <div className="bp3__barber"><Photo className="bp3__img" /><span><b {...el('body')}>{data.fullName}</b><Title withCreds={false} /></span></div>
           </div>
         </header>
+        <figure className="bp3__portrait"><Photo className="bp3__big" /><figcaption><b {...el('body')}>{data.fullName}</b><Title withCreds={false} /></figcaption></figure>
         <BookRow label="Book a cut" />
         <PriceList />
         <Gallery variant="grid" title="Fresh cuts" max={6} />

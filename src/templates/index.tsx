@@ -9,14 +9,16 @@ import { Estate, Garden, Marquee, Passport, Scoreboard, Signature } from './sig-
 import { Cmdk, GoldLeaf, Hologram, Lash, Liquid, Mission, NowServing, Perfume, Pole, Poster, RoseGold, Starfield, Swatch, Synthwave } from './sig2-a';
 import { Celestial, Constelacion, Escenario, Frecuencia, Salmo, Santuario, Vitral } from './worship/Worship';
 import { Bag, CaseFile, Cluster, ContactSheet, Diner, Flash, FloorPlan, HangTag, HymnBoard, Ledger, OrderTicket, Postcard, Stopwatch, YardSign } from './sig4';
-import { Bamboo, Blowout, Chalkboard, Clipper, Lotus, Magazine, NeonSign, Polish, Razor, Shimmer, Stations, Stones, Tips } from './sig3';
-import { Chat, Duotone, Intro, Local, ServiceMenu, Sheet, Status, Studio, Trust } from './sig5';
+import { Aperture, CarbonPro, FilmStrip, LensRing, ModeDial, PianoBlack, Rangefinder, Safelight, Softbox, Viewfinder } from './sig6';
+import { Growth, Bamboo, Blowout, Chalkboard, Clipper, Lotus, Magazine, NeonSign, Polish, Razor, Shimmer, Stations, Stones, Tips } from './sig3';
+import { BoldBlock, CoverSplit, GlamRailArch, GlamRailBleed, GlamRailBlob, GlamRailCircle, GlamRailLeaf, GlamRailMark, GlamRailOval, Halo, Leaf, NeonPulse, Plum, RoseGlass, Runway, SilkCurve, Sunset, SwatchBar } from './sig5';
 import { Boarding, Confetti, Inbox, Invitation, Monogram, Planner, Recipe, Stained, Toolbelt, Trading, Turntable, Vinyl, Waveform } from './sig2-b';
 import {
   Arrow, Btn, Business, CalendarDays, ContactList, Crisis, Dock, Footer, Highlights, LocationCard, Logo, Name, Photo,
   QrBtn, SaveBtn, ShareBtn, SocialLinks, Title, el, useCard, useContactActions,
 } from './blocks';
 import { addressLine, mapsHref, prettyUrl, webHref } from '../lib/links';
+import { Chat, Duotone, Intro, Local, ServiceMenu, Sheet, Status, Studio, Trust } from './sig7';
 
 export interface TemplateMeta { id: TemplateId; name: string; blurb: string; bestFor: string; niche?: string; }
 
@@ -73,7 +75,7 @@ export const TEMPLATES: TemplateMeta[] = [
   { id: 'hologram',   name: 'Hologram',        niche: 'Tech', blurb: 'A 3D holographic ID card you can grab and spin.', bestFor: 'Tech, founders, creators' },
   { id: 'mission',    name: 'Mission Control', niche: 'Tech', blurb: 'Live clock, gauges and toggle switches for every action.', bestFor: 'IT, operations, engineers' },
   { id: 'poster',     name: 'Glitch Poster',   niche: 'Tech', blurb: 'Brutalist poster with RGB split type and a scrolling ticker.', bestFor: 'Designers, agencies, streetwear' },
-  { id: 'liquid',     name: 'Liquid Metal',    niche: 'Tech', blurb: 'Molten chrome blobs that merge and split behind glass.', bestFor: 'Startups, product people' },
+  { id: 'liquid',     name: 'Liquid Metal',    niche: 'Tech', blurb: 'Neon city skyline, molten chrome and a glowing chrome portrait ring.', bestFor: 'Startups, product people' },
   { id: 'starfield',  name: 'Starfield',       niche: 'Tech', blurb: 'Warp-speed intro that settles into drifting stars.', bestFor: 'Tech, aerospace, gaming' },
   { id: 'cmdk',       name: 'Command Palette', niche: 'Tech', blurb: 'A searchable, keyboard-first card like a developer tool.', bestFor: 'Developers, product, SaaS' },
   { id: 'synthwave',  name: 'Synthwave',       niche: 'Tech', blurb: 'Retro sunset, neon grid and chrome type.', bestFor: 'DJs, gamers, creators' },
@@ -105,6 +107,7 @@ export const TEMPLATES: TemplateMeta[] = [
   { id: 'polish',     name: 'Polish Shelf',   niche: 'Nail Spas', blurb: 'A shelf of polish bottles; each one is a service and price.', bestFor: 'Nail salons and spas' },
   { id: 'shimmer',    name: 'Shimmer',        niche: 'Nail Spas', blurb: 'Twinkling glitter and a glossy service menu.', bestFor: 'Nail artists, lash studios' },
   { id: 'tips',       name: 'Tip Chart',      niche: 'Nail Spas', blurb: 'Your work shown inside real nail shapes: almond, coffin, stiletto.', bestFor: 'Nail artists' },
+  { id: 'growth',     name: 'Growth Chart',   niche: 'Finance', blurb: 'A rising bar chart and trend line beside your photo, with numbered services.', bestFor: 'Financial advisors, insurance, loan officers' },
   { id: 'blowout',    name: 'Blowout',        niche: 'Hair Salons', blurb: 'Flowing hair strands sweep across an editorial portrait.', bestFor: 'Stylists, blowout bars' },
   { id: 'stations',   name: 'Salon Stations', niche: 'Hair Salons', blurb: 'Three lit salon mirrors, your photo in the center chair.', bestFor: 'Salons with a team' },
   { id: 'magazine',   name: 'Cover Story',    niche: 'Hair Salons', blurb: 'Your salon on a fashion magazine cover, services as cover lines.', bestFor: 'Salons, stylists, makeup artists' },
@@ -121,7 +124,7 @@ export const TEMPLATES: TemplateMeta[] = [
   { id: 'postcard',     name: 'Postcard',       niche: 'Community', blurb: 'A picture postcard, with a handwritten note and stamp on the back.', bestFor: 'Nonprofits, travel, community groups' },
   { id: 'floorplan',    name: 'Floor Plan',     niche: 'Real Estate', blurb: 'Your services as rooms on an architectural floor plan.', bestFor: 'Realtors, builders, designers' },
   { id: 'ledger',       name: 'Ledger',         niche: 'Finance', blurb: 'A green ledger page with checked-off services and your signature.', bestFor: 'Accountants, insurance, advisors' },
-  { id: 'hymnboard',    name: 'Hymn Board',     niche: 'Churches', blurb: 'A wooden hymn board showing your service times.', bestFor: 'Churches and ministries' },
+  { id: 'hymnboard',    name: 'Hymn Board',     niche: 'Churches', blurb: 'A royal navy and gold-leaf board with your service times under a glowing cross.', bestFor: 'Churches and ministries' },
   { id: 'cluster',      name: 'Dashboard',      niche: 'Auto', blurb: 'A car instrument cluster; gauges sweep up and warning lights are your buttons.', bestFor: 'Mechanics, detailers, dealers' },
   { id: 'stopwatch',    name: 'Stopwatch',      niche: 'Fitness', blurb: 'A running stopwatch, with your programs as laps.', bestFor: 'Trainers, run clubs, coaches' },
   { id: 'diner',        name: 'Diner',          niche: 'Restaurants', blurb: 'A retro diner sign, checkered floor and a specials board.', bestFor: 'Diners, cafes, breakfast spots' },
@@ -134,7 +137,36 @@ export const TEMPLATES: TemplateMeta[] = [
   { id: 'constelacion', name: 'Constelación',     niche: 'Worship', blurb: 'Twinkling stars, a crown constellation and orbiting rings around your photo.', bestFor: 'Psalmists, ministries' },
   { id: 'escenario',    name: 'Escenario',        niche: 'Worship', blurb: 'An edge-to-edge portrait under swaying stage spotlights.', bestFor: 'Worship leaders, singers' },
   { id: 'salmo',        name: 'Salmo OS',         niche: 'Worship', blurb: 'Your portrait in an app window with a pixel reveal and CRT glow.', bestFor: 'Worship tech teams, creators' },
-  // ---- collection five: photo-led, built on card UX research
+  // ---- darkroom collection (photographers)
+  { id: 'aperture',    name: 'Aperture',      niche: 'Photo and Video', blurb: 'Carbon fiber and a turning lens iris around your photo, chrome pull buttons with red knobs.', bestFor: 'Photographers, videographers' },
+  { id: 'viewfinder',  name: 'Viewfinder',    niche: 'Photo and Video', blurb: 'Your photo as a live camera screen with focus brackets and exposure readouts, and a red shutter button.', bestFor: 'Photographers, content creators' },
+  { id: 'lensring',    name: 'Red Ring Lens', niche: 'Photo and Video', blurb: 'Your photo seen through a pro lens: knurled grip, red ring, glass reflections and rim text.', bestFor: 'Portrait and wedding photographers' },
+  { id: 'rangefinder', name: 'Rangefinder',   niche: 'Photo and Video', blurb: 'Brushed chrome top plate, black leather and a black-and-white framed portrait.', bestFor: 'Documentary and street photographers' },
+  { id: 'safelight',   name: 'Safelight',     niche: 'Photo and Video', blurb: 'A red darkroom glow with your print hanging on the line.', bestFor: 'Film and fine art photographers' },
+  { id: 'carbonpro',   name: 'Carbon Pro',    niche: 'Photo and Video', blurb: 'Carbon fiber, red racing stripes, a slanted full-bleed photo and glowing toggle switches.', bestFor: 'Sports and automotive photographers' },
+  { id: 'modedial',    name: 'Mode Dial',     niche: 'Photo and Video', blurb: 'A glossy camera mode dial around your photo, with M, A, S and P keys for each action.', bestFor: 'Photographers, camera creators' },
+  { id: 'pianoblack',  name: 'Piano Black',   niche: 'Photo and Video', blurb: 'High-gloss black with your photo reflected below and a red light line.', bestFor: 'Editorial and fashion photographers' },
+  { id: 'filmstrip',   name: 'Film Strip',    niche: 'Photo and Video', blurb: 'A tilted 35mm strip with your frame in red, poster type and film-leader buttons.', bestFor: 'Film photographers, videographers' },
+  { id: 'softbox',     name: 'Studio Softbox', niche: 'Photo and Video', blurb: 'A glowing softbox lights you on a red seamless backdrop.', bestFor: 'Headshot and studio photographers' },
+  // ---- glam collection
+  { id: 'halo',       name: 'Blush Halo',   niche: 'Beauty Consultants', blurb: 'A glowing round portrait, soft blush ground, stacked shop and join buttons.', bestFor: 'Beauty influencers, direct sellers' },
+  { id: 'leaf',       name: 'The Leaf',     niche: 'Beauty Consultants', blurb: 'A giant soft petal, a leaf-shaped portrait and big serif link rows.', bestFor: 'Beauty influencers, skincare sellers' },
+  { id: 'coversplit', name: 'Cover Split',  niche: 'Beauty Consultants', blurb: 'A full-bleed photo cut on a slant, fashion-cover type underneath.', bestFor: 'Beauty influencers, stylists' },
+  { id: 'plum',       name: 'Velvet Plum',  niche: 'Beauty Consultants', blurb: 'Deep plum, a curved photo edge and rose-gold buttons.', bestFor: 'Luxury beauty, fragrance' },
+  { id: 'neonpulse',  name: 'Neon Pulse',   niche: 'Beauty Consultants', blurb: 'A neon ring that pulses around your photo on a dark stage.', bestFor: 'Beauty creators, nightlife, nails' },
+  { id: 'roseglass',  name: 'Rose Glass',   niche: 'Beauty Consultants', blurb: 'Floating color orbs behind a frosted glass panel.', bestFor: 'Beauty influencers, wellness' },
+  { id: 'swatchbar',  name: 'Swatch Bar',   niche: 'Beauty Consultants', blurb: 'A lipstick swatch stripe up top, buttons as shade cards.', bestFor: 'Makeup sellers, lip and nail brands' },
+  { id: 'runway',     name: 'Runway',       niche: 'Beauty Consultants', blurb: 'An edge-to-edge portrait with your name running up the side.', bestFor: 'Influencers, models, stylists' },
+  { id: 'silkcurve',  name: 'Silk Curve',   niche: 'Beauty Consultants', blurb: 'A soft photo top that flows into the page on one smooth curve.', bestFor: 'Beauty influencers, spas' },
+  { id: 'boldblock',  name: 'Bold Block',   niche: 'Beauty Consultants', blurb: 'Huge stacked poster type over a photo block, square buttons.', bestFor: 'Bold personal brands, team leaders' },
+  { id: 'glamrail',   name: 'Glam Rail',    niche: 'Beauty Consultants', blurb: 'A slim brand rail with shop, join, call and WhatsApp always in reach.', bestFor: 'Beauty influencers, team leaders' },
+  { id: 'railbleed',  name: 'Glam Rail Full Bleed', niche: 'Beauty Consultants', blurb: 'The glam rail with an edge-to-edge photo that fades into the page.', bestFor: 'Beauty influencers, team leaders' },
+  { id: 'railcircle', name: 'Glam Rail Circle',     niche: 'Beauty Consultants', blurb: 'The glam rail with a big round portrait in a glowing ring.', bestFor: 'Beauty influencers, team leaders' },
+  { id: 'railarch',   name: 'Glam Rail Arch',       niche: 'Beauty Consultants', blurb: 'The glam rail with an arched portrait and a fine outline.', bestFor: 'Luxury beauty, fragrance' },
+  { id: 'railoval',   name: 'Glam Rail Oval',       niche: 'Beauty Consultants', blurb: 'The glam rail with a cameo oval portrait in a double frame.', bestFor: 'Luxury beauty, skincare' },
+  { id: 'railmark',   name: 'Glam Rail Leaf Mark',  niche: 'Beauty Consultants', blurb: 'The glam rail with your photo cut into a two-petal leaf mark.', bestFor: 'Farmasi influencers, beauty sellers' },
+  { id: 'railblob',   name: 'Glam Rail Blob',       niche: 'Beauty Consultants', blurb: 'The glam rail with a soft organic photo shape that slowly morphs.', bestFor: 'Bold personal brands, creators' },
+  { id: 'sunset',     name: 'Sunset Bloom', niche: 'Beauty Consultants', blurb: 'A peach-to-coral sky and a round portrait on a white sheet.', bestFor: 'Beauty influencers, skincare' },
   { id: 'sheet',   name: 'Profile Sheet',     niche: 'Beauty', blurb: 'Full photo with a white panel that slides up over it, like a phone contact card.', bestFor: 'Med spas, salons, any owner' },
   { id: 'studio',  name: 'Monochrome Studio', niche: 'Creative', blurb: 'Black-and-white portrait, a huge name over it and a numbered link list.', bestFor: 'Designers, stylists, luxury brands' },
   { id: 'intro',   name: 'Video Intro',       niche: 'Professional', blurb: 'A short intro video up top, then one clear booking button.', bestFor: 'Coaches, consultants, pastors' },
@@ -431,10 +463,14 @@ export const TEMPLATE_COMPONENTS: Record<TemplateId, () => ReactElement> = {
   pole: Pole, goldleaf: GoldLeaf, lash: Lash, rosegold: RoseGold, swatch: Swatch, nowserving: NowServing, perfume: Perfume,
   vinyl: Vinyl, boarding: Boarding, recipe: Recipe, toolbelt: Toolbelt, stained: Stained, trading: Trading,
   turntable: Turntable, waveform: Waveform, confetti: Confetti, invitation: Invitation, monogram: Monogram, inbox: Inbox, planner: Planner,
-  razor: Razor, chalkboard: Chalkboard, neonsign: NeonSign, clipper: Clipper, polish: Polish, shimmer: Shimmer, tips: Tips,
+  razor: Razor, chalkboard: Chalkboard, neonsign: NeonSign, clipper: Clipper, growth: Growth, polish: Polish, shimmer: Shimmer, tips: Tips,
   blowout: Blowout, stations: Stations, magazine: Magazine, stones: Stones, lotus: Lotus, bamboo: Bamboo,
   casefile: CaseFile, contactsheet: ContactSheet, flash: Flash, orderticket: OrderTicket, hangtag: HangTag, bag: Bag, postcard: Postcard,
   floorplan: FloorPlan, ledger: Ledger, hymnboard: HymnBoard, cluster: Cluster, stopwatch: Stopwatch, diner: Diner, yardsign: YardSign,
   santuario: Santuario, celestial: Celestial, vitral: Vitral, frecuencia: Frecuencia, constelacion: Constelacion, escenario: Escenario, salmo: Salmo,
+  halo: Halo, leaf: Leaf, coversplit: CoverSplit, plum: Plum, neonpulse: NeonPulse, roseglass: RoseGlass, swatchbar: SwatchBar,
+  runway: Runway, silkcurve: SilkCurve, boldblock: BoldBlock, sunset: Sunset, glamrail: GlamRailLeaf,
+  aperture: Aperture, viewfinder: Viewfinder, lensring: LensRing, rangefinder: Rangefinder, safelight: Safelight, carbonpro: CarbonPro, modedial: ModeDial, pianoblack: PianoBlack, filmstrip: FilmStrip, softbox: Softbox,
+  railbleed: GlamRailBleed, railcircle: GlamRailCircle, railarch: GlamRailArch, railoval: GlamRailOval, railmark: GlamRailMark, railblob: GlamRailBlob,
   sheet: Sheet, studio: Studio, intro: Intro, duotone: Duotone, trust: Trust, local: Local, menu: ServiceMenu, status: Status, chat: Chat,
 };

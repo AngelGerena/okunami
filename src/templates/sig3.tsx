@@ -124,6 +124,39 @@ export function Clipper() {
   );
 }
 
+/* ================================================================ FINANCE: GROWTH CHART (reworked from Clipper Guards) */
+export function Growth() {
+  const { data } = useCard();
+  const bars = [34, 46, 52, 66, 78, 96];
+  return (
+    <div className="tpl tpl-gw">
+      <div className="pad stack">
+        <header className="gw__head">
+          <Photo className="gw__img" />
+          <div className="gw__id">
+            <Logo className="gw__logo" />
+            <h1 className="gw__name" {...el('name')}>{data.fullName || 'Your Name'}</h1>
+            <p className="gw__role" {...el('caption')}>{[data.credentials, data.jobTitle].filter(Boolean).join(' · ')}</p>
+            {data.business && <p className="gw__biz" {...el('accentDetail')}>{data.business}</p>}
+          </div>
+        </header>
+        <section className="gw__chart" {...el('cardBg')} aria-hidden>
+          <div className="gw__bars">{bars.map((h, i) => <span key={i} style={{ '--h': `${h}%`, animationDelay: `${i * 0.09}s` } as CSSProperties} {...el('accentDetail')} />)}</div>
+          <svg className="gw__line" viewBox="0 0 300 100" preserveAspectRatio="none"><polyline points="10,72 62,60 114,52 166,38 218,26 290,6" {...el('accentDetail')} /></svg>
+          {data.tagline && <p className="gw__tag" {...el('body')}>{data.tagline}</p>}
+        </section>
+        <BookRow label="Book a review" />
+        {data.highlights.length > 0 && (
+          <div className="gw__cards">{data.highlights.map((h, i) => { const p = priced(h.subtitle); return (
+            <article key={h.id} {...el('cardBg')}><span className="gw__num" {...el('accentDetail')}>{String(i + 1).padStart(2, '0')}</span><b {...el('body')}>{h.title}</b><small {...el('caption')}>{p.price ? p.note : h.subtitle}</small>{p.price && <span className="gw__price" {...el('accentDetail')}>{p.price}</span>}</article>
+          ); })}</div>
+        )}
+        <Tail gallery="" />
+      </div>
+    </div>
+  );
+}
+
 /* ================================================================ NAILS 1: POLISH BOTTLES */
 export function Polish() {
   const { data, theme, mode, play } = useCard();
@@ -146,7 +179,7 @@ export function Polish() {
           ); })}
           <span className="po2__ledge" aria-hidden />
         </div>
-        <div className="po2__artist full"><Photo className="po2__img" /><div><b {...el('body')}>{data.fullName}</b><Title withCreds={false} /></div></div>
+        <figure className="po2__portrait full"><Photo className="po2__big" /><figcaption><b {...el('body')}>{data.fullName}</b><Title withCreds={false} /></figcaption></figure>
         <div className="full"><BookRow label="Book your nails" /></div>
         <div className="full"><PriceList /></div>
         <Tail gallery="Recent sets" />
@@ -179,8 +212,10 @@ export function Shimmer() {
 /* ================================================================ NAILS 3: TIP CHART (photos in nail shapes) */
 export function Tips() {
   const { data } = useCard();
-  const pics = data.gallery.length ? data.gallery.slice(0, 5) : [data.photoUrl, data.photoUrl, data.photoUrl, data.photoUrl, data.photoUrl].filter(Boolean);
+  /* Her own nail photos fill the shapes when she adds them to her gallery; until then each shape shows a different nail art finish. */
+  const pics: string[] = data.gallery.slice(0, 5);
   const shapes = ['almond', 'coffin', 'stiletto', 'square', 'oval'];
+  const finishes = ['french', 'chrome', 'ombre', 'glitter', 'marble'];
   return (
     <div className="tpl tpl-tp">
       <div className="pad stack center">
@@ -188,10 +223,10 @@ export function Tips() {
         <h1 className="tp__name" {...el('name')}>{data.business || data.fullName || 'Nail Studio'}</h1>
         {data.tagline && <p className="tp__tag" {...el('accentDetail')}>{data.tagline}</p>}
         <div className="tp__chart">
-          {pics.map((src, i) => (
-            <figure key={i} className={`tp__nail ${shapes[i % shapes.length]}`} style={{ animationDelay: `${i * 0.1}s` }}>
-              {src ? <img src={src} alt="" /> : null}
-              <figcaption>{shapes[i % shapes.length]}</figcaption>
+          {shapes.map((shape, i) => (
+            <figure key={shape} className={`tp__nail ${shape}${pics[i] ? '' : ` art-${finishes[i]}`}`} style={{ animationDelay: `${i * 0.1}s` }}>
+              {pics[i] ? <img src={pics[i]} alt="" /> : null}
+              <figcaption>{shape}</figcaption>
             </figure>
           ))}
         </div>

@@ -235,3 +235,41 @@
 /* ---------- thumbnails: finished states */
 .tpl-card .rz__blade, .dcard .rz__blade, .lp__mini .rz__blade { transform: rotate(0); }
 .tpl-card .nn__name, .dcard .nn__name, .lp__mini .nn__name { opacity: 1; }
+
+/* ---------- GROWTH CHART (finance, reworked from Clipper Guards) */
+.tpl-gw { position: relative; overflow: hidden; }
+.gw__head { display: flex; gap: 16px; align-items: center; }
+.gw__img { width: 104px; height: 128px; flex: none; border-radius: 18px; box-shadow: 0 16px 30px -18px rgba(var(--shadow-rgb), .7); }
+.gw__id { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.gw__logo { width: auto; max-width: 120px; height: 26px; object-fit: contain; margin-bottom: 4px; }
+.gw__name { font-family: var(--f-display); font-size: 30px; font-weight: 700; line-height: 1.02; color: var(--c-name); overflow-wrap: break-word; }
+.gw__role { font-size: 13px; }
+.gw__biz { font-size: 12px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--c-accentDetail); }
+.gw__chart { position: relative; padding: 18px 16px 14px; border-radius: 18px; background: var(--c-cardBg); box-shadow: 0 14px 30px -24px rgba(var(--shadow-rgb), .6); }
+.gw__bars { display: flex; align-items: flex-end; gap: 10px; height: 120px; border-bottom: 1px solid var(--c-dividers); background: repeating-linear-gradient(180deg, transparent 0 29px, color-mix(in srgb, var(--c-dividers) 60%, transparent) 29px 30px); }
+.gw__bars span { flex: 1; height: var(--h); border-radius: 8px 8px 2px 2px; background: linear-gradient(180deg, var(--c-accentDetail), color-mix(in srgb, var(--c-accentDetail) 55%, var(--c-cardBg))); transform-origin: bottom; animation: gwRise .7s cubic-bezier(.2,.8,.2,1) both; }
+.gw__line { position: absolute; left: 16px; right: 16px; top: 18px; width: calc(100% - 32px); height: 120px; overflow: visible; }
+.gw__line polyline { fill: none; stroke: var(--c-name); stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; vector-effect: non-scaling-stroke; stroke-dasharray: 400; stroke-dashoffset: 400; animation: gwDraw 1.2s .4s ease forwards; }
+.gw__tag { margin-top: 12px; font-family: var(--f-display); font-size: 17px; font-style: italic; }
+.gw__cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.gw__cards article { display: flex; flex-direction: column; gap: 3px; padding: 14px; border-radius: 14px; background: var(--c-cardBg); border-top: 3px solid var(--c-accentDetail); }
+.gw__num { font-family: var(--f-display); font-size: 20px; line-height: 1; color: var(--c-accentDetail); }
+.gw__price { font-family: var(--f-display); font-size: 18px; margin-top: 4px; color: var(--c-accentDetail); }
+@keyframes gwRise { from { transform: scaleY(0); } }
+@keyframes gwDraw { to { stroke-dashoffset: 0; } }
+@media (prefers-reduced-motion: reduce) { .gw__bars span, .gw__line polyline { animation: none; stroke-dashoffset: 0; } }
+
+/* ---------- POLISH SHELF: big portrait */
+.po2__portrait { position: relative; margin: 0; height: 340px; border-radius: 24px; overflow: hidden; background: var(--c-iconBg); box-shadow: 0 18px 36px -22px rgba(var(--shadow-rgb), .6); }
+.po2__big { width: 100%; height: 100%; }
+.po2__portrait figcaption { position: absolute; left: 0; right: 0; bottom: 0; padding: 50px 18px 16px; text-align: left; background: linear-gradient(180deg, transparent, rgba(0,0,0,.62)); }
+.po2__portrait figcaption b, .po2__portrait figcaption .fc-title { color: #fff !important; }
+.po2__portrait figcaption b { font-size: 18px; }
+
+/* ---------- TIP CHART: nail art finishes when there are no nail photos yet */
+.tp__nail.art-french { background: linear-gradient(180deg, #fffaf7 0 30%, #f6d2d4 30%); }
+.tp__nail.art-chrome { background: linear-gradient(115deg, #f7f8fb 0%, #b9c0cf 22%, #fdfdff 40%, #8a93a6 58%, #eef1f6 76%, #a3abbd 100%); }
+.tp__nail.art-ombre { background: linear-gradient(180deg, var(--c-accentDetail) 0%, color-mix(in srgb, var(--c-accentDetail) 40%, #ffe6ec) 100%); }
+.tp__nail.art-glitter { background: radial-gradient(circle, rgba(255,255,255,.95) 0 1px, transparent 1.6px) 0 0 / 7px 7px, radial-gradient(circle, rgba(255,215,140,.9) 0 1px, transparent 1.6px) 3px 4px / 9px 9px, linear-gradient(180deg, color-mix(in srgb, var(--c-accentDetail) 75%, #2b0a1a), var(--c-accentDetail)); }
+.tp__nail.art-marble { background: radial-gradient(60% 30% at 30% 30%, rgba(160,150,160,.55), transparent 70%), radial-gradient(40% 20% at 70% 65%, rgba(130,120,135,.5), transparent 70%), linear-gradient(160deg, transparent 45%, rgba(200,170,110,.85) 47%, transparent 50%), linear-gradient(180deg, #fbfafb, #e9e5ea); }
+.tp__nail[class*="art-"] figcaption { color: #fff; text-shadow: 0 1px 3px rgba(0,0,0,.65); }

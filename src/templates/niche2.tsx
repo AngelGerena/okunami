@@ -22,7 +22,8 @@ export function Barber() {
   return (
     <div className="tpl tpl-bb">
       <div className="bb__pole" aria-hidden><i /></div>
-      <div className="pad stack">
+      <div className="bb__hero" {...el('heroBand')}><Photo className="bb__heroimg" /><span className="bb__fade" {...el('pageBg')} /></div>
+      <div className="pad stack bb__body">
         <header className="bb__head">
           <Logo className="bb__logo" />
           <div>
@@ -47,7 +48,7 @@ export function Barber() {
         </section>
         <Gallery variant="grid" title="Fresh cuts" max={6} />
         <Hours />
-        <div className="bb__barber"><Photo className="bb__img" /><div><b {...el('body')}>{data.fullName}</b><Title /></div></div>
+        <div className="bb__barber"><div><b {...el('body')}>{data.fullName}</b><Title /></div></div>
         <div className="row"><SaveBtn /><ShareBtn iconOnly /><QrBtn iconOnly /></div>
         <LocationCard />
         <SocialLinks variant="pills" title="" />
@@ -216,7 +217,10 @@ export function Stage() {
     <div className={`tpl tpl-st ${still ? 'is-still' : ''}`}>
       <div className="st__eq" aria-hidden>{Array.from({ length: 24 }, (_, i) => <i key={i} style={{ animationDelay: `${(i * 137) % 900}ms`, animationDuration: `${700 + ((i * 53) % 500)}ms` }} />)}</div>
       <div className="pad stack center">
-        <div className="st__vinyl" {...el('heroBand')}><span className="st__grooves" /><Photo className="st__img" /></div>
+        <div className="st__stage">
+          <div className="st__vinyl" aria-hidden><span className="st__grooves" /><span className="st__label" {...el('accentDetail')} /></div>
+          <figure className="st__photo" {...el('heroBand')}><Photo className="st__big" /></figure>
+        </div>
         <h1 className="st__name" {...el('name')}>{data.fullName || 'Your Name'}</h1>
         <Title className="st__title" />
         {data.tagline && <p className="st__tag" {...el('accentDetail')}>{data.tagline}</p>}

@@ -8,13 +8,17 @@ import { NETWORK_BY_ID, socialUrl } from '../lib/socials';
 const ext = (href: string) => (/^https?:/.test(href) ? { target: '_blank', rel: 'noopener' } : {});
 
 /* ============================================================ Real Estate: "Keystone" */
+/* Default hero until the agent adds her own listing photo (gallery photo 1). Free to use under the Pexels license, photo by Max Vakhtbovych. */
+const HOME_PHOTO = 'https://images.pexels.com/photos/7031607/pexels-photo-7031607.jpeg?auto=compress&cs=tinysrgb&w=1000';
+
 export function RealEstate() {
   const { data } = useCard();
-  const hero = data.gallery[0];
+  // Her first gallery photo leads; the drawn sample pictures (SVG) never take the hero spot.
+  const hero = data.gallery.find((g) => !/\.svg(\?|$)|^data:image\/svg/i.test(g));
   return (
     <div className="tpl tpl-re">
       <header className="re__hero">
-        {hero ? <img className="re__house" src={hero} alt="Featured property" /> : <div className="re__house re__house--empty" {...el('heroBand')} />}
+        <img className="re__house" src={hero || HOME_PHOTO} alt={hero ? 'Featured property' : 'A modern home with glass doors and a lawn'} />
         <div className="re__shade" />
         <div className="re__brand" {...el('heroBand')}><Logo className="re__logo" /><span>{data.business || 'Your brokerage'}</span></div>
       </header>

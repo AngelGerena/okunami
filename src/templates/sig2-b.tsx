@@ -304,7 +304,7 @@ export function Confetti() {
         {data.highlights.length > 0 && (
           <section className="cf__show full" {...el('cardBg')}>
             <h2 className="cf__h" {...el('name')}>Run of show</h2>
-            <ol>{data.highlights.map((h, i) => <li key={h.id}><span className="cf__time" {...el('accentDetail')}>{['6:00', '7:00', '8:30', '9:30', '10:30', '11:30'][i] ?? ''}</span><span className="cf__dot" {...el('accentDetail')} /><span><b {...el('body')}>{h.title}</b><small {...el('caption')}>{h.subtitle}</small></span></li>)}</ol>
+            <ol>{data.highlights.map((h, i) => <li key={h.id}><span className="cf__time" {...el('accentDetail')}>{['6:00 PM', '7:00 PM', '8:30 PM', '9:30 PM', '10:30 PM', '11:30 PM'][i] ?? ''}</span><span className="cf__dot" {...el('accentDetail')} /><span><b {...el('body')}>{h.title}</b><small {...el('caption')}>{h.subtitle}</small></span></li>)}</ol>
           </section>
         )}
         <div className="full"><Gallery variant="grid" title="Past events" max={6} /></div>

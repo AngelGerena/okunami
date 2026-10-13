@@ -76,7 +76,10 @@ export type TemplateId =
   | 'floorplan' | 'ledger' | 'hymnboard' | 'cluster' | 'stopwatch' | 'diner' | 'yardsign'
   // worship collection
   | 'santuario' | 'celestial' | 'vitral' | 'frecuencia' | 'constelacion' | 'escenario' | 'salmo'
-  // collection five: photo-led cards built on card UX research
+  // glam collection (beauty consultants)
+  | 'halo' | 'leaf' | 'coversplit' | 'plum' | 'neonpulse' | 'roseglass' | 'swatchbar' | 'runway' | 'silkcurve' | 'boldblock' | 'sunset' | 'glamrail' | 'growth'
+  | 'aperture' | 'viewfinder' | 'lensring' | 'rangefinder' | 'safelight' | 'carbonpro' | 'modedial' | 'pianoblack' | 'filmstrip' | 'softbox' | 'railbleed' | 'railcircle' | 'railarch' | 'railoval' | 'railmark' | 'railblob'
+  // collection seven: photo-led cards
   | 'sheet' | 'studio' | 'intro' | 'duotone' | 'trust' | 'local' | 'menu' | 'status' | 'chat';
 
 export interface SocialLink { id: string; network: string; value: string; }   // value = handle or full URL

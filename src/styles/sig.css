@@ -511,3 +511,19 @@
 @media (prefers-reduced-motion: reduce) {
   .tpl *, .tpl *::before, .tpl *::after { animation-duration: .001s !important; animation-delay: 0s !important; animation-iteration-count: 1 !important; transition: none !important; }
 }
+
+
+/* ---------- CHROME GLOSS: richer iridescent background */
+.gl__holo { background:
+  radial-gradient(60% 40% at 15% 8%, color-mix(in srgb, var(--c-accentDetail) 55%, #fff) 0%, transparent 70%),
+  radial-gradient(55% 35% at 92% 18%, #B9E6FF 0%, transparent 70%),
+  radial-gradient(70% 45% at 70% 55%, #E4D4FF 0%, transparent 70%),
+  radial-gradient(60% 40% at 10% 75%, #FFE3C2 0%, transparent 70%),
+  linear-gradient(160deg, #FFF4FB 0%, #F4EEFF 50%, #EAF7FF 100%) !important;
+  background-size: 140% 140% !important; opacity: 1 !important; animation: glDrift 18s ease-in-out infinite alternate !important; }
+.gl__holo::before { content: ''; position: absolute; inset: 0; background: linear-gradient(115deg, transparent 30%, rgba(255,255,255,.55) 45%, transparent 60%); background-size: 250% 100%; animation: glSheen 7s ease-in-out infinite; }
+.gl__holo::after { content: ''; position: absolute; inset: 0; opacity: .18; background: radial-gradient(circle, rgba(255,255,255,.9) 0 .8px, transparent 1.2px) 0 0 / 6px 6px; mix-blend-mode: overlay; }
+.mode-dark .gl__holo { opacity: .28 !important; }
+@keyframes glDrift { to { background-position: 100% 100%; } }
+@keyframes glSheen { 0% { background-position: 150% 0; } 60%, 100% { background-position: -50% 0; } }
+@media (prefers-reduced-motion: reduce) { .gl__holo, .gl__holo::before { animation: none !important; } }
