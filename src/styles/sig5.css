@@ -1,0 +1,142 @@
+/* =================================================================
+   The Glam Collection (src/templates/sig5.tsx): 11 clean beauty designs.
+   Colors come from the element variables (--c-*), so every part stays recolorable.
+   ================================================================= */
+.tpl-gh, .tpl-glf, .tpl-gcs, .tpl-gp, .tpl-gn, .tpl-gg, .tpl-gs, .tpl-gr, .tpl-gsc, .tpl-gb, .tpl-gsb { position: relative; overflow: hidden; isolation: isolate; padding-bottom: 28px; }
+
+/* ---------- shared */
+.gl-role { margin-top: 8px; font-size: 12px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; }
+.gl-ctas { display: flex; flex-direction: column; gap: 10px; width: 100%; }
+.gl-ctas--pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.gl-ctas--pair > :only-child { grid-column: 1 / -1; }
+.gl-ctas .fb { width: 100%; }
+.gl-contacts { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 16px; width: 100%; }
+.gl-contacts--text a { min-height: 44px; display: inline-flex; align-items: center; font-size: 12.5px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--c-links); text-decoration: none; }
+.gl-contacts--circles { justify-content: center; gap: 12px; }
+.gl-contacts--circles a { width: 50px; height: 50px; border-radius: 50%; display: grid; place-items: center; background: var(--c-cardBg); color: var(--c-icons); box-shadow: 0 10px 20px -16px rgba(var(--shadow-rgb), .7); }
+.gl-contacts--tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(88px, 1fr)); gap: 8px; }
+.gl-contacts--tiles a { min-height: 50px; border-radius: var(--r-sm); display: flex; align-items: center; justify-content: center; gap: 8px; padding: 0 10px; background: var(--c-cardBg); color: var(--c-icons); font-size: 13.5px; font-weight: 700; text-decoration: none; }
+.gl-contacts--tiles a span:last-child { color: var(--c-body); }
+.gl-tail { justify-content: center; }
+.gl-rows { display: flex; flex-direction: column; border-top: 1px solid var(--c-dividers); }
+.gl-rows a, .gl-rows button { min-height: 62px; display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 0; border: 0; border-bottom: 1px solid var(--c-dividers); background: none; font: inherit; text-align: left; cursor: pointer; text-decoration: none; }
+.gl-rows a > span:first-child, .gl-rows button > span:first-child { font-family: var(--f-display); font-size: 22px; color: var(--c-name); }
+.gl-rows a > span:last-child, .gl-rows button > span:last-child { color: var(--c-accentDetail); }
+
+/* ---------- BLUSH HALO */
+.gh__logo { max-width: 150px; height: 28px; object-fit: contain; }
+.gh__ring { width: 216px; height: 216px; border-radius: 50%; padding: 6px; background: var(--c-cardBg); box-shadow: 0 0 0 1px color-mix(in srgb, var(--c-accentDetail) 35%, transparent), 0 24px 50px -10px color-mix(in srgb, var(--c-accentDetail) 45%, transparent); }
+.gh__img { width: 100%; height: 100%; border-radius: 50%; }
+.gh__name { font-family: var(--f-display); font-weight: 500; font-size: 40px; line-height: 1.05; color: var(--c-name); text-wrap: balance; }
+.gh__name i { font-style: italic; }
+
+/* ---------- THE LEAF */
+.glf__leaf { position: absolute; z-index: -1; right: -170px; top: -120px; width: 520px; height: 780px; opacity: .16; fill: var(--c-accentDetail); pointer-events: none; }
+.glf__logo { max-width: 140px; height: 26px; object-fit: contain; align-self: flex-start; }
+.glf__frame { width: 170px; height: 220px; border-radius: 120px 120px 20px 120px; overflow: hidden; box-shadow: 0 20px 40px -12px color-mix(in srgb, var(--c-accentDetail) 45%, transparent); }
+.glf__img { width: 100%; height: 100%; }
+.glf__name { font-family: var(--f-display); font-weight: 400; font-size: min(52px, 13vw); line-height: .95; color: var(--c-name); overflow-wrap: break-word; }
+
+/* ---------- COVER SPLIT */
+.gcs__hero { position: relative; height: 440px; background: var(--c-heroBand); clip-path: polygon(0 0, 100% 0, 100% 84%, 0 100%); }
+.gcs__img { position: absolute; inset: 0; width: 100%; height: 100%; }
+.gcs__logo { position: absolute; top: 16px; right: 18px; padding: 7px 12px; border-radius: 6px; background: rgba(255, 255, 255, .92); }
+.gcs__logo img { display: block; max-width: 110px; height: 18px; object-fit: contain; }
+.gcs__body { margin-top: -18px; position: relative; z-index: 1; }
+.gcs__name { font-family: var(--f-display); font-weight: 700; font-size: min(50px, 12.5vw); line-height: .95; letter-spacing: -.01em; color: var(--c-name); overflow-wrap: break-word; }
+.gcs__name i { font-weight: 500; }
+
+/* ---------- VELVET PLUM */
+.tpl-gp { background: radial-gradient(120% 60% at 50% 0%, color-mix(in srgb, var(--c-heroBand) 55%, var(--c-pageBg)) 0%, var(--c-pageBg) 70%); }
+.gp__hero { position: relative; height: 420px; background: var(--c-heroBand); }
+.gp__img { position: absolute; inset: 0; width: 100%; height: 100%; }
+.gp__logo { position: absolute; top: 16px; right: 18px; }
+.gp__logo img { display: block; max-width: 110px; height: 22px; object-fit: contain; filter: drop-shadow(0 1px 3px rgba(0,0,0,.4)); }
+.gp__curve { position: absolute; left: 0; bottom: -1px; width: 100%; height: 80px; fill: var(--c-pageBg); }
+.gp__body { margin-top: -10px; }
+.gp__name { font-family: var(--f-display); font-weight: 600; font-size: 46px; line-height: 1; color: var(--c-name); text-wrap: balance; }
+.tpl-gp .fb--primary { background-image: linear-gradient(90deg, var(--c-btnPrimaryBg), color-mix(in srgb, var(--c-btnPrimaryBg) 55%, #fff), var(--c-btnPrimaryBg)); }
+
+/* ---------- NEON PULSE */
+.gn__logo { max-width: 140px; height: 24px; object-fit: contain; }
+.gn__ring { width: 224px; height: 224px; border-radius: 50%; padding: 4px; border: 3px solid currentColor; color: var(--c-accentDetail); box-shadow: 0 0 18px currentColor, 0 0 60px color-mix(in srgb, currentColor 45%, transparent), inset 0 0 24px color-mix(in srgb, currentColor 35%, transparent); animation: gnPulse 2.6s ease-in-out infinite; }
+.gn__img { width: 100%; height: 100%; border-radius: 50%; }
+.gn__name { font-family: var(--f-display); font-weight: 800; font-size: 38px; line-height: 1; letter-spacing: .02em; text-transform: uppercase; color: var(--c-name); text-wrap: balance; }
+.tpl-gn .fb--primary { box-shadow: 0 0 24px color-mix(in srgb, var(--c-btnPrimaryBg) 60%, transparent); }
+@keyframes gnPulse { 50% { box-shadow: 0 0 26px currentColor, 0 0 80px color-mix(in srgb, currentColor 55%, transparent), inset 0 0 30px color-mix(in srgb, currentColor 40%, transparent); } }
+
+/* ---------- ROSE GLASS */
+.gg__orb { position: absolute; z-index: -1; width: 320px; height: 320px; border-radius: 50%; filter: blur(70px); opacity: .55; pointer-events: none; }
+.gg__orb.a { left: -120px; top: 80px; background: var(--c-accentDetail); }
+.gg__orb.b { right: -110px; top: 420px; background: color-mix(in srgb, var(--c-accentDetail) 30%, #C9A0DC); }
+.gg__logo { max-width: 140px; height: 24px; object-fit: contain; }
+.gg__ring { width: 200px; height: 200px; border-radius: 50%; padding: 4px; background: rgba(255, 255, 255, .55); }
+.gg__img { width: 100%; height: 100%; border-radius: 50%; }
+.gg__name { font-family: var(--f-display); font-weight: 600; font-size: 40px; line-height: 1; color: var(--c-name); text-wrap: balance; }
+.gg__panel { padding: 16px; border-radius: 26px; display: flex; flex-direction: column; gap: 12px; background: color-mix(in srgb, var(--c-cardBg) 55%, transparent); border: 1px solid rgba(255, 255, 255, .7); -webkit-backdrop-filter: blur(18px); backdrop-filter: blur(18px); box-shadow: 0 20px 40px -18px rgba(var(--shadow-rgb), .35); }
+
+/* ---------- SWATCH BAR */
+.gs__bar { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); height: 14px; }
+.gs__bar i:nth-child(1) { background: color-mix(in srgb, var(--c-accentDetail) 35%, #fff); }
+.gs__bar i:nth-child(2) { background: color-mix(in srgb, var(--c-accentDetail) 70%, #fff); }
+.gs__bar i:nth-child(3) { background: var(--c-accentDetail); }
+.gs__bar i:nth-child(4) { background: color-mix(in srgb, var(--c-accentDetail) 60%, var(--c-btnPrimaryBg)); }
+.gs__bar i:nth-child(5) { background: color-mix(in srgb, var(--c-accentDetail) 25%, var(--c-btnPrimaryBg)); }
+.gs__bar i:nth-child(6) { background: var(--c-btnPrimaryBg); }
+.gs__top { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.gs__logo { max-width: 140px; height: 24px; object-fit: contain; }
+.gs__lbl { font-size: 10.5px; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: var(--c-caption); }
+.gs__frame { height: 300px; border-radius: 6px; overflow: hidden; }
+.gs__img { width: 100%; height: 100%; }
+.gs__name { font-family: var(--f-display); font-weight: 600; font-size: 42px; line-height: 1; color: var(--c-name); text-wrap: balance; }
+.gs__shades { display: flex; flex-direction: column; gap: 8px; }
+.gs__shade { min-height: 56px; display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 0 18px; border: 0; border-radius: 6px; font: inherit; font-size: 15px; font-weight: 700; text-align: left; text-decoration: none; cursor: pointer; color: #fff; transition: transform .15s ease; }
+.gs__shade:active { transform: scale(.98); }
+.gs__shade small { display: inline; font-size: 10.5px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: rgba(255, 255, 255, .85) !important; }
+.gs__shade.s0 { background: color-mix(in srgb, var(--c-accentDetail) 80%, #000); }
+.gs__shade.s1 { background: color-mix(in srgb, var(--c-accentDetail) 45%, var(--c-btnPrimaryBg)); }
+.gs__shade.s2 { background: var(--c-btnPrimaryBg); color: var(--c-btnPrimaryText); }
+
+/* ---------- RUNWAY */
+.gr__stage { position: relative; height: 560px; background: var(--c-heroBand); }
+.gr__img { position: absolute; inset: 0; width: 100%; height: 100%; }
+.gr__shade { position: absolute; inset: 0; background: linear-gradient(180deg, transparent 40%, color-mix(in srgb, var(--c-pageBg) 70%, transparent) 75%, var(--c-pageBg) 100%); pointer-events: none; }
+.gr__logo { position: absolute; top: 16px; right: 18px; }
+.gr__logo img { display: block; max-width: 110px; height: 22px; object-fit: contain; filter: drop-shadow(0 1px 3px rgba(0,0,0,.5)); }
+.gr__name { position: absolute; left: 14px; top: 18px; bottom: 30px; margin: 0; writing-mode: vertical-rl; transform: rotate(180deg); font-family: var(--f-display); font-weight: 800; font-size: 44px; line-height: 1; letter-spacing: .06em; text-transform: uppercase; white-space: nowrap; overflow: hidden; color: var(--c-name); text-shadow: 0 2px 14px rgba(0, 0, 0, .35); }
+.gr__body { margin-top: -40px; position: relative; }
+.tpl-gr .gl-role { color: var(--c-accentDetail); letter-spacing: .26em; }
+
+/* ---------- SILK CURVE */
+.gsc__hero { position: relative; height: 420px; background: var(--c-heroBand); }
+.gsc__img { position: absolute; inset: 0; width: 100%; height: 100%; }
+.gsc__logo { position: absolute; top: 16px; right: 18px; padding: 7px 12px; border-radius: 999px; background: rgba(255, 255, 255, .88); }
+.gsc__logo img { display: block; max-width: 110px; height: 16px; object-fit: contain; }
+.gsc__curve { position: absolute; left: 0; bottom: -1px; width: 100%; height: 110px; }
+.gsc__curve .fill { fill: var(--c-pageBg); }
+.gsc__curve .line { fill: none; stroke: var(--c-accentDetail); stroke-width: 2; }
+.gsc__body { margin-top: -6px; }
+.gsc__name { font-family: var(--f-display); font-weight: 600; font-size: 44px; line-height: 1; color: var(--c-name); text-wrap: balance; }
+.gsc__name i { font-weight: 500; }
+
+/* ---------- BOLD BLOCK */
+.gb__top { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.gb__logo { max-width: 140px; height: 24px; object-fit: contain; }
+.gb__chip { padding: 7px 12px; border-radius: 999px; background: var(--c-accentDetail); color: var(--c-onAccent); font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; max-width: 60%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.gb__hero { position: relative; height: 330px; }
+.gb__frame { position: absolute; right: 0; top: 0; width: 62%; height: 100%; overflow: hidden; }
+.gb__img { width: 100%; height: 100%; }
+.gb__name { position: absolute; left: 0; bottom: -6px; margin: 0; max-width: 100%; font-family: var(--f-display); font-weight: 400; font-size: min(84px, 20vw); line-height: .88; text-transform: uppercase; color: var(--c-name); overflow-wrap: break-word; text-shadow: 0 2px 12px color-mix(in srgb, var(--c-pageBg) 70%, transparent); }
+.tpl-gb .fb { border-radius: 0; }
+
+/* ---------- SUNSET BLOOM */
+.tpl-gsb { background: var(--c-pageBg); }
+.gsb__sky { height: 230px; display: flex; justify-content: center; padding-top: 26px; background: linear-gradient(160deg, color-mix(in srgb, var(--c-accentDetail) 45%, #FFD9B8) 0%, var(--c-accentDetail) 50%, var(--c-heroBand) 100%); }
+.gsb__logo { max-width: 140px; height: 26px; object-fit: contain; filter: brightness(0) invert(1); }
+.gsb__sheet { position: relative; margin-top: -110px; border-radius: 40px 40px 0 0; background: var(--c-pageBg); padding-top: 120px; }
+.gsb__ring { position: absolute; left: 50%; top: -100px; transform: translateX(-50%); width: 200px; height: 200px; border-radius: 50%; padding: 6px; background: var(--c-pageBg); box-shadow: 0 20px 40px -14px color-mix(in srgb, var(--c-accentDetail) 60%, transparent); }
+.gsb__img { width: 100%; height: 100%; border-radius: 50%; }
+.gsb__name { font-family: var(--f-display); font-weight: 600; font-size: 42px; line-height: 1; color: var(--c-name); text-wrap: balance; }
+.gsb__name i { font-weight: 500; }
+
+@media (prefers-reduced-motion: reduce) { .gn__ring { animation: none; } }

@@ -203,5 +203,5 @@ export function seedsOf(theme: Theme): Seeds {
 }
 
 /** Layouts that are a dark screen by nature. They render in dark mode even when the visitor's phone is light. */
-export const ALWAYS_DARK = new Set<string>(['terminal', 'santuario', 'celestial', 'vitral', 'frecuencia', 'constelacion', 'escenario', 'salmo']);
+export const ALWAYS_DARK = new Set<string>(['terminal', 'santuario', 'celestial', 'vitral', 'frecuencia', 'constelacion', 'escenario', 'salmo', 'neonpulse', 'plum', 'runway']);
 export const effectiveMode = (template: string, mode: Mode): Mode => (ALWAYS_DARK.has(template) ? 'dark' : mode);

@@ -686,5 +686,11 @@ export const ES: Record<string, string> = {
   "{n} cards, ${total}/year": "{n} tarjetas, ${total}/año",
   "{n} cards, ${total}/month": "{n} tarjetas, ${total}/mes",
   "Matching cards for your whole team. Pay only for the cards you need.": "Tarjetas a juego para todo tu equipo. Paga solo por las tarjetas que necesitas.",
-  "Continue to payment": "Continuar al pago"
+  "Continue to payment": "Continuar al pago",
+  "Beauty Consultants": "Consultoras de belleza",
+  "The Glam Collection for beauty influencers and direct sellers: shop my picks, join my team.": "La Colección Glam para influencers de belleza y ventas directas: compra mis favoritos, únete a mi equipo.",
+  "Shop link": "Enlace de tu tienda",
+  "Join-my-team link": "Enlace para unirse a tu equipo",
+  "Your store link. Shows as the Shop my picks button on the Glam designs.": "El enlace de tu tienda. Aparece como el botón Compra mis favoritos en los diseños Glam.",
+  "Your sign-up link for new team members. Shows as the Join my team button.": "Tu enlace de inscripción para nuevos miembros del equipo. Aparece como el botón Únete a mi equipo."
 };

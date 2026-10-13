@@ -10,6 +10,7 @@ import { Cmdk, GoldLeaf, Hologram, Lash, Liquid, Mission, NowServing, Perfume, P
 import { Celestial, Constelacion, Escenario, Frecuencia, Salmo, Santuario, Vitral } from './worship/Worship';
 import { Bag, CaseFile, Cluster, ContactSheet, Diner, Flash, FloorPlan, HangTag, HymnBoard, Ledger, OrderTicket, Postcard, Stopwatch, YardSign } from './sig4';
 import { Bamboo, Blowout, Chalkboard, Clipper, Lotus, Magazine, NeonSign, Polish, Razor, Shimmer, Stations, Stones, Tips } from './sig3';
+import { BoldBlock, CoverSplit, Halo, Leaf, NeonPulse, Plum, RoseGlass, Runway, SilkCurve, Sunset, SwatchBar } from './sig5';
 import { Boarding, Confetti, Inbox, Invitation, Monogram, Planner, Recipe, Stained, Toolbelt, Trading, Turntable, Vinyl, Waveform } from './sig2-b';
 import {
   Arrow, Btn, Business, CalendarDays, ContactList, Crisis, Dock, Footer, Highlights, LocationCard, Logo, Name, Photo,
@@ -133,6 +134,18 @@ export const TEMPLATES: TemplateMeta[] = [
   { id: 'constelacion', name: 'Constelación',     niche: 'Worship', blurb: 'Twinkling stars, a crown constellation and orbiting rings around your photo.', bestFor: 'Psalmists, ministries' },
   { id: 'escenario',    name: 'Escenario',        niche: 'Worship', blurb: 'An edge-to-edge portrait under swaying stage spotlights.', bestFor: 'Worship leaders, singers' },
   { id: 'salmo',        name: 'Salmo OS',         niche: 'Worship', blurb: 'Your portrait in an app window with a pixel reveal and CRT glow.', bestFor: 'Worship tech teams, creators' },
+  // ---- glam collection
+  { id: 'halo',       name: 'Blush Halo',   niche: 'Beauty Consultants', blurb: 'A glowing round portrait, soft blush ground, stacked shop and join buttons.', bestFor: 'Beauty influencers, direct sellers' },
+  { id: 'leaf',       name: 'The Leaf',     niche: 'Beauty Consultants', blurb: 'A giant soft petal, a leaf-shaped portrait and big serif link rows.', bestFor: 'Beauty influencers, skincare sellers' },
+  { id: 'coversplit', name: 'Cover Split',  niche: 'Beauty Consultants', blurb: 'A full-bleed photo cut on a slant, fashion-cover type underneath.', bestFor: 'Beauty influencers, stylists' },
+  { id: 'plum',       name: 'Velvet Plum',  niche: 'Beauty Consultants', blurb: 'Deep plum, a curved photo edge and rose-gold buttons.', bestFor: 'Luxury beauty, fragrance' },
+  { id: 'neonpulse',  name: 'Neon Pulse',   niche: 'Beauty Consultants', blurb: 'A neon ring that pulses around your photo on a dark stage.', bestFor: 'Beauty creators, nightlife, nails' },
+  { id: 'roseglass',  name: 'Rose Glass',   niche: 'Beauty Consultants', blurb: 'Floating color orbs behind a frosted glass panel.', bestFor: 'Beauty influencers, wellness' },
+  { id: 'swatchbar',  name: 'Swatch Bar',   niche: 'Beauty Consultants', blurb: 'A lipstick swatch stripe up top, buttons as shade cards.', bestFor: 'Makeup sellers, lip and nail brands' },
+  { id: 'runway',     name: 'Runway',       niche: 'Beauty Consultants', blurb: 'An edge-to-edge portrait with your name running up the side.', bestFor: 'Influencers, models, stylists' },
+  { id: 'silkcurve',  name: 'Silk Curve',   niche: 'Beauty Consultants', blurb: 'A soft photo top that flows into the page on one smooth curve.', bestFor: 'Beauty influencers, spas' },
+  { id: 'boldblock',  name: 'Bold Block',   niche: 'Beauty Consultants', blurb: 'Huge stacked poster type over a photo block, square buttons.', bestFor: 'Bold personal brands, team leaders' },
+  { id: 'sunset',     name: 'Sunset Bloom', niche: 'Beauty Consultants', blurb: 'A peach-to-coral sky and a round portrait on a white sheet.', bestFor: 'Beauty influencers, skincare' },
 ];
 
 /* ------------------------------------------------------------ 1 Editorial Cover */
@@ -425,4 +438,6 @@ export const TEMPLATE_COMPONENTS: Record<TemplateId, () => ReactElement> = {
   casefile: CaseFile, contactsheet: ContactSheet, flash: Flash, orderticket: OrderTicket, hangtag: HangTag, bag: Bag, postcard: Postcard,
   floorplan: FloorPlan, ledger: Ledger, hymnboard: HymnBoard, cluster: Cluster, stopwatch: Stopwatch, diner: Diner, yardsign: YardSign,
   santuario: Santuario, celestial: Celestial, vitral: Vitral, frecuencia: Frecuencia, constelacion: Constelacion, escenario: Escenario, salmo: Salmo,
+  halo: Halo, leaf: Leaf, coversplit: CoverSplit, plum: Plum, neonpulse: NeonPulse, roseglass: RoseGlass, swatchbar: SwatchBar,
+  runway: Runway, silkcurve: SilkCurve, boldblock: BoldBlock, sunset: Sunset,
 };
