@@ -142,6 +142,7 @@ export default function Editor() {
     if (!c) return;
     if (v && !(await ensureSaved())) throw new Error('Your latest changes could not be saved, so the card was not published. Use Retry in the top bar, then publish again.');
     await store.setPublished(c.id, v);
+    if (v) store.welcome(c.id);   // first publish only; the server makes sure it goes out once
     setCard((cur) => (cur ? { ...cur, published: v } : cur));   // not part of the undo history
   }, [ensureSaved]);
 
