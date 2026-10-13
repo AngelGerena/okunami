@@ -4,8 +4,8 @@
    The Website field is the shop link and the Booking link is the
    join-my-team link when the card's niche is Beauty Consultants.
    ================================================================= */
-import { ArrowUpRight, ShoppingBag, Sparkles } from 'lucide-react';
-import { Btn, Logo, Photo, QrBtn, SaveBtn, ShareBtn, SocialLinks, Title, el, useCard, useContactActions } from './blocks';
+import { ArrowUpRight, Share2, ShoppingBag, Sparkles } from 'lucide-react';
+import { Btn, Highlights, Logo, Photo, QrBtn, SaveBtn, ShareBtn, SocialLinks, Title, el, useCard, useContactActions } from './blocks';
 import { webHref } from '../lib/links';
 
 const ext = (h: string) => (/^https?:/.test(h) ? { target: '_blank', rel: 'noopener' } : {});
@@ -320,6 +320,40 @@ export function Sunset() {
           <ContactRow />
           <div className="full"><Tail /></div>
         </div>
+      </div>
+    </div>
+  );
+}
+
+/* ================================================================ GLAM RAIL
+   The Side Rail layout, made for beauty sellers: shop and join sit in the rail beside call and WhatsApp. */
+export function GlamRail() {
+  const { data, actions } = useCard();
+  const { shop, join, contacts, first, last } = useGlam();
+  const rail = [
+    ...(shop ? [{ key: 'shop', label: 'Shop', href: shop.href, icon: <ShoppingBag size={22} /> }] : []),
+    ...(join ? [{ key: 'join', label: 'Join', href: join.href, icon: <Sparkles size={22} /> }] : []),
+    ...contacts.filter((a) => a.key === 'call' || a.key === 'wa' || a.key === 'email').map((a) => ({ key: a.key, label: a.key === 'wa' ? 'WhatsApp' : a.label, href: a.href, icon: a.icon })),
+  ].slice(0, 5);
+  return (
+    <div className="tpl tpl-rail tpl-grl">
+      <nav className="rail__bar grl__bar" aria-label="Quick actions" {...el('heroBand')}>
+        <Logo className="rail__logo grl__logo" />
+        {rail.map((a) => <a key={a.key} href={a.href} {...ext(a.href)}>{a.icon}<span>{a.label}</span></a>)}
+        <button type="button" onClick={actions.share}><Share2 size={22} /><span>Share</span></button>
+        <span className="rail__vert">{data.business || data.fullName}</span>
+      </nav>
+      <div className="rail__main stack grl__main">
+        <div className="grl__frame" {...el('iconBg')}><Photo className="grl__img" /></div>
+        <div>
+          <h1 className="grl__name" {...el('name')}>{first}{last && <><br /><span {...el('accentDetail')}>{last}</span></>}</h1>
+          <Title className="gl-role" />
+        </div>
+        {data.tagline && <p className="grl__tag" {...el('body')}>{data.tagline}</p>}
+        <Ctas />
+        <QrBtn />
+        <Highlights variant="plain" />
+        <SocialLinks variant="text" title="Follow me" />
       </div>
     </div>
   );
