@@ -2,14 +2,15 @@ import { useCallback, useEffect, useState, type ReactNode } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import {
   ArrowLeft, ArrowRightLeft, BarChart3, ChevronDown, ChevronUp, ExternalLink, Eye, EyeOff, LayoutGrid, Loader2,
-  LogOut, Pencil, Search, ShieldCheck, Users, X,
+  Globe2, LogOut, MessageCircle, Pencil, RefreshCw, Search, ShieldCheck, Users, X,
 } from 'lucide-react';
 import { TEAM, cardLimit } from '../lib/plans';
-import { adminApi, type AdminCard, type AdminLog, type AdminStats, type AdminUser, type PlanHow, type PlanId } from '../lib/adminApi';
+import { adminApi, type AdminCard, type AdminDomain, type AdminLog, type AdminStats, type AdminUser, type PlanHow, type PlanId } from '../lib/adminApi';
 import { useAuth } from '../lib/auth';
 import { supabase } from '../lib/supabase';
 import { TEMPLATES } from '../templates';
 import { cardUrl } from '../lib/links';
+import { PROVIDERS } from '../lib/domains';
 import type { CardData } from '../lib/types';
 import Brand from '../components/Brand';
 
@@ -335,6 +336,78 @@ function CardsTab({ ctx, rev }: { ctx: Ctx; rev: number }) {
   );
 }
 
+/* ------------------------------------------------------------------ domain hookups */
+const DOMAIN_STATUS: Record<AdminDomain['status'], { label: string; tone: 'ok' | 'muted' | 'bad' | 'warn' }> = {
+  requested: { label: 'New: needs you', tone: 'bad' },
+  pending_payment: { label: 'Checkout not finished', tone: 'muted' },
+  waiting_dns: { label: 'Waiting on their record', tone: 'warn' },
+  checking_ssl: { label: 'Record found, lock pending', tone: 'warn' },
+  connected: { label: 'Connected', tone: 'ok' },
+};
+const METHOD_NAME: Record<AdminDomain['method'], string> = { diy: 'Do it myself (free)', hookup: 'Domain Hookup', register: 'Register + hookup' };
+const waLink = (phone: string, who: string, domain: string) => {
+  const d = phone.replace(/\D/g, '');
+  const n = d.length === 10 ? `1${d}` : d;
+  return `https://wa.me/${n}?text=${encodeURIComponent(`Hi ${who.split(' ')[0]}, it's Angel from Finesse Media. I'm ready to connect ${domain} to your OKUNAMI card. When is a good time?`)}`;
+};
+
+function DomainRow({ d, ctx }: { d: AdminDomain; ctx: Ctx }) {
+  const [busy, setBusy] = useState(false);
+  const [note, setNote] = useState(d.admin_note ?? '');
+  const st = DOMAIN_STATUS[d.status] ?? { label: d.status, tone: 'muted' as const };
+  const who = d.business || d.full_name || d.owner_email || 'Client';
+  const check = async () => {
+    setBusy(true);
+    try { const s = await adminApi.checkDomain(d.id); ctx.flash(`${d.domain}: ${DOMAIN_STATUS[s]?.label ?? s}.`); ctx.reload(); } catch (e) { ctx.flash(errText(e), true); }
+    setBusy(false);
+  };
+  return (
+    <li className="adm-row adm-row--card adm-dom">
+      <div className="adm-row__main">
+        <b>{who} <span className={`adm-pill adm-pill--${st.tone}`}>{st.label}</span></b>
+        <div className="adm-dom__meta">
+          <span><Globe2 size={13} /> {d.domain}</span>
+          <span>{METHOD_NAME[d.method]}{d.paid_cents ? ` · ${money(d.paid_cents)} paid` : ''}</span>
+          <span>Bought at: {PROVIDERS.find((p) => p.id === d.provider)?.name ?? 'not sure'}</span>
+          <span>Card: /{d.slug}</span>
+          <span>Requested {ago(d.created_at)}{d.last_checked_at ? ` · checked ${ago(d.last_checked_at)}` : ''}</span>
+        </div>
+        <label className="adm-dom__note"><span className="sr">Private note</span>
+          <input value={note} onChange={(e) => setNote(e.target.value)} onBlur={() => { if (note !== (d.admin_note ?? '')) adminApi.domainNote(d.id, note).catch((e) => ctx.flash(errText(e), true)); }} placeholder="Private note (only you see this)" maxLength={200} />
+        </label>
+      </div>
+      <div className="adm-row__acts">
+        {d.contact_phone && <a className="btn btn--ghost btn--sm" href={waLink(d.contact_phone, who, d.domain)} target="_blank" rel="noopener"><MessageCircle size={15} /> WhatsApp</a>}
+        {d.owner_email && <a className="btn btn--ghost btn--sm" href={`mailto:${d.owner_email}?subject=${encodeURIComponent(`Connecting ${d.domain}`)}`}>Email</a>}
+        <button type="button" className="btn btn--ghost btn--sm" onClick={check} disabled={busy}>{busy ? <Loader2 size={15} className="spin" /> : <RefreshCw size={15} />} Check now</button>
+        {d.status === 'connected' && <a className="btn btn--ghost btn--sm" href={`https://${d.domain}`} target="_blank" rel="noopener"><ExternalLink size={15} /> Open</a>}
+      </div>
+    </li>
+  );
+}
+
+function DomainsTab({ ctx, rev }: { ctx: Ctx; rev: number }) {
+  const [rows, setRows] = useState<AdminDomain[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [err, setErr] = useState('');
+  useEffect(() => {
+    let alive = true;
+    setLoading(true);
+    adminApi.domains().then((r) => { if (alive) { setRows(r); setErr(''); } }).catch((e) => { if (alive) setErr(errText(e)); }).finally(() => { if (alive) setLoading(false); });
+    return () => { alive = false; };
+  }, [rev]);
+  const waiting = rows.filter((r) => r.status === 'requested').length;
+  return (
+    <>
+      <p className="adm-lead">Clients connecting their own domain. <b>New: needs you</b> means they paid for a Domain Hookup (or got it free on a yearly plan) and are waiting on you. To connect one: add the domain in Netlify (okunami &gt; Domain management &gt; Add a domain alias) unless it says it was added for you, then add a <b>CNAME</b> record at their domain company pointing to <b>okunami.netlify.app</b>, then tap Check now.</p>
+      <p className="adm-count" role="status">{loading ? 'Loading...' : `${rows.length} domain${rows.length === 1 ? '' : 's'}${waiting ? `, ${waiting} waiting on you` : ''}`}</p>
+      {err && <p className="err" role="alert">{err}</p>}
+      {!loading && !err && rows.length === 0 && <p className="adm-empty">No domains yet.</p>}
+      <ul className="adm-list">{rows.map((d) => <DomainRow key={d.id} d={d} ctx={ctx} />)}</ul>
+    </>
+  );
+}
+
 /* ------------------------------------------------------------------ dialogs */
 function PlanDialog({ user, ctx }: { user: AdminUser; ctx: Ctx }) {
   const currentHow: PlanHow = user.plan_status === 'manual' ? 'manual' : 'comped';
@@ -438,18 +511,19 @@ function TransferDialog({ card, ctx }: { card: AdminCard; ctx: Ctx }) {
 }
 
 /* ------------------------------------------------------------------ the page */
-type Tab = 'overview' | 'customers' | 'cards';
+type Tab = 'overview' | 'customers' | 'cards' | 'domains';
 const TABS: { id: Tab; label: string; icon: typeof Users }[] = [
   { id: 'overview', label: 'Overview', icon: BarChart3 },
   { id: 'customers', label: 'Customers', icon: Users },
   { id: 'cards', label: 'Cards', icon: LayoutGrid },
+  { id: 'domains', label: 'Domains', icon: Globe2 },
 ];
 
 export default function Admin() {
   const { session, demo } = useAuth();
   const [params, setParams] = useSearchParams();
   const raw = params.get('tab');
-  const tab: Tab = raw === 'customers' || raw === 'cards' ? raw : 'overview';
+  const tab: Tab = raw === 'customers' || raw === 'cards' || raw === 'domains' ? raw : 'overview';
   const setTab = (t: Tab) => setParams(t === 'overview' ? {} : { tab: t }, { replace: true });
   const [dialog, setDialog] = useState<Dialog>(null);
   const [notice, setNotice] = useState<{ text: string; bad: boolean } | null>(null);
@@ -492,6 +566,7 @@ export default function Admin() {
           {tab === 'overview' && <Overview rev={rev} />}
           {tab === 'customers' && <Customers ctx={ctx} rev={rev} />}
           {tab === 'cards' && <CardsTab ctx={ctx} rev={rev} />}
+          {tab === 'domains' && <DomainsTab ctx={ctx} rev={rev} />}
         </div>
       </main>
 

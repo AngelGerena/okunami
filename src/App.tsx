@@ -11,6 +11,7 @@ import Admin from './pages/Admin';
 import DemoCard from './pages/DemoCard';
 import Legal from './pages/Legal';
 import { useIsAdmin } from './lib/useAdmin';
+import { isClientHost } from './lib/links';
 
 function Private({ children }: { children: ReactNode }) {
   const { session, loading, demo } = useAuth();
@@ -29,6 +30,10 @@ function AdminOnly({ children }: { children: ReactNode }) {
 export default function App() {
   // The single-file demo has no server rewrites, so it routes by hash.
   const Router = import.meta.env.VITE_DEMO === '1' ? HashRouter : BrowserRouter;
+  // On a client's own domain (vcard.theirsite.com) every path shows that one card. Nothing else of OKUNAMI is served there.
+  if (import.meta.env.VITE_DEMO !== '1' && isClientHost()) {
+    return <AuthProvider><BrowserRouter><Routes><Route path="*" element={<PublicCard host={window.location.hostname} />} /></Routes></BrowserRouter></AuthProvider>;
+  }
   return (
     <AuthProvider>
       <Router>
