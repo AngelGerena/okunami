@@ -78,7 +78,9 @@ export type TemplateId =
   | 'santuario' | 'celestial' | 'vitral' | 'frecuencia' | 'constelacion' | 'escenario' | 'salmo'
   // glam collection (beauty consultants)
   | 'halo' | 'leaf' | 'coversplit' | 'plum' | 'neonpulse' | 'roseglass' | 'swatchbar' | 'runway' | 'silkcurve' | 'boldblock' | 'sunset' | 'glamrail' | 'growth'
-  | 'aperture' | 'viewfinder' | 'lensring' | 'rangefinder' | 'safelight' | 'carbonpro' | 'modedial' | 'pianoblack' | 'filmstrip' | 'softbox' | 'railbleed' | 'railcircle' | 'railarch' | 'railoval' | 'railmark' | 'railblob';
+  | 'aperture' | 'viewfinder' | 'lensring' | 'rangefinder' | 'safelight' | 'carbonpro' | 'modedial' | 'pianoblack' | 'filmstrip' | 'softbox' | 'railbleed' | 'railcircle' | 'railarch' | 'railoval' | 'railmark' | 'railblob'
+  // agent collection (realtors)
+  | 'noir' | 'coastal' | 'edit' | 'crest' | 'swissgrid' | 'merlot' | 'linen' | 'roofline' | 'agentprofile';
 
 export interface SocialLink { id: string; network: string; value: string; }   // value = handle or full URL
 export interface Highlight { id: string; icon: string; title: string; subtitle: string; }

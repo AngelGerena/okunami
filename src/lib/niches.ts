@@ -278,6 +278,15 @@ const NICHE_LIST: Niche[] = [
     designs: [
       d('realestate', 'Keystone', 'Property hero, agent card, home-value call to action, listings strip.', ['#14213D', '#B8925A', '#F6F4EF'], 'light', ['DM Serif Display', 'Work Sans'], ['rounded', 'regular', 'solid', 'none'], 'calm', 0.7),
       SIGNATURE,
+      d('noir', 'Gallery Noir', 'Black gallery walls, a spotlit portrait in a gold hairline frame.', ['#0B0B0B', '#E6C46A', '#F5F1E8'], 'dark', ['Bodoni Moda', 'Manrope'], ['square', 'large', 'solid', 'none'], 'calm', 0, true),
+      d('coastal', 'Coastal Estate', 'A sea-blue sky, a setting sun behind your portrait and a soft wave.', ['#1F4E5F', '#D9A55B', '#F4EEE4'], 'light', ['Fraunces', 'Jost'], ['pill', 'large', 'solid', 'none'], 'calm', 1, true),
+      d('edit', 'The Edit', 'A magazine cover with your last name as the masthead and services as cover lines.', ['#111111', '#5A1A2A', '#F6F1EA'], 'light', ['Playfair Display', 'Libre Franklin'], ['square', 'large', 'solid', 'none'], 'bright', 0, true),
+      d('crest', 'Monogram Crest', 'Ivory and gold, a ringed portrait crest with your initials on a diamond seal.', ['#1A1712', '#A8823A', '#FBF8F2'], 'light', ['Cinzel', 'Mulish'], ['square', 'large', 'solid', 'none'], 'calm', 0, true),
+      d('swissgrid', 'Swiss Grid', 'Bold stacked name, a color photo block and a numbered action list.', ['#0A0A0A', '#E4572E', '#FFFFFF'], 'light', ['Archivo Black', 'Archivo'], ['square', 'large', 'solid', 'none'], 'bright', 0, true),
+      d('merlot', 'Merlot and Gold', 'Deep wine, an oval gold-framed portrait and a glossy gold button.', ['#5A1A2A', '#D9B26A', '#F7EADF'], 'dark', ['Cormorant Garamond', 'Nunito Sans'], ['pill', 'large', 'solid', 'satin'], 'calm', 1.2, true),
+      d('linen', 'Linen Signature', 'Soft linen, an arched photo and your first name written like a signature.', ['#2B2724', '#7A2E40', '#F5F0E8'], 'light', ['Pinyon Script', 'EB Garamond'], ['square', 'large', 'solid', 'none'], 'calm', 0, true),
+      d('roofline', 'Roofline', 'Your portrait inside a house-shaped window under a drawn roofline.', ['#1F1C19', '#C8643B', '#F3EEE6'], 'light', ['Gloock', 'Outfit'], ['rounded', 'large', 'solid', 'none'], 'calm', 0.8, true),
+      d('agentprofile', 'Agent Profile', 'A premium profile sheet: market, specialties, office and featured listings.', ['#1C1B19', '#B8913E', '#E9E5DE'], 'light', ['Libre Caslon Text', 'Source Sans 3'], ['square', 'regular', 'solid', 'none'], 'calm', 0, true),
     ],
   },
   {

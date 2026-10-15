@@ -12,6 +12,7 @@ import { Bag, CaseFile, Cluster, ContactSheet, Diner, Flash, FloorPlan, HangTag,
 import { Aperture, CarbonPro, FilmStrip, LensRing, ModeDial, PianoBlack, Rangefinder, Safelight, Softbox, Viewfinder } from './sig6';
 import { Growth, Bamboo, Blowout, Chalkboard, Clipper, Lotus, Magazine, NeonSign, Polish, Razor, Shimmer, Stations, Stones, Tips } from './sig3';
 import { BoldBlock, CoverSplit, GlamRailArch, GlamRailBleed, GlamRailBlob, GlamRailCircle, GlamRailLeaf, GlamRailMark, GlamRailOval, Halo, Leaf, NeonPulse, Plum, RoseGlass, Runway, SilkCurve, Sunset, SwatchBar } from './sig5';
+import { AgentProfile, Coastal, Crest, Edit, Linen, Merlot, Noir, Roofline, SwissGrid } from './sig7';
 import { Boarding, Confetti, Inbox, Invitation, Monogram, Planner, Recipe, Stained, Toolbelt, Trading, Turntable, Vinyl, Waveform } from './sig2-b';
 import {
   Arrow, Btn, Business, CalendarDays, ContactList, Crisis, Dock, Footer, Highlights, LocationCard, Logo, Name, Photo,
@@ -166,6 +167,16 @@ export const TEMPLATES: TemplateMeta[] = [
   { id: 'railmark',   name: 'Glam Rail Leaf Mark',  niche: 'Beauty Consultants', blurb: 'The glam rail with your photo cut into a two-petal leaf mark.', bestFor: 'Farmasi influencers, beauty sellers' },
   { id: 'railblob',   name: 'Glam Rail Blob',       niche: 'Beauty Consultants', blurb: 'The glam rail with a soft organic photo shape that slowly morphs.', bestFor: 'Bold personal brands, creators' },
   { id: 'sunset',     name: 'Sunset Bloom', niche: 'Beauty Consultants', blurb: 'A peach-to-coral sky and a round portrait on a white sheet.', bestFor: 'Beauty influencers, skincare' },
+  // ---- agent collection (realtors)
+  { id: 'noir',         name: 'Gallery Noir',     niche: 'Real Estate', blurb: 'Black gallery walls, a spotlit portrait in a gold hairline frame.', bestFor: 'Luxury realtors, brokers' },
+  { id: 'coastal',      name: 'Coastal Estate',   niche: 'Real Estate', blurb: 'A sea-blue sky, a setting sun behind your portrait and a soft wave.', bestFor: 'Beach and waterfront agents' },
+  { id: 'edit',         name: 'The Edit',         niche: 'Real Estate', blurb: 'A magazine cover with your last name as the masthead and services as cover lines.', bestFor: 'Realtors, personal brands' },
+  { id: 'crest',        name: 'Monogram Crest',   niche: 'Real Estate', blurb: 'Ivory and gold, a ringed portrait crest with your initials on a diamond seal.', bestFor: 'Luxury agents, advisors' },
+  { id: 'swissgrid',    name: 'Swiss Grid',       niche: 'Real Estate', blurb: 'Bold stacked name, a color photo block and a numbered action list.', bestFor: 'Modern agents, teams' },
+  { id: 'merlot',       name: 'Merlot and Gold',  niche: 'Real Estate', blurb: 'Deep wine, an oval gold-framed portrait and a glossy gold button.', bestFor: 'Luxury agents, feminine brands' },
+  { id: 'linen',        name: 'Linen Signature',  niche: 'Real Estate', blurb: 'Soft linen, an arched photo and your first name written like a signature.', bestFor: 'Boutique agents, designers' },
+  { id: 'roofline',     name: 'Roofline',         niche: 'Real Estate', blurb: 'Your portrait inside a house-shaped window under a drawn roofline.', bestFor: 'Realtors, home builders' },
+  { id: 'agentprofile', name: 'Agent Profile',    niche: 'Real Estate', blurb: 'A premium profile sheet: market, specialties, office and featured listings.', bestFor: 'Realtors, brokers, loan officers' },
 ];
 
 /* ------------------------------------------------------------ 1 Editorial Cover */
@@ -462,4 +473,5 @@ export const TEMPLATE_COMPONENTS: Record<TemplateId, () => ReactElement> = {
   runway: Runway, silkcurve: SilkCurve, boldblock: BoldBlock, sunset: Sunset, glamrail: GlamRailLeaf,
   aperture: Aperture, viewfinder: Viewfinder, lensring: LensRing, rangefinder: Rangefinder, safelight: Safelight, carbonpro: CarbonPro, modedial: ModeDial, pianoblack: PianoBlack, filmstrip: FilmStrip, softbox: Softbox,
   railbleed: GlamRailBleed, railcircle: GlamRailCircle, railarch: GlamRailArch, railoval: GlamRailOval, railmark: GlamRailMark, railblob: GlamRailBlob,
+  noir: Noir, coastal: Coastal, edit: Edit, crest: Crest, swissgrid: SwissGrid, merlot: Merlot, linen: Linen, roofline: Roofline, agentprofile: AgentProfile,
 };
