@@ -279,6 +279,7 @@ export default function Landing() {
                   <dd className="mx-pay__inc"><strong>{t("What the Signature card includes")}</strong>
                     <ul>{STUDIO[0].includes.map((i) => <li key={i}><Check size={16} aria-hidden /> {t(i)}</li>)}</ul>
                   </dd>
+                  <dd className="mx-pay__inc">{rich(t("<b>AI agents, à la carte.</b> Choose the agents your business needs. I create and design each one custom around how you work. They are included in your Signature card price."), { b: (c) => <strong>{c}</strong> })}</dd>
                 </div>
                 <div>{rich(t("<x1>OKUNAMI subscription</x1><x2>Required for every Studio card: Pro at ${price} a month, Pro Plus at ${price2} a month, or Business at ${price3} a card a month.</x2>", { price: PLANS[1].price, price2: PLANS[2].price, price3: PLANS[3].price }), { x1: (c) => <dt>{c}</dt>, x2: (c) => <dd>{c}</dd> })}</div>
               </dl>

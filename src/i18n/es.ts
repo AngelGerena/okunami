@@ -425,6 +425,8 @@ export const ES: Record<string, string> = {
   "<b>I set up your live address by hand.</b> It is an address on finessemedia.pro that I provide. Connecting your own custom domain yourself is not available yet.": "<b>Configuro tu dirección pública a mano.</b> Es una dirección en finessemedia.pro que yo te proporciono. Conectar tu propio dominio por tu cuenta todavía no está disponible.",
   "<x1>OKUNAMI Studio by Finesse Media</x1><x2>Want me to build it for you?</x2><x3>I'm a creative director and photographer. I design your card and shoot your portrait.</x3>": "<x1>OKUNAMI Studio por Finesse Media</x1><x2>¿Quieres que la haga yo por ti?</x2><x3>Soy director creativo y fotógrafo. Diseño tu tarjeta y hago tu retrato.</x3>",
   "<x1>Studio setup</x1><x2>One time. From ${from} for a Signature card. Your exact price is confirmed in your free consult, before you pay.</x2>": "<x1>Configuración de Studio</x1><x2>Pago único. Desde ${from} por una tarjeta Signature. Tu precio exacto se confirma en tu consulta gratis, antes de pagar.</x2>",
+  "Custom AI agents, built for your business": "Agentes de IA a la medida de tu negocio",
+  "<b>AI agents, à la carte.</b> Choose the agents your business needs. I create and design each one custom around how you work. They are included in your Signature card price.": "<b>Agentes de IA a la carta.</b> Elige los agentes que tu negocio necesita. Yo creo y diseño cada uno a la medida, según cómo trabajas. Están incluidos en el precio de tu tarjeta Signature.",
   "What the Signature card includes": "Lo que incluye la tarjeta Signature",
   "from <b>${from}</b>{v}": "desde <b>${from}</b>{v}",
   "{APP_NAME} by Finesse Media LLC, Deltona, Florida": "{APP_NAME} por Finesse Media LLC, Deltona, Florida",
