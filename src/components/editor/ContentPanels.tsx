@@ -1,16 +1,17 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import QRCode from 'qrcode';
 import { ArrowDown, ArrowUp, Check, Copy, Plus, Search, Trash2, X, ExternalLink, ImagePlus, Loader2 } from 'lucide-react';
 import type { CardData, Highlight } from '../../lib/types';
 import { NETWORKS, NETWORK_BY_ID, NETWORK_GROUPS } from '../../lib/socials';
 import { store, slugify } from '../../lib/store';
 import { uid } from '../../lib/seed';
-import { cardUrl } from '../../lib/links';
+import { cardUrl, publicOrigin } from '../../lib/links';
 import { BrandGlyph, HIcon, HIGHLIGHT_ICONS } from '../../templates/blocks';
 import { NICHE_BY_ID, type Niche } from '../../lib/niches';
 import NichePicker, { NicheBadge } from './NichePicker';
 import ProBanner from './ProLock';
 import PublishDialog from './PublishDialog';
+import DomainPanel from './DomainPanel';
 import { sfx } from '../../lib/sfx';
 import { Field, ImageUpload, Section, Toggle, type PanelProps } from './Fields';
 import { rich, useT } from '../../lib/i18n';
@@ -205,6 +206,8 @@ export function PublishPanel({ card, set, setPublished }: PanelProps) {
   const [state, setState] = useState<'idle' | 'checking' | 'ok' | 'taken'>('idle');
   const [qr, setQr] = useState('');
   const [copied, setCopied] = useState(false);
+  const [, setTick] = useState(0);
+  const bump = useCallback(() => setTick((n) => n + 1), []);   // a connected domain changes the link, QR and Share
   const url = cardUrl(card.data);
 
   useEffect(() => { QRCode.toDataURL(url, { margin: 1, width: 420, color: { dark: card.theme.tokens.light.band, light: '#FFFFFF' } }).then(setQr); }, [url, card.theme.tokens.light.band]);
@@ -228,7 +231,7 @@ export function PublishPanel({ card, set, setPublished }: PanelProps) {
         <div className="fld">
           <label htmlFor="slug">{t("Address")}</label>
           <div className="slug">
-            <span>{url.replace(card.data.slug, '')}</span>
+            <span>{`${publicOrigin()}/`}</span>
             <input id="slug" value={slug} onChange={(e) => setSlug(e.target.value.toLowerCase())} spellCheck={false} />
           </div>
           <small className={state === 'taken' ? 'err' : ''} role="status">
@@ -237,6 +240,7 @@ export function PublishPanel({ card, set, setPublished }: PanelProps) {
         </div>
         {card.published && <p className="note">{t("This card is live. Changing the address breaks links, QR codes and NFC tags that already use the old one.")}</p>}
       </Section>
+      <DomainPanel card={card} onChange={bump} />
       <Section title={t("Status")} hint={t("Preview never publishes a card. A card goes public only when you press Publish.")}>
         <div className={`pub-state ${card.published ? 'is-live' : 'is-draft'}`} role="status">
           <span className="pub-state__dot" aria-hidden />

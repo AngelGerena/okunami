@@ -1,7 +1,9 @@
 // Stripe -> OKUNAMI. Keeps fc_profiles.plan in sync with the customer's subscription.
 // Authentication is Stripe's signature (STRIPE_WEBHOOK_SECRET), so JWT checking is off for this function.
 import Stripe from 'npm:stripe@17.7.0';
-import { clampSeats, admin, env, planForAmount, planForPrice, stripe, type Plan } from '../_shared/okunami.ts';
+import { clampSeats, admin, env, planForAmount, planForPrice, siteUrl, stripe, type Plan } from '../_shared/okunami.ts';
+import { addToNetlify, providerName } from '../_shared/domains.ts';
+import { alertAngel } from '../_shared/notify.ts';
 
 const PAID = ['active', 'trialing', 'past_due'];
 
@@ -68,6 +70,38 @@ async function applySubscription(sub: Stripe.Subscription, userIdHint?: string |
   if (error) throw error;
 }
 
+/** Domain Hookup / registration paid: hand it to Angel. Runs once per request (only a pending row moves on). */
+async function applyDomainPayment(session: Stripe.Checkout.Session) {
+  const db = admin();
+  const id = session.metadata?.okunami_domain_id;
+  if (!id) return;
+  const { data: rows } = await db.from('fc_card_domains')
+    .update({ status: 'requested', paid_cents: session.amount_total ?? 0, updated_at: new Date().toISOString() })
+    .eq('id', id).eq('status', 'pending_payment').select('domain, method, provider, contact_phone, card_id, owner_id');
+  const row = rows?.[0];
+  if (!row) return;   // already handled (Stripe can send an event twice)
+  await addToNetlify(row.domain).catch(() => 'failed');
+  const { data: card } = await db.from('fc_cards').select('data').eq('id', row.card_id).maybeSingle();
+  const { data: owner } = await db.from('fc_profiles').select('email, full_name').eq('id', row.owner_id).maybeSingle();
+  const d = (card?.data ?? {}) as Record<string, string>;
+  const who = d.business || d.fullName || owner?.full_name || owner?.email || 'A client';
+  const paid = `$${((session.amount_total ?? 0) / 100).toFixed(2)}`;
+  const what = row.method === 'register' ? 'Domain registration + hookup' : 'Domain Hookup';
+  const link = `${siteUrl()}/app/admin?tab=domains`;
+  await alertAngel({
+    subject: `New ${what}: ${who} (${paid} paid)`,
+    lines: [
+      `${who} paid ${paid} for a ${what}.`,
+      row.method === 'register' ? `Domain they want: ${row.domain}` : `Domain to connect: ${row.domain}`,
+      `Where they bought it: ${providerName(row.provider)}.`,
+      `Reach them at ${row.contact_phone || owner?.email || 'no contact given'}.`,
+      'They were told you will reach out within 1 business day.',
+    ],
+    link: { href: link, label: 'Open Domain Hookups' },
+    wa: { 1: who, 2: row.domain, 3: providerName(row.provider), 4: row.contact_phone || owner?.email || '-', 5: link },
+  });
+}
+
 Deno.serve(async (req) => {
   const sig = req.headers.get('stripe-signature');
   if (!sig) return new Response('Missing signature', { status: 400 });
@@ -83,6 +117,10 @@ Deno.serve(async (req) => {
     switch (event.type) {
       case 'checkout.session.completed': {
         const session = event.data.object as Stripe.Checkout.Session;
+        if (session.mode === 'payment' && session.metadata?.okunami_kind === 'domain') {
+          if (session.payment_status === 'paid') await applyDomainPayment(session);
+          break;
+        }
         if (session.mode === 'subscription' && session.subscription) {
           const sub = await stripe().subscriptions.retrieve(typeof session.subscription === 'string' ? session.subscription : session.subscription.id);
           await applySubscription(sub, session.client_reference_id);
@@ -91,6 +129,12 @@ Deno.serve(async (req) => {
       }
       case 'checkout.session.expired': {
         const session = event.data.object as Stripe.Checkout.Session;
+        if (session.metadata?.okunami_kind === 'domain') {
+          // An abandoned Domain Hookup checkout: drop the pending request so the owner can start again.
+          await admin().from('fc_card_domains').update({ status: 'canceled', updated_at: new Date().toISOString() })
+            .eq('id', session.metadata.okunami_domain_id ?? '').eq('status', 'pending_payment');
+          break;
+        }
         await admin().rpc('fc_founding_release_session', { p_session: session.id });   // an unpaid checkout frees its founding spot
         break;
       }
