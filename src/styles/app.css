@@ -752,3 +752,28 @@ a { color: var(--ink); }
 .legal__other { margin-top: 36px; }
 .legal a:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
 
+
+/* AI agents and credits page */
+.cr { max-width: 760px; }
+.cr-box { background: var(--white); border: 1px solid var(--line-2); border-radius: 16px; padding: 18px; margin-bottom: 16px; overflow-wrap: anywhere; }
+.cr-box h2 { font-size: 18px; margin: 0 0 8px; }
+.cr-box p { margin: 6px 0; color: var(--muted); }
+.cr-bal small { display: block; color: var(--muted); }
+.cr-bal b { display: block; font-size: 40px; line-height: 1.1; color: var(--ink); }
+.cr-warn { color: var(--gold-deep) !important; font-weight: 600; }
+.cr-pick { display: grid; gap: 6px; margin-bottom: 14px; font-weight: 600; }
+.cr-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; margin: 8px 0 0; }
+.cr-stats div { background: var(--paper-2); border-radius: 12px; padding: 10px 12px; }
+.cr-stats dt { font-size: 12px; color: var(--muted); }
+.cr-stats dd { margin: 2px 0 0; font-size: 22px; font-weight: 700; }
+.cr-packs { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 12px; margin: 10px 0; }
+.cr-pack { display: grid; gap: 4px; justify-items: start; border: 1.5px solid var(--line); border-radius: 14px; padding: 14px; }
+.cr-pack__price { font-size: 26px; font-weight: 700; color: var(--ink); }
+.cr-pack small { color: var(--muted); margin-bottom: 6px; }
+.cr-agree { display: flex; gap: 10px; align-items: flex-start; font-size: 14px; margin: 12px 0 4px; }
+.cr-agree input { margin-top: 3px; flex: none; width: 18px; height: 18px; }
+.cr-fine { font-size: 13px; }
+.cr-how details { border-top: 1px solid var(--line-2); padding: 10px 0; }
+.cr-how summary { cursor: pointer; font-weight: 600; }
+.cr-how ul { margin: 6px 0 0 18px; padding: 0; color: var(--muted); }
+.cr .dash__head h1 { font-size: clamp(28px, 7vw, 40px); }

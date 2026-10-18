@@ -33,3 +33,8 @@ export async function startCheckout(plan: 'pro' | 'plus' | 'team', interval: Int
 export async function openBillingPortal(): Promise<void> {
   window.location.href = await call('okunami-portal', {});
 }
+
+/** Starts a one-time Stripe Checkout for an AI agent credit pack. The price and credits come from the server, never from the browser. */
+export async function startCreditCheckout(accountId: string, packId: string): Promise<void> {
+  window.location.href = await call('agent-credits-checkout', { account_id: accountId, pack_id: packId });
+}

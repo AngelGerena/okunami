@@ -156,6 +156,7 @@ export default function Dashboard() {
             {plan === 'free' && <button type="button" className="btn btn--ghost btn--sm" onClick={() => upgrade('plus')} disabled={paying}>{t("Upgrade to Pro Plus")}</button>}
             {plan === 'free' && <button type="button" className="btn btn--gold btn--sm" onClick={() => upgrade('pro')} disabled={paying}><Crown size={15} /> {t("Upgrade to Pro")}</button>}
             {plan !== 'free' && <button type="button" className="btn btn--ghost btn--sm" onClick={manage} disabled={paying}>{t("Manage billing")}</button>}
+            {(plan === 'plus' || plan === 'team') && <Link to="/app/credits" className="btn btn--ghost btn--sm">{t("AI agents and credits")}</Link>}
             {plan === 'team' && <a className="btn btn--ghost btn--sm" href={MORE_CARDS_CONTACT(cardLimit(plan, seats))} target="_blank" rel="noopener">{t("Change number of cards")}</a>}
             {(plan === 'pro' || plan === 'plus') && <a className="btn btn--ghost btn--sm" href={BUSINESS_CONTACT} target="_blank" rel="noopener">{t("Move to Business")}</a>}
           </div>
