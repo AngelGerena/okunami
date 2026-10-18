@@ -13,7 +13,7 @@ import { sfx } from '../lib/sfx';
 import { decorative } from '../lib/a11y';
 import { DESIGN_COUNT, NICHE_COUNT, designsLabel } from '../lib/counts';
 import { HAS_LEGAL, LEGAL } from '../lib/legal';
-import { dollars, useOffer } from '../lib/offers';
+import { dollars, useOffer, useStudioOffer } from '../lib/offers';
 import CardRenderer from '../components/CardRenderer';
 import { rich, useT } from '../lib/i18n';
 import LangToggle from '../components/LangToggle';
@@ -41,6 +41,8 @@ export default function Landing() {
   const designsLabelT = (n: number) => designsLabel(n, lang);
   const { t, lang } = useT();
   const offer = useOffer();
+  const studio = useStudioOffer();
+  const founding = studio.known && studio.active;
   const base = useMemo(() => sampleCard(), []);
   const showcase = useMemo(() => SHOWCASE.map((t) => ALL_DESIGNS.find((x) => x.design.template === t)).filter(Boolean) as typeof ALL_DESIGNS, []);
   /* Four rows of the marquee: every fourth niche per row, so each row mixes categories. */
@@ -202,7 +204,9 @@ export default function Landing() {
               <h3>{t("OKUNAMI Studio")}</h3>
               <p>{t("I design and set up your card for you, starting with a free consult.")}</p>
               <ul>
-                <li><Check size={16} aria-hidden /> {t("One-time setup from $249")}</li>
+                {founding
+                  ? <li><Check size={16} aria-hidden /> {rich(t("<b>Founding 50:</b> custom design {price} instead of {base}. {left} of {spots} spots left, ends Dec 31.", { price: dollars(studio.cents), base: dollars(studio.regular), left: studio.left, spots: studio.spots }), { b: (c) => <b>{c}</b> })}</li>
+                  : <li><Check size={16} aria-hidden /> {t("One-time setup from $249")}</li>}
                 <li><Check size={16} aria-hidden /> {t("Plus a OKUNAMI Pro, Pro Plus or Business subscription, which every Studio card needs")}</li>
                 <li><Check size={16} aria-hidden /> {t("I handle the design, copy and setup")}</li>
               </ul>
@@ -274,6 +278,7 @@ export default function Landing() {
                 <div>{rich(t("<x1>Studio setup</x1><x2>One time. From ${from} for a Signature card. Every project is quoted.</x2>", { from: STUDIO[0].from }), { x1: (c) => <dt>{c}</dt>, x2: (c) => <dd>{c}</dd> })}</div>
                 <div>{rich(t("<x1>OKUNAMI subscription</x1><x2>Required for every Studio card: Pro at ${price} a month, Pro Plus at ${price2} a month, or Business at ${price3} a card a month.</x2>", { price: PLANS[1].price, price2: PLANS[2].price, price3: PLANS[3].price }), { x1: (c) => <dt>{c}</dt>, x2: (c) => <dd>{c}</dd> })}</div>
               </dl>
+              {founding && <p className="mx-founding">{rich(t("<b>Founding 50.</b> The first {spots} customers get a Signature card designed for {price} instead of {base}. {left} spots left. Ends at {spots} spots or December 31, 2026, whichever comes first. Needs a Pro, Pro Plus or Business plan. After that the price goes back to {base}.", { spots: studio.spots, price: dollars(studio.cents), base: dollars(studio.regular), left: studio.left }), { b: (c) => <b>{c}</b> })}</p>}
             </section>
             <section className="mx-studio__box" aria-labelledby="how-h">
               <h3 id="how-h">{t("How it works")}</h3>
@@ -290,7 +295,9 @@ export default function Landing() {
             {STUDIO.map((s) => (
               <article key={s.id} className="mx-studio__card">
                 <h3>{t(s.name)}</h3>
-                <p className="mx-studio__from">{rich(t("from <b>${from}</b>{v}", { from: s.from, v: 'per' in s ? ' ' + t('per person') : '' }), { b: (c) => <b>{c}</b> })}</p>
+                {founding && s.id === 'signature'
+                  ? <p className="mx-studio__from">{rich(t("founding price <b>{price}</b> <s>{base}</s>", { price: dollars(studio.cents), base: dollars(studio.regular) }), { b: (c) => <b>{c}</b>, s: (c) => <s>{c}</s> })}</p>
+                  : <p className="mx-studio__from">{rich(t("from <b>${from}</b>{v}", { from: s.from, v: 'per' in s ? ' ' + t('per person') : '' }), { b: (c) => <b>{c}</b> })}</p>}
                 <p>{t(s.blurb)}</p>
                 <ul>{s.includes.map((x) => <li key={x}><Check size={14} aria-hidden /> {t(x)}</li>)}</ul>
                 {'cardPackage' in s && <small>{t("Needs a OKUNAMI Pro, Pro Plus or Business subscription.")}</small>}
@@ -298,7 +305,7 @@ export default function Landing() {
             ))}
           </div>
           <div className="mx-dir__foot">
-            <a className="mx-btn mx-btn--pink" href={STUDIO_CONTACT.whatsapp} target="_blank" rel="noopener"><MessageCircle size={18} aria-hidden /> {t("Request a free consult on WhatsApp")}</a>
+            <a className="mx-btn mx-btn--pink" href={founding ? STUDIO_CONTACT.founding : STUDIO_CONTACT.whatsapp} target="_blank" rel="noopener"><MessageCircle size={18} aria-hidden /> {t("Request a free consult on WhatsApp")}</a>
             <a className="mx-studio__mail" href={STUDIO_CONTACT.email}>{t("or email angel@finessemedia.pro")}</a>
             <span>{t("The button opens a WhatsApp chat with me. Prices are starting points; every project is quoted.")}</span>
           </div>
