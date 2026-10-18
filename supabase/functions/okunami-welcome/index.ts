@@ -23,14 +23,14 @@ function message(lang: 'en' | 'es', first: string, cardUrl: string) {
   const hi = first ? (es ? `Hola ${first},` : `Hi ${first},`) : (es ? 'Hola,' : 'Hi there,');
   const lines = es ? [
     'Tu tarjeta ya está en vivo. Felicidades.',
-    'Este es tu enlace. Ponlo en tu bio, en tu firma de correo o en tu tarjeta NFC:',
+    'Este es tu enlace. Ponlo en tu bio, en tu firma de correo o en tus tarjetas impresas:',
     '__LINK__',
     `Para hacer cambios, entra en ${login} con este mismo correo. También, cuando abras tu tarjeta en un teléfono donde ya iniciaste sesión, verás un pequeño lápiz junto a "Made with OKUNAMI" al final. Solo tú lo ves.`,
     'Si necesitas algo, responde a este correo. Lo leo yo.',
     'Angel\nFundador, OKUNAMI',
   ] : [
     'Your card is live. Congrats.',
-    'Here is your link. Put it in your bio, your email signature or on your NFC card:',
+    'Here is your link. Put it in your bio, your email signature or on your printed cards:',
     '__LINK__',
     `To make changes, sign in at ${login} with this same email. And when you open your card on a phone where you're signed in, you'll see a small pencil next to "Made with OKUNAMI" at the bottom. Only you can see it.`,
     'If you need anything, just reply to this email. It comes straight to me.',

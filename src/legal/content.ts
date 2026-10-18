@@ -74,10 +74,10 @@ export const PRIVACY: LegalSection[] = [
   },
   "body": {
    "en": [
-    "A card you publish can be seen by anyone who has its link, QR code or NFC tag. Do not put information on a published card that you do not want others to see. Anyone who views a card can copy or save its contents (for example, by saving the contact). Unpublished cards are visible only to you."
+    "A card you publish can be seen by anyone who has its link or QR code. Do not put information on a published card that you do not want others to see. Anyone who views a card can copy or save its contents (for example, by saving the contact). Unpublished cards are visible only to you."
    ],
    "es": [
-    "Una tarjeta que publicas puede ser vista por cualquier persona que tenga su enlace, código QR o etiqueta NFC. No pongas en una tarjeta publicada información que no quieras que otros vean. Quien vea una tarjeta puede copiar o guardar su contenido (por ejemplo, guardando el contacto). Las tarjetas sin publicar solo las ves tú."
+    "Una tarjeta que publicas puede ser vista por cualquier persona que tenga su enlace o código QR. No pongas en una tarjeta publicada información que no quieras que otros vean. Quien vea una tarjeta puede copiar o guardar su contenido (por ejemplo, guardando el contacto). Las tarjetas sin publicar solo las ves tú."
    ]
   }
  },
@@ -387,10 +387,10 @@ export const TERMS: LegalSection[] = [
   },
   "body": {
    "en": [
-    "The Service works with third parties such as Stripe, Supabase, Netlify, Google and WhatsApp. They have their own terms, and we are not responsible for them. Tapping, scanning and saving depend on visitors' phones, NFC tags and apps, which we do not control, so we cannot guarantee they will work on every device."
+    "The Service works with third parties such as Stripe, Supabase, Netlify, Google and WhatsApp. They have their own terms, and we are not responsible for them. Tapping, scanning and saving depend on visitors' phones and apps, which we do not control, so we cannot guarantee they will work on every device."
    ],
    "es": [
-    "El Servicio funciona con terceros como Stripe, Supabase, Netlify, Google y WhatsApp. Ellos tienen sus propios términos y no somos responsables de ellos. Tocar, escanear y guardar dependen de los teléfonos, etiquetas NFC y apps de los visitantes, que no controlamos, por lo que no podemos garantizar que funcionen en todos los dispositivos."
+    "El Servicio funciona con terceros como Stripe, Supabase, Netlify, Google y WhatsApp. Ellos tienen sus propios términos y no somos responsables de ellos. Tocar, escanear y guardar dependen de los teléfonos y apps de los visitantes, que no controlamos, por lo que no podemos garantizar que funcionen en todos los dispositivos."
    ]
   }
  },

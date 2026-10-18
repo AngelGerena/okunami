@@ -38,7 +38,7 @@ export const teamTotal = (cards: number, yearly: boolean): number => clampCards(
 export const PLANS: PlanDef[] = [
   { id: 'free', name: 'Lite', price: 0, yearly: 0, per: 'forever', cards: 1,
     pitch: 'A clean card that gets the job done.',
-    features: ['1 card', '3 Lite designs', 'Preview every Pro design on your own card', 'Colors, fonts and dice shuffle', 'Save to contacts, QR and NFC', 'Small "Made with OKUNAMI" badge'] },
+    features: ['1 card', '3 Lite designs', 'Preview every Pro design on your own card', 'Colors, fonts and dice shuffle', 'Save to contacts, QR and link', 'Small "Made with OKUNAMI" badge'] },
   { id: 'pro', name: 'Pro', price: 8, yearly: 79, per: 'month', featured: true, cards: 3,
     pitch: 'Every design, forever growing.',
     features: ['Up to 3 cards', 'All {designs} designs', 'Every new OKUNAMI Drop, 3 to 5 designs every other month', 'Brand kit and custom fonts', 'No badge', 'Tap and save stats (coming soon)'] },
@@ -66,10 +66,10 @@ export const STUDIO = [
     includes: ['Animated from a photo you already have, or filmed live at a headshot session'] },
   { id: 'tap', name: 'Tap products', from: 29,
     blurb: 'Physical products that open your card with a tap.',
-    includes: ['Metal, wood or matte NFC cards', '"Tap to book" countertop stands and window decals'] },
+    includes: ['Metal, wood or matte printed cards', '"Tap to book" countertop stands and window decals'] },
   { id: 'team', name: 'Team setup', from: 35, per: 'person', cardPackage: true,
     blurb: 'I set up every staff card so the whole team matches.',
-    includes: ['Every staff card built', 'Matching headshots', 'Branded NFC cards for the whole team'] },
+    includes: ['Every staff card built', 'Matching headshots', 'Branded printed cards for the whole team'] },
 ] as const;
 
 export const STUDIO_CONTACT = {
