@@ -103,7 +103,7 @@ export default function Landing() {
         <div className="mx-hero__stage">
           <img src={heroLogo} alt="" aria-hidden className="mx-hero__logo" />
           <span className="mx-sun" aria-hidden />
-          <span className="mx-sticker mx-sticker--cyan s2">{t("NFC ready")}</span>
+          <span className="mx-sticker mx-sticker--cyan s2">{t("QR ready")}</span>
           <span className="mx-sticker mx-sticker--pink s3">{t("No app needed")}</span>
           <div className="mx-phone" key={rolled ? `r${rolls}` : `s${i}`}>
             <div className="mx-phone__screen" {...decorative}><CardRenderer card={heroCard} mode={heroMode} sound={false} /></div>
@@ -117,7 +117,7 @@ export default function Landing() {
         </div>
       </section>
 
-      <Ticker tone="pink" items={[designsLabelT(DESIGN_COUNT), t('{n} niches', { n: NICHE_COUNT }), t('Tap'), t('Save'), t('Share'), t('NFC and QR'), t('Made in Florida')]} />
+      <Ticker tone="pink" items={[designsLabelT(DESIGN_COUNT), t('{n} niches', { n: NICHE_COUNT }), t('Tap'), t('Save'), t('Share'), t('QR and link'), t('Made in Florida')]} />
 
       {/* ---------------------------------------------------------------- features */}
       <section className="mx-feats" aria-label={t("What you get")}>
@@ -129,7 +129,7 @@ export default function Landing() {
             { icon: Smartphone, t: 'Buttons that pop', d: 'Ten styles, eight shapes and eight finishes, tuned for light and dark mode.', c: 'orange' },
             { icon: Type, t: 'Your brand kit', d: 'Pull colors from your logo, paste hex codes from Canva, or upload your own fonts.', c: 'cyan' },
             { icon: UserPlus, t: 'One-tap save', d: 'Adds your photo, numbers, address and links straight into their contacts.', c: 'orange' },
-            { icon: QrCode, t: 'QR and NFC', d: 'Print it, stick it, tap it. The same link works everywhere.', c: 'pink' },
+            { icon: QrCode, t: 'QR and link', d: 'Print it, stick it, share it. The same link works everywhere.', c: 'pink' },
           ].map((f) => (
             <article key={f.t} className={`mx-tile mx-tile--${f.c}`}>
               <span className="mx-tile__ic"><f.icon size={26} strokeWidth={2} /></span>

@@ -224,7 +224,7 @@ export function PublishPanel({ card, set, setPublished }: PanelProps) {
   return (
     <>
       <ProBanner card={card} set={set} />
-      <Section title={t("Your card address")} hint={t("This is the link your QR code, NFC tag and Share button use.")}>
+      <Section title={t("Your card address")} hint={t("This is the link your QR code and Share button use.")}>
         <div className="fld">
           <label htmlFor="slug">{t("Address")}</label>
           <div className="slug">
@@ -235,7 +235,7 @@ export function PublishPanel({ card, set, setPublished }: PanelProps) {
             {state === 'checking' && 'Checking...'}{state === 'ok' && 'Available and saved.'}{state === 'taken' && 'Taken. Try adding your city or a number.'}{state === 'idle' && 'Letters, numbers and dashes.'}
           </small>
         </div>
-        {card.published && <p className="note">{t("This card is live. Changing the address breaks links, QR codes and NFC tags that already use the old one.")}</p>}
+        {card.published && <p className="note">{t("This card is live. Changing the address breaks links and QR codes that already use the old one.")}</p>}
       </Section>
       <Section title={t("Status")} hint={t("Preview never publishes a card. A card goes public only when you press Publish.")}>
         <div className={`pub-state ${card.published ? 'is-live' : 'is-draft'}`} role="status">
@@ -264,7 +264,6 @@ export function PublishPanel({ card, set, setPublished }: PanelProps) {
               : <span className="note">{t("The link works after you publish. Until then only the preview shows your card.")}</span>}
           </div>
         </div>
-        <p className="note">{t("Programming an NFC tag? Write this link as a URL record with any NFC writer app.")}</p>
       </Section>
     </>
   );
