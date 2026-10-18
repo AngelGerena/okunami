@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState, type MouseEvent } from 'react';
+import { useCallback, useEffect, useRef, useState, type MouseEvent, type MutableRefObject, type ReactNode } from 'react';
 import { Link, useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { NicheBadge } from '../components/editor/NichePicker';
 import { nicheOf } from '../lib/niches';
@@ -15,7 +15,7 @@ import { setSound, soundOn } from '../lib/sfx';
 import CardRenderer from '../components/CardRenderer';
 import { ContactPanel, HighlightsPanel, LinksPanel, ProfilePanel, PublishPanel } from '../components/editor/ContentPanels';
 import { BrandPanel, ButtonsPanel, ColorsPanel, ShuffleAll, TemplatePanel } from '../components/editor/StylePanels';
-import QuickStart, { type QuickStep } from '../components/editor/QuickStart';
+import QuickStart, { useNarrow, type QuickStep } from '../components/editor/QuickStart';
 import type { PanelProps } from '../components/editor/Fields';
 import { VIEW_KEY } from '../lib/editorView';
 import { tr } from '../lib/i18n';
@@ -75,7 +75,8 @@ export default function Editor() {
   const [selected, setSelected] = useState<ElementId | null>(null);
   const [save, setSave] = useState<SaveState>('saved');
   const [saveErr, setSaveErr] = useState<string | null>(null);
-  const [previewOpen, setPreviewOpen] = useState(false);
+  const narrow = useNarrow();
+  const closePreview = useRef<() => void>(() => {});
   const [sound, setSnd] = useState(soundOn());
   const past = useRef<Card[]>([]), future = useRef<Card[]>([]);
   const [, force] = useState(0);
@@ -199,7 +200,7 @@ export default function Editor() {
   const props: PanelProps = { card, set, mode, setMode, selected, setSelected, looks, goStep, ensureSaved, setPublished };
   const Current = STEPS.find((s) => s.id === step)!.Panel;
   const shuffleAll = ShuffleAll(props);
-  const onPick = (el: ElementId) => { setSelected(el); setView('full'); setStep('colors'); setPreviewOpen(false); };
+  const onPick = (el: ElementId) => { setSelected(el); setView('full'); setStep('colors'); closePreview.current(); };
   const privateNote = card.published ? t('Preview of your published card.') : t('Private preview. This card is a draft, so nobody else can see it.');
 
   const toolbar = (
@@ -300,22 +301,52 @@ export default function Editor() {
         )}
       </main>
 
-      <aside className="ed__preview" aria-label={t("Live preview")}>
-        {toolbar}
-        {preview}
-        <p className="pv-hint pv-hint--state">{privateNote}</p>
-        {picking && <p className="pv-hint">{t("Tap any part of the card to recolor it.")}</p>}
-      </aside>
+      {!narrow && (
+        <aside className="ed__preview" aria-label={t("Live preview")}>
+          {toolbar}
+          {preview}
+          <p className="pv-hint pv-hint--state">{privateNote}</p>
+          {picking && <p className="pv-hint">{t("Tap any part of the card to recolor it.")}</p>}
+        </aside>
+      )}
 
       {toast && <p className="pv-toast" role="status">{toast}</p>}
-      <button type="button" className="fab" onClick={() => setPreviewOpen(true)}><Eye size={18} aria-hidden /> {t("Preview")}</button>
-      {previewOpen && (
-        <div className="pv-sheet" role="dialog" aria-modal="true" aria-label={t("Preview")}>
-          <div className="pv-sheet__top">{toolbar}<button type="button" className="icon-btn" onClick={() => setPreviewOpen(false)} aria-label={t("Close preview")}><X size={20} /></button></div>
-          <p className="pv-note">{privateNote}</p>
-          <div className="pv-sheet__card"><CardRenderer card={card} mode={mode} picking={picking} selected={selected} onPick={onPick} sound={sound} /></div>
-        </div>
+      {/* Phones: the preview stays built (photos and fonts already loaded) out of sight, so opening it is instant. */}
+      {narrow && (
+        <PhonePreview toolbar={toolbar} note={privateNote} closeRef={closePreview}>
+          <CardRenderer card={card} mode={mode} picking={picking} selected={selected} onPick={onPick} sound={sound} />
+        </PhonePreview>
       )}
     </div>
+  );
+}
+
+/** The phone Preview sheet. It owns its open state, so opening it never re-renders the editor (the Layout step alone holds 100+ mini cards). */
+function PhonePreview({ toolbar, note, closeRef, children }: { toolbar: ReactNode; note: string; closeRef: MutableRefObject<() => void>; children: ReactNode }) {
+  const { t } = useT();
+  const [open, setOpen] = useState(false);
+  const sheet = useRef<HTMLDivElement>(null);
+  const box = useRef<HTMLDivElement>(null);
+  closeRef.current = () => setOpen(false);
+  useEffect(() => {
+    sheet.current?.toggleAttribute('inert', !open);   // closed: invisible and unreachable
+    if (!open || !box.current) return;
+    box.current.scrollTop = 0;
+    try {   // replay the design's intro animations, as a visitor would see them
+      box.current.getAnimations({ subtree: true }).forEach((a) => {
+        if (a.effect?.getComputedTiming().iterations === Infinity) return;
+        a.currentTime = 0; a.play();
+      });
+    } catch { /* older browsers: the card just shows as it is */ }
+  }, [open]);
+  return (
+    <>
+      <button type="button" className="fab" onClick={() => setOpen(true)}><Eye size={18} aria-hidden /> {t("Preview")}</button>
+      <div ref={sheet} className={`pv-sheet${open ? ' is-open' : ''}`} role="dialog" aria-modal="true" aria-label={t("Preview")} aria-hidden={!open}>
+        <div className="pv-sheet__top">{toolbar}<button type="button" className="icon-btn" onClick={() => setOpen(false)} aria-label={t("Close preview")}><X size={20} /></button></div>
+        <p className="pv-note">{note}</p>
+        <div ref={box} className="pv-sheet__card">{children}</div>
+      </div>
+    </>
   );
 }

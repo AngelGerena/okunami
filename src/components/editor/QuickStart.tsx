@@ -16,7 +16,7 @@ const STEPS: { id: QuickStep; label: string }[] = [
 ];
 
 /** Narrow screens have no side-by-side preview, so the last step shows the card inline. */
-function useNarrow(max = 960) {
+export function useNarrow(max = 960) {
   const q = `(max-width: ${max}px)`;
   const [narrow, setNarrow] = useState(() => typeof window !== 'undefined' && window.matchMedia(q).matches);
   useEffect(() => {
