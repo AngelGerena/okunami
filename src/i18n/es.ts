@@ -616,7 +616,6 @@ export const ES: Record<string, string> = {
   "I set up every staff card so the whole team matches.": "Configuro cada tarjeta del personal para que todo el equipo luzca igual.",
   "Every staff card built": "Cada tarjeta del personal creada",
   "Matching headshots": "Retratos a juego",
-  "Branded printed cards for the whole team": "Tarjetas impresas con tu marca para todo el equipo",
   "Neon signs, straight razors, turntables, passports, wax seals. Pro members get new drops every other month.": "Letreros de neón, navajas, tornamesas, pasaportes, lacres de cera. Los miembros Pro reciben novedades cada dos meses.",
   "Recolor anything": "Recolorea lo que quieras",
   "Tap any part of your card to change its color. Contrast is checked live so it stays readable.": "Toca cualquier parte de tu tarjeta para cambiar su color. El contraste se verifica al instante para que siga legible.",
