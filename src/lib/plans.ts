@@ -58,7 +58,7 @@ export const isPaid = (plan: PlanId) => plan !== 'free';
 /** Done-for-you work by Finesse Media (OKUNAMI Studio). Studio cards are hosted on OKUNAMI and need a Pro, Pro Plus or Business subscription.
     `includes` lists only what has been approved for each package: add to it when you confirm more. */
 export const STUDIO = [
-  { id: 'signature', name: 'Signature card', from: 249, cardPackage: true,
+  { id: 'signature', name: 'Signature card', from: 249, needs: 'One-time fee. Your card also needs an OKUNAMI Pro, Pro Plus or Business subscription, billed separately.',
     blurb: 'I design your card from scratch in your exact brand.',
     includes: ['A card designed from scratch in your exact brand', 'Custom animation', 'Copywriting', 'Full setup', 'One round of revisions'] },
   { id: 'portrait', name: 'Living Portrait', from: 99,
@@ -67,7 +67,7 @@ export const STUDIO = [
   { id: 'tap', name: 'Tap products', from: 29,
     blurb: 'Physical products that open your card with a tap.',
     includes: ['Metal, wood or matte printed cards', '"Tap to book" countertop stands and window decals'] },
-  { id: 'team', name: 'Team setup', from: 35, per: 'person', cardPackage: true,
+  { id: 'team', name: 'Team setup', from: 35, per: 'person', needs: 'One-time setup fee per person. Each card also needs an OKUNAMI Business subscription, billed separately.',
     blurb: 'I set up every staff card so the whole team matches.',
     includes: ['Every staff card built', 'Matching headshots', 'Branded printed cards for the whole team'] },
 ] as const;

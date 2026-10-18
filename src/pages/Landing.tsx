@@ -300,7 +300,7 @@ export default function Landing() {
                   : <p className="mx-studio__from">{rich(t("from <b>${from}</b>{v}", { from: s.from, v: 'per' in s ? ' ' + t('per person') : '' }), { b: (c) => <b>{c}</b> })}</p>}
                 <p>{t(s.blurb)}</p>
                 <ul>{s.includes.map((x) => <li key={x}><Check size={14} aria-hidden /> {t(x)}</li>)}</ul>
-                {'cardPackage' in s && <small>{t("Needs a OKUNAMI Pro, Pro Plus or Business subscription.")}</small>}
+                {'needs' in s && <small>{t(s.needs)}</small>}
               </article>
             ))}
           </div>
