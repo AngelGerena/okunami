@@ -66,7 +66,7 @@ export const STUDIO = [
     includes: ['Animated from a photo you already have, or filmed live at a headshot session'] },
   { id: 'team', name: 'Team setup', from: 35, per: 'person', needs: 'One-time setup fee per person. Each card also needs an OKUNAMI Business subscription, billed separately.',
     blurb: 'I set up every staff card so the whole team matches.',
-    includes: ['Every staff card built', 'Matching headshots', 'Branded printed cards for the whole team'] },
+    includes: ['Every staff card built', 'Matching headshots'] },
 ] as const;
 
 export const STUDIO_CONTACT = {
