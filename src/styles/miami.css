@@ -344,3 +344,7 @@
   .mx nav .lang button { min-width: 34px; min-height: 34px; padding: 0 8px; }
   .mx-btn--sm { padding-left: 14px; padding-right: 14px; }
 }
+.mx-pay__inc { margin-top: 10px; }
+.mx-pay__inc ul { list-style: none; margin: 8px 0 0; padding: 0; display: grid; gap: 6px; }
+.mx-pay__inc li { display: flex; gap: 8px; align-items: flex-start; }
+.mx-pay__inc li svg { flex: none; margin-top: 3px; }

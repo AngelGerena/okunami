@@ -275,7 +275,12 @@ export default function Landing() {
             <section className="mx-studio__box" aria-labelledby="pay-h">
               <h3 id="pay-h">{t("What you pay")}</h3>
               <dl>
-                <div>{rich(t("<x1>Studio setup</x1><x2>One time. From ${from} for a Signature card. Every project is quoted.</x2>", { from: STUDIO[0].from }), { x1: (c) => <dt>{c}</dt>, x2: (c) => <dd>{c}</dd> })}</div>
+                <div>{rich(t("<x1>Studio setup</x1><x2>One time. From ${from} for a Signature card. Your exact price is confirmed in your free consult, before you pay.</x2>", { from: STUDIO[0].from }), { x1: (c) => <dt>{c}</dt>, x2: (c) => <dd>{c}</dd> })}
+                  <dd className="mx-pay__inc"><strong>{t("What the Signature card includes")}</strong>
+                    <ul>{STUDIO[0].includes.map((i) => <li key={i}><Check size={16} aria-hidden /> {t(i)}</li>)}</ul>
+                  </dd>
+                  <dd className="mx-pay__inc">{rich(t("<b>AI agents, à la carte.</b> Choose the agents your business needs. I create and design each one custom around how you work. They are included in your Signature card price."), { b: (c) => <strong>{c}</strong> })}</dd>
+                </div>
                 <div>{rich(t("<x1>OKUNAMI subscription</x1><x2>Required for every Studio card: Pro at ${price} a month, Pro Plus at ${price2} a month, or Business at ${price3} a card a month.</x2>", { price: PLANS[1].price, price2: PLANS[2].price, price3: PLANS[3].price }), { x1: (c) => <dt>{c}</dt>, x2: (c) => <dd>{c}</dd> })}</div>
               </dl>
               {founding && <p className="mx-founding">{rich(t("<b>Founding 50.</b> The first {spots} customers get a Signature card designed for {price} instead of {base}. {left} spots left. Ends at {spots} spots or December 31, 2026, whichever comes first. Needs a Pro, Pro Plus or Business plan. After that the price goes back to {base}.", { spots: studio.spots, price: dollars(studio.cents), base: dollars(studio.regular), left: studio.left }), { b: (c) => <b>{c}</b> })}</p>}
