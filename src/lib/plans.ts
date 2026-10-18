@@ -75,6 +75,8 @@ export const STUDIO = [
 export const STUDIO_CONTACT = {
   /** Opens WhatsApp (a chat with me). The page says so before the click. */
   whatsapp: 'https://wa.me/14079609004?text=' + encodeURIComponent("Hi Angel, I'd like to request a free consult for OKUNAMI Studio."),
+  /** Used while the Founding 50 offer is open. */
+  founding: 'https://wa.me/14079609004?text=' + encodeURIComponent("Hi Angel, I'd like to claim a Founding 50 spot for an OKUNAMI Studio custom design."),
   email: 'mailto:angel@finessemedia.pro?subject=' + encodeURIComponent('OKUNAMI Studio'),
 };
 

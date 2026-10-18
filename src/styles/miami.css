@@ -233,6 +233,7 @@
 .mx-billnote { margin: 0; font-size: 13px; font-weight: 700; opacity: .7; }
 .mx-founding { max-width: 720px; margin: 40px auto 0; padding: 14px 20px; border-radius: 16px; border: 3px solid var(--n); background: var(--w); color: var(--n); text-align: center; font-weight: 600; box-shadow: 6px 6px 0 var(--n); }
 .mx-founding b { margin-right: 8px; padding: 3px 10px; border-radius: 999px; background: var(--o); font-weight: 900; text-transform: uppercase; font-size: 12px; letter-spacing: .08em; }
+.mx-studio__box .mx-founding { margin: 20px 0 0; text-align: left; font-size: 15px; line-height: 1.45; }
 
 /* studio: quiet and premium, like the niche directory */
 .mx-studio { background: #080A20; padding: clamp(64px, 8vw, 104px) clamp(18px, 4vw, 48px); border-top: 1px solid rgba(255,255,255,.08); }
