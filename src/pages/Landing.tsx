@@ -95,7 +95,7 @@ export default function Landing() {
           </div>
           <ul className="mx-ticks">
             <li><Check size={16} /> {t("No app to download")}</li>
-            <li><Check size={16} /> {t("Tap, scan or text it")}</li>
+            <li><Check size={16} /> {t("Scan it, send it or text it")}</li>
             <li><Check size={16} /> {t("Saves to any phone in one tap")}</li>
           </ul>
         </div>
@@ -117,7 +117,7 @@ export default function Landing() {
         </div>
       </section>
 
-      <Ticker tone="pink" items={[designsLabelT(DESIGN_COUNT), t('{n} niches', { n: NICHE_COUNT }), t('Tap'), t('Save'), t('Share'), t('QR and link'), t('Made in Florida')]} />
+      <Ticker tone="pink" items={[designsLabelT(DESIGN_COUNT), t('{n} niches', { n: NICHE_COUNT }), t('Scan'), t('Save'), t('Share'), t('QR and link'), t('Made in Florida')]} />
 
       {/* ---------------------------------------------------------------- features */}
       <section className="mx-feats" aria-label={t("What you get")}>

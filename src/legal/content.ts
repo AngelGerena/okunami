@@ -250,10 +250,10 @@ export const TERMS: LegalSection[] = [
   },
   "body": {
    "en": [
-    "OKUNAMI lets you create and publish digital business cards that people can open, scan or tap, and save to their phones. Features marked \"coming soon\" are plans, not promises, and may change or never launch. We may change, add or remove features. We work to keep the Service available but do not guarantee uninterrupted or error-free operation."
+    "OKUNAMI lets you create and publish digital business cards that people can open or scan, and save to their phones. Features marked \"coming soon\" are plans, not promises, and may change or never launch. We may change, add or remove features. We work to keep the Service available but do not guarantee uninterrupted or error-free operation."
    ],
    "es": [
-    "OKUNAMI te permite crear y publicar tarjetas de presentación digitales que las personas pueden abrir, escanear o tocar, y guardar en sus teléfonos. Las funciones marcadas como \"próximamente\" son planes, no promesas, y pueden cambiar o no lanzarse. Podemos cambiar, agregar o quitar funciones. Trabajamos para mantener el Servicio disponible, pero no garantizamos que funcione sin interrupciones ni errores."
+    "OKUNAMI te permite crear y publicar tarjetas de presentación digitales que las personas pueden abrir o escanear, y guardar en sus teléfonos. Las funciones marcadas como \"próximamente\" son planes, no promesas, y pueden cambiar o no lanzarse. Podemos cambiar, agregar o quitar funciones. Trabajamos para mantener el Servicio disponible, pero no garantizamos que funcione sin interrupciones ni errores."
    ]
   }
  },
