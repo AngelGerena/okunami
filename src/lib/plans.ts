@@ -55,18 +55,19 @@ export const cardLimit = (plan: PlanId, seats?: number | null): number => (plan 
 /** Plans that are paid (every design unlocked, no badge). */
 export const isPaid = (plan: PlanId) => plan !== 'free';
 
-/** Done-for-you work by Finesse Media (OKUNAMI Studio). Studio cards are hosted on OKUNAMI and need a Pro, Pro Plus or Business subscription.
+/** Done-for-you work by Finesse Media (OKUNAMI Studio). Studio cards are hosted on OKUNAMI: a custom card needs Pro or Pro Plus, a custom team design needs Business.
+    Custom designs never include AI agents; agents are a-la-carte and quoted by Angel.
     `includes` lists only what has been approved for each package: add to it when you confirm more. */
 export const STUDIO = [
-  { id: 'signature', name: 'Signature card', from: 249, needs: 'One-time fee. Your card also needs an OKUNAMI Pro, Pro Plus or Business subscription, billed separately.',
+  { id: 'signature', name: 'Custom card', from: 149, needs: 'One-time fee. Your card also needs an OKUNAMI Pro or Pro Plus subscription, billed separately.',
     blurb: 'I design your card from scratch in your exact brand.',
-    includes: ['A card designed from scratch in your exact brand', 'Custom animation', 'Copywriting', 'Two custom AI agents, built for your business', 'Full setup', 'One round of revisions'] },
+    includes: ['A card designed from scratch in your exact brand', 'Custom animation', 'Copywriting', 'Full setup', 'One round of revisions'] },
   { id: 'portrait', name: 'Living Portrait', from: 99,
     blurb: 'Your photo becomes a short looping video of you smiling and waving.',
     includes: ['Animated from a photo you already have, or filmed live at a headshot session'] },
-  { id: 'team', name: 'Team setup', from: 35, per: 'person', needs: 'One-time setup fee per person. Each card also needs an OKUNAMI Business subscription, billed separately.',
-    blurb: 'I set up every staff card so the whole team matches.',
-    includes: ['Every staff card built', 'Matching headshots'] },
+  { id: 'team', name: 'Custom team design', from: 249, needs: 'One-time fee. Each card also needs an OKUNAMI Business subscription, billed separately.',
+    blurb: 'One custom design in your brand for the whole team, and I build every staff card so it all matches.',
+    includes: ['One brand design for the whole team', 'Your first 3 staff cards built', '$35 for each extra person', 'Matching headshots'] },
 ] as const;
 
 export const STUDIO_CONTACT = {
