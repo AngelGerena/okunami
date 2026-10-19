@@ -60,3 +60,32 @@ export function trimHistory(messages: unknown, maxTurns: number): Msg[] {
 
 export const daysRemaining = (balanceMicros: number, avgDailyMicros: number) =>
   avgDailyMicros > 0 ? Math.floor(balanceMicros / avgDailyMicros) : null;
+
+/* ---------- Guardrails: the model's answer is never trusted on its own ---------- */
+
+const norm = (s: string) => s.toLowerCase().replace(/[‘’]/g, "'").replace(/[“”]/g, '"').replace(/[^\p{L}\p{N}$%:@.\s'-]/gu, ' ').replace(/\s+/g, ' ').trim();
+
+/** Digit groups in a text, with thousands commas removed ("1,200" -> "1200"). Used to catch invented prices, times and phone numbers. */
+export function numbersIn(text: string): string[] {
+  return (text.replace(/(\d),(?=\d{3}\b)/g, '$1').match(/\d+/g) ?? []).map((n) => n.replace(/^0+(?=\d)/, ''));
+}
+
+export type Verdict = { ok: true } | { ok: false; reason: 'not_found' | 'no_quote' | 'quote_not_in_info' | 'invented_number' };
+
+/** The model must return the exact sentence from the owner's info that supports its answer.
+ *  We check that sentence really is in the info, and that every number in the answer is too. */
+export function verifyAnswer(out: { answer?: string; quote?: string; found?: boolean }, info: string): Verdict {
+  if (!out.found || !out.answer?.trim()) return { ok: false, reason: 'not_found' };
+  const q = norm(out.quote ?? '');
+  if (q.length < 12) return { ok: false, reason: 'no_quote' };
+  if (!norm(info).includes(q)) return { ok: false, reason: 'quote_not_in_info' };
+  const known = new Set(numbersIn(info));
+  for (const n of numbersIn(out.answer)) if (!known.has(n)) return { ok: false, reason: 'invented_number' };
+  return { ok: true };
+}
+
+/** Gemini bills hidden "thinking" tokens as output. Count them, so the owner is never under-charged. */
+export function geminiUsage(m: { promptTokenCount?: number; candidatesTokenCount?: number; thoughtsTokenCount?: number; cachedContentTokenCount?: number } = {}) {
+  const cached = m.cachedContentTokenCount ?? 0;
+  return { input: Math.max(0, (m.promptTokenCount ?? 0) - cached), output: (m.candidatesTokenCount ?? 0) + (m.thoughtsTokenCount ?? 0), cacheRead: cached };
+}
