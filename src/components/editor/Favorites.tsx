@@ -150,7 +150,7 @@ export function FavoritesPanel(p: PanelProps) {
         {api.loading && <p className="note">{t("Loading favorites...")}</p>}
         {!api.loading && api.looks.length === 0 && (
           <div className="empty">
-            <p>{rich(t("No favorites yet. Tap <b>Shuffle all</b> or the dice on Colors and Buttons, then hit the heart when you see one you like."), { b: (c) => <b>{c}</b> })}</p>
+            <p>{rich(t("No favorites yet. Press <b>Shuffle all</b> or the dice on Colors and Buttons, then hit the heart when you see one you like."), { b: (c) => <b>{c}</b> })}</p>
           </div>
         )}
         <ul className="favs">

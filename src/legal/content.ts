@@ -33,7 +33,7 @@ export const PRIVACY: LegalSection[] = [
     "• Account information: your email address and a password (stored only in scrambled, hashed form by our authentication provider). If you sign in with Google, we receive your name and email from Google.",
     "• Card content you add: your name, job title, business, photo, logo, phone and WhatsApp numbers, email, website, address, hours, social and booking links, services, gallery photos, and any video, audio or fonts you upload. If you add information about other people (for example staff), you are responsible for having their permission.",
     "• Billing information: payments are handled by Stripe. We do not see or store your full card number. We keep your Stripe customer and subscription identifiers, plan, billing interval, number of cards, status and renewal date.",
-    "• Card activity: when someone views, saves, shares or taps a button on a published card, we record the card, the type of action and the time. We do not record the visitor's name, email or device identity in this activity data.",
+    "• Card activity: when someone views, saves, shares or presses a button on a published card, we record the card, the type of action and the time. We do not record the visitor's name, email or device identity in this activity data.",
     "• Technical data: our hosting and database providers keep standard server logs (such as IP address, browser type and request time) for security and reliability.",
     "• Messages: what you send us by email or WhatsApp, and information you give us for Studio projects."
    ],
@@ -41,7 +41,7 @@ export const PRIVACY: LegalSection[] = [
     "• Información de la cuenta: tu correo electrónico y una contraseña (que nuestro proveedor de autenticación guarda solo de forma cifrada y no reversible). Si inicias sesión con Google, recibimos tu nombre y correo de Google.",
     "• Contenido de tu tarjeta: tu nombre, cargo, negocio, foto, logotipo, teléfonos y WhatsApp, correo, sitio web, dirección, horario, enlaces sociales y de reservas, servicios, fotos de galería y cualquier video, audio o fuente que subas. Si agregas información de otras personas (por ejemplo, tu equipo), eres responsable de contar con su permiso.",
     "• Información de facturación: los pagos los procesa Stripe. No vemos ni guardamos el número completo de tu tarjeta. Conservamos tus identificadores de cliente y suscripción de Stripe, el plan, el intervalo de cobro, el número de tarjetas, el estado y la fecha de renovación.",
-    "• Actividad de la tarjeta: cuando alguien ve, guarda, comparte o toca un botón de una tarjeta publicada, registramos la tarjeta, el tipo de acción y la hora. En estos datos de actividad no registramos el nombre, el correo ni la identidad del dispositivo del visitante.",
+    "• Actividad de la tarjeta: cuando alguien ve, guarda, comparte o pulsa un botón de una tarjeta publicada, registramos la tarjeta, el tipo de acción y la hora. En estos datos de actividad no registramos el nombre, el correo ni la identidad del dispositivo del visitante.",
     "• Datos técnicos: nuestros proveedores de alojamiento y base de datos guardan registros estándar del servidor (como la dirección IP, el tipo de navegador y la hora de la solicitud) por seguridad y fiabilidad.",
     "• Mensajes: lo que nos envías por correo o WhatsApp y la información que nos das para proyectos de Studio."
    ]
@@ -55,12 +55,12 @@ export const PRIVACY: LegalSection[] = [
   },
   "body": {
    "en": [
-    "We use personal information to: provide and secure your account and cards; show your published cards to the people you share them with; process payments and manage subscriptions; send service messages such as verification and password-reset emails; give support; prevent abuse and enforce our Terms; show you simple counts of views and taps on your own cards; and meet legal obligations.",
+    "We use personal information to: provide and secure your account and cards; show your published cards to the people you share them with; process payments and manage subscriptions; send service messages such as verification and password-reset emails; give support; prevent abuse and enforce our Terms; show you simple counts of views and actions on your own cards; and meet legal obligations.",
     "Where the GDPR or UK GDPR applies, our legal bases are: performance of our contract with you; our legitimate interests in running, securing and improving OKUNAMI; your consent where we ask for it (and you may withdraw it at any time); and compliance with legal obligations.",
     "Finesse Media does not sell personal information, does not share it for cross-context behavioral advertising, and does not use advertising or analytics trackers on OKUNAMI."
    ],
    "es": [
-    "Usamos la información personal para: proporcionar y proteger tu cuenta y tus tarjetas; mostrar tus tarjetas publicadas a las personas con las que las compartes; procesar pagos y administrar suscripciones; enviar mensajes del servicio, como correos de verificación y de restablecimiento de contraseña; dar soporte; prevenir abusos y hacer cumplir nuestros Términos; mostrarte conteos sencillos de vistas y toques en tus propias tarjetas; y cumplir obligaciones legales.",
+    "Usamos la información personal para: proporcionar y proteger tu cuenta y tus tarjetas; mostrar tus tarjetas publicadas a las personas con las que las compartes; procesar pagos y administrar suscripciones; enviar mensajes del servicio, como correos de verificación y de restablecimiento de contraseña; dar soporte; prevenir abusos y hacer cumplir nuestros Términos; mostrarte conteos sencillos de vistas y acciones en tus propias tarjetas; y cumplir obligaciones legales.",
     "Cuando se aplica el RGPD o el RGPD del Reino Unido, nuestras bases legales son: la ejecución de nuestro contrato contigo; nuestros intereses legítimos en operar, proteger y mejorar OKUNAMI; tu consentimiento cuando lo pedimos (que puedes retirar en cualquier momento); y el cumplimiento de obligaciones legales.",
     "Finesse Media no vende información personal, no la comparte para publicidad conductual entre contextos y no usa rastreadores publicitarios ni de analítica en OKUNAMI."
    ]
@@ -250,10 +250,10 @@ export const TERMS: LegalSection[] = [
   },
   "body": {
    "en": [
-    "OKUNAMI lets you create and publish digital business cards that people can open, scan or tap, and save to their phones. Features marked \"coming soon\" are plans, not promises, and may change or never launch. We may change, add or remove features. We work to keep the Service available but do not guarantee uninterrupted or error-free operation."
+    "OKUNAMI lets you create and publish digital business cards that people can open or scan, and save to their phones. Features marked \"coming soon\" are plans, not promises, and may change or never launch. We may change, add or remove features. We work to keep the Service available but do not guarantee uninterrupted or error-free operation."
    ],
    "es": [
-    "OKUNAMI te permite crear y publicar tarjetas de presentación digitales que las personas pueden abrir, escanear o tocar, y guardar en sus teléfonos. Las funciones marcadas como \"próximamente\" son planes, no promesas, y pueden cambiar o no lanzarse. Podemos cambiar, agregar o quitar funciones. Trabajamos para mantener el Servicio disponible, pero no garantizamos que funcione sin interrupciones ni errores."
+    "OKUNAMI te permite crear y publicar tarjetas de presentación digitales que las personas pueden abrir o escanear, y guardar en sus teléfonos. Las funciones marcadas como \"próximamente\" son planes, no promesas, y pueden cambiar o no lanzarse. Podemos cambiar, agregar o quitar funciones. Trabajamos para mantener el Servicio disponible, pero no garantizamos que funcione sin interrupciones ni errores."
    ]
   }
  },
@@ -397,10 +397,10 @@ export const TERMS: LegalSection[] = [
   },
   "body": {
    "en": [
-    "The Service works with third parties such as Stripe, Supabase, Netlify, Google and WhatsApp. They have their own terms, and we are not responsible for them. Tapping, scanning and saving depend on visitors' phones and apps, which we do not control, so we cannot guarantee they will work on every device."
+    "The Service works with third parties such as Stripe, Supabase, Netlify, Google and WhatsApp. They have their own terms, and we are not responsible for them. Scanning, sharing and saving depend on visitors' phones and apps, which we do not control, so we cannot guarantee they will work on every device."
    ],
    "es": [
-    "El Servicio funciona con terceros como Stripe, Supabase, Netlify, Google y WhatsApp. Ellos tienen sus propios términos y no somos responsables de ellos. Tocar, escanear y guardar dependen de los teléfonos y apps de los visitantes, que no controlamos, por lo que no podemos garantizar que funcionen en todos los dispositivos."
+    "El Servicio funciona con terceros como Stripe, Supabase, Netlify, Google y WhatsApp. Ellos tienen sus propios términos y no somos responsables de ellos. Escanear, compartir y guardar dependen de los teléfonos y apps de los visitantes, que no controlamos, por lo que no podemos garantizar que funcionen en todos los dispositivos."
    ]
   }
  },

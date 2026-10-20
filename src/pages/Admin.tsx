@@ -160,7 +160,7 @@ function Overview({ rev }: { rev: number }) {
         <Kpi label="Complimentary or paid outside Stripe" value={stats.offline} sub="Not counted in the monthly estimate" />
         <Kpi tone="orange" label="Cards" value={stats.cards} sub={`${stats.published} live`} />
         <Kpi label="Card views (7 days)" value={stats.views_7d.toLocaleString()} sub={`${stats.saves_7d.toLocaleString()} saved to phones`} />
-        <Kpi label="Taps (7 days)" value={stats.taps_7d.toLocaleString()} sub="Calls, texts, bookings, shares" />
+        <Kpi label="Actions (7 days)" value={stats.taps_7d.toLocaleString()} sub="Calls, texts, bookings, shares" />
       </div>
 
       <div className="adm-grid">

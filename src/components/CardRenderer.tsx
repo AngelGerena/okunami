@@ -62,7 +62,7 @@ export default function CardRenderer({ card, mode: requestedMode, picking, selec
       if (sound) sfx('primary', prof);
       track?.('save');
       downloadVCard(vcardRef.current || 'BEGIN:VCARD\r\nVERSION:3.0\r\nEND:VCARD', card.data.fullName);
-      flash('Contact file ready. Tap it to add to your phone.');
+      flash('Contact file ready. Open it to add to your phone.');
     },
     share: async () => {
       if (sound) sfx('open', prof);
