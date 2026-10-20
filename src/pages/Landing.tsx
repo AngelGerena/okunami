@@ -291,7 +291,7 @@ export default function Landing() {
                 <li>{rich(t("<b>Request a free consult.</b> Tell me about your business."), { b: (c) => <b>{c}</b> })}</li>
                 <li>{rich(t("<b>I build a private preview.</b> You review it before you pay."), { b: (c) => <b>{c}</b> })}</li>
                 <li>{rich(t("<b>You approve it and pay through Stripe.</b>"), { b: (c) => <b>{c}</b> })}</li>
-                <li>{rich(t("<b>I set up your live address by hand.</b> It is an address on finessemedia.pro that I provide. Connecting your own custom domain yourself is not available yet."), { b: (c) => <b>{c}</b> })}</li>
+                <li>{rich(t("<b>I set up your live address by hand.</b> It is an address on okunami.pro that I provide. Connecting your own custom domain yourself is not available yet."), { b: (c) => <b>{c}</b> })}</li>
               </ol>
             </section>
           </div>

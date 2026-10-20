@@ -409,7 +409,6 @@ export const ES: Record<string, string> = {
   "<b>Request a free consult.</b> Tell me about your business.": "<b>Solicita una consulta gratuita.</b> Cuéntame sobre tu negocio.",
   "<b>I build a private preview.</b> You review it before you pay.": "<b>Preparo una vista previa privada.</b> La revisas antes de pagar.",
   "<b>You approve it and pay through Stripe.</b>": "<b>La apruebas y pagas por Stripe.</b>",
-  "<b>I set up your live address by hand.</b> It is an address on finessemedia.pro that I provide. Connecting your own custom domain yourself is not available yet.": "<b>Configuro tu dirección pública a mano.</b> Es una dirección en finessemedia.pro que yo te proporciono. Conectar tu propio dominio por tu cuenta todavía no está disponible.",
   "<x1>OKUNAMI Studio by Finesse Media</x1><x2>Want me to build it for you?</x2><x3>I'm a creative director and photographer. I design your card and shoot your portrait.</x3>": "<x1>OKUNAMI Studio por Finesse Media</x1><x2>¿Quieres que la haga yo por ti?</x2><x3>Soy director creativo y fotógrafo. Diseño tu tarjeta y hago tu retrato.</x3>",
   "<x1>Studio setup</x1><x2>One time. From ${from} for a Signature card. Your exact price is confirmed in your free consult, before you pay.</x2>": "<x1>Configuración de Studio</x1><x2>Pago único. Desde ${from} por una tarjeta Signature. Tu precio exacto se confirma en tu consulta gratis, antes de pagar.</x2>",
   "Two custom AI agents, built for your business": "Dos agentes de IA a la medida de tu negocio",
@@ -733,5 +732,6 @@ export const ES: Record<string, string> = {
   "Soft audio feedback when visitors press a button. Always silent for people who turn off motion on their phone.": "Un sonido suave cuando los visitantes pulsan un botón. Siempre en silencio para quienes desactivan el movimiento en su teléfono.",
   "No favorites yet. Press <b>Shuffle all</b> or the dice on Colors and Buttons, then hit the heart when you see one you like.": "Aún no hay favoritos. Pulsa <b>Mezclar todo</b> o los dados en Colores y Botones, y presiona el corazón cuando veas uno que te guste.",
   "Scan and save stats (coming soon)": "Estadísticas de escaneos y guardados (próximamente)",
-  "Select to recolor": "Selecciona para recolorear"
+  "Select to recolor": "Selecciona para recolorear",
+  "<b>I set up your live address by hand.</b> It is an address on okunami.pro that I provide. Connecting your own custom domain yourself is not available yet.": "<b>Configuro tu dirección pública a mano.</b> Es una dirección en okunami.pro que yo te proporciono. Conectar tu propio dominio por tu cuenta todavía no está disponible."
 };
