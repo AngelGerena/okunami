@@ -20,7 +20,7 @@ The Nova TEST draft (a96b0b85-02eb-42fa-b10d-9d78cb811288) was never written to:
 2. **Counts.** One module computes every number from the same data the screens render, plan-aware, English and Spanish. `npm run check:copy` guards it.
 3. **Sign-in.** See `docs/AUTH.md`.
 4. **Founding offer.** See `docs/PRICING-RULES.md` (migration 0013, functions, UI).
-5. **Two purchase paths.** "Make it yourself" vs "Done for you" with the required subscription beside "from $249", what-you-pay and how-it-works, included lists, and "Request a free consult on WhatsApp".
+5. **Two purchase paths.** "Make it yourself" vs "Done for you" with the required subscription beside "from $149", what-you-pay and how-it-works, included lists, and "Request a free consult on WhatsApp".
 6. **Trust and accessibility.** Decorative previews are inert (0 exposed controls), 105 labelled "Open demo" links to a real interactive demo page, unfinished features marked "coming soon", Terms and Privacy pages and links (`docs/LEGAL-REVIEW.md`).
 7. **EN/ES toggle.** See `docs/I18N.md`.
 Also fixed: a 25,000px sideways-scroll bug on the phone landing page.

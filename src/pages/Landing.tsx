@@ -206,7 +206,7 @@ export default function Landing() {
               <ul>
                 {founding
                   ? <li><Check size={16} aria-hidden /> {rich(t("<b>Founding 50:</b> custom design {price} instead of {base}. {left} of {spots} spots left, ends Dec 31.", { price: dollars(studio.cents), base: dollars(studio.regular), left: studio.left, spots: studio.spots }), { b: (c) => <b>{c}</b> })}</li>
-                  : <li><Check size={16} aria-hidden /> {t("One-time setup from $249")}</li>}
+                  : <li><Check size={16} aria-hidden /> {t("One-time setup from $149")}</li>}
                 <li><Check size={16} aria-hidden /> {t("Plus a OKUNAMI Pro, Pro Plus or Business subscription, which every Studio card needs")}</li>
                 <li><Check size={16} aria-hidden /> {t("I handle the design, copy and setup")}</li>
               </ul>
