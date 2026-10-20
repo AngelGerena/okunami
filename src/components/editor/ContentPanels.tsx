@@ -294,7 +294,7 @@ function GallerySection(p: PanelProps) {
     <Section title={t("Photos")} hint={t("Your work, menu, listings or products. Up to 9. The first photo leads on Keystone and Lookbook.")} action={d.gallery.length < MAX ? <button type="button" className="btn btn--gold btn--sm" onClick={() => ref.current?.click()} disabled={busy}>{busy ? <Loader2 size={15} className="spin" /> : <Plus size={16} />} Add photos</button> : undefined}>
       {d.gallery.length === 0 && !busy && (
         <button type="button" className="gal-drop" onClick={() => ref.current?.click()} onDragOver={(e) => e.preventDefault()} onDrop={(e) => { e.preventDefault(); add(e.dataTransfer.files); }}>
-          <ImagePlus size={26} strokeWidth={1.5} /><span>{t("Drop photos here or tap to choose")}</span>
+          <ImagePlus size={26} strokeWidth={1.5} /><span>{t("Drop photos here or press to choose")}</span>
         </button>
       )}
       <ul className="gal-edit">
@@ -338,7 +338,7 @@ export function NicheSection(p: PanelProps) {
       {current && !open && (
         <button type="button" className="niche-now" onClick={() => setOpen(true)}>
           <NicheBadge id={current.id} />
-          <span className="niche-now__txt">{t("{length} designs made for you · tap to change", { length: current.designs.length })}</span>
+          <span className="niche-now__txt">{t("{length} designs made for you · select to change", { length: current.designs.length })}</span>
         </button>
       )}
       {open && (
@@ -389,7 +389,7 @@ function SuggestedLinks(p: PanelProps & { onAdded: () => void }) {
   if (!missing.length) return null;
   return (
     <div className="sugg">
-      <span className="sugg__h">{t("Popular with {v}. Tap to add:", { v: n.name.toLowerCase() })}</span>
+      <span className="sugg__h">{t("Popular with {v}. Select to add:", { v: n.name.toLowerCase() })}</span>
       <div className="sugg__chips">
         {missing.map((id) => (
           <button key={id} type="button" className="sugg__chip" onClick={() => { const nid = uid(); put({ socials: [...d.socials, { id: nid, network: id, value: '' }] }); sfx('tap'); window.setTimeout(() => document.getElementById(`lnk-${nid}`)?.focus(), 60); }}>
@@ -442,9 +442,9 @@ function WorshipExtras(p: PanelProps) {
         onFile={async (f) => { put({ orgLogoUrl: await store.uploadImage(f, 'logo') }); }} onClear={() => put({ orgLogoUrl: '' })} />
       <Field label={t("Accent line")} value={d.kicker ?? ''} onChange={(v) => put({ kicker: v })} maxLength={60} placeholder={t("Leave blank for the design's own line")} hint={t("The small line above your name, like a verse reference or a ministry motto.")} />
       <MediaUpload kind="video" label={t("Living portrait")} accept="video/mp4,video/webm,video/quicktime" value={d.photoVideoUrl} onUrl={(u) => put({ photoVideoUrl: u })}
-        hint={t("A short silent clip of you smiling or waving (3 to 6 seconds, MP4). It plays once over your photo when the card opens, and again when someone taps the photo.")} />
+        hint={t("A short silent clip of you smiling or waving (3 to 6 seconds, MP4). It plays once over your photo when the card opens, and again when someone presses the photo.")} />
       <MediaUpload kind="audio" label={t("Background music")} accept="audio/mpeg,audio/mp4,audio/aac,audio/*" value={d.music?.url} onUrl={(u) => put({ music: u ? { url: u, title: d.music?.title || 'Instrumental', sub: d.music?.sub } : undefined })}
-        hint={t("An instrumental that starts softly on the visitor's first tap, with a play and pause button. Use music you own or have rights to.")} />
+        hint={t("An instrumental that starts softly when the visitor first interacts with the card, with a play and pause button. Use music you own or have rights to.")} />
       {d.music?.url && (
         <Field label={t("Song title")} value={d.music.title} onChange={(v) => put({ music: { ...d.music!, title: v } })} maxLength={40} placeholder={t("Open the Heavens")} />
       )}

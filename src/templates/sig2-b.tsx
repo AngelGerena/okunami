@@ -193,10 +193,10 @@ export function Trading() {
           <span className="tc__face back" {...el('cardBg')}>
             <b className="tc__bh" {...el('name')}>{data.fullName}</b>
             <ul>{data.highlights.map((h) => <li key={h.id}><span {...el('accentDetail')}>{h.title}</span><small {...el('caption')}>{h.subtitle}</small></li>)}</ul>
-            <small className="tc__tap" {...el('caption')}>Tap to flip back</small>
+            <small className="tc__tap" {...el('caption')}>Press to flip back</small>
           </span>
         </button>
-        <p className="tc__hint" {...el('caption')}>Tap the card to flip it</p>
+        <p className="tc__hint" {...el('caption')}>Press the card to flip it</p>
         <div className="stack-sm full">
           {data.bookingUrl && <Btn variant="primary" block href={webHref(data.bookingUrl)} icon={<CalendarDays size={18} />}>Book a session</Btn>}
           <div className="row"><SaveBtn variant="secondary" /><ShareBtn iconOnly /><QrBtn iconOnly /></div>
@@ -398,7 +398,7 @@ export function Inbox() {
               <Act a={{ ...a, run: a.run ? () => { setRead((r) => ({ ...r, [a.key]: true })); a.run!(); } : undefined }} className={`ib__mail ${i === 0 ? 'is-primary' : ''}`} elId={i === 0 ? 'iconBg' : 'cardBg'}>
                 <span className="ib__dot" {...el('accentDetail')} />
                 <span className="ib__av" {...el('iconBg')}><span {...el('icons')}>{a.icon}</span></span>
-                <span className="ib__txt"><b {...el('body')}>{subjects[a.key] ?? a.label}</b><small {...el('caption')}>{a.sub || data.business || 'Tap to open'}</small></span>
+                <span className="ib__txt"><b {...el('body')}>{subjects[a.key] ?? a.label}</b><small {...el('caption')}>{a.sub || data.business || 'Press to open'}</small></span>
                 <span className="ib__when" {...el('caption')}>{i === 0 ? 'now' : `${i * 7}m`}</span>
               </Act>
             </li>

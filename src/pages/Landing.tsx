@@ -95,8 +95,8 @@ export default function Landing() {
           </div>
           <ul className="mx-ticks">
             <li><Check size={16} /> {t("No app to download")}</li>
-            <li><Check size={16} /> {t("Tap, scan or text it")}</li>
-            <li><Check size={16} /> {t("Saves to any phone in one tap")}</li>
+            <li><Check size={16} /> {t("Scan. Share. Connect. It's that simple.")}</li>
+            <li><Check size={16} /> {t("Saves to any phone in one step")}</li>
           </ul>
         </div>
 
@@ -117,7 +117,7 @@ export default function Landing() {
         </div>
       </section>
 
-      <Ticker tone="pink" items={[designsLabelT(DESIGN_COUNT), t('{n} niches', { n: NICHE_COUNT }), t('Tap'), t('Save'), t('Share'), t('QR and link'), t('Made in Florida')]} />
+      <Ticker tone="pink" items={[designsLabelT(DESIGN_COUNT), t('{n} niches', { n: NICHE_COUNT }), t('Scan'), t('Save'), t('Share'), t('QR and link'), t('Made in Florida')]} />
 
       {/* ---------------------------------------------------------------- features */}
       <section className="mx-feats" aria-label={t("What you get")}>
@@ -125,10 +125,10 @@ export default function Landing() {
         <div className="mx-feats__grid">
           {[
             { icon: Layers, t: 'N designs', d: 'Neon signs, straight razors, turntables, passports, wax seals. Pro members get new drops every other month.', c: 'pink' },
-            { icon: Palette, t: 'Recolor anything', d: 'Tap any part of your card to change its color. Contrast is checked live so it stays readable.', c: 'cyan' },
+            { icon: Palette, t: 'Recolor anything', d: 'Select any part of your card to change its color. Contrast is checked live so it stays readable.', c: 'cyan' },
             { icon: Smartphone, t: 'Buttons that pop', d: 'Ten styles, eight shapes and eight finishes, tuned for light and dark mode.', c: 'orange' },
             { icon: Type, t: 'Your brand kit', d: 'Pull colors from your logo, paste hex codes from Canva, or upload your own fonts.', c: 'cyan' },
-            { icon: UserPlus, t: 'One-tap save', d: 'Adds your photo, numbers, address and links straight into their contacts.', c: 'orange' },
+            { icon: UserPlus, t: 'One-step save', d: 'Adds your photo, numbers, address and links straight into their contacts.', c: 'orange' },
             { icon: QrCode, t: 'QR and link', d: 'Print it, stick it, share it. The same link works everywhere.', c: 'pink' },
           ].map((f) => (
             <article key={f.t} className={`mx-tile mx-tile--${f.c}`}>

@@ -54,7 +54,7 @@ function saveReason(e: unknown): string {
   const raw = e instanceof Error ? e.message : (e && typeof e === 'object' && 'message' in e ? String((e as { message: unknown }).message) : '');
   if (!raw) return tr('Could not save.');
   if (/failed to fetch|networkerror|network request|load failed|offline/i.test(raw) || (typeof navigator !== 'undefined' && !navigator.onLine))
-    return tr('No connection. Your changes stay on this page. Tap Retry when you are back online.');
+    return tr('No connection. Your changes stay on this page. Press Retry when you are back online.');
   return raw;
 }
 
@@ -208,7 +208,7 @@ export default function Editor() {
         <button type="button" role="radio" aria-checked={mode === 'light'} className={mode === 'light' ? 'on' : ''} onClick={() => setMode('light')} aria-label={t("Light mode")}><Sun size={17} /></button>
         <button type="button" role="radio" aria-checked={mode === 'dark'} className={mode === 'dark' ? 'on' : ''} onClick={() => setMode('dark')} aria-label={t("Dark mode")}><Moon size={17} /></button>
       </div>
-      <button type="button" className={`pv-btn ${picking ? 'on' : ''}`} aria-pressed={picking} onClick={() => setPicking(!picking)} title={t("Tap any part of the card to recolor it")}><MousePointerClick size={17} /><span>{t("Tap to recolor")}</span></button>
+      <button type="button" className={`pv-btn ${picking ? 'on' : ''}`} aria-pressed={picking} onClick={() => setPicking(!picking)} title={t("Select any part of the card to recolor it")}><MousePointerClick size={17} /><span>{t("Select to recolor")}</span></button>
       <button type="button" className="pv-btn pv-btn--dice" onClick={shuffleAll} title={t("Shuffle colors, buttons and fonts")}><Dices size={18} /><span>{t("Shuffle all")}</span></button>
       <SaveLookButton api={looks} card={card} onSaved={say} />
       <div className="pv-bar__end">
@@ -304,7 +304,7 @@ export default function Editor() {
         {toolbar}
         {preview}
         <p className="pv-hint pv-hint--state">{privateNote}</p>
-        {picking && <p className="pv-hint">{t("Tap any part of the card to recolor it.")}</p>}
+        {picking && <p className="pv-hint">{t("Select any part of the card to recolor it.")}</p>}
       </aside>
 
       {toast && <p className="pv-toast" role="status">{toast}</p>}
