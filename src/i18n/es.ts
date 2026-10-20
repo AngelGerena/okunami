@@ -649,7 +649,6 @@ export const ES: Record<string, string> = {
   "Everything in Pro, plus hands-on help from me.": "Todo lo de Pro, más ayuda personalizada de mi parte.",
   "Event sections (coming soon)": "Secciones de eventos (próximamente)",
   "Multiple languages on your card (coming soon)": "Varios idiomas en tu tarjeta (próximamente)",
-  "Connect a domain you already own (coming soon)": "Conecta un dominio que ya tengas (próximamente)",
   "Two done-for-you edits a month by Finesse Media": "Dos ediciones al mes hechas por Finesse Media",
   "Matching cards for your whole team.": "Tarjetas a juego para todo tu equipo.",
   "5 cards included": "5 tarjetas incluidas",
@@ -733,5 +732,6 @@ export const ES: Record<string, string> = {
   "No favorites yet. Press <b>Shuffle all</b> or the dice on Colors and Buttons, then hit the heart when you see one you like.": "Aún no hay favoritos. Pulsa <b>Mezclar todo</b> o los dados en Colores y Botones, y presiona el corazón cuando veas uno que te guste.",
   "Scan and save stats (coming soon)": "Estadísticas de escaneos y guardados (próximamente)",
   "Select to recolor": "Selecciona para recolorear",
-  "<b>I set up your live address by hand.</b> It is an address on okunami.pro that I provide. Connecting your own custom domain yourself is not available yet.": "<b>Configuro tu dirección pública a mano.</b> Es una dirección en okunami.pro que yo te proporciono. Conectar tu propio dominio por tu cuenta todavía no está disponible."
+  "<b>I set up your live address by hand.</b> It is an address on okunami.pro that I provide. Already own a domain? I can connect it for you.": "<b>Configuro tu dirección pública a mano.</b> Es una dirección en okunami.pro que yo te proporciono. ¿Ya tienes un dominio? Puedo conectarlo por ti.",
+  "Connect a domain you already own": "Conecta un dominio que ya tengas"
 };

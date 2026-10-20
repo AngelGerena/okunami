@@ -44,7 +44,7 @@ export const PLANS: PlanDef[] = [
     features: ['Up to 3 cards', 'All {designs} designs', 'Every new OKUNAMI Drop, 3 to 5 designs every other month', 'Brand kit and custom fonts', 'No badge', 'Scan and save stats (coming soon)'] },
   { id: 'plus', name: 'Pro Plus', price: 16, yearly: 149, per: 'month', cards: PLUS_CARDS,
     pitch: 'Everything in Pro, plus hands-on help from me.',
-    features: ['Everything in Pro', '1 card', 'Event sections (coming soon)', 'Multiple languages on your card (coming soon)', 'Connect a domain you already own (coming soon)', 'Two done-for-you edits a month by Finesse Media'] },
+    features: ['Everything in Pro', '1 card', 'Event sections (coming soon)', 'Multiple languages on your card (coming soon)', 'Connect a domain you already own', 'Two done-for-you edits a month by Finesse Media'] },
   { id: 'team', name: 'Business', price: TEAM.monthly, yearly: TEAM.yearly, per: 'card / month', perCard: true,
     pitch: 'Matching cards for your whole team. Pay only for the cards you need.',
     features: ['Everything in Pro', 'Pay per card, from 3 cards', 'Matching designs with brand lock (coming soon)', 'Team admin (coming soon)', 'Priority support, straight from me'] },
