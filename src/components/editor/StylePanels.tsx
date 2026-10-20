@@ -113,7 +113,7 @@ export function TemplatePanel(p: PanelProps) {
                   <p className="lay-sub">{rich(t("Pro designs <x1>Try any of them on your card. Upgrade to publish.</x1>"), { x1: (c) => <span>{c}</span> })}</p>
                 </>
               )}
-              <p className="lay-hint">{niche.id !== mine?.id ? <>{t("Previews show a sample {v} so you can see the vibe.", { v: niche.name.toLowerCase().replace(/s$/, '') })}</> : null}Tap <b>{t("Use design")}</b> to try one. Your words, photos and links stay. Undo anytime.</p>
+              <p className="lay-hint">{niche.id !== mine?.id ? <>{t("Previews show a sample {v} so you can see the vibe.", { v: niche.name.toLowerCase().replace(/s$/, '') })}</> : null}Press <b>{t("Use design")}</b> to try one. Your words, photos and links stay. Undo anytime.</p>
               <div className="tpl-grid">
                 {niche.designs.map((d) => (
                   <DesignTile key={d.template + d.name} card={p.card} niche={niche} design={d} on={isOn(d)} locked={isLocked(plan, d.template)} sample={niche.id !== mine?.id} onUse={() => use(niche, d)}
@@ -256,7 +256,7 @@ export function ColorsPanel(p: PanelProps) {
 
       <Section
         title={t("Fine-tune any part")}
-        hint={<>{t("Editing")} <b>{mode}</b> {t("mode. Tap any part of the preview with")} <MousePointerClick size={13} style={{ verticalAlign: '-2px' }} /> {t("on, or pick from the list.")}</>}
+        hint={<>{t("Editing")} <b>{mode}</b> {t("mode. Select any part of the preview with")} <MousePointerClick size={13} style={{ verticalAlign: '-2px' }} /> {t("on, or pick from the list.")}</>}
         action={overrideCount > 0 ? <button type="button" className="btn btn--ghost btn--sm" onClick={() => setTheme(p, (t) => ({ ...t, overrides: { ...t.overrides, [mode]: {} } }))}><RotateCcw size={14} /> Reset {overrideCount}</button> : undefined}
       >
         <Toggle label={t("Apply to light and dark")} hint={t("Off: each mode keeps its own custom colors.")} checked={bothModes} onChange={setBothModes} />
@@ -366,7 +366,7 @@ export function ButtonsPanel(p: PanelProps) {
         <Segmented label={tl("Button size")} value={b.size} onChange={(v) => put({ size: v })} options={BUTTON_SIZES.map((s) => ({ v: s, l: LABEL[s] }))} />
         <p className="note">{tl("Every size keeps a 44px touch target, the minimum Apple and Google recommend.")}</p>
       </Section>
-      <Section title={tl("Tap sounds")} hint={tl("Soft audio feedback when visitors tap. Always silent for people who turn off motion on their phone.")}>
+      <Section title={tl("Interaction sounds")} hint={tl("Soft audio feedback when visitors press a button. Always silent for people who turn off motion on their phone.")}>
         <Segmented label={tl("Sound")} value={t.sound ?? 'calm'} onChange={(v) => { setTheme(p, (th) => ({ ...th, sound: v })); sfx('primary', v); }} options={[{ v: 'calm', l: 'Calm' }, { v: 'tech', l: 'Tech' }, { v: 'bright', l: 'Bright' }, { v: 'off', l: 'Off' }]} />
       </Section>
     </>

@@ -235,7 +235,7 @@ function WorshipCard({ skin, layout }: { skin: SkinId; layout: Layout }) {
 
   const dockItems = [
     data.phone && <a key="call" className="w-press" href={telHref(data.phone)}>{I.phone}<span>Call</span></a>,
-    wa && <a key="wa" className="w-press w-wa" href={waHref(wa, `Hi ${data.fullName.split(' ')[0]}, I just tapped your card.`)} target="_blank" rel="noopener">{I.whatsapp}<span>WhatsApp</span></a>,
+    wa && <a key="wa" className="w-press w-wa" href={waHref(wa, `Hi ${data.fullName.split(' ')[0]}, I just opened your card.`)} target="_blank" rel="noopener">{I.whatsapp}<span>WhatsApp</span></a>,
     data.email && <a key="em" className="w-press w-em" href={`mailto:${data.email}`}>{I.mail}<span>Email</span></a>,
   ].filter(Boolean);
   const railExtra = [
@@ -245,7 +245,7 @@ function WorshipCard({ skin, layout }: { skin: SkinId; layout: Layout }) {
   const musicBtn = data.music?.url ? (
     <button type="button" className={`w-pill w-glass w-music-pill w-press ${music.on ? 'w-on' : ''}`} aria-pressed={music.on} aria-label={music.on ? 'Pause music' : 'Play music'} title={data.music.title} onClick={(e) => { e.stopPropagation(); music.toggle(); }}>
       <span className="w-eq" aria-hidden><i /><i /><i /><i /></span>
-      <span className="w-m-txt"><span className="w-m-title">{data.music.title}</span><span className="w-m-sub">{music.started ? (data.music.sub || data.business) : 'Tap to listen'}</span></span>
+      <span className="w-m-txt"><span className="w-m-title">{data.music.title}</span><span className="w-m-sub">{music.started ? (data.music.sub || data.business) : 'Press to listen'}</span></span>
       <span className="w-m-short">Music</span>
     </button>
   ) : null;

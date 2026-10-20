@@ -5,7 +5,7 @@ OKUNAMI never moves a session from one browser or device to another.
 
 | Scenario | Result | What the screen tells the person |
 |---|---|---|
-| Sign up, open the link in the **same browser** | Email verified and signed in on that browser. Banner: "Email verified. You are signed in on this device." | Verify screen: "Tap the link... open it in the same browser you are using here if you can." |
+| Sign up, open the link in the **same browser** | Email verified and signed in on that browser. Banner: "Email verified. You are signed in on this device." | Verify screen: "Open the link... open it in the same browser you are using here if you can." |
 | Sign up on desktop, open the link on a **phone** | Phone: verified and signed in. Desktop: still signed out, still on the verify screen. | "Opened it on your phone or another device? Your email is still verified. Come back to this screen and sign in with your email and password." |
 | Desktop afterwards: "I have verified my email. Sign in" | Goes to sign-in with the email prefilled (never the password). Sign in with the password. | "If you opened the verification link, your email is verified. Sign in below..." |
 | Email sign-in link ("magic link") opened on another device | Signed in on that device only. | "Opened it on your phone? You will be signed in on your phone, not here. To sign in on this device, request a new link from here or use your password." |
