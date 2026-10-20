@@ -61,7 +61,7 @@ export const STUDIO = [
   { id: 'signature', name: 'Signature card', from: 249, needs: 'One-time fee. Your card also needs an OKUNAMI Pro, Pro Plus or Business subscription, billed separately.',
     blurb: 'I design your card from scratch in your exact brand.',
     includes: ['A card designed from scratch in your exact brand', 'Custom animation', 'Copywriting', 'Two custom AI agents, built for your business', 'Full setup', 'One round of revisions'] },
-  { id: 'portrait', name: 'Living Portrait', from: 99,
+  { id: 'portrait', name: 'Living Portrait', from: 49,
     blurb: 'Your photo becomes a short looping video of you smiling and waving.',
     includes: ['Animated from a photo you already have, or filmed live at a headshot session'] },
   { id: 'team', name: 'Team setup', from: 35, per: 'person', needs: 'One-time setup fee per person. Each card also needs an OKUNAMI Business subscription, billed separately.',
