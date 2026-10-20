@@ -322,10 +322,10 @@ export const TERMS: LegalSection[] = [
   },
   "body": {
    "en": [
-    "Studio projects are quoted individually. The scope, deliverables, revisions, price and timing are set in the written quote or message you accept, and that quote controls for that work if it differs from these Terms. Studio cards need a OKUNAMI Pro, Pro Plus or Business subscription. Any address on a finessemedia.pro or okunami.pro subdomain is set up manually by Finesse Media. Self-service custom domains are not part of the Service yet."
+    "Studio projects are quoted individually. The scope, deliverables, revisions, price and timing are set in the written quote or message you accept, and that quote controls for that work if it differs from these Terms. Studio cards need a OKUNAMI Pro, Pro Plus or Business subscription. Any address on an okunami.pro subdomain is set up manually by Finesse Media. Self-service custom domains are not part of the Service yet."
    ],
    "es": [
-    "Los proyectos de Studio se cotizan de forma individual. El alcance, los entregables, las revisiones, el precio y los plazos se establecen en la cotización o mensaje escrito que aceptes, y esa cotización prevalece para ese trabajo si difiere de estos Términos. Las tarjetas de Studio requieren una suscripción a OKUNAMI Pro, Pro Plus o Business. Cualquier dirección en un subdominio de finessemedia.pro u okunami.pro la configura manualmente Finesse Media. Los dominios personalizados de autoservicio todavía no forman parte del Servicio."
+    "Los proyectos de Studio se cotizan de forma individual. El alcance, los entregables, las revisiones, el precio y los plazos se establecen en la cotización o mensaje escrito que aceptes, y esa cotización prevalece para ese trabajo si difiere de estos Términos. Las tarjetas de Studio requieren una suscripción a OKUNAMI Pro, Pro Plus o Business. Cualquier dirección en un subdominio de okunami.pro la configura manualmente Finesse Media. Los dominios personalizados de autoservicio todavía no forman parte del Servicio."
    ]
   }
  },
