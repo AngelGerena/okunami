@@ -4,10 +4,14 @@
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=(), interest-cohort=()
   Strict-Transport-Security: max-age=31536000; includeSubDomains
+  X-Robots-Tag: noai, noimageai
+  tdm-reservation: 1
 /js/*
   Cache-Control: public, max-age=31536000, immutable
+  X-Robots-Tag: noindex, noai, noimageai
 /css/*
   Cache-Control: public, max-age=31536000, immutable
+  X-Robots-Tag: noindex, noai, noimageai
 /images/*
   Cache-Control: public, max-age=31536000, immutable
 /assets/*
