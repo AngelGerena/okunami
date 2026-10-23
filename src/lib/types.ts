@@ -84,7 +84,9 @@ export type TemplateId =
   // EOS collection (photographers, pro DSLR)
   | 'topplate' | 'focuslock' | 'seamless' | 'playback'
   // Gold Ring collection (photographers who shoot Nikon)
-  | 'goldring' | 'redgrip' | 'tracking' | 'mymenu' | 'heritage';
+  | 'goldring' | 'redgrip' | 'tracking' | 'mymenu' | 'heritage'
+  // Square Format collection (medium-format / Hasselblad shooters)
+  | 'mediumformat' | 'digitalback' | 'colortarget' | 'waistlevel' | 'filmback' | 'lunar';
 
 export interface SocialLink { id: string; network: string; value: string; }   // value = handle or full URL
 export interface Highlight { id: string; icon: string; title: string; subtitle: string; }
