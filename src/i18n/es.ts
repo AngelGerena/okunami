@@ -740,6 +740,7 @@ export const ES: Record<string, string> = {
   "Connect a domain you already own": "Conecta un dominio que ya tengas",
   "EOS Collection extras": "Extras de la Colección EOS",
   "Camera design extras": "Extras de los diseños de cámara",
+  "These show on the camera designs (EOS, Gold Ring, Square Format, Mirrorless, X-Series and Cinema). Everything here is optional.": "Se muestran en los diseños de cámara (EOS, Gold Ring, Square Format, Mirrorless, X-Series y Cinema). Todo aquí es opcional.",
   "These show on the camera designs (EOS, Gold Ring, Square Format, Mirrorless and X-Series). Everything here is optional.": "Se muestran en los diseños de cámara (EOS, Gold Ring, Square Format, Mirrorless y X-Series). Todo aquí es opcional.",
   "These show on the camera designs (EOS, Gold Ring, Square Format and Mirrorless). Everything here is optional.": "Se muestran en los diseños de cámara (EOS, Gold Ring, Square Format y Mirrorless). Todo aquí es opcional.",
   "These show on the camera designs (EOS, Gold Ring and Square Format). Everything here is optional.": "Se muestran en los diseños de cámara (EOS, Gold Ring y Square Format). Todo aquí es opcional.",
