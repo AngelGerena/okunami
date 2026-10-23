@@ -16,6 +16,7 @@ import { AgentProfile, Coastal, Crest, Edit, Linen, Merlot, Noir, Roofline, Swis
 import { FocusLock, Playback, Seamless, TopPlate } from './sig8';
 import { GoldRing, Heritage, MyMenu, RedGrip, Tracking } from './sig9';
 import { ColorTarget, DigitalBack, FilmBack, Lunar, MediumFormat, WaistLevel } from './sig10';
+import { BarberClub, BlackLabel, BlushAtelier, Botanical, CedarSmoke, CopperForge, NoirLash, RougeEdit, VoltSport } from './sig11';
 import { Boarding, Confetti, Inbox, Invitation, Monogram, Planner, Recipe, Stained, Toolbelt, Trading, Turntable, Vinyl, Waveform } from './sig2-b';
 import {
   Arrow, Btn, Business, CalendarDays, ContactList, Crisis, Dock, Footer, Highlights, LocationCard, Logo, Name, Photo,
@@ -198,6 +199,17 @@ export const TEMPLATES: TemplateMeta[] = [
   { id: 'waistlevel',   name: 'Waist Level',   niche: 'Photo and Video', blurb: 'Looking down into a waist-level finder: chrome hood, opened flaps, a focusing grid and your photo on the ground glass.', bestFor: 'Film and medium-format photographers' },
   { id: 'filmback',     name: 'Film Back',     niche: 'Photo and Video', blurb: 'A film magazine: a dark slide rises with your name engraved, above a 120 film strip and a frame counter.', bestFor: 'Film photographers' },
   { id: 'lunar',        name: 'Lunar',         niche: 'Photo and Video', blurb: 'The moon camera: black space, Earthrise, mission data and your photo marked with reseau crosses.', bestFor: 'Photographers who want a showstopper' },
+  // ---- Farmasi collection (direct sellers): her line
+  { id: 'rougeedit',    name: 'Rouge Edit',     niche: 'Beauty Consultants', blurb: 'A wine and gold magazine cover with your name in italic, a pull quote and a table of contents.', bestFor: 'Farmasi leaders, top beauty sellers' },
+  { id: 'blushatelier', name: 'Blush Atelier',  niche: 'Beauty Consultants', blurb: 'An oval cameo portrait, a signed seal and your first name in script.', bestFor: 'New beauty sellers, makeup artists' },
+  { id: 'noirlash',     name: 'Noir Lash',      niche: 'Beauty Consultants', blurb: 'Stacked bold type, a slanted photo cut and a scrolling hot pink tape.', bestFor: 'Lash and makeup sellers, TikTok recruiters' },
+  { id: 'botanical',    name: 'Botanical',      niche: 'Beauty Consultants', blurb: 'Sage and leaf sprigs around your photo, with an ingredients label for your tagline.', bestFor: 'Skincare and wellness sellers' },
+  // ---- Farmasi collection: his line
+  { id: 'blacklabel',   name: 'Black Label',    niche: "Men's Grooming", blurb: 'A luxury cologne box: gold corners, a monogram crest and a scent-notes bar.', bestFor: 'Men selling fragrance and grooming, team leaders' },
+  { id: 'barberclub',   name: 'Barber Club',    niche: "Men's Grooming", blurb: 'Barber-pole stripes, a round portrait badge, ticket-stub links and a chair menu.', bestFor: 'Barbers who sell, beard-care sellers' },
+  { id: 'copperforge',  name: 'Copper Forge',   niche: "Men's Grooming", blurb: 'A copper blueprint cover, heavy condensed type and a spec sheet.', bestFor: 'Tradesmen, gym owners, practical sellers' },
+  { id: 'cedarsmoke',   name: 'Cedar and Smoke', niche: "Men's Grooming", blurb: 'Wood grain, drifting smoke and a fragrance pyramid of top, heart and base notes.', bestFor: 'Fragrance lovers, mature customers' },
+  { id: 'voltsport',    name: 'Volt Sport',     niche: "Men's Grooming", blurb: 'Volt green with speed stripes, a giant italic GO and an AM and PM routine.', bestFor: 'Gym guys, coaches, young recruiters' },
 ];
 
 /* ------------------------------------------------------------ 1 Editorial Cover */
@@ -498,4 +510,6 @@ export const TEMPLATE_COMPONENTS: Record<TemplateId, () => ReactElement> = {
   topplate: TopPlate, focuslock: FocusLock, seamless: Seamless, playback: Playback,
   goldring: GoldRing, redgrip: RedGrip, tracking: Tracking, mymenu: MyMenu, heritage: Heritage,
   mediumformat: MediumFormat, digitalback: DigitalBack, colortarget: ColorTarget, waistlevel: WaistLevel, filmback: FilmBack, lunar: Lunar,
+  rougeedit: RougeEdit, blushatelier: BlushAtelier, noirlash: NoirLash, botanical: Botanical,
+  blacklabel: BlackLabel, barberclub: BarberClub, copperforge: CopperForge, cedarsmoke: CedarSmoke, voltsport: VoltSport,
 };
