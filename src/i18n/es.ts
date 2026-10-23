@@ -733,5 +733,12 @@ export const ES: Record<string, string> = {
   "Scan and save stats (coming soon)": "Estadísticas de escaneos y guardados (próximamente)",
   "Select to recolor": "Selecciona para recolorear",
   "<b>I set up your live address by hand.</b> It is an address on okunami.pro that I provide. Already own a domain? I can connect it for you.": "<b>Configuro tu dirección pública a mano.</b> Es una dirección en okunami.pro que yo te proporciono. ¿Ya tienes un dominio? Puedo conectarlo por ti.",
-  "Connect a domain you already own": "Conecta un dominio que ya tengas"
+  "Connect a domain you already own": "Conecta un dominio que ya tengas",
+  "EOS Collection extras": "Extras de la Colección EOS",
+  "These show on the EOS camera designs. Everything here is optional.": "Se muestran en los diseños de cámara EOS. Todo aquí es opcional.",
+  "Pop-out photo": "Foto que sale del lente",
+  "Your photo with the background removed, as a PNG. Your head and shoulders step out of the lens. Leave it empty to show your regular photo inside the lens.": "Tu foto sin fondo, en PNG. Tu cabeza y hombros salen del lente. Déjala vacía para mostrar tu foto normal dentro del lente.",
+  "Gear line": "Línea de equipo",
+  "Shot on Canon EOS 5D Mark III": "Fotografiado con Canon EOS 5D Mark III",
+  "A short line about your camera or style, shown above your portfolio.": "Una línea corta sobre tu cámara o tu estilo, que aparece encima de tu portafolio."
 };

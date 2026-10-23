@@ -80,7 +80,9 @@ export type TemplateId =
   | 'halo' | 'leaf' | 'coversplit' | 'plum' | 'neonpulse' | 'roseglass' | 'swatchbar' | 'runway' | 'silkcurve' | 'boldblock' | 'sunset' | 'glamrail' | 'growth'
   | 'aperture' | 'viewfinder' | 'lensring' | 'rangefinder' | 'safelight' | 'carbonpro' | 'modedial' | 'pianoblack' | 'filmstrip' | 'softbox' | 'railbleed' | 'railcircle' | 'railarch' | 'railoval' | 'railmark' | 'railblob'
   // agent collection (realtors)
-  | 'noir' | 'coastal' | 'edit' | 'crest' | 'swissgrid' | 'merlot' | 'linen' | 'roofline' | 'agentprofile';
+  | 'noir' | 'coastal' | 'edit' | 'crest' | 'swissgrid' | 'merlot' | 'linen' | 'roofline' | 'agentprofile'
+  // EOS collection (photographers, pro DSLR)
+  | 'topplate' | 'focuslock' | 'seamless' | 'playback';
 
 export interface SocialLink { id: string; network: string; value: string; }   // value = handle or full URL
 export interface Highlight { id: string; icon: string; title: string; subtitle: string; }
@@ -114,6 +116,7 @@ export interface CardData {
   orgLogoUrl?: string;     // full logo lockup (wide), shown under the name
   kicker?: string;         // short accent line above the name
   photoVideoUrl?: string;  // living portrait: silent clip over the photo, plays once
+  popoutUrl?: string;      // EOS Top Plate: the photo with its background removed (transparent PNG); the head breaks out of the lens
   music?: { url: string; title: string; sub?: string };  // background music, starts on first tap
 }
 
