@@ -564,6 +564,12 @@ const NICHE_LIST: Niche[] = [
       d('filmrecipe', 'Recipe', 'Clean and editorial: your signature film recipe printed like a trading card, with a red signature stamp.', ['#1D1B17', '#D93A2B', '#EFE9DC'], 'light', ['Fraunces', 'Figtree'], ['rounded', 'large', 'raised', 'none'], 'calm', 1, true),
       d('instaprint', 'Instant', 'An instant print slides out of the slot and develops on screen, signed with your name. Tap it to shake.', ['#1C1A16', '#2F6F5E', '#E9E4DA'], 'light', ['Fraunces', 'Figtree'], ['rounded', 'large', 'raised', 'none'], 'calm', 1, true),
       d('monostrip', 'Mono', 'Grainy black and white on a film strip with edge markings, a big serif name and yellow, red and green filters.', ['#050505', '#D9A63A', '#F2F2F2'], 'dark', ['Fraunces', 'Figtree'], ['rounded', 'large', 'raised', 'none'], 'calm', 1, true),
+      // Cinema collection: for cinematographers. Record-button Save; a YouTube or Vimeo social becomes Watch my reel
+      d('cinescreen', 'Cine Screen', 'A cinema camera touchscreen with a live histogram, audio meters and false color from your photo. Hit REC and the timecode rolls.', ['#0D0E0F', '#E5322D', '#F2F2F0'], 'dark', ['Big Shoulders Display', 'Inter Tight'], ['rounded', 'large', 'raised', 'none'], 'tech', 1, true),
+      d('cinebrain', 'Cine Brain', 'A machined black cinema body with a red-rimmed monitor, live histogram, clipping posts and swappable frame guides.', ['#050505', '#D7141A', '#F2F2F0'], 'dark', ['Big Shoulders Display', 'Inter Tight'], ['rounded', 'large', 'raised', 'none'], 'tech', 1, true),
+      d('focusguide', 'Focus Guide', 'Hybrid cinema mode: a dual pixel focus guide closes in and turns green as your shot racks into focus.', ['#0A0A0A', '#E32630', '#F2F2F0'], 'dark', ['Big Shoulders Display', 'Inter Tight'], ['rounded', 'large', 'raised', 'none'], 'tech', 1, true),
+      d('punchin', '8K Punch', 'Your full 8K frame on a thirds grid. Punch in 5x on the eyes to show every detail, then pull back out.', ['#0C0B09', '#F2A93B', '#F4EFE6'], 'dark', ['Big Shoulders Display', 'Inter Tight'], ['rounded', 'large', 'raised', 'none'], 'tech', 1, true),
+      d('slate', 'Slate', 'A clapperboard with your production name, a take that counts up on every clap and running LED timecode.', ['#0B0B0B', '#F2C200', '#F2F2F0'], 'dark', ['Big Shoulders Display', 'Inter Tight'], ['rounded', 'large', 'raised', 'none'], 'tech', 1, true),
     ],
   },
   {
@@ -781,6 +787,7 @@ export const TEMPLATE_EXTRA_FONTS: Partial<Record<TemplateId, string[]>> = {
   mediumformat: ['IBM Plex Mono'], digitalback: ['IBM Plex Mono'], colortarget: ['IBM Plex Mono'], waistlevel: ['IBM Plex Mono'], filmback: ['IBM Plex Mono'], lunar: ['IBM Plex Mono'],
   eyeaf: ['JetBrains Mono'], zebras: ['JetBrains Mono'], peaking: ['JetBrains Mono'], slog: ['JetBrains Mono'], sensor: ['JetBrains Mono'], bokeh: ['JetBrains Mono'],
   filmsim: ['DM Mono'], xdials: ['DM Mono'], hybridvf: ['DM Mono'], filmrecipe: ['DM Mono'], instaprint: ['DM Mono', 'Caveat'], monostrip: ['DM Mono'],
+  cinescreen: ['JetBrains Mono'], cinebrain: ['JetBrains Mono'], focusguide: ['JetBrains Mono'], punchin: ['JetBrains Mono'], slate: ['JetBrains Mono'],
   terminal: ['VT323', 'IBM Plex Mono'],
   radar: ['Share Tech Mono'],
   circuit: ['IBM Plex Mono'],

@@ -19,6 +19,7 @@ import { ColorTarget, DigitalBack, FilmBack, Lunar, MediumFormat, WaistLevel } f
 import { BarberClub, BlackLabel, BlushAtelier, Botanical, CedarSmoke, CopperForge, NoirLash, RougeEdit, VoltSport } from './sig11';
 import { Bokeh, EyeAF, Peaking, SLog, Sensor, Zebras } from './sig12';
 import { FilmRecipe, FilmSim, HybridVF, InstaPrint, MonoStrip, XDials } from './sig13';
+import { CineBrain, CineScreen, FocusGuide, PunchIn, Slate } from './sig14';
 import { Boarding, Confetti, Inbox, Invitation, Monogram, Planner, Recipe, Stained, Toolbelt, Trading, Turntable, Vinyl, Waveform } from './sig2-b';
 import {
   Arrow, Btn, Business, CalendarDays, ContactList, Crisis, Dock, Footer, Highlights, LocationCard, Logo, Name, Photo,
@@ -215,6 +216,12 @@ export const TEMPLATES: TemplateMeta[] = [
   { id: 'filmrecipe', name: 'Recipe', niche: 'Photo and Video', blurb: 'Clean and editorial: your signature film recipe printed like a trading card, with a red signature stamp.', bestFor: 'Fuji shooters who share their film recipes' },
   { id: 'instaprint', name: 'Instant', niche: 'Photo and Video', blurb: 'An instant print slides out of the slot and develops on screen, signed with your name. Tap it to shake.', bestFor: 'Event, wedding and lifestyle photographers' },
   { id: 'monostrip', name: 'Mono', niche: 'Photo and Video', blurb: 'Grainy black and white on a film strip with edge markings, a big serif name and yellow, red and green filters.', bestFor: 'Black and white, street and portrait photographers' },
+  // ---- Cinema collection (cinematographers)
+  { id: 'cinescreen', name: 'Cine Screen', niche: 'Photo and Video', blurb: 'A cinema camera touchscreen with a live histogram, audio meters and false color from your photo. Hit REC and the timecode rolls.', bestFor: 'Cinematographers, Blackmagic shooters' },
+  { id: 'cinebrain', name: 'Cine Brain', niche: 'Photo and Video', blurb: 'A machined black cinema body with a red-rimmed monitor, live histogram, clipping posts and swappable frame guides.', bestFor: 'Cinematographers, RED shooters' },
+  { id: 'focusguide', name: 'Focus Guide', niche: 'Photo and Video', blurb: 'Hybrid cinema mode: a dual pixel focus guide closes in and turns green as your shot racks into focus.', bestFor: 'Cinematographers, Canon R5 C and Cinema EOS shooters' },
+  { id: 'punchin', name: '8K Punch', niche: 'Photo and Video', blurb: 'Your full 8K frame on a thirds grid. Punch in 5x on the eyes to show every detail, then pull back out.', bestFor: 'Hybrid filmmakers, Canon R5 shooters' },
+  { id: 'slate', name: 'Slate', niche: 'Photo and Video', blurb: 'A clapperboard with your production name, a take that counts up on every clap and running LED timecode.', bestFor: 'Cinematographers, directors and video crews' },
   // ---- Farmasi collection (direct sellers): her line
   { id: 'rougeedit',    name: 'Rouge Edit',     niche: 'Beauty Consultants', blurb: 'A wine and gold magazine cover with your name in italic, a pull quote and a table of contents.', bestFor: 'Farmasi leaders, top beauty sellers' },
   { id: 'blushatelier', name: 'Blush Atelier',  niche: 'Beauty Consultants', blurb: 'An oval cameo portrait, a signed seal and your first name in script.', bestFor: 'New beauty sellers, makeup artists' },
@@ -528,6 +535,7 @@ export const TEMPLATE_COMPONENTS: Record<TemplateId, () => ReactElement> = {
   mediumformat: MediumFormat, digitalback: DigitalBack, colortarget: ColorTarget, waistlevel: WaistLevel, filmback: FilmBack, lunar: Lunar,
   eyeaf: EyeAF, zebras: Zebras, peaking: Peaking, slog: SLog, sensor: Sensor, bokeh: Bokeh,
   filmsim: FilmSim, xdials: XDials, hybridvf: HybridVF, filmrecipe: FilmRecipe, instaprint: InstaPrint, monostrip: MonoStrip,
+  cinescreen: CineScreen, cinebrain: CineBrain, focusguide: FocusGuide, punchin: PunchIn, slate: Slate,
   rougeedit: RougeEdit, blushatelier: BlushAtelier, noirlash: NoirLash, botanical: Botanical,
   blacklabel: BlackLabel, barberclub: BarberClub, copperforge: CopperForge, cedarsmoke: CedarSmoke, voltsport: VoltSport,
 };
