@@ -557,6 +557,13 @@ const NICHE_LIST: Niche[] = [
       d('slog', 'S-Log', 'A cinema rig: a flat log image that grades into full color, a red record frame, tally light and running timecode.', ['#0B0B0C', '#F2711C', '#F2F2F0'], 'dark', ['Sora', 'Manrope'], ['rounded', 'large', 'raised', 'none'], 'tech', 1, true),
       d('sensor', 'Sensor', 'Lens off: a chrome mount with an accent ring and your portrait reflected in the shimmering full-frame sensor.', ['#060607', '#F2711C', '#F2F2F0'], 'dark', ['Sora', 'Manrope'], ['rounded', 'large', 'raised', 'none'], 'tech', 1, true),
       d('bokeh', 'Bokeh', 'Warm bokeh orbs drift over your portrait, with a wide-open lens tag and your name set over the fade.', ['#0D0907', '#F2711C', '#F4EEE8'], 'dark', ['Sora', 'Manrope'], ['rounded', 'large', 'raised', 'none'], 'calm', 1, true),
+      // X-Series collection: for Fuji-style retro mirrorless shooters. Threaded silver shutter Save
+      d('filmsim', 'Film Sim', 'Your portrait under a film simulation menu: tap Chrome, Vivid, Neg, Cine or Mono and the photo regrades live.', ['#0C0C0B', '#D93A2B', '#F3EFE6'], 'dark', ['Fraunces', 'Figtree'], ['rounded', 'large', 'raised', 'none'], 'tech', 1, true),
+      d('xdials', 'Dials', 'A machined silver top plate with working ISO, shutter and exposure dials. Turn them and the meter and photo respond.', ['#121110', '#D93A2B', '#F3EFE6'], 'dark', ['Fraunces', 'Figtree'], ['rounded', 'large', 'raised', 'none'], 'tech', 1, true),
+      d('hybridvf', 'Viewfinder', 'A hybrid viewfinder: bright frame lines in optical mode, then flip the lever to the electronic view.', ['#0A0B0B', '#D93A2B', '#F3EFE6'], 'dark', ['Fraunces', 'Figtree'], ['rounded', 'large', 'raised', 'none'], 'tech', 1, true),
+      d('filmrecipe', 'Recipe', 'Clean and editorial: your signature film recipe printed like a trading card, with a red signature stamp.', ['#1D1B17', '#D93A2B', '#EFE9DC'], 'light', ['Fraunces', 'Figtree'], ['rounded', 'large', 'raised', 'none'], 'calm', 1, true),
+      d('instaprint', 'Instant', 'An instant print slides out of the slot and develops on screen, signed with your name. Tap it to shake.', ['#1C1A16', '#2F6F5E', '#E9E4DA'], 'light', ['Fraunces', 'Figtree'], ['rounded', 'large', 'raised', 'none'], 'calm', 1, true),
+      d('monostrip', 'Mono', 'Grainy black and white on a film strip with edge markings, a big serif name and yellow, red and green filters.', ['#050505', '#D9A63A', '#F2F2F2'], 'dark', ['Fraunces', 'Figtree'], ['rounded', 'large', 'raised', 'none'], 'calm', 1, true),
     ],
   },
   {
@@ -773,6 +780,7 @@ export const TEMPLATE_EXTRA_FONTS: Partial<Record<TemplateId, string[]>> = {
   blushatelier: ['Pinyon Script'], copperforge: ['IBM Plex Mono'],
   mediumformat: ['IBM Plex Mono'], digitalback: ['IBM Plex Mono'], colortarget: ['IBM Plex Mono'], waistlevel: ['IBM Plex Mono'], filmback: ['IBM Plex Mono'], lunar: ['IBM Plex Mono'],
   eyeaf: ['JetBrains Mono'], zebras: ['JetBrains Mono'], peaking: ['JetBrains Mono'], slog: ['JetBrains Mono'], sensor: ['JetBrains Mono'], bokeh: ['JetBrains Mono'],
+  filmsim: ['DM Mono'], xdials: ['DM Mono'], hybridvf: ['DM Mono'], filmrecipe: ['DM Mono'], instaprint: ['DM Mono', 'Caveat'], monostrip: ['DM Mono'],
   terminal: ['VT323', 'IBM Plex Mono'],
   radar: ['Share Tech Mono'],
   circuit: ['IBM Plex Mono'],

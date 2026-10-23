@@ -91,7 +91,9 @@ export type TemplateId =
   | 'rougeedit' | 'blushatelier' | 'noirlash' | 'botanical'
   | 'blacklabel' | 'barberclub' | 'copperforge' | 'cedarsmoke' | 'voltsport'
   // Mirrorless collection (Sony-style mirrorless shooters)
-  | 'eyeaf' | 'zebras' | 'peaking' | 'slog' | 'sensor' | 'bokeh';
+  | 'eyeaf' | 'zebras' | 'peaking' | 'slog' | 'sensor' | 'bokeh'
+  // X-Series collection (Fuji-style retro mirrorless shooters)
+  | 'filmsim' | 'xdials' | 'hybridvf' | 'filmrecipe' | 'instaprint' | 'monostrip';
 
 export interface SocialLink { id: string; network: string; value: string; }   // value = handle or full URL
 export interface Highlight { id: string; icon: string; title: string; subtitle: string; }
