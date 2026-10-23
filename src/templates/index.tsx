@@ -15,6 +15,7 @@ import { BoldBlock, CoverSplit, GlamRailArch, GlamRailBleed, GlamRailBlob, GlamR
 import { AgentProfile, Coastal, Crest, Edit, Linen, Merlot, Noir, Roofline, SwissGrid } from './sig7';
 import { FocusLock, Playback, Seamless, TopPlate } from './sig8';
 import { GoldRing, Heritage, MyMenu, RedGrip, Tracking } from './sig9';
+import { ColorTarget, DigitalBack, FilmBack, Lunar, MediumFormat, WaistLevel } from './sig10';
 import { Boarding, Confetti, Inbox, Invitation, Monogram, Planner, Recipe, Stained, Toolbelt, Trading, Turntable, Vinyl, Waveform } from './sig2-b';
 import {
   Arrow, Btn, Business, CalendarDays, ContactList, Crisis, Dock, Footer, Highlights, LocationCard, Logo, Name, Photo,
@@ -190,6 +191,13 @@ export const TEMPLATES: TemplateMeta[] = [
   { id: 'tracking', name: 'Tracking',  niche: 'Photo and Video', blurb: 'Through the viewfinder: a yellow eye-tracking box locks onto your face over an exposure readout.', bestFor: 'Nikon shooters, sports and wedding photographers' },
   { id: 'mymenu',   name: 'My Menu',   niche: 'Photo and Video', blurb: 'Your card as the camera menu: tab icons, a yellow selected row and a quick-menu grid for every action.', bestFor: 'Nikon shooters, camera creators' },
   { id: 'heritage', name: 'Heritage',  niche: 'Photo and Video', blurb: 'A chrome film body with a speed dial and frame counter, and your photo as a print on black leatherette.', bestFor: 'Film and documentary photographers' },
+  // ---- Square Format collection (medium-format / Hasselblad shooters)
+  { id: 'mediumformat', name: 'Medium Format', niche: 'Photo and Video', blurb: 'A brushed aluminum body with a slim top display, an orange shutter that saves you and your photo in wide 4:3.', bestFor: 'Medium-format and fine art photographers' },
+  { id: 'digitalback',  name: 'Digital Back',  niche: 'Photo and Video', blurb: 'A modular digital back with a square screen, framing guides, a 16-bit readout and a chrome mount plate.', bestFor: 'Medium-format and studio photographers' },
+  { id: 'colortarget',  name: 'Color Target',  niche: 'Photo and Video', blurb: 'A clean white gallery look with a color-calibration card tucked into the corner of your portrait.', bestFor: 'Portrait and product photographers' },
+  { id: 'waistlevel',   name: 'Waist Level',   niche: 'Photo and Video', blurb: 'Looking down into a waist-level finder: chrome hood, opened flaps, a focusing grid and your photo on the ground glass.', bestFor: 'Film and medium-format photographers' },
+  { id: 'filmback',     name: 'Film Back',     niche: 'Photo and Video', blurb: 'A film magazine: a dark slide rises with your name engraved, above a 120 film strip and a frame counter.', bestFor: 'Film photographers' },
+  { id: 'lunar',        name: 'Lunar',         niche: 'Photo and Video', blurb: 'The moon camera: black space, Earthrise, mission data and your photo marked with reseau crosses.', bestFor: 'Photographers who want a showstopper' },
 ];
 
 /* ------------------------------------------------------------ 1 Editorial Cover */
@@ -489,4 +497,5 @@ export const TEMPLATE_COMPONENTS: Record<TemplateId, () => ReactElement> = {
   noir: Noir, coastal: Coastal, edit: Edit, crest: Crest, swissgrid: SwissGrid, merlot: Merlot, linen: Linen, roofline: Roofline, agentprofile: AgentProfile,
   topplate: TopPlate, focuslock: FocusLock, seamless: Seamless, playback: Playback,
   goldring: GoldRing, redgrip: RedGrip, tracking: Tracking, mymenu: MyMenu, heritage: Heritage,
+  mediumformat: MediumFormat, digitalback: DigitalBack, colortarget: ColorTarget, waistlevel: WaistLevel, filmback: FilmBack, lunar: Lunar,
 };

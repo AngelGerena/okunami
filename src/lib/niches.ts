@@ -518,6 +518,13 @@ const NICHE_LIST: Niche[] = [
       d('tracking', 'Tracking', 'Through the viewfinder: a yellow eye-tracking box locks onto your face over an exposure readout.', ['#050505', '#FFD400', '#EDEDED'], 'dark', ['Barlow Condensed', 'Barlow'], ['rounded', 'large', 'raised', 'none'], 'tech', 1, true),
       d('mymenu', 'My Menu', 'Your card as the camera menu: tab icons, a yellow selected row and a quick-menu grid for every action.', ['#0A0A0A', '#FFD400', '#F4F4F4'], 'dark', ['Barlow Condensed', 'Barlow'], ['rounded', 'large', 'raised', 'none'], 'tech', 1, true),
       d('heritage', 'Heritage', 'A chrome film body with a speed dial and frame counter, and your photo as a print on black leatherette.', ['#1A1918', '#F2C200', '#E9E6DF'], 'light', ['Fraunces', 'Barlow'], ['rounded', 'large', 'raised', 'none'], 'calm', 1, true),
+      // Square Format collection: for medium-format (Hasselblad) shooters. Modern: orange shutter; classic: chrome winding knob
+      d('mediumformat', 'Medium Format', 'A brushed aluminum body with a slim top display, an orange shutter that saves you and your photo in wide 4:3.', ['#151515', '#FF6A1A', '#E6E5E2'], 'light', ['Instrument Serif', 'Instrument Sans'], ['rounded', 'large', 'raised', 'none'], 'calm', 1, true),
+      d('digitalback', 'Digital Back', 'A modular digital back with a square screen, framing guides, a 16-bit readout and a chrome mount plate.', ['#0E0E0F', '#FF6A1A', '#F2F1EE'], 'dark', ['Instrument Sans', 'Instrument Sans'], ['rounded', 'large', 'raised', 'none'], 'tech', 1, true),
+      d('colortarget', 'Color Target', 'A clean white gallery look with a color-calibration card tucked into the corner of your portrait.', ['#161616', '#FF6A1A', '#F7F6F3'], 'light', ['Instrument Serif', 'Instrument Sans'], ['rounded', 'large', 'raised', 'none'], 'calm', 1, true),
+      d('waistlevel', 'Waist Level', 'Looking down into a waist-level finder: chrome hood, opened flaps, a focusing grid and your photo on the ground glass.', ['#121110', '#7FA6D9', '#F1EDE6'], 'dark', ['Cormorant Garamond', 'Instrument Sans'], ['rounded', 'large', 'raised', 'none'], 'calm', 1, true),
+      d('filmback', 'Film Back', 'A film magazine: a dark slide rises with your name engraved, above a 120 film strip and a frame counter.', ['#0F0F10', '#E8B04B', '#F0EEE9'], 'dark', ['Cormorant Garamond', 'Instrument Sans'], ['rounded', 'large', 'raised', 'none'], 'calm', 1, true),
+      d('lunar', 'Lunar', 'The moon camera: black space, Earthrise, mission data and your photo marked with reseau crosses.', ['#030304', '#F2A33A', '#ECEBE8'], 'dark', ['Michroma', 'Instrument Sans'], ['rounded', 'large', 'raised', 'none'], 'tech', 1, true),
     ],
   },
   {
@@ -731,6 +738,7 @@ export const TEMPLATE_EXTRA_FONTS: Partial<Record<TemplateId, string[]>> = {
   tech: ['IBM Plex Mono', 'Space Grotesk'],
   topplate: ['IBM Plex Mono'], focuslock: ['IBM Plex Mono'], seamless: ['IBM Plex Mono'], playback: ['IBM Plex Mono'],
   goldring: ['IBM Plex Mono'], redgrip: ['IBM Plex Mono'], tracking: ['IBM Plex Mono'], mymenu: ['IBM Plex Mono'], heritage: ['IBM Plex Mono'],
+  mediumformat: ['IBM Plex Mono'], digitalback: ['IBM Plex Mono'], colortarget: ['IBM Plex Mono'], waistlevel: ['IBM Plex Mono'], filmback: ['IBM Plex Mono'], lunar: ['IBM Plex Mono'],
   terminal: ['VT323', 'IBM Plex Mono'],
   radar: ['Share Tech Mono'],
   circuit: ['IBM Plex Mono'],
