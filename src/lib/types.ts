@@ -89,7 +89,9 @@ export type TemplateId =
   | 'mediumformat' | 'digitalback' | 'colortarget' | 'waistlevel' | 'filmback' | 'lunar'
   // Farmasi collection (direct sellers): her line, then his line
   | 'rougeedit' | 'blushatelier' | 'noirlash' | 'botanical'
-  | 'blacklabel' | 'barberclub' | 'copperforge' | 'cedarsmoke' | 'voltsport';
+  | 'blacklabel' | 'barberclub' | 'copperforge' | 'cedarsmoke' | 'voltsport'
+  // Mirrorless collection (Sony-style mirrorless shooters)
+  | 'eyeaf' | 'zebras' | 'peaking' | 'slog' | 'sensor' | 'bokeh';
 
 export interface SocialLink { id: string; network: string; value: string; }   // value = handle or full URL
 export interface Highlight { id: string; icon: string; title: string; subtitle: string; }
