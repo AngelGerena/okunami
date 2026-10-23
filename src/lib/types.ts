@@ -86,7 +86,10 @@ export type TemplateId =
   // Gold Ring collection (photographers who shoot Nikon)
   | 'goldring' | 'redgrip' | 'tracking' | 'mymenu' | 'heritage'
   // Square Format collection (medium-format / Hasselblad shooters)
-  | 'mediumformat' | 'digitalback' | 'colortarget' | 'waistlevel' | 'filmback' | 'lunar';
+  | 'mediumformat' | 'digitalback' | 'colortarget' | 'waistlevel' | 'filmback' | 'lunar'
+  // Farmasi collection (direct sellers): her line, then his line
+  | 'rougeedit' | 'blushatelier' | 'noirlash' | 'botanical'
+  | 'blacklabel' | 'barberclub' | 'copperforge' | 'cedarsmoke' | 'voltsport';
 
 export interface SocialLink { id: string; network: string; value: string; }   // value = handle or full URL
 export interface Highlight { id: string; icon: string; title: string; subtitle: string; }

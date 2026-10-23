@@ -18,6 +18,7 @@ import './styles/sig7.css';
 import './styles/sig8.css';
 import './styles/sig9.css';
 import './styles/sig10.css';
+import './styles/sig11.css';
 import './styles/worship-engine.css';
 import './styles/worship-okunami.css';
 import './styles/miami.css';

@@ -61,9 +61,9 @@ export function ContactPanel(p: PanelProps) {
         <Field label={t("WhatsApp Business number")} type="tel" inputMode="tel" value={d.whatsapp} onChange={(v) => put({ whatsapp: v })} placeholder="1 407 555 0142" hint={t("Include the country code. US numbers start with 1.")} />
         {d.phone && !sameWa && <button type="button" className="btn btn--ghost btn--sm" onClick={() => put({ whatsapp: '1' + d.phone.replace(/\D/g, '').replace(/^1(?=\d{10}$)/, '') })}>{t("Use my phone number for WhatsApp")}</button>}
         <Field label={t("Email")} type="email" inputMode="email" autoComplete="email" value={d.email} onChange={(v) => put({ email: v })} placeholder={t("hello@yourbusiness.com")} />
-        {d.niche === 'consultant' ? <>
-          <Field label={t("Shop link")} type="url" inputMode="url" value={d.website} onChange={(v) => put({ website: v })} placeholder={t("yourbusiness.com")} hint={t("Your store link. Shows as the Shop my picks button on the Glam designs.")} />
-          <Field label={t("Join-my-team link")} type="url" inputMode="url" value={d.bookingUrl} onChange={(v) => put({ bookingUrl: v })} placeholder={t("yourbusiness.com")} hint={t("Your sign-up link for new team members. Shows as the Join my team button.")} />
+        {d.niche === 'consultant' || d.niche === 'grooming' ? <>
+          <Field label={t("Shop link")} type="url" inputMode="url" value={d.website} onChange={(v) => put({ website: v })} placeholder={t("yourbusiness.com")} hint={t("Your store link. Shows as the shop button on the beauty and grooming seller designs.")} />
+          <Field label={t("Join-my-team link")} type="url" inputMode="url" value={d.bookingUrl} onChange={(v) => put({ bookingUrl: v })} placeholder={t("yourbusiness.com")} hint={t("Your sign-up link for new team members. Shows as the Join my team or Build with me button.")} />
         </> : <>
           <Field label={t("Website")} type="url" inputMode="url" value={d.website} onChange={(v) => put({ website: v })} placeholder={t("yourbusiness.com")} />
           <Field label={t("Booking link")} type="url" inputMode="url" value={d.bookingUrl} onChange={(v) => put({ bookingUrl: v })} placeholder={t("calendly.com/you or your booking page")} hint={t("Adds a Book button. Leave empty if you don't take appointments online.")} />
