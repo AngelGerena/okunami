@@ -434,12 +434,12 @@ function MediaUpload({ label, hint, accept, value, onUrl, kind }: { label: strin
   );
 }
 
-const EOS = new Set(['topplate', 'focuslock', 'seamless', 'playback']);
+const EOS = new Set(['topplate', 'focuslock', 'seamless', 'playback', 'goldring', 'redgrip', 'tracking', 'mymenu', 'heritage']);
 function EosExtras(p: PanelProps) {
   const { t } = useT();
   const { d, put } = useData(p);
   return (
-    <Section title={t("EOS Collection extras")} hint={t("These show on the EOS camera designs. Everything here is optional.")}>
+    <Section title={t("Camera design extras")} hint={t("These show on the EOS and Gold Ring camera designs. Everything here is optional.")}>
       {p.card.template === 'topplate' && (
         <ImageUpload label={t("Pop-out photo")} shape="square" value={d.popoutUrl ?? ''}
           hint={t("Your photo with the background removed, as a PNG. Your head and shoulders step out of the lens. Leave it empty to show your regular photo inside the lens.")}

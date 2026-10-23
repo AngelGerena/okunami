@@ -15,10 +15,10 @@ import { formatPhone, telHref, waHref, webHref } from '../lib/links';
 const ext = (h: string) => (/^https?:/.test(h) ? { target: '_blank', rel: 'noopener' } : {});
 const EXPO = { shutter: '1/200', aperture: '2.8', iso: '100', focal: '85mm' };
 
-type Key = { key: string; label: string; href?: string; icon: ReactNode; book?: boolean };
+export type Key = { key: string; label: string; href?: string; icon: ReactNode; book?: boolean };
 
 /** Everything the EOS designs share: up to four keys (contact first, Book last) and the booking state. */
-function useEos() {
+export function useEos() {
   const { data, actions, play } = useCard();
   const [booking, setBooking] = useState(false);
   const ig = data.socials.find((s) => s.network === 'instagram');
@@ -46,14 +46,14 @@ function useEos() {
 }
 
 /** One high-gloss key. Book opens the booking link, or the booking sheet when there is none. */
-function GlossKey({ k, onBook, className = 'eos-key' }: { k: Key; onBook: () => void; className?: string }) {
+export function GlossKey({ k, onBook, className = 'eos-key' }: { k: Key; onBook: () => void; className?: string }) {
   const { play } = useCard();
   const cls = `${className}${k.book ? ' is-book' : ''}`;
   const inner = <><span className="eos-key__ic">{k.icon}</span><span className="eos-key__l">{k.label}</span></>;
   if (k.book && !k.href) return <button type="button" className={cls} onClick={onBook} {...el('btnPrimaryBg')}>{inner}</button>;
   return <a className={cls} href={k.href} onClick={() => play('tap')} {...ext(k.href ?? '')} {...el(k.book ? 'btnPrimaryBg' : 'btnSecondaryBg')}>{inner}</a>;
 }
-function Keys({ keys, onBook }: { keys: Key[]; onBook: () => void }) {
+export function Keys({ keys, onBook }: { keys: Key[]; onBook: () => void }) {
   if (!keys.length) return null;
   return <nav className={`eos-keys n${keys.length}`} aria-label="Contact">{keys.map((k) => <GlossKey key={k.key} k={k} onBook={onBook} />)}</nav>;
 }
@@ -69,7 +69,7 @@ function Shutter({ onSave, sub }: { onSave: () => void; sub: string }) {
 }
 
 /** Portfolio, sessions, socials, share and QR. */
-function Tail() {
+export function Tail() {
   const { data } = useCard();
   return (
     <div className="eos-tail">
@@ -88,7 +88,7 @@ const SLOTS = ['8:00 AM', '9:00 AM', '10:00 AM', '11:00 AM', '12:00 PM', '1:00 P
 const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 const fmtDate = (d: Date) => d.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' });
 
-function BookSheet({ onClose }: { onClose: () => void }) {
+export function BookSheet({ onClose }: { onClose: () => void }) {
   const { data, play } = useCard();
   const first = (data.fullName || 'me').split(' ')[0];
   const shoots = [...(data.highlights.length ? data.highlights.map((h) => h.title).filter(Boolean) : DEFAULT_SHOOTS), 'Something else'];
@@ -197,25 +197,25 @@ export function TopPlate() {
   const rim = `${(data.business || data.fullName || 'Studio').toUpperCase()} · ULTRASONIC · 1:2.8 · Ø77mm · `;
   const pop = data.popoutUrl;
   return (
-    <div className={`tpl tpl-eos tpl-tp${still ? ' is-still' : ''}`}>
+    <div className={`tpl tpl-eos tpl-etp${still ? ' is-still' : ''}`}>
       <div className="pad stack">
-        <div className="tp__body">
-          <div className="tp__top">
-            {data.logoUrl ? <Logo className="tp__logo" /> : <span className="tp__mono" {...el('accentDetail')}>{(data.business || data.fullName || 'S').split(/\s+/).map((w) => w[0]).join('').slice(0, 2).toUpperCase()}</span>}
-            <span className="tp__model">Full Frame · Mark III</span>
-            <span className="tp__dial" aria-hidden><span>M</span></span>
+        <div className="etp__body">
+          <div className="etp__top">
+            {data.logoUrl ? <Logo className="etp__logo" /> : <span className="etp__mono" {...el('accentDetail')}>{(data.business || data.fullName || 'S').split(/\s+/).map((w) => w[0]).join('').slice(0, 2).toUpperCase()}</span>}
+            <span className="etp__model">Full Frame · Mark III</span>
+            <span className="etp__dial" aria-hidden><span>M</span></span>
           </div>
-          <div className={`tp__lens${pop ? ' has-pop' : ''}`}>
-            <span className="tp__barrel" aria-hidden />
-            <svg className="tp__rim" viewBox="0 0 100 100" aria-hidden><defs><path id="eosRim" d="M50,50 m-44,0 a44,44 0 1,1 88,0 a44,44 0 1,1 -88,0" /></defs><text><textPath href="#eosRim">{rim}</textPath></text></svg>
-            <span className="tp__red" aria-hidden {...el('accentDetail')} /><span className="tp__well" aria-hidden />
-            <div className="tp__glass">{!pop && <Photo className="tp__img" />}<div className="tp__iris" aria-hidden>{Array.from({ length: 8 }, (_, i) => <i key={i} style={{ transform: `rotate(${i * 45}deg)` }} />)}</div></div>
-            {pop && <><span className="tp__shade" aria-hidden /><div className="tp__pop"><div className="tp__popin"><img src={pop} alt={data.fullName} /></div></div></>}
+          <div className={`etp__lens${pop ? ' has-pop' : ''}`}>
+            <span className="etp__barrel" aria-hidden />
+            <svg className="etp__rim" viewBox="0 0 100 100" aria-hidden><defs><path id="eosRim" d="M50,50 m-44,0 a44,44 0 1,1 88,0 a44,44 0 1,1 -88,0" /></defs><text><textPath href="#eosRim">{rim}</textPath></text></svg>
+            <span className="etp__red" aria-hidden {...el('accentDetail')} /><span className="etp__well" aria-hidden />
+            <div className="etp__glass">{!pop && <Photo className="etp__img" />}<div className="etp__iris" aria-hidden>{Array.from({ length: 8 }, (_, i) => <i key={i} style={{ transform: `rotate(${i * 45}deg)` }} />)}</div></div>
+            {pop && <><span className="etp__shade" aria-hidden /><div className="etp__pop"><div className="etp__popin"><img src={pop} alt={data.fullName} /></div></div></>}
           </div>
-          <div className="tp__lcd" aria-label={`Exposure ${EXPO.shutter}, f/${EXPO.aperture}, ISO ${EXPO.iso}`}>
-            <div className="tp__big"><span>{EXPO.shutter}</span><span>F{EXPO.aperture}</span><span>{EXPO.iso}</span></div>
-            <div className="tp__bar">{Array.from({ length: 13 }, (_, i) => <i key={i} className={i === 6 ? 'on' : ''} />)}</div>
-            <div className="tp__row"><span>M</span><span>AWB</span><span>ONE SHOT</span><span>RAW</span><span>[9999]</span></div>
+          <div className="etp__lcd" aria-label={`Exposure ${EXPO.shutter}, f/${EXPO.aperture}, ISO ${EXPO.iso}`}>
+            <div className="etp__big"><span>{EXPO.shutter}</span><span>F{EXPO.aperture}</span><span>{EXPO.iso}</span></div>
+            <div className="etp__bar">{Array.from({ length: 13 }, (_, i) => <i key={i} className={i === 6 ? 'on' : ''} />)}</div>
+            <div className="etp__row"><span>M</span><span>AWB</span><span>ONE SHOT</span><span>RAW</span><span>[9999]</span></div>
           </div>
         </div>
         <header className="eos-id">
@@ -239,21 +239,21 @@ export function FocusLock() {
   const { data, keys, save, booking, openBook, closeBook } = useEos();
   const { still } = useCard();
   return (
-    <div className={`tpl tpl-eos tpl-fl${still ? ' is-still' : ''}`}>
+    <div className={`tpl tpl-eos tpl-efl${still ? ' is-still' : ''}`}>
       <div className="pad stack">
-        <div className="fl__frame">
-          <Photo className="fl__img" />
-          <span className="fl__shade" aria-hidden /><span className="fl__corners" aria-hidden />
-          <div className="fl__af" aria-hidden>{AF_ROWS.map((n, r) => <div key={r}>{Array.from({ length: n }, (_, c) => <i key={c} className={(AF_LIT[r] ?? []).includes(c) ? 'lit' : ''} {...((AF_LIT[r] ?? []).includes(c) ? el('accentDetail') : {})} />)}</div>)}</div>
-          <div className="fl__data" aria-label="Viewfinder readout"><span>M</span><span>{EXPO.shutter}</span><span>F{EXPO.aperture}</span><span className="fl__scale">-2..1..<b>0</b>..1..+2</span><span>ISO{EXPO.iso}</span><i /></div>
+        <div className="efl__frame">
+          <Photo className="efl__img" />
+          <span className="efl__shade" aria-hidden /><span className="efl__corners" aria-hidden />
+          <div className="efl__af" aria-hidden>{AF_ROWS.map((n, r) => <div key={r}>{Array.from({ length: n }, (_, c) => <i key={c} className={(AF_LIT[r] ?? []).includes(c) ? 'lit' : ''} {...((AF_LIT[r] ?? []).includes(c) ? el('accentDetail') : {})} />)}</div>)}</div>
+          <div className="efl__data" aria-label="Viewfinder readout"><span>M</span><span>{EXPO.shutter}</span><span>F{EXPO.aperture}</span><span className="efl__scale">-2..1..<b>0</b>..1..+2</span><span>ISO{EXPO.iso}</span><i /></div>
         </div>
-        <div className="fl__id">
+        <div className="efl__id">
           <header className="eos-id">
             <p className="eos-eyebrow" {...el('caption')}>In focus{data.address.city ? ` · ${data.address.city}` : ''}</p>
             <h1 className="eos-name" {...el('name')}>{data.fullName || 'Your Name'}</h1>
             <p className="eos-role" {...el('title')}><b>{data.jobTitle || 'Photographer'}</b>{data.business && <> · {data.business}</>}</p>
           </header>
-          <Logo className="fl__logo" />
+          <Logo className="efl__logo" />
         </div>
         <Shutter onSave={save} sub="Half-press to focus. Full press to save." />
         <Keys keys={keys} onBook={openBook} />

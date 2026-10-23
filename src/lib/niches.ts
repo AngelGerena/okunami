@@ -512,6 +512,12 @@ const NICHE_LIST: Niche[] = [
       d('focuslock', 'Focus Lock', 'Through the viewfinder: AF points lock onto your face over a green exposure readout.', ['#060606', '#E2392C', '#ECECEC'], 'dark', ['Archivo', 'Archivo'], ['rounded', 'large', 'raised', 'none'], 'tech', 1, true),
       d('seamless', 'Seamless', 'A clean studio seamless, huge stacked name and glossy black keys with a red Book key.', ['#141416', '#C8102E', '#E6E7E9'], 'light', ['Archivo', 'Archivo'], ['rounded', 'large', 'raised', 'none'], 'bright', 1, true),
       d('playback', 'Playback', 'The rear camera screen: your shot with a live color histogram, and contact options as a quick-control grid.', ['#111112', '#F0A21F', '#F3F3F3'], 'dark', ['Archivo', 'Archivo'], ['rounded', 'large', 'raised', 'none'], 'tech', 1, true),
+      // Gold Ring collection: for Nikon shooters, yellow accent, shutter release in an ON/OFF collar
+      d('goldring', 'Gold Ring', 'Your photo inside a pro zoom lens: knurled zoom ring, a gold ring, a yellow focus scale and a zoom bar.', ['#0B0B0C', '#FFD400', '#F3F1EA'], 'dark', ['Barlow Condensed', 'Barlow'], ['rounded', 'large', 'raised', 'none'], 'tech', 1, true),
+      d('redgrip', 'Red Grip', 'The camera from the top: mode dial, a top LCD that lights up and a red grip line under your name.', ['#101012', '#D2232A', '#F2F2F2'], 'dark', ['Barlow Condensed', 'Barlow'], ['rounded', 'large', 'raised', 'none'], 'tech', 1, true),
+      d('tracking', 'Tracking', 'Through the viewfinder: a yellow eye-tracking box locks onto your face over an exposure readout.', ['#050505', '#FFD400', '#EDEDED'], 'dark', ['Barlow Condensed', 'Barlow'], ['rounded', 'large', 'raised', 'none'], 'tech', 1, true),
+      d('mymenu', 'My Menu', 'Your card as the camera menu: tab icons, a yellow selected row and a quick-menu grid for every action.', ['#0A0A0A', '#FFD400', '#F4F4F4'], 'dark', ['Barlow Condensed', 'Barlow'], ['rounded', 'large', 'raised', 'none'], 'tech', 1, true),
+      d('heritage', 'Heritage', 'A chrome film body with a speed dial and frame counter, and your photo as a print on black leatherette.', ['#1A1918', '#F2C200', '#E9E6DF'], 'light', ['Fraunces', 'Barlow'], ['rounded', 'large', 'raised', 'none'], 'calm', 1, true),
     ],
   },
   {
@@ -724,6 +730,7 @@ export function applyDesign(card: Card, niche: Niche, design: Design, opts: { la
 export const TEMPLATE_EXTRA_FONTS: Partial<Record<TemplateId, string[]>> = {
   tech: ['IBM Plex Mono', 'Space Grotesk'],
   topplate: ['IBM Plex Mono'], focuslock: ['IBM Plex Mono'], seamless: ['IBM Plex Mono'], playback: ['IBM Plex Mono'],
+  goldring: ['IBM Plex Mono'], redgrip: ['IBM Plex Mono'], tracking: ['IBM Plex Mono'], mymenu: ['IBM Plex Mono'], heritage: ['IBM Plex Mono'],
   terminal: ['VT323', 'IBM Plex Mono'],
   radar: ['Share Tech Mono'],
   circuit: ['IBM Plex Mono'],
