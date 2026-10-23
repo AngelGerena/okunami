@@ -14,6 +14,7 @@ import { Growth, Bamboo, Blowout, Chalkboard, Clipper, Lotus, Magazine, NeonSign
 import { BoldBlock, CoverSplit, GlamRailArch, GlamRailBleed, GlamRailBlob, GlamRailCircle, GlamRailLeaf, GlamRailMark, GlamRailOval, Halo, Leaf, NeonPulse, Plum, RoseGlass, Runway, SilkCurve, Sunset, SwatchBar } from './sig5';
 import { AgentProfile, Coastal, Crest, Edit, Linen, Merlot, Noir, Roofline, SwissGrid } from './sig7';
 import { FocusLock, Playback, Seamless, TopPlate } from './sig8';
+import { GoldRing, Heritage, MyMenu, RedGrip, Tracking } from './sig9';
 import { Boarding, Confetti, Inbox, Invitation, Monogram, Planner, Recipe, Stained, Toolbelt, Trading, Turntable, Vinyl, Waveform } from './sig2-b';
 import {
   Arrow, Btn, Business, CalendarDays, ContactList, Crisis, Dock, Footer, Highlights, LocationCard, Logo, Name, Photo,
@@ -183,6 +184,12 @@ export const TEMPLATES: TemplateMeta[] = [
   { id: 'focuslock', name: 'Focus Lock', niche: 'Photo and Video', blurb: 'Through the viewfinder: 61 AF points lock onto your face over a green exposure readout.', bestFor: 'Photographers, videographers' },
   { id: 'seamless',  name: 'Seamless',   niche: 'Photo and Video', blurb: 'A clean studio seamless, huge stacked name and glossy black keys with a red Book key.', bestFor: 'Headshot and studio photographers' },
   { id: 'playback',  name: 'Playback',   niche: 'Photo and Video', blurb: 'The rear camera screen: your shot with a live RGB histogram, and contact options as a quick-control grid.', bestFor: 'Photographers, camera creators' },
+  // ---- Gold Ring collection (photographers who shoot Nikon)
+  { id: 'goldring', name: 'Gold Ring', niche: 'Photo and Video', blurb: 'Your photo inside a pro zoom lens: knurled zoom ring, a gold ring, a yellow focus scale and a zoom bar.', bestFor: 'Nikon shooters, portrait photographers' },
+  { id: 'redgrip',  name: 'Red Grip',  niche: 'Photo and Video', blurb: 'The camera from the top: mode dial, a top LCD that lights up and a red grip line under your name.', bestFor: 'Nikon shooters, event photographers' },
+  { id: 'tracking', name: 'Tracking',  niche: 'Photo and Video', blurb: 'Through the viewfinder: a yellow eye-tracking box locks onto your face over an exposure readout.', bestFor: 'Nikon shooters, sports and wedding photographers' },
+  { id: 'mymenu',   name: 'My Menu',   niche: 'Photo and Video', blurb: 'Your card as the camera menu: tab icons, a yellow selected row and a quick-menu grid for every action.', bestFor: 'Nikon shooters, camera creators' },
+  { id: 'heritage', name: 'Heritage',  niche: 'Photo and Video', blurb: 'A chrome film body with a speed dial and frame counter, and your photo as a print on black leatherette.', bestFor: 'Film and documentary photographers' },
 ];
 
 /* ------------------------------------------------------------ 1 Editorial Cover */
@@ -481,4 +488,5 @@ export const TEMPLATE_COMPONENTS: Record<TemplateId, () => ReactElement> = {
   railbleed: GlamRailBleed, railcircle: GlamRailCircle, railarch: GlamRailArch, railoval: GlamRailOval, railmark: GlamRailMark, railblob: GlamRailBlob,
   noir: Noir, coastal: Coastal, edit: Edit, crest: Crest, swissgrid: SwissGrid, merlot: Merlot, linen: Linen, roofline: Roofline, agentprofile: AgentProfile,
   topplate: TopPlate, focuslock: FocusLock, seamless: Seamless, playback: Playback,
+  goldring: GoldRing, redgrip: RedGrip, tracking: Tracking, mymenu: MyMenu, heritage: Heritage,
 };

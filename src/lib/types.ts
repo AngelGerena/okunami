@@ -82,7 +82,9 @@ export type TemplateId =
   // agent collection (realtors)
   | 'noir' | 'coastal' | 'edit' | 'crest' | 'swissgrid' | 'merlot' | 'linen' | 'roofline' | 'agentprofile'
   // EOS collection (photographers, pro DSLR)
-  | 'topplate' | 'focuslock' | 'seamless' | 'playback';
+  | 'topplate' | 'focuslock' | 'seamless' | 'playback'
+  // Gold Ring collection (photographers who shoot Nikon)
+  | 'goldring' | 'redgrip' | 'tracking' | 'mymenu' | 'heritage';
 
 export interface SocialLink { id: string; network: string; value: string; }   // value = handle or full URL
 export interface Highlight { id: string; icon: string; title: string; subtitle: string; }
