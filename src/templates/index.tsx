@@ -18,6 +18,7 @@ import { GoldRing, Heritage, MyMenu, RedGrip, Tracking } from './sig9';
 import { ColorTarget, DigitalBack, FilmBack, Lunar, MediumFormat, WaistLevel } from './sig10';
 import { BarberClub, BlackLabel, BlushAtelier, Botanical, CedarSmoke, CopperForge, NoirLash, RougeEdit, VoltSport } from './sig11';
 import { Bokeh, EyeAF, Peaking, SLog, Sensor, Zebras } from './sig12';
+import { FilmRecipe, FilmSim, HybridVF, InstaPrint, MonoStrip, XDials } from './sig13';
 import { Boarding, Confetti, Inbox, Invitation, Monogram, Planner, Recipe, Stained, Toolbelt, Trading, Turntable, Vinyl, Waveform } from './sig2-b';
 import {
   Arrow, Btn, Business, CalendarDays, ContactList, Crisis, Dock, Footer, Highlights, LocationCard, Logo, Name, Photo,
@@ -207,6 +208,13 @@ export const TEMPLATES: TemplateMeta[] = [
   { id: 'slog',    name: 'S-Log',   niche: 'Photo and Video', blurb: 'A cinema rig: a flat log image that grades into full color, a red record frame, tally light and running timecode.', bestFor: 'Hybrid photo and video shooters, filmmakers' },
   { id: 'sensor',  name: 'Sensor',  niche: 'Photo and Video', blurb: 'Lens off: a chrome mount with an accent ring and your portrait reflected in the shimmering full-frame sensor.', bestFor: 'Mirrorless shooters, camera creators' },
   { id: 'bokeh',   name: 'Bokeh',   niche: 'Photo and Video', blurb: 'Warm bokeh orbs drift over your portrait, with a wide-open lens tag and your name set over the fade.', bestFor: 'Portrait and wedding photographers' },
+  // ---- X-Series collection (Fuji-style retro mirrorless shooters)
+  { id: 'filmsim', name: 'Film Sim', niche: 'Photo and Video', blurb: 'Your portrait under a film simulation menu: tap Chrome, Vivid, Neg, Cine or Mono and the photo regrades live.', bestFor: 'Fuji shooters, portrait and street photographers' },
+  { id: 'xdials', name: 'Dials', niche: 'Photo and Video', blurb: 'A machined silver top plate with working ISO, shutter and exposure dials. Turn them and the meter and photo respond.', bestFor: 'Fuji shooters, manual-control photographers' },
+  { id: 'hybridvf', name: 'Viewfinder', niche: 'Photo and Video', blurb: 'A hybrid viewfinder: bright frame lines in optical mode, then flip the lever to the electronic view.', bestFor: 'Fuji shooters, street and documentary photographers' },
+  { id: 'filmrecipe', name: 'Recipe', niche: 'Photo and Video', blurb: 'Clean and editorial: your signature film recipe printed like a trading card, with a red signature stamp.', bestFor: 'Fuji shooters who share their film recipes' },
+  { id: 'instaprint', name: 'Instant', niche: 'Photo and Video', blurb: 'An instant print slides out of the slot and develops on screen, signed with your name. Tap it to shake.', bestFor: 'Event, wedding and lifestyle photographers' },
+  { id: 'monostrip', name: 'Mono', niche: 'Photo and Video', blurb: 'Grainy black and white on a film strip with edge markings, a big serif name and yellow, red and green filters.', bestFor: 'Black and white, street and portrait photographers' },
   // ---- Farmasi collection (direct sellers): her line
   { id: 'rougeedit',    name: 'Rouge Edit',     niche: 'Beauty Consultants', blurb: 'A wine and gold magazine cover with your name in italic, a pull quote and a table of contents.', bestFor: 'Farmasi leaders, top beauty sellers' },
   { id: 'blushatelier', name: 'Blush Atelier',  niche: 'Beauty Consultants', blurb: 'An oval cameo portrait, a signed seal and your first name in script.', bestFor: 'New beauty sellers, makeup artists' },
@@ -519,6 +527,7 @@ export const TEMPLATE_COMPONENTS: Record<TemplateId, () => ReactElement> = {
   goldring: GoldRing, redgrip: RedGrip, tracking: Tracking, mymenu: MyMenu, heritage: Heritage,
   mediumformat: MediumFormat, digitalback: DigitalBack, colortarget: ColorTarget, waistlevel: WaistLevel, filmback: FilmBack, lunar: Lunar,
   eyeaf: EyeAF, zebras: Zebras, peaking: Peaking, slog: SLog, sensor: Sensor, bokeh: Bokeh,
+  filmsim: FilmSim, xdials: XDials, hybridvf: HybridVF, filmrecipe: FilmRecipe, instaprint: InstaPrint, monostrip: MonoStrip,
   rougeedit: RougeEdit, blushatelier: BlushAtelier, noirlash: NoirLash, botanical: Botanical,
   blacklabel: BlackLabel, barberclub: BarberClub, copperforge: CopperForge, cedarsmoke: CedarSmoke, voltsport: VoltSport,
 };
