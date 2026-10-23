@@ -13,6 +13,7 @@ import { Aperture, CarbonPro, FilmStrip, LensRing, ModeDial, PianoBlack, Rangefi
 import { Growth, Bamboo, Blowout, Chalkboard, Clipper, Lotus, Magazine, NeonSign, Polish, Razor, Shimmer, Stations, Stones, Tips } from './sig3';
 import { BoldBlock, CoverSplit, GlamRailArch, GlamRailBleed, GlamRailBlob, GlamRailCircle, GlamRailLeaf, GlamRailMark, GlamRailOval, Halo, Leaf, NeonPulse, Plum, RoseGlass, Runway, SilkCurve, Sunset, SwatchBar } from './sig5';
 import { AgentProfile, Coastal, Crest, Edit, Linen, Merlot, Noir, Roofline, SwissGrid } from './sig7';
+import { FocusLock, Playback, Seamless, TopPlate } from './sig8';
 import { Boarding, Confetti, Inbox, Invitation, Monogram, Planner, Recipe, Stained, Toolbelt, Trading, Turntable, Vinyl, Waveform } from './sig2-b';
 import {
   Arrow, Btn, Business, CalendarDays, ContactList, Crisis, Dock, Footer, Highlights, LocationCard, Logo, Name, Photo,
@@ -177,6 +178,11 @@ export const TEMPLATES: TemplateMeta[] = [
   { id: 'linen',        name: 'Linen Signature',  niche: 'Real Estate', blurb: 'Soft linen, an arched photo and your first name written like a signature.', bestFor: 'Boutique agents, designers' },
   { id: 'roofline',     name: 'Roofline',         niche: 'Real Estate', blurb: 'Your portrait inside a house-shaped window under a drawn roofline.', bestFor: 'Realtors, home builders' },
   { id: 'agentprofile', name: 'Agent Profile',    niche: 'Real Estate', blurb: 'A premium profile sheet: market, specialties, office and featured listings.', bestFor: 'Realtors, brokers, loan officers' },
+  // ---- EOS collection (photographers, pro DSLR)
+  { id: 'topplate',  name: 'Top Plate',  niche: 'Photo and Video', blurb: 'A pro camera body: your photo in a red-ring lens behind opening aperture blades, a green top LCD and a shutter that saves your contact.', bestFor: 'Portrait and headshot photographers' },
+  { id: 'focuslock', name: 'Focus Lock', niche: 'Photo and Video', blurb: 'Through the viewfinder: 61 AF points lock onto your face over a green exposure readout.', bestFor: 'Photographers, videographers' },
+  { id: 'seamless',  name: 'Seamless',   niche: 'Photo and Video', blurb: 'A clean studio seamless, huge stacked name and glossy black keys with a red Book key.', bestFor: 'Headshot and studio photographers' },
+  { id: 'playback',  name: 'Playback',   niche: 'Photo and Video', blurb: 'The rear camera screen: your shot with a live RGB histogram, and contact options as a quick-control grid.', bestFor: 'Photographers, camera creators' },
 ];
 
 /* ------------------------------------------------------------ 1 Editorial Cover */
@@ -474,4 +480,5 @@ export const TEMPLATE_COMPONENTS: Record<TemplateId, () => ReactElement> = {
   aperture: Aperture, viewfinder: Viewfinder, lensring: LensRing, rangefinder: Rangefinder, safelight: Safelight, carbonpro: CarbonPro, modedial: ModeDial, pianoblack: PianoBlack, filmstrip: FilmStrip, softbox: Softbox,
   railbleed: GlamRailBleed, railcircle: GlamRailCircle, railarch: GlamRailArch, railoval: GlamRailOval, railmark: GlamRailMark, railblob: GlamRailBlob,
   noir: Noir, coastal: Coastal, edit: Edit, crest: Crest, swissgrid: SwissGrid, merlot: Merlot, linen: Linen, roofline: Roofline, agentprofile: AgentProfile,
+  topplate: TopPlate, focuslock: FocusLock, seamless: Seamless, playback: Playback,
 };

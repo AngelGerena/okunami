@@ -29,6 +29,7 @@ export function ProfilePanel(p: PanelProps) {
     <>
       <NicheSection {...p} />
       {WORSHIP.has(p.card.template) && <WorshipExtras {...p} />}
+      {EOS.has(p.card.template) && <EosExtras {...p} />}
       <Section title={t("Photo and logo")} hint={t("A clear, well-lit headshot gets saved to people's phones with your contact.")}>
         <div className="upl-row">
           <ImageUpload label={t("Profile photo")} value={d.photoUrl} hint={t("Square or portrait, at least 800px.")} onFile={async (f) => put({ photoUrl: await store.uploadImage(f, 'photo') })} onClear={() => put({ photoUrl: '' })} />
@@ -430,6 +431,22 @@ function MediaUpload({ label, hint, accept, value, onUrl, kind }: { label: strin
       <small className="fld__hint">{hint}</small>
       {err && <small className="err">{err}</small>}
     </div>
+  );
+}
+
+const EOS = new Set(['topplate', 'focuslock', 'seamless', 'playback']);
+function EosExtras(p: PanelProps) {
+  const { t } = useT();
+  const { d, put } = useData(p);
+  return (
+    <Section title={t("EOS Collection extras")} hint={t("These show on the EOS camera designs. Everything here is optional.")}>
+      {p.card.template === 'topplate' && (
+        <ImageUpload label={t("Pop-out photo")} shape="square" value={d.popoutUrl ?? ''}
+          hint={t("Your photo with the background removed, as a PNG. Your head and shoulders step out of the lens. Leave it empty to show your regular photo inside the lens.")}
+          onFile={async (f) => { put({ popoutUrl: await store.uploadImage(f, 'logo') }); }} onClear={() => put({ popoutUrl: '' })} />
+      )}
+      <Field label={t("Gear line")} value={d.kicker ?? ''} onChange={(v) => put({ kicker: v })} maxLength={60} placeholder={t("Shot on Canon EOS 5D Mark III")} hint={t("A short line about your camera or style, shown above your portfolio.")} />
+    </Section>
   );
 }
 

@@ -507,6 +507,11 @@ const NICHE_LIST: Niche[] = [
       d('pianoblack', 'Piano Black', 'High-gloss black with your photo reflected below and a red light line.', ['#0B0B0B', '#E5141B', '#F4F2F2'], 'dark', ['Italiana', 'Jost'], ['rounded', 'large', 'solid', 'satin'], 'calm', 1, true),
       d('filmstrip', 'Film Strip', 'A tilted 35mm strip with your frame in red, poster type and film-leader buttons.', ['#0B0B0B', '#E10600', '#F4F2F2'], 'dark', ['Anton', 'Manrope'], ['square', 'large', 'solid', 'none'], 'tech', 0, true),
       d('softbox', 'Studio Softbox', 'A glowing softbox lights you on a red seamless backdrop.', ['#0B0B0B', '#E3141B', '#F4F2F2'], 'dark', ['Syne', 'Manrope'], ['rounded', 'large', 'solid', 'none'], 'bright', 1, true),
+      // EOS collection: pro DSLR designs with a shutter Save button, high-gloss keys and a booking sheet
+      d('topplate', 'Top Plate', 'A pro camera body: your photo in a red-ring lens behind opening aperture blades, a green top LCD and a shutter that saves your contact.', ['#0E0E0F', '#C8102E', '#F1EFE9'], 'dark', ['Archivo', 'Archivo'], ['rounded', 'large', 'raised', 'none'], 'tech', 1, true),
+      d('focuslock', 'Focus Lock', 'Through the viewfinder: AF points lock onto your face over a green exposure readout.', ['#060606', '#E2392C', '#ECECEC'], 'dark', ['Archivo', 'Archivo'], ['rounded', 'large', 'raised', 'none'], 'tech', 1, true),
+      d('seamless', 'Seamless', 'A clean studio seamless, huge stacked name and glossy black keys with a red Book key.', ['#141416', '#C8102E', '#E6E7E9'], 'light', ['Archivo', 'Archivo'], ['rounded', 'large', 'raised', 'none'], 'bright', 1, true),
+      d('playback', 'Playback', 'The rear camera screen: your shot with a live color histogram, and contact options as a quick-control grid.', ['#111112', '#F0A21F', '#F3F3F3'], 'dark', ['Archivo', 'Archivo'], ['rounded', 'large', 'raised', 'none'], 'tech', 1, true),
     ],
   },
   {
@@ -718,6 +723,7 @@ export function applyDesign(card: Card, niche: Niche, design: Design, opts: { la
 /** Google fonts a layout uses beyond the theme pair (mono readouts, LED type). */
 export const TEMPLATE_EXTRA_FONTS: Partial<Record<TemplateId, string[]>> = {
   tech: ['IBM Plex Mono', 'Space Grotesk'],
+  topplate: ['IBM Plex Mono'], focuslock: ['IBM Plex Mono'], seamless: ['IBM Plex Mono'], playback: ['IBM Plex Mono'],
   terminal: ['VT323', 'IBM Plex Mono'],
   radar: ['Share Tech Mono'],
   circuit: ['IBM Plex Mono'],
