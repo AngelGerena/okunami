@@ -550,6 +550,13 @@ const NICHE_LIST: Niche[] = [
       d('waistlevel', 'Waist Level', 'Looking down into a waist-level finder: chrome hood, opened flaps, a focusing grid and your photo on the ground glass.', ['#121110', '#7FA6D9', '#F1EDE6'], 'dark', ['Cormorant Garamond', 'Instrument Sans'], ['rounded', 'large', 'raised', 'none'], 'calm', 1, true),
       d('filmback', 'Film Back', 'A film magazine: a dark slide rises with your name engraved, above a 120 film strip and a frame counter.', ['#0F0F10', '#E8B04B', '#F0EEE9'], 'dark', ['Cormorant Garamond', 'Instrument Sans'], ['rounded', 'large', 'raised', 'none'], 'calm', 1, true),
       d('lunar', 'Lunar', 'The moon camera: black space, Earthrise, mission data and your photo marked with reseau crosses.', ['#030304', '#F2A33A', '#ECEBE8'], 'dark', ['Michroma', 'Instrument Sans'], ['rounded', 'large', 'raised', 'none'], 'tech', 1, true),
+      // Mirrorless collection: for Sony-style mirrorless shooters. Half-press shutter Save with a green focus lock
+      d('eyeaf', 'Eye AF', 'Through the electronic viewfinder: a tracking box finds your face and locks green, with a half-press shutter that beeps twice.', ['#0A0A0B', '#F2711C', '#F2F2F0'], 'dark', ['Sora', 'Manrope'], ['rounded', 'large', 'raised', 'none'], 'tech', 1, true),
+      d('zebras', 'Zebras', 'Real exposure zebras striped over the brightest parts of your own photo, with an on and off switch.', ['#0A0A0B', '#F2711C', '#F2F2F0'], 'dark', ['Sora', 'Manrope'], ['rounded', 'large', 'raised', 'none'], 'tech', 1, true),
+      d('peaking', 'Peaking', 'Manual focus mode: red focus peaking traces the sharp edges of your photo as the focus distance settles.', ['#0A0A0B', '#F2711C', '#F2F2F0'], 'dark', ['Sora', 'Manrope'], ['rounded', 'large', 'raised', 'none'], 'tech', 1, true),
+      d('slog', 'S-Log', 'A cinema rig: a flat log image that grades into full color, a red record frame, tally light and running timecode.', ['#0B0B0C', '#F2711C', '#F2F2F0'], 'dark', ['Sora', 'Manrope'], ['rounded', 'large', 'raised', 'none'], 'tech', 1, true),
+      d('sensor', 'Sensor', 'Lens off: a chrome mount with an accent ring and your portrait reflected in the shimmering full-frame sensor.', ['#060607', '#F2711C', '#F2F2F0'], 'dark', ['Sora', 'Manrope'], ['rounded', 'large', 'raised', 'none'], 'tech', 1, true),
+      d('bokeh', 'Bokeh', 'Warm bokeh orbs drift over your portrait, with a wide-open lens tag and your name set over the fade.', ['#0D0907', '#F2711C', '#F4EEE8'], 'dark', ['Sora', 'Manrope'], ['rounded', 'large', 'raised', 'none'], 'calm', 1, true),
     ],
   },
   {
@@ -765,6 +772,7 @@ export const TEMPLATE_EXTRA_FONTS: Partial<Record<TemplateId, string[]>> = {
   goldring: ['IBM Plex Mono'], redgrip: ['IBM Plex Mono'], tracking: ['IBM Plex Mono'], mymenu: ['IBM Plex Mono'], heritage: ['IBM Plex Mono'],
   blushatelier: ['Pinyon Script'], copperforge: ['IBM Plex Mono'],
   mediumformat: ['IBM Plex Mono'], digitalback: ['IBM Plex Mono'], colortarget: ['IBM Plex Mono'], waistlevel: ['IBM Plex Mono'], filmback: ['IBM Plex Mono'], lunar: ['IBM Plex Mono'],
+  eyeaf: ['JetBrains Mono'], zebras: ['JetBrains Mono'], peaking: ['JetBrains Mono'], slog: ['JetBrains Mono'], sensor: ['JetBrains Mono'], bokeh: ['JetBrains Mono'],
   terminal: ['VT323', 'IBM Plex Mono'],
   radar: ['Share Tech Mono'],
   circuit: ['IBM Plex Mono'],

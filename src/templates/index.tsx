@@ -17,6 +17,7 @@ import { FocusLock, Playback, Seamless, TopPlate } from './sig8';
 import { GoldRing, Heritage, MyMenu, RedGrip, Tracking } from './sig9';
 import { ColorTarget, DigitalBack, FilmBack, Lunar, MediumFormat, WaistLevel } from './sig10';
 import { BarberClub, BlackLabel, BlushAtelier, Botanical, CedarSmoke, CopperForge, NoirLash, RougeEdit, VoltSport } from './sig11';
+import { Bokeh, EyeAF, Peaking, SLog, Sensor, Zebras } from './sig12';
 import { Boarding, Confetti, Inbox, Invitation, Monogram, Planner, Recipe, Stained, Toolbelt, Trading, Turntable, Vinyl, Waveform } from './sig2-b';
 import {
   Arrow, Btn, Business, CalendarDays, ContactList, Crisis, Dock, Footer, Highlights, LocationCard, Logo, Name, Photo,
@@ -199,6 +200,13 @@ export const TEMPLATES: TemplateMeta[] = [
   { id: 'waistlevel',   name: 'Waist Level',   niche: 'Photo and Video', blurb: 'Looking down into a waist-level finder: chrome hood, opened flaps, a focusing grid and your photo on the ground glass.', bestFor: 'Film and medium-format photographers' },
   { id: 'filmback',     name: 'Film Back',     niche: 'Photo and Video', blurb: 'A film magazine: a dark slide rises with your name engraved, above a 120 film strip and a frame counter.', bestFor: 'Film photographers' },
   { id: 'lunar',        name: 'Lunar',         niche: 'Photo and Video', blurb: 'The moon camera: black space, Earthrise, mission data and your photo marked with reseau crosses.', bestFor: 'Photographers who want a showstopper' },
+  // ---- Mirrorless collection (Sony-style mirrorless shooters)
+  { id: 'eyeaf',   name: 'Eye AF',  niche: 'Photo and Video', blurb: 'Through the electronic viewfinder: a tracking box finds your face and locks green, with a half-press shutter that beeps twice.', bestFor: 'Mirrorless shooters, portrait and wedding photographers' },
+  { id: 'zebras',  name: 'Zebras',  niche: 'Photo and Video', blurb: 'Real exposure zebras striped over the brightest parts of your own photo, with an on and off switch.', bestFor: 'Mirrorless shooters, studio and portrait photographers' },
+  { id: 'peaking', name: 'Peaking', niche: 'Photo and Video', blurb: 'Manual focus mode: red focus peaking traces the sharp edges of your photo as the focus distance settles.', bestFor: 'Mirrorless shooters, manual-lens photographers' },
+  { id: 'slog',    name: 'S-Log',   niche: 'Photo and Video', blurb: 'A cinema rig: a flat log image that grades into full color, a red record frame, tally light and running timecode.', bestFor: 'Hybrid photo and video shooters, filmmakers' },
+  { id: 'sensor',  name: 'Sensor',  niche: 'Photo and Video', blurb: 'Lens off: a chrome mount with an accent ring and your portrait reflected in the shimmering full-frame sensor.', bestFor: 'Mirrorless shooters, camera creators' },
+  { id: 'bokeh',   name: 'Bokeh',   niche: 'Photo and Video', blurb: 'Warm bokeh orbs drift over your portrait, with a wide-open lens tag and your name set over the fade.', bestFor: 'Portrait and wedding photographers' },
   // ---- Farmasi collection (direct sellers): her line
   { id: 'rougeedit',    name: 'Rouge Edit',     niche: 'Beauty Consultants', blurb: 'A wine and gold magazine cover with your name in italic, a pull quote and a table of contents.', bestFor: 'Farmasi leaders, top beauty sellers' },
   { id: 'blushatelier', name: 'Blush Atelier',  niche: 'Beauty Consultants', blurb: 'An oval cameo portrait, a signed seal and your first name in script.', bestFor: 'New beauty sellers, makeup artists' },
@@ -510,6 +518,7 @@ export const TEMPLATE_COMPONENTS: Record<TemplateId, () => ReactElement> = {
   topplate: TopPlate, focuslock: FocusLock, seamless: Seamless, playback: Playback,
   goldring: GoldRing, redgrip: RedGrip, tracking: Tracking, mymenu: MyMenu, heritage: Heritage,
   mediumformat: MediumFormat, digitalback: DigitalBack, colortarget: ColorTarget, waistlevel: WaistLevel, filmback: FilmBack, lunar: Lunar,
+  eyeaf: EyeAF, zebras: Zebras, peaking: Peaking, slog: SLog, sensor: Sensor, bokeh: Bokeh,
   rougeedit: RougeEdit, blushatelier: BlushAtelier, noirlash: NoirLash, botanical: Botanical,
   blacklabel: BlackLabel, barberclub: BarberClub, copperforge: CopperForge, cedarsmoke: CedarSmoke, voltsport: VoltSport,
 };
