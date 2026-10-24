@@ -370,6 +370,12 @@ export function CedarSmoke() {
   );
 }
 
+/** Largest font size (px) at which the longest word still fits the width, so a name never breaks mid-word. */
+function fitPx(words: (string | undefined)[], width: number, ratio: number, max: number) {
+  const longest = Math.max(1, ...words.filter(Boolean).flatMap((w) => String(w).split(/\s+/)).map((w) => w.length));
+  return Math.max(24, Math.min(max, Math.floor(width / (longest * ratio))));
+}
+
 /* ================================================================ HIS 5 VOLT SPORT */
 export function VoltSport() {
   const { data, first, last } = useFm();
@@ -385,7 +391,7 @@ export function VoltSport() {
       <div className="pad stack">
         <div className="fmx-idrow">
           <div>
-            <h1 className="fmv__name" {...el('name')}>{first}{last && <><br /><span className="fmv__hi">{last}</span></>}</h1>
+            <h1 className="fmv__name" {...el('name')} style={{ ['--fmv-fit' as string]: `${fitPx([first, last], 214, 0.72, 54)}px` }}>{first}{last && <><br /><span className="fmv__hi">{last}</span></>}</h1>
             <Title className="fmx-role" />
           </div>
           <Logo className="fmx-logo" />

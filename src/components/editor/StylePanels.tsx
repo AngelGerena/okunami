@@ -9,6 +9,7 @@ import { extractPalette, hexToHsl, luminance, normalizeHex, wcagLabel } from '..
 import { store } from '../../lib/store';
 import { sfx } from '../../lib/sfx';
 import { TEMPLATES } from '../../templates';
+import { RETIRED } from '../../lib/retired';
 import { usePlan } from '../../lib/usePlan';
 import { isLocked } from '../../lib/plans';
 import { NICHES, applyDesign, liteDesigns, nicheOf, sampleFor, type Design, type Niche, type NicheGroup } from '../../lib/niches';
@@ -69,7 +70,7 @@ export function TemplatePanel(p: PanelProps) {
   const [choosing, setChoosing] = useState(!mine);
   const [filter, setFilter] = useState<'all' | 'new' | NicheGroup>('all');
   const niche = NICHES.find((n) => n.id === nicheId) ?? NICHES[0];
-  const classic = TEMPLATES.filter((t) => !t.niche);
+  const classic = TEMPLATES.filter((t) => !t.niche && !RETIRED.has(t.id));
   const use = (n: Niche, d: Design) => { p.looks?.markRoll(); p.set((c) => applyDesign(c, n, d)); p.setMode(d.mode); sfx('success', d.sound); };
   const isOn = (d: Design) => p.card.template === d.template && p.card.theme.tokens.light.accent === themeFromSeeds(d.seeds).tokens.light.accent;
 

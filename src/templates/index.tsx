@@ -47,7 +47,7 @@ export const TEMPLATES: TemplateMeta[] = [
   // ---- niche layouts
   { id: 'tech',       name: 'Mainframe',   niche: 'Tech and IT',                  blurb: 'Boot sequence, neon grid, glitch type, holographic tilt, keyboard commands.', bestFor: 'Developers, IT, startups, AI and gaming' },
   { id: 'realestate', name: 'Keystone',    niche: 'Real Estate',           blurb: 'Property hero, agent card, home-value call to action, listings strip.', bestFor: 'Agents, brokers, property managers' },
-  { id: 'photo',      name: 'Darkroom',    niche: 'Photo and Video',           blurb: 'Gallery first. Minimal type, masonry grid, book a session.', bestFor: 'Photographers, videographers, artists' },
+  { id: 'photo',      name: 'Darkroom',    niche: 'Tattoo and Art',           blurb: 'Ink black and red. Portfolio first, styles list, book a consult.', bestFor: 'Tattoo artists, illustrators, studios' },
   { id: 'foodtruck',  name: 'Street Menu', niche: 'Food Trucks',           blurb: 'Marquee sign, where-we-are-today, priced menu, order-ahead buttons.', bestFor: 'Food trucks, pop-ups, caterers' },
   { id: 'apparel',    name: 'Lookbook',    niche: 'Apparel and Accessories', blurb: 'Editorial cover, swipeable lookbook, shop the collection.', bestFor: 'Clothing brands, jewelry, boutiques' },
   { id: 'mechanic',   name: 'Garage',      niche: 'Auto and Mechanics',             blurb: 'Hazard stripe, giant call button, services grid, shop hours.', bestFor: 'Auto repair, detailing, tire shops' },

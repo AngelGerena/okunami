@@ -2,7 +2,7 @@
    The Agent Collection (src/templates/sig7.tsx): premium realtor designs.
    Colors come from the element variables (--c-*), so every part stays recolorable.
    ================================================================= */
-.tpl-an, .tpl-ac, .tpl-ae, .tpl-acr, .tpl-asg, .tpl-am, .tpl-al, .tpl-ar, .tpl-ap { position: relative; overflow: hidden; isolation: isolate; padding-bottom: 28px; background: var(--c-pageBg); }
+.tpl-an, .tpl-ac, .tpl-ae, .tpl-acr, .tpl-asg, .tpl-am, .tpl-al, .tpl-ar, .tpl-agp { position: relative; overflow: hidden; isolation: isolate; padding-bottom: 28px; background: var(--c-pageBg); }
 .ag-tail { justify-content: center; }
 
 /* ---------- 1 GALLERY NOIR */
@@ -172,34 +172,34 @@
 .ar__row > span:first-child, .ar__row > span:last-child { color: var(--c-icons); display: grid; }
 
 /* ---------- 9 AGENT PROFILE */
-.tpl-ap { padding: 14px 14px 28px; }
-.ap__sheet { background: var(--c-cardBg); box-shadow: 0 14px 30px -20px rgba(var(--shadow-rgb), .6); }
-.ap__head { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 12px 16px; border-bottom: 1px solid var(--c-dividers); min-height: 54px; }
-.ap__head > span { font-size: 10px; font-weight: 700; letter-spacing: .24em; text-transform: uppercase; color: var(--c-caption); }
-.ap__logo { max-width: 80px; height: 30px; object-fit: contain; }
-.ap__band { position: relative; height: 236px; background: var(--c-iconBg); display: grid; grid-template-columns: minmax(0, 1fr) 150px; align-items: end; overflow: hidden; }
-.ap__img { width: 100%; height: 100%; }
-.ap__tags { display: flex; flex-direction: column; align-items: flex-end; gap: 8px; padding: 16px; text-align: right; }
-.ap__chip { font-size: 10px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; background: var(--c-heroBand); color: var(--c-onBand); padding: 5px 8px; }
-.ap__biz { font-family: var(--f-display); font-style: italic; font-size: 15px; line-height: 1.35; color: var(--c-body); }
-.ap__body { padding: 16px; gap: 14px; }
-.ap__name { font-family: var(--f-display); font-weight: 700; font-size: 30px; line-height: 1.05; color: var(--c-name); }
-.ap__role { margin-top: 4px; font-size: 13px; color: var(--c-title); }
-.ap__specs { margin: 0; border-top: 1px solid var(--c-dividers); }
-.ap__specs div { display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: 8px; padding: 8px 0; border-bottom: 1px solid var(--c-dividers); font-size: 13px; line-height: 1.3; }
-.ap__specs dt { font-weight: 600; color: var(--c-caption); }
-.ap__specs dd { margin: 0; color: var(--c-body); }
-.ap__feat { display: grid; grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: 'k go' 'v go'; align-items: center; gap: 2px 10px; padding: 10px 12px; border: 1px dashed var(--c-dividers); text-decoration: none; }
-.ap__feat > span:first-child { grid-area: k; font-size: 11px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--c-caption); }
-.ap__feat b { grid-area: v; font-family: var(--f-display); font-weight: 400; font-size: 16px; color: var(--c-name); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.ap__feat > span:last-child { grid-area: go; color: var(--c-accentDetail); display: grid; }
-.ap__pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
-.ap__pair > :only-child { grid-column: 1 / -1; }
-.ap__pair .fb { width: 100%; }
-.ap__trio { display: grid; grid-template-columns: repeat(auto-fit, minmax(0, 1fr)); gap: 8px; }
-.ap__trio a { min-height: 46px; display: flex; align-items: center; justify-content: center; gap: 6px; border: 1px solid var(--c-dividers); background: transparent; text-decoration: none; font-size: 14px; font-weight: 600; }
-.ap__trio a > span:first-child { display: none; }
+.tpl-agp { padding: 14px 14px 28px; }
+.tpl-agp .ap__sheet { background: var(--c-cardBg); box-shadow: 0 14px 30px -20px rgba(var(--shadow-rgb), .6); }
+.tpl-agp .ap__head { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 12px 16px; border-bottom: 1px solid var(--c-dividers); min-height: 54px; }
+.tpl-agp .ap__head > span { font-size: 10px; font-weight: 700; letter-spacing: .24em; text-transform: uppercase; color: var(--c-caption); }
+.tpl-agp .ap__logo { max-width: 80px; height: 30px; object-fit: contain; }
+.tpl-agp .ap__band { position: relative; height: 236px; background: var(--c-iconBg); display: grid; grid-template-columns: minmax(0, 1fr) 150px; align-items: end; overflow: hidden; }
+.tpl-agp .ap__img { width: 100%; height: 100%; }
+.tpl-agp .ap__tags { display: flex; flex-direction: column; align-items: flex-end; gap: 8px; padding: 16px; text-align: right; }
+.tpl-agp .ap__chip { font-size: 10px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; background: var(--c-heroBand); color: var(--c-onBand); padding: 5px 8px; }
+.tpl-agp .ap__biz { font-family: var(--f-display); font-style: italic; font-size: 15px; line-height: 1.35; color: var(--c-body); }
+.tpl-agp .ap__body { padding: 16px; gap: 14px; }
+.tpl-agp .ap__name { font-family: var(--f-display); font-weight: 700; font-size: 30px; line-height: 1.05; color: var(--c-name); }
+.tpl-agp .ap__role { margin-top: 4px; font-size: 13px; color: var(--c-title); }
+.tpl-agp .ap__specs { margin: 0; border-top: 1px solid var(--c-dividers); }
+.tpl-agp .ap__specs div { display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: 8px; padding: 8px 0; border-bottom: 1px solid var(--c-dividers); font-size: 13px; line-height: 1.3; }
+.tpl-agp .ap__specs dt { font-weight: 600; color: var(--c-caption); }
+.tpl-agp .ap__specs dd { margin: 0; color: var(--c-body); }
+.tpl-agp .ap__feat { display: grid; grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: 'k go' 'v go'; align-items: center; gap: 2px 10px; padding: 10px 12px; border: 1px dashed var(--c-dividers); text-decoration: none; }
+.tpl-agp .ap__feat > span:first-child { grid-area: k; font-size: 11px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--c-caption); }
+.tpl-agp .ap__feat b { grid-area: v; font-family: var(--f-display); font-weight: 400; font-size: 16px; color: var(--c-name); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.tpl-agp .ap__feat > span:last-child { grid-area: go; color: var(--c-accentDetail); display: grid; }
+.tpl-agp .ap__pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+.tpl-agp .ap__pair > :only-child { grid-column: 1 / -1; }
+.tpl-agp .ap__pair .fb { width: 100%; }
+.tpl-agp .ap__trio { display: grid; grid-template-columns: repeat(auto-fit, minmax(0, 1fr)); gap: 8px; }
+.tpl-agp .ap__trio a { min-height: 46px; display: flex; align-items: center; justify-content: center; gap: 6px; border: 1px solid var(--c-dividers); background: transparent; text-decoration: none; font-size: 14px; font-weight: 600; }
+.tpl-agp .ap__trio a > span:first-child { display: none; }
 
 /* contact tile text follows the body color everywhere */
-.an__trio a > span:last-child, .ae__strip a > span:last-child, .acr__trio a > span:last-child, .am__trio a > span:last-child, .ar__trio a > span:last-child, .ap__trio a > span:last-child, .ar__row > span.grow { color: var(--c-body); }
+.an__trio a > span:last-child, .ae__strip a > span:last-child, .acr__trio a > span:last-child, .am__trio a > span:last-child, .ar__trio a > span:last-child, .tpl-agp .ap__trio a > span:last-child, .ar__row > span.grow { color: var(--c-body); }
 .am__trio a > span:last-child { color: var(--c-name); }
