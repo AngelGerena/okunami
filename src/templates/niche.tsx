@@ -147,7 +147,8 @@ export function Apparel() {
         {shopHref && <Btn variant="primary" block href={shopHref} icon={<Arrow size={18} />}>Shop the collection</Btn>}
         <Gallery variant="strip" title="Lookbook" />
         <Highlights variant="swiss" />
-        <div className="ap__owner"><Photo className="ap__img" /><div><b {...el('body')}>{data.fullName}</b><Title withCreds={false} /></div></div>
+        {/* The cover already shows the portrait when there is no lookbook photo, so the owner row skips it then. */}
+        <div className="ap__owner">{data.gallery[0] && <Photo className="ap__img" />}<div><b {...el('body')}>{data.fullName}</b><Title withCreds={false} /></div></div>
         <div className="row"><SaveBtn variant="secondary" /><ShareBtn iconOnly /><QrBtn iconOnly /></div>
         <SocialLinks variant="pills" title="" />
         <LocationCard />

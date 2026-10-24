@@ -331,7 +331,7 @@ export function Invitation() {
             <p className="iv__script" {...el('accentDetail')}>{data.fullName}</p>
             <p className="iv__title" {...el('caption')}>{data.jobTitle}</p>
           </div>
-          <span className="iv__front" {...el('heroBand')} />
+          <span className="iv__front" {...el('heroBand')}><span className="iv__addr" {...el('accentDetail')}>{data.business || data.fullName}</span></span>
           <span className="iv__flap" {...el('heroBand')}><span className="iv__seal" {...el('accentDetail')}>{initials(data.fullName)}</span></span>
         </div>
         {data.tagline && <p className="iv__tag" {...el('body')}>{data.tagline}</p>}

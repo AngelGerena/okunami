@@ -1,6 +1,8 @@
 import type { ButtonShape, ButtonSize, ButtonSpec, ButtonStyle, ButtonTexture, Card, Highlight, SoundProfile, TemplateId } from './types';
 import { themeFromSeeds, type Seeds } from './theme';
 import { uid } from './seed';
+import { RETIRED } from './retired';
+import { NETWORKS } from './socials';
 
 /* ------------------------------------------------------------------
    A niche is who the card is for (barbershop, realtor, IT pro).
@@ -46,7 +48,7 @@ function d(
 }
 
 /* ----------------------------------------------------------- designs reused across niches */
-const MAINFRAME = d('tech', 'Mainframe', 'Boot sequence, neon grid, glitch name, holographic tilt, keyboard commands.', ['#0B1020', '#22E3FF', '#EEF3FA'], 'dark', ['Space Grotesk', 'IBM Plex Sans'], ['chamfer', 'regular', 'hud', 'scanline'], 'tech', 0.35);
+const MAINFRAME = d('tech', 'Mainframe', 'Amber-phosphor boot sequence, terminal grid, glitch name, holographic tilt, keyboard commands.', ['#0E0B05', '#FFB000', '#F7F1E3'], 'dark', ['Space Grotesk', 'IBM Plex Sans'], ['chamfer', 'regular', 'hud', 'scanline'], 'tech', 0.35);
 const QUANTUM = d('quantum', 'Quantum', 'Orbiting rings circle your photo in 3D, particle dust, frosted glass tiles.', ['#0A0F1F', '#8B7CFF', '#F1F0FA'], 'dark', ['Syncopate', 'Manrope'], ['pill', 'regular', 'glass', 'none'], 'tech', 1, true);
 const CYBER = d('cyber', 'Neon District', 'Cyberpunk panels, falling neon rain, slashed buttons and glitch type.', ['#12031F', '#FF2BD6', '#F7F0FA'], 'dark', ['Chakra Petch', 'Rajdhani'], ['chamfer', 'large', 'neon', 'none'], 'tech', 0.2, true);
 const AURORA = d('aurora', 'Aurora', 'Living northern-lights color behind floating glass, like a spatial app.', ['#0E1330', '#5EEAD4', '#EEF4F7'], 'dark', ['Sora', 'Inter'], ['pill', 'large', 'glass', 'none'], 'tech', 1.3, true);
@@ -802,7 +804,11 @@ const NICHE_LIST: Niche[] = [
 ];
 
 /** Niches shown in the app. A niche with no designs (for example while its new designs are being made) stays hidden. */
-export const NICHES: Niche[] = NICHE_LIST.filter((n) => n.designs.length > 0);
+/* Retired designs (see retired.ts) leave every niche list, so pickers, counts and the gallery skip them.
+   Their layouts stay registered, so existing cards that use one still render. */
+export const NICHES: Niche[] = NICHE_LIST
+  .map((n) => ({ ...n, designs: n.designs.filter((x) => !RETIRED.has(x.template)) }))
+  .filter((n) => n.designs.length > 0);
 
 /** Every distinct design, for "Browse all designs". */
 export const ALL_DESIGNS: { niche: Niche; design: Design }[] = NICHES.flatMap((n) => n.designs.map((design) => ({ niche: n, design })));
@@ -909,9 +915,9 @@ export const NICHE_SAMPLES: Record<string, NicheSample> = {
   mechanic:     { business: 'Torque & Tread Auto', fullName: 'Lucia Romero', jobTitle: 'ASE Master Technician', tagline: 'Honest work. Fair prices.', hours: 'Mon-Fri 8am-6pm, Sat 8am-1pm' },
   handyman:     { business: 'Fix-It Fran Co.', fullName: 'Fran Delaney', jobTitle: 'Handyman and Contractor', credentials: 'Licensed and insured', tagline: 'No job too small', hours: 'Mon-Sat 7am-6pm' },
   homeservices: { business: 'Fresh Start Cleaning', fullName: 'Maria Lopez', jobTitle: 'Owner', credentials: 'Bonded and insured', tagline: 'Spotless, on schedule', hours: 'Mon-Sat 8am-5pm' },
-  fitness:      { business: 'Iron Pulse Training', fullName: 'Coach Toni Rivera', jobTitle: 'Certified Personal Trainer', tagline: 'Stronger every week', hours: 'Mon-Sat 5am-8pm' },
+  fitness:      { business: 'Iron Pulse Training', fullName: 'Coach Tony Rivera', jobTitle: 'Certified Personal Trainer', tagline: 'Stronger every week', hours: 'Mon-Sat 5am-8pm' },
   bistro:       { business: 'Café Ceiba', fullName: 'Rosa Martinez', jobTitle: 'Chef and Owner', tagline: 'Made from scratch, every day', hours: 'Tue-Sun 7am-3pm' },
-  foodtruck:    { business: 'Fuego Street Eats', fullName: 'Carla Vega', jobTitle: 'Chef and Owner', tagline: 'Rolling flavor across Central Florida', hours: 'Thu-Sun 11am-9pm' },
+  foodtruck:    { business: 'Fuego Street Eats', fullName: 'Carlos Vega', jobTitle: 'Chef and Owner', tagline: 'Rolling flavor across Central Florida', hours: 'Thu-Sun 11am-9pm' },
   creator:      { business: 'Bree Daily', fullName: 'Bree Johnson', jobTitle: 'Lifestyle Creator', tagline: 'Creator · Speaker · Your next collab', hours: 'Collabs: reply within 48 hrs' },
   photo:        { business: 'Lumen & Grain Studio', fullName: 'Jordan Hale', jobTitle: 'Photographer', tagline: 'Light, story and a little magic', hours: 'Sessions by appointment' },
   stage:        { business: 'DJ Solaris', fullName: 'Mia "Solaris" Ruiz', jobTitle: 'DJ and Producer', tagline: 'Keep the floor full', hours: 'Booking weekends year-round' },
@@ -928,20 +934,70 @@ export const NICHE_SAMPLES: Record<string, NicheSample> = {
   nonprofit:    { business: 'Neighbors United', fullName: 'Grace Okafor', jobTitle: 'Executive Director', tagline: 'Neighbors helping neighbors', hours: 'Mon-Fri 9am-5pm' },
 };
 
-/** A card dressed in a niche's sample content, for previews only. The photo stays; unrelated gallery images are dropped. */
+/* Per-niche demo portraits. Drop a file named after the niche id into src/assets/demo/
+   (barber.jpg, grooming.jpg, photo.webp ...) and every preview for that niche uses it.
+   Niches without a file keep the shared sample portrait. */
+let DEMO_PHOTOS: Record<string, string> = {};
+// Vite fills this at build time; plain Node (the copy and i18n check scripts) has no glob, so it stays empty there.
+try { DEMO_PHOTOS = import.meta.glob('../assets/demo/*.{jpg,jpeg,png,webp}', { eager: true, import: 'default' }) as Record<string, string>; } catch { /* not running under Vite */ }
+export function demoPhoto(nicheId: string): string | null {
+  for (const ext of ['jpg', 'jpeg', 'webp', 'png']) {
+    const hit = DEMO_PHOTOS[`../assets/demo/${nicheId}.${ext}`];
+    if (hit) return hit;
+  }
+  return null;
+}
+
+/** Sample social links that fit the niche (a DJ shows SoundCloud and Spotify, not Houzz).
+    Networks that turn a handle into a link get a handle; the rest get a full sample link. */
+function sampleSocials(niche: Niche, handle: string) {
+  return niche.suggestedLinks.slice(0, 4).map((id, i) => {
+    const net = NETWORKS.find((n) => n.id === id);
+    const takesHandle = !!net && net.url(handle) !== `https://${handle}`;
+    const value = id === 'google' ? `https://g.page/r/${handle}/review`
+      : takesHandle ? (net!.placeholder.startsWith('@') ? `@${handle}` : handle)
+      : `https://www.${id}.com/${handle}`;
+    return { id: `so${i}`, network: id, value };
+  });
+}
+
+/** A card dressed in a niche's sample content, for previews only. Unrelated gallery images are dropped. */
 export function sampleFor(card: Card, niche: Niche): Card {
   const s = NICHE_SAMPLES[niche.id];
   if (!s) return card;
+  const slug = s.business.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+  const handle = slug.replace(/-/g, '');
   return {
     ...card,
     data: {
       ...card.data,
+      photoUrl: demoPhoto(niche.id) ?? card.data.photoUrl,
+      socials: niche.suggestedLinks.length ? sampleSocials(niche, handle) : card.data.socials,
+      email: `hello@${handle}.com`, website: `${handle}.com`, bookingUrl: `https://${handle}.com/book`,
       business: s.business, fullName: s.fullName, jobTitle: s.jobTitle, tagline: s.tagline, hours: s.hours, credentials: s.credentials ?? '',
       highlightsTitle: niche.highlightsTitle, highlights: niche.highlights.map((h, i) => ({ ...h, id: `s${i}` })),
       gallery: niche.id === 'realestate' ? card.data.gallery : [], niche: niche.id,
-      slug: s.business.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, ''),
+      slug,
     },
   };
+}
+
+/* Layouts that no niche lists (one-off designs) still need sample content that fits them,
+   or their demos fall back to the interior designer. Generic starter layouts keep that sample. */
+export const LAYOUT_NICHE: Record<string, string> = {
+  blueprint: 'engineering', blush: 'nails', circuit: 'tech', clipper: 'barber', cmdk: 'tech',
+  contactsheet: 'photo', estate: 'realestate', floorplan: 'realestate', inbox: 'va', ledger: 'advisor',
+  nowserving: 'barber', oldschool: 'barber', poster: 'creator', rosegold: 'salon', stained: 'church',
+  starfield: 'tech', bamboo: 'massage', terminal: 'tech',
+};
+
+/** The sample card a demo or gallery preview shows for any layout id. */
+export function demoCardFor(base: Card, template: string): { card: Card; mode: 'light' | 'dark'; niche: Niche | null; design: Design | null } {
+  const hit = ALL_DESIGNS.find((x) => x.design.template === template);
+  if (hit) return { card: applyDesign(sampleFor(base, hit.niche), hit.niche, hit.design), mode: hit.design.mode, niche: hit.niche, design: hit.design };
+  const n = NICHE_BY_ID[LAYOUT_NICHE[template]];
+  const dressed = n ? sampleFor(base, n) : base;
+  return { card: { ...dressed, template: template as TemplateId }, mode: 'light', niche: n ?? null, design: null };
 }
 
 /** The free Lite designs, dressed in a niche's first-design colors and fonts. */

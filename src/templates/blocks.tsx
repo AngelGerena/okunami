@@ -191,7 +191,12 @@ export function LocationCard({ variant = 'row' }: { variant?: 'row' | 'map' | 't
       <a href={mapsHref(a)} target="_blank" rel="noopener" {...el('links')}>Get directions</a></section>);
   return (
     <section className={`fc-sec loc loc--${variant}`} {...el('cardBg')}>
-      {variant === 'map' && <div className="loc__map" {...el('iconBg')}><span {...el('icons')}><MapPin size={30} strokeWidth={1.5} /></span></div>}
+      {variant === 'map' && (
+        <a className="loc__map" href={mapsHref(a)} target="_blank" rel="noopener" aria-label={`Open ${addressLine(a)} in maps`} {...el('iconBg')}>
+          <i className="loc__park" aria-hidden /><i className="loc__road" aria-hidden /><i className="loc__road loc__road--b" aria-hidden />
+          <span className="loc__pin" {...el('icons')}><MapPin size={30} strokeWidth={1.75} /></span>
+        </a>
+      )}
       <div className="loc__row">
         <span className="loc__tx"><b {...el('body')}>Visit us</b><small {...el('caption')}>{addressLine(a)}</small></span>
         <Btn variant="primary" href={mapsHref(a)} icon={<MapPin size={17} />}>Directions</Btn>
