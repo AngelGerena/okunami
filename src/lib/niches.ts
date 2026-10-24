@@ -697,6 +697,30 @@ const NICHE_LIST: Niche[] = [
     ],
   },
   {
+    id: 'jewelry', name: 'Jewelry and Accessory Sellers', group: 'Shops', icon: 'gem',
+    blurb: 'The Bling Collection for jewelry consultants and party-plan sellers: shop my boutique, join my team.',
+    highlightsTitle: 'Shop by category',
+    highlights: [
+      { icon: 'star', title: 'Live Bling Party', subtitle: 'Thursdays at 7:00 PM' },
+      { icon: 'gem', title: 'Necklaces and earrings', subtitle: 'New drops every week' },
+      { icon: 'sparkle', title: 'Bracelets and rings', subtitle: 'Made for stacking' },
+      { icon: 'heart', title: 'Gift sets', subtitle: 'Wrapped and ready to give' },
+    ],
+    tagline: 'Bling for every budget',
+    suggestedLinks: ['facebook', 'instagram', 'tiktok', 'youtube'],
+    designs: [
+      // Bling collection: the first highlight is the live party banner, the next three are category chips
+      d('velvetnoir', 'Velvet Noir', 'Black velvet, a rose-gold ring around your photo and your name in shimmering foil.', ['#3A1D26', '#E7B39A', '#F7EDE8'], 'dark', ['Bodoni Moda', 'Montserrat'], ['pill', 'large', 'gradient', 'satin'], 'calm', 1, true),
+      d('blushsatin', 'Blush Satin', 'Rippling pink satin and an arched portrait framed like a boudoir mirror.', ['#B8325E', '#D9577F', '#FCE8EE'], 'light', ['Playfair Display', 'Poppins'], ['rounded', 'large', 'solid', 'satin'], 'bright', 0.8, true),
+      d('rubygloss', 'Ruby Gloss', 'A full-bleed portrait cut on a slant with lipstick-red gloss buttons.', ['#C10030', '#FF3355', '#FFF3F3'], 'dark', ['Playfair Display', 'Montserrat'], ['rounded', 'large', 'raised', 'none'], 'bright', 0.6, true),
+      d('champtoast', 'Champagne Toast', 'Champagne bubbles rise behind a gold oval portrait and your first name in script.', ['#8A6424', '#B8893A', '#FBF1DF'], 'light', ['Cormorant Garamond', 'Montserrat'], ['pill', 'large', 'gradient', 'brushed'], 'bright', 1, true),
+      d('amethyst', 'Amethyst After Dark', 'Your photo cut like a gemstone, with sparkles twinkling around it.', ['#7A3BA0', '#D68BFF', '#F7F0FF'], 'dark', ['Italiana', 'Poppins'], ['rounded', 'large', 'gradient', 'none'], 'tech', 0.7, true),
+      d('leopard', 'Leopard Luxe', 'A leopard print band and a side-by-side editorial layout.', ['#1B110A', '#9A5B22', '#F4E6D2'], 'light', ['Bodoni Moda', 'Montserrat'], ['square', 'large', 'solid', 'none'], 'bright', 0.3, true),
+      d('pearlstrand', 'Pearl Strand', 'A pearl necklace drapes over a round portrait on soft iridescent white.', ['#2B2530', '#9B7A8F', '#F8F4F7'], 'light', ['Cormorant Garamond', 'Montserrat'], ['pill', 'large', 'solid', 'none'], 'calm', 1, true),
+      d('vanitylights', 'Vanity Lights', 'A Hollywood dressing-room mirror with glowing bulbs around your photo.', ['#3C2219', '#FFCF8A', '#FFF1E4'], 'dark', ['Playfair Display', 'Montserrat'], ['rounded', 'large', 'solid', 'satin'], 'bright', 0.7, true),
+    ],
+  },
+  {
     id: 'retail', name: 'Retail and Boutiques', group: 'Shops', icon: 'briefcase',
     blurb: 'Storefront awning, hours, categories, and a flower-shop garden.',
     highlightsTitle: 'Shop by category',
@@ -891,6 +915,7 @@ export const NICHE_SAMPLES: Record<string, NicheSample> = {
   wedding:      { business: 'Ever After Weddings', fullName: 'Isabel Moreno', jobTitle: 'Wedding Planner', tagline: 'Your day, beautifully handled', hours: 'Consults by appointment' },
   tattoo:       { business: 'Black Rose Tattoo', fullName: 'Rita Santana', jobTitle: 'Tattoo Artist', tagline: 'Custom work only', hours: 'Tue-Sat 12pm-9pm' },
   apparel:      { business: 'Kinfolk Supply', fullName: 'Tiana Brooks', jobTitle: 'Founder and Designer', tagline: 'Wear the story', hours: 'Online 24/7' },
+  jewelry:      { business: 'Bling by Jasmine', fullName: 'Jasmine Rivera', jobTitle: 'Independent Jewelry Consultant', tagline: 'Bling for every budget', hours: 'Live parties Thursdays 7:00 PM' },
   retail:       { business: 'The Corner Nook', fullName: 'Hannah Lee', jobTitle: 'Owner', tagline: 'Your neighborhood shop', hours: 'Mon-Sat 10am-7pm' },
   grooming:     { business: 'Black Label Grooming', fullName: 'Marco Delgado', jobTitle: 'Independent Influencer', tagline: 'Grooming that keeps it simple', hours: 'Orders ship weekly' },
   consultant:   { business: 'Glow Society', fullName: 'Valeria Santos', jobTitle: 'Beauty Influencer', tagline: 'Makeup, skincare and fragrance I actually use', hours: 'Orders ship weekly' },

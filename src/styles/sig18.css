@@ -1,0 +1,135 @@
+/* =================================================================
+   The Bling Collection (src/templates/sig18.tsx): 8 designs for jewelry
+   and accessory sellers. Colors come from the element variables (--c-*),
+   so every part stays recolorable; only true materials (pearls, leopard
+   print, bulb glow, satin sheen) are fixed. Prefixes used nowhere else:
+   jwx-, jvn__, jbs__, jrg__, jct__, jam__, jlp__, jps__, jvl__.
+   ================================================================= */
+.tpl-jwx { position: relative; overflow: hidden; isolation: isolate; padding-bottom: 28px; background: var(--c-pageBg); color: var(--c-body); font-variant-emoji: text; }
+.tpl-jwx a, .tpl-jwx button { -webkit-tap-highlight-color: transparent; }
+.tpl-jwx header { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; text-align: center; padding: 16px 20px 4px; }
+.tpl-jwx .fc-photo { width: 100%; height: 100%; object-fit: cover; display: block; }
+.tpl-jwx .fc-photo--empty { display: grid; place-items: center; color: var(--c-icons); background: var(--c-iconBg); }
+.tpl-jwx h1 { margin: 0; text-wrap: balance; overflow-wrap: anywhere; }
+
+/* ---------- shared pieces */
+.jwx-logo { width: 54px; height: 54px; border-radius: 50%; object-fit: contain; background: var(--c-cardBg); padding: 4px; margin-bottom: 10px; flex: 0 0 auto; }
+.jwx-role { margin: 8px 0 0; font-size: 11.5px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--c-title); }
+.jwx-curve { display: block; width: calc(100% + 40px); height: 44px; margin: 12px -20px -4px; fill: color-mix(in srgb, var(--c-accentDetail) 10%, transparent); }
+.jwx-body { position: relative; z-index: 1; gap: 12px; padding-top: 14px; }
+.jwx-live { display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-radius: var(--r-sm); background: var(--c-cardBg); border: 1px solid var(--c-dividers); text-align: left; }
+.jwx-live__dot { flex: 0 0 10px; height: 10px; border-radius: 50%; background: var(--c-accentDetail); box-shadow: 0 0 0 4px color-mix(in srgb, var(--c-accentDetail) 30%, transparent); }
+.jwx-live__tx { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.jwx-live__tx b { font-size: 15px; font-weight: 700; color: var(--c-body); }
+.jwx-live__tx small { font-size: 13px; color: var(--c-caption); }
+.jwx-shop { min-height: 56px; position: relative; overflow: hidden; }
+.jwx-tiles { display: grid; gap: 8px; }
+.jwx-tiles.n1 { grid-template-columns: minmax(0, 1fr); }
+.jwx-tiles.n2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.jwx-tiles.n3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.jwx-tiles a { min-height: 60px; border-radius: var(--r-sm); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px; padding: 6px; background: var(--c-cardBg); border: 1px solid var(--c-dividers); color: var(--c-icons); text-decoration: none; font-size: 12.5px; font-weight: 600; }
+.jwx-tiles a span:last-child { color: var(--c-body); }
+.jwx-duo { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+.jwx-duo.one { grid-template-columns: minmax(0, 1fr); }
+.jwx-duo .fb { width: 100%; min-width: 0; }
+.jwx-cats { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.jwx-cats li { display: flex; align-items: center; gap: 12px; padding: 11px 14px; border-radius: var(--r-sm); background: var(--c-cardBg); border: 1px solid var(--c-dividers); text-align: left; }
+.jwx-cats li > span:last-child { display: flex; flex-direction: column; gap: 1px; min-width: 0; }
+.jwx-cats b { font-size: 14px; font-weight: 600; color: var(--c-body); }
+.jwx-cats small { font-size: 12.5px; color: var(--c-caption); }
+.jwx-tail { justify-content: center; }
+
+/* ================================================================ 1 VELVET NOIR */
+.tpl-jvn { background: radial-gradient(120% 60% at 50% 0%, color-mix(in srgb, var(--c-accentDetail) 18%, var(--c-pageBg)) 0%, var(--c-pageBg) 60%); }
+.jvn__ring { width: 160px; height: 160px; border-radius: 50%; padding: 3px; background: conic-gradient(from 210deg, var(--c-accentDetail), color-mix(in srgb, var(--c-accentDetail) 35%, #fff), var(--c-accentDetail), color-mix(in srgb, var(--c-accentDetail) 55%, #000), var(--c-accentDetail)); box-shadow: 0 0 0 5px var(--c-pageBg), 0 20px 44px -10px rgba(0,0,0,.6); margin: 4px 0 16px; }
+.jvn__ring .fc-photo { border-radius: 50%; }
+.jvn__name { font-family: var(--f-display); font-style: italic; font-weight: 500; font-size: min(42px, 11vw); line-height: 1.05; color: var(--c-name); }
+@supports (-webkit-background-clip: text) or (background-clip: text) {
+  .jvn__name { background: linear-gradient(100deg, color-mix(in srgb, var(--c-accentDetail) 60%, #fff), var(--c-accentDetail) 40%, color-mix(in srgb, var(--c-accentDetail) 25%, #fff) 55%, var(--c-accentDetail) 75%); background-size: 220% 100%; -webkit-background-clip: text; background-clip: text; color: transparent; animation: jvn-foil 6s linear infinite; }
+}
+@keyframes jvn-foil { to { background-position: -220% 0; } }
+.jvn__script { margin: 4px 0 0; font-family: 'Pinyon Script', cursive; font-size: 27px; line-height: 1.2; color: var(--c-accentDetail); }
+
+/* ================================================================ 2 BLUSH SATIN */
+.tpl-jbs { background: linear-gradient(165deg, var(--c-pageBg) 0%, color-mix(in srgb, var(--c-accentDetail) 30%, var(--c-pageBg)) 40%, var(--c-pageBg) 62%, color-mix(in srgb, var(--c-accentDetail) 22%, var(--c-pageBg)) 100%); }
+.jbs__satin { position: absolute; inset: -40% -40% auto; height: 120%; z-index: 0; pointer-events: none; background: repeating-radial-gradient(ellipse at 30% 20%, rgba(255,255,255,.4) 0 18px, rgba(255,255,255,0) 18px 52px); opacity: .5; animation: jbs-ripple 16s ease-in-out infinite alternate; }
+@keyframes jbs-ripple { to { transform: translate(6%, 4%) rotate(4deg); } }
+.jbs__arch { width: 180px; height: 224px; max-width: 58%; border-radius: 110px 110px 18px 18px; overflow: hidden; border: 6px solid var(--c-cardBg); box-shadow: 0 20px 40px -14px color-mix(in srgb, var(--c-btnPrimaryBg) 55%, transparent); margin: 4px 0 6px; }
+.jbs__name { color: var(--c-name); }
+.jbs__first { display: block; font-family: 'Great Vibes', cursive; font-weight: 400; font-size: min(46px, 12vw); line-height: 1.25; color: var(--c-accentDetail); }
+.jbs__last { display: block; font-family: var(--f-display); font-weight: 700; font-size: min(32px, 8.5vw); line-height: 1.05; }
+.jbs__tag { margin: 10px 0 0; max-width: 32ch; font-size: 14.5px; line-height: 1.5; color: var(--c-caption); }
+
+/* ================================================================ 3 RUBY GLOSS */
+.tpl-jrg header.jrg__hero { height: 380px; padding: 0; justify-content: flex-end; align-items: stretch; text-align: left; background: var(--c-heroBand); clip-path: polygon(0 0, 100% 0, 100% 86%, 0 100%); }
+.jrg__img { position: absolute; inset: 0; }
+.jrg__shade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,.35) 0%, transparent 28%, transparent 45%, rgba(0,0,0,.72) 100%); pointer-events: none; }
+.jrg__logo { position: absolute; top: 14px; left: 50%; transform: translateX(-50%); margin: 0; z-index: 2; }
+.jrg__txt { position: relative; z-index: 2; padding: 0 20px 64px; }
+.jrg__script { margin: 0; font-family: 'Great Vibes', cursive; font-size: 26px; line-height: 1.2; color: color-mix(in srgb, var(--c-accentDetail) 55%, #fff); text-shadow: 0 2px 14px rgba(0,0,0,.5); }
+.jrg__name { font-family: var(--f-display); font-weight: 800; font-size: min(44px, 11.5vw); line-height: 1.02; color: #fff; text-shadow: 0 4px 24px rgba(0,0,0,.55); }
+.jrg__role { color: color-mix(in srgb, var(--c-accentDetail) 45%, #fff); }
+.tpl-jrg .jwx-body { margin-top: -10px; }
+.tpl-jrg .jwx-shop { box-shadow: 0 0 0 1px rgba(255,255,255,.12) inset, 0 12px 28px -8px color-mix(in srgb, var(--c-btnPrimaryBg) 70%, transparent); }
+
+/* ================================================================ 4 CHAMPAGNE TOAST */
+.tpl-jct { background: linear-gradient(180deg, var(--c-pageBg) 0%, color-mix(in srgb, var(--c-accentDetail) 18%, var(--c-pageBg)) 100%); }
+.jct__bubbles { position: absolute; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
+.jct__bubbles i { position: absolute; bottom: -20px; border-radius: 50%; border: 1.5px solid color-mix(in srgb, var(--c-accentDetail) 60%, transparent); background: color-mix(in srgb, #fff 45%, transparent); animation: jct-rise linear infinite; }
+@keyframes jct-rise { to { transform: translate(14px, -900px); opacity: 0; } }
+.jct__oval { width: 156px; height: 196px; border-radius: 50%; padding: 2px; background: var(--c-accentDetail); outline: 1px solid var(--c-accentDetail); outline-offset: 6px; margin: 6px 0 12px; }
+.jct__oval .fc-photo { border-radius: 50%; }
+.jct__name { color: var(--c-name); }
+.jct__first { display: block; font-family: 'Great Vibes', cursive; font-weight: 400; font-size: min(52px, 13.5vw); line-height: 1.15; color: var(--c-accentDetail); }
+.jct__last { display: block; font-family: var(--f-display); font-weight: 700; font-size: 20px; letter-spacing: .32em; padding-left: .32em; text-transform: uppercase; }
+
+/* ================================================================ 5 AMETHYST AFTER DARK */
+.tpl-jam { background: radial-gradient(90% 55% at 50% 16%, color-mix(in srgb, var(--c-accentDetail) 30%, var(--c-pageBg)) 0%, var(--c-pageBg) 62%); }
+.jam__sparks { position: absolute; inset: 0 0 auto; height: 560px; z-index: 0; pointer-events: none; }
+.jam__sparks i { position: absolute; width: 10px; height: 10px; background: #fff; clip-path: polygon(50% 0, 60% 40%, 100% 50%, 60% 60%, 50% 100%, 40% 60%, 0 50%, 40% 40%); animation: jam-twinkle 2.4s ease-in-out infinite; }
+@keyframes jam-twinkle { 0%, 100% { opacity: .15; transform: scale(.5); } 50% { opacity: 1; transform: scale(1.1); } }
+.jam__gem { width: 148px; height: 148px; margin: 26px 0 34px; transform: rotate(45deg); border-radius: 18px; padding: 4px; background: linear-gradient(135deg, #fff, var(--c-accentDetail), #fff); box-shadow: 0 0 50px color-mix(in srgb, var(--c-accentDetail) 50%, transparent); }
+.jam__cut { width: 100%; height: 100%; border-radius: 14px; overflow: hidden; }
+.jam__cut .fc-photo { transform: rotate(-45deg) scale(1.42); }
+.jam__name { font-family: var(--f-display); font-weight: 400; font-size: min(40px, 10.5vw); line-height: 1.05; letter-spacing: .03em; color: var(--c-name); }
+.jam__script { margin: 4px 0 0; font-family: 'Pinyon Script', cursive; font-size: 25px; line-height: 1.2; color: var(--c-accentDetail); }
+.tpl-jam .jwx-shop { box-shadow: 0 0 28px color-mix(in srgb, var(--c-btnPrimaryBg) 45%, transparent); }
+
+/* ================================================================ 6 LEOPARD LUXE */
+.jlp__band { position: absolute; top: 0; left: 0; right: 0; height: 118px; z-index: 0; pointer-events: none; clip-path: polygon(0 0, 100% 0, 100% 68%, 0 100%);
+  background-color: #D9A96A; background-size: 64px 58px; background-image:
+    radial-gradient(ellipse 9px 7px at 20% 30%, #2A1A0E 60%, transparent 62%), radial-gradient(ellipse 13px 10px at 20% 30%, #8A5420 58%, transparent 60%),
+    radial-gradient(ellipse 8px 6px at 70% 60%, #2A1A0E 60%, transparent 62%), radial-gradient(ellipse 12px 9px at 70% 60%, #8A5420 58%, transparent 60%),
+    radial-gradient(ellipse 7px 9px at 45% 85%, #2A1A0E 60%, transparent 62%), radial-gradient(ellipse 10px 12px at 45% 85%, #8A5420 58%, transparent 60%),
+    radial-gradient(ellipse 6px 5px at 90% 15%, #2A1A0E 60%, transparent 62%); }
+.tpl-jlp header.jlp__hero { align-items: flex-start; text-align: left; }
+.jlp__row { display: flex; align-items: flex-end; gap: 14px; width: 100%; margin-top: 18px; }
+.jlp__frame { flex: 0 0 128px; height: 164px; border-radius: 4px; overflow: hidden; border: 4px solid var(--c-cardBg); box-shadow: 0 14px 30px -8px rgba(42,26,14,.45); }
+.jlp__who { min-width: 0; padding-bottom: 4px; }
+.jlp__script { margin: 0; font-family: 'Great Vibes', cursive; font-size: 24px; line-height: 1.2; color: var(--c-accentDetail); }
+.jlp__name { font-family: var(--f-display); font-weight: 700; font-size: min(30px, 8vw); line-height: 1.05; color: var(--c-name); }
+.jlp__name span { display: block; }
+.tpl-jlp .jwx-role { font-size: 10.5px; }
+
+/* ================================================================ 7 PEARL STRAND */
+.tpl-jps { background: linear-gradient(170deg, var(--c-pageBg) 0%, color-mix(in srgb, var(--c-accentDetail) 10%, var(--c-pageBg)) 50%, var(--c-pageBg) 100%); }
+.jps__strand { display: block; width: calc(100% + 40px); height: 70px; margin: -4px -20px 0; filter: drop-shadow(0 3px 3px rgba(0,0,0,.12)); }
+.jps__photo { width: 158px; height: 158px; border-radius: 50%; overflow: hidden; margin-top: -24px; box-shadow: 0 0 0 8px var(--c-cardBg), 0 18px 36px -12px rgba(var(--shadow-rgb), .4); }
+.jps__name { margin-top: 18px; font-family: var(--f-display); font-weight: 500; font-size: min(38px, 10vw); line-height: 1.05; color: var(--c-name); }
+.jps__script { margin: 2px 0 0; font-family: 'Pinyon Script', cursive; font-size: 25px; line-height: 1.2; color: var(--c-accentDetail); }
+
+/* ================================================================ 8 VANITY LIGHTS */
+.tpl-jvl { background: linear-gradient(180deg, color-mix(in srgb, var(--c-accentDetail) 10%, var(--c-pageBg)) 0%, var(--c-pageBg) 55%); }
+.jvl__mirror { position: relative; width: 220px; height: 260px; max-width: 70%; border-radius: 22px; padding: 26px; background: var(--c-heroBand); box-shadow: 0 0 0 2px color-mix(in srgb, var(--c-accentDetail) 40%, transparent), 0 22px 44px -12px rgba(0,0,0,.6); margin: 4px 0 16px; }
+.jvl__mirror .fc-photo { border-radius: 12px; }
+.jvl__bulb { position: absolute; width: 14px; height: 14px; margin: -7px 0 0 -7px; border-radius: 50%; background: #FFF6DC; box-shadow: 0 0 10px 4px rgba(255,214,140,.85), 0 0 22px 8px rgba(255,190,100,.35); animation: jvl-glow 2.8s ease-in-out infinite; }
+@keyframes jvl-glow { 50% { box-shadow: 0 0 6px 2px rgba(255,214,140,.6), 0 0 14px 4px rgba(255,190,100,.2); } }
+.jvl__name { font-family: var(--f-display); font-style: italic; font-weight: 600; font-size: min(38px, 10vw); line-height: 1.05; color: var(--c-name); }
+.jvl__script { margin: 4px 0 0; font-family: 'Great Vibes', cursive; font-size: 25px; line-height: 1.2; color: var(--c-accentDetail); }
+.tpl-jvl .jwx-shop { box-shadow: 0 0 24px color-mix(in srgb, var(--c-btnPrimaryBg) 40%, transparent); }
+
+/* ---------- calm motion for people who ask for it */
+@media (prefers-reduced-motion: reduce) {
+  .jvn__name, .jbs__satin, .jct__bubbles i, .jam__sparks i, .jvl__bulb { animation: none !important; }
+  .jct__bubbles { display: none; }
+}
