@@ -95,7 +95,9 @@ export type TemplateId =
   // X-Series collection (Fuji-style retro mirrorless shooters)
   | 'filmsim' | 'xdials' | 'hybridvf' | 'filmrecipe' | 'instaprint' | 'monostrip'
   // Cinema collection (cinematographers)
-  | 'cinescreen' | 'cinebrain' | 'focusguide' | 'punchin' | 'slate';
+  | 'cinescreen' | 'cinebrain' | 'focusguide' | 'punchin' | 'slate'
+  // Hacker collection (developers and tech pros, Hollywood style)
+  | 'hackide' | 'bioscan' | 'accessgranted' | 'globetrace' | 'dossier' | 'warroom' | 'coderain' | 'enhance' | 'vault';
 
 export interface SocialLink { id: string; network: string; value: string; }   // value = handle or full URL
 export interface Highlight { id: string; icon: string; title: string; subtitle: string; }
