@@ -21,6 +21,8 @@ import { Bokeh, EyeAF, Peaking, SLog, Sensor, Zebras } from './sig12';
 import { FilmRecipe, FilmSim, HybridVF, InstaPrint, MonoStrip, XDials } from './sig13';
 import { CineBrain, CineScreen, FocusGuide, PunchIn, Slate } from './sig14';
 import { AccessGranted, BioScan, CodeRain, Dossier, Enhance, GlobeTrace, HackIDE, Vault, WarRoom } from './sig15';
+import { PaintFan, SiteBadge, SpiritLevel, TapeMeasure, WorkOrder } from './sig16';
+import { LyricBook, NowPlaying, Spotlight, VocalRange, Voiceprint } from './sig17';
 import { Boarding, Confetti, Inbox, Invitation, Monogram, Planner, Recipe, Stained, Toolbelt, Trading, Turntable, Vinyl, Waveform } from './sig2-b';
 import {
   Arrow, Btn, Business, CalendarDays, ContactList, Crisis, Dock, Footer, Highlights, LocationCard, Logo, Name, Photo,
@@ -233,6 +235,18 @@ export const TEMPLATES: TemplateMeta[] = [
   { id: 'coderain', name: 'Code Rain', niche: 'Tech and IT', blurb: 'Your portrait built out of falling green code. The rain pours down and settles into your face, made from your real photo.', bestFor: 'Developers and AI builders' },
   { id: 'enhance', name: 'Enhance', niche: 'Tech and IT', blurb: 'Grainy security cam footage that zooms in and sharpens on your face, step by step, until MATCH FOUND locks on.', bestFor: 'Developers, security and IT pros' },
   { id: 'vault', name: 'Vault', niche: 'Tech and IT', blurb: 'A steel vault door with a gold wheel. Press the fingerprint pad, the scanner sweeps and the door swings open on you.', bestFor: 'Developers, fintech and security pros' },
+  // ---- Handyman collection (handymen and contractors)
+  { id: 'tapemeasure', name: 'Tape', niche: 'Handyman and Contractors', blurb: 'A big tape measure with your photo in the case. Pull the blade out and it runs across the card; your services sit on ruler tiles.', bestFor: 'Handymen, carpenters and contractors' },
+  { id: 'spiritlevel', name: 'Level', niche: 'Handyman and Contractors', blurb: 'Your photo hangs crooked above a spirit level. Press Level it, or tilt your phone, and the frame swings dead straight.', bestFor: 'Handymen, installers and remodelers' },
+  { id: 'workorder', name: 'Work Order', niche: 'Handyman and Contractors', blurb: 'A carbon-copy work order with your photo clipped on. Your job list checks itself off, your signature writes in and the stamp lands.', bestFor: 'Handymen, contractors and repair pros' },
+  { id: 'sitebadge', name: 'Site Badge', niche: 'Handyman and Contractors', blurb: 'A hi-vis vest with your ID badge swinging on a lanyard. Press the badge and it flips over to a QR code.', bestFor: 'Contractors, crews and job-site pros' },
+  { id: 'paintfan', name: 'Paint Fan', niche: 'Handyman and Contractors', blurb: 'A paint fan deck with your photo on top. Open it and every swatch is a contact button, like Call Me Coral and Book It Blue.', bestFor: 'Painters, handymen and remodelers' },
+  // ---- Vocalist collection (singers)
+  { id: 'voiceprint', name: 'Voiceprint', niche: 'DJs and Musicians', blurb: 'A black-and-white portrait with your voice drawn across it as a waveform. Press play and it sings while the wave moves.', bestFor: 'Singers and session vocalists' },
+  { id: 'lyricbook', name: 'Lyric Book', niche: 'DJs and Musicians', blurb: 'A page from your songwriting notebook with your polaroid taped on. Press Sing it and each word lights up as it is sung.', bestFor: 'Singer-songwriters' },
+  { id: 'vocalrange', name: 'Range', niche: 'DJs and Musicians', blurb: 'A glowing piano-roll range chart. Press any note to hear it sung, or run the whole scale.', bestFor: 'Vocalists, vocal coaches and choirs' },
+  { id: 'spotlight', name: 'Spotlight', niche: 'DJs and Musicians', blurb: 'A follow-spot sweeps a dark stage and finds you. Your setlist taped to the floor is the contact buttons.', bestFor: 'Live singers and wedding vocalists' },
+  { id: 'nowplaying', name: 'Now Playing', niche: 'DJs and Musicians', blurb: 'A music player where your photo is the cover art. Play sings a line about you, with Book, Stream and Share tabs.', bestFor: 'Singers and recording artists' },
   // ---- Farmasi collection (direct sellers): her line
   { id: 'rougeedit',    name: 'Rouge Edit',     niche: 'Beauty Consultants', blurb: 'A wine and gold magazine cover with your name in italic, a pull quote and a table of contents.', bestFor: 'Farmasi leaders, top beauty sellers' },
   { id: 'blushatelier', name: 'Blush Atelier',  niche: 'Beauty Consultants', blurb: 'An oval cameo portrait, a signed seal and your first name in script.', bestFor: 'New beauty sellers, makeup artists' },
@@ -548,6 +562,8 @@ export const TEMPLATE_COMPONENTS: Record<TemplateId, () => ReactElement> = {
   filmsim: FilmSim, xdials: XDials, hybridvf: HybridVF, filmrecipe: FilmRecipe, instaprint: InstaPrint, monostrip: MonoStrip,
   cinescreen: CineScreen, cinebrain: CineBrain, focusguide: FocusGuide, punchin: PunchIn, slate: Slate,
   hackide: HackIDE, bioscan: BioScan, accessgranted: AccessGranted, globetrace: GlobeTrace, dossier: Dossier, warroom: WarRoom, coderain: CodeRain, enhance: Enhance, vault: Vault,
+  tapemeasure: TapeMeasure, spiritlevel: SpiritLevel, workorder: WorkOrder, sitebadge: SiteBadge, paintfan: PaintFan,
+  voiceprint: Voiceprint, lyricbook: LyricBook, vocalrange: VocalRange, spotlight: Spotlight, nowplaying: NowPlaying,
   rougeedit: RougeEdit, blushatelier: BlushAtelier, noirlash: NoirLash, botanical: Botanical,
   blacklabel: BlackLabel, barberclub: BarberClub, copperforge: CopperForge, cedarsmoke: CedarSmoke, voltsport: VoltSport,
 };
