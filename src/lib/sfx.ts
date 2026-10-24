@@ -1,86 +1,157 @@
-/* Interface sounds, synthesized live (no audio files).
-   calm   soft singing-bowl partials, warm low-pass       (wellness, pros, default)
-   tech   crisp synth blips, glides and a boot arpeggio   (tech niche)
-   bright short marimba-like plucks                       (food, retail, creators)
+/* Interface sounds, synthesized live (no audio files). Tuned to feel like a
+   premium phone app: short, quiet and soft, never musical jingles.
+   calm   soft ticks and warm glass chimes                (wellness, pros, default)
+   tech   crisp, slightly brighter digital ticks           (tech niche)
+   bright soft wood knocks with a glass top note           (food, retail, creators)
+   Every sound passes through one gentle low-pass, a short room ambience and a
+   limiter, so nothing pokes out. The same sound will not stack if it fires twice
+   within a few milliseconds (a tap that both the card and a design report).
    Muted when the OS asks for reduced motion or the card sets sound to off. */
 import type { SoundProfile } from './types';
 
 let ctx: AudioContext | null = null;
-let out: GainNode | null = null;
-let lp: BiquadFilterNode | null = null;
+let dry: GainNode | null = null;
+let wet: GainNode | null = null;
 let enabled = true;
+const last = new Map<string, number>();
 
 export const setSound = (on: boolean) => { enabled = on; };
 export const soundOn = () => enabled;
 
 export type SfxName = 'tap' | 'primary' | 'success' | 'open' | 'close' | 'dice' | 'hover' | 'boot';
 
+/** A short, soft room so chimes have air instead of sounding like raw beeps. */
+function room(c: AudioContext) {
+  const len = Math.floor(c.sampleRate * 0.45), ir = c.createBuffer(2, len, c.sampleRate);
+  for (let ch = 0; ch < 2; ch++) { const d = ir.getChannelData(ch); for (let i = 0; i < len; i++) d[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / len, 3.2); }
+  const conv = c.createConvolver(); conv.buffer = ir; return conv;
+}
+
 function ensure() {
   if (ctx) return ctx;
   const AC = window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
   if (!AC) return null;
   ctx = new AC();
-  out = ctx.createGain(); out.gain.value = 0.16;
-  lp = ctx.createBiquadFilter(); lp.type = 'lowpass'; lp.frequency.value = 2200; lp.Q.value = 0.4;
-  out.connect(lp); lp.connect(ctx.destination);
+  const lp = ctx.createBiquadFilter(); lp.type = 'lowpass'; lp.frequency.value = 6500; lp.Q.value = 0.5;
+  const lim = ctx.createDynamicsCompressor(); lim.threshold.value = -18; lim.knee.value = 12; lim.ratio.value = 6; lim.attack.value = 0.002; lim.release.value = 0.12;
+  const master = ctx.createGain(); master.gain.value = 0.9;
+  dry = ctx.createGain(); dry.gain.value = 1;
+  wet = ctx.createGain(); wet.gain.value = 0.16;
+  const verb = room(ctx);
+  dry.connect(lp); wet.connect(verb); verb.connect(lp);
+  lp.connect(lim); lim.connect(master); master.connect(ctx.destination);
   return ctx;
 }
 
-function tone(f: number, dur: number, vol: number, opts: { delay?: number; to?: number; type?: OscillatorType; attack?: number; cutoff?: number } = {}) {
-  const c = ensure(); if (!c || !out || !lp) return;
-  const t = c.currentTime + (opts.delay ?? 0);
-  const o = c.createOscillator(), g = c.createGain();
-  o.type = opts.type ?? 'sine';
-  o.frequency.setValueAtTime(f, t);
-  if (opts.to) o.frequency.exponentialRampToValueAtTime(opts.to, t + dur * 0.8);
-  g.gain.setValueAtTime(0.0001, t);
-  g.gain.exponentialRampToValueAtTime(vol, t + (opts.attack ?? 0.035));
-  g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
-  lp.frequency.setValueAtTime(opts.cutoff ?? 2200, t);
-  o.connect(g); g.connect(out); o.start(t); o.stop(t + dur + 0.05);
+/** Route a voice: always dry, optionally into the room. */
+function route(node: AudioNode, air = 0) {
+  node.connect(dry!);
+  if (air > 0 && wet) { const s = ctx!.createGain(); s.gain.value = air; node.connect(s); s.connect(wet); }
 }
 
-const bowl = (f: number, dur: number, vol: number, delay = 0) => { tone(f, dur, vol, { delay }); tone(f * 2.76, dur * 0.6, vol * 0.18, { delay: delay + 0.01 }); };
-const blip = (f: number, dur: number, vol: number, delay = 0, to?: number) => tone(f, dur, vol, { delay, to, type: 'square', attack: 0.004, cutoff: 5200 });
-const pluck = (f: number, vol: number, delay = 0) => { tone(f, 0.28, vol, { delay, type: 'triangle', attack: 0.004, cutoff: 3800 }); tone(f * 4, 0.08, vol * 0.25, { delay, attack: 0.002, cutoff: 3800 }); };
+/** A soft click: a tiny filtered noise transient plus a short sine body. */
+function tick(freq: number, vol: number, delay = 0, len = 0.028) {
+  const c = ensure(); if (!c) return;
+  const t = c.currentTime + delay;
+  const n = Math.floor(c.sampleRate * 0.008), buf = c.createBuffer(1, n, c.sampleRate), d = buf.getChannelData(0);
+  for (let i = 0; i < n; i++) d[i] = (Math.random() * 2 - 1) * (1 - i / n);
+  const ns = c.createBufferSource(), hp = c.createBiquadFilter(), ng = c.createGain();
+  ns.buffer = buf; hp.type = 'highpass'; hp.frequency.value = 2400; ng.gain.value = vol * 0.35;
+  ns.connect(hp); hp.connect(ng); route(ng);
+  const o = c.createOscillator(), g = c.createGain();
+  o.type = 'sine'; o.frequency.setValueAtTime(freq, t); o.frequency.exponentialRampToValueAtTime(freq * 0.82, t + len);
+  g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(vol, t + 0.002); g.gain.exponentialRampToValueAtTime(0.0001, t + len);
+  o.connect(g); route(g, 0.2);
+  ns.start(t); o.start(t); o.stop(t + len + 0.02);
+}
+
+/** A glass chime: a pure tone with a faint octave and twelfth, quick attack, natural decay. */
+function glass(freq: number, vol: number, delay = 0, dur = 0.55) {
+  const c = ensure(); if (!c) return;
+  const t = c.currentTime + delay;
+  [[1, 1], [2, 0.14], [3, 0.04]].forEach(([m, v]) => {
+    const o = c.createOscillator(), g = c.createGain();
+    o.type = 'sine'; o.frequency.value = freq * m;
+    g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(vol * v, t + 0.006); g.gain.exponentialRampToValueAtTime(0.0001, t + dur / m);
+    o.connect(g); route(g, 0.9); o.start(t); o.stop(t + dur + 0.05);
+  });
+}
+
+/** A soft wood knock: a warm, very short tone. */
+function wood(freq: number, vol: number, delay = 0) {
+  const c = ensure(); if (!c) return;
+  const t = c.currentTime + delay;
+  const o = c.createOscillator(), o2 = c.createOscillator(), f = c.createBiquadFilter(), g = c.createGain();
+  o.type = 'sine'; o.frequency.value = freq; o2.type = 'sine'; o2.frequency.value = freq * 3.9;
+  const g2 = c.createGain(); g2.gain.value = 0.18; o2.connect(g2); g2.connect(f); o.connect(f);
+  f.type = 'lowpass'; f.frequency.value = freq * 5;
+  g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(vol, t + 0.003); g.gain.exponentialRampToValueAtTime(0.0001, t + 0.11);
+  f.connect(g); route(g, 0.35); o.start(t); o2.start(t); o.stop(t + 0.14); o2.stop(t + 0.14);
+}
+
+/** A soft air swish for sheets opening and closing. */
+function swish(f0: number, f1: number, vol: number, dur = 0.16) {
+  const c = ensure(); if (!c) return;
+  const t = c.currentTime;
+  const n = Math.floor(c.sampleRate * dur), buf = c.createBuffer(1, n, c.sampleRate), d = buf.getChannelData(0);
+  for (let i = 0; i < n; i++) d[i] = Math.random() * 2 - 1;
+  const s = c.createBufferSource(), bp = c.createBiquadFilter(), g = c.createGain();
+  s.buffer = buf; bp.type = 'bandpass'; bp.Q.value = 0.9;
+  bp.frequency.setValueAtTime(f0, t); bp.frequency.exponentialRampToValueAtTime(f1, t + dur);
+  g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(vol, t + dur * 0.35); g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+  s.connect(bp); bp.connect(g); route(g, 0.3); s.start(t);
+}
 
 function calm(name: SfxName) {
   switch (name) {
-    case 'primary': bowl(392, 1.1, 0.42); bowl(587.3, 1.2, 0.2, 0.06); break;
-    case 'success': [523.3, 659.3, 784].forEach((f, i) => bowl(f, 1.0, 0.3, i * 0.14)); break;
-    case 'open': tone(440, 0.6, 0.3, { to: 523.3 }); break;
-    case 'close': tone(523.3, 0.5, 0.26, { to: 392 }); break;
-    case 'dice': [659.3, 523.3, 784, 587.3].forEach((f, i) => bowl(f, 0.5, 0.18, i * 0.06)); break;
-    case 'hover': case 'boot': break;
-    default: bowl(523.3, 0.5, 0.26);
+    case 'tap': tick(1250, 0.07); break;
+    case 'primary': glass(880, 0.09); glass(1318.5, 0.06, 0.07); break;
+    case 'success': glass(1046.5, 0.075); glass(1568, 0.055, 0.09, 0.7); break;
+    case 'open': swish(500, 1700, 0.05); break;
+    case 'close': swish(1700, 500, 0.04); break;
+    case 'dice': [0, 0.05, 0.1].forEach((dl, i) => tick(1100 + i * 180, 0.05, dl)); break;
+    default: break;   // hover and boot stay silent
   }
 }
 function tech(name: SfxName) {
   switch (name) {
-    case 'primary': blip(880, 0.09, 0.22); blip(1318.5, 0.14, 0.2, 0.07); tone(220, 0.3, 0.18, { type: 'sawtooth', to: 110, cutoff: 900 }); break;
-    case 'success': [659.3, 880, 1174.7, 1760].forEach((f, i) => blip(f, 0.1, 0.16, i * 0.06)); break;
-    case 'open': blip(440, 0.18, 0.16, 0, 1760); break;
-    case 'close': blip(1760, 0.16, 0.14, 0, 440); break;
-    case 'dice': for (let i = 0; i < 6; i++) blip(600 + Math.random() * 1200, 0.05, 0.12, i * 0.035); break;
-    case 'hover': blip(2093, 0.03, 0.05); break;
-    case 'boot': [110, 220, 330, 440, 660, 880].forEach((f, i) => blip(f, 0.12, 0.12, i * 0.07)); tone(55, 0.9, 0.2, { type: 'sawtooth', to: 110, cutoff: 600, delay: 0.1 }); break;
-    default: blip(1046.5, 0.06, 0.18);
+    case 'tap': tick(2300, 0.06, 0, 0.018); break;
+    case 'primary': tick(1760, 0.06, 0, 0.02); glass(1760, 0.06, 0.05, 0.35); break;
+    case 'success': [0, 0.06].forEach((dl, i) => tick(1760 + i * 590, 0.05, dl, 0.02)); glass(2349.3, 0.05, 0.12, 0.45); break;
+    case 'open': swish(800, 2600, 0.045, 0.13); break;
+    case 'close': swish(2600, 800, 0.035, 0.12); break;
+    case 'dice': [0, 0.04, 0.08, 0.12].forEach((dl) => tick(1800 + Math.random() * 900, 0.04, dl, 0.016)); break;
+    case 'boot': glass(880, 0.035, 0, 0.6); glass(1318.5, 0.03, 0.12, 0.6); break;
+    default: break;   // hover stays silent
   }
 }
 function bright(name: SfxName) {
   switch (name) {
-    case 'primary': pluck(659.3, 0.34); pluck(987.8, 0.28, 0.07); break;
-    case 'success': [523.3, 659.3, 784, 1046.5].forEach((f, i) => pluck(f, 0.26, i * 0.08)); break;
-    case 'open': pluck(784, 0.24); break;
-    case 'close': pluck(523.3, 0.22); break;
-    case 'dice': [880, 659.3, 1046.5, 784].forEach((f, i) => pluck(f, 0.2, i * 0.05)); break;
-    case 'hover': case 'boot': break;
-    default: pluck(880, 0.24);
+    case 'tap': wood(1046.5, 0.08); break;
+    case 'primary': wood(784, 0.08); glass(1568, 0.05, 0.06); break;
+    case 'success': wood(1046.5, 0.07); wood(1318.5, 0.06, 0.07); glass(2093, 0.04, 0.14); break;
+    case 'open': swish(600, 1900, 0.045); break;
+    case 'close': swish(1900, 600, 0.035); break;
+    case 'dice': [0, 0.05, 0.1].forEach((dl, i) => wood(880 + i * 220, 0.06, dl)); break;
+    default: break;   // hover and boot stay silent
   }
 }
 
 export function sfx(name: SfxName, profile: SoundProfile = 'calm') {
   if (!enabled || profile === 'off' || window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) return;
-  if (ctx?.state === 'suspended') ctx.resume();
+  const now = performance.now(), key = `${profile}:${name}`;
+  if (now - (last.get(key) ?? -1e9) < 70) return;   // don't stack the same sound
+  last.set(key, now);
+  if (!ensure()) return;
+  if (ctx?.state === 'suspended') void ctx.resume();
   if (profile === 'tech') tech(name); else if (profile === 'bright') bright(name); else calm(name);
+}
+
+/** The worship designs' two signature moments, kept soft and under the sound setting. */
+export function chime(kind: 'sparkle' | 'orb') {
+  if (!enabled || window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) return;
+  if (!ensure()) return;
+  if (ctx?.state === 'suspended') void ctx.resume();
+  if (kind === 'sparkle') { [1318.5, 1568, 2093].forEach((f, i) => glass(f, 0.05 - i * 0.01, i * 0.07, 0.8)); }
+  else { glass(523.3, 0.07, 0, 0.9); glass(784, 0.045, 0.05, 0.9); }
 }
