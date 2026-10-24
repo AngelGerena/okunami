@@ -931,7 +931,7 @@ export const NICHE_SAMPLES: Record<string, NicheSample> = {
 };
 
 /* Per-niche demo portraits. Drop a file named after the niche id into src/assets/demo/
-   (barber.jpg, grooming.jpg, photo.webp ...) and every preview for that niche uses it.
+   (barber.webp, grooming.webp ...) and every preview for that niche uses it.
    Niches without a file keep the shared sample portrait. */
 let DEMO_PHOTOS: Record<string, string> = {};
 // Vite fills this at build time; plain Node (the copy and i18n check scripts) has no glob, so it stays empty there.
