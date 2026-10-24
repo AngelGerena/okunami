@@ -1,4 +1,4 @@
-/* A breathy saxophone-like reed for the Saxophone designs (sig18), synthesized
+/* A breathy saxophone-like reed for the Saxophone designs (sig19), synthesized
    live (no audio files): two detuned oscillators through a moving low-pass
    filter, gentle vibrato and a little breath noise. It only starts from a
    press, and stays silent when the card's sound is off or the OS asks for

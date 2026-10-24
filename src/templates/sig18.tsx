@@ -1,161 +1,276 @@
 /* =================================================================
-   The Saxophone Collection: 3 luxury designs for saxophonists, each
-   built over a photo of hands on a saxophone.
-   Midnight Set (the photo fills the card behind a thin gold frame;
-   mother-of-pearl sax keys are the contact buttons), Velvet Room (the
-   photo crowns an oxblood velvet card with a gold curve and a portrait
-   medallion) and Black Tie (an engraved invitation on black card stock
-   with the photo in an arched window and an RSVP row of contacts).
-   Each key plays a reed note and "Hear a phrase" plays a short original
-   melody (src/lib/reed.ts, silent when sound is off). Keys, booking
-   sheet and tail (Share and QR code) come from the EOS set (sig8).
-   Prefixes: sx-, sms__, svr__, sbt__.
+   The Bling Collection: 8 designs for jewelry and accessory sellers
+   (party-plan and direct-sale consultants).
+   Velvet Noir, Blush Satin, Ruby Gloss, Champagne Toast, Amethyst
+   After Dark, Leopard Luxe, Pearl Strand, Vanity Lights.
+   Website = shop link and Booking = join-my-team link.
+   The first highlight is the live party banner; the next three show
+   as shop-by-category chips.
+   Every class uses a prefix nothing else in the app uses:
+   jwx-, jvn__, jbs__, jrg__, jct__, jam__, jlp__, jps__, jvl__.
    ================================================================= */
-import { useEffect, useId, useRef, useState, type ReactNode } from 'react';
-import { Photo, el, useCard } from './blocks';
-import { BookSheet, Tail, useEos, type Key } from './sig8';
-import { playPhrase, reed } from '../lib/reed';
+import { useEffect, type ReactNode } from 'react';
+import { ShoppingBag, Users } from 'lucide-react';
+import { Btn, HIcon, Logo, Photo, QrBtn, SaveBtn, ShareBtn, SocialLinks, Title, el, useCard, useContactActions } from './blocks';
+import { webHref } from '../lib/links';
 
-const IMG = { ms: '/images/tpl/sax-ms.jpg', vr: '/images/tpl/sax-vr.jpg', bt: '/images/tpl/sax-bt.jpg' };
-const NOTES = [466.2, 554.4, 622.3, 698.5];
-const splitName = (full: string) => { const [first, ...rest] = (full || 'Your Name').split(' '); return { first, last: rest.join(' ') }; };
-const go = (href: string) => { if (!href) return; if (/^https?:/.test(href)) window.open(href, '_blank', 'noopener'); else window.location.href = href; };
+const ext = (h: string) => (/^https?:/.test(h) ? { target: '_blank', rel: 'noopener' } : {});
 
-function useSx() {
-  const eos = useEos();
-  const { first, last } = splitName(eos.data.fullName);
-  const [lit, setLit] = useState(-1);
-  const timers = useRef<number[]>([]);
-  useEffect(() => () => { timers.current.forEach((i) => window.clearTimeout(i)); }, []);
-  const fire = (k: Key, i: number) => {
-    reed(NOTES[i % NOTES.length], 0.45);
-    if (k.book && !k.href) eos.openBook(); else go(k.href ?? '');
+function useJw() {
+  const { data } = useCard();
+  const name = data.fullName || 'Your Name';
+  const [first, ...rest] = name.split(' ');
+  const contacts = useContactActions().filter((a) => a.key !== 'book' && a.key !== 'web');
+  return {
+    data, first, last: rest.join(' '), contacts,
+    shop: data.website ? webHref(data.website) : null,
+    join: data.bookingUrl ? webHref(data.bookingUrl) : null,
+    live: data.highlights[0] ?? null,
+    cats: data.highlights.slice(1, 4),
   };
-  const phrase = () => {
-    timers.current.forEach((i) => window.clearTimeout(i)); timers.current = [];
-    const n = Math.max(1, eos.keys.length);
-    playPhrase().forEach((t, i) => { timers.current.push(window.setTimeout(() => setLit(i % n), t * 1000)); });
-    timers.current.push(window.setTimeout(() => setLit(-1), 3200));
-  };
-  const city = [eos.data.address.city, eos.data.address.region].filter(Boolean).join(', ');
-  return { ...eos, first, last, lit, fire, phrase, city };
 }
 
-function Shell({ cls, children, booking, closeBook }: { cls: string; children: ReactNode; booking: boolean; closeBook: () => void }) {
-  const { still } = useCard();
+/** Everything under the hero: party banner, shop, quick contact, join, save, socials, share. */
+function Body() {
+  const { shop, join, contacts, live, cats } = useJw();
+  const q = contacts.slice(0, 3);
   return (
-    <div className={`tpl tpl-sx ${cls}${still ? ' is-still' : ''}`}>
-      <div className="pad stack">{children}</div>
-      {booking && <BookSheet onClose={closeBook} />}
+    <div className="pad stack jwx-body">
+      {live && (
+        <div className="jwx-live" {...el('cardBg')}>
+          <span className="jwx-live__dot" aria-hidden {...el('accentDetail')} />
+          <span className="jwx-live__tx"><b {...el('body')}>{live.title}</b>{live.subtitle && <small {...el('caption')}>{live.subtitle}</small>}</span>
+        </div>
+      )}
+      {shop
+        ? <Btn variant="primary" block className="jwx-shop" href={shop} icon={<ShoppingBag size={19} />}>Shop my boutique</Btn>
+        : <SaveBtn />}
+      {q.length > 0 && (
+        <nav className={`jwx-tiles n${q.length}`} aria-label="Contact">
+          {q.map((a) => (
+            <a key={a.key} href={a.href} {...ext(a.href)} {...el('cardBg')}>
+              <span {...el('icons')}>{a.icon}</span><span {...el('body')}>{a.label}</span>
+            </a>
+          ))}
+        </nav>
+      )}
+      {shop && (
+        <div className={`jwx-duo${join ? '' : ' one'}`}>
+          {join && <Btn block href={join} icon={<Users size={18} />}>Join my team</Btn>}
+          <SaveBtn variant="secondary" />
+        </div>
+      )}
+      {!shop && join && <Btn block href={join} icon={<Users size={18} />}>Join my team</Btn>}
+      {cats.length > 0 && (
+        <ul className="jwx-cats" aria-label="Shop by category">
+          {cats.map((h) => (
+            <li key={h.id} {...el('cardBg')}><span {...el('icons')}><HIcon name={h.icon} size={16} /></span><span><b {...el('body')}>{h.title}</b>{h.subtitle && <small {...el('caption')}>{h.subtitle}</small>}</span></li>
+          ))}
+        </ul>
+      )}
+      <SocialLinks variant="icons" title="" />
+      <div className="row jwx-tail"><ShareBtn /><QrBtn /></div>
     </div>
   );
 }
-function Bg({ src, pos, label = 'Hands playing a saxophone' }: { src: string; pos: string; label?: string }) {
-  return <div className="sx-photo" style={{ backgroundImage: `url(${src})`, backgroundPosition: pos }} role="img" aria-label={label} />;
-}
-function Name() {
+
+function Tagline({ className }: { className: string }) {
   const { data } = useCard();
-  const { first, last } = splitName(data.fullName);
-  return <h1 className="sx-name" {...el('name')}>{first}{last && <> <i className="sx-foil">{last}</i></>}</h1>;
+  return data.tagline ? <p className={className} {...el('accentDetail')}>{data.tagline}</p> : null;
 }
-function Pearls({ keys, fire, lit }: { keys: Key[]; fire: (k: Key, i: number) => void; lit: number }) {
-  if (!keys.length) return null;
+
+/** Big smooth full-width curve that carries the hero into the page. */
+function Curve({ className = '' }: { className?: string }) {
   return (
-    <nav className={`sx-pearls n${keys.length}`} aria-label="Contact">
-      {keys.map((k, i) => (
-        <button key={k.key} type="button" className={`sx-pk${lit === i ? ' is-on' : ''}`} onClick={() => fire(k, i)} aria-label={k.label}>
-          <i aria-hidden>{k.icon}</i><span>{k.label}</span>
-        </button>
-      ))}
-    </nav>
-  );
-}
-function PhraseBtn({ onClick, label = 'Hear a phrase' }: { onClick: () => void; label?: string }) {
-  return <button type="button" className="sx-ghost" onClick={onClick}><svg viewBox="0 0 24 24" aria-hidden><path d="M7 4v16l13-8z" /></svg>{label}</button>;
-}
-function SaveBtn({ onSave }: { onSave: () => void }) {
-  return (
-    <button type="button" className="sx-act" onClick={() => { [466.2, 587.3, 698.5].forEach((f, i) => reed(f, 0.35, i * 0.14, 0.12)); onSave(); }} {...el('btnPrimaryBg')}>
-      <svg viewBox="0 0 24 24" aria-hidden><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" /><circle cx="9" cy="7" r="4" /><path d="M19 8v6M22 11h-6" /></svg>Save my contact
-    </button>
+    <svg className={`jwx-curve ${className}`} viewBox="0 0 400 48" preserveAspectRatio="none" aria-hidden>
+      <path d="M0 48 C120 0 280 0 400 48 Z" />
+    </svg>
   );
 }
 
-/* ================================================================ 1 MIDNIGHT SET */
-export function MidnightSet() {
-  const { data, keys, save, booking, closeBook, first, last, lit, fire, phrase, city } = useSx();
+/* The script faces only come in one weight, so they get their own font link (no weight list) instead of
+   the shared one, which asks every family for 400 to 700. */
+const SCRIPT_FONTS = 'https://fonts.googleapis.com/css2?family=Great+Vibes&family=Pinyon+Script&display=swap';
+function useScriptFonts() {
+  useEffect(() => {
+    if (document.querySelector(`link[data-fc-font="${SCRIPT_FONTS}"]`)) return;
+    const l = document.createElement('link');
+    l.rel = 'stylesheet'; l.href = SCRIPT_FONTS; l.dataset.fcFont = SCRIPT_FONTS;
+    document.head.appendChild(l);
+  }, []);
+}
+
+function Shell({ id, hero, deco }: { id: string; hero: ReactNode; deco?: ReactNode }) {
+  useScriptFonts();
   return (
-    <Shell cls="tpl-sms" booking={booking} closeBook={closeBook}>
-      <div className="sms__card">
-        <Bg src={IMG.ms} pos="50% 30%" />
-        <span className="sms__smoke" aria-hidden />
-        <div className="sms__top">
-          <span className="sms__mono">{data.photoUrl ? <Photo className="sms__img" /> : <b className="sx-foil">{first[0]}{last[0] ?? ''}</b>}</span>
-          <p className="sx-eyebrow" {...el('caption')}>{data.jobTitle || 'Saxophonist'}{city && ` · ${city}`}</p>
-        </div>
-        <div className="sms__body">
-          <div><Name /><p className="sx-sig">{data.tagline || 'Live, soulful, unforgettable'}</p></div>
-          <Pearls keys={keys} fire={fire} lit={lit} />
-          <PhraseBtn onClick={phrase} />
-        </div>
-      </div>
-      <SaveBtn onSave={save} />
-      <Tail />
-    </Shell>
+    <div className={`tpl tpl-jwx tpl-${id}`}>
+      {deco}
+      {hero}
+      <Body />
+    </div>
   );
 }
 
-/* ================================================================ 2 VELVET ROOM */
-export function VelvetRoom() {
-  const { data, keys, save, booking, closeBook, first, last, lit, fire, phrase, city } = useSx();
-  const gid = useId().replace(/:/g, '');
+/* ================================================================ 1 VELVET NOIR */
+export function VelvetNoir() {
+  const { data } = useJw();
   return (
-    <Shell cls="tpl-svr" booking={booking} closeBook={closeBook}>
-      <div className="svr__card">
-        <div className="svr__photo"><Bg src={IMG.vr} pos="50% 52%" /></div>
-        <span className="svr__ribbon"><i aria-hidden />NOW BOOKING</span>
-        <div className="svr__curve" aria-hidden>
-          <svg viewBox="0 0 400 140" preserveAspectRatio="none"><defs><linearGradient id={gid} x1="0" x2="1"><stop offset="0" stopColor="#8A6A2C" /><stop offset=".35" stopColor="#F6E2A8" /><stop offset=".6" stopColor="#C79A4A" /><stop offset="1" stopColor="#8A6A2C" /></linearGradient></defs>
-            <path d="M0 60 Q200 -20 400 60 L400 140 L0 140Z" fill="#22070b" /><path d="M0 60 Q200 -20 400 60" fill="none" stroke={`url(#${gid})`} strokeWidth="3" /><path d="M0 70 Q200 -10 400 70" fill="none" stroke={`url(#${gid})`} strokeWidth="1" opacity=".6" /></svg>
-        </div>
-        <div className="svr__medal"><Photo className="svr__img" /></div>
-        <div className="svr__body">
-          <div><p className="sx-eyebrow" {...el('caption')}>The {last || first} sound</p><Name /><p className="sx-role" {...el('title')}>{data.jobTitle || 'Saxophonist'}{city && ` · ${city}`}</p></div>
-          <div className="svr__rule" aria-hidden><svg viewBox="0 0 24 24"><path d="M12 2l2.6 7.4L22 12l-7.4 2.6L12 22l-2.6-7.4L2 12l7.4-2.6z" /></svg></div>
-          <Pearls keys={keys} fire={fire} lit={lit} />
-          <PhraseBtn onClick={phrase} />
-        </div>
-      </div>
-      <SaveBtn onSave={save} />
-      <Tail />
-    </Shell>
+    <Shell id="jvn" hero={
+      <header className="jvn__hero">
+        <Logo className="jwx-logo" />
+        <div className="jvn__ring" {...el('accentDetail')}><Photo className="jvn__img" /></div>
+        <h1 className="jvn__name" {...el('name')}>{data.fullName || 'Your Name'}</h1>
+        <Tagline className="jvn__script" />
+        <Title className="jwx-role" />
+        <Curve className="jvn__curve" />
+      </header>
+    } />
   );
 }
 
-/* ================================================================ 3 BLACK TIE */
-export function BlackTie() {
-  const { data, keys, save, booking, closeBook, first, fire, phrase, city } = useSx();
-  const tags = data.highlights.map((h) => h.title).filter(Boolean).slice(0, 2);
+/* ================================================================ 2 BLUSH SATIN */
+export function BlushSatin() {
+  const { first, last } = useJw();
   return (
-    <Shell cls="tpl-sbt" booking={booking} closeBook={closeBook}>
-      <div className="sbt__card">
-        {data.photoUrl && <div className="sbt__cameo"><Photo className="sbt__img" /></div>}
-        <p className="sx-eyebrow sbt__eyebrow" {...el('caption')}>An evening with {first}</p>
-        <p className="sbt__req">the pleasure of your company is requested with</p>
-        <Name />
-        <p className="sbt__role" {...el('title')}>{data.jobTitle || 'Saxophonist'}</p>
-        <div className="sbt__arch"><Bg src={IMG.bt} pos="50% 40%" /><span>live music</span></div>
-        {tags.length > 0 && <div className="sbt__tags"><span>{tags[0]}</span>{tags[1] && <><i aria-hidden /><span>{tags[1]}</span></>}</div>}
-        {keys.length > 0 && (
-          <nav className={`sbt__rsvp n${keys.length}`} aria-label="Contact">
-            {keys.map((k, i) => <button key={k.key} type="button" onClick={() => fire(k, i)}><span aria-hidden>{k.icon}</span>{k.label}</button>)}
-          </nav>
-        )}
-        <p className="sbt__req sbt__end">kindly RSVP{city && ` · ${city}`}</p>
-      </div>
-      <PhraseBtn onClick={phrase} />
-      <SaveBtn onSave={save} />
-      <Tail />
-    </Shell>
+    <Shell id="jbs" deco={<span className="jbs__satin" aria-hidden />} hero={
+      <header className="jbs__hero">
+        <Logo className="jwx-logo" />
+        <div className="jbs__arch" {...el('cardBg')}><Photo className="jbs__img" /></div>
+        <h1 className="jbs__name" {...el('name')}><span className="jbs__first" {...el('accentDetail')}>{first}</span>{last && <span className="jbs__last">{last}</span>}</h1>
+        <Title className="jwx-role" />
+        <Tagline className="jbs__tag" />
+      </header>
+    } />
+  );
+}
+
+/* ================================================================ 3 RUBY GLOSS */
+export function RubyGloss() {
+  const { first, last } = useJw();
+  return (
+    <Shell id="jrg" hero={
+      <header className="jrg__hero" {...el('heroBand')}>
+        <Photo className="jrg__img" />
+        <span className="jrg__shade" aria-hidden />
+        <Logo className="jwx-logo jrg__logo" />
+        <div className="jrg__txt">
+          <Tagline className="jrg__script" />
+          <h1 className="jrg__name" {...el('name')}>{first}{last && <> {last}</>}</h1>
+          <Title className="jwx-role jrg__role" />
+        </div>
+      </header>
+    } />
+  );
+}
+
+/* ================================================================ 4 CHAMPAGNE TOAST */
+const BUBBLES = [[6, 9, 11, 0], [14, 6, 9, 3], [23, 13, 13, 7], [31, 7, 8, 1], [42, 10, 12, 5], [51, 5, 10, 9], [58, 14, 14, 2],
+  [66, 8, 9, 6], [73, 11, 12, 4], [81, 6, 11, 8], [88, 12, 10, 1], [94, 7, 13, 6], [36, 9, 7, 10], [70, 5, 8, 11]];
+export function ChampagneToast() {
+  const { first, last } = useJw();
+  return (
+    <Shell id="jct" deco={
+      <span className="jct__bubbles" aria-hidden>
+        {BUBBLES.map(([x, s, dur, delay], i) => <i key={i} style={{ left: `${x}%`, width: s, height: s, animationDuration: `${dur}s`, animationDelay: `-${delay}s` }} {...el('accentDetail')} />)}
+      </span>
+    } hero={
+      <header className="jct__hero">
+        <Logo className="jwx-logo" />
+        <div className="jct__oval" {...el('accentDetail')}><Photo className="jct__img" /></div>
+        <h1 className="jct__name" {...el('name')}><span className="jct__first" {...el('accentDetail')}>{first}</span>{last && <span className="jct__last">{last}</span>}</h1>
+        <Title className="jwx-role" />
+        <Curve className="jct__curve" />
+      </header>
+    } />
+  );
+}
+
+/* ================================================================ 5 AMETHYST AFTER DARK */
+const SPARKS = [[8, 6, 0], [22, 18, 0.6], [86, 9, 1.2], [92, 30, 0.3], [12, 36, 1.8], [78, 44, 0.9], [30, 4, 1.5], [64, 14, 2.1], [50, 2, 0.4], [6, 52, 1.1], [94, 58, 1.7], [40, 22, 2.3]];
+export function AmethystAfterDark() {
+  const { data } = useJw();
+  return (
+    <Shell id="jam" deco={
+      <span className="jam__sparks" aria-hidden>
+        {SPARKS.map(([x, y, d], i) => <i key={i} style={{ left: `${x}%`, top: `${y}%`, animationDelay: `-${d}s` }} />)}
+      </span>
+    } hero={
+      <header className="jam__hero">
+        <Logo className="jwx-logo" />
+        <div className="jam__gem" {...el('accentDetail')}><div className="jam__cut"><Photo className="jam__img" /></div></div>
+        <h1 className="jam__name" {...el('name')}>{data.fullName || 'Your Name'}</h1>
+        <Tagline className="jam__script" />
+        <Title className="jwx-role" />
+      </header>
+    } />
+  );
+}
+
+/* ================================================================ 6 LEOPARD LUXE */
+export function LeopardLuxe() {
+  const { first, last } = useJw();
+  return (
+    <Shell id="jlp" deco={<span className="jlp__band" aria-hidden />} hero={
+      <header className="jlp__hero">
+        <Logo className="jwx-logo" />
+        <div className="jlp__row">
+          <div className="jlp__frame" {...el('cardBg')}><Photo className="jlp__img" /></div>
+          <div className="jlp__who">
+            <Tagline className="jlp__script" />
+            <h1 className="jlp__name" {...el('name')}>{first}{last && <span>{last}</span>}</h1>
+            <Title className="jwx-role" />
+          </div>
+        </div>
+      </header>
+    } />
+  );
+}
+
+/* ================================================================ 7 PEARL STRAND */
+const PEARLS = Array.from({ length: 17 }, (_, i) => {
+  const t = i / 16;
+  return { x: 20 + t * 360, y: 8 + Math.sin(t * Math.PI) * 50, r: 7 + Math.sin(t * Math.PI) * 3 };
+});
+export function PearlStrand() {
+  const { data } = useJw();
+  return (
+    <Shell id="jps" hero={
+      <header className="jps__hero">
+        <Logo className="jwx-logo" />
+        <svg className="jps__strand" viewBox="0 0 400 70" preserveAspectRatio="none" aria-hidden>
+          <defs><radialGradient id="jps-pearl" cx="35%" cy="30%" r="70%"><stop offset="0" stopColor="#fff" /><stop offset=".55" stopColor="#F1E9EF" /><stop offset="1" stopColor="#CBBFCC" /></radialGradient></defs>
+          {PEARLS.map((p, i) => <circle key={i} cx={p.x} cy={p.y} r={p.r} fill="url(#jps-pearl)" />)}
+        </svg>
+        <div className="jps__photo" {...el('cardBg')}><Photo className="jps__img" /></div>
+        <h1 className="jps__name" {...el('name')}>{data.fullName || 'Your Name'}</h1>
+        <Tagline className="jps__script" />
+        <Title className="jwx-role" />
+      </header>
+    } />
+  );
+}
+
+/* ================================================================ 8 VANITY LIGHTS */
+const BULBS: [number, number][] = [
+  ...[0, 1, 2, 3].map((i) => [6 + i * 29.3, 2] as [number, number]),
+  ...[0, 1, 2, 3].map((i) => [6 + i * 29.3, 98] as [number, number]),
+  ...[1, 2, 3].map((j) => [2, 2 + j * 24] as [number, number]),
+  ...[1, 2, 3].map((j) => [98, 2 + j * 24] as [number, number]),
+];
+export function VanityLights() {
+  const { data } = useJw();
+  return (
+    <Shell id="jvl" hero={
+      <header className="jvl__hero">
+        <Logo className="jwx-logo" />
+        <div className="jvl__mirror" {...el('heroBand')}>
+          <Photo className="jvl__img" />
+          {BULBS.map(([x, y], i) => <i key={i} className="jvl__bulb" style={{ left: `${x}%`, top: `${y}%`, animationDelay: `-${(i * 0.21).toFixed(2)}s` }} aria-hidden />)}
+        </div>
+        <h1 className="jvl__name" {...el('name')}>{data.fullName || 'Your Name'}</h1>
+        <Tagline className="jvl__script" />
+        <Title className="jwx-role" />
+      </header>
+    } />
   );
 }
