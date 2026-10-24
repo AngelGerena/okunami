@@ -164,9 +164,9 @@
 .mz__line span { font-size: 11.5px; font-weight: 700; }
 .tpl-mz .mz__line b, .tpl-mz .mz__feature b, .tpl-mz .mz__line span { color: #fff; }
 .tpl-mz .mz__line.l1 b { color: var(--c-accentDetail); }
-.mz__feature { position: absolute; left: 16px; right: 16px; bottom: 24px; z-index: 2; display: flex; flex-direction: column; color: #fff; }
+.mz__feature { position: absolute; left: 16px; right: 100px; bottom: 24px; z-index: 2; display: flex; flex-direction: column; color: #fff; }
 .mz__feature span { font-size: 11px; font-weight: 800; letter-spacing: .3em; }
-.mz__feature b { font-family: var(--f-display); font-size: 40px; font-weight: 700; line-height: 1; text-transform: uppercase; }
+.mz__feature b { font-family: var(--f-display); font-size: clamp(26px, 9vw, 36px); overflow-wrap: normal; font-weight: 700; line-height: 1; text-transform: uppercase; }
 .mz__bar { position: absolute; right: 16px; bottom: 26px; z-index: 2; width: 70px; height: 36px; background: repeating-linear-gradient(90deg, #111 0 2px, #fff 2px 3px, #111 3px 4px, #fff 4px 6px); border: 3px solid #fff; }
 
 /* ============================================================ HOT STONES */
