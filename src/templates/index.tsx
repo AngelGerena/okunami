@@ -20,6 +20,7 @@ import { BarberClub, BlackLabel, BlushAtelier, Botanical, CedarSmoke, CopperForg
 import { Bokeh, EyeAF, Peaking, SLog, Sensor, Zebras } from './sig12';
 import { FilmRecipe, FilmSim, HybridVF, InstaPrint, MonoStrip, XDials } from './sig13';
 import { CineBrain, CineScreen, FocusGuide, PunchIn, Slate } from './sig14';
+import { AccessGranted, BioScan, CodeRain, Dossier, Enhance, GlobeTrace, HackIDE, Vault, WarRoom } from './sig15';
 import { Boarding, Confetti, Inbox, Invitation, Monogram, Planner, Recipe, Stained, Toolbelt, Trading, Turntable, Vinyl, Waveform } from './sig2-b';
 import {
   Arrow, Btn, Business, CalendarDays, ContactList, Crisis, Dock, Footer, Highlights, LocationCard, Logo, Name, Photo,
@@ -222,6 +223,16 @@ export const TEMPLATES: TemplateMeta[] = [
   { id: 'focusguide', name: 'Focus Guide', niche: 'Photo and Video', blurb: 'Hybrid cinema mode: a dual pixel focus guide closes in and turns green as your shot racks into focus.', bestFor: 'Cinematographers, Canon R5 C and Cinema EOS shooters' },
   { id: 'punchin', name: '8K Punch', niche: 'Photo and Video', blurb: 'Your full 8K frame on a thirds grid. Punch in 5x on the eyes to show every detail, then pull back out.', bestFor: 'Hybrid filmmakers, Canon R5 shooters' },
   { id: 'slate', name: 'Slate', niche: 'Photo and Video', blurb: 'A clapperboard with your production name, a take that counts up on every clap and running LED timecode.', bestFor: 'Cinematographers, directors and video crews' },
+  // ---- Hacker collection (developers and tech pros, Hollywood style)
+  { id: 'hackide', name: 'IDE', niche: 'Tech and IT', blurb: 'Your card as a code editor: your profile as a syntax-highlighted object with tabs and a status bar. Hit Run and the terminal saves the contact.', bestFor: 'Developers and engineers' },
+  { id: 'bioscan', name: 'Bio-Scan', niche: 'Tech and IT', blurb: 'A red targeting HUD over your portrait: scan line, face mesh, a rotating match ring and IDENTITY VERIFIED.', bestFor: 'Developers, security and IT pros' },
+  { id: 'accessgranted', name: 'Access', niche: 'Tech and IT', blurb: 'The movie hack: ACCESS DENIED flashes, the password cracks one character at a time, then ACCESS GRANTED slams in and your photo un-blurs.', bestFor: 'Developers, security and IT pros' },
+  { id: 'globetrace', name: 'Trace', niche: 'Tech and IT', blurb: 'A spinning wireframe globe traces a signal hop by hop across the world until it locks onto your state. TRACE COMPLETE.', bestFor: 'Developers, IT and network pros' },
+  { id: 'dossier', name: 'Dossier', niche: 'Tech and IT', blurb: 'A classified file on the desk: paper-clipped photo, TOP SECRET stamp and redacted lines that lift when you tap Declassify.', bestFor: 'Developers, consultants and security pros' },
+  { id: 'warroom', name: 'War Room', niche: 'Tech and IT', blurb: 'A command-center wall of monitors: facial lock on your photo, intercept waveform, radar sweep, decrypt stream and a breaking ticker.', bestFor: 'Developers, startups and IT teams' },
+  { id: 'coderain', name: 'Code Rain', niche: 'Tech and IT', blurb: 'Your portrait built out of falling green code. The rain pours down and settles into your face, made from your real photo.', bestFor: 'Developers and AI builders' },
+  { id: 'enhance', name: 'Enhance', niche: 'Tech and IT', blurb: 'Grainy security cam footage that zooms in and sharpens on your face, step by step, until MATCH FOUND locks on.', bestFor: 'Developers, security and IT pros' },
+  { id: 'vault', name: 'Vault', niche: 'Tech and IT', blurb: 'A steel vault door with a gold wheel. Press the fingerprint pad, the scanner sweeps and the door swings open on you.', bestFor: 'Developers, fintech and security pros' },
   // ---- Farmasi collection (direct sellers): her line
   { id: 'rougeedit',    name: 'Rouge Edit',     niche: 'Beauty Consultants', blurb: 'A wine and gold magazine cover with your name in italic, a pull quote and a table of contents.', bestFor: 'Farmasi leaders, top beauty sellers' },
   { id: 'blushatelier', name: 'Blush Atelier',  niche: 'Beauty Consultants', blurb: 'An oval cameo portrait, a signed seal and your first name in script.', bestFor: 'New beauty sellers, makeup artists' },
@@ -536,6 +547,7 @@ export const TEMPLATE_COMPONENTS: Record<TemplateId, () => ReactElement> = {
   eyeaf: EyeAF, zebras: Zebras, peaking: Peaking, slog: SLog, sensor: Sensor, bokeh: Bokeh,
   filmsim: FilmSim, xdials: XDials, hybridvf: HybridVF, filmrecipe: FilmRecipe, instaprint: InstaPrint, monostrip: MonoStrip,
   cinescreen: CineScreen, cinebrain: CineBrain, focusguide: FocusGuide, punchin: PunchIn, slate: Slate,
+  hackide: HackIDE, bioscan: BioScan, accessgranted: AccessGranted, globetrace: GlobeTrace, dossier: Dossier, warroom: WarRoom, coderain: CodeRain, enhance: Enhance, vault: Vault,
   rougeedit: RougeEdit, blushatelier: BlushAtelier, noirlash: NoirLash, botanical: Botanical,
   blacklabel: BlackLabel, barberclub: BarberClub, copperforge: CopperForge, cedarsmoke: CedarSmoke, voltsport: VoltSport,
 };
