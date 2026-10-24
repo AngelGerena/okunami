@@ -129,7 +129,7 @@ export interface CardData {
   orgLogoUrl?: string;     // full logo lockup (wide), shown under the name
   kicker?: string;         // short accent line above the name
   photoVideoUrl?: string;  // living portrait: silent clip over the photo, plays once
-  popoutUrl?: string;      // EOS Top Plate: the photo with its background removed (transparent PNG); the head breaks out of the lens
+  popoutUrl?: string;      // legacy: Top Plate's old pop-out photo. No longer shown or editable; kept so saved cards still load
   music?: { url: string; title: string; sub?: string };  // background music, starts on first tap
 }
 
