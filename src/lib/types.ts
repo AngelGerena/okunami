@@ -101,7 +101,9 @@ export type TemplateId =
   // Handyman collection (handymen and contractors)
   | 'tapemeasure' | 'spiritlevel' | 'workorder' | 'sitebadge' | 'paintfan'
   // Vocalist collection (singers)
-  | 'voiceprint' | 'lyricbook' | 'vocalrange' | 'spotlight' | 'nowplaying';
+  | 'voiceprint' | 'lyricbook' | 'vocalrange' | 'spotlight' | 'nowplaying'
+  // Saxophone collection (saxophonists)
+  | 'midnightset' | 'velvetroom' | 'blacktie';
 
 export interface SocialLink { id: string; network: string; value: string; }   // value = handle or full URL
 export interface Highlight { id: string; icon: string; title: string; subtitle: string; }

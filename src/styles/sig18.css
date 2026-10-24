@@ -1,0 +1,108 @@
+/* =================================================================
+   The Saxophone Collection (src/templates/sig18.tsx): Midnight Set,
+   Velvet Room and Black Tie. Black, gold foil and serif type over a
+   photo of hands on a saxophone (public/images/tpl). The name and
+   captions use the element variables (--c-*); gold, velvet and card
+   stock are fixed so the luxury finish holds on every palette.
+   Prefixes: sx-, sms__, svr__, sbt__.
+   ================================================================= */
+.tpl-sx { --sx-gold: #D9B26A; --sx-gold-hi: #F6E2A8; --sx-foil: linear-gradient(115deg, #8A6A2C 0%, #D9B26A 22%, #F6E2A8 38%, #C79A4A 55%, #F2D894 72%, #8A6A2C 100%);
+  position: relative; overflow: hidden; isolation: isolate; padding-bottom: 28px; background: var(--c-pageBg); color: var(--c-body); font-variant-emoji: text; }
+.tpl-sx .stack { gap: 16px; }
+.tpl-sx a, .tpl-sx button { -webkit-tap-highlight-color: transparent; }
+.sx-photo { position: absolute; inset: 0; background-color: #120d0b; background-size: cover; background-repeat: no-repeat; }
+.sx-foil { background: var(--sx-foil); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.sx-eyebrow { margin: 0; font-family: 'DM Mono', ui-monospace, Menlo, Consolas, monospace; font-size: 10.5px; letter-spacing: .22em; text-transform: uppercase; color: var(--sx-gold); }
+.sx-name { margin: 0; font-family: var(--f-display); font-weight: 600; font-size: min(58px, 13.5vw); line-height: .92; letter-spacing: -.01em; color: var(--c-name); overflow-wrap: anywhere; text-wrap: balance; }
+.sx-name i { font-style: italic; font-weight: 500; }
+.sx-role { margin: 8px 0 0; font-family: var(--f-display); font-style: italic; font-size: 20px; color: color-mix(in srgb, var(--c-name) 85%, transparent); }
+.sx-sig { margin: 6px 0 0; font-family: 'Pinyon Script', 'Snell Roundhand', cursive; font-size: 30px; line-height: 1.05; color: var(--sx-gold-hi); }
+
+/* save and phrase buttons */
+.sx-act { display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; min-height: 56px; border: 0; border-radius: 999px; cursor: pointer; background: var(--sx-foil); color: #1a1205; font-weight: 800; font-size: 15.5px; letter-spacing: .03em; box-shadow: inset 0 1px 0 rgba(255,255,255,.55), inset 0 -2px 0 rgba(0,0,0,.18), 0 10px 26px rgba(217,178,106,.25); transition: transform .12s; }
+.sx-act:active { transform: scale(.98); }
+.sx-act svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.sx-ghost { display: flex; align-items: center; justify-content: center; gap: 9px; width: 100%; min-height: 48px; border-radius: 999px; cursor: pointer; border: 1px solid rgba(232,196,120,.45); background: rgba(10,8,7,.35); color: var(--sx-gold-hi); font-weight: 700; font-size: 14px; letter-spacing: .04em; -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
+.sx-ghost svg { width: 18px; height: 18px; fill: currentColor; }
+
+/* mother-of-pearl sax keys: the contact buttons */
+.sx-pearls { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
+.sx-pearls.n3 { grid-template-columns: repeat(3, minmax(0, 1fr)); padding: 0 8%; }
+.sx-pearls.n2 { grid-template-columns: repeat(2, minmax(0, 1fr)); padding: 0 18%; }
+.sx-pearls.n1 { grid-template-columns: minmax(0, 1fr); padding: 0 34%; }
+.sx-pk { display: flex; flex-direction: column; align-items: center; gap: 7px; min-width: 0; padding: 0; border: 0; cursor: pointer; background: transparent; color: #f6efe3; }
+.sx-pk i { position: relative; display: grid; place-items: center; width: 100%; max-width: 66px; aspect-ratio: 1; border-radius: 50%; color: #5a3f10; background: radial-gradient(circle at 36% 30%, #fffdf7 0, #f3ece0 22%, #e2d7e8 42%, #d8ead9 58%, #efe3cf 74%, #cbb99a 100%); box-shadow: inset 0 -3px 6px rgba(120,90,40,.25), 0 0 0 4px #C79A4A, 0 0 0 5px #6d4c12, 0 0 0 6.5px #F2D894, 0 8px 16px rgba(0,0,0,.55); transition: transform .1s; }
+.sx-pk i::after { content: ""; position: absolute; left: 22%; top: 14%; width: 34%; height: 20%; border-radius: 50%; background: rgba(255,255,255,.75); filter: blur(2px); }
+.sx-pk i > * { position: relative; z-index: 1; }
+.sx-pk:active i, .sx-pk.is-on i { transform: scale(.9); }
+.sx-pk > span { max-width: 100%; overflow: hidden; text-overflow: ellipsis; font-family: 'DM Mono', ui-monospace, Menlo, Consolas, monospace; font-size: 9.5px; letter-spacing: .06em; text-transform: uppercase; color: #e8dccb; white-space: nowrap; }
+
+/* tail on the dark luxury palette */
+.tpl-sx .eos-tail { gap: 14px; }
+
+/* =========================================================== 1 MIDNIGHT SET */
+.sms__card { position: relative; display: flex; flex-direction: column; justify-content: space-between; gap: 120px; min-height: 640px; padding: 26px 28px 28px; overflow: hidden; border-radius: 28px; box-shadow: 0 30px 60px rgba(0,0,0,.7); }
+.sms__card .sx-photo { transform: scale(1.04); animation: smsDrift 18s ease-in-out infinite alternate; }
+@keyframes smsDrift { to { transform: scale(1.1) translateY(-2%); } }
+.sms__card::before { content: ""; position: absolute; inset: 0; z-index: 1; background: linear-gradient(180deg, rgba(10,8,7,.55) 0%, rgba(10,8,7,0) 22%, rgba(10,8,7,0) 38%, rgba(10,8,7,.82) 64%, #0a0807 100%); }
+.sms__card::after { content: ""; position: absolute; inset: 12px; z-index: 2; border-radius: 20px; border: 1px solid rgba(232,196,120,.55); pointer-events: none; box-shadow: inset 0 0 0 5px rgba(232,196,120,.12); }
+.sms__smoke { position: absolute; inset: 0; z-index: 1; pointer-events: none; background: radial-gradient(ellipse 60% 30% at 30% 30%, rgba(255,230,190,.1), transparent 70%), radial-gradient(ellipse 50% 25% at 70% 20%, rgba(255,220,170,.08), transparent 70%); animation: smsSmoke 12s ease-in-out infinite alternate; }
+@keyframes smsSmoke { to { transform: translate(4%, -3%) scale(1.08); opacity: .7; } }
+.sms__top { position: relative; z-index: 3; display: flex; align-items: center; gap: 12px; }
+.sms__mono { display: grid; place-items: center; flex: 0 0 auto; width: 50px; height: 50px; overflow: hidden; border-radius: 50%; border: 1px solid rgba(232,196,120,.75); font-family: var(--f-display); font-size: 20px; font-weight: 600; box-shadow: 0 0 0 3px rgba(10,8,7,.4); }
+.sms__img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 18%; }
+.sms__top .sx-eyebrow { min-width: 0; color: var(--sx-gold-hi); text-shadow: 0 1px 8px rgba(0,0,0,.7); }
+.sms__body { position: relative; z-index: 3; display: flex; flex-direction: column; gap: 16px; }
+.sms__body .sx-name { color: #fbf3e6; }
+.tpl-sms.is-still :is(.sx-photo, .sms__smoke) { animation: none; }
+
+/* =========================================================== 2 VELVET ROOM */
+.svr__card { position: relative; overflow: hidden; border-radius: 28px; background: radial-gradient(ellipse at 50% 120%, #4a0f18, #22070b 60%); box-shadow: 0 30px 60px rgba(0,0,0,.7); }
+.svr__card::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: repeating-linear-gradient(90deg, rgba(255,255,255,.018) 0 2px, transparent 2px 9px); }
+.svr__photo { position: relative; height: 360px; }
+.svr__photo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(21,6,8,0) 50%, rgba(34,7,11,.85)); }
+.svr__curve { position: absolute; left: -10%; right: -10%; top: 300px; z-index: 1; height: 140px; }
+.svr__curve svg { display: block; width: 100%; height: 100%; }
+.svr__medal { position: absolute; left: 50%; top: 268px; z-index: 3; width: 116px; height: 116px; margin-left: -58px; padding: 4px; border-radius: 50%; background: var(--sx-foil); box-shadow: 0 14px 30px rgba(0,0,0,.6); }
+.svr__img { display: grid; place-items: center; width: 100%; height: 100%; border-radius: 50%; object-fit: cover; object-position: 50% 16%; border: 3px solid #22070b; }
+.svr__body { position: relative; z-index: 2; display: flex; flex-direction: column; gap: 16px; padding: 76px 22px 24px; text-align: center; }
+.svr__body .sx-name { color: #fbf3e6; }
+.svr__body .sx-role { color: #e8dccb; }
+.svr__rule { display: flex; align-items: center; justify-content: center; gap: 10px; color: var(--sx-gold); }
+.svr__rule::before, .svr__rule::after { content: ""; width: 60px; height: 1px; background: linear-gradient(90deg, transparent, var(--sx-gold)); }
+.svr__rule::after { transform: scaleX(-1); }
+.svr__rule svg { width: 16px; height: 16px; fill: currentColor; }
+.svr__ribbon { position: absolute; right: 16px; top: 16px; z-index: 3; padding: 7px 12px; border-radius: 999px; border: 1px solid rgba(232,196,120,.55); background: rgba(21,6,8,.65); color: var(--sx-gold-hi); font-family: 'DM Mono', ui-monospace, Menlo, Consolas, monospace; font-size: 10px; letter-spacing: .16em; -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
+.svr__ribbon i { display: inline-block; width: 7px; height: 7px; margin-right: 7px; border-radius: 50%; background: #7CE38B; box-shadow: 0 0 8px #7CE38B; }
+
+/* =========================================================== 3 BLACK TIE */
+.sbt__card { position: relative; padding: 24px 22px 18px; border-radius: 6px; text-align: center; background: radial-gradient(rgba(255,255,255,.035) 1px, transparent 1.2px) 0 0 / 3px 3px, linear-gradient(180deg, #141414, #0b0b0b); box-shadow: inset 0 1px 0 rgba(255,255,255,.06), 0 30px 60px rgba(0,0,0,.75); }
+.sbt__card::before { content: ""; position: absolute; inset: 10px; border: 1px solid rgba(217,178,106,.75); border-radius: 3px; pointer-events: none; }
+.sbt__card::after { content: ""; position: absolute; inset: 15px; border: .5px solid rgba(217,178,106,.4); border-radius: 2px; pointer-events: none; }
+.sbt__card > * { position: relative; }
+.sbt__cameo { width: 64px; height: 64px; margin: 6px auto 12px; padding: 2px; border-radius: 50%; background: var(--sx-foil); }
+.sbt__img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; object-position: 50% 16%; border: 2px solid #0b0b0b; }
+.sbt__eyebrow { margin-top: 10px; }
+.sbt__cameo + .sbt__eyebrow { margin-top: 0; }
+.sbt__req { margin: 14px 0 6px; font-family: var(--f-display); font-style: italic; font-size: 18px; color: #cdbfae; }
+.sbt__card .sx-name { color: #f6efe3; font-size: min(56px, 13vw); }
+.sbt__role { margin: 8px 0 0; font-family: 'DM Mono', ui-monospace, Menlo, Consolas, monospace; font-size: 10.5px; letter-spacing: .2em; text-transform: uppercase; color: #cdbfae; }
+.sbt__arch { position: relative; width: min(78%, 280px); aspect-ratio: 3 / 4; margin: 18px auto 0; overflow: hidden; border-radius: 140px 140px 6px 6px; box-shadow: 0 0 0 1px rgba(217,178,106,.8), 0 0 0 6px #0b0b0b, 0 0 0 7px rgba(217,178,106,.45); }
+.sbt__arch::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 60%, rgba(0,0,0,.55)); }
+.sbt__arch span { position: absolute; left: 0; right: 0; bottom: 12px; z-index: 1; font-family: 'Pinyon Script', 'Snell Roundhand', cursive; font-size: 30px; color: var(--sx-gold-hi); text-shadow: 0 2px 10px rgba(0,0,0,.8); }
+.sbt__tags { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 10px; margin: 18px 6px 4px; font-family: 'DM Mono', ui-monospace, Menlo, Consolas, monospace; font-size: 10.5px; letter-spacing: .16em; text-transform: uppercase; color: #cdbfae; }
+.sbt__tags span:first-child { text-align: right; } .sbt__tags span:last-child { text-align: left; }
+.sbt__tags span:only-child { grid-column: 1 / -1; text-align: center; }
+.sbt__tags i { width: 6px; height: 6px; transform: rotate(45deg); background: var(--sx-gold); }
+.sbt__rsvp { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); margin: 18px 4px 6px; border-top: 1px solid rgba(217,178,106,.4); border-bottom: 1px solid rgba(217,178,106,.4); }
+.sbt__rsvp.n3 { grid-template-columns: repeat(3, minmax(0, 1fr)); } .sbt__rsvp.n2 { grid-template-columns: repeat(2, minmax(0, 1fr)); } .sbt__rsvp.n1 { grid-template-columns: 1fr; }
+.sbt__rsvp button { display: flex; flex-direction: column; align-items: center; gap: 6px; min-width: 0; min-height: 64px; padding: 12px 2px; border: 0; cursor: pointer; background: transparent; color: #f6efe3; font-family: var(--f-display); font-size: 14.5px; font-weight: 600; }
+.sbt__rsvp button + button { border-left: 1px solid rgba(217,178,106,.25); }
+.sbt__rsvp button > span { display: grid; place-items: center; color: var(--sx-gold); }
+.sbt__rsvp svg { width: 20px; height: 20px; }
+.sbt__end { margin: 12px 0 8px; font-size: 16px; }
+
+@media (max-width: 360px) { .sx-pearls { gap: 6px; } }
+@media (prefers-reduced-motion: reduce) {
+  .tpl-sx *, .tpl-sx *::before, .tpl-sx *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+}
