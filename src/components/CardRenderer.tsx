@@ -8,7 +8,7 @@ import { cardUrl } from '../lib/links';
 import { Ctx, type CardActions } from '../templates/blocks';
 import { TEMPLATE_COMPONENTS } from '../templates';
 import { sfx } from '../lib/sfx';
-import { TEMPLATE_EXTRA_FONTS } from '../lib/niches';
+import { TEMPLATE_EXTRA_FONTS, effectiveSound } from '../lib/niches';
 
 /** Loads Google fonts and any uploaded brand-kit fonts once per family. */
 export function useCardFonts(card: Card) {
@@ -50,7 +50,7 @@ export default function CardRenderer({ card, mode: requestedMode, picking, selec
   const [toast, setToast] = useState<string | null>(null);
   const vcardRef = useRef<string>('');
   const Tpl = TEMPLATE_COMPONENTS[card.template] ?? TEMPLATE_COMPONENTS.arch;
-  const prof = card.theme.sound ?? 'calm';
+  const prof = effectiveSound(card.template, card.theme.sound);
 
   // Build the vCard ahead of the tap so Save runs synchronously inside the gesture (iOS requirement).
   useEffect(() => { let alive = true; buildVCard(card.data).then((v) => { if (alive) vcardRef.current = v; }); return () => { alive = false; }; }, [card.data]);

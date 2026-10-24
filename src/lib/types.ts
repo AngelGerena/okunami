@@ -30,7 +30,7 @@ export type ButtonStyle = 'solid' | 'soft' | 'outline' | 'glass' | 'gradient' | 
 export type ButtonTexture = 'none' | 'grain' | 'linen' | 'brushed' | 'paper' | 'satin' | 'carbon' | 'dots' | 'scanline' | 'circuit';
 
 /** How the card sounds when tapped. */
-export type SoundProfile = 'calm' | 'tech' | 'bright' | 'off';
+export type SoundProfile = 'calm' | 'tech' | 'bright' | 'camera' | 'off';
 
 export interface ButtonSpec { shape: ButtonShape; size: ButtonSize; style: ButtonStyle; texture: ButtonTexture; }
 
