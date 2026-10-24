@@ -440,11 +440,6 @@ function EosExtras(p: PanelProps) {
   const { d, put } = useData(p);
   return (
     <Section title={t("Camera design extras")} hint={t("These show on the camera designs (EOS, Gold Ring, Square Format, Mirrorless, X-Series and Cinema). Everything here is optional.")}>
-      {p.card.template === 'topplate' && (
-        <ImageUpload label={t("Pop-out photo")} shape="square" value={d.popoutUrl ?? ''}
-          hint={t("Your photo with the background removed, as a PNG. Your head and shoulders step out of the lens. Leave it empty to show your regular photo inside the lens.")}
-          onFile={async (f) => { put({ popoutUrl: await store.uploadImage(f, 'logo') }); }} onClear={() => put({ popoutUrl: '' })} />
-      )}
       <Field label={t("Gear line")} value={d.kicker ?? ''} onChange={(v) => put({ kicker: v })} maxLength={60} placeholder={t("Shot on Canon EOS 5D Mark III")} hint={t("A short line about your camera or style, shown above your portfolio.")} />
     </Section>
   );

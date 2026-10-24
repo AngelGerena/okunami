@@ -195,7 +195,6 @@ export function TopPlate() {
   const { data, keys, save, booking, openBook, closeBook } = useEos();
   const { still } = useCard();
   const rim = `${(data.business || data.fullName || 'Studio').toUpperCase()} · ULTRASONIC · 1:2.8 · Ø77mm · `;
-  const pop = data.popoutUrl;
   return (
     <div className={`tpl tpl-eos tpl-etp${still ? ' is-still' : ''}`}>
       <div className="pad stack">
@@ -205,12 +204,11 @@ export function TopPlate() {
             <span className="etp__model">Full Frame · Mark III</span>
             <span className="etp__dial" aria-hidden><span>M</span></span>
           </div>
-          <div className={`etp__lens${pop ? ' has-pop' : ''}`}>
+          <div className="etp__lens">
             <span className="etp__barrel" aria-hidden />
             <svg className="etp__rim" viewBox="0 0 100 100" aria-hidden><defs><path id="eosRim" d="M50,50 m-44,0 a44,44 0 1,1 88,0 a44,44 0 1,1 -88,0" /></defs><text><textPath href="#eosRim">{rim}</textPath></text></svg>
             <span className="etp__red" aria-hidden {...el('accentDetail')} /><span className="etp__well" aria-hidden />
-            <div className="etp__glass">{!pop && <Photo className="etp__img" />}<div className="etp__iris" aria-hidden>{Array.from({ length: 8 }, (_, i) => <i key={i} style={{ transform: `rotate(${i * 45}deg)` }} />)}</div></div>
-            {pop && <><span className="etp__shade" aria-hidden /><div className="etp__pop"><div className="etp__popin"><img src={pop} alt={data.fullName} /></div></div></>}
+            <div className="etp__glass"><Photo className="etp__img" /><div className="etp__iris" aria-hidden>{Array.from({ length: 8 }, (_, i) => <i key={i} style={{ transform: `rotate(${i * 45}deg)` }} />)}</div></div>
           </div>
           <div className="etp__lcd" aria-label={`Exposure ${EXPO.shutter}, f/${EXPO.aperture}, ISO ${EXPO.iso}`}>
             <div className="etp__big"><span>{EXPO.shutter}</span><span>F{EXPO.aperture}</span><span>{EXPO.iso}</span></div>
