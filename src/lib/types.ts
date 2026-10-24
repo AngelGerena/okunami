@@ -103,7 +103,9 @@ export type TemplateId =
   // Vocalist collection (singers)
   | 'voiceprint' | 'lyricbook' | 'vocalrange' | 'spotlight' | 'nowplaying'
   // Bling collection (jewelry and accessory sellers)
-  | 'velvetnoir' | 'blushsatin' | 'rubygloss' | 'champtoast' | 'amethyst' | 'leopard' | 'pearlstrand' | 'vanitylights';
+  | 'velvetnoir' | 'blushsatin' | 'rubygloss' | 'champtoast' | 'amethyst' | 'leopard' | 'pearlstrand' | 'vanitylights'
+  // Saxophone collection (saxophonists)
+  | 'midnightset' | 'velvetroom' | 'blacktie';
 
 export interface SocialLink { id: string; network: string; value: string; }   // value = handle or full URL
 export interface Highlight { id: string; icon: string; title: string; subtitle: string; }

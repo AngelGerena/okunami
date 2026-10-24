@@ -24,6 +24,7 @@ import { AccessGranted, BioScan, CodeRain, Dossier, Enhance, GlobeTrace, HackIDE
 import { PaintFan, SiteBadge, SpiritLevel, TapeMeasure, WorkOrder } from './sig16';
 import { LyricBook, NowPlaying, Spotlight, VocalRange, Voiceprint } from './sig17';
 import { AmethystAfterDark, BlushSatin, ChampagneToast, LeopardLuxe, PearlStrand, RubyGloss, VanityLights, VelvetNoir } from './sig18';
+import { BlackTie, MidnightSet, VelvetRoom } from './sig19';
 import { Boarding, Confetti, Inbox, Invitation, Monogram, Planner, Recipe, Stained, Toolbelt, Trading, Turntable, Vinyl, Waveform } from './sig2-b';
 import {
   Arrow, Btn, Business, CalendarDays, ContactList, Crisis, Dock, Footer, Highlights, LocationCard, Logo, Name, Photo,
@@ -248,6 +249,10 @@ export const TEMPLATES: TemplateMeta[] = [
   { id: 'vocalrange', name: 'Range', niche: 'DJs and Musicians', blurb: 'A glowing piano-roll range chart. Press any note to hear it sung, or run the whole scale.', bestFor: 'Vocalists, vocal coaches and choirs' },
   { id: 'spotlight', name: 'Spotlight', niche: 'DJs and Musicians', blurb: 'A follow-spot sweeps a dark stage and finds you. Your setlist taped to the floor is the contact buttons.', bestFor: 'Live singers and wedding vocalists' },
   { id: 'nowplaying', name: 'Now Playing', niche: 'DJs and Musicians', blurb: 'A music player where your photo is the cover art. Play sings a line about you, with Book, Stream and Share tabs.', bestFor: 'Singers and recording artists' },
+  // ---- Saxophone collection (saxophonists)
+  { id: 'midnightset', name: 'Midnight Set', niche: 'DJs and Musicians', blurb: 'Hands on a gold saxophone fill the card behind a thin gold frame. Mother-of-pearl sax keys are your contact buttons, and each plays a note.', bestFor: 'Saxophonists and horn players' },
+  { id: 'velvetroom', name: 'Velvet Room', niche: 'DJs and Musicians', blurb: 'A saxophone photo crowns an oxblood velvet card, with a big gold curve, your portrait in a gold medallion and pearl sax keys.', bestFor: 'Wedding and event saxophonists' },
+  { id: 'blacktie', name: 'Black Tie', niche: 'DJs and Musicians', blurb: 'An engraved invitation on black card stock: double gold border, a saxophone in an arched window and an RSVP row of contacts.', bestFor: 'Saxophonists for galas and weddings' },
   // ---- Farmasi collection (direct sellers): her line
   { id: 'rougeedit',    name: 'Rouge Edit',     niche: 'Beauty Consultants', blurb: 'A wine and gold magazine cover with your name in italic, a pull quote and a table of contents.', bestFor: 'Farmasi leaders, top beauty sellers' },
   { id: 'blushatelier', name: 'Blush Atelier',  niche: 'Beauty Consultants', blurb: 'An oval cameo portrait, a signed seal and your first name in script.', bestFor: 'New beauty sellers, makeup artists' },
@@ -576,6 +581,7 @@ export const TEMPLATE_COMPONENTS: Record<TemplateId, () => ReactElement> = {
   voiceprint: Voiceprint, lyricbook: LyricBook, vocalrange: VocalRange, spotlight: Spotlight, nowplaying: NowPlaying,
   velvetnoir: VelvetNoir, blushsatin: BlushSatin, rubygloss: RubyGloss, champtoast: ChampagneToast,
   amethyst: AmethystAfterDark, leopard: LeopardLuxe, pearlstrand: PearlStrand, vanitylights: VanityLights,
+  midnightset: MidnightSet, velvetroom: VelvetRoom, blacktie: BlackTie,
   rougeedit: RougeEdit, blushatelier: BlushAtelier, noirlash: NoirLash, botanical: Botanical,
   blacklabel: BlackLabel, barberclub: BarberClub, copperforge: CopperForge, cedarsmoke: CedarSmoke, voltsport: VoltSport,
 };
