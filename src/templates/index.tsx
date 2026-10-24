@@ -23,6 +23,7 @@ import { CineBrain, CineScreen, FocusGuide, PunchIn, Slate } from './sig14';
 import { AccessGranted, BioScan, CodeRain, Dossier, Enhance, GlobeTrace, HackIDE, Vault, WarRoom } from './sig15';
 import { PaintFan, SiteBadge, SpiritLevel, TapeMeasure, WorkOrder } from './sig16';
 import { LyricBook, NowPlaying, Spotlight, VocalRange, Voiceprint } from './sig17';
+import { AmethystAfterDark, BlushSatin, ChampagneToast, LeopardLuxe, PearlStrand, RubyGloss, VanityLights, VelvetNoir } from './sig18';
 import { Boarding, Confetti, Inbox, Invitation, Monogram, Planner, Recipe, Stained, Toolbelt, Trading, Turntable, Vinyl, Waveform } from './sig2-b';
 import {
   Arrow, Btn, Business, CalendarDays, ContactList, Crisis, Dock, Footer, Highlights, LocationCard, Logo, Name, Photo,
@@ -258,6 +259,15 @@ export const TEMPLATES: TemplateMeta[] = [
   { id: 'copperforge',  name: 'Copper Forge',   niche: "Men's Grooming", blurb: 'A copper blueprint cover, heavy condensed type and a spec sheet.', bestFor: 'Tradesmen, gym owners, practical sellers' },
   { id: 'cedarsmoke',   name: 'Cedar and Smoke', niche: "Men's Grooming", blurb: 'Wood grain, drifting smoke and a fragrance pyramid of top, heart and base notes.', bestFor: 'Fragrance lovers, mature customers' },
   { id: 'voltsport',    name: 'Volt Sport',     niche: "Men's Grooming", blurb: 'Volt green with speed stripes, a giant italic GO and an AM and PM routine.', bestFor: 'Gym guys, coaches, young recruiters' },
+  // ---- Bling collection (jewelry and accessory sellers)
+  { id: 'velvetnoir',   name: 'Velvet Noir',         niche: 'Jewelry and Accessory Sellers', blurb: 'Black velvet, a rose-gold ring around your photo and your name in shimmering foil.', bestFor: 'Jewelry consultants, evening and luxury pieces' },
+  { id: 'blushsatin',   name: 'Blush Satin',         niche: 'Jewelry and Accessory Sellers', blurb: 'Rippling pink satin and an arched portrait framed like a boudoir mirror.', bestFor: 'Jewelry and accessory sellers, soft and feminine brands' },
+  { id: 'rubygloss',    name: 'Ruby Gloss',          niche: 'Jewelry and Accessory Sellers', blurb: 'A full-bleed portrait cut on a slant with lipstick-red gloss buttons.', bestFor: 'Bold sellers, team leaders, live-sale hosts' },
+  { id: 'champtoast',   name: 'Champagne Toast',     niche: 'Jewelry and Accessory Sellers', blurb: 'Champagne bubbles rise behind a gold oval portrait and your first name in script.', bestFor: 'Party-plan hosts, celebration sellers' },
+  { id: 'amethyst',     name: 'Amethyst After Dark', niche: 'Jewelry and Accessory Sellers', blurb: 'Your photo cut like a gemstone, with sparkles twinkling around it.', bestFor: 'Night-out looks, statement jewelry' },
+  { id: 'leopard',      name: 'Leopard Luxe',        niche: 'Jewelry and Accessory Sellers', blurb: 'A leopard print band and a side-by-side editorial layout.', bestFor: 'Fashion-forward sellers, accessory boutiques' },
+  { id: 'pearlstrand',  name: 'Pearl Strand',        niche: 'Jewelry and Accessory Sellers', blurb: 'A pearl necklace drapes over a round portrait on soft iridescent white.', bestFor: 'Classic and bridal jewelry, timeless brands' },
+  { id: 'vanitylights', name: 'Vanity Lights',       niche: 'Jewelry and Accessory Sellers', blurb: 'A Hollywood dressing-room mirror with glowing bulbs around your photo.', bestFor: 'Glam sellers, makeup and jewelry bundles' },
 ];
 
 /* ------------------------------------------------------------ 1 Editorial Cover */
@@ -564,6 +574,8 @@ export const TEMPLATE_COMPONENTS: Record<TemplateId, () => ReactElement> = {
   hackide: HackIDE, bioscan: BioScan, accessgranted: AccessGranted, globetrace: GlobeTrace, dossier: Dossier, warroom: WarRoom, coderain: CodeRain, enhance: Enhance, vault: Vault,
   tapemeasure: TapeMeasure, spiritlevel: SpiritLevel, workorder: WorkOrder, sitebadge: SiteBadge, paintfan: PaintFan,
   voiceprint: Voiceprint, lyricbook: LyricBook, vocalrange: VocalRange, spotlight: Spotlight, nowplaying: NowPlaying,
+  velvetnoir: VelvetNoir, blushsatin: BlushSatin, rubygloss: RubyGloss, champtoast: ChampagneToast,
+  amethyst: AmethystAfterDark, leopard: LeopardLuxe, pearlstrand: PearlStrand, vanitylights: VanityLights,
   rougeedit: RougeEdit, blushatelier: BlushAtelier, noirlash: NoirLash, botanical: Botanical,
   blacklabel: BlackLabel, barberclub: BarberClub, copperforge: CopperForge, cedarsmoke: CedarSmoke, voltsport: VoltSport,
 };
