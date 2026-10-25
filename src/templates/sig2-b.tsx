@@ -123,6 +123,7 @@ export function Toolbelt() {
             <Act key={a.key} a={a} className={`tb__pocket ${i === 0 ? 'is-primary' : ''}`} elId={i === 0 ? 'accentDetail' : 'heroBand'}><span className="tb__rivet" /><span className="tb__ic">{a.icon}</span><span className="tb__l">{a.label}</span></Act>
           ))}</div>
         </section>
+        <div className="row"><ShareBtn /><QrBtn /></div>
         {data.tagline && <p className="tb__tag" {...el('body')}>{data.tagline}</p>}
         {data.highlights.length > 0 && <div className="tb__jobs">{data.highlights.map((h) => <article key={h.id} {...el('cardBg')}><span {...el('icons')}><HIcon name={h.icon} size={22} /></span><b {...el('body')}>{h.title}</b><small {...el('caption')}>{h.subtitle}</small></article>)}</div>}
         <Gallery variant="pair" title="Before and after" max={4} />
@@ -234,6 +235,7 @@ export function Turntable() {
             <span className="tt__padic">{a.icon}</span><span className="tt__padl">{a.label}</span>
           </Act>
         ))}</div>
+        <div className="row"><QrBtn /></div>
         {data.highlights.length > 0 && <div className="tt__genres">{data.highlights.map((h) => <span key={h.id} className="tt__genre" {...el('cardBg')}><b {...el('body')}>{h.title}</b><small {...el('caption')}>{h.subtitle}</small></span>)}</div>}
         <Gallery variant="strip" title="Live sets" />
         <SocialLinks variant="pills" title="" />
@@ -384,7 +386,7 @@ export function Inbox() {
   const first = (data.fullName || 'Me').split(' ')[0];
   const subjects: Record<string, string> = {
     save: `Add ${first} to your contacts`, call: 'Quick call? I pick up', wa: 'Message me on WhatsApp', book: 'Grab a time on my calendar',
-    email: 'Send me your to-do list', map: 'Where to find me', web: 'See my full services', share: 'Forward this card', qr: 'Scan to save',
+    email: 'Send me your to-do list', map: 'Where to find me', web: 'See my full services', share: 'Forward this card', qr: 'Scan my QR code',
   };
   const [read, setRead] = useState<Record<string, boolean>>({});
   return (
