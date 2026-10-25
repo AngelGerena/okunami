@@ -102,6 +102,8 @@ export type TemplateId =
   | 'tapemeasure' | 'spiritlevel' | 'workorder' | 'sitebadge' | 'paintfan'
   // Construction collection (general contractors and builders)
   | 'permit' | 'hivis' | 'ironworks' | 'concrete' | 'lumberstamp'
+  // Redo collection (photo-led replacements from the Oct 2026 audit)
+  | 'reellive' | 'goldenhour' | 'vellum' | 'glossbar' | 'stillwater' | 'glowedit'
   // Vocalist collection (singers)
   | 'voiceprint' | 'lyricbook' | 'vocalrange' | 'spotlight' | 'nowplaying'
   // Bling collection (jewelry and accessory sellers)

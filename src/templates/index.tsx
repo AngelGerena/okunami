@@ -23,6 +23,7 @@ import { CineBrain, CineScreen, FocusGuide, PunchIn, Slate } from './sig14';
 import { AccessGranted, BioScan, CodeRain, Dossier, Enhance, GlobeTrace, HackIDE, Vault, WarRoom } from './sig15';
 import { PaintFan, SiteBadge, SpiritLevel, TapeMeasure, WorkOrder } from './sig16';
 import { Concrete, HiVis, Ironworks, LumberStamp, Permit } from './sig19';
+import { GlossBar, GlowEdit, GoldenHour, ReelLive, Stillwater, Vellum } from './sig20';
 import { LyricBook, NowPlaying, Spotlight, VocalRange, Voiceprint } from './sig17';
 import { AmethystAfterDark, BlushSatin, ChampagneToast, LeopardLuxe, PearlStrand, RubyGloss, VanityLights, VelvetNoir } from './sig18';
 import { Boarding, Confetti, Inbox, Invitation, Monogram, Planner, Recipe, Stained, Toolbelt, Trading, Turntable, Vinyl, Waveform } from './sig2-b';
@@ -248,6 +249,12 @@ export const TEMPLATES: TemplateMeta[] = [
   { id: 'ironworks', name: 'Ironworks', niche: 'Construction', blurb: 'A cinematic black-and-white photo, heavy steel-yard type and a bolted plate. Your services read as a load chart.', bestFor: 'Commercial builders, steel and larger GCs' },
   { id: 'concrete', name: 'Concrete', niche: 'Construction', blurb: 'Your name spray-stenciled on raw concrete under a wood form board, with the year you started pressed into the slab.', bestFor: 'Concrete, pavers, driveways and masonry' },
   { id: 'lumberstamp', name: 'Lumber Stamp', niche: 'Construction', blurb: 'Your name inked in a lumber-mill grade stamp on a pine board, your photo pinned up like a print, and your services as a penciled cut list.', bestFor: 'Carpenters, framers, decks and trim' },
+  { id: 'reellive', name: 'Reel Live', niche: 'Creators and Influencers', blurb: 'Your card plays like a live story: your photo cross-fades through your services with a slow camera push, and Call, DM and Email sit in the side rail.', bestFor: 'Creators, influencers and speakers' },
+  { id: 'goldenhour', name: 'Golden Hour', niche: 'Real Estate', blurb: 'Your photo full screen in warm sunset light, your last name in gold italic and a brushed-gold slant leading into your listings and services.', bestFor: 'Realtors and luxury agents' },
+  { id: 'vellum', name: 'Vellum', niche: 'Weddings and Events', blurb: 'Your photo under a sheet of translucent vellum with your name in script and a gold wax seal that presses down when the card opens.', bestFor: 'Wedding planners and event designers' },
+  { id: 'glossbar', name: 'Gloss Bar', niche: 'Nail Spas and Lashes', blurb: 'Your photo with a wet-gloss sheen and a row of polish shades. Pick a shade and the whole card changes color to match, prices included.', bestFor: 'Nail artists and lash techs' },
+  { id: 'stillwater', name: 'Stillwater', niche: 'Massage and Day Spas', blurb: 'A candlelit photo, a band of dark stone and a live breathing guide that slowly says breathe in, breathe out, above a spa-style menu.', bestFor: 'Massage therapists and day spas' },
+  { id: 'glowedit', name: 'Glow Edit', niche: 'Beauty Consultants', blurb: 'You on the cover of your own beauty magazine: a big masthead, cover lines that slide in, and your categories as the table of contents.', bestFor: 'Beauty sellers and influencers' },
   // ---- Vocalist collection (singers)
   { id: 'voiceprint', name: 'Voiceprint', niche: 'DJs and Musicians', blurb: 'A black-and-white portrait with your voice drawn across it as a waveform. Press play and it sings while the wave moves.', bestFor: 'Singers and session vocalists' },
   { id: 'lyricbook', name: 'Lyric Book', niche: 'DJs and Musicians', blurb: 'A page from your songwriting notebook with your polaroid taped on. Press Sing it and each word lights up as it is sung.', bestFor: 'Singer-songwriters' },
@@ -580,6 +587,7 @@ export const TEMPLATE_COMPONENTS: Record<TemplateId, () => ReactElement> = {
   hackide: HackIDE, bioscan: BioScan, accessgranted: AccessGranted, globetrace: GlobeTrace, dossier: Dossier, warroom: WarRoom, coderain: CodeRain, enhance: Enhance, vault: Vault,
   tapemeasure: TapeMeasure, spiritlevel: SpiritLevel, workorder: WorkOrder, sitebadge: SiteBadge, paintfan: PaintFan,
   permit: Permit, hivis: HiVis, ironworks: Ironworks, concrete: Concrete, lumberstamp: LumberStamp,
+  reellive: ReelLive, goldenhour: GoldenHour, vellum: Vellum, glossbar: GlossBar, stillwater: Stillwater, glowedit: GlowEdit,
   voiceprint: Voiceprint, lyricbook: LyricBook, vocalrange: VocalRange, spotlight: Spotlight, nowplaying: NowPlaying,
   velvetnoir: VelvetNoir, blushsatin: BlushSatin, rubygloss: RubyGloss, champtoast: ChampagneToast,
   amethyst: AmethystAfterDark, leopard: LeopardLuxe, pearlstrand: PearlStrand, vanitylights: VanityLights,

@@ -66,7 +66,7 @@ const TURNTABLE = d('turntable', 'Turntable', 'A spinning deck, a working crossf
 const BOARDING = d('boarding', 'Boarding Pass', 'A first-class boarding pass with a barcode stub.', ['#0F2A4A', '#F2A541', '#F3F5F8'], 'light', ['Space Grotesk', 'IBM Plex Sans'], ['rounded', 'regular', 'solid', 'none'], 'bright', 0.7, true);
 const CONFETTI = d('confetti', 'Confetti', 'A confetti burst and a run-of-show timeline.', ['#2B1A4A', '#FF6FB5', '#FFF7FB'], 'light', ['Bricolage Grotesque', 'Outfit'], ['pill', 'large', 'raised', 'none'], 'bright', 1.3, true);
 const INVITATION = d('invitation', 'Invitation', 'An envelope that opens to reveal your card.', ['#3E4A3D', '#C9A27E', '#F7F3EC'], 'light', ['Cormorant Garamond', 'Manrope'], ['pill', 'regular', 'solid', 'paper'], 'calm', 1, true);
-const MONOGRAM = d('monogram', 'Monogram', 'Your initials inside a blooming floral wreath.', ['#4A3B47', '#D8A7B1', '#FBF7F4'], 'light', ['Cormorant Garamond', 'Manrope'], ['pill', 'regular', 'solid', 'none'], 'calm', 1.2, true);
+const VELLUM = d('vellum', 'Vellum', 'Your photo under translucent vellum, your name in script and a gold wax seal.', ['#3A2F2A', '#B0823B', '#EFE9E1'], 'light', ['Cormorant Garamond', 'Jost'], ['square', 'large', 'solid', 'none'], 'calm', 0.3, true);
 const PLANNER = d('planner', 'Planner', 'A ring-bound planner with your week and a to-do list.', ['#2F3E46', '#F4A261', '#F8F4EC'], 'light', ['Fraunces', 'Figtree'], ['rounded', 'regular', 'solid', 'paper'], 'calm', 0.9, true);
 const TRADING = d('trading', 'Trading Card', 'A holo trading card that flips to show your stats.', ['#12151F', '#FFD23F', '#F1F3F8'], 'dark', ['Bebas Neue', 'Barlow'], ['rounded', 'large', 'solid', 'none'], 'bright', 0.7, true);
 const MARQUEE = d('marquee', 'Marquee', 'A theater marquee with chasing bulbs and your name in lights.', ['#1A0E08', '#FFC53D', '#F7F0E6'], 'dark', ['Limelight', 'Work Sans'], ['rounded', 'large', 'raised', 'none'], 'bright', 0.6, true);
@@ -190,7 +190,7 @@ const NICHE_LIST: Niche[] = [
     designs: [
       d('polish', 'Polish Shelf', 'A shelf of polish bottles; each one is a service and price.', ['#4A2340', '#FF5C8A', '#FFF5F8'], 'light', ['Playfair Display', 'DM Sans'], ['pill', 'regular', 'solid', 'none'], 'bright', 1.3, true),
       d('shimmer', 'Shimmer', 'Twinkling glitter and a glossy service menu.', ['#1A1024', '#F7A8D8', '#FBF3FA'], 'dark', ['Unbounded', 'Outfit'], ['pill', 'large', 'gradient', 'satin'], 'bright', 1.4, true),
-      d('tips', 'Tip Chart', 'Your work shown inside real nail shapes: almond, coffin, stiletto.', ['#3C2A3F', '#E07A9B', '#FCF6F7'], 'light', ['DM Serif Display', 'DM Sans'], ['pill', 'regular', 'solid', 'none'], 'bright', 1.2, true),
+      d('glossbar', 'Gloss Bar', 'Pick a polish shade and the whole card recolors to match, prices included.', ['#2E1A26', '#C2185B', '#FFF6F7'], 'light', ['Playfair Display', 'DM Sans'], ['pill', 'large', 'solid', 'none'], 'bright', 1.2, true),
       d('lash', 'Lash Line', 'Lashes draw themselves over your photo, one by one.', ['#2B1B2E', '#E7A4C0', '#FCF6F8'], 'light', ['Playfair Display', 'DM Sans'], ['pill', 'regular', 'solid', 'none'], 'bright', 1.4, true),
       GLOSS,
       VANITY,
@@ -214,7 +214,7 @@ const NICHE_LIST: Niche[] = [
       d('coversplit', 'Cover Split', 'A full-bleed photo cut on a slant, fashion-cover type underneath.', ['#111111', '#EE6E73', '#FFFFFF'], 'light', ['Bodoni Moda', 'Jost'], ['square', 'large', 'solid', 'none'], 'bright', 0, true),
       d('plum', 'Velvet Plum', 'Deep plum, a curved photo edge and rose-gold buttons.', ['#6A3A58', '#E3A68C', '#F6EEF2'], 'dark', ['Cormorant Garamond', 'Jost'], ['pill', 'large', 'solid', 'satin'], 'calm', 1, true),
       d('neonpulse', 'Neon Pulse', 'A neon ring that pulses around your photo on a dark stage.', ['#FF4F8B', '#FF4F8B', '#FFF0F5'], 'dark', ['Syne', 'Jost'], ['rounded', 'large', 'neon', 'none'], 'tech', 0.8, true),
-      d('roseglass', 'Rose Glass', 'Floating color orbs behind a frosted glass panel.', ['#3A1F28', '#EE6E73', '#F3D6D8'], 'light', ['Playfair Display', 'Jost'], ['rounded', 'large', 'solid', 'none'], 'calm', 1.1, true),
+      d('glowedit', 'Glow Edit', 'You on the cover of your own beauty magazine, with cover lines that slide in.', ['#2B1A1F', '#B8306A', '#FBF3EE'], 'light', ['Playfair Display', 'Jost'], ['square', 'large', 'solid', 'none'], 'bright', 0, true),
       d('swatchbar', 'Swatch Bar', 'A lipstick swatch stripe up top, buttons as shade cards.', ['#4A1420', '#EE6E73', '#FFFFFF'], 'light', ['Bodoni Moda', 'DM Sans'], ['rounded', 'large', 'solid', 'none'], 'bright', 0.4, true),
       d('runway', 'Runway', 'An edge-to-edge portrait with your name running up the side.', ['#120E10', '#EE6E73', '#F2EEEE'], 'dark', ['Syne', 'Jost'], ['square', 'large', 'solid', 'none'], 'bright', 0, true),
       d('silkcurve', 'Silk Curve', 'A soft photo top that flows into the page on one smooth curve.', ['#16121A', '#EE6E73', '#FFFFFF'], 'light', ['Playfair Display', 'DM Sans'], ['pill', 'large', 'solid', 'none'], 'calm', 1, true),
@@ -294,7 +294,7 @@ const NICHE_LIST: Niche[] = [
     tagline: 'Slow down. Breathe. Recover.',
     suggestedLinks: ['google', 'instagram', 'facebook', 'yelp'],
     designs: [
-      d('stones', 'Hot Stones', 'Balanced warm stones with rising steam.', ['#3B2F2A', '#C08457', '#F6F1EA'], 'light', ['Cormorant Garamond', 'Manrope'], ['pill', 'regular', 'solid', 'paper'], 'calm', 1.2, true),
+      d('stillwater', 'Stillwater', 'Candlelit photo, dark stone and a live breathing guide above a spa menu.', ['#2E2620', '#A9714A', '#EFE7DC'], 'light', ['Cormorant Garamond', 'Jost'], ['pill', 'large', 'solid', 'none'], 'calm', 1.2, true),
       d('lotus', 'Lotus', 'A lotus blooms on a rippling pond, with a gentle breathing guide.', ['#2E3A4A', '#E7A6B8', '#F4F6F8'], 'light', ['Italiana', 'Mulish'], ['pill', 'regular', 'solid', 'none'], 'calm', 1.4, true),
       d('silk', 'Silk', 'Slow flowing silk waves and a calm treatment menu.', ['#3E5A57', '#B9D4CC', '#F5F8F6'], 'light', ['Italiana', 'Mulish'], ['pill', 'regular', 'solid', 'none'], 'calm', 1.4, true),
       d('perfume', 'Perfume', 'A glass bottle with your spa name on the label.', ['#3B3A4F', '#C8B6E2', '#F8F6FB'], 'light', ['Italiana', 'Mulish'], ['pill', 'regular', 'solid', 'satin'], 'calm', 1.3, true),
@@ -315,6 +315,7 @@ const NICHE_LIST: Niche[] = [
     tagline: 'Helping families find home',
     suggestedLinks: ['zillow', 'instagram', 'facebook', 'youtube', 'google'],
     designs: [
+      d('goldenhour', 'Golden Hour', 'Your photo in warm sunset light, your last name in gold and a brushed-gold slant.', ['#14110D', '#C9A15A', '#F7EEDF'], 'dark', ['Cormorant Garamond', 'Manrope'], ['rounded', 'large', 'solid', 'none'], 'calm', 1, true),
       d('realestate', 'Keystone', 'Property hero, agent card, home-value call to action, listings strip.', ['#14213D', '#B8925A', '#F6F4EF'], 'light', ['DM Serif Display', 'Work Sans'], ['rounded', 'regular', 'solid', 'none'], 'calm', 0.7),
       SIGNATURE,
       d('noir', 'Gallery Noir', 'Black gallery walls, a spotlit portrait in a gold hairline frame.', ['#0B0B0B', '#E6C46A', '#F5F1E8'], 'dark', ['Bodoni Moda', 'Manrope'], ['square', 'large', 'solid', 'none'], 'calm', 0, true),
@@ -542,7 +543,7 @@ const NICHE_LIST: Niche[] = [
     tagline: 'Creator · Speaker · Your next collab',
     suggestedLinks: ['instagram', 'tiktok', 'youtube', 'threads', 'x', 'spotify'],
     designs: [
-      d('creator', 'Creator', 'Gradient ring, big platform buttons, latest posts.', ['#1B1033', '#FF4FA3', '#F7F2FF'], 'dark', ['Bricolage Grotesque', 'Outfit'], ['pill', 'large', 'gradient', 'none'], 'bright', 1.2),
+      d('reellive', 'Reel Live', 'An auto-playing story with your services as captions and a Call, DM, Email side rail.', ['#0D0A11', '#FF4FA3', '#F6F1F8'], 'dark', ['Bricolage Grotesque', 'Outfit'], ['pill', 'large', 'solid', 'none'], 'bright', 1, true),
       HOLOGRAM,
       GLOSS,
       SYNTHWAVE,
@@ -666,7 +667,7 @@ const NICHE_LIST: Niche[] = [
     ],
     tagline: 'Your day, beautifully handled',
     suggestedLinks: ['instagram', 'pinterest', 'facebook', 'tiktok', 'google'],
-    designs: [INVITATION, MONOGRAM, SIGNATURE, CONFETTI],
+    designs: [VELLUM, INVITATION, SIGNATURE, CONFETTI],
   },
   {
     id: 'va', name: 'Virtual Assistants', group: 'Professional', icon: 'chat',

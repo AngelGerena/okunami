@@ -26,6 +26,8 @@ export const RETIRED = new Set<string>([
   'razor', 'clipper',
   // Other duplicates
   'vinyl', 'lotus', 'toolbelt', 'crest', 'radial',
+  // Replaced by the Redo collection (Reel Live, Golden Hour, Vellum, Gloss Bar, Stillwater, Glow Edit)
+  'creator', 'estate', 'monogram', 'tips', 'stones', 'roseglass',
   // Misfits
   'starfield', 'bamboo', 'cmdk',
 ]);
