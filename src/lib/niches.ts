@@ -1,6 +1,8 @@
 import type { ButtonShape, ButtonSize, ButtonSpec, ButtonStyle, ButtonTexture, Card, Highlight, SoundProfile, TemplateId } from './types';
 import { themeFromSeeds, type Seeds } from './theme';
 import { uid } from './seed';
+import { RETIRED } from './retired';
+import { NETWORKS } from './socials';
 
 /* ------------------------------------------------------------------
    A niche is who the card is for (barbershop, realtor, IT pro).
@@ -46,7 +48,7 @@ function d(
 }
 
 /* ----------------------------------------------------------- designs reused across niches */
-const MAINFRAME = d('tech', 'Mainframe', 'Boot sequence, neon grid, glitch name, holographic tilt, keyboard commands.', ['#0B1020', '#22E3FF', '#EEF3FA'], 'dark', ['Space Grotesk', 'IBM Plex Sans'], ['chamfer', 'regular', 'hud', 'scanline'], 'tech', 0.35);
+const MAINFRAME = d('tech', 'Mainframe', 'Amber-phosphor boot sequence, terminal grid, glitch name, holographic tilt, keyboard commands.', ['#0E0B05', '#FFB000', '#F7F1E3'], 'dark', ['Space Grotesk', 'IBM Plex Sans'], ['chamfer', 'regular', 'hud', 'scanline'], 'tech', 0.35);
 const QUANTUM = d('quantum', 'Quantum', 'Orbiting rings circle your photo in 3D, particle dust, frosted glass tiles.', ['#0A0F1F', '#8B7CFF', '#F1F0FA'], 'dark', ['Syncopate', 'Manrope'], ['pill', 'regular', 'glass', 'none'], 'tech', 1, true);
 const CYBER = d('cyber', 'Neon District', 'Cyberpunk panels, falling neon rain, slashed buttons and glitch type.', ['#12031F', '#FF2BD6', '#F7F0FA'], 'dark', ['Chakra Petch', 'Rajdhani'], ['chamfer', 'large', 'neon', 'none'], 'tech', 0.2, true);
 const AURORA = d('aurora', 'Aurora', 'Living northern-lights color behind floating glass, like a spatial app.', ['#0E1330', '#5EEAD4', '#EEF4F7'], 'dark', ['Sora', 'Inter'], ['pill', 'large', 'glass', 'none'], 'tech', 1.3, true);
@@ -64,7 +66,7 @@ const TURNTABLE = d('turntable', 'Turntable', 'A spinning deck, a working crossf
 const BOARDING = d('boarding', 'Boarding Pass', 'A first-class boarding pass with a barcode stub.', ['#0F2A4A', '#F2A541', '#F3F5F8'], 'light', ['Space Grotesk', 'IBM Plex Sans'], ['rounded', 'regular', 'solid', 'none'], 'bright', 0.7, true);
 const CONFETTI = d('confetti', 'Confetti', 'A confetti burst and a run-of-show timeline.', ['#2B1A4A', '#FF6FB5', '#FFF7FB'], 'light', ['Bricolage Grotesque', 'Outfit'], ['pill', 'large', 'raised', 'none'], 'bright', 1.3, true);
 const INVITATION = d('invitation', 'Invitation', 'An envelope that opens to reveal your card.', ['#3E4A3D', '#C9A27E', '#F7F3EC'], 'light', ['Cormorant Garamond', 'Manrope'], ['pill', 'regular', 'solid', 'paper'], 'calm', 1, true);
-const MONOGRAM = d('monogram', 'Monogram', 'Your initials inside a blooming floral wreath.', ['#4A3B47', '#D8A7B1', '#FBF7F4'], 'light', ['Cormorant Garamond', 'Manrope'], ['pill', 'regular', 'solid', 'none'], 'calm', 1.2, true);
+const VELLUM = d('vellum', 'Vellum', 'Your photo under translucent vellum, your name in script and a gold wax seal.', ['#3A2F2A', '#B0823B', '#EFE9E1'], 'light', ['Cormorant Garamond', 'Jost'], ['square', 'large', 'solid', 'none'], 'calm', 0.3, true);
 const PLANNER = d('planner', 'Planner', 'A ring-bound planner with your week and a to-do list.', ['#2F3E46', '#F4A261', '#F8F4EC'], 'light', ['Fraunces', 'Figtree'], ['rounded', 'regular', 'solid', 'paper'], 'calm', 0.9, true);
 const TRADING = d('trading', 'Trading Card', 'A holo trading card that flips to show your stats.', ['#12151F', '#FFD23F', '#F1F3F8'], 'dark', ['Bebas Neue', 'Barlow'], ['rounded', 'large', 'solid', 'none'], 'bright', 0.7, true);
 const MARQUEE = d('marquee', 'Marquee', 'A theater marquee with chasing bulbs and your name in lights.', ['#1A0E08', '#FFC53D', '#F7F0E6'], 'dark', ['Limelight', 'Work Sans'], ['rounded', 'large', 'raised', 'none'], 'bright', 0.6, true);
@@ -188,7 +190,7 @@ const NICHE_LIST: Niche[] = [
     designs: [
       d('polish', 'Polish Shelf', 'A shelf of polish bottles; each one is a service and price.', ['#4A2340', '#FF5C8A', '#FFF5F8'], 'light', ['Playfair Display', 'DM Sans'], ['pill', 'regular', 'solid', 'none'], 'bright', 1.3, true),
       d('shimmer', 'Shimmer', 'Twinkling glitter and a glossy service menu.', ['#1A1024', '#F7A8D8', '#FBF3FA'], 'dark', ['Unbounded', 'Outfit'], ['pill', 'large', 'gradient', 'satin'], 'bright', 1.4, true),
-      d('tips', 'Tip Chart', 'Your work shown inside real nail shapes: almond, coffin, stiletto.', ['#3C2A3F', '#E07A9B', '#FCF6F7'], 'light', ['DM Serif Display', 'DM Sans'], ['pill', 'regular', 'solid', 'none'], 'bright', 1.2, true),
+      d('glossbar', 'Gloss Bar', 'Pick a polish shade and the whole card recolors to match, prices included.', ['#2E1A26', '#C2185B', '#FFF6F7'], 'light', ['Playfair Display', 'DM Sans'], ['pill', 'large', 'solid', 'none'], 'bright', 1.2, true),
       d('lash', 'Lash Line', 'Lashes draw themselves over your photo, one by one.', ['#2B1B2E', '#E7A4C0', '#FCF6F8'], 'light', ['Playfair Display', 'DM Sans'], ['pill', 'regular', 'solid', 'none'], 'bright', 1.4, true),
       GLOSS,
       VANITY,
@@ -212,7 +214,7 @@ const NICHE_LIST: Niche[] = [
       d('coversplit', 'Cover Split', 'A full-bleed photo cut on a slant, fashion-cover type underneath.', ['#111111', '#EE6E73', '#FFFFFF'], 'light', ['Bodoni Moda', 'Jost'], ['square', 'large', 'solid', 'none'], 'bright', 0, true),
       d('plum', 'Velvet Plum', 'Deep plum, a curved photo edge and rose-gold buttons.', ['#6A3A58', '#E3A68C', '#F6EEF2'], 'dark', ['Cormorant Garamond', 'Jost'], ['pill', 'large', 'solid', 'satin'], 'calm', 1, true),
       d('neonpulse', 'Neon Pulse', 'A neon ring that pulses around your photo on a dark stage.', ['#FF4F8B', '#FF4F8B', '#FFF0F5'], 'dark', ['Syne', 'Jost'], ['rounded', 'large', 'neon', 'none'], 'tech', 0.8, true),
-      d('roseglass', 'Rose Glass', 'Floating color orbs behind a frosted glass panel.', ['#3A1F28', '#EE6E73', '#F3D6D8'], 'light', ['Playfair Display', 'Jost'], ['rounded', 'large', 'solid', 'none'], 'calm', 1.1, true),
+      d('glowedit', 'Glow Edit', 'You on the cover of your own beauty magazine, with cover lines that slide in.', ['#2B1A1F', '#B8306A', '#FBF3EE'], 'light', ['Playfair Display', 'Jost'], ['square', 'large', 'solid', 'none'], 'bright', 0, true),
       d('swatchbar', 'Swatch Bar', 'A lipstick swatch stripe up top, buttons as shade cards.', ['#4A1420', '#EE6E73', '#FFFFFF'], 'light', ['Bodoni Moda', 'DM Sans'], ['rounded', 'large', 'solid', 'none'], 'bright', 0.4, true),
       d('runway', 'Runway', 'An edge-to-edge portrait with your name running up the side.', ['#120E10', '#EE6E73', '#F2EEEE'], 'dark', ['Syne', 'Jost'], ['square', 'large', 'solid', 'none'], 'bright', 0, true),
       d('silkcurve', 'Silk Curve', 'A soft photo top that flows into the page on one smooth curve.', ['#16121A', '#EE6E73', '#FFFFFF'], 'light', ['Playfair Display', 'DM Sans'], ['pill', 'large', 'solid', 'none'], 'calm', 1, true),
@@ -292,7 +294,7 @@ const NICHE_LIST: Niche[] = [
     tagline: 'Slow down. Breathe. Recover.',
     suggestedLinks: ['google', 'instagram', 'facebook', 'yelp'],
     designs: [
-      d('stones', 'Hot Stones', 'Balanced warm stones with rising steam.', ['#3B2F2A', '#C08457', '#F6F1EA'], 'light', ['Cormorant Garamond', 'Manrope'], ['pill', 'regular', 'solid', 'paper'], 'calm', 1.2, true),
+      d('stillwater', 'Stillwater', 'Candlelit photo, dark stone and a live breathing guide above a spa menu.', ['#2E2620', '#A9714A', '#EFE7DC'], 'light', ['Cormorant Garamond', 'Jost'], ['pill', 'large', 'solid', 'none'], 'calm', 1.2, true),
       d('lotus', 'Lotus', 'A lotus blooms on a rippling pond, with a gentle breathing guide.', ['#2E3A4A', '#E7A6B8', '#F4F6F8'], 'light', ['Italiana', 'Mulish'], ['pill', 'regular', 'solid', 'none'], 'calm', 1.4, true),
       d('silk', 'Silk', 'Slow flowing silk waves and a calm treatment menu.', ['#3E5A57', '#B9D4CC', '#F5F8F6'], 'light', ['Italiana', 'Mulish'], ['pill', 'regular', 'solid', 'none'], 'calm', 1.4, true),
       d('perfume', 'Perfume', 'A glass bottle with your spa name on the label.', ['#3B3A4F', '#C8B6E2', '#F8F6FB'], 'light', ['Italiana', 'Mulish'], ['pill', 'regular', 'solid', 'satin'], 'calm', 1.3, true),
@@ -313,6 +315,7 @@ const NICHE_LIST: Niche[] = [
     tagline: 'Helping families find home',
     suggestedLinks: ['zillow', 'instagram', 'facebook', 'youtube', 'google'],
     designs: [
+      d('goldenhour', 'Golden Hour', 'Your photo in warm sunset light, your last name in gold and a brushed-gold slant.', ['#14110D', '#C9A15A', '#F7EEDF'], 'dark', ['Cormorant Garamond', 'Manrope'], ['rounded', 'large', 'solid', 'none'], 'calm', 1, true),
       d('realestate', 'Keystone', 'Property hero, agent card, home-value call to action, listings strip.', ['#14213D', '#B8925A', '#F6F4EF'], 'light', ['DM Serif Display', 'Work Sans'], ['rounded', 'regular', 'solid', 'none'], 'calm', 0.7),
       SIGNATURE,
       d('noir', 'Gallery Noir', 'Black gallery walls, a spotlit portrait in a gold hairline frame.', ['#0B0B0B', '#E6C46A', '#F5F1E8'], 'dark', ['Bodoni Moda', 'Manrope'], ['square', 'large', 'solid', 'none'], 'calm', 0, true),
@@ -426,6 +429,28 @@ const NICHE_LIST: Niche[] = [
     ],
   },
   {
+    id: 'construction', name: 'Construction and General Contractors', group: 'Home and auto', icon: 'hammer',
+    blurb: 'Photo-led cards on real materials: a posted permit, hi-vis tape, steel, concrete and lumber.',
+    highlightsTitle: 'Work I do',
+    highlights: [
+      { icon: 'home', title: 'Home additions', subtitle: 'Rooms, lanais, second stories' },
+      { icon: 'tools', title: 'Kitchen and bath remodels', subtitle: 'Down to the studs and back' },
+      { icon: 'hammer', title: 'Concrete and driveways', subtitle: 'Slabs, pavers, footings' },
+      { icon: 'shield', title: 'Hurricane repair', subtitle: 'Roof, windows, water damage' },
+    ],
+    tagline: 'Built right since 2011',
+    suggestedLinks: ['google', 'facebook', 'nextdoor', 'instagram'],
+    designs: [
+      d('permit', 'Permit', 'A posted building permit: license fields, an APPROVED stamp and inspections that passed.', ['#1B1A16', '#F26B1D', '#FBF8EE'], 'light', ['Archivo', 'Barlow'], ['rounded', 'large', 'solid', 'none'], 'bright', 0.6, true),
+      d('hivis', 'Hi-Vis', 'Full-screen photo finished with reflective vest tape and credential badges.', ['#111214', '#CFEA00', '#F3F1EA'], 'dark', ['Barlow Condensed', 'Barlow'], ['rounded', 'large', 'solid', 'none'], 'bright', 0.6, true),
+      d('ironworks', 'Ironworks', 'Black-and-white photo, steel-yard type and a load chart of your jobs.', ['#15171A', '#F2B705', '#EEF0F2'], 'dark', ['Barlow Condensed', 'Barlow'], ['rounded', 'large', 'solid', 'none'], 'bright', 0.6, true),
+      d('concrete', 'Concrete', 'Spray-stenciled name on raw concrete with your start year pressed into the slab.', ['#1E1F1F', '#FF6A13', '#C4C3BE'], 'light', ['Barlow Condensed', 'Barlow'], ['rounded', 'large', 'solid', 'none'], 'bright', 0.4, true),
+      d('lumberstamp', 'Lumber Stamp', 'A mill grade stamp on pine, your photo pinned up and a penciled cut list.', ['#2B1A0E', '#A33A22', '#F6EBD6'], 'light', ['Archivo', 'Barlow'], ['rounded', 'large', 'solid', 'none'], 'bright', 0.6, true),
+      d('sitebadge', 'Site Badge', 'A hi-vis vest and an ID badge that flips over to a QR code.', ['#121210', '#FF6B00', '#F4F2EE'], 'dark', ['Archivo', 'Inter'], ['rounded', 'large', 'solid', 'none'], 'bright', 0.9),
+      d('workorder', 'Work Order', 'A carbon-copy work order that checks off your jobs and signs itself.', ['#1D2433', '#1F3B73', '#F1EDE3'], 'light', ['Archivo', 'Inter'], ['rounded', 'large', 'solid', 'none'], 'bright', 0.9),
+    ],
+  },
+  {
     id: 'homeservices', name: 'Cleaning and Lawn Care', group: 'Home and auto', icon: 'leaf',
     blurb: 'Fresh, friendly designs, including a growing garden.',
     highlightsTitle: 'Services',
@@ -518,7 +543,7 @@ const NICHE_LIST: Niche[] = [
     tagline: 'Creator · Speaker · Your next collab',
     suggestedLinks: ['instagram', 'tiktok', 'youtube', 'threads', 'x', 'spotify'],
     designs: [
-      d('creator', 'Creator', 'Gradient ring, big platform buttons, latest posts.', ['#1B1033', '#FF4FA3', '#F7F2FF'], 'dark', ['Bricolage Grotesque', 'Outfit'], ['pill', 'large', 'gradient', 'none'], 'bright', 1.2),
+      d('reellive', 'Reel Live', 'An auto-playing story with your services as captions and a Call, DM, Email side rail.', ['#0D0A11', '#FF4FA3', '#F6F1F8'], 'dark', ['Bricolage Grotesque', 'Outfit'], ['pill', 'large', 'solid', 'none'], 'bright', 1, true),
       HOLOGRAM,
       GLOSS,
       SYNTHWAVE,
@@ -645,7 +670,7 @@ const NICHE_LIST: Niche[] = [
     ],
     tagline: 'Your day, beautifully handled',
     suggestedLinks: ['instagram', 'pinterest', 'facebook', 'tiktok', 'google'],
-    designs: [INVITATION, MONOGRAM, SIGNATURE, CONFETTI],
+    designs: [VELLUM, INVITATION, SIGNATURE, CONFETTI],
   },
   {
     id: 'va', name: 'Virtual Assistants', group: 'Professional', icon: 'chat',
@@ -802,7 +827,11 @@ const NICHE_LIST: Niche[] = [
 ];
 
 /** Niches shown in the app. A niche with no designs (for example while its new designs are being made) stays hidden. */
-export const NICHES: Niche[] = NICHE_LIST.filter((n) => n.designs.length > 0);
+/* Retired designs (see retired.ts) leave every niche list, so pickers, counts and the gallery skip them.
+   Their layouts stay registered, so existing cards that use one still render. */
+export const NICHES: Niche[] = NICHE_LIST
+  .map((n) => ({ ...n, designs: n.designs.filter((x) => !RETIRED.has(x.template)) }))
+  .filter((n) => n.designs.length > 0);
 
 /** Every distinct design, for "Browse all designs". */
 /** Templates built around a camera: they play the camera sound set (shutter, studio strobe, dial clicks) unless sound is off. */
@@ -844,6 +873,7 @@ export const TEMPLATE_EXTRA_FONTS: Partial<Record<TemplateId, string[]>> = {
   hackide: ['JetBrains Mono'], bioscan: ['JetBrains Mono'], accessgranted: ['JetBrains Mono'], globetrace: ['JetBrains Mono'], dossier: ['JetBrains Mono', 'Courier Prime'],
   warroom: ['JetBrains Mono'], coderain: ['JetBrains Mono'], enhance: ['JetBrains Mono'], vault: ['JetBrains Mono'],
   tapemeasure: ['JetBrains Mono'], spiritlevel: ['JetBrains Mono'], workorder: ['JetBrains Mono', 'Caveat'], sitebadge: ['JetBrains Mono'], paintfan: ['JetBrains Mono'],
+  permit: ['IBM Plex Mono'], hivis: [], ironworks: ['IBM Plex Mono'], concrete: [], lumberstamp: ['Caveat'],
   voiceprint: ['JetBrains Mono'], lyricbook: ['JetBrains Mono', 'Caveat'], vocalrange: ['JetBrains Mono'], spotlight: ['JetBrains Mono', 'Fraunces', 'Caveat'], nowplaying: ['JetBrains Mono'],
   midnightset: ['DM Mono', 'Pinyon Script'], velvetroom: ['DM Mono'], blacktie: ['DM Mono', 'Pinyon Script'],
   cinescreen: ['JetBrains Mono'], cinebrain: ['JetBrains Mono'], focusguide: ['JetBrains Mono'], punchin: ['JetBrains Mono'], slate: ['JetBrains Mono'],
@@ -913,10 +943,11 @@ export const NICHE_SAMPLES: Record<string, NicheSample> = {
   va:           { business: 'Clear Desk Assist', fullName: 'Tasha Greene', jobTitle: 'Virtual Assistant', tagline: 'Your time back, handled.', hours: 'Mon-Fri 8am-4pm EST' },
   mechanic:     { business: 'Torque & Tread Auto', fullName: 'Lucia Romero', jobTitle: 'ASE Master Technician', tagline: 'Honest work. Fair prices.', hours: 'Mon-Fri 8am-6pm, Sat 8am-1pm' },
   handyman:     { business: 'Fix-It Fran Co.', fullName: 'Fran Delaney', jobTitle: 'Handyman and Contractor', credentials: 'Licensed and insured', tagline: 'No job too small', hours: 'Mon-Sat 7am-6pm' },
+  construction: { business: 'Cornerstone Build Co.', fullName: 'Rafael Ortiz', jobTitle: 'General Contractor', credentials: 'Lic. CGC#0148 · Licensed and insured · OSHA 30', tagline: 'Built right since 2011', hours: 'Mon-Sat 7:00 AM-5:00 PM' },
   homeservices: { business: 'Fresh Start Cleaning', fullName: 'Maria Lopez', jobTitle: 'Owner', credentials: 'Bonded and insured', tagline: 'Spotless, on schedule', hours: 'Mon-Sat 8am-5pm' },
-  fitness:      { business: 'Iron Pulse Training', fullName: 'Coach Toni Rivera', jobTitle: 'Certified Personal Trainer', tagline: 'Stronger every week', hours: 'Mon-Sat 5am-8pm' },
+  fitness:      { business: 'Iron Pulse Training', fullName: 'Coach Tony Rivera', jobTitle: 'Certified Personal Trainer', tagline: 'Stronger every week', hours: 'Mon-Sat 5am-8pm' },
   bistro:       { business: 'Café Ceiba', fullName: 'Rosa Martinez', jobTitle: 'Chef and Owner', tagline: 'Made from scratch, every day', hours: 'Tue-Sun 7am-3pm' },
-  foodtruck:    { business: 'Fuego Street Eats', fullName: 'Carla Vega', jobTitle: 'Chef and Owner', tagline: 'Rolling flavor across Central Florida', hours: 'Thu-Sun 11am-9pm' },
+  foodtruck:    { business: 'Fuego Street Eats', fullName: 'Carlos Vega', jobTitle: 'Chef and Owner', tagline: 'Rolling flavor across Central Florida', hours: 'Thu-Sun 11am-9pm' },
   creator:      { business: 'Bree Daily', fullName: 'Bree Johnson', jobTitle: 'Lifestyle Creator', tagline: 'Creator · Speaker · Your next collab', hours: 'Collabs: reply within 48 hrs' },
   photo:        { business: 'Lumen & Grain Studio', fullName: 'Jordan Hale', jobTitle: 'Photographer', tagline: 'Light, story and a little magic', hours: 'Sessions by appointment' },
   stage:        { business: 'DJ Solaris', fullName: 'Mia "Solaris" Ruiz', jobTitle: 'DJ and Producer', tagline: 'Keep the floor full', hours: 'Booking weekends year-round' },
@@ -933,20 +964,73 @@ export const NICHE_SAMPLES: Record<string, NicheSample> = {
   nonprofit:    { business: 'Neighbors United', fullName: 'Grace Okafor', jobTitle: 'Executive Director', tagline: 'Neighbors helping neighbors', hours: 'Mon-Fri 9am-5pm' },
 };
 
-/** A card dressed in a niche's sample content, for previews only. The photo stays; unrelated gallery images are dropped. */
+/* Per-niche demo portraits. Drop a file named after the niche id into src/assets/demo/
+   (barber.webp, grooming.webp ...) and every preview for that niche uses it.
+   Niches without a file keep the shared sample portrait. */
+let DEMO_PHOTOS: Record<string, string> = {};
+// Vite fills this at build time; plain Node (the copy and i18n check scripts) has no glob, so it stays empty there.
+try { DEMO_PHOTOS = import.meta.glob('../assets/demo/*.{jpg,jpeg,png,webp}', { eager: true, import: 'default' }) as Record<string, string>; } catch { /* not running under Vite */ }
+export function demoPhoto(nicheId: string): string | null {
+  for (const ext of ['jpg', 'jpeg', 'webp', 'png']) {
+    const hit = DEMO_PHOTOS[`../assets/demo/${nicheId}.${ext}`];
+    if (hit) return hit;
+  }
+  return null;
+}
+
+/** Sample social links that fit the niche (a DJ shows SoundCloud and Spotify, not Houzz).
+    Networks that turn a handle into a link get a handle; the rest get a full sample link. */
+function sampleSocials(niche: Niche, handle: string) {
+  return niche.suggestedLinks.slice(0, 4).map((id, i) => {
+    const net = NETWORKS.find((n) => n.id === id);
+    const takesHandle = !!net && net.url(handle) !== `https://${handle}`;
+    const value = id === 'google' ? `https://g.page/r/${handle}/review`
+      : takesHandle ? (net!.placeholder.startsWith('@') ? `@${handle}` : handle)
+      : `https://www.${id}.com/${handle}`;
+    return { id: `so${i}`, network: id, value };
+  });
+}
+
+/** A card dressed in a niche's sample content, for previews only. Unrelated gallery images are dropped. */
 export function sampleFor(card: Card, niche: Niche): Card {
   const s = NICHE_SAMPLES[niche.id];
   if (!s) return card;
+  const slug = s.business.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+  const handle = slug.replace(/-/g, '');
   return {
     ...card,
     data: {
       ...card.data,
+      photoUrl: demoPhoto(niche.id) ?? card.data.photoUrl,
+      socials: niche.suggestedLinks.length ? sampleSocials(niche, handle) : card.data.socials,
+      email: `hello@${handle}.com`, website: `${handle}.com`, bookingUrl: `https://${handle}.com/book`,
       business: s.business, fullName: s.fullName, jobTitle: s.jobTitle, tagline: s.tagline, hours: s.hours, credentials: s.credentials ?? '',
       highlightsTitle: niche.highlightsTitle, highlights: niche.highlights.map((h, i) => ({ ...h, id: `s${i}` })),
       gallery: niche.id === 'realestate' ? card.data.gallery : [], niche: niche.id,
-      slug: s.business.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, ''),
+      slug,
     },
   };
+}
+
+/* Layouts that no niche lists (one-off designs) still need sample content that fits them,
+   or their demos fall back to the interior designer. The starter layouts get one too, so no two share a face. */
+export const LAYOUT_NICHE: Record<string, string> = {
+  blueprint: 'engineering', blush: 'nails', circuit: 'tech', clipper: 'barber', cmdk: 'tech',
+  contactsheet: 'photo', estate: 'realestate', floorplan: 'realestate', inbox: 'va', ledger: 'advisor',
+  nowserving: 'barber', oldschool: 'barber', poster: 'creator', rosegold: 'salon', stained: 'church',
+  starfield: 'tech', bamboo: 'massage', terminal: 'tech',
+  // Starter layouts: each shows a business that suits it, with that niche's own portrait
+  cover: 'salon', arch: 'massage', header: 'esthetics', bizcard: 'advisor', app: 'nails',
+  swiss: 'photo', bento: 'bistro', journey: 'fitness',
+};
+
+/** The sample card a demo or gallery preview shows for any layout id. */
+export function demoCardFor(base: Card, template: string): { card: Card; mode: 'light' | 'dark'; niche: Niche | null; design: Design | null } {
+  const hit = ALL_DESIGNS.find((x) => x.design.template === template);
+  if (hit) return { card: applyDesign(sampleFor(base, hit.niche), hit.niche, hit.design), mode: hit.design.mode, niche: hit.niche, design: hit.design };
+  const n = NICHE_BY_ID[LAYOUT_NICHE[template]];
+  const dressed = n ? sampleFor(base, n) : base;
+  return { card: { ...dressed, template: template as TemplateId }, mode: 'light', niche: n ?? null, design: null };
 }
 
 /** The free Lite designs, dressed in a niche's first-design colors and fonts. */

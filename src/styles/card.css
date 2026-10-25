@@ -85,7 +85,18 @@
 
 /* ---------- location, contact rows */
 .loc { background: var(--c-cardBg); border-radius: var(--r); overflow: hidden; }
-.loc__map { height: 104px; display: grid; place-items: center; background: var(--c-iconBg); color: var(--c-icons); }
+/* Drawn street map (no tiles, no tracking): a block grid, two roads, a park and a dropped pin. */
+.loc__map { position: relative; display: grid; place-items: center; height: 116px; overflow: hidden; color: var(--c-icons); text-decoration: none;
+  background:
+    linear-gradient(90deg, color-mix(in srgb, var(--c-cardBg) 70%, transparent) 2px, transparent 2px) 0 0 / 38px 38px,
+    linear-gradient(0deg, color-mix(in srgb, var(--c-cardBg) 70%, transparent) 2px, transparent 2px) 0 0 / 38px 38px,
+    var(--c-iconBg); }
+.loc__road { position: absolute; left: -10%; right: -10%; top: 58%; height: 10px; background: color-mix(in srgb, var(--c-cardBg) 92%, transparent); transform: rotate(-9deg); box-shadow: 0 0 0 1px color-mix(in srgb, var(--c-icons) 12%, transparent); }
+.loc__road--b { top: -10%; bottom: -10%; left: 63%; right: auto; width: 8px; height: auto; transform: rotate(12deg); }
+.loc__park { position: absolute; left: 12%; top: 14%; width: 64px; height: 38px; border-radius: 40% 60% 55% 45%; background: color-mix(in srgb, #5FA36A 34%, var(--c-iconBg)); }
+.loc__pin { position: relative; z-index: 1; display: grid; place-items: center; transform: translateY(-6px); filter: drop-shadow(0 6px 6px rgba(0,0,0,.28)); }
+.loc__pin::after { content: ""; position: absolute; left: 50%; bottom: -6px; width: 14px; height: 5px; border-radius: 50%; transform: translateX(-50%); background: rgba(0,0,0,.22); }
+.loc__map:focus-visible { outline: 3px solid var(--c-accentDetail); outline-offset: -3px; }
 .loc__row { display: flex; align-items: center; gap: 12px; padding: 14px 14px 14px 16px; }
 .loc__tx { flex: 1; min-width: 0; }
 .loc-text p { font-family: var(--f-display); font-size: 19px; line-height: 1.35; color: var(--c-body); }

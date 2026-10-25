@@ -525,6 +525,8 @@ export const ES: Record<string, string> = {
   "Rugged shop layouts with a giant call button.": "Diseños robustos de taller con un botón de llamada gigante.",
   "Handyman and Contractors": "Mantenimiento y contratistas",
   "Call-first checklists and a drafted blueprint for builders.": "Listas centradas en la llamada y un plano dibujado para constructores.",
+  "Construction and General Contractors": "Construcción y contratistas generales",
+  "Photo-led cards on real materials: a posted permit, hi-vis tape, steel, concrete and lumber.": "Tarjetas con tu foto sobre materiales reales: un permiso de obra, cinta reflectiva, acero, concreto y madera.",
   "Cleaning and Lawn Care": "Limpieza y jardinería",
   "Fresh, friendly designs, including a growing garden.": "Diseños frescos y amigables, incluido un jardín que crece.",
   "Fitness and Coaching": "Fitness y coaching",

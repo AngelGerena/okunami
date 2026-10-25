@@ -294,7 +294,7 @@ export function AgentProfile() {
     call && { k: 'Direct', v: call.sub || '' },
   ].filter(Boolean) as { k: string; v: string }[];
   return (
-    <div className="tpl tpl-ap">
+    <div className="tpl tpl-agp">
       <div className="ap__sheet" {...el('cardBg')}>
         <div className="ap__head" {...el('dividers')}><Logo className="ap__logo" /><span {...el('caption')}>Agent profile</span></div>
         <div className="ap__band" {...el('iconBg')}>

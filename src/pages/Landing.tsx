@@ -5,7 +5,8 @@ import type { Card } from '../lib/types';
 import { sampleCard } from '../lib/seed';
 import { deriveTokens, randomButton, randomSeeds, FONT_PAIRS } from '../lib/theme';
 import { TEMPLATES } from '../templates';
-import { ALL_DESIGNS, NICHES, applyDesign, sampleFor } from '../lib/niches';
+import { ALL_DESIGNS, NICHES, applyDesign, demoCardFor, sampleFor } from '../lib/niches';
+import { FEATURED, RETIRED } from '../lib/retired';
 import Brand from '../components/Brand';
 import heroLogo from '../assets/okunami-wordmark.png';
 import { APP_NAME, PLANS, STUDIO, STUDIO_CONTACT, TEAM, clampCards, teamTotal } from '../lib/plans';
@@ -26,7 +27,9 @@ const reduced = () => typeof window !== 'undefined' && window.matchMedia?.('(pre
 const HIDE_ON_LANDING = new Set<string>(['terminal', 'inbox']);
 
 /** The hero phone cycles through these showpiece designs until someone rolls the dice. */
-const SHOWCASE = ['neonsign', 'velvet', 'turntable', 'passport', 'polish', 'synthwave', 'signature', 'lotus', 'nowserving'];
+const SHOWCASE = ['neonsign', 'velvet', 'turntable', 'passport', 'polish', 'synthwave', 'signature', 'stones', 'goldring'];
+/** Gallery order: the Featured 12 first, then niche designs, then the generic starter layouts. */
+const galleryRank = (id: string, niche?: string) => { const f = FEATURED.indexOf(id); return f >= 0 ? f : niche ? 100 : 200; };
 
 function Ticker({ items, tone }: { items: string[]; tone: 'pink' | 'cyan' | 'orange' }) {
   const line = items.join('  ✶  ');
@@ -162,17 +165,16 @@ export default function Landing() {
       <section className="mx-layouts" id="layouts">
         <h2 className="mx-h2">{rich(t("Swipe the <x1>wall</x1> of designs."), { x1: (c) => <span className="pink">{c}</span> })}</h2>
         <div className="mx-strip" role="region" aria-label={t("Design gallery. Scrolls sideways. Each design has an Open demo link.")} tabIndex={0}>
-          {[...TEMPLATES].filter((t) => !HIDE_ON_LANDING.has(t.id)).sort((a, b) => Number(Boolean(b.niche)) - Number(Boolean(a.niche))).map((tpl) => {
-            const hit = ALL_DESIGNS.find((x) => x.design.template === tpl.id);
+          {[...TEMPLATES].filter((t) => !HIDE_ON_LANDING.has(t.id) && !RETIRED.has(t.id)).sort((a, b) => galleryRank(a.id, a.niche) - galleryRank(b.id, b.niche)).map((tpl) => {
+            const demo = demoCardFor(base, tpl.id);
+            const hit = demo.design && demo.niche ? { niche: demo.niche, design: demo.design } : null;
             return (
               <figure key={tpl.id}>
                 <div className="mx-mini" {...decorative}><div className="mx-miniscale">
-                  {hit
-                    ? <CardRenderer card={applyDesign(sampleFor(base, hit.niche), hit.niche, hit.design)} mode={hit.design.mode} sound={false} />
-                    : <CardRenderer card={{ ...base, template: tpl.id }} mode="light" sound={false} />}
+                  <CardRenderer card={demo.card} mode={demo.mode} sound={false} />
                 </div></div>
                 <figcaption>
-                  <b>{hit?.design.name ?? tpl.name}</b><small>{hit ? hit.niche.name : tpl.bestFor}</small>
+                  <b>{hit?.design.name ?? tpl.name}</b><small>{hit ? hit.niche.name : demo.niche?.name ?? tpl.bestFor}</small>
                   <Link className="mx-demo" to={`/demo/${tpl.id}`}>{t("Open demo")}<span className="sr">{t(" of the {v} design", { v: hit?.design.name ?? tpl.name })}</span> <ArrowRight size={14} aria-hidden /></Link>
                 </figcaption>
               </figure>

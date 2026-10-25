@@ -207,7 +207,7 @@
 .fmv__shot { position: absolute; left: 38%; right: 16px; top: 120px; bottom: 0; overflow: hidden; transform: skewX(-8deg); transform-origin: bottom; background: var(--c-heroBand); }
 .fmv__shot .fc-photo { transform: skewX(8deg) scale(1.15); }
 .fmv__tag { position: absolute; left: 20px; bottom: 24px; max-width: 46%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-family: var(--f-display); font-size: 13px; letter-spacing: .12em; text-transform: uppercase; background: var(--c-heroBand); color: var(--c-accentDetail); padding: 8px 12px; transform: skewX(-10deg); }
-.fmv__name { margin: 0; font-family: var(--f-display); font-style: italic; font-weight: 400; font-size: min(54px, 14vw); line-height: .95; letter-spacing: -.02em; text-transform: uppercase; color: var(--c-name); overflow-wrap: anywhere; }
+.fmv__name { margin: 0; font-family: var(--f-display); font-style: italic; font-weight: 400; font-size: min(var(--fmv-fit, 54px), 14vw); line-height: .95; letter-spacing: -.02em; text-transform: uppercase; color: var(--c-name); overflow-wrap: normal; word-break: keep-all; }
 .fmv__hi { display: inline-block; margin-top: 4px; padding: 0 8px; background: var(--c-accentDetail); color: var(--c-heroBand); }
 .fmv__quick .fb--primary { font-family: var(--f-display); text-transform: uppercase; letter-spacing: .1em; transform: skewX(-6deg); }
 .fmv__split { display: grid; gap: 8px; }

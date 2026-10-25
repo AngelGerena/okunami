@@ -31,7 +31,8 @@ function SaveAct({ className, children }: { className: string; children: ReactNo
 function Contacts({ className = '' }: { className?: string }) {
   const { contacts } = usePhoto();
   if (!contacts.length) return null;
-  return <nav className={`dk-contacts ${className}`} aria-label="Contact">{contacts.map((a) => <a key={a.key} href={a.href} {...ext(a.href)} {...el('links')}>{a.key === 'wa' ? 'Text' : a.label}</a>)}</nav>;
+  // Real buttons with icons (not small text links), so Call and Text read as the main ways to reach you.
+  return <nav className={`dk-contacts ${className}`} aria-label="Contact">{contacts.map((a) => <a key={a.key} href={a.href} {...ext(a.href)} {...el('links')}><span className="dk-contacts__ic" aria-hidden>{a.icon}</span>{a.key === 'wa' ? 'Text' : a.label}</a>)}</nav>;
 }
 
 /** Portfolio, sessions, socials, share and QR: the same tail on every design. */
@@ -50,7 +51,7 @@ function Folio() {
 export function Aperture() {
   const { data, book, folio } = usePhoto();
   return (
-    <div className="tpl tpl-dk dk-carbon tpl-ap">
+    <div className="tpl tpl-dk dk-carbon tpl-dkap">
       <div className="pad stack center">
         <div className="ap__top"><span {...el('caption')}>{data.business || 'Studio'}</span><span className="ap__rec" {...el('accentDetail')}><i />f/1.4</span></div>
         <div className="ap__lens" {...el('accentDetail')}>
@@ -283,7 +284,7 @@ export function FilmStrip() {
 export function Softbox() {
   const { data, book, folio } = usePhoto();
   return (
-    <div className="tpl tpl-dk tpl-sb">
+    <div className="tpl tpl-dk tpl-dksb">
       <span className="sb__light" aria-hidden /><span className="sb__glow" aria-hidden /><span className="sb__stand" aria-hidden />
       <div className="sb__set" {...el('accentDetail')}><Photo className="sb__img" /><span className="sb__sheen" aria-hidden /></div>
       <span className="sb__floor" aria-hidden {...el('accentDetail')} />
