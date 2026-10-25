@@ -33,17 +33,17 @@ const smsHref = (phone: string) => { const d = digits(phone); return d ? `sms:+$
 const waHref = (n: string) => { const d = digits(n); return d ? `https://wa.me/${d.length === 10 ? '1' + d : d}` : ''; };
 const ext = (h: string) => (/^https?:/.test(h) ? { target: '_blank', rel: 'noopener noreferrer' } : {});
 const splitName = (full: string) => { const [first, ...rest] = (full || 'Your Name').trim().split(/\s+/); return { first, last: rest.join(' ') }; };
-const initials = (s: string) => (s || '').split(/\s+/).filter(Boolean).slice(0, 2).map((w) => w[0]?.toUpperCase()).join('');
+export const initials = (s: string) => (s || '').split(/\s+/).filter(Boolean).slice(0, 2).map((w) => w[0]?.toUpperCase()).join('');
 /** "$70 · 90 min" -> { price: '$70', rest: '90 min' }; "From $10 per nail" -> { price: 'From $10', rest: 'per nail' }. */
-function priceOf(sub: string) {
+export function priceOf(sub: string) {
   const m = (sub || '').match(/((?:from\s+)?\$\s?\d[\d,.]*\+?)/i);
   if (!m) return { price: '', rest: sub };
   const rest = sub.replace(m[0], '').replace(/^[\s·,|-]+|[\s·,|-]+$/g, '').trim();
   return { price: m[0].replace(/\s+/g, ' '), rest };
 }
 
-type Key = { key: string; label: string; href: string; icon: ReactNode };
-function useRx() {
+export type Key = { key: string; label: string; href: string; icon: ReactNode };
+export function useRx() {
   const { data, actions, play, still } = useCard();
   const { first, last } = splitName(data.fullName);
   const services = data.highlights.filter((h) => h.title).slice(0, 6);
@@ -59,26 +59,26 @@ function useRx() {
   return { data, first, last, services, book, contact: contact.slice(0, 4), save, play, still, actions };
 }
 
-function Shell({ cls, style, children }: { cls: string; style?: CSSProperties; children: ReactNode }) {
+export function Shell({ cls, style, children }: { cls: string; style?: CSSProperties; children: ReactNode }) {
   useSingleWeightFonts();
   const { still } = useCard();
   return <div className={`tpl tpl-rx ${cls}${still ? ' is-still' : ''}`} style={style}>{children}</div>;
 }
 
-function Main({ label, href, icon = <CalendarDays size={19} strokeWidth={2} aria-hidden /> }: { label: string; href: string; icon?: ReactNode }) {
+export function Main({ label, href, icon = <CalendarDays size={19} strokeWidth={2} aria-hidden /> }: { label: string; href: string; icon?: ReactNode }) {
   const { play } = useCard();
   if (!href) return null;
   return <a className="rx-main" href={href} {...ext(href)} onClick={() => play('primary')} {...el('btnPrimaryBg')}>{icon}{label}</a>;
 }
 
-function Keys({ list }: { list: Key[] }) {
+export function Keys({ list }: { list: Key[] }) {
   const { play } = useCard();
   if (!list.length) return null;
   return <nav className={`rx-keys n${list.length}`} aria-label="Contact">{list.map((k) => <a key={k.key} className="rx-key" href={k.href} {...ext(k.href)} onClick={() => play('tap')}>{k.icon}<span>{k.label}</span></a>)}</nav>;
 }
 
 /** Save contact, Share and the QR code, on every design. */
-function Tail() {
+export function Tail() {
   const { save } = useRx();
   return (
     <>
@@ -92,7 +92,7 @@ function Tail() {
   );
 }
 
-const Lbl = ({ children }: { children: ReactNode }) => <p className="rx-lbl" {...el('caption')}>{children}</p>;
+export const Lbl = ({ children }: { children: ReactNode }) => <p className="rx-lbl" {...el('caption')}>{children}</p>;
 
 /* ================================================================ 1 REEL LIVE (creators) */
 export function ReelLive() {

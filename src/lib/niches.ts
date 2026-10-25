@@ -66,6 +66,7 @@ const TURNTABLE = d('turntable', 'Turntable', 'A spinning deck, a working crossf
 const BOARDING = d('boarding', 'Boarding Pass', 'A first-class boarding pass with a barcode stub.', ['#0F2A4A', '#F2A541', '#F3F5F8'], 'light', ['Space Grotesk', 'IBM Plex Sans'], ['rounded', 'regular', 'solid', 'none'], 'bright', 0.7, true);
 const CONFETTI = d('confetti', 'Confetti', 'A confetti burst and a run-of-show timeline.', ['#2B1A4A', '#FF6FB5', '#FFF7FB'], 'light', ['Bricolage Grotesque', 'Outfit'], ['pill', 'large', 'raised', 'none'], 'bright', 1.3, true);
 const INVITATION = d('invitation', 'Invitation', 'An envelope that opens to reveal your card.', ['#3E4A3D', '#C9A27E', '#F7F3EC'], 'light', ['Cormorant Garamond', 'Manrope'], ['pill', 'regular', 'solid', 'paper'], 'calm', 1, true);
+const LETTERPRESS = d('letterpress', 'Letterpress', 'Gold foil initials on cotton paper, your photo as a taped print and an order of ceremony.', ['#2B3442', '#B48A45', '#F8F4EC'], 'light', ['Cormorant Garamond', 'Manrope'], ['pill', 'large', 'solid', 'paper'], 'calm', 1, true);
 const VELLUM = d('vellum', 'Vellum', 'Your photo under translucent vellum, your name in script and a gold wax seal.', ['#3A2F2A', '#B0823B', '#EFE9E1'], 'light', ['Cormorant Garamond', 'Jost'], ['square', 'large', 'solid', 'none'], 'calm', 0.3, true);
 const PLANNER = d('planner', 'Planner', 'A ring-bound planner with your week and a to-do list.', ['#2F3E46', '#F4A261', '#F8F4EC'], 'light', ['Fraunces', 'Figtree'], ['rounded', 'regular', 'solid', 'paper'], 'calm', 0.9, true);
 const TRADING = d('trading', 'Trading Card', 'A holo trading card that flips to show your stats.', ['#12151F', '#FFD23F', '#F1F3F8'], 'dark', ['Bebas Neue', 'Barlow'], ['rounded', 'large', 'solid', 'none'], 'bright', 0.7, true);
@@ -191,6 +192,7 @@ const NICHE_LIST: Niche[] = [
       d('polish', 'Polish Shelf', 'A shelf of polish bottles; each one is a service and price.', ['#4A2340', '#FF5C8A', '#FFF5F8'], 'light', ['Playfair Display', 'DM Sans'], ['pill', 'regular', 'solid', 'none'], 'bright', 1.3, true),
       d('shimmer', 'Shimmer', 'Twinkling glitter and a glossy service menu.', ['#1A1024', '#F7A8D8', '#FBF3FA'], 'dark', ['Unbounded', 'Outfit'], ['pill', 'large', 'gradient', 'satin'], 'bright', 1.4, true),
       d('glossbar', 'Gloss Bar', 'Pick a polish shade and the whole card recolors to match, prices included.', ['#2E1A26', '#C2185B', '#FFF6F7'], 'light', ['Playfair Display', 'DM Sans'], ['pill', 'large', 'solid', 'none'], 'bright', 1.2, true),
+      d('lacquer', 'Lacquer', 'Deep wine gloss, a liquid lacquer pour and glossy shade swatches with prices.', ['#2A0A17', '#C2185B', '#FFEFF4'], 'dark', ['Playfair Display', 'DM Sans'], ['pill', 'large', 'solid', 'none'], 'bright', 1.2, true),
       d('lash', 'Lash Line', 'Lashes draw themselves over your photo, one by one.', ['#2B1B2E', '#E7A4C0', '#FCF6F8'], 'light', ['Playfair Display', 'DM Sans'], ['pill', 'regular', 'solid', 'none'], 'bright', 1.4, true),
       GLOSS,
       VANITY,
@@ -215,6 +217,7 @@ const NICHE_LIST: Niche[] = [
       d('plum', 'Velvet Plum', 'Deep plum, a curved photo edge and rose-gold buttons.', ['#6A3A58', '#E3A68C', '#F6EEF2'], 'dark', ['Cormorant Garamond', 'Jost'], ['pill', 'large', 'solid', 'satin'], 'calm', 1, true),
       d('neonpulse', 'Neon Pulse', 'A neon ring that pulses around your photo on a dark stage.', ['#FF4F8B', '#FF4F8B', '#FFF0F5'], 'dark', ['Syne', 'Jost'], ['rounded', 'large', 'neon', 'none'], 'tech', 0.8, true),
       d('glowedit', 'Glow Edit', 'You on the cover of your own beauty magazine, with cover lines that slide in.', ['#2B1A1F', '#B8306A', '#FBF3EE'], 'light', ['Playfair Display', 'Jost'], ['square', 'large', 'solid', 'none'], 'bright', 0, true),
+      d('frosted', 'Frosted', 'Frosted glass over your photo with an iridescent edge that travels around it.', ['#3A1F28', '#EE6E73', '#F3D6D8'], 'light', ['Playfair Display', 'Jost'], ['pill', 'large', 'solid', 'none'], 'bright', 1.2, true),
       d('swatchbar', 'Swatch Bar', 'A lipstick swatch stripe up top, buttons as shade cards.', ['#4A1420', '#EE6E73', '#FFFFFF'], 'light', ['Bodoni Moda', 'DM Sans'], ['rounded', 'large', 'solid', 'none'], 'bright', 0.4, true),
       d('runway', 'Runway', 'An edge-to-edge portrait with your name running up the side.', ['#120E10', '#EE6E73', '#F2EEEE'], 'dark', ['Syne', 'Jost'], ['square', 'large', 'solid', 'none'], 'bright', 0, true),
       d('silkcurve', 'Silk Curve', 'A soft photo top that flows into the page on one smooth curve.', ['#16121A', '#EE6E73', '#FFFFFF'], 'light', ['Playfair Display', 'DM Sans'], ['pill', 'large', 'solid', 'none'], 'calm', 1, true),
@@ -295,6 +298,7 @@ const NICHE_LIST: Niche[] = [
     suggestedLinks: ['google', 'instagram', 'facebook', 'yelp'],
     designs: [
       d('stillwater', 'Stillwater', 'Candlelit photo, dark stone and a live breathing guide above a spa menu.', ['#2E2620', '#A9714A', '#EFE7DC'], 'light', ['Cormorant Garamond', 'Jost'], ['pill', 'large', 'solid', 'none'], 'calm', 1.2, true),
+      d('eucalyptus', 'Eucalyptus', 'A smooth eucalyptus curve and treatments on polished river stones.', ['#24302A', '#3F6B55', '#F3F1EA'], 'light', ['Cormorant Garamond', 'Jost'], ['pill', 'large', 'solid', 'none'], 'calm', 1.2, true),
       d('lotus', 'Lotus', 'A lotus blooms on a rippling pond, with a gentle breathing guide.', ['#2E3A4A', '#E7A6B8', '#F4F6F8'], 'light', ['Italiana', 'Mulish'], ['pill', 'regular', 'solid', 'none'], 'calm', 1.4, true),
       d('silk', 'Silk', 'Slow flowing silk waves and a calm treatment menu.', ['#3E5A57', '#B9D4CC', '#F5F8F6'], 'light', ['Italiana', 'Mulish'], ['pill', 'regular', 'solid', 'none'], 'calm', 1.4, true),
       d('perfume', 'Perfume', 'A glass bottle with your spa name on the label.', ['#3B3A4F', '#C8B6E2', '#F8F6FB'], 'light', ['Italiana', 'Mulish'], ['pill', 'regular', 'solid', 'satin'], 'calm', 1.3, true),
@@ -316,6 +320,7 @@ const NICHE_LIST: Niche[] = [
     suggestedLinks: ['zillow', 'instagram', 'facebook', 'youtube', 'google'],
     designs: [
       d('goldenhour', 'Golden Hour', 'Your photo in warm sunset light, your last name in gold and a brushed-gold slant.', ['#14110D', '#C9A15A', '#F7EEDF'], 'dark', ['Cormorant Garamond', 'Manrope'], ['rounded', 'large', 'solid', 'none'], 'calm', 1, true),
+      d('listingsheet', 'Listing Sheet', 'A luxury listing sheet where you are the listing, with a brass key tag.', ['#1F3A2E', '#A8854D', '#F6F2EA'], 'light', ['Cormorant Garamond', 'Manrope'], ['rounded', 'large', 'solid', 'none'], 'calm', 0.4, true),
       d('realestate', 'Keystone', 'Property hero, agent card, home-value call to action, listings strip.', ['#14213D', '#B8925A', '#F6F4EF'], 'light', ['DM Serif Display', 'Work Sans'], ['rounded', 'regular', 'solid', 'none'], 'calm', 0.7),
       SIGNATURE,
       d('noir', 'Gallery Noir', 'Black gallery walls, a spotlit portrait in a gold hairline frame.', ['#0B0B0B', '#E6C46A', '#F5F1E8'], 'dark', ['Bodoni Moda', 'Manrope'], ['square', 'large', 'solid', 'none'], 'calm', 0, true),
@@ -544,6 +549,7 @@ const NICHE_LIST: Niche[] = [
     suggestedLinks: ['instagram', 'tiktok', 'youtube', 'threads', 'x', 'spotify'],
     designs: [
       d('reellive', 'Reel Live', 'An auto-playing story with your services as captions and a Call, DM, Email side rail.', ['#0D0A11', '#FF4FA3', '#F6F1F8'], 'dark', ['Bricolage Grotesque', 'Outfit'], ['pill', 'large', 'solid', 'none'], 'bright', 1, true),
+      d('headliner', 'Headliner', 'A concert poster with slanted marquee ribbons and a spinning Book me badge.', ['#120B10', '#FF4FA3', '#FFF3F8'], 'dark', ['Bricolage Grotesque', 'Outfit'], ['rounded', 'large', 'solid', 'none'], 'bright', 0.6, true),
       HOLOGRAM,
       GLOSS,
       SYNTHWAVE,
@@ -670,7 +676,7 @@ const NICHE_LIST: Niche[] = [
     ],
     tagline: 'Your day, beautifully handled',
     suggestedLinks: ['instagram', 'pinterest', 'facebook', 'tiktok', 'google'],
-    designs: [VELLUM, INVITATION, SIGNATURE, CONFETTI],
+    designs: [VELLUM, LETTERPRESS, INVITATION, SIGNATURE, CONFETTI],
   },
   {
     id: 'va', name: 'Virtual Assistants', group: 'Professional', icon: 'chat',
