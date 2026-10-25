@@ -104,6 +104,8 @@ export type TemplateId =
   | 'permit' | 'hivis' | 'ironworks' | 'concrete' | 'lumberstamp'
   // Redo collection (photo-led replacements from the Oct 2026 audit)
   | 'reellive' | 'goldenhour' | 'vellum' | 'glossbar' | 'stillwater' | 'glowedit'
+  // Redo alternates (the second look for each Redo design)
+  | 'headliner' | 'listingsheet' | 'letterpress' | 'lacquer' | 'eucalyptus' | 'frosted'
   // Vocalist collection (singers)
   | 'voiceprint' | 'lyricbook' | 'vocalrange' | 'spotlight' | 'nowplaying'
   // Bling collection (jewelry and accessory sellers)

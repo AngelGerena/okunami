@@ -24,6 +24,7 @@ import { AccessGranted, BioScan, CodeRain, Dossier, Enhance, GlobeTrace, HackIDE
 import { PaintFan, SiteBadge, SpiritLevel, TapeMeasure, WorkOrder } from './sig16';
 import { Concrete, HiVis, Ironworks, LumberStamp, Permit } from './sig21';
 import { GlossBar, GlowEdit, GoldenHour, ReelLive, Stillwater, Vellum } from './sig20';
+import { Eucalyptus, Frosted, Headliner, Lacquer, Letterpress, ListingSheet } from './sig23';
 import { LyricBook, NowPlaying, Spotlight, VocalRange, Voiceprint } from './sig17';
 import { AmethystAfterDark, BlushSatin, ChampagneToast, LeopardLuxe, PearlStrand, RubyGloss, VanityLights, VelvetNoir } from './sig18';
 import { BlackTie, MidnightSet, VelvetRoom } from './sig19';
@@ -257,6 +258,12 @@ export const TEMPLATES: TemplateMeta[] = [
   { id: 'glossbar', name: 'Gloss Bar', niche: 'Nail Spas and Lashes', blurb: 'Your photo with a wet-gloss sheen and a row of polish shades. Pick a shade and the whole card changes color to match, prices included.', bestFor: 'Nail artists and lash techs' },
   { id: 'stillwater', name: 'Stillwater', niche: 'Massage and Day Spas', blurb: 'A candlelit photo, a band of dark stone and a live breathing guide that slowly says breathe in, breathe out, above a spa-style menu.', bestFor: 'Massage therapists and day spas' },
   { id: 'glowedit', name: 'Glow Edit', niche: 'Beauty Consultants', blurb: 'You on the cover of your own beauty magazine: a big masthead, cover lines that slide in, and your categories as the table of contents.', bestFor: 'Beauty sellers and influencers' },
+  { id: 'headliner', name: 'Headliner', niche: 'Creators and Influencers', blurb: 'A concert poster: your photo under a spotlight, two slanted ribbons scrolling your services and a spinning Book me badge.', bestFor: 'Creators, hosts and performers' },
+  { id: 'listingsheet', name: 'Listing Sheet', niche: 'Real Estate', blurb: 'A luxury listing sheet where you are the listing: a Featured Agent ribbon, a brass key tag and your market and specialties in a spec grid.', bestFor: 'Realtors and brokers' },
+  { id: 'letterpress', name: 'Letterpress', niche: 'Weddings and Events', blurb: 'Gold foil initials pressed into cotton paper with a slow light sweep, your photo taped on as a print and your services as an order of ceremony.', bestFor: 'Wedding planners and stationers' },
+  { id: 'lacquer', name: 'Lacquer', niche: 'Nail Spas and Lashes', blurb: 'Deep and glossy: your studio name over your photo, a liquid lacquer pour as the divider and each service as a glossy shade swatch with its price.', bestFor: 'High-end nail and lash studios' },
+  { id: 'eucalyptus', name: 'Eucalyptus', niche: 'Massage and Day Spas', blurb: 'Bright and airy: your photo opens into a smooth curve, and each treatment sits on a polished river stone with its time.', bestFor: 'Massage therapists and day spas' },
+  { id: 'frosted', name: 'Frosted', niche: 'Beauty Consultants', blurb: 'Your photo full screen with a frosted glass panel over it and an iridescent edge that slowly travels around the glass.', bestFor: 'Beauty sellers and influencers' },
   // ---- Vocalist collection (singers)
   { id: 'voiceprint', name: 'Voiceprint', niche: 'DJs and Musicians', blurb: 'A black-and-white portrait with your voice drawn across it as a waveform. Press play and it sings while the wave moves.', bestFor: 'Singers and session vocalists' },
   { id: 'lyricbook', name: 'Lyric Book', niche: 'DJs and Musicians', blurb: 'A page from your songwriting notebook with your polaroid taped on. Press Sing it and each word lights up as it is sung.', bestFor: 'Singer-songwriters' },
@@ -599,6 +606,7 @@ export const TEMPLATE_COMPONENTS: Record<TemplateId, () => ReactElement> = {
   tapemeasure: TapeMeasure, spiritlevel: SpiritLevel, workorder: WorkOrder, sitebadge: SiteBadge, paintfan: PaintFan,
   permit: Permit, hivis: HiVis, ironworks: Ironworks, concrete: Concrete, lumberstamp: LumberStamp,
   reellive: ReelLive, goldenhour: GoldenHour, vellum: Vellum, glossbar: GlossBar, stillwater: Stillwater, glowedit: GlowEdit,
+  headliner: Headliner, listingsheet: ListingSheet, letterpress: Letterpress, lacquer: Lacquer, eucalyptus: Eucalyptus, frosted: Frosted,
   voiceprint: Voiceprint, lyricbook: LyricBook, vocalrange: VocalRange, spotlight: Spotlight, nowplaying: NowPlaying,
   velvetnoir: VelvetNoir, blushsatin: BlushSatin, rubygloss: RubyGloss, champtoast: ChampagneToast,
   amethyst: AmethystAfterDark, leopard: LeopardLuxe, pearlstrand: PearlStrand, vanitylights: VanityLights,

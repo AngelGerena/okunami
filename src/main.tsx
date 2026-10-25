@@ -26,6 +26,7 @@ import './styles/sig15.css';
 import './styles/sig16.css';
 import './styles/sig21.css';
 import './styles/sig20.css';
+import './styles/sig23.css';
 import './styles/sig17.css';
 import './styles/sig18.css';
 import './styles/sig19.css';
