@@ -7,6 +7,7 @@
    ===================================================================== */
 import { useEffect, useMemo, useRef, useState, type CSSProperties, type ReactNode } from 'react';
 import { useCard } from '../blocks';
+import { chime } from '../../lib/sfx';
 import { ensureContrast, mix } from '../../lib/color';
 import { NETWORK_BY_ID, socialUrl } from '../../lib/socials';
 import { addressLine, mapsHref, prettyUrl, telHref, waHref, webHref } from '../../lib/links';
@@ -47,28 +48,9 @@ const Brand = ({ network }: { network: string }) => {
   return n?.path ? <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden><path d={n.path} /></svg> : I.globe;
 };
 
-/* ---------------------------------------------------------------- sounds (engine SFX, always on) */
-let actx: AudioContext | null = null;
-function ctx() {
-  if (typeof window === 'undefined') return null;
-  if (!actx) {
-    const AC = window.AudioContext || (window as unknown as { webkitAudioContext?: typeof AudioContext }).webkitAudioContext;
-    if (!AC) return null;
-    try { const nav = navigator as unknown as { audioSession?: { type: string } }; if (nav.audioSession) nav.audioSession.type = 'playback'; } catch { /* ignore */ }
-    actx = new AC();
-  }
-  if (actx.state === 'suspended') actx.resume();
-  return actx;
-}
-function tone(f: number, dur: number, vol: number, delay = 0, type: OscillatorType = 'sine', to?: number) {
-  const c = ctx(); if (!c) return;
-  const t = c.currentTime + delay, o = c.createOscillator(), g = c.createGain();
-  o.type = type; o.frequency.setValueAtTime(f, t); if (to) o.frequency.exponentialRampToValueAtTime(to, t + dur);
-  g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(vol * 0.32, t + 0.006); g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
-  o.connect(g); g.connect(c.destination); o.start(t); o.stop(t + dur + 0.02);
-}
-const sparkleSound = () => { [784, 880, 1047, 1175, 1319, 1568, 1760, 2093].forEach((f, i) => tone(f, 0.28, 0.42 - i * 0.035, i * 0.032, 'triangle')); tone(3136, 0.55, 0.07, 0.2); };
-const orbSound = () => { tone(523, 0.5, 0.3); tone(784, 0.5, 0.2, 0.04); tone(1046, 0.6, 0.14, 0.08); };
+/* ---------------------------------------------------------------- sounds: soft chimes from lib/sfx (respect the sound setting) */
+const sparkleSound = () => chime('sparkle');
+const orbSound = () => chime('orb');
 
 /* ---------------------------------------------------------------- per-skin decor (skin-decor.js) */
 function Bg({ skin }: { skin: SkinId }) {

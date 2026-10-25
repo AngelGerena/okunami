@@ -1,287 +1,161 @@
 /* =================================================================
-   The Construction Collection: 5 photo-led designs for general
-   contractors, builders and trades. No drawings: every card leads with
-   the owner's real photo and sits on a real material (plywood, hi-vis
-   tape, steel, concrete, pine).
-   Permit (a posted building permit with license fields and an APPROVED
-   stamp), Hi-Vis (full-bleed photo finished with reflective vest tape),
-   Ironworks (black-and-white photo, steel-yard type and a load chart),
-   Concrete (spray-stenciled name on raw concrete with a pressed seal)
-   and Lumber Stamp (a mill grade stamp on a pine board, photo pinned
-   like a print, services as a penciled cut list).
-   Every class uses a prefix nothing else in the app uses:
-   tpl-cx, cx-, cxp__, cxv__, cxi__, cxc__, cxl__.
+   The Saxophone Collection: 3 luxury designs for saxophonists, each
+   built over a photo of hands on a saxophone.
+   Midnight Set (the photo fills the card behind a thin gold frame;
+   mother-of-pearl sax keys are the contact buttons), Velvet Room (the
+   photo crowns an oxblood velvet card with a gold curve and a portrait
+   medallion) and Black Tie (an engraved invitation on black card stock
+   with the photo in an arched window and an RSVP row of contacts).
+   Each key plays a reed note and "Hear a phrase" plays a short original
+   melody (src/lib/reed.ts, silent when sound is off). Keys, booking
+   sheet and tail (Share and QR code) come from the EOS set (sig8).
+   Prefixes: sx-, sms__, svr__, sbt__.
    ================================================================= */
-import { useEffect, type ReactNode } from 'react';
-import { CalendarDays, Globe, Mail, MessageSquare, Phone, UserPlus } from 'lucide-react';
-import { Photo, QrBtn, ShareBtn, SocialLinks, el, useCard } from './blocks';
-import { telHref, webHref } from '../lib/links';
+import { useEffect, useId, useRef, useState, type ReactNode } from 'react';
+import { Photo, el, useCard } from './blocks';
+import { BookSheet, Tail, useEos, type Key } from './sig8';
+import { playPhrase, reed } from '../lib/reed';
 
-/* Anton, Saira Stencil One and Alfa Slab One come in one weight only, so they get their own link
-   (the shared font link asks every family for 400 to 700, which these faces cannot answer). */
-const SINGLE_WEIGHT_FONTS = 'https://fonts.googleapis.com/css2?family=Anton&family=Saira+Stencil+One&family=Alfa+Slab+One&display=swap';
-function useSingleWeightFonts() {
-  useEffect(() => {
-    if (document.querySelector(`link[data-fc-font="${SINGLE_WEIGHT_FONTS}"]`)) return;
-    const l = document.createElement('link');
-    l.rel = 'stylesheet'; l.href = SINGLE_WEIGHT_FONTS; l.dataset.fcFont = SINGLE_WEIGHT_FONTS;
-    document.head.appendChild(l);
-  }, []);
+const IMG = { ms: '/images/tpl/sax-ms.jpg', vr: '/images/tpl/sax-vr.jpg', bt: '/images/tpl/sax-bt.jpg' };
+const NOTES = [466.2, 554.4, 622.3, 698.5];
+const splitName = (full: string) => { const [first, ...rest] = (full || 'Your Name').split(' '); return { first, last: rest.join(' ') }; };
+const go = (href: string) => { if (!href) return; if (/^https?:/.test(href)) window.open(href, '_blank', 'noopener'); else window.location.href = href; };
+
+function useSx() {
+  const eos = useEos();
+  const { first, last } = splitName(eos.data.fullName);
+  const [lit, setLit] = useState(-1);
+  const timers = useRef<number[]>([]);
+  useEffect(() => () => { timers.current.forEach((i) => window.clearTimeout(i)); }, []);
+  const fire = (k: Key, i: number) => {
+    reed(NOTES[i % NOTES.length], 0.45);
+    if (k.book && !k.href) eos.openBook(); else go(k.href ?? '');
+  };
+  const phrase = () => {
+    timers.current.forEach((i) => window.clearTimeout(i)); timers.current = [];
+    const n = Math.max(1, eos.keys.length);
+    playPhrase().forEach((t, i) => { timers.current.push(window.setTimeout(() => setLit(i % n), t * 1000)); });
+    timers.current.push(window.setTimeout(() => setLit(-1), 3200));
+  };
+  const city = [eos.data.address.city, eos.data.address.region].filter(Boolean).join(', ');
+  return { ...eos, first, last, lit, fire, phrase, city };
 }
 
-const digits = (s: string) => (s || '').replace(/\D/g, '');
-const smsHref = (phone: string, body?: string) => {
-  const d = digits(phone);
-  if (!d) return '';
-  const base = `sms:+${d.length === 10 ? '1' + d : d}`;
-  if (!body) return base;
-  const sep = typeof navigator !== 'undefined' && /iP(hone|ad)/.test(navigator.userAgent) ? '&' : '?';
-  return `${base}${sep}body=${encodeURIComponent(body)}`;
-};
-const splitName = (full: string) => { const [first, ...rest] = (full || 'Your Name').trim().split(/\s+/); return { first, last: rest.join(' ') }; };
-/** "Lic. CGC#0148 · Licensed and insured, OSHA 30" -> three badges. */
-const splitCreds = (s: string) => (s || '').split(/\s*[·|,•]\s*/).map((x) => x.trim()).filter(Boolean);
-const prettyPhone = (s: string) => { const d = digits(s); const t = d.length === 11 && d[0] === '1' ? d.slice(1) : d; return t.length === 10 ? `(${t.slice(0, 3)}) ${t.slice(3, 6)}-${t.slice(6)}` : s; };
-const yearIn = (...s: string[]) => s.join(' ').match(/\b(19|20)\d{2}\b/)?.[0] ?? '';
-const initials = (s: string) => (s || '').split(/\s+/).filter(Boolean).slice(0, 2).map((w) => w[0]?.toUpperCase()).join('');
-
-function useCx() {
-  const { data, actions, play } = useCard();
-  const { first, last } = splitName(data.fullName);
-  const phone = data.phone || data.whatsapp;
-  const estimateMsg = `Hi ${first}, I found your card. Can I get a free estimate? I can send photos of the job.`;
-  const services = data.highlights.filter((h) => h.title).slice(0, 6);
-  const area = [data.address?.city, data.address?.region].filter(Boolean).join(', ');
-  const creds = splitCreds(data.credentials);
-  /* The free estimate goes to the booking link first, then a text with photos, then email, then a call. */
-  const estimate = data.bookingUrl ? webHref(data.bookingUrl)
-    : phone ? smsHref(phone, estimateMsg)
-    : data.email ? `mailto:${data.email}?subject=${encodeURIComponent('Free estimate')}&body=${encodeURIComponent(estimateMsg)}`
-    : '';
-  const keys: { key: string; label: string; href: string; icon: ReactNode }[] = [];
-  if (data.phone) keys.push({ key: 'call', label: 'Call', href: telHref(data.phone), icon: <Phone size={20} strokeWidth={1.9} /> });
-  if (phone) keys.push({ key: 'text', label: 'Text photos', href: smsHref(phone, estimateMsg), icon: <MessageSquare size={20} strokeWidth={1.9} /> });
-  if (data.email) keys.push({ key: 'email', label: 'Email', href: `mailto:${data.email}`, icon: <Mail size={20} strokeWidth={1.9} /> });
-  if (data.website && keys.length < 4) keys.push({ key: 'web', label: 'Website', href: webHref(data.website), icon: <Globe size={20} strokeWidth={1.9} /> });
-  const save = () => { play('primary'); actions.save(); };
-  return { data, first, last, services, area, creds, estimate, keys, save, play };
-}
-
-function Shell({ cls, children }: { cls: string; children: ReactNode }) {
-  useSingleWeightFonts();
+function Shell({ cls, children, booking, closeBook }: { cls: string; children: ReactNode; booking: boolean; closeBook: () => void }) {
   const { still } = useCard();
-  return <div className={`tpl tpl-cx ${cls}${still ? ' is-still' : ''}`}>{children}</div>;
-}
-
-function EstimateBtn({ label = 'Request a free estimate', book = false }: { label?: string; book?: boolean }) {
-  const { estimate, play } = useCx();
-  if (!estimate) return null;
-  const ext = /^https?:/.test(estimate);
   return (
-    <a className="cx-main" href={estimate} target={ext ? '_blank' : undefined} rel={ext ? 'noopener noreferrer' : undefined} onClick={() => play('primary')} {...el('btnPrimaryBg')}>
-      {book ? <CalendarDays size={20} strokeWidth={2} aria-hidden /> : null}{label}
-    </a>
+    <div className={`tpl tpl-sx ${cls}${still ? ' is-still' : ''}`}>
+      <div className="pad stack">{children}</div>
+      {booking && <BookSheet onClose={closeBook} />}
+    </div>
   );
 }
-
-function KeyGrid() {
-  const { keys, play } = useCx();
+function Bg({ src, pos, label = 'Hands playing a saxophone' }: { src: string; pos: string; label?: string }) {
+  return <div className="sx-photo" style={{ backgroundImage: `url(${src})`, backgroundPosition: pos }} role="img" aria-label={label} />;
+}
+function Name() {
+  const { data } = useCard();
+  const { first, last } = splitName(data.fullName);
+  return <h1 className="sx-name" {...el('name')}>{first}{last && <> <i className="sx-foil">{last}</i></>}</h1>;
+}
+function Pearls({ keys, fire, lit }: { keys: Key[]; fire: (k: Key, i: number) => void; lit: number }) {
   if (!keys.length) return null;
   return (
-    <nav className={`cx-keys n${keys.length}`} aria-label="Contact">
-      {keys.map((k) => {
-        const ext = /^https?:/.test(k.href);
-        return <a key={k.key} className="cx-key" href={k.href} target={ext ? '_blank' : undefined} rel={ext ? 'noopener noreferrer' : undefined} onClick={() => play('tap')}>{k.icon}<span>{k.label}</span></a>;
-      })}
+    <nav className={`sx-pearls n${keys.length}`} aria-label="Contact">
+      {keys.map((k, i) => (
+        <button key={k.key} type="button" className={`sx-pk${lit === i ? ' is-on' : ''}`} onClick={() => fire(k, i)} aria-label={k.label}>
+          <i aria-hidden>{k.icon}</i><span>{k.label}</span>
+        </button>
+      ))}
     </nav>
   );
 }
-
-function Area({ extra = [] as string[] }) {
-  const { area, data } = useCx();
-  const chips = [area && `Serving ${area}`, data.hours, ...extra].filter(Boolean) as string[];
-  if (!chips.length) return null;
-  return <div className="cx-area">{chips.map((c) => <span key={c} {...el('caption')}>{c}</span>)}</div>;
+function PhraseBtn({ onClick, label = 'Hear a phrase' }: { onClick: () => void; label?: string }) {
+  return <button type="button" className="sx-ghost" onClick={onClick}><svg viewBox="0 0 24 24" aria-hidden><path d="M7 4v16l13-8z" /></svg>{label}</button>;
 }
-
-function Tail() {
-  const { save } = useCx();
+function SaveBtn({ onSave }: { onSave: () => void }) {
   return (
-    <>
-      <SocialLinks variant="pills" title="" />
-      <div className="cx-tail">
-        <button type="button" className="cx-save" onClick={save}><UserPlus size={19} strokeWidth={2} aria-hidden />Save contact</button>
-        <ShareBtn iconOnly className="cx-sq" />
-        <QrBtn iconOnly className="cx-sq" />
-      </div>
-    </>
+    <button type="button" className="sx-act" onClick={() => { [466.2, 587.3, 698.5].forEach((f, i) => reed(f, 0.35, i * 0.14, 0.12)); onSave(); }} {...el('btnPrimaryBg')}>
+      <svg viewBox="0 0 24 24" aria-hidden><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" /><circle cx="9" cy="7" r="4" /><path d="M19 8v6M22 11h-6" /></svg>Save my contact
+    </button>
   );
 }
 
-/* ================================================================ 1 PERMIT */
-export function Permit() {
-  const { data, services, creds } = useCx();
-  const fields = [
-    { k: 'Contractor', v: data.business },
-    { k: 'License', v: creds[0] },
-    { k: 'Job line', v: prettyPhone(data.phone || data.whatsapp) },
-    { k: 'Hours', v: data.hours },
-  ].filter((f) => f.v);
-  const scope = services.map((s) => s.title.toLowerCase()).join(', ');
+/* ================================================================ 1 MIDNIGHT SET */
+export function MidnightSet() {
+  const { data, keys, save, booking, closeBook, first, last, lit, fire, phrase, city } = useSx();
   return (
-    <Shell cls="tpl-cxp">
-      <div className="cxp__top"><b {...el('caption')}>{data.business || 'Licensed contractor'}</b>{creds[0] && <span>{creds[0]}</span>}</div>
-      <section className="cxp__placard" aria-label="Building permit">
-        <div className="cxp__band" {...el('accentDetail')}><h2>Building permit</h2><p>Post in plain view{creds[1] ? ` · ${creds[1]}` : ''}</p></div>
-        <div className="cxp__who">
-          <div className="cxp__photo"><Photo className="cxp__img" /></div>
-          <div><h1 className="cxp__name" {...el('name')}>{data.fullName || 'Your Name'}</h1><p className="cxp__role" {...el('title')}>{data.jobTitle || 'General Contractor'}</p>{data.tagline && <p className="cxp__tag">{data.tagline}</p>}</div>
+    <Shell cls="tpl-sms" booking={booking} closeBook={closeBook}>
+      <div className="sms__card">
+        <Bg src={IMG.ms} pos="50% 30%" />
+        <span className="sms__smoke" aria-hidden />
+        <div className="sms__top">
+          <span className="sms__mono">{data.photoUrl ? <Photo className="sms__img" /> : <b className="sx-foil">{first[0]}{last[0] ?? ''}</b>}</span>
+          <p className="sx-eyebrow" {...el('caption')}>{data.jobTitle || 'Saxophonist'}{city && ` · ${city}`}</p>
         </div>
-        {fields.length > 0 && <dl className="cxp__fields">{fields.map((f) => <div key={f.k}><dt>{f.k}</dt><dd>{f.v}</dd></div>)}</dl>}
-        <div className="cxp__foot">{scope && <p>Scope: {scope}</p>}<span className="cxp__stamp" aria-hidden>Approved<small>Free estimates</small></span></div>
-      </section>
-      <div className="cx-pad">
-        <EstimateBtn />
-        <KeyGrid />
-        {services.length > 0 && (
-          <section className="cxp__insp">
-            <header><b>{data.highlightsTitle || 'Work I do'}</b><span>Inspections passed</span></header>
-            <ul>{services.map((s) => <li key={s.id}><span><b>{s.title}</b>{s.subtitle && <small>{s.subtitle}</small>}</span><em>Passed</em></li>)}</ul>
-          </section>
-        )}
-        <Area />
-        <Tail />
+        <div className="sms__body">
+          <div><Name /><p className="sx-sig">{data.tagline || 'Live, soulful, unforgettable'}</p></div>
+          <Pearls keys={keys} fire={fire} lit={lit} />
+          <PhraseBtn onClick={phrase} />
+        </div>
       </div>
+      <SaveBtn onSave={save} />
+      <Tail />
     </Shell>
   );
 }
 
-/* ================================================================ 2 HI-VIS */
-export function HiVis() {
-  const { data, first, last, services, creds } = useCx();
+/* ================================================================ 2 VELVET ROOM */
+export function VelvetRoom() {
+  const { data, keys, save, booking, closeBook, first, last, lit, fire, phrase, city } = useSx();
+  const gid = useId().replace(/:/g, '');
   return (
-    <Shell cls="tpl-cxv">
-      <div className="cxv__hero">
-        <Photo className="cxv__img" />
-        <div className="cxv__nm">
-          <h1 {...el('name')}>{first}{last && <><br />{last}</>}</h1>
-          <p {...el('accentDetail')}>{data.jobTitle || 'General Contractor'}</p>
-          {data.business && <small>{data.business}</small>}
+    <Shell cls="tpl-svr" booking={booking} closeBook={closeBook}>
+      <div className="svr__card">
+        <div className="svr__photo"><Bg src={IMG.vr} pos="50% 52%" /></div>
+        <span className="svr__ribbon"><i aria-hidden />NOW BOOKING</span>
+        <div className="svr__curve" aria-hidden>
+          <svg viewBox="0 0 400 140" preserveAspectRatio="none"><defs><linearGradient id={gid} x1="0" x2="1"><stop offset="0" stopColor="#8A6A2C" /><stop offset=".35" stopColor="#F6E2A8" /><stop offset=".6" stopColor="#C79A4A" /><stop offset="1" stopColor="#8A6A2C" /></linearGradient></defs>
+            <path d="M0 60 Q200 -20 400 60 L400 140 L0 140Z" fill="#22070b" /><path d="M0 60 Q200 -20 400 60" fill="none" stroke={`url(#${gid})`} strokeWidth="3" /><path d="M0 70 Q200 -10 400 70" fill="none" stroke={`url(#${gid})`} strokeWidth="1" opacity=".6" /></svg>
         </div>
-        <div className="cxv__tape" aria-hidden />
+        <div className="svr__medal"><Photo className="svr__img" /></div>
+        <div className="svr__body">
+          <div><p className="sx-eyebrow" {...el('caption')}>The {last || first} sound</p><Name /><p className="sx-role" {...el('title')}>{data.jobTitle || 'Saxophonist'}{city && ` · ${city}`}</p></div>
+          <div className="svr__rule" aria-hidden><svg viewBox="0 0 24 24"><path d="M12 2l2.6 7.4L22 12l-7.4 2.6L12 22l-2.6-7.4L2 12l7.4-2.6z" /></svg></div>
+          <Pearls keys={keys} fire={fire} lit={lit} />
+          <PhraseBtn onClick={phrase} />
+        </div>
       </div>
-      <div className="cx-pad">
-        {creds.length > 0 && <div className="cxv__creds">{creds.map((c) => <span key={c}>{c}</span>)}</div>}
-        <EstimateBtn label="Get a free estimate" />
-        <KeyGrid />
-        {services.length > 0 && (
-          <section className="cxv__list">
-            <p className="cx-lbl" {...el('caption')}>{data.highlightsTitle || 'What I build'}</p>
-            {services.map((s, i) => <div key={s.id}><i>{String(i + 1).padStart(2, '0')}</i><span><b>{s.title}</b>{s.subtitle && <small>{s.subtitle}</small>}</span></div>)}
-          </section>
-        )}
-        <Area />
-        <Tail />
-      </div>
+      <SaveBtn onSave={save} />
+      <Tail />
     </Shell>
   );
 }
 
-/* ================================================================ 3 IRONWORKS */
-export function Ironworks() {
-  const { data, first, last, services, creds } = useCx();
+/* ================================================================ 3 BLACK TIE */
+export function BlackTie() {
+  const { data, keys, save, booking, closeBook, first, fire, phrase, city } = useSx();
+  const tags = data.highlights.map((h) => h.title).filter(Boolean).slice(0, 2);
   return (
-    <Shell cls="tpl-cxi">
-      <div className="cxi__hero">
-        <Photo className="cxi__img" />
-        <div className="cxi__steel">
-          <h1 {...el('name')}>{first}{last && <span>{last}</span>}</h1>
-          <p>{data.jobTitle || 'General Contractor'}</p>
-        </div>
-      </div>
-      <div className="cxi__plate" aria-hidden />
-      {(data.business || creds[0]) && <div className="cxi__head"><span>{data.business}</span><span>{creds[0]}</span></div>}
-      <div className="cx-pad">
-        <EstimateBtn label="Book a site visit" book />
-        <KeyGrid />
-        {services.length > 0 && (
-          <section className="cxi__chart">
-            <header><span>Load chart</span><span>{data.highlightsTitle || 'Jobs I take'}</span></header>
-            <table>
-              <thead><tr><th>Job</th><th>Scope</th></tr></thead>
-              <tbody>{services.map((s) => <tr key={s.id}><td><b>{s.title}</b></td><td>{s.subtitle}</td></tr>)}</tbody>
-            </table>
-          </section>
+    <Shell cls="tpl-sbt" booking={booking} closeBook={closeBook}>
+      <div className="sbt__card">
+        {data.photoUrl && <div className="sbt__cameo"><Photo className="sbt__img" /></div>}
+        <p className="sx-eyebrow sbt__eyebrow" {...el('caption')}>An evening with {first}</p>
+        <p className="sbt__req">the pleasure of your company is requested with</p>
+        <Name />
+        <p className="sbt__role" {...el('title')}>{data.jobTitle || 'Saxophonist'}</p>
+        <div className="sbt__arch"><Bg src={IMG.bt} pos="50% 40%" /><span>live music</span></div>
+        {tags.length > 0 && <div className="sbt__tags"><span>{tags[0]}</span>{tags[1] && <><i aria-hidden /><span>{tags[1]}</span></>}</div>}
+        {keys.length > 0 && (
+          <nav className={`sbt__rsvp n${keys.length}`} aria-label="Contact">
+            {keys.map((k, i) => <button key={k.key} type="button" onClick={() => fire(k, i)}><span aria-hidden>{k.icon}</span>{k.label}</button>)}
+          </nav>
         )}
-        <Area extra={creds.slice(1)} />
-        <Tail />
+        <p className="sbt__req sbt__end">kindly RSVP{city && ` · ${city}`}</p>
       </div>
-    </Shell>
-  );
-}
-
-/* ================================================================ 4 CONCRETE */
-export function Concrete() {
-  const { data, first, last, services, creds } = useCx();
-  const year = yearIn(data.tagline, data.credentials, data.kicker ?? '');
-  return (
-    <Shell cls="tpl-cxc">
-      <div className="cxc__forms" aria-hidden />
-      <div className="cxc__hero">
-        <div className="cxc__id">
-          <h1 {...el('name')}>{first}{last && <><br />{last}</>}</h1>
-          <p {...el('accentDetail')}>{data.jobTitle || 'General Contractor'}</p>
-        </div>
-        <div className="cxc__photo"><Photo className="cxc__img" /></div>
-      </div>
-      <div className="cx-pad">
-        <div className="cxc__row">
-          <p><b>{data.business}</b>{creds.length > 0 && <span>{creds.join(' · ')}</span>}</p>
-          <div className="cxc__seal" aria-hidden>{year ? <><b>{year}</b><span>Poured since</span></> : <b>{initials(data.business || data.fullName)}</b>}</div>
-        </div>
-        <EstimateBtn label="Get a quote" />
-        <KeyGrid />
-        {services.length > 0 && (
-          <>
-            <p className="cx-lbl" {...el('caption')}>{data.highlightsTitle || 'What I pour and build'}</p>
-            <div className="cxc__slabs">{services.map((s) => <div key={s.id}><i {...el('accentDetail')} /><b>{s.title}</b>{s.subtitle && <small>{s.subtitle}</small>}</div>)}</div>
-          </>
-        )}
-        <Area />
-        <Tail />
-      </div>
-    </Shell>
-  );
-}
-
-/* ================================================================ 5 LUMBER STAMP */
-export function LumberStamp() {
-  const { data, first, last, services, creds } = useCx();
-  const year = yearIn(data.tagline, data.credentials);
-  return (
-    <Shell cls="tpl-cxl">
-      <div className="cxl__board">
-        <div className="cxl__photo"><Photo className="cxl__img" /></div>
-        <div className="cxl__mill">
-          <div className="cxl__r1"><span>{(data.business || 'Licensed builder').split(' ')[0]}</span>{year && <span>Est {year}</span>}</div>
-          <h1 {...el('name')}>{first}{last && <><br />{last}</>}</h1>
-          <p className="cxl__role">{data.jobTitle || 'General Contractor'}</p>
-          {creds.length > 0 && <div className="cxl__r3">{creds.slice(0, 2).map((c) => <span key={c}>{c}</span>)}</div>}
-        </div>
-        <p className="cxl__pencil">Call {first} for a free estimate</p>
-      </div>
-      <div className="cx-pad">
-        <EstimateBtn label="Get a free estimate" />
-        <KeyGrid />
-        {services.length > 0 && (
-          <section className="cxl__cut">
-            <h2>{data.highlightsTitle || 'Cut list'}</h2>
-            {services.map((s, i) => <div key={s.id}><span>{i + 1}</span><span><b>{s.title}</b>{s.subtitle && <small>{s.subtitle}</small>}</span></div>)}
-          </section>
-        )}
-        <Area />
-        <Tail />
-      </div>
+      <PhraseBtn onClick={phrase} />
+      <SaveBtn onSave={save} />
+      <Tail />
     </Shell>
   );
 }

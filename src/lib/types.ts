@@ -30,7 +30,7 @@ export type ButtonStyle = 'solid' | 'soft' | 'outline' | 'glass' | 'gradient' | 
 export type ButtonTexture = 'none' | 'grain' | 'linen' | 'brushed' | 'paper' | 'satin' | 'carbon' | 'dots' | 'scanline' | 'circuit';
 
 /** How the card sounds when tapped. */
-export type SoundProfile = 'calm' | 'tech' | 'bright' | 'off';
+export type SoundProfile = 'calm' | 'tech' | 'bright' | 'camera' | 'off';
 
 export interface ButtonSpec { shape: ButtonShape; size: ButtonSize; style: ButtonStyle; texture: ButtonTexture; }
 
@@ -107,7 +107,9 @@ export type TemplateId =
   // Vocalist collection (singers)
   | 'voiceprint' | 'lyricbook' | 'vocalrange' | 'spotlight' | 'nowplaying'
   // Bling collection (jewelry and accessory sellers)
-  | 'velvetnoir' | 'blushsatin' | 'rubygloss' | 'champtoast' | 'amethyst' | 'leopard' | 'pearlstrand' | 'vanitylights';
+  | 'velvetnoir' | 'blushsatin' | 'rubygloss' | 'champtoast' | 'amethyst' | 'leopard' | 'pearlstrand' | 'vanitylights'
+  // Saxophone collection (saxophonists)
+  | 'midnightset' | 'velvetroom' | 'blacktie';
 
 export interface SocialLink { id: string; network: string; value: string; }   // value = handle or full URL
 export interface Highlight { id: string; icon: string; title: string; subtitle: string; }

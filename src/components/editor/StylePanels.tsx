@@ -12,7 +12,7 @@ import { TEMPLATES } from '../../templates';
 import { RETIRED } from '../../lib/retired';
 import { usePlan } from '../../lib/usePlan';
 import { isLocked } from '../../lib/plans';
-import { NICHES, applyDesign, liteDesigns, nicheOf, sampleFor, type Design, type Niche, type NicheGroup } from '../../lib/niches';
+import { CAMERA_TEMPLATES, NICHES, applyDesign, effectiveSound, liteDesigns, nicheOf, sampleFor, type Design, type Niche, type NicheGroup } from '../../lib/niches';
 import { DESIGN_COUNT, UNIQUE_DESIGNS, designsLabel, nicheCountLabel } from '../../lib/counts';
 import { decorative } from '../../lib/a11y';
 import NichePicker, { NicheBadge } from './NichePicker';
@@ -368,7 +368,10 @@ export function ButtonsPanel(p: PanelProps) {
         <p className="note">{tl("Every size keeps a 44px touch target, the minimum Apple and Google recommend.")}</p>
       </Section>
       <Section title={tl("Interaction sounds")} hint={tl("Soft audio feedback when visitors press a button. Always silent for people who turn off motion on their phone.")}>
-        <Segmented label={tl("Sound")} value={t.sound ?? 'calm'} onChange={(v) => { setTheme(p, (th) => ({ ...th, sound: v })); sfx('primary', v); }} options={[{ v: 'calm', l: 'Calm' }, { v: 'tech', l: 'Tech' }, { v: 'bright', l: 'Bright' }, { v: 'off', l: 'Off' }]} />
+        {CAMERA_TEMPLATES.has(p.card.template)
+          ? <Segmented label={tl("Sound")} value={effectiveSound(p.card.template, t.sound)} onChange={(v) => { setTheme(p, (th) => ({ ...th, sound: v })); sfx('primary', v); }} options={[{ v: 'camera', l: 'Camera' }, { v: 'off', l: 'Off' }]} />
+          : <Segmented label={tl("Sound")} value={t.sound ?? 'calm'} onChange={(v) => { setTheme(p, (th) => ({ ...th, sound: v })); sfx('primary', v); }} options={[{ v: 'calm', l: 'Calm' }, { v: 'tech', l: 'Tech' }, { v: 'bright', l: 'Bright' }, { v: 'off', l: 'Off' }]} />}
+        {CAMERA_TEMPLATES.has(p.card.template) && <p className="note">{tl("Camera designs use real camera sounds: a shutter, a studio flash and dial clicks.")}</p>}
       </Section>
     </>
   );
