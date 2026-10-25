@@ -22,6 +22,7 @@ import { FilmRecipe, FilmSim, HybridVF, InstaPrint, MonoStrip, XDials } from './
 import { CineBrain, CineScreen, FocusGuide, PunchIn, Slate } from './sig14';
 import { AccessGranted, BioScan, CodeRain, Dossier, Enhance, GlobeTrace, HackIDE, Vault, WarRoom } from './sig15';
 import { PaintFan, SiteBadge, SpiritLevel, TapeMeasure, WorkOrder } from './sig16';
+import { Concrete, HiVis, Ironworks, LumberStamp, Permit } from './sig19';
 import { LyricBook, NowPlaying, Spotlight, VocalRange, Voiceprint } from './sig17';
 import { AmethystAfterDark, BlushSatin, ChampagneToast, LeopardLuxe, PearlStrand, RubyGloss, VanityLights, VelvetNoir } from './sig18';
 import { Boarding, Confetti, Inbox, Invitation, Monogram, Planner, Recipe, Stained, Toolbelt, Trading, Turntable, Vinyl, Waveform } from './sig2-b';
@@ -242,6 +243,11 @@ export const TEMPLATES: TemplateMeta[] = [
   { id: 'workorder', name: 'Work Order', niche: 'Handyman and Contractors', blurb: 'A carbon-copy work order with your photo clipped on. Your job list checks itself off, your signature writes in and the stamp lands.', bestFor: 'Handymen, contractors and repair pros' },
   { id: 'sitebadge', name: 'Site Badge', niche: 'Handyman and Contractors', blurb: 'A hi-vis vest with your ID badge swinging on a lanyard. Press the badge and it flips over to a QR code.', bestFor: 'Contractors, crews and job-site pros' },
   { id: 'paintfan', name: 'Paint Fan', niche: 'Handyman and Contractors', blurb: 'A paint fan deck with your photo on top. Open it and every swatch is a contact button, like Call Me Coral and Book It Blue.', bestFor: 'Painters, handymen and remodelers' },
+  { id: 'permit', name: 'Permit', niche: 'Construction', blurb: 'A building permit posted on plywood. Your license and insurance sit in the permit fields, an APPROVED stamp lands, and your services read as inspections that passed.', bestFor: 'General contractors and remodelers' },
+  { id: 'hivis', name: 'Hi-Vis', niche: 'Construction', blurb: 'Your photo full screen with your name over it, finished with a strip of reflective vest tape. Your certifications sit right under it as badges.', bestFor: 'Crews, roofers, framers and trades' },
+  { id: 'ironworks', name: 'Ironworks', niche: 'Construction', blurb: 'A cinematic black-and-white photo, heavy steel-yard type and a bolted plate. Your services read as a load chart.', bestFor: 'Commercial builders, steel and larger GCs' },
+  { id: 'concrete', name: 'Concrete', niche: 'Construction', blurb: 'Your name spray-stenciled on raw concrete under a wood form board, with the year you started pressed into the slab.', bestFor: 'Concrete, pavers, driveways and masonry' },
+  { id: 'lumberstamp', name: 'Lumber Stamp', niche: 'Construction', blurb: 'Your name inked in a lumber-mill grade stamp on a pine board, your photo pinned up like a print, and your services as a penciled cut list.', bestFor: 'Carpenters, framers, decks and trim' },
   // ---- Vocalist collection (singers)
   { id: 'voiceprint', name: 'Voiceprint', niche: 'DJs and Musicians', blurb: 'A black-and-white portrait with your voice drawn across it as a waveform. Press play and it sings while the wave moves.', bestFor: 'Singers and session vocalists' },
   { id: 'lyricbook', name: 'Lyric Book', niche: 'DJs and Musicians', blurb: 'A page from your songwriting notebook with your polaroid taped on. Press Sing it and each word lights up as it is sung.', bestFor: 'Singer-songwriters' },
@@ -573,6 +579,7 @@ export const TEMPLATE_COMPONENTS: Record<TemplateId, () => ReactElement> = {
   cinescreen: CineScreen, cinebrain: CineBrain, focusguide: FocusGuide, punchin: PunchIn, slate: Slate,
   hackide: HackIDE, bioscan: BioScan, accessgranted: AccessGranted, globetrace: GlobeTrace, dossier: Dossier, warroom: WarRoom, coderain: CodeRain, enhance: Enhance, vault: Vault,
   tapemeasure: TapeMeasure, spiritlevel: SpiritLevel, workorder: WorkOrder, sitebadge: SiteBadge, paintfan: PaintFan,
+  permit: Permit, hivis: HiVis, ironworks: Ironworks, concrete: Concrete, lumberstamp: LumberStamp,
   voiceprint: Voiceprint, lyricbook: LyricBook, vocalrange: VocalRange, spotlight: Spotlight, nowplaying: NowPlaying,
   velvetnoir: VelvetNoir, blushsatin: BlushSatin, rubygloss: RubyGloss, champtoast: ChampagneToast,
   amethyst: AmethystAfterDark, leopard: LeopardLuxe, pearlstrand: PearlStrand, vanitylights: VanityLights,

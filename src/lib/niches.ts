@@ -428,6 +428,28 @@ const NICHE_LIST: Niche[] = [
     ],
   },
   {
+    id: 'construction', name: 'Construction and General Contractors', group: 'Home and auto', icon: 'hammer',
+    blurb: 'Photo-led cards on real materials: a posted permit, hi-vis tape, steel, concrete and lumber.',
+    highlightsTitle: 'Work I do',
+    highlights: [
+      { icon: 'home', title: 'Home additions', subtitle: 'Rooms, lanais, second stories' },
+      { icon: 'tools', title: 'Kitchen and bath remodels', subtitle: 'Down to the studs and back' },
+      { icon: 'hammer', title: 'Concrete and driveways', subtitle: 'Slabs, pavers, footings' },
+      { icon: 'shield', title: 'Hurricane repair', subtitle: 'Roof, windows, water damage' },
+    ],
+    tagline: 'Built right since 2011',
+    suggestedLinks: ['google', 'facebook', 'nextdoor', 'instagram'],
+    designs: [
+      d('permit', 'Permit', 'A posted building permit: license fields, an APPROVED stamp and inspections that passed.', ['#1B1A16', '#F26B1D', '#FBF8EE'], 'light', ['Archivo', 'Barlow'], ['rounded', 'large', 'solid', 'none'], 'bright', 0.6, true),
+      d('hivis', 'Hi-Vis', 'Full-screen photo finished with reflective vest tape and credential badges.', ['#111214', '#CFEA00', '#F3F1EA'], 'dark', ['Barlow Condensed', 'Barlow'], ['rounded', 'large', 'solid', 'none'], 'bright', 0.6, true),
+      d('ironworks', 'Ironworks', 'Black-and-white photo, steel-yard type and a load chart of your jobs.', ['#15171A', '#F2B705', '#EEF0F2'], 'dark', ['Barlow Condensed', 'Barlow'], ['rounded', 'large', 'solid', 'none'], 'bright', 0.6, true),
+      d('concrete', 'Concrete', 'Spray-stenciled name on raw concrete with your start year pressed into the slab.', ['#1E1F1F', '#FF6A13', '#C4C3BE'], 'light', ['Barlow Condensed', 'Barlow'], ['rounded', 'large', 'solid', 'none'], 'bright', 0.4, true),
+      d('lumberstamp', 'Lumber Stamp', 'A mill grade stamp on pine, your photo pinned up and a penciled cut list.', ['#2B1A0E', '#A33A22', '#F6EBD6'], 'light', ['Archivo', 'Barlow'], ['rounded', 'large', 'solid', 'none'], 'bright', 0.6, true),
+      d('sitebadge', 'Site Badge', 'A hi-vis vest and an ID badge that flips over to a QR code.', ['#121210', '#FF6B00', '#F4F2EE'], 'dark', ['Archivo', 'Inter'], ['rounded', 'large', 'solid', 'none'], 'bright', 0.9),
+      d('workorder', 'Work Order', 'A carbon-copy work order that checks off your jobs and signs itself.', ['#1D2433', '#1F3B73', '#F1EDE3'], 'light', ['Archivo', 'Inter'], ['rounded', 'large', 'solid', 'none'], 'bright', 0.9),
+    ],
+  },
+  {
     id: 'homeservices', name: 'Cleaning and Lawn Care', group: 'Home and auto', icon: 'leaf',
     blurb: 'Fresh, friendly designs, including a growing garden.',
     highlightsTitle: 'Services',
@@ -842,6 +864,7 @@ export const TEMPLATE_EXTRA_FONTS: Partial<Record<TemplateId, string[]>> = {
   hackide: ['JetBrains Mono'], bioscan: ['JetBrains Mono'], accessgranted: ['JetBrains Mono'], globetrace: ['JetBrains Mono'], dossier: ['JetBrains Mono', 'Courier Prime'],
   warroom: ['JetBrains Mono'], coderain: ['JetBrains Mono'], enhance: ['JetBrains Mono'], vault: ['JetBrains Mono'],
   tapemeasure: ['JetBrains Mono'], spiritlevel: ['JetBrains Mono'], workorder: ['JetBrains Mono', 'Caveat'], sitebadge: ['JetBrains Mono'], paintfan: ['JetBrains Mono'],
+  permit: ['IBM Plex Mono'], hivis: [], ironworks: ['IBM Plex Mono'], concrete: [], lumberstamp: ['Caveat'],
   voiceprint: ['JetBrains Mono'], lyricbook: ['JetBrains Mono', 'Caveat'], vocalrange: ['JetBrains Mono'], spotlight: ['JetBrains Mono', 'Fraunces', 'Caveat'], nowplaying: ['JetBrains Mono'],
   cinescreen: ['JetBrains Mono'], cinebrain: ['JetBrains Mono'], focusguide: ['JetBrains Mono'], punchin: ['JetBrains Mono'], slate: ['JetBrains Mono'],
   terminal: ['VT323', 'IBM Plex Mono'],
@@ -910,6 +933,7 @@ export const NICHE_SAMPLES: Record<string, NicheSample> = {
   va:           { business: 'Clear Desk Assist', fullName: 'Tasha Greene', jobTitle: 'Virtual Assistant', tagline: 'Your time back, handled.', hours: 'Mon-Fri 8am-4pm EST' },
   mechanic:     { business: 'Torque & Tread Auto', fullName: 'Lucia Romero', jobTitle: 'ASE Master Technician', tagline: 'Honest work. Fair prices.', hours: 'Mon-Fri 8am-6pm, Sat 8am-1pm' },
   handyman:     { business: 'Fix-It Fran Co.', fullName: 'Fran Delaney', jobTitle: 'Handyman and Contractor', credentials: 'Licensed and insured', tagline: 'No job too small', hours: 'Mon-Sat 7am-6pm' },
+  construction: { business: 'Cornerstone Build Co.', fullName: 'Dana Ortiz', jobTitle: 'General Contractor', credentials: 'Lic. CGC#0148 · Licensed and insured · OSHA 30', tagline: 'Built right since 2011', hours: 'Mon-Sat 7:00 AM-5:00 PM' },
   homeservices: { business: 'Fresh Start Cleaning', fullName: 'Maria Lopez', jobTitle: 'Owner', credentials: 'Bonded and insured', tagline: 'Spotless, on schedule', hours: 'Mon-Sat 8am-5pm' },
   fitness:      { business: 'Iron Pulse Training', fullName: 'Coach Tony Rivera', jobTitle: 'Certified Personal Trainer', tagline: 'Stronger every week', hours: 'Mon-Sat 5am-8pm' },
   bistro:       { business: 'Café Ceiba', fullName: 'Rosa Martinez', jobTitle: 'Chef and Owner', tagline: 'Made from scratch, every day', hours: 'Tue-Sun 7am-3pm' },
@@ -979,12 +1003,15 @@ export function sampleFor(card: Card, niche: Niche): Card {
 }
 
 /* Layouts that no niche lists (one-off designs) still need sample content that fits them,
-   or their demos fall back to the interior designer. Generic starter layouts keep that sample. */
+   or their demos fall back to the interior designer. The starter layouts get one too, so no two share a face. */
 export const LAYOUT_NICHE: Record<string, string> = {
   blueprint: 'engineering', blush: 'nails', circuit: 'tech', clipper: 'barber', cmdk: 'tech',
   contactsheet: 'photo', estate: 'realestate', floorplan: 'realestate', inbox: 'va', ledger: 'advisor',
   nowserving: 'barber', oldschool: 'barber', poster: 'creator', rosegold: 'salon', stained: 'church',
   starfield: 'tech', bamboo: 'massage', terminal: 'tech',
+  // Starter layouts: each shows a business that suits it, with that niche's own portrait
+  cover: 'salon', arch: 'massage', header: 'esthetics', bizcard: 'advisor', app: 'nails',
+  swiss: 'photo', bento: 'bistro', journey: 'fitness',
 };
 
 /** The sample card a demo or gallery preview shows for any layout id. */

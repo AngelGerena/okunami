@@ -100,6 +100,8 @@ export type TemplateId =
   | 'hackide' | 'bioscan' | 'accessgranted' | 'globetrace' | 'dossier' | 'warroom' | 'coderain' | 'enhance' | 'vault'
   // Handyman collection (handymen and contractors)
   | 'tapemeasure' | 'spiritlevel' | 'workorder' | 'sitebadge' | 'paintfan'
+  // Construction collection (general contractors and builders)
+  | 'permit' | 'hivis' | 'ironworks' | 'concrete' | 'lumberstamp'
   // Vocalist collection (singers)
   | 'voiceprint' | 'lyricbook' | 'vocalrange' | 'spotlight' | 'nowplaying'
   // Bling collection (jewelry and accessory sellers)
