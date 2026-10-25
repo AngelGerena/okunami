@@ -74,7 +74,7 @@
 /* =========================================================== 2 HI-VIS (dark, photo + vest tape) */
 .tpl-cxv { background: var(--c-pageBg); }
 .cxv__hero { position: relative; height: 470px; overflow: hidden; background: #1E2024; }
-.cxv__img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 18%; display: block; animation: cxv-settle 1.4s ease-out both; }
+.cxv__img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 4%; display: block; animation: cxv-settle 1.4s ease-out both; }
 @keyframes cxv-settle { from { transform: scale(1.06); } to { transform: scale(1); } }
 .cxv__hero::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(180deg, transparent 40%, color-mix(in srgb, var(--c-pageBg) 88%, transparent) 82%, var(--c-pageBg)); }
 .cxv__tape { position: absolute; left: 0; right: 0; bottom: 0; z-index: 2; height: 34px; background: linear-gradient(180deg, var(--c-accentDetail) 0 30%, transparent 30% 70%, var(--c-accentDetail) 70%), linear-gradient(180deg, #D7DADF, #A9AEB5 50%, #E9EBEE); }
@@ -94,7 +94,7 @@
 
 /* =========================================================== 3 IRONWORKS (dark, steel) */
 .cxi__hero { position: relative; height: 440px; overflow: hidden; background: #2A2E34; }
-.cxi__img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 18%; display: block; filter: grayscale(.85) contrast(1.08) brightness(.92); }
+.cxi__img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 4%; display: block; filter: grayscale(.85) contrast(1.08) brightness(.92); }
 .cxi__hero::before { content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none; background: linear-gradient(200deg, rgba(240,138,60,.38), transparent 45%), linear-gradient(180deg, transparent 45%, color-mix(in srgb, var(--c-pageBg) 92%, transparent) 85%, var(--c-pageBg)); }
 .cxi__steel { position: absolute; z-index: 2; left: 0; right: 0; bottom: 0; padding: 0 18px 18px; }
 .cxi__steel h1 { font: 800 min(58px, 14vw)/.86 var(--f-display); text-transform: uppercase; letter-spacing: -.01em; color: var(--c-name); overflow-wrap: anywhere; }

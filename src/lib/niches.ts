@@ -933,7 +933,7 @@ export const NICHE_SAMPLES: Record<string, NicheSample> = {
   va:           { business: 'Clear Desk Assist', fullName: 'Tasha Greene', jobTitle: 'Virtual Assistant', tagline: 'Your time back, handled.', hours: 'Mon-Fri 8am-4pm EST' },
   mechanic:     { business: 'Torque & Tread Auto', fullName: 'Lucia Romero', jobTitle: 'ASE Master Technician', tagline: 'Honest work. Fair prices.', hours: 'Mon-Fri 8am-6pm, Sat 8am-1pm' },
   handyman:     { business: 'Fix-It Fran Co.', fullName: 'Fran Delaney', jobTitle: 'Handyman and Contractor', credentials: 'Licensed and insured', tagline: 'No job too small', hours: 'Mon-Sat 7am-6pm' },
-  construction: { business: 'Cornerstone Build Co.', fullName: 'Dana Ortiz', jobTitle: 'General Contractor', credentials: 'Lic. CGC#0148 · Licensed and insured · OSHA 30', tagline: 'Built right since 2011', hours: 'Mon-Sat 7:00 AM-5:00 PM' },
+  construction: { business: 'Cornerstone Build Co.', fullName: 'Rafael Ortiz', jobTitle: 'General Contractor', credentials: 'Lic. CGC#0148 · Licensed and insured · OSHA 30', tagline: 'Built right since 2011', hours: 'Mon-Sat 7:00 AM-5:00 PM' },
   homeservices: { business: 'Fresh Start Cleaning', fullName: 'Maria Lopez', jobTitle: 'Owner', credentials: 'Bonded and insured', tagline: 'Spotless, on schedule', hours: 'Mon-Sat 8am-5pm' },
   fitness:      { business: 'Iron Pulse Training', fullName: 'Coach Tony Rivera', jobTitle: 'Certified Personal Trainer', tagline: 'Stronger every week', hours: 'Mon-Sat 5am-8pm' },
   bistro:       { business: 'Café Ceiba', fullName: 'Rosa Martinez', jobTitle: 'Chef and Owner', tagline: 'Made from scratch, every day', hours: 'Tue-Sun 7am-3pm' },
