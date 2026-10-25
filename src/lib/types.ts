@@ -109,7 +109,9 @@ export type TemplateId =
   // Bling collection (jewelry and accessory sellers)
   | 'velvetnoir' | 'blushsatin' | 'rubygloss' | 'champtoast' | 'amethyst' | 'leopard' | 'pearlstrand' | 'vanitylights'
   // Saxophone collection (saxophonists)
-  | 'midnightset' | 'velvetroom' | 'blacktie';
+  | 'midnightset' | 'velvetroom' | 'blacktie'
+  // Band collection (worship bands and ministry groups)
+  | 'reverb' | 'selah' | 'admitone' | 'linernotes';
 
 export interface SocialLink { id: string; network: string; value: string; }   // value = handle or full URL
 export interface Highlight { id: string; icon: string; title: string; subtitle: string; }

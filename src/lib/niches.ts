@@ -805,6 +805,10 @@ const NICHE_LIST: Niche[] = [
       d('constelacion', 'Constelación', 'Twinkling stars, a crown constellation and orbiting rings around your photo.', ['#5B2F86', '#FCC004', '#F4EFF8'], 'dark', ['Cinzel', 'Manrope'], ['pill', 'large', 'gradient', 'none'], 'calm', 1, true),
       d('escenario', 'Escenario', 'An edge-to-edge portrait under swaying stage spotlights.', ['#5B2F86', '#FCC004', '#F4EFF8'], 'dark', ['Cinzel', 'Manrope'], ['pill', 'large', 'gradient', 'none'], 'calm', 1, true),
       d('salmo', 'Salmo OS', 'Your portrait in an app window with a pixel reveal and CRT glow.', ['#5B2F86', '#FCC004', '#F4EFF8'], 'dark', ['Cinzel', 'Manrope'], ['pill', 'large', 'gradient', 'none'], 'tech', 1, true),
+      d('reverb', 'Reverb', 'Your band name echoes and fades while sound rings pulse from your logo.', ['#2A0F33', '#F2B648', '#F8F0F4'], 'dark', ['Unbounded', 'DM Sans'], ['rounded', 'large', 'solid', 'none'], 'calm', 0.8, true),
+      d('selah', 'Selah', 'Warm light, your band name in script and your verse in a deep band.', ['#6E1D33', '#B5832A', '#F8F1E5'], 'light', ['Cormorant Garamond', 'Mulish'], ['rounded', 'large', 'solid', 'none'], 'calm', 0.7, true),
+      d('admitone', 'Admit One', 'A concert ticket under stage lights, with your set list as ticket stubs.', ['#140A0B', '#FF3348', '#FFF3E8'], 'dark', ['Anton', 'Barlow'], ['rounded', 'large', 'solid', 'none'], 'bright', 0.35, true),
+      d('linernotes', 'Liner Notes', 'An album booklet: cover art, credits and your verse as the special thanks.', ['#2A1A12', '#D2491F', '#F3E6CF'], 'light', ['Instrument Serif', 'Bricolage Grotesque'], ['pill', 'large', 'solid', 'none'], 'calm', 0.5, true),
     ],
   },
   {
@@ -876,6 +880,7 @@ export const TEMPLATE_EXTRA_FONTS: Partial<Record<TemplateId, string[]>> = {
   permit: ['IBM Plex Mono'], hivis: [], ironworks: ['IBM Plex Mono'], concrete: [], lumberstamp: ['Caveat'],
   voiceprint: ['JetBrains Mono'], lyricbook: ['JetBrains Mono', 'Caveat'], vocalrange: ['JetBrains Mono'], spotlight: ['JetBrains Mono', 'Fraunces', 'Caveat'], nowplaying: ['JetBrains Mono'],
   midnightset: ['DM Mono', 'Pinyon Script'], velvetroom: ['DM Mono'], blacktie: ['DM Mono', 'Pinyon Script'],
+  reverb: [], selah: ['Pinyon Script'], admitone: ['IBM Plex Mono'], linernotes: [],
   cinescreen: ['JetBrains Mono'], cinebrain: ['JetBrains Mono'], focusguide: ['JetBrains Mono'], punchin: ['JetBrains Mono'], slate: ['JetBrains Mono'],
   terminal: ['VT323', 'IBM Plex Mono'],
   radar: ['Share Tech Mono'],
