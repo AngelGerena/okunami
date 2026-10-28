@@ -269,6 +269,8 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .pick small{display:block;text-align:center;font-size:12px;color:var(--chrome-mute);margin-top:8px}
 .brandline{max-width:430px;margin:14px auto 0;text-align:center;font-size:12px;color:var(--chrome-mute)}
 .brandline b{color:var(--chrome-ink);letter-spacing:2px}
+
+.toast{position:fixed;left:50%;bottom:calc(110px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:20;max-width:min(360px,calc(100vw - 32px));background:var(--slate);color:var(--white);font-size:14px;line-height:1.4;padding:12px 16px;border-radius:14px;box-shadow:0 10px 24px rgba(45,53,78,.3);text-align:center}
 </style>
 </head>
 <body>
@@ -458,7 +460,8 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 </article>
 
 </main>
-<p class="note">Vista previa con ejemplos: el evento y los nombres del equipo son de muestra, y los botones todavía no funcionan aquí.</p>
+<p class="note">Vista previa con ejemplos: el evento y los nombres del equipo son de muestra, y algunas secciones se activan cuando escojas tu diseño. Toca las pestañas de arriba para ver cada estilo.</p>
+<p class="toast" id="toast" role="status" aria-live="polite" hidden></p>
 <div class="pick"><a class="gl gl-coral" id="want" href="https://wa.me/14079609004" target="_blank" rel="noopener"><span id="wantTxt">Quiero este diseño</span></a><small>Toca para avisarle a Angel por WhatsApp</small></div>
 <p class="brandline"><b>OKUNAMI</b> · Tarjetas digitales por Finesse Media LLC · <a href="https://okunami.pro" style="text-decoration:underline">okunami.pro</a></p>
 
@@ -487,6 +490,34 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
       var n = b.getAttribute('data-look');
       if (location.hash !== '#' + n) location.hash = n; else show(n);
       window.scrollTo(0, 0);
+    });
+  });
+
+  // Make the card buttons in the preview do something real
+  var PHONE = '+17874528141', WA = 'https://wa.me/17874528141', STORE = 'https://www.farmasius.com/mayrasotoburgos';
+  var REF = 'https://wa.me/14079609004?text=' + encodeURIComponent('Hola Angel, vi la tarjeta que le hiciste a Mayra Soto Burgos y me gustaría una para mí.');
+  var toastEl = document.getElementById('toast'), tt;
+  function toast(msg) { toastEl.textContent = msg; toastEl.hidden = false; clearTimeout(tt); tt = setTimeout(function () { toastEl.hidden = true; }, 3200); }
+  function go(url, blank) { if (blank) window.open(url, '_blank', 'noopener'); else location.href = url; }
+  document.querySelectorAll('article.look').forEach(function (art) {
+    art.addEventListener('click', function (e) {
+      var el = e.target.closest('a, .langsw');
+      if (!el || !art.contains(el)) return;
+      e.preventDefault();
+      var t = (el.textContent || '').replace(/\s+/g, ' ').trim().toLowerCase();
+      var label = (el.getAttribute('aria-label') || '').toLowerCase();
+      if (el.classList.contains('langsw')) return toast('Tu tarjeta final viene en español e inglés.');
+      if (/guardar/.test(t + label)) return go('/disenos/mayra/mayra-soto-burgos.vcf');
+      if (/^llamar/.test(t + label) || label === 'llamar') return go('tel:' + PHONE);
+      if (/whatsapp/.test(t + label)) return go(WA, true);
+      if (/correo/.test(t + label)) return toast('Aquí va tu correo. Envíaselo a Angel y lo añadimos.');
+      if (/favoritos|tienda/.test(t)) return go(STORE, true);
+      if (/obtén tu propia/.test(t)) return go(REF, true);
+      if (/hablemos|pedir|llamada/.test(t)) return toast('Aquí tus clientas piden una llamada de 15 minutos contigo. Se activa en tu tarjeta final.');
+      if (/equipo|conmigo/.test(t) && !/team hub|logros/.test(t)) return toast('Aquí cuentas tu historia y por qué unirse a tu equipo. Se activa en tu tarjeta final.');
+      if (/evento|oportunidad|oct/.test(t)) return toast('Aquí tu próximo evento con fecha, hora y para reservar. Lo cambias tú desde tu panel.');
+      if (/team hub|solo equipo/.test(t)) return toast('Área privada para tu equipo con entrenamientos y enlaces. Se activa en tu tarjeta final.');
+      toast('Esta parte se activa en tu tarjeta final.');
     });
   });
   window.addEventListener('hashchange', function () { show(location.hash.slice(1)); });
