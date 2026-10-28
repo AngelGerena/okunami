@@ -271,6 +271,20 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .brandline b{color:var(--chrome-ink);letter-spacing:2px}
 
 .toast{position:fixed;left:50%;bottom:calc(110px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:20;max-width:min(360px,calc(100vw - 32px));background:var(--slate);color:var(--white);font-size:14px;line-height:1.4;padding:12px 16px;border-radius:14px;box-shadow:0 10px 24px rgba(45,53,78,.3);text-align:center}
+
+[hidden]{display:none!important}
+/* Full-screen QR for easy scanning */
+[data-qr]{position:relative;cursor:zoom-in}
+.qr-zoom{position:absolute;right:-8px;bottom:-8px;width:34px;height:34px;border:0;border-radius:50%;display:flex;align-items:center;justify-content:center;padding:0;cursor:pointer;z-index:4}
+.qr-zoom svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.qrfull{position:fixed;inset:0;z-index:50;background:#FFFFFF;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;
+  padding:calc(24px + env(safe-area-inset-top,0px)) max(20px,env(safe-area-inset-right,0px)) calc(24px + env(safe-area-inset-bottom,0px)) max(20px,env(safe-area-inset-left,0px));text-align:center;color:var(--slate)}
+.qrfull .big{width:min(88vw,62vh,520px);aspect-ratio:1;padding:4%;border-radius:24px;background:#FFFFFF;box-shadow:0 0 0 2px var(--blush),0 20px 50px rgba(255,90,104,.18);color:#111111}
+.qrfull .big svg{width:100%;height:100%}
+.qrfull h2{margin:0;font-family:var(--f-display);font-size:30px;line-height:1.1}
+.qrfull p{margin:0;font-size:16px;color:var(--slate-mute)}
+.qrfull .x{position:absolute;top:calc(14px + env(safe-area-inset-top,0px));right:max(14px,env(safe-area-inset-right,0px));width:48px;height:48px;border:0;border-radius:50%;font-size:26px;line-height:1;cursor:pointer}
+.qrfull .done{min-height:54px;padding:0 34px;border:0;font-size:15px;font-weight:800;cursor:pointer;border-radius:999px}
 </style>
 </head>
 <body>
@@ -461,6 +475,13 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 
 </main>
 <p class="note">Vista previa con ejemplos: el evento y los nombres del equipo son de muestra, y algunas secciones se activan cuando escojas tu diseño. Toca las pestañas de arriba para ver cada estilo.</p>
+<div class="qrfull" id="qrfull" role="dialog" aria-modal="true" aria-label="Código QR en pantalla completa" hidden>
+  <button type="button" class="x gl gl-white" id="qrClose" aria-label="Cerrar"><span>&times;</span></button>
+  <div class="big" id="qrBig"></div>
+  <h2>Mayra Soto Burgos</h2>
+  <p>Escanea con la cámara para guardar mi tarjeta</p>
+  <button type="button" class="done gl gl-coral" id="qrDone"><span>Listo</span></button>
+</div>
 <p class="toast" id="toast" role="status" aria-live="polite" hidden></p>
 <div class="pick"><a class="gl gl-coral" id="want" href="https://wa.me/14079609004" target="_blank" rel="noopener"><span id="wantTxt">Quiero este diseño</span></a><small>Toca para avisarle a Angel por WhatsApp</small></div>
 <p class="brandline"><b>OKUNAMI</b> · Tarjetas digitales por Finesse Media LLC · <a href="https://okunami.pro" style="text-decoration:underline">okunami.pro</a></p>
@@ -520,6 +541,27 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
       toast('Esta parte se activa en tu tarjeta final.');
     });
   });
+
+  // Tap any QR (or its expand button) to show it full screen
+  var EXP = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>';
+  document.querySelectorAll('[data-qr]').forEach(function (q) {
+    var b = document.createElement('button'); b.type = 'button'; b.className = 'qr-zoom gl gl-coral';
+    b.setAttribute('aria-label', 'Ver código QR en pantalla completa'); b.innerHTML = EXP; q.appendChild(b);
+  });
+  var full = document.getElementById('qrfull'), lastFocus = null;
+  function openQR() {
+    lastFocus = document.activeElement;
+    document.getElementById('qrBig').innerHTML = document.getElementById('qr').innerHTML;
+    full.hidden = false; document.body.style.overflow = 'hidden';
+    document.getElementById('qrDone').focus();
+  }
+  function closeQR() { full.hidden = true; document.body.style.overflow = ''; if (lastFocus) lastFocus.focus(); }
+  document.addEventListener('click', function (e) {
+    if (e.target.closest('[data-qr]')) { e.preventDefault(); e.stopPropagation(); openQR(); }
+  }, true);
+  document.getElementById('qrClose').addEventListener('click', closeQR);
+  document.getElementById('qrDone').addEventListener('click', closeQR);
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !full.hidden) closeQR(); });
   window.addEventListener('hashchange', function () { show(location.hash.slice(1)); });
   show(location.hash.slice(1));
 })();
