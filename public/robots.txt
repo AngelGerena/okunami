@@ -52,4 +52,5 @@ Disallow: /
 User-agent: *
 Disallow: /app
 Disallow: /admin
+Disallow: /disenos
 Allow: /

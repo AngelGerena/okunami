@@ -1,0 +1,498 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Diseños para Mayra Soto Burgos | OKUNAMI</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#F7F3F3">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
+<style>
+/* Layout: sticky look picker over one phone-width card. All four looks stay in Farmasi's own family:
+   coral #FF5A68, its deeper and lighter shades, white, and Farmasi's slate only for text. Light backgrounds only. */
+:root{
+  --chrome:#F7F3F3; --chrome-ink:#2D354E; --chrome-mute:#6B6F80; --chrome-line:#E9DFE0; --chip:#FFFFFF;
+  --coral:#FF5A68; --coral-deep:#E23D52; --raspberry:#C42A45; --rose:#FF8A94; --pink:#FFC2C8; --blush:#FFE4E6; --petal:#FFF3F4;
+  --white:#FFFFFF; --mist:#F8F8F8; --slate:#2D354E; --slate-mute:#6B6F80;
+  --f-display:'Playfair Display', Georgia, 'Times New Roman', serif;
+  --f-body:'Plus Jakarta Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  color-scheme:light;
+}
+html{font-variant-emoji:text;-webkit-text-size-adjust:100%}
+*{box-sizing:border-box}
+body{margin:0;background:var(--chrome);color:var(--chrome-ink);font-family:var(--f-body);font-size:15px;line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:hidden;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 40px}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--coral);outline-offset:3px}
+svg{display:block}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--chrome)}
+
+.picker{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--chrome);padding-block:12px;border-bottom:1px solid var(--chrome-line)}
+.picker-in{max-width:430px;margin:0 auto;display:flex;flex-direction:column;gap:10px}
+.picker h1{margin:0;font-size:12px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--chrome-mute)}
+.tabs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}
+.tabs button{min-height:44px;border:1.5px solid var(--chrome-line);border-radius:12px;background:var(--chip);font-size:13px;font-weight:700;cursor:pointer;padding:4px 2px;line-height:1.15}
+.tabs button[aria-pressed="true"]{background:var(--coral);border-color:var(--coral);color:var(--white)}
+.tabs button span{display:block;font-size:10px;font-weight:600;opacity:.75}
+.about{margin:0;font-size:13px;color:var(--chrome-mute);min-height:2.9em}
+.stage{max-width:430px;margin:18px auto 0}
+.look{border-radius:30px;overflow:hidden;box-shadow:0 20px 50px rgba(45,53,78,.14)}
+.note{max-width:430px;margin:16px auto 0;font-size:12px;color:var(--chrome-mute);text-align:center}
+
+.qr svg{width:100%;height:auto}
+.ico{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.credit{margin:0;font-size:11px;text-align:center;color:var(--slate-mute)}
+.credit u{text-underline-offset:2px}
+.ref{margin:0;font-size:12px;text-align:center;font-weight:700;color:var(--coral-deep)}
+.langsw{display:flex;border-radius:999px;padding:3px;gap:2px;font-size:11px;font-weight:800;letter-spacing:1px}
+.langsw span{min-width:38px;min-height:30px;border-radius:999px;display:flex;align-items:center;justify-content:center}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes ping{0%{box-shadow:0 0 0 0 rgba(255,90,104,.55)}70%{box-shadow:0 0 0 16px rgba(255,90,104,0)}100%{box-shadow:0 0 0 0 rgba(255,90,104,0)}}
+@media (prefers-reduced-motion:reduce){.ring,.ping{animation:none!important}}
+
+/* shared glossy coral pill */
+.gloss{position:relative;overflow:hidden;border-radius:999px;background:linear-gradient(180deg,#FF8E98 0%,var(--coral) 45%,var(--coral-deep) 100%);color:var(--white);
+  box-shadow:0 10px 22px rgba(255,90,104,.35),inset 0 2px 1px rgba(255,255,255,.55);display:flex;align-items:center;justify-content:center;gap:8px;font-weight:800;letter-spacing:1px;text-transform:uppercase}
+.gloss::after{content:"";position:absolute;top:0;bottom:0;left:-70%;width:45%;background:linear-gradient(100deg,rgba(255,255,255,0),rgba(255,255,255,.5),rgba(255,255,255,0));transform:skewX(-22deg);animation:sheen 5s ease-in-out infinite}
+@keyframes sheen{0%{left:-70%}35%{left:130%}100%{left:130%}}
+
+/* =========================================================
+   1. CORAL STUDIO: coral color block, cutout breaking out of it, white body
+   ========================================================= */
+.cs{background:var(--white);color:var(--slate)}
+.cs .hero{position:relative;aspect-ratio:390/440;max-width:100%;overflow:hidden;background:var(--white)}
+.cs .block{position:absolute;left:0;right:0;top:0;height:78%;background:linear-gradient(160deg,var(--rose) 0%,var(--coral) 45%,var(--coral-deep) 100%);
+  clip-path:polygon(0 0,100% 0,100% 82%,0 100%)}
+.cs .big{position:absolute;left:0;right:0;top:15%;text-align:center;font-family:var(--f-display);font-weight:700;font-size:96px;line-height:.85;letter-spacing:-2px;color:rgba(255,255,255,.22);white-space:nowrap}
+.cs .hero img{position:absolute;left:4%;width:92%;top:7%;height:auto;max-width:none;filter:drop-shadow(0 18px 24px rgba(196,42,69,.25))}
+.cs .top{position:absolute;top:16px;left:18px;right:18px;z-index:2;display:flex;justify-content:space-between;align-items:center}
+.cs .tag{font-size:10px;font-weight:800;letter-spacing:2.5px;text-transform:uppercase;color:var(--white)}
+.cs .langsw{background:rgba(255,255,255,.25);color:var(--white)}
+.cs .langsw span:last-child{background:var(--white);color:var(--coral-deep)}
+.cs .badge{position:absolute;right:16px;top:38%;z-index:3;width:88px;height:88px;border-radius:50%;background:var(--white);color:var(--coral-deep);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;box-shadow:0 10px 24px rgba(196,42,69,.3);animation:ping 2.6s ease-out infinite}
+.cs .badge b{font-family:var(--f-display);font-size:18px;line-height:1}
+.cs .badge small{font-size:9px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--slate)}
+.cs .ring{position:absolute;inset:-17px;animation:spin 14s linear infinite}
+.cs .ring text{font-size:9.5px;font-weight:800;letter-spacing:2px;fill:var(--white)}
+.cs .name{padding:0 22px;margin-top:8px;display:flex;flex-direction:column;gap:4px;align-items:center;text-align:center}
+.cs .name h2{margin:0;font-family:var(--f-display);font-weight:700;font-size:38px;line-height:1.02;letter-spacing:-.5px}
+.cs .role{font-size:11px;font-weight:800;letter-spacing:2.5px;text-transform:uppercase;color:var(--coral)}
+.cs .logo{font-size:13px;font-weight:800;letter-spacing:4px;color:var(--slate);opacity:.8;margin-top:4px}
+.cs .body{padding:20px 20px 22px;display:flex;flex-direction:column;gap:16px}
+.cs .list{display:flex;flex-direction:column;gap:10px}
+.cs .item{display:flex;gap:14px;align-items:center;padding:14px;border-radius:18px;background:var(--petal);border:1px solid var(--blush)}
+.cs .item .ic{width:44px;height:44px;border-radius:14px;background:var(--white);color:var(--coral);display:flex;align-items:center;justify-content:center;flex:none;box-shadow:0 4px 10px rgba(255,90,104,.15)}
+.cs .item div{min-width:0;flex:1}
+.cs .item b{display:block;font-size:16px;font-weight:800}
+.cs .item span{display:block;font-size:12.5px;color:var(--slate-mute)}
+.cs .item .go{color:var(--coral);font-size:22px}
+.cs .item.hot{background:var(--coral);border-color:var(--coral);color:var(--white)}
+.cs .item.hot span{color:rgba(255,255,255,.88)}
+.cs .item.hot .go{color:var(--white)}
+.cs .item.hot .ic{color:var(--coral)}
+.cs h3{margin:6px 0 0;font-size:10px;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:var(--coral)}
+.cs .spot{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;text-align:center}
+.cs .spot div{display:flex;flex-direction:column;align-items:center;gap:4px;min-width:0}
+.cs .av{width:50px;height:50px;border-radius:50%;background:var(--blush);color:var(--coral-deep);display:flex;align-items:center;justify-content:center;font-family:var(--f-display);font-size:18px;font-weight:700;border:2px solid var(--white);box-shadow:0 0 0 2px var(--pink)}
+.cs .spot b{font-size:12px}
+.cs .spot span{font-size:10px;color:var(--slate-mute);line-height:1.25}
+.cs .save{min-height:58px;font-size:14px}
+.cs .row3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.cs .row3 a{min-height:50px;border-radius:999px;background:var(--blush);color:var(--coral-deep);display:flex;align-items:center;justify-content:center;gap:6px;font-size:13px;font-weight:700}
+.cs .share{display:grid;grid-template-columns:100px 1fr;gap:16px;align-items:center;padding:14px;border-radius:20px;border:1.5px dashed var(--pink)}
+.cs .share .qr{color:var(--slate)}
+.cs .share b{display:block;font-family:var(--f-display);font-size:20px}
+.cs .share span{font-size:12px;color:var(--slate-mute)}
+
+/* =========================================================
+   2. BLUSH SUITE: soft blush gradient, framed portrait card, white section cards
+   ========================================================= */
+.bs{background:linear-gradient(180deg,var(--blush) 0%,var(--petal) 45%,var(--white) 100%);color:var(--slate)}
+.bs .wrap{padding:18px 18px 22px;display:flex;flex-direction:column;gap:18px}
+.bs .top{display:flex;justify-content:space-between;align-items:center}
+.bs .brand{font-size:13px;font-weight:800;letter-spacing:4px;color:var(--coral)}
+.bs .langsw{background:var(--white);color:var(--slate)}
+.bs .langsw span:last-child{background:var(--coral);color:var(--white)}
+.bs .frame{position:relative;border-radius:28px;background:var(--white);padding:10px;box-shadow:0 18px 40px rgba(255,90,104,.18)}
+.bs .frame .pic{border-radius:20px;overflow:hidden;aspect-ratio:4/4.3;max-width:100%;background:var(--mist)}
+.bs .frame img{width:100%;height:100%;object-fit:cover;object-position:50% 12%}
+.bs .frame .badge{position:absolute;right:20px;bottom:20px;min-height:44px;padding:0 16px;border-radius:999px;background:var(--white);color:var(--coral-deep);display:flex;align-items:center;gap:8px;font-size:12px;font-weight:800;letter-spacing:1px;text-transform:uppercase;box-shadow:0 8px 20px rgba(45,53,78,.18)}
+.bs .frame .badge i{width:10px;height:10px;border-radius:50%;background:var(--coral);animation:ping 2.2s ease-out infinite}
+.bs .name{text-align:center;display:flex;flex-direction:column;gap:4px}
+.bs .name h2{margin:0;font-family:var(--f-display);font-style:italic;font-weight:500;font-size:40px;line-height:1.02}
+.bs .role{font-size:11px;font-weight:800;letter-spacing:2.5px;text-transform:uppercase;color:var(--coral)}
+.bs .acts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.bs .acts a{display:flex;flex-direction:column;align-items:center;gap:6px;font-size:11px;font-weight:700}
+.bs .acts a span{width:54px;height:54px;border-radius:18px;background:var(--white);color:var(--coral);display:flex;align-items:center;justify-content:center;box-shadow:0 6px 14px rgba(255,90,104,.14)}
+.bs .acts a.main span{background:var(--coral);color:var(--white)}
+.bs .cards{display:flex;flex-direction:column;gap:10px}
+.bs .card{background:var(--white);border-radius:20px;padding:16px;display:flex;align-items:center;gap:14px;box-shadow:0 2px 0 rgba(255,90,104,.08)}
+.bs .card .n{font-family:var(--f-display);font-size:28px;font-weight:600;color:var(--pink);min-width:30px}
+.bs .card div{min-width:0;flex:1}
+.bs .card b{display:block;font-size:16px;font-weight:800}
+.bs .card span{display:block;font-size:12.5px;color:var(--slate-mute)}
+.bs .card.hot{background:linear-gradient(120deg,var(--coral),var(--coral-deep));color:var(--white)}
+.bs .card.hot .n{color:rgba(255,255,255,.6)}
+.bs .card.hot div span{color:rgba(255,255,255,.88)}
+.bs .card.hot .pill,.bs .card .pill{min-height:36px;padding:0 14px;border-radius:999px;background:var(--white);color:var(--coral-deep);display:flex;align-items:center;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:1px}
+.bs h3{margin:0;text-align:center;font-family:var(--f-display);font-style:italic;font-weight:500;font-size:22px;color:var(--coral-deep)}
+.bs .spot{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.bs .spot div{background:var(--white);border-radius:16px;padding:10px 12px;display:flex;align-items:center;gap:10px;min-width:0}
+.bs .spot .av{width:38px;height:38px;border-radius:50%;background:var(--blush);color:var(--coral-deep);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;flex:none}
+.bs .spot b{display:block;font-size:13px}
+.bs .spot small{display:block;font-size:10.5px;color:var(--coral-deep);font-weight:700}
+.bs .save{min-height:58px;font-size:14px}
+.bs .share{background:var(--white);border-radius:22px;padding:18px;display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center}
+.bs .share .qr{width:132px;color:var(--slate)}
+.bs .share b{font-family:var(--f-display);font-size:20px}
+.bs .share span{font-size:12px;color:var(--slate-mute)}
+
+/* =========================================================
+   3. PINK TILES: white bento grid, coral and blush tiles
+   ========================================================= */
+.pt{background:var(--white);color:var(--slate);padding:14px}
+.pt .bento{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px}
+.pt .t{border-radius:24px;background:var(--mist);padding:16px;min-width:0;display:flex;flex-direction:column;gap:6px;position:relative;overflow:hidden}
+.pt .k{font-size:9px;font-weight:800;letter-spacing:2.5px;text-transform:uppercase;color:var(--coral-deep)}
+.pt .t b{font-family:var(--f-display);font-weight:600;font-size:21px;line-height:1.08}
+.pt .t span{font-size:12px;color:var(--slate-mute)}
+.pt .photo{grid-column:span 4;grid-row:span 2;padding:0;min-height:270px;background:var(--blush)}
+.pt .photo .pslant{position:absolute;inset:0;background:linear-gradient(115deg,var(--blush) 0 36%,var(--coral) 36% 66%,var(--coral-deep) 66% 100%)}
+.pt .photo img{position:absolute;left:-6%;top:8%;width:112%;height:auto;max-width:none;filter:drop-shadow(0 10px 14px rgba(196,42,69,.28))}
+.pt .photo .tag{z-index:2}
+.pt .photo .tag{position:absolute;left:12px;bottom:12px;background:var(--coral);color:var(--white);border-radius:999px;padding:6px 10px;font-size:10px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase}
+.pt .lang{grid-column:span 2;background:var(--blush);align-items:center;justify-content:center;text-align:center}
+.pt .lang b{font-family:var(--f-body);font-size:13px;font-weight:800;letter-spacing:2px;color:var(--coral-deep)}
+.pt .qrt{grid-column:span 2;align-items:center;justify-content:center;padding:12px;background:var(--white);border:1.5px solid var(--blush)}
+.pt .qrt .qr{width:100%;color:var(--slate)}
+.pt .qrt span{font-size:10px;font-weight:700;text-align:center}
+.pt .id{grid-column:span 6;background:var(--white);border:1.5px solid var(--blush);flex-direction:row;align-items:center;justify-content:space-between;gap:12px}
+.pt .id h2{margin:0;font-family:var(--f-display);font-weight:700;font-size:30px;line-height:1.02}
+.pt .id .role{font-size:10px;font-weight:800;letter-spacing:2.5px;text-transform:uppercase;color:var(--coral);margin-top:6px}
+.pt .id .save{width:52px;height:52px;border-radius:16px;flex:none}
+.pt .call{grid-column:span 6;background:linear-gradient(135deg,var(--rose),var(--coral) 50%,var(--coral-deep));color:var(--white);flex-direction:row;align-items:center;justify-content:space-between;gap:12px}
+.pt .call>div{display:flex;flex-direction:column;gap:4px;min-width:0}
+.pt .call .k,.pt .call span{color:rgba(255,255,255,.9)}
+.pt .call .go{width:48px;height:48px;border-radius:50%;background:var(--white);color:var(--coral-deep);display:flex;align-items:center;justify-content:center;flex:none}
+.pt .ev{grid-column:span 3;background:var(--blush)}
+.pt .ev .date{display:flex;align-items:baseline;gap:6px}
+.pt .ev .date b{font-size:44px;line-height:.9;color:var(--coral-deep)}
+.pt .ev .date i{font-style:normal;font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--coral-deep)}
+.pt .why{grid-column:span 3;background:var(--pink)}
+.pt .why .k{color:var(--raspberry)}
+.pt .shop{grid-column:span 3}
+.pt .hub{grid-column:span 3;background:var(--raspberry);color:var(--white)}
+.pt .hub .k{color:var(--pink)}
+.pt .hub span{color:rgba(255,255,255,.85)}
+.pt .spot{grid-column:span 6;background:var(--petal)}
+.pt .faces{display:flex;gap:8px;flex-wrap:wrap}
+.pt .faces div{display:flex;align-items:center;gap:8px;background:var(--white);border-radius:999px;padding:4px 12px 4px 4px;min-width:0}
+.pt .faces .av{width:30px;height:30px;border-radius:50%;background:var(--coral);color:var(--white);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800}
+.pt .faces em{font-style:normal;font-size:12px;font-weight:700}
+.pt .faces small{font-size:10px;color:var(--coral-deep);font-weight:700}
+.pt .row3{grid-column:span 6;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.pt .row3 a{min-height:54px;border-radius:18px;background:var(--mist);display:flex;align-items:center;justify-content:center;gap:7px;font-size:13px;font-weight:700}
+.pt .row3 a svg{color:var(--coral)}
+.pt .foot{grid-column:span 6;display:flex;flex-direction:column;gap:6px;padding-top:4px}
+
+/* =========================================================
+   4. RIBBON: white page, one big coral slant behind her, numbered list
+   ========================================================= */
+.rb{background:var(--white);color:var(--slate)}
+.rb .hero{position:relative;aspect-ratio:390/480;max-width:100%;overflow:hidden;background:var(--petal)}
+.rb .slant{position:absolute;inset:0;background:linear-gradient(115deg,var(--blush) 0 38%,var(--coral) 38% 64%,var(--coral-deep) 64% 100%);opacity:.95}
+.rb .hero img{position:absolute;left:0;top:8%;width:100%;height:auto;max-width:none}
+.rb .hero::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:22%;background:var(--white);clip-path:polygon(0 60%,100% 0,100% 100%,0 100%)}
+.rb .top{position:absolute;top:16px;left:18px;right:18px;z-index:2;display:flex;justify-content:space-between;align-items:center}
+.rb .brand{font-size:13px;font-weight:800;letter-spacing:4px;color:var(--coral-deep);background:var(--white);padding:6px 12px;border-radius:999px}
+.rb .langsw{background:rgba(255,255,255,.85);color:var(--slate)}
+.rb .langsw span:last-child{background:var(--coral);color:var(--white)}
+.rb .badge{position:absolute;right:14px;top:15%;z-index:3;width:116px;height:116px;border-radius:50%;background:var(--white);color:var(--coral-deep);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;box-shadow:0 10px 24px rgba(45,53,78,.18);animation:ping 2.6s ease-out infinite}
+.rb .badge b{position:relative;z-index:1;font-family:var(--f-display);font-size:17px;line-height:1}
+.rb .badge small{position:relative;z-index:1;font-size:9px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--slate);margin-top:3px}
+.rb .badge .ring{position:absolute;left:0;top:0;width:100%;height:100%;overflow:visible;animation:spin 14s linear infinite}
+.rb .badge .ring text{font-family:var(--f-body);font-size:9px;font-weight:800;letter-spacing:1.6px;fill:var(--coral)}
+.rb .badge::before{content:"";position:absolute;inset:23px;border-radius:50%;border:1px solid var(--pink)}
+.rb .name{position:relative;z-index:2;margin-top:-34px;padding:0 22px;display:flex;flex-direction:column;gap:6px}
+.rb .name h2{margin:0;font-family:var(--f-display);font-weight:700;font-size:42px;line-height:1}
+.rb .name h2 em{font-style:italic;font-weight:500;color:var(--coral)}
+.rb .role{font-size:11px;font-weight:800;letter-spacing:2.5px;text-transform:uppercase;color:var(--slate-mute)}
+.rb .body{padding:18px 22px 22px;display:flex;flex-direction:column;gap:18px}
+.rb .list{display:flex;flex-direction:column}
+.rb .item{display:grid;grid-template-columns:40px minmax(0,1fr) 16px;gap:12px;align-items:center;padding:13px 0;border-bottom:1px solid var(--blush)}
+.rb .item .dot{width:40px;height:40px;border-radius:50%;background:var(--blush);color:var(--coral-deep);display:flex;align-items:center;justify-content:center}
+.rb .item .dot .ico{width:18px;height:18px}
+.rb .item b{display:block;font-size:16px;font-weight:800}
+.rb .item span{display:block;font-size:12.5px;color:var(--slate-mute)}
+.rb .item .go{color:var(--coral);font-size:22px}
+.rb .item.hot .dot{background:var(--coral);color:var(--white)}
+.rb .item.hot b{color:var(--coral-deep)}
+.rb h3{margin:0;font-size:10px;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:var(--coral)}
+.rb .spot{display:flex;gap:10px;overflow:hidden;flex-wrap:wrap}
+.rb .spot div{flex:1 1 40%;display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:14px;background:var(--petal);min-width:0}
+.rb .spot .av{width:36px;height:36px;border-radius:50%;background:var(--white);color:var(--coral-deep);border:1.5px solid var(--pink);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;flex:none}
+.rb .spot b{display:block;font-size:13px}
+.rb .spot small{display:block;font-size:10.5px;color:var(--coral-deep);font-weight:700}
+.rb .save{min-height:58px;font-size:14px}
+.rb .row3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.rb .row3 a{min-height:50px;border-radius:999px;border:1.5px solid var(--coral);color:var(--coral-deep);display:flex;align-items:center;justify-content:center;gap:6px;font-size:13px;font-weight:700}
+.rb .share{display:grid;grid-template-columns:96px 1fr;gap:16px;align-items:center;padding:14px;border-radius:20px;background:var(--petal)}
+.rb .share .qr{background:var(--white);padding:8px;border-radius:12px;color:var(--slate)}
+.rb .share b{display:block;font-family:var(--f-display);font-size:20px}
+.rb .share span{font-size:12px;color:var(--slate-mute)}
+
+/* High-gloss lacquer buttons: a bright top highlight, a mirror reflection line, a deep lower shade and a sheen that sweeps across */
+.gl{position:relative;overflow:hidden;isolation:isolate;display:flex;align-items:center;justify-content:center;gap:8px}
+.save.gl{border-radius:999px;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;font-size:14px}
+.pt .id .save.gl{border-radius:16px}
+.gl>*{position:relative;z-index:3}
+.gl::before{content:"";position:absolute;left:5%;right:5%;top:2px;height:50%;border-radius:999px 999px 40% 40% / 999px 999px 18px 18px;
+  background:linear-gradient(180deg,rgba(255,255,255,.95) 0%,rgba(255,255,255,.55) 45%,rgba(255,255,255,.08) 100%);z-index:1;pointer-events:none}
+.gl::after{content:"";position:absolute;top:-10%;bottom:-10%;left:-75%;width:42%;background:linear-gradient(100deg,rgba(255,255,255,0) 0%,rgba(255,255,255,.75) 50%,rgba(255,255,255,0) 100%);
+  transform:skewX(-22deg);z-index:2;pointer-events:none;animation:sheen 4.5s ease-in-out infinite}
+.gl-sq::before{border-radius:inherit;left:4px;right:4px;top:3px;height:48%}
+.gl-coral{background:linear-gradient(180deg,#FFA5AC 0%,#FF5A68 40%,#E23D52 72%,#B8243E 100%)!important;color:#FFFFFF!important;border:0!important;
+  box-shadow:0 12px 24px rgba(226,61,82,.42),0 2px 0 rgba(255,255,255,.5) inset,0 -5px 10px rgba(110,8,28,.38) inset,0 0 0 1px rgba(184,36,62,.35) inset!important;text-shadow:0 1px 1px rgba(110,8,28,.4)}
+.gl-blush{background:linear-gradient(180deg,#FFFFFF 0%,#FFE1E4 38%,#FFC0C7 72%,#FF9EA8 100%)!important;color:#B8243E!important;border:0!important;
+  box-shadow:0 10px 20px rgba(255,90,104,.28),0 2px 0 #FFFFFF inset,0 -4px 8px rgba(196,42,69,.28) inset,0 0 0 1px rgba(255,138,148,.45) inset!important}
+.gl-white{background:linear-gradient(180deg,#FFFFFF 0%,#FFFFFF 40%,#FBEFF0 70%,#F1D9DC 100%)!important;color:#E23D52!important;border:0!important;
+  box-shadow:0 10px 20px rgba(45,53,78,.14),0 2px 0 #FFFFFF inset,0 -4px 8px rgba(196,42,69,.16) inset,0 0 0 1px rgba(255,194,200,.7) inset!important}
+.gl-white::before,.gl-blush::before{background:linear-gradient(180deg,rgba(255,255,255,1) 0%,rgba(255,255,255,.7) 50%,rgba(255,255,255,0) 100%)}
+.gl:active{transform:scale(.97)}
+@media (prefers-reduced-motion:reduce){.gl::after{animation:none}}
+
+.pick{position:sticky;bottom:0;z-index:6;max-width:430px;margin:18px auto 0;padding-block:12px calc(12px + env(safe-area-inset-bottom,0px));background:linear-gradient(180deg,rgba(247,243,243,0),var(--chrome) 30%)}
+.pick a{min-height:58px;font-size:15px;border-radius:999px;letter-spacing:.5px;text-transform:none}
+.pick small{display:block;text-align:center;font-size:12px;color:var(--chrome-mute);margin-top:8px}
+.brandline{max-width:430px;margin:14px auto 0;text-align:center;font-size:12px;color:var(--chrome-mute)}
+.brandline b{color:var(--chrome-ink);letter-spacing:2px}
+</style>
+</head>
+<body>
+
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-phone" viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></symbol>
+  <symbol id="i-wa" viewBox="0 0 24 24"><path d="M21 11.5a8.4 8.4 0 0 1-12.6 7.3L3 21l2.2-5.2A8.5 8.5 0 1 1 21 11.5z"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></symbol>
+  <symbol id="i-add" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M19 8v6M22 11h-6"/></symbol>
+  <symbol id="i-bag" viewBox="0 0 24 24"><path d="M6 7h12l1 14H5L6 7z"/><path d="M9 7a3 3 0 0 1 6 0"/></symbol>
+  <symbol id="i-heart" viewBox="0 0 24 24"><path d="M20.8 5.6a5.5 5.5 0 0 0-7.8 0L12 6.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 22l8.8-8.6a5.5 5.5 0 0 0 0-7.8z"/></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></symbol>
+  <symbol id="i-cal" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+</svg>
+<template id="qr"><svg viewBox="0 0 29 29" aria-hidden="true" shape-rendering="crispEdges"><path fill="currentColor" d="M0 0h1v1h-1zM1 0h1v1h-1zM2 0h1v1h-1zM3 0h1v1h-1zM4 0h1v1h-1zM5 0h1v1h-1zM6 0h1v1h-1zM8 0h1v1h-1zM9 0h1v1h-1zM13 0h1v1h-1zM17 0h1v1h-1zM18 0h1v1h-1zM22 0h1v1h-1zM23 0h1v1h-1zM24 0h1v1h-1zM25 0h1v1h-1zM26 0h1v1h-1zM27 0h1v1h-1zM28 0h1v1h-1zM0 1h1v1h-1zM6 1h1v1h-1zM8 1h1v1h-1zM11 1h1v1h-1zM12 1h1v1h-1zM14 1h1v1h-1zM17 1h1v1h-1zM19 1h1v1h-1zM20 1h1v1h-1zM22 1h1v1h-1zM28 1h1v1h-1zM0 2h1v1h-1zM2 2h1v1h-1zM3 2h1v1h-1zM4 2h1v1h-1zM6 2h1v1h-1zM8 2h1v1h-1zM11 2h1v1h-1zM12 2h1v1h-1zM13 2h1v1h-1zM15 2h1v1h-1zM16 2h1v1h-1zM18 2h1v1h-1zM20 2h1v1h-1zM22 2h1v1h-1zM24 2h1v1h-1zM25 2h1v1h-1zM26 2h1v1h-1zM28 2h1v1h-1zM0 3h1v1h-1zM2 3h1v1h-1zM3 3h1v1h-1zM4 3h1v1h-1zM6 3h1v1h-1zM10 3h1v1h-1zM13 3h1v1h-1zM17 3h1v1h-1zM19 3h1v1h-1zM20 3h1v1h-1zM22 3h1v1h-1zM24 3h1v1h-1zM25 3h1v1h-1zM26 3h1v1h-1zM28 3h1v1h-1zM0 4h1v1h-1zM2 4h1v1h-1zM3 4h1v1h-1zM4 4h1v1h-1zM6 4h1v1h-1zM8 4h1v1h-1zM9 4h1v1h-1zM10 4h1v1h-1zM12 4h1v1h-1zM13 4h1v1h-1zM14 4h1v1h-1zM16 4h1v1h-1zM18 4h1v1h-1zM19 4h1v1h-1zM20 4h1v1h-1zM22 4h1v1h-1zM24 4h1v1h-1zM25 4h1v1h-1zM26 4h1v1h-1zM28 4h1v1h-1zM0 5h1v1h-1zM6 5h1v1h-1zM9 5h1v1h-1zM10 5h1v1h-1zM11 5h1v1h-1zM13 5h1v1h-1zM14 5h1v1h-1zM16 5h1v1h-1zM17 5h1v1h-1zM18 5h1v1h-1zM20 5h1v1h-1zM22 5h1v1h-1zM28 5h1v1h-1zM0 6h1v1h-1zM1 6h1v1h-1zM2 6h1v1h-1zM3 6h1v1h-1zM4 6h1v1h-1zM5 6h1v1h-1zM6 6h1v1h-1zM8 6h1v1h-1zM10 6h1v1h-1zM12 6h1v1h-1zM14 6h1v1h-1zM16 6h1v1h-1zM18 6h1v1h-1zM20 6h1v1h-1zM22 6h1v1h-1zM23 6h1v1h-1zM24 6h1v1h-1zM25 6h1v1h-1zM26 6h1v1h-1zM27 6h1v1h-1zM28 6h1v1h-1zM9 7h1v1h-1zM10 7h1v1h-1zM13 7h1v1h-1zM15 7h1v1h-1zM16 7h1v1h-1zM19 7h1v1h-1zM20 7h1v1h-1zM0 8h1v1h-1zM3 8h1v1h-1zM4 8h1v1h-1zM5 8h1v1h-1zM6 8h1v1h-1zM7 8h1v1h-1zM8 8h1v1h-1zM9 8h1v1h-1zM13 8h1v1h-1zM16 8h1v1h-1zM17 8h1v1h-1zM19 8h1v1h-1zM21 8h1v1h-1zM24 8h1v1h-1zM26 8h1v1h-1zM27 8h1v1h-1zM28 8h1v1h-1zM0 9h1v1h-1zM2 9h1v1h-1zM4 9h1v1h-1zM5 9h1v1h-1zM7 9h1v1h-1zM10 9h1v1h-1zM14 9h1v1h-1zM15 9h1v1h-1zM16 9h1v1h-1zM17 9h1v1h-1zM18 9h1v1h-1zM19 9h1v1h-1zM23 9h1v1h-1zM24 9h1v1h-1zM26 9h1v1h-1zM27 9h1v1h-1zM0 10h1v1h-1zM2 10h1v1h-1zM5 10h1v1h-1zM6 10h1v1h-1zM7 10h1v1h-1zM8 10h1v1h-1zM10 10h1v1h-1zM12 10h1v1h-1zM14 10h1v1h-1zM15 10h1v1h-1zM16 10h1v1h-1zM20 10h1v1h-1zM21 10h1v1h-1zM24 10h1v1h-1zM26 10h1v1h-1zM4 11h1v1h-1zM7 11h1v1h-1zM8 11h1v1h-1zM9 11h1v1h-1zM12 11h1v1h-1zM16 11h1v1h-1zM17 11h1v1h-1zM18 11h1v1h-1zM19 11h1v1h-1zM21 11h1v1h-1zM22 11h1v1h-1zM25 11h1v1h-1zM28 11h1v1h-1zM0 12h1v1h-1zM1 12h1v1h-1zM3 12h1v1h-1zM4 12h1v1h-1zM6 12h1v1h-1zM7 12h1v1h-1zM9 12h1v1h-1zM10 12h1v1h-1zM11 12h1v1h-1zM13 12h1v1h-1zM14 12h1v1h-1zM15 12h1v1h-1zM16 12h1v1h-1zM19 12h1v1h-1zM22 12h1v1h-1zM23 12h1v1h-1zM28 12h1v1h-1zM4 13h1v1h-1zM9 13h1v1h-1zM11 13h1v1h-1zM14 13h1v1h-1zM15 13h1v1h-1zM16 13h1v1h-1zM18 13h1v1h-1zM21 13h1v1h-1zM22 13h1v1h-1zM23 13h1v1h-1zM24 13h1v1h-1zM25 13h1v1h-1zM26 13h1v1h-1zM27 13h1v1h-1zM28 13h1v1h-1zM1 14h1v1h-1zM2 14h1v1h-1zM4 14h1v1h-1zM6 14h1v1h-1zM7 14h1v1h-1zM8 14h1v1h-1zM12 14h1v1h-1zM14 14h1v1h-1zM15 14h1v1h-1zM19 14h1v1h-1zM20 14h1v1h-1zM21 14h1v1h-1zM22 14h1v1h-1zM26 14h1v1h-1zM28 14h1v1h-1zM0 15h1v1h-1zM1 15h1v1h-1zM5 15h1v1h-1zM7 15h1v1h-1zM9 15h1v1h-1zM10 15h1v1h-1zM11 15h1v1h-1zM12 15h1v1h-1zM13 15h1v1h-1zM14 15h1v1h-1zM16 15h1v1h-1zM20 15h1v1h-1zM21 15h1v1h-1zM24 15h1v1h-1zM26 15h1v1h-1zM28 15h1v1h-1zM0 16h1v1h-1zM1 16h1v1h-1zM6 16h1v1h-1zM7 16h1v1h-1zM10 16h1v1h-1zM12 16h1v1h-1zM19 16h1v1h-1zM25 16h1v1h-1zM0 17h1v1h-1zM3 17h1v1h-1zM7 17h1v1h-1zM8 17h1v1h-1zM9 17h1v1h-1zM12 17h1v1h-1zM15 17h1v1h-1zM17 17h1v1h-1zM19 17h1v1h-1zM20 17h1v1h-1zM24 17h1v1h-1zM26 17h1v1h-1zM27 17h1v1h-1zM0 18h1v1h-1zM1 18h1v1h-1zM6 18h1v1h-1zM7 18h1v1h-1zM8 18h1v1h-1zM10 18h1v1h-1zM11 18h1v1h-1zM13 18h1v1h-1zM14 18h1v1h-1zM15 18h1v1h-1zM16 18h1v1h-1zM18 18h1v1h-1zM19 18h1v1h-1zM21 18h1v1h-1zM24 18h1v1h-1zM25 18h1v1h-1zM28 18h1v1h-1zM0 19h1v1h-1zM1 19h1v1h-1zM3 19h1v1h-1zM5 19h1v1h-1zM7 19h1v1h-1zM11 19h1v1h-1zM12 19h1v1h-1zM13 19h1v1h-1zM16 19h1v1h-1zM19 19h1v1h-1zM20 19h1v1h-1zM21 19h1v1h-1zM24 19h1v1h-1zM25 19h1v1h-1zM26 19h1v1h-1zM0 20h1v1h-1zM1 20h1v1h-1zM3 20h1v1h-1zM4 20h1v1h-1zM5 20h1v1h-1zM6 20h1v1h-1zM7 20h1v1h-1zM12 20h1v1h-1zM13 20h1v1h-1zM15 20h1v1h-1zM16 20h1v1h-1zM17 20h1v1h-1zM19 20h1v1h-1zM20 20h1v1h-1zM21 20h1v1h-1zM22 20h1v1h-1zM23 20h1v1h-1zM24 20h1v1h-1zM25 20h1v1h-1zM26 20h1v1h-1zM27 20h1v1h-1zM8 21h1v1h-1zM9 21h1v1h-1zM10 21h1v1h-1zM13 21h1v1h-1zM15 21h1v1h-1zM20 21h1v1h-1zM24 21h1v1h-1zM25 21h1v1h-1zM0 22h1v1h-1zM1 22h1v1h-1zM2 22h1v1h-1zM3 22h1v1h-1zM4 22h1v1h-1zM5 22h1v1h-1zM6 22h1v1h-1zM8 22h1v1h-1zM9 22h1v1h-1zM10 22h1v1h-1zM12 22h1v1h-1zM13 22h1v1h-1zM15 22h1v1h-1zM16 22h1v1h-1zM18 22h1v1h-1zM19 22h1v1h-1zM20 22h1v1h-1zM22 22h1v1h-1zM24 22h1v1h-1zM25 22h1v1h-1zM0 23h1v1h-1zM6 23h1v1h-1zM8 23h1v1h-1zM9 23h1v1h-1zM11 23h1v1h-1zM12 23h1v1h-1zM13 23h1v1h-1zM17 23h1v1h-1zM19 23h1v1h-1zM20 23h1v1h-1zM24 23h1v1h-1zM0 24h1v1h-1zM2 24h1v1h-1zM3 24h1v1h-1zM4 24h1v1h-1zM6 24h1v1h-1zM8 24h1v1h-1zM11 24h1v1h-1zM13 24h1v1h-1zM15 24h1v1h-1zM16 24h1v1h-1zM19 24h1v1h-1zM20 24h1v1h-1zM21 24h1v1h-1zM22 24h1v1h-1zM23 24h1v1h-1zM24 24h1v1h-1zM25 24h1v1h-1zM28 24h1v1h-1zM0 25h1v1h-1zM2 25h1v1h-1zM3 25h1v1h-1zM4 25h1v1h-1zM6 25h1v1h-1zM8 25h1v1h-1zM9 25h1v1h-1zM12 25h1v1h-1zM14 25h1v1h-1zM15 25h1v1h-1zM16 25h1v1h-1zM18 25h1v1h-1zM20 25h1v1h-1zM28 25h1v1h-1zM0 26h1v1h-1zM2 26h1v1h-1zM3 26h1v1h-1zM4 26h1v1h-1zM6 26h1v1h-1zM9 26h1v1h-1zM12 26h1v1h-1zM13 26h1v1h-1zM14 26h1v1h-1zM15 26h1v1h-1zM20 26h1v1h-1zM21 26h1v1h-1zM23 26h1v1h-1zM24 26h1v1h-1zM26 26h1v1h-1zM27 26h1v1h-1zM28 26h1v1h-1zM0 27h1v1h-1zM6 27h1v1h-1zM13 27h1v1h-1zM14 27h1v1h-1zM21 27h1v1h-1zM25 27h1v1h-1zM26 27h1v1h-1zM28 27h1v1h-1zM0 28h1v1h-1zM1 28h1v1h-1zM2 28h1v1h-1zM3 28h1v1h-1zM4 28h1v1h-1zM5 28h1v1h-1zM6 28h1v1h-1zM8 28h1v1h-1zM9 28h1v1h-1zM11 28h1v1h-1zM14 28h1v1h-1zM19 28h1v1h-1zM20 28h1v1h-1zM21 28h1v1h-1zM22 28h1v1h-1zM24 28h1v1h-1z"/></svg></template>
+
+<header class="picker">
+  <div class="picker-in">
+    <h1>Mayra Soto Burgos · Escoge tu diseño</h1>
+    <div class="tabs" role="group" aria-label="Escoge un diseño">
+      <button type="button" id="b-coral" data-look="coral" aria-pressed="true">Coral Studio<span>Bloque coral</span></button>
+      <button type="button" id="b-blush" data-look="blush" aria-pressed="false">Blush Suite<span>Suave y enmarcado</span></button>
+      <button type="button" id="b-tiles" data-look="tiles" aria-pressed="false">Pink Tiles<span>En mosaicos</span></button>
+      <button type="button" id="b-ribbon" data-look="ribbon" aria-pressed="false">Ribbon<span>Franja coral</span></button>
+    </div>
+    <p class="about" id="about"></p>
+  </div>
+</header>
+
+<main class="stage">
+
+<!-- 1 CORAL STUDIO -->
+<article class="look cs" data-look="coral" aria-label="Look Coral Studio">
+  <div class="hero">
+    <div class="block"></div>
+    <div class="big" aria-hidden="true">BELLEZA</div>
+    <img src="/disenos/mayra/images/photo-chair.webp" alt="Mayra Soto Burgos" width="900" height="1332">
+    <div class="top"><span class="tag">Directora Farmasi</span><span class="langsw"><span>EN</span><span>ES</span></span></div>
+    <a class="badge" href="#coral">
+      <svg class="ring" viewBox="0 0 122 122" aria-hidden="true"><defs><path id="r1" d="M61,61 m-53,0 a53,53 0 1,1 106,0 a53,53 0 1,1 -106,0"/></defs><text><textPath href="#r1" textLength="330" lengthAdjust="spacing">TÓCAME • HABLEMOS • TÓCAME • HABLEMOS •</textPath></text></svg>
+      <b>Hablemos</b><small>15 min</small>
+    </a>
+  </div>
+  <div class="name">
+    <h2>Mayra Soto Burgos</h2>
+    <span class="role">Directora de Belleza Farmasi</span>
+    <span class="logo">FARMASi</span>
+  </div>
+  <div class="body">
+    <nav class="list" aria-label="Secciones">
+      <a class="item" href="#coral"><span class="ic"><svg class="ico"><use href="#i-bag"/></svg></span><div><b>Compra mis favoritos</b><span>Maquillaje, piel y fragancias que uso</span></div><span class="go" aria-hidden="true">&#8250;&#65038;</span></a>
+      <a class="item" href="#coral"><span class="ic"><svg class="ico"><use href="#i-heart"/></svg></span><div><b>Por qué mi equipo</b><span>Aquí nadie empieza sola</span></div><span class="go" aria-hidden="true">&#8250;&#65038;</span></a>
+      <a class="item hot" href="#coral"><span class="ic"><svg class="ico"><use href="#i-chat"/></svg></span><div><b>Hablemos 15 minutos</b><span>Llamada gratis, sin compromiso</span></div><span class="go" aria-hidden="true">&#8250;&#65038;</span></a>
+      <a class="item" href="#coral"><span class="ic"><svg class="ico"><use href="#i-cal"/></svg></span><div><b>Mi próximo evento</b><span>Jueves 29 de oct · 7:00 PM</span></div><span class="go" aria-hidden="true">&#8250;&#65038;</span></a>
+      <a class="item" href="#coral"><span class="ic"><svg class="ico"><use href="#i-lock"/></svg></span><div><b>Team Hub</b><span>Solo para mi equipo</span></div><span class="go" aria-hidden="true">&#8250;&#65038;</span></a>
+    </nav>
+    <h3>Logros del equipo</h3>
+    <div class="spot">
+      <div><span class="av">CR</span><b>Carmen R.</b><span>Nueva Manager</span></div>
+      <div><span class="av">YL</span><b>Yesenia L.</b><span>Bienvenida</span></div>
+      <div><span class="av">LM</span><b>Lourdes M.</b><span>Senior Manager</span></div>
+      <div><span class="av">PV</span><b>Paola V.</b><span>Bienvenida</span></div>
+    </div>
+    <a class="save gl gl-coral" href="#coral"><svg class="ico"><use href="#i-add"/></svg><span>Guardar contacto</span></a>
+    <div class="row3">
+      <a class="gl gl-blush" href="#coral"><svg class="ico"><use href="#i-phone"/></svg><span>Llamar</span></a>
+      <a class="gl gl-blush" href="#coral"><svg class="ico"><use href="#i-wa"/></svg><span>WhatsApp</span></a>
+      <a class="gl gl-blush" href="#coral"><svg class="ico"><use href="#i-mail"/></svg><span>Correo</span></a>
+    </div>
+    <div class="share"><div class="qr" data-qr></div><div><b>Comparte mi tarjeta</b><span>Que la escaneen con la cámara del teléfono.</span></div></div>
+    <p class="ref">Obtén tu propia vCard</p>
+    <p class="credit">Hecho por <u>Finesse Media</u></p>
+  </div>
+</article>
+
+<!-- 2 BLUSH SUITE -->
+<article class="look bs" data-look="blush" aria-label="Look Blush Suite" hidden>
+  <div class="wrap">
+    <div class="top"><span class="brand">FARMASi</span><span class="langsw"><span>EN</span><span>ES</span></span></div>
+    <div class="frame">
+      <div class="pic"><img src="/disenos/mayra/images/photo.jpg" alt="Mayra Soto Burgos" width="900" height="1332"></div>
+      <a class="badge" href="#blush"><i></i>Hablemos · 15 min</a>
+    </div>
+    <div class="name">
+      <h2>Mayra Soto Burgos</h2>
+      <span class="role">Directora de Belleza Farmasi</span>
+    </div>
+    <div class="acts">
+      <a class="main" href="#blush"><span class="gl gl-sq gl-coral"><svg class="ico"><use href="#i-add"/></svg></span>Guardar</a>
+      <a href="#blush"><span class="gl gl-sq gl-white"><svg class="ico"><use href="#i-phone"/></svg></span>Llamar</a>
+      <a href="#blush"><span class="gl gl-sq gl-white"><svg class="ico"><use href="#i-wa"/></svg></span>WhatsApp</a>
+      <a href="#blush"><span class="gl gl-sq gl-white"><svg class="ico"><use href="#i-mail"/></svg></span>Correo</a>
+    </div>
+    <div class="cards">
+      <a class="card hot" href="#blush"><span class="n">03</span><div><b>Hablemos 15 minutos</b><span>Llamada gratis, sin compromiso</span></div><span class="pill gl gl-white"><span>Pedir</span></span></a>
+      <a class="card" href="#blush"><span class="n">01</span><div><b>Compra mis favoritos</b><span>Mi tienda Farmasi</span></div></a>
+      <a class="card" href="#blush"><span class="n">02</span><div><b>Por qué mi equipo</b><span>Cómo entreno y apoyo a cada una</span></div></a>
+      <a class="card" href="#blush"><span class="n">04</span><div><b>Noche de Oportunidad</b><span>Jueves 29 de oct · 7:00 PM · Zoom</span></div></a>
+      <a class="card" href="#blush"><span class="n">05</span><div><b>Team Hub</b><span>Solo para mi equipo</span></div></a>
+    </div>
+    <h3>Logros del equipo</h3>
+    <div class="spot">
+      <div><span class="av">CR</span><span><b>Carmen R.</b><small>Nueva Manager</small></span></div>
+      <div><span class="av">LM</span><span><b>Lourdes M.</b><small>Senior Manager</small></span></div>
+      <div><span class="av">YL</span><span><b>Yesenia L.</b><small>Bienvenida</small></span></div>
+      <div><span class="av">PV</span><span><b>Paola V.</b><small>Bienvenida</small></span></div>
+    </div>
+    <a class="save gl gl-coral" href="#blush"><svg class="ico"><use href="#i-add"/></svg><span>Guardar contacto</span></a>
+    <div class="share"><div class="qr" data-qr></div><b>Comparte mi tarjeta</b><span>Escanéala con la cámara del teléfono</span></div>
+    <p class="ref">Obtén tu propia vCard</p>
+    <p class="credit">Hecho por <u>Finesse Media</u></p>
+  </div>
+</article>
+
+<!-- 3 PINK TILES -->
+<article class="look pt" data-look="tiles" aria-label="Look Pink Tiles" hidden>
+  <div class="bento">
+    <div class="t photo"><span class="pslant" aria-hidden="true"></span><img src="/disenos/mayra/images/photo-chair.webp" alt="Mayra Soto Burgos" width="900" height="1332"><span class="tag">Directora Farmasi</span></div>
+    <div class="t lang"><b>EN / ES</b><span>Idioma</span></div>
+    <div class="t qrt"><div class="qr" data-qr></div><span>Comparte</span></div>
+    <div class="t id"><div><h2>Mayra Soto Burgos</h2><div class="role">Directora de Belleza Farmasi</div></div><a class="save gl gl-sq gl-coral" href="#tiles" aria-label="Guardar contacto"><svg class="ico"><use href="#i-add"/></svg></a></div>
+    <a class="t call" href="#tiles"><div><span class="k">Llamada gratis</span><b>Hablemos 15 minutos</b><span>Escoge tu horario y te escribo</span></div><span class="go gl gl-white"><svg class="ico"><use href="#i-arrow"/></svg></span></a>
+    <a class="t ev" href="#tiles"><span class="k">Próximo evento</span><div class="date"><b>29</b><i>oct</i></div><span>Noche de Oportunidad · 7:00 PM</span></a>
+    <a class="t why" href="#tiles"><span class="k">Mi equipo</span><b>Por qué conmigo</b><span>Nadie empieza sola</span></a>
+    <a class="t shop" href="#tiles"><span class="k">Tienda</span><b>Mis favoritos</b><span>Compra en mi tienda</span></a>
+    <a class="t hub" href="#tiles"><span class="k">Solo equipo</span><b>Team Hub</b><span>Entrenamientos y enlaces</span></a>
+    <div class="t spot"><span class="k">Logros del equipo</span>
+      <div class="faces">
+        <div><span class="av">CR</span><span><em>Carmen R.</em><br><small>Nueva Manager</small></span></div>
+        <div><span class="av">LM</span><span><em>Lourdes M.</em><br><small>Senior Manager</small></span></div>
+        <div><span class="av">YL</span><span><em>Yesenia L.</em><br><small>Bienvenida</small></span></div>
+        <div><span class="av">PV</span><span><em>Paola V.</em><br><small>Bienvenida</small></span></div>
+      </div>
+    </div>
+    <div class="row3">
+      <a class="gl gl-blush" href="#tiles"><svg class="ico"><use href="#i-phone"/></svg><span>Llamar</span></a>
+      <a class="gl gl-blush" href="#tiles"><svg class="ico"><use href="#i-wa"/></svg><span>WhatsApp</span></a>
+      <a class="gl gl-blush" href="#tiles"><svg class="ico"><use href="#i-mail"/></svg><span>Correo</span></a>
+    </div>
+    <div class="foot"><p class="ref">Obtén tu propia vCard</p><p class="credit">Hecho por <u>Finesse Media</u></p></div>
+  </div>
+</article>
+
+<!-- 4 RIBBON -->
+<article class="look rb" data-look="ribbon" aria-label="Look Ribbon" hidden>
+  <div class="hero">
+    <div class="slant"></div>
+    <img src="/disenos/mayra/images/photo-chair.webp" alt="Mayra Soto Burgos" width="900" height="1332">
+    <div class="top"><span class="brand">FARMASi</span><span class="langsw"><span>EN</span><span>ES</span></span></div>
+    <a class="badge" href="#ribbon">
+      <svg class="ring" viewBox="0 0 116 116" aria-hidden="true"><defs><path id="r4" d="M58,58 m-46,0 a46,46 0 1,1 92,0 a46,46 0 1,1 -92,0"/></defs><text><textPath href="#r4" textLength="286" lengthAdjust="spacing">TÓCAME • HABLEMOS • TÓCAME • HABLEMOS •</textPath></text></svg>
+      <b>Hablemos</b><small>15 min</small>
+    </a>
+  </div>
+  <div class="name">
+    <h2>Mayra <em>Soto Burgos</em></h2>
+    <span class="role">Directora de Belleza Farmasi</span>
+  </div>
+  <div class="body">
+    <nav class="list" aria-label="Secciones">
+      <a class="item" href="#ribbon"><span class="dot"><svg class="ico"><use href="#i-bag"/></svg></span><div><b>Compra mis favoritos</b><span>Mi tienda Farmasi</span></div><span class="go" aria-hidden="true">&#8250;&#65038;</span></a>
+      <a class="item" href="#ribbon"><span class="dot"><svg class="ico"><use href="#i-heart"/></svg></span><div><b>Por qué mi equipo</b><span>Aquí nadie empieza sola</span></div><span class="go" aria-hidden="true">&#8250;&#65038;</span></a>
+      <a class="item hot" href="#ribbon"><span class="dot"><svg class="ico"><use href="#i-chat"/></svg></span><div><b>Hablemos 15 minutos</b><span>Llamada gratis, sin compromiso</span></div><span class="go" aria-hidden="true">&#8250;&#65038;</span></a>
+      <a class="item" href="#ribbon"><span class="dot"><svg class="ico"><use href="#i-cal"/></svg></span><div><b>Noche de Oportunidad</b><span>Jueves 29 de oct · 7:00 PM · Zoom</span></div><span class="go" aria-hidden="true">&#8250;&#65038;</span></a>
+      <a class="item" href="#ribbon"><span class="dot"><svg class="ico"><use href="#i-lock"/></svg></span><div><b>Team Hub</b><span>Solo para mi equipo</span></div><span class="go" aria-hidden="true">&#8250;&#65038;</span></a>
+    </nav>
+    <h3>Logros del equipo</h3>
+    <div class="spot">
+      <div><span class="av">CR</span><span><b>Carmen R.</b><small>Nueva Manager</small></span></div>
+      <div><span class="av">LM</span><span><b>Lourdes M.</b><small>Senior Manager</small></span></div>
+      <div><span class="av">YL</span><span><b>Yesenia L.</b><small>Bienvenida</small></span></div>
+      <div><span class="av">PV</span><span><b>Paola V.</b><small>Bienvenida</small></span></div>
+    </div>
+    <a class="save gl gl-coral" href="#ribbon"><svg class="ico"><use href="#i-add"/></svg><span>Guardar contacto</span></a>
+    <div class="row3">
+      <a class="gl gl-blush" href="#ribbon"><svg class="ico"><use href="#i-phone"/></svg><span>Llamar</span></a>
+      <a class="gl gl-blush" href="#ribbon"><svg class="ico"><use href="#i-wa"/></svg><span>WhatsApp</span></a>
+      <a class="gl gl-blush" href="#ribbon"><svg class="ico"><use href="#i-mail"/></svg><span>Correo</span></a>
+    </div>
+    <div class="share"><div class="qr" data-qr></div><div><b>Comparte mi tarjeta</b><span>Que la escaneen con la cámara.</span></div></div>
+    <p class="ref">Obtén tu propia vCard</p>
+    <p class="credit">Hecho por <u>Finesse Media</u></p>
+  </div>
+</article>
+
+</main>
+<p class="note">Vista previa con ejemplos: el evento y los nombres del equipo son de muestra, y los botones todavía no funcionan aquí.</p>
+<div class="pick"><a class="gl gl-coral" id="want" href="https://wa.me/14079609004" target="_blank" rel="noopener"><span id="wantTxt">Quiero este diseño</span></a><small>Toca para avisarle a Angel por WhatsApp</small></div>
+<p class="brandline"><b>OKUNAMI</b> · Tarjetas digitales por Finesse Media LLC · <a href="https://okunami.pro" style="text-decoration:underline">okunami.pro</a></p>
+
+<script>
+(function () {
+  var ABOUT = {
+    coral: 'Tu foto sale de un bloque grande color coral Farmasi, con BELLEZA detrás. El resto es blanco con filas rosadas, y "Hablemos" resalta en coral.',
+    blush: 'Fondo rosado suave que se aclara a blanco, tu foto en un marco blanco, botones redondos tipo app y tarjetas blancas con la llamada en coral arriba.',
+    tiles: 'Mosaicos en coral, rosado y blush sobre blanco. "Hablemos" es el mosaico grande, el evento muestra su fecha y el código QR va al lado de tu foto.',
+    ribbon: 'Página blanca y limpia con una franja coral detrás de ti, un corte en diagonal hacia el contenido y una lista sencilla con íconos.'
+  };
+  var NAMES = { coral: 'Coral Studio', blush: 'Blush Suite', tiles: 'Pink Tiles', ribbon: 'Ribbon' };
+  var qr = document.getElementById('qr').innerHTML;
+  document.querySelectorAll('[data-qr]').forEach(function (el) { el.innerHTML = qr; });
+  var btns = document.querySelectorAll('.tabs button'), looks = document.querySelectorAll('article.look');
+  function show(name) {
+    if (!ABOUT[name]) name = 'coral';
+    looks.forEach(function (l) { l.hidden = l.getAttribute('data-look') !== name; });
+    btns.forEach(function (b) { b.setAttribute('aria-pressed', b.getAttribute('data-look') === name ? 'true' : 'false'); });
+    document.getElementById('about').textContent = ABOUT[name];
+    document.getElementById('wantTxt').textContent = 'Quiero el diseño ' + NAMES[name];
+    document.getElementById('want').href = 'https://wa.me/14079609004?text=' + encodeURIComponent('Hola Angel, soy Mayra. Me encantó el diseño ' + NAMES[name] + ' para mi tarjeta. ¡Quiero ese!');
+  }
+  btns.forEach(function (b) {
+    b.addEventListener('click', function () {
+      var n = b.getAttribute('data-look');
+      if (location.hash !== '#' + n) location.hash = n; else show(n);
+      window.scrollTo(0, 0);
+    });
+  });
+  window.addEventListener('hashchange', function () { show(location.hash.slice(1)); });
+  show(location.hash.slice(1));
+})();
+</script>
+
+</body>
+</html>
