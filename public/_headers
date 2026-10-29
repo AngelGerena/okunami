@@ -21,3 +21,5 @@
 /disenos/*.vcf
   Content-Type: text/vcard; charset=utf-8
   Content-Disposition: attachment; filename=mayra-soto-burgos.vcf
+/proposals/*
+  X-Robots-Tag: noindex, nofollow, noai, noimageai

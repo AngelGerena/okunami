@@ -1,0 +1,350 @@
+/* Angélica Navedo vCard picker - OKUNAMI */
+/* Layout: sticky look picker on top, one phone-width card centered below; each look is a full card in Rentyl navy, gold and ivory */
+:root{
+  --page:#efe9df; --chrome:#ffffff; --ink:#14203d; --muted:#5d6478; --line:#ddd3c2; --gold:#b8892f;
+  --navy:#13203f; --navy-2:#0c1630; --ivory:#fbf8f2; --cream:#f3ece0; --gold-1:#d9b25e; --gold-2:#a77a26; --gold-3:#f1d796;
+  --display:"Cinzel","Trajan Pro",Georgia,serif; --serif:"Cormorant Garamond",Georgia,"Times New Roman",serif;
+  --script:"Pinyon Script","Snell Roundhand",cursive; --body:"Jost","Avenir Next","Segoe UI",system-ui,sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--page:#0f1220;--chrome:#181c2e;--ink:#eee7d8;--muted:#a9aec0;--line:#2c3150;--gold:#d9b25e;color-scheme:dark}}
+:root[data-theme="dark"]{--page:#0f1220;--chrome:#181c2e;--ink:#eee7d8;--muted:#a9aec0;--line:#2c3150;--gold:#d9b25e;color-scheme:dark}
+html{font-variant-emoji:text}
+*{box-sizing:border-box}
+body{background:var(--page);color:var(--ink);font-family:var(--body);overflow-x:hidden}
+a{color:inherit}
+
+/* Picker */
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--chrome)}
+.picker{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:var(--chrome);border-bottom:1px solid var(--line);
+  padding-block:8px 10px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.picker-in{max-width:760px;margin:0 auto;display:flex;flex-direction:column;gap:8px}
+.picker-top{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.brand{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.brand b{color:var(--ink);font-weight:600}
+.pick-btn{display:inline-flex;align-items:center;gap:6px;background:var(--gold);color:#fff;text-decoration:none;font-weight:600;font-size:13px;
+  padding:8px 14px;border-radius:999px;white-space:nowrap}
+.tabs{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}
+.tabs::-webkit-scrollbar{display:none}
+.tab{flex:0 0 auto;border:1px solid var(--line);background:transparent;color:var(--ink);font:500 13px var(--body);padding:8px 13px;border-radius:999px;cursor:pointer}
+.tab[aria-selected="true"]{background:var(--ink);color:var(--chrome);border-color:var(--ink)}
+.tab:focus-visible,.btn:focus-visible,.pick-btn:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.look-note{font-size:12.5px;color:var(--muted);margin:0;min-height:1.2em}
+
+.stage{padding-block:14px 40px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.card{max-width:420px;margin:0 auto;border-radius:26px;overflow:hidden;box-shadow:0 24px 60px -24px rgba(12,22,48,.45)}
+.card[hidden]{display:none!important}
+.card img{display:block;max-width:100%}
+
+/* Shared parts */
+.ico{width:18px;height:18px;flex:0 0 auto}
+.actions{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.btn{display:flex;align-items:center;justify-content:center;gap:7px;min-height:48px;border-radius:14px;text-decoration:none;font:600 13.5px var(--body);border:0;cursor:pointer}
+.save{grid-column:1/-1;min-height:52px;font-size:15px;letter-spacing:.02em}
+.rows{display:flex;flex-direction:column}
+.row{display:flex;align-items:center;gap:12px;padding:12px 0;text-decoration:none;min-width:0}
+.row span{min-width:0;overflow-wrap:anywhere;font-size:14.5px}
+.row small{display:block;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;opacity:.7}
+.gallery{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.gallery img{width:100%;aspect-ratio:1/1;object-fit:cover}
+.qr{display:flex;align-items:center;gap:14px}
+.qr img{width:104px;height:104px;background:#fff;padding:6px;border-radius:10px;flex:0 0 auto}
+.qr p{margin:0;font-size:13px;line-height:1.45}
+.own{display:flex;align-items:center;justify-content:center;gap:8px;min-height:46px;border-radius:999px;text-decoration:none;font:600 13px var(--body)}
+.credit{text-align:center;font-size:11px;letter-spacing:.08em;margin:0;padding:4px 0 18px}
+.credit a{text-decoration:none;font-weight:600}
+.wordmark{font-family:var(--display);letter-spacing:.32em;text-align:center;line-height:1}
+.wordmark .r1{font-weight:700;font-size:20px;display:block}
+.wordmark .r2{font-weight:500;font-size:10.5px;letter-spacing:.62em;display:block;margin-top:5px;padding-left:.62em}
+.sec-title{font-family:var(--display);font-size:12px;letter-spacing:.28em;text-align:center;margin:0}
+
+/* LOOK 1 — Gilded Gazebo: ivory, gold arch portrait */
+.l1{background:var(--ivory);color:var(--navy)}
+.l1 .hero{padding:22px 22px 0;text-align:center;background:linear-gradient(180deg,#fff 0%,var(--ivory) 100%)}
+.l1 .arch{position:relative;width:212px;margin:14px auto 0;aspect-ratio:212/262;border-radius:106px 106px 18px 18px;padding:5px;
+  background:linear-gradient(160deg,var(--gold-3),var(--gold-2) 45%,var(--gold-1) 70%,var(--gold-2))}
+.l1 .arch img{width:100%;height:100%;object-fit:cover;object-position:50% 18%;border-radius:101px 101px 14px 14px;background:#fff}
+.l1 h1{font-family:var(--display);font-weight:600;font-size:27px;letter-spacing:.06em;margin:18px 0 4px;text-wrap:balance}
+.l1 .role{font-family:var(--body);font-size:11.5px;font-weight:600;letter-spacing:.22em;color:var(--gold-2);margin:0}
+.l1 .diamond{display:flex;align-items:center;gap:10px;margin:14px auto 0;max-width:220px;color:var(--gold-1)}
+.l1 .diamond i{flex:1;height:1px;background:currentColor}
+.l1 .diamond b{width:7px;height:7px;background:currentColor;transform:rotate(45deg)}
+.l1 .tag{font-family:var(--serif);font-style:italic;font-size:17px;margin:10px 0 0;color:#3a4566}
+.l1 .body{padding:20px 20px 0;display:flex;flex-direction:column;gap:18px}
+.l1 .btn{background:#fff;color:var(--navy);box-shadow:inset 0 0 0 1px #e6dccb}
+.l1 .save{background:linear-gradient(180deg,#c99a3d,#a77a26);color:#fff;box-shadow:0 8px 18px -10px #a77a26}
+.l1 .rows .row{border-bottom:1px solid #ece3d3}
+.l1 .rows .row:last-child{border-bottom:0}
+.l1 .row .ico{color:#fff;background:var(--navy);width:34px;height:34px;padding:8px;border-radius:50%}
+.l1 .gallery img{border-radius:6px;border:5px solid #fff;box-shadow:0 6px 16px -10px rgba(19,32,63,.5)}
+.l1 .venues{display:flex;align-items:center;justify-content:center;gap:8px;min-height:48px;border-radius:12px;text-decoration:none;
+  background:var(--navy);color:var(--gold-3);font:600 12.5px var(--body);letter-spacing:.18em}
+.l1 .qr{background:#fff;border-radius:16px;padding:14px;box-shadow:inset 0 0 0 1px #ece3d3}
+.l1 .band{margin-top:22px;background:var(--navy);color:var(--gold-1);padding:18px 20px 6px;display:flex;flex-direction:column;gap:14px}
+.l1 .band .sec-title{color:var(--gold-1)}
+.l1 .own{background:transparent;color:var(--gold-3);box-shadow:inset 0 0 0 1px rgba(217,178,94,.55)}
+.l1 .credit{color:#b9bfd1}
+.l1 .credit a{color:var(--gold-1)}
+
+/* LOOK 2 — Midnight Ballroom: navy, full-bleed portrait, gold foil */
+.l2{background:var(--navy-2);color:#f4ecdc}
+.l2 .hero{position:relative;height:430px;overflow:hidden}
+.l2 .hero img{width:100%;height:100%;object-fit:cover;object-position:50% 12%}
+.l2 .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(12,22,48,0) 40%,rgba(12,22,48,.55) 66%,var(--navy-2) 96%)}
+.l2 .hero .top{position:absolute;left:0;right:0;top:0;z-index:2;padding:16px 18px;display:flex;justify-content:space-between;align-items:center;
+  background:linear-gradient(180deg,rgba(12,22,48,.55),rgba(12,22,48,0))}
+.l2 .chip{font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;padding:6px 10px;border-radius:999px;background:rgba(12,22,48,.55);color:var(--gold-3);border:1px solid rgba(241,215,150,.4)}
+.l2 .hero .who{position:absolute;left:0;right:0;bottom:16px;z-index:2;padding:0 22px}
+.l2 h1{font-family:var(--serif);font-weight:600;font-size:42px;line-height:1;margin:0;color:#fff}
+.l2 h1 em{display:block;font-style:normal;font-family:var(--display);font-size:20px;letter-spacing:.34em;margin-top:8px;
+  background:linear-gradient(90deg,var(--gold-3),var(--gold-1) 40%,var(--gold-2) 70%,var(--gold-3));-webkit-background-clip:text;background-clip:text;color:transparent}
+.l2 .role{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#c9cfe0;margin:10px 0 0}
+.l2 .body{padding:8px 18px 0;display:flex;flex-direction:column;gap:18px}
+.l2 .btn{background:#1b2a52;color:#f4ecdc;box-shadow:inset 0 0 0 1px rgba(217,178,94,.25)}
+.l2 .btn .ico{color:var(--gold-1)}
+.l2 .save{background:linear-gradient(100deg,#f1d796,#d9b25e 45%,#b8892f);color:var(--navy-2)}
+.l2 .save .ico{color:var(--navy-2)}
+.l2 .rows{background:#152448;border-radius:18px;padding:4px 16px}
+.l2 .rows .row+.row{border-top:1px solid rgba(217,178,94,.18)}
+.l2 .row .ico{color:var(--gold-1)}
+.l2 .sec-title{color:var(--gold-1)}
+.l2 .strip{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;margin:0 -18px;padding:0 18px 4px;scrollbar-width:none}
+.l2 .strip::-webkit-scrollbar{display:none}
+.l2 .strip figure{flex:0 0 72%;margin:0;scroll-snap-align:start;position:relative;border-radius:16px;overflow:hidden}
+.l2 .strip img{width:100%;aspect-ratio:4/3;object-fit:cover}
+.l2 .strip figcaption{position:absolute;left:10px;bottom:10px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;background:rgba(12,22,48,.72);padding:5px 9px;border-radius:999px;color:var(--gold-3)}
+.l2 .qr{border:1px solid rgba(217,178,94,.35);border-radius:18px;padding:14px}
+.l2 .qr p{color:#d5d9e6}
+.l2 .foot{padding:22px 18px 0;display:flex;flex-direction:column;gap:12px}
+.l2 .wordmark{color:#f4ecdc}
+.l2 .wordmark .r2{color:var(--gold-1)}
+.l2 .own{background:#f4ecdc;color:var(--navy-2)}
+.l2 .credit{color:#8f97b0}
+.l2 .credit a{color:var(--gold-1)}
+
+/* LOOK 3 — Venue Prints: polaroid collage hero, ivory + navy */
+.l3{background:var(--cream);color:var(--navy)}
+.l3 .collage{position:relative;height:300px;background:linear-gradient(180deg,#dfe9f2 0%,var(--cream) 100%);overflow:hidden}
+.l3 .print{position:absolute;background:#fff;padding:7px 7px 22px;box-shadow:0 12px 24px -12px rgba(19,32,63,.55);width:46%}
+.l3 .print img{width:100%;aspect-ratio:1/1;object-fit:cover}
+.l3 .p1{left:3%;top:18px;transform:rotate(-7deg)}
+.l3 .p2{right:3%;top:10px;transform:rotate(6deg)}
+.l3 .p3{left:12%;top:130px;transform:rotate(4deg);width:40%}
+.l3 .p4{right:9%;top:142px;transform:rotate(-5deg);width:40%}
+.l3 .head{position:relative;margin-top:-64px;padding:0 20px;text-align:center}
+.l3 .ring{width:136px;height:136px;margin:0 auto;border-radius:50%;padding:4px;background:conic-gradient(var(--gold-3),var(--gold-2),var(--gold-1),var(--gold-3));position:relative;z-index:2}
+.l3 .ring img{width:100%;height:100%;border-radius:50%;object-fit:cover;object-position:50% 15%;border:4px solid var(--cream);background:#fff}
+.l3 h1{font-family:var(--display);font-weight:700;font-size:25px;letter-spacing:.05em;margin:12px 0 2px}
+.l3 .role{margin:0;font-family:var(--serif);font-style:italic;font-size:19px;color:var(--gold-2)}
+.l3 .at{margin:4px 0 0;font-size:11.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--muted)}
+.l3 .body{padding:18px 18px 0;display:flex;flex-direction:column;gap:16px}
+.l3 .btn{background:var(--navy);color:#fff}
+.l3 .btn .ico{color:var(--gold-3)}
+.l3 .save{background:#fff;color:var(--navy);box-shadow:inset 0 0 0 1.5px var(--navy)}
+.l3 .save .ico{color:var(--gold-2)}
+.l3 .ticket{background:#fff;border-radius:18px;padding:4px 16px;position:relative}
+.l3 .ticket .row+.row{border-top:1px dashed #d8cbb4}
+.l3 .row .ico{color:var(--gold-2)}
+.l3 .quote{font-family:var(--serif);font-size:22px;line-height:1.25;text-align:center;margin:4px 6px;text-wrap:balance}
+.l3 .quote b{font-weight:600;color:var(--gold-2)}
+.l3 .venues{display:flex;align-items:center;justify-content:center;gap:8px;min-height:48px;border-radius:999px;text-decoration:none;background:linear-gradient(180deg,#c99a3d,#a77a26);color:#fff;font:600 13px var(--body);letter-spacing:.12em}
+.l3 .qr{background:#fff;border-radius:18px;padding:14px}
+.l3 .foot{margin-top:20px;padding:18px 18px 0;border-top:1px solid #e1d5c1;display:flex;flex-direction:column;gap:12px}
+.l3 .own{background:var(--navy);color:#fff}
+.l3 .credit{color:var(--muted)}
+.l3 .credit a{color:var(--gold-2)}
+
+/* LOOK 4 — Save the Date: wedding invitation stationery */
+.l4{background:#e9e1d3;color:var(--navy);padding:14px}
+.l4 .paper{background:var(--ivory);border-radius:16px;position:relative;padding:26px 20px 0;
+  box-shadow:inset 0 0 0 1px #e3d7c2, inset 0 0 0 9px var(--ivory), inset 0 0 0 10px #c9a560}
+.l4 .eyebrow{font-size:10.5px;letter-spacing:.3em;text-transform:uppercase;text-align:center;color:var(--gold-2);margin:0}
+.l4 .oval{width:150px;height:186px;margin:16px auto 0;border-radius:50%;padding:4px;background:linear-gradient(160deg,var(--gold-3),var(--gold-2))}
+.l4 .oval img{width:100%;height:100%;border-radius:50%;object-fit:cover;object-position:50% 16%;border:3px solid var(--ivory);background:#fff}
+.l4 h1{font-family:var(--script);font-weight:400;font-size:50px;line-height:1.05;text-align:center;margin:14px 0 0;color:var(--navy)}
+.l4 .role{text-align:center;font-family:var(--display);font-size:12.5px;letter-spacing:.24em;margin:8px 0 0}
+.l4 .of{text-align:center;font-family:var(--serif);font-style:italic;font-size:17px;margin:4px 0 0;color:var(--muted)}
+.l4 .flourish{display:block;width:150px;height:18px;margin:14px auto 0;color:var(--gold-1)}
+.l4 .invite{text-align:center;font-family:var(--serif);font-size:19px;line-height:1.35;margin:10px 4px 0;text-wrap:balance}
+.l4 .body{display:flex;flex-direction:column;gap:16px;padding-top:18px}
+.l4 .rsvp{display:flex;align-items:center;justify-content:center;gap:8px;min-height:52px;border-radius:999px;text-decoration:none;background:var(--navy);color:var(--gold-3);font:600 13px var(--body);letter-spacing:.22em}
+.l4 .btn{background:transparent;color:var(--navy);box-shadow:inset 0 0 0 1px #cdb88e}
+.l4 .save{background:linear-gradient(180deg,#c99a3d,#a77a26);color:#fff;box-shadow:none}
+.l4 .details{display:grid;grid-template-columns:1fr;gap:0;text-align:center}
+.l4 .details .row{justify-content:center;flex-direction:column;gap:2px;padding:10px 0}
+.l4 .details .row+.row{border-top:1px solid #eadfcb}
+.l4 .details small{color:var(--gold-2);opacity:1}
+.l4 .menu{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.l4 .menu img{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:999px 999px 6px 6px}
+.l4 .qr{justify-content:center;border-top:1px solid #eadfcb;padding-top:16px}
+.l4 .foot{padding:18px 0 0;display:flex;flex-direction:column;gap:12px}
+.l4 .own{color:var(--navy);box-shadow:inset 0 0 0 1px var(--navy)}
+.l4 .credit{color:var(--muted)}
+.l4 .credit a{color:var(--gold-2)}
+
+/* LOOK 5 — Palm Breeze: Florida resort greens, big curve divider, frond line art */
+.l5{background:#f6f3ea;color:#1c3b30}
+.l5 .hero{position:relative;background:linear-gradient(170deg,#2f6b55,#1c4a3b 70%);color:#f6f3ea;padding:20px 20px 0;text-align:center;overflow:hidden}
+.l5 .frond{position:absolute;width:150px;height:150px;color:rgba(241,215,150,.35)}
+.l5 .frond.a{left:-34px;top:-20px;transform:rotate(-20deg)}
+.l5 .frond.b{right:-40px;top:70px;transform:scaleX(-1) rotate(-30deg)}
+.l5 .kicker{position:relative;margin:0;font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold-3)}
+.l5 .photo{position:relative;width:180px;margin:16px auto 0;aspect-ratio:4/5;border-radius:90px 90px 90px 90px/70px 70px 70px 70px;overflow:hidden;border:4px solid #f1d796;box-shadow:0 18px 30px -16px rgba(0,0,0,.6);z-index:2}
+.l5 .photo img{width:100%;height:100%;object-fit:cover;object-position:50% 15%;background:#fff}
+.l5 .curve{display:block;width:calc(100% + 40px);height:70px;margin:-48px -20px 0;position:relative;z-index:1;color:#f6f3ea}
+.l5 .head{text-align:center;padding:4px 20px 0}
+.l5 h1{font-family:var(--serif);font-weight:600;font-size:36px;line-height:1.05;margin:0}
+.l5 .role{margin:6px 0 0;font-size:12px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#a77a26}
+.l5 .body{padding:18px 18px 0;display:flex;flex-direction:column;gap:16px}
+.l5 .btn{background:#e7efe9;color:#1c4a3b}
+.l5 .save{background:#1c4a3b;color:#f6f3ea}
+.l5 .save .ico{color:var(--gold-3)}
+.l5 .rows{background:#fff;border-radius:20px;padding:4px 16px}
+.l5 .rows .row+.row{border-top:1px solid #e9e4d6}
+.l5 .row .ico{color:#2f6b55}
+.l5 .sec-title{color:#2f6b55}
+.l5 .gallery img{border-radius:18px}
+.l5 .gallery img:first-child{border-radius:60px 18px 18px 18px}
+.l5 .gallery img:last-child{border-radius:18px 18px 60px 18px}
+.l5 .qr{background:#fff;border-radius:20px;padding:14px}
+.l5 .foot{margin-top:20px;background:#1c4a3b;color:#f6f3ea;padding:18px 18px 0;display:flex;flex-direction:column;gap:12px}
+.l5 .foot .wordmark .r2{color:var(--gold-1)}
+.l5 .own{background:#f1d796;color:#1c4a3b}
+.l5 .credit{color:#b7cbbf}
+.l5 .credit a{color:#f1d796}
+
+/* LOOK 6 — Marble Concierge: white marble, resort keycard header */
+.l6{color:var(--navy);background:
+  radial-gradient(120% 60% at 15% 10%,rgba(255,255,255,.95),rgba(255,255,255,0) 60%),
+  linear-gradient(118deg,transparent 30%,rgba(160,150,140,.22) 31%,transparent 33%,transparent 58%,rgba(190,170,130,.28) 59%,transparent 61%),
+  linear-gradient(64deg,transparent 45%,rgba(150,145,150,.18) 46%,transparent 48%),
+  linear-gradient(180deg,#f7f5f2,#ece8e2)}
+.l6 .wrap{padding:18px 18px 0;display:flex;flex-direction:column;gap:16px}
+.l6 .keycard{position:relative;background:linear-gradient(135deg,#1b2b55,#0c1630 70%);border-radius:20px;padding:16px;color:#f4ecdc;
+  box-shadow:0 22px 34px -20px rgba(12,22,48,.8), inset 0 0 0 1px rgba(217,178,94,.5);display:grid;grid-template-columns:96px 1fr;gap:14px;align-items:center;overflow:hidden}
+.l6 .keycard img{width:96px;height:120px;object-fit:cover;object-position:50% 15%;border-radius:12px;border:2px solid var(--gold-1);background:#fff}
+.l6 .keycard .who{min-width:0}
+.l6 .keycard .lbl{font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:var(--gold-1);margin:0}
+.l6 h1{font-family:var(--display);font-size:20px;font-weight:600;letter-spacing:.04em;line-height:1.2;margin:6px 0 4px;color:#fff;overflow-wrap:anywhere}
+.l6 .keycard .role{margin:0;font-size:12.5px;color:#cdd3e3}
+.l6 .chipline{grid-column:1/-1;display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(217,178,94,.35);padding-top:10px;font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-3)}
+.l6 .chip-gold{width:34px;height:26px;border-radius:5px;background:linear-gradient(135deg,#f1d796,#b8892f);box-shadow:inset 0 0 0 1px rgba(0,0,0,.2)}
+.l6 .welcome{font-family:var(--serif);font-size:21px;line-height:1.3;text-align:center;margin:2px 8px;text-wrap:balance}
+.l6 .btn{background:rgba(255,255,255,.85);color:var(--navy);box-shadow:inset 0 0 0 1px #d9d1c3}
+.l6 .btn .ico{color:#a77a26}
+.l6 .save{background:var(--navy);color:#fff;box-shadow:none}
+.l6 .save .ico{color:var(--gold-1)}
+.l6 .desk{background:rgba(255,255,255,.8);border-radius:18px;padding:4px 16px;box-shadow:inset 0 0 0 1px #e2dbcf}
+.l6 .desk .row+.row{border-top:1px solid #e8e1d4}
+.l6 .row .ico{color:#a77a26}
+.l6 .sec-title{color:#a77a26}
+.l6 .mosaic{display:grid;grid-template-columns:2fr 1fr;grid-template-rows:1fr 1fr;gap:8px}
+.l6 .mosaic img{width:100%;height:100%;object-fit:cover;border-radius:12px;aspect-ratio:1/1}
+.l6 .mosaic img:first-child{grid-row:1/3;aspect-ratio:auto}
+.l6 .qr{background:rgba(255,255,255,.85);border-radius:18px;padding:14px;box-shadow:inset 0 0 0 1px #e2dbcf}
+.l6 .foot{padding:20px 18px 0;display:flex;flex-direction:column;gap:12px}
+.l6 .own{background:var(--navy);color:#fff}
+.l6 .credit{color:#6c7184}
+.l6 .credit a{color:#a77a26}
+
+/* LOOK 7 — Golden Hour: sunset over the lawn ceremony, glass panels */
+.l7{position:relative;color:#fff;background:#2b1d3a}
+.l7 .bg{position:absolute;inset:0;background:url(../images/lawn.jpg) center/cover}
+.l7 .bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,170,90,.55) 0%,rgba(214,96,98,.62) 30%,rgba(70,36,80,.86) 58%,rgba(19,25,52,.97) 82%)}
+.l7 .inner{position:relative;padding:22px 18px 0;display:flex;flex-direction:column;gap:16px}
+.l7 .top{text-align:center}
+.l7 .kicker{margin:0;font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:#fff4dc}
+.l7 .round{width:150px;height:150px;margin:14px auto 0;border-radius:50%;overflow:hidden;border:3px solid rgba(255,255,255,.85);box-shadow:0 0 0 8px rgba(255,255,255,.18)}
+.l7 .round img{width:100%;height:100%;object-fit:cover;object-position:50% 15%;background:#fff}
+.l7 h1{font-family:var(--serif);font-weight:600;font-size:38px;line-height:1;margin:14px 0 0;text-shadow:0 2px 14px rgba(60,20,40,.5)}
+.l7 .role{margin:8px 0 0;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#ffe7c2}
+.l7 .glass{background:rgba(255,255,255,.14);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.28);border-radius:20px}
+.l7 .actions .btn{background:rgba(255,255,255,.16);color:#fff;border:1px solid rgba(255,255,255,.3);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+.l7 .save{background:linear-gradient(100deg,#ffd9a0,#f1a873)!important;color:#3a1d2c!important;border:0!important}
+.l7 .rows.glass{padding:4px 16px}
+.l7 .rows .row+.row{border-top:1px solid rgba(255,255,255,.2)}
+.l7 .row .ico{color:#ffd9a0}
+.l7 .sec-title{color:#ffd9a0}
+.l7 .gallery img{border-radius:14px}
+.l7 .qr.glass{padding:14px}
+.l7 .foot{display:flex;flex-direction:column;gap:12px;padding-top:4px}
+.l7 .own{background:#fff;color:#2b1d3a}
+.l7 .credit{color:#c9c3d8}
+.l7 .credit a{color:#ffd9a0}
+
+/* LOOK 8 — Wax Seal: navy velvet, ivory envelope with gold monogram seal */
+.l8{background:radial-gradient(120% 80% at 50% 0%,#22356a,#0c1630 70%);color:var(--navy);padding:18px 14px 0}
+.l8 .env{position:relative;background:var(--ivory);border-radius:14px;overflow:hidden;box-shadow:0 20px 40px -18px rgba(0,0,0,.7)}
+.l8 .flap{height:120px;background:linear-gradient(180deg,#efe6d5,#e4d6bc);clip-path:polygon(0 0,100% 0,50% 100%)}
+.l8 .seal{position:absolute;left:50%;top:84px;transform:translateX(-50%);width:76px;height:76px;border-radius:50%;
+  background:radial-gradient(circle at 35% 30%,#f1d796,#c99a3d 45%,#8f6418 100%);box-shadow:0 6px 14px -4px rgba(80,50,10,.6), inset 0 0 0 5px rgba(143,100,24,.35);
+  display:grid;place-items:center;font-family:var(--display);font-weight:700;font-size:22px;color:#5a3d0c;letter-spacing:.04em}
+.l8 .letter{padding:52px 20px 22px;text-align:center;display:flex;flex-direction:column;gap:16px}
+.l8 .who{display:flex;flex-direction:column;align-items:center}
+.l8 .pic{width:120px;height:120px;border-radius:50%;object-fit:cover;object-position:50% 15%;border:3px solid #fff;box-shadow:0 0 0 1px #c9a560;background:#fff}
+.l8 h1{font-family:var(--script);font-weight:400;font-size:46px;line-height:1.05;margin:10px 0 0}
+.l8 .role{margin:4px 0 0;font-family:var(--display);font-size:12px;letter-spacing:.22em}
+.l8 .of{margin:4px 0 0;font-family:var(--serif);font-style:italic;font-size:17px;color:var(--muted)}
+.l8 .msg{font-family:var(--serif);font-size:19px;line-height:1.35;margin:0 4px;text-wrap:balance}
+.l8 .btn{background:#fff;color:var(--navy);box-shadow:inset 0 0 0 1px #d8c9a8}
+.l8 .save{background:var(--navy);color:var(--gold-3);box-shadow:none}
+.l8 .rows{text-align:left;border-top:1px solid #e6dac4;border-bottom:1px solid #e6dac4}
+.l8 .rows .row+.row{border-top:1px solid #efe6d5}
+.l8 .row .ico{color:#a77a26}
+.l8 .gallery img{border-radius:4px;border:4px solid #fff;box-shadow:0 0 0 1px #e1d4ba}
+.l8 .qr{justify-content:center;text-align:left}
+.l8 .foot{padding:18px 4px 0;display:flex;flex-direction:column;gap:12px}
+.l8 .foot .wordmark{color:#f4ecdc}
+.l8 .foot .wordmark .r2{color:var(--gold-1)}
+.l8 .own{color:var(--gold-3);box-shadow:inset 0 0 0 1px rgba(241,215,150,.55)}
+.l8 .credit{color:#9aa2bb}
+.l8 .credit a{color:var(--gold-1)}
+
+/* LOOK 9 — Champagne Blush: blush and rose gold, rising bubbles, slanted divider */
+.l9{background:#fff;color:#4a2b2e}
+.l9 .hero{position:relative;padding:22px 20px 70px;text-align:center;
+  background:
+   radial-gradient(circle at 12% 30%,rgba(255,255,255,.9) 0 3px,transparent 4px),
+   radial-gradient(circle at 22% 62%,rgba(255,255,255,.7) 0 5px,transparent 6px),
+   radial-gradient(circle at 84% 22%,rgba(255,255,255,.85) 0 4px,transparent 5px),
+   radial-gradient(circle at 90% 55%,rgba(255,255,255,.6) 0 7px,transparent 8px),
+   radial-gradient(circle at 72% 78%,rgba(255,255,255,.8) 0 3px,transparent 4px),
+   radial-gradient(circle at 30% 85%,rgba(255,255,255,.6) 0 4px,transparent 5px),
+   linear-gradient(165deg,#f8e4dc,#efcfc4 55%,#e4b8a8);
+  clip-path:polygon(0 0,100% 0,100% 86%,0 100%)}
+.l9 .kicker{margin:0;font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:#9a5a4c}
+.l9 .ring{width:150px;height:150px;margin:14px auto 0;border-radius:50%;padding:4px;background:linear-gradient(140deg,#f6d5c5,#b76e5d 50%,#f0c2ae)}
+.l9 .ring img{width:100%;height:100%;border-radius:50%;object-fit:cover;object-position:50% 15%;border:3px solid #fff;background:#fff}
+.l9 h1{font-family:var(--serif);font-weight:600;font-size:38px;line-height:1.05;margin:12px 0 0;color:#3d2226}
+.l9 .role{margin:6px 0 0;font-size:12px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#9a5a4c}
+.l9 .body{padding:0 18px;margin-top:-34px;position:relative;display:flex;flex-direction:column;gap:16px}
+.l9 .btn{background:#fbf1ed;color:#6e3b33}
+.l9 .btn .ico{color:#b76e5d}
+.l9 .save{background:linear-gradient(100deg,#d59a85,#b76e5d);color:#fff}
+.l9 .save .ico{color:#fff}
+.l9 .toast{font-family:var(--serif);font-style:italic;font-size:20px;line-height:1.3;text-align:center;margin:2px 10px;color:#6e3b33;text-wrap:balance}
+.l9 .rows{background:#fbf1ed;border-radius:20px;padding:4px 16px}
+.l9 .rows .row+.row{border-top:1px solid #f0dcd3}
+.l9 .row .ico{color:#b76e5d}
+.l9 .sec-title{color:#b76e5d}
+.l9 .gallery img{border-radius:999px 999px 16px 16px}
+.l9 .qr{background:#fbf1ed;border-radius:20px;padding:14px}
+.l9 .foot{margin-top:20px;padding:18px 18px 0;background:#3d2226;color:#f8e4dc;display:flex;flex-direction:column;gap:12px}
+.l9 .foot .wordmark .r2{color:#e4b8a8}
+.l9 .own{background:#f8e4dc;color:#3d2226}
+.l9 .credit{color:#c7a9a3}
+.l9 .credit a{color:#f0c2ae}
+
+@media (max-width:360px){.l5 h1,.l7 h1,.l9 h1{font-size:31px}.l8 h1{font-size:40px}.l6 .keycard{grid-template-columns:80px 1fr}.l6 .keycard img{width:80px;height:100px}.l2 h1{font-size:36px}.l1 h1{font-size:23px}.l4 h1{font-size:42px}}
+@media (prefers-reduced-motion:no-preference){.card:not([hidden]){animation:rise .35s ease-out}@keyframes rise{from{transform:translateY(8px)}to{transform:none}}}
+
+.brand a{text-decoration:none}
+.fm-foot{max-width:420px;margin:0 auto;padding-block:0 32px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));text-align:center}
+.fm-hi{font-size:14px;line-height:1.5;margin:0 0 14px}
+.fm-co{font-size:12.5px;color:var(--muted);margin:4px 0;overflow-wrap:anywhere}
+.fm-co a{color:var(--gold);text-decoration:none}
+
+.pick-group{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.pick-lbl{font-size:12.5px;font-weight:600;color:var(--ink)}
+.pick-btn{padding:8px 12px}
+.pick-btn.alt{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1.5px var(--gold)}
+.own-sms{display:block;text-align:center;font:500 12.5px var(--body);color:inherit;opacity:.85;text-decoration:underline;text-underline-offset:3px;padding:2px 0 4px;min-height:24px}
