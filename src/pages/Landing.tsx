@@ -165,7 +165,7 @@ export default function Landing() {
       <section className="mx-layouts" id="layouts">
         <h2 className="mx-h2">{rich(t("Swipe the <x1>wall</x1> of designs."), { x1: (c) => <span className="pink">{c}</span> })}</h2>
         <div className="mx-strip" role="region" aria-label={t("Design gallery. Scrolls sideways. Each design has an Open demo link.")} tabIndex={0}>
-          {[...TEMPLATES].filter((t) => !HIDE_ON_LANDING.has(t.id) && !RETIRED.has(t.id)).sort((a, b) => galleryRank(a.id, a.niche) - galleryRank(b.id, b.niche)).map((tpl) => {
+          {[...TEMPLATES].filter((t) => !t.hidden && !HIDE_ON_LANDING.has(t.id) && !RETIRED.has(t.id)).sort((a, b) => galleryRank(a.id, a.niche) - galleryRank(b.id, b.niche)).map((tpl) => {
             const demo = demoCardFor(base, tpl.id);
             const hit = demo.design && demo.niche ? { niche: demo.niche, design: demo.design } : null;
             return (

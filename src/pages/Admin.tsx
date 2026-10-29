@@ -2,8 +2,9 @@ import { useCallback, useEffect, useState, type ReactNode } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import {
   ArrowLeft, ArrowRightLeft, BarChart3, ChevronDown, ChevronUp, ExternalLink, Eye, EyeOff, LayoutGrid, Loader2,
-  LogOut, Pencil, Search, ShieldCheck, Users, X,
+  LogOut, Pencil, Search, ShieldCheck, Users, Wand2, X,
 } from 'lucide-react';
+import StudioTab from '../components/admin/StudioTab';
 import { TEAM, cardLimit } from '../lib/plans';
 import { adminApi, type AdminCard, type AdminLog, type AdminStats, type AdminUser, type PlanHow, type PlanId } from '../lib/adminApi';
 import { useAuth } from '../lib/auth';
@@ -438,18 +439,19 @@ function TransferDialog({ card, ctx }: { card: AdminCard; ctx: Ctx }) {
 }
 
 /* ------------------------------------------------------------------ the page */
-type Tab = 'overview' | 'customers' | 'cards';
+type Tab = 'overview' | 'customers' | 'cards' | 'studio';
 const TABS: { id: Tab; label: string; icon: typeof Users }[] = [
   { id: 'overview', label: 'Overview', icon: BarChart3 },
   { id: 'customers', label: 'Customers', icon: Users },
   { id: 'cards', label: 'Cards', icon: LayoutGrid },
+  { id: 'studio', label: 'Studio', icon: Wand2 },
 ];
 
 export default function Admin() {
   const { session, demo } = useAuth();
   const [params, setParams] = useSearchParams();
   const raw = params.get('tab');
-  const tab: Tab = raw === 'customers' || raw === 'cards' ? raw : 'overview';
+  const tab: Tab = raw === 'customers' || raw === 'cards' || raw === 'studio' ? raw : 'overview';
   const setTab = (t: Tab) => setParams(t === 'overview' ? {} : { tab: t }, { replace: true });
   const [dialog, setDialog] = useState<Dialog>(null);
   const [notice, setNotice] = useState<{ text: string; bad: boolean } | null>(null);
@@ -492,6 +494,7 @@ export default function Admin() {
           {tab === 'overview' && <Overview rev={rev} />}
           {tab === 'customers' && <Customers ctx={ctx} rev={rev} />}
           {tab === 'cards' && <CardsTab ctx={ctx} rev={rev} />}
+          {tab === 'studio' && <StudioTab flash={flash} rev={rev} />}
         </div>
       </main>
 

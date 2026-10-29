@@ -1,0 +1,163 @@
+/* =================================================================
+   OKUNAMI Studio design (template 'studio'). Everything is driven by
+   classes from data.studio: st--<hero>, st--motif-<x>, st--motion-<x>.
+   Only theme variables (--c-*, --t-*) paint color, so every client's
+   colors, fonts and buttons apply without new CSS.
+   ================================================================= */
+.tpl-studio { background: var(--c-pageBg); }
+.st__hero { position: relative; isolation: isolate; background: var(--c-heroBand); color: var(--c-onBand); overflow: hidden; }
+.st__hero::before { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; opacity: .16; }
+.st__div { position: absolute; left: 0; right: 0; bottom: -1px; width: 100%; height: 56px; display: block; z-index: 2; }
+.st__logo { display: block; object-fit: contain; }
+.st__logo--sm { width: 52px; height: 52px; }
+.st__logo--lg { width: min(62%, 240px); height: 78px; margin: 0 auto; }
+.st__img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 14%; }
+
+/* identity */
+.st__id { display: flex; flex-direction: column; gap: 4px; }
+.st__name { font-size: clamp(32px, 9.5vw, 42px); }
+.st__title { margin-top: 2px; }
+.st__biz { margin-top: 2px; }
+.st__tag { max-width: 32ch; }
+.st__below { padding-top: 14px; }
+.st__below .st__id { align-items: center; text-align: center; }
+.st__hero .fc-name, .st__hero .fc-title, .st__hero .fc-sub { color: var(--c-onBand); }
+.st__hero .fc-biz, .st__hero .fc-kicker { color: var(--c-onBand); opacity: .82; }
+
+/* ---------- hero: ring (round photo with an accent ring) */
+.st__hero--ring { display: flex; flex-direction: column; align-items: center; gap: 14px; padding: 18px 20px 64px; }
+.st__hero--ring .st__logo { align-self: flex-start; }
+.st__ring { width: 200px; height: 200px; max-width: 100%; border-radius: 50%; padding: 6px; background: var(--c-accentDetail); box-shadow: 0 24px 46px -26px rgba(var(--shadow-rgb), .75); }
+.st__ring .st__img, .st__ring .fc-photo { border-radius: 50%; }
+
+/* ---------- hero: bleed (full photo, name over it) */
+.st__hero--bleed { min-height: 460px; display: flex; flex-direction: column; justify-content: flex-end; }
+.st__bleedImg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 18%; z-index: -2; }
+.st__shade { position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, transparent 30%, color-mix(in srgb, var(--c-heroBand) 82%, transparent) 72%, var(--c-heroBand) 100%); }
+.st__over { padding: 20px 20px 72px; display: flex; flex-direction: column; gap: 12px; }
+.st--bleed .st__hero::before { z-index: 0; }
+
+/* ---------- hero: split (name left, photo right on the band) */
+.st__hero--split { display: grid; grid-template-columns: minmax(0, 1fr) 42%; gap: 14px; align-items: end; padding: 20px 20px 70px; }
+.st__splitTxt { display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+.st__splitTxt .st__name { font-size: clamp(28px, 8vw, 36px); }
+.st__splitPh { aspect-ratio: 3 / 4; max-width: 100%; border-radius: var(--r); overflow: hidden; padding: 5px; background: var(--c-cardBg); transform: rotate(2deg); box-shadow: 0 22px 40px -24px rgba(var(--shadow-rgb), .8); }
+.st__splitPh .st__img, .st__splitPh .fc-photo { border-radius: calc(var(--r) - 4px); }
+
+/* ---------- hero: band (logo leads, photo overlaps the edge) */
+.st__hero--band { display: flex; flex-direction: column; align-items: center; justify-content: flex-start; gap: 8px; min-height: 236px; padding: 24px 20px 118px; text-align: center; }
+.st__bandBiz { font-family: var(--f-display); font-size: 28px; line-height: 1.1; color: var(--c-onBand); text-wrap: balance; }
+.st__bandBiz--sm { font-family: var(--f-body); font-size: 12px; font-weight: 800; letter-spacing: .2em; text-transform: uppercase; opacity: .85; }
+.st__overlap { display: flex; justify-content: center; margin-top: -96px; position: relative; z-index: 3; }
+.st__overlap .st__ring { width: 150px; height: 150px; padding: 5px; }
+
+/* ---------- hero: arch (arched portrait) */
+.st__hero--arch { display: flex; flex-direction: column; align-items: center; gap: 14px; padding: 18px 20px 52px; }
+.st__hero--arch .st__logo { align-self: center; }
+.st__arch { width: 220px; max-width: 100%; aspect-ratio: 220 / 290; padding: 7px; border-radius: 999px 999px var(--r) var(--r); background: var(--c-cardBg); box-shadow: 0 24px 44px -26px rgba(var(--shadow-rgb), .7); }
+.st__arch .st__img, .st__arch .fc-photo { border-radius: 999px 999px calc(var(--r) - 4px) calc(var(--r) - 4px); }
+
+/* ---------- body */
+.st__body { padding-top: 18px; }
+.st--bleed .st__body, .st--split .st__body { padding-top: 6px; }
+.st__main { font-size: 1.05em; }
+
+/* ---------- patterns: drawn in the band's text color at low strength */
+.st--motif-dots .st__hero::before { background-image: radial-gradient(var(--c-onBand) 1.4px, transparent 1.6px); background-size: 18px 18px; }
+.st--motif-grid .st__hero::before { background-image: linear-gradient(var(--c-onBand) 1px, transparent 1px), linear-gradient(90deg, var(--c-onBand) 1px, transparent 1px); background-size: 26px 26px; opacity: .12; }
+.st--motif-stripes .st__hero::before { background-image: repeating-linear-gradient(-35deg, var(--c-onBand) 0 10px, transparent 10px 34px); opacity: .1; }
+.st--motif-rays .st__hero::before { background: repeating-conic-gradient(from 0deg at 50% -10%, var(--c-onBand) 0 4deg, transparent 4deg 16deg); opacity: .12; }
+.st--motif-waves .st__hero::before { background:
+  radial-gradient(120% 60% at 10% 110%, var(--c-accentDetail), transparent 60%),
+  radial-gradient(90% 50% at 100% 0%, var(--c-onBand), transparent 55%); opacity: .26; }
+.st--motif-sparkle .st__hero::before { background-image:
+  radial-gradient(circle at 18% 22%, var(--c-onBand) 0 1.6px, transparent 2.4px),
+  radial-gradient(circle at 72% 14%, var(--c-onBand) 0 1.2px, transparent 2px),
+  radial-gradient(circle at 86% 62%, var(--c-onBand) 0 1.8px, transparent 2.6px),
+  radial-gradient(circle at 34% 78%, var(--c-onBand) 0 1.1px, transparent 1.9px),
+  linear-gradient(135deg, transparent 40%, color-mix(in srgb, var(--c-accentDetail) 55%, transparent) 50%, transparent 60%);
+  background-size: 140px 140px, 110px 110px, 170px 170px, 90px 90px, 100% 100%; opacity: .5; }
+.st--motif-grain .st__hero::before { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.9'/%3E%3C/svg%3E"); opacity: .18; mix-blend-mode: overlay; }
+
+/* ---------- motion */
+@media (prefers-reduced-motion: no-preference) {
+  .st--motion-calm .st__hero > *, .st--motion-lively .st__hero > *, .st--motion-calm .st__below, .st--motion-lively .st__below { animation: st-rise .7s cubic-bezier(.2, .7, .2, 1) both; }
+  .st--motion-calm .st__sec, .st--motion-lively .st__sec, .st--motion-calm .st__acts, .st--motion-lively .st__acts { animation: st-rise .7s .12s cubic-bezier(.2, .7, .2, 1) both; }
+  .st--motion-lively .st__ring, .st--motion-lively .st__arch, .st--motion-lively .st__splitPh { animation: st-rise .7s both, st-float 6s 1s ease-in-out infinite; }
+  .st--motion-lively .st__main { position: relative; overflow: hidden; }
+  .st--motion-lively .st__main::after { content: ""; position: absolute; inset: 0; background: linear-gradient(100deg, transparent 30%, rgba(255, 255, 255, .28) 50%, transparent 70%); transform: translateX(-120%); animation: st-shine 3.6s 1.2s ease-in-out infinite; pointer-events: none; }
+  .st--motion-lively.st--motif-sparkle .st__hero::before, .st--motion-calm.st--motif-sparkle .st__hero::before { animation: st-twinkle 5s ease-in-out infinite; }
+}
+@keyframes st-rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+@keyframes st-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+@keyframes st-shine { 0%, 60% { transform: translateX(-120%); } 100% { transform: translateX(120%); } }
+@keyframes st-twinkle { 0%, 100% { opacity: .5; } 50% { opacity: .3; } }
+
+/* ---------- small phones */
+@media (max-width: 360px) {
+  .st__hero--split { grid-template-columns: 1fr; }
+  .st__splitPh { width: 70%; justify-self: end; transform: rotate(2deg); }
+  .st__ring { width: 170px; height: 170px; }
+}
+
+/* ---------- editor: Studio step */
+.stu-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+.stu-opt { display: flex; flex-direction: column; gap: 2px; min-height: 52px; padding: 10px 12px; border-radius: 12px; border: 1.5px solid var(--line-2, #d9dde5); background: var(--white, #fff); text-align: left; cursor: pointer; font: inherit; }
+.stu-opt b { font-size: 14px; }
+.stu-opt small { font-size: 12px; color: var(--muted, #667); }
+.stu-opt[aria-pressed="true"] { border-color: var(--ink, #111); box-shadow: inset 0 0 0 1px var(--ink, #111); }
+.stu-order { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+.stu-order li { display: flex; align-items: center; gap: 8px; min-height: 48px; padding: 4px 6px 4px 12px; border-radius: 12px; background: var(--white, #fff); border: 1px solid var(--line-2, #d9dde5); }
+.stu-order li span { flex: 1; font-weight: 600; }
+.stu-order li.off span { color: var(--muted, #667); text-decoration: line-through; }
+
+/* ---------- the client's brand brief page (/studio/brief/:token) */
+.sb { min-height: 100dvh; max-width: 680px; margin: 0 auto; padding: 14px max(16px, env(safe-area-inset-left, 0px)) 56px max(16px, env(safe-area-inset-right, 0px)); display: flex; flex-direction: column; gap: 16px; }
+.sb-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.sb-intro { display: flex; flex-direction: column; gap: 8px; padding: 6px 2px 4px; }
+.sb-intro h1, .sb-card h1 { font-family: var(--f-disp); font-size: clamp(28px, 7vw, 38px); line-height: 1.08; margin: 0; color: var(--ink); text-wrap: balance; }
+.sb-intro p { margin: 0; color: var(--muted); font-size: 15.5px; max-width: 58ch; }
+.sb-eyebrow { font-size: 12px !important; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; color: var(--ink) !important; }
+.sb-saved { min-height: 18px; font-size: 13px !important; }
+.sb-card { background: var(--white); border-radius: 22px; padding: 26px 22px; box-shadow: var(--shadow); display: flex; flex-direction: column; gap: 12px; }
+.sb-load { flex-direction: row; align-items: center; gap: 10px; }
+.sb-done { align-items: flex-start; }
+.sb-done__ic { width: 52px; height: 52px; border-radius: 50%; display: grid; place-items: center; background: var(--ink); color: #fff; }
+.sb-step { background: var(--white); border-radius: 20px; border: 1px solid var(--line-2); padding: 18px 16px; display: flex; flex-direction: column; gap: 14px; }
+.sb-step > header { display: flex; gap: 12px; align-items: flex-start; }
+.sb-step h2 { margin: 0; font-size: 18px; color: var(--ink); }
+.sb-step header p { margin: 4px 0 0; font-size: 14px; color: var(--muted); }
+.sb-n { flex: none; width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center; background: var(--ink); color: #fff; font-weight: 800; font-size: 14px; }
+.sb-step__b { display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+.sb-two { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.sb-upl { display: flex; flex-direction: column; gap: 6px; }
+.sb-upl small { font-size: 12.5px; color: var(--muted); }
+.sb-upl__row { display: flex; flex-wrap: wrap; gap: 10px; }
+.sb-thumb { position: relative; width: 92px; height: 92px; margin: 0; border-radius: 14px; overflow: hidden; background: var(--line-2); }
+.sb-thumb img { width: 100%; height: 100%; object-fit: cover; }
+.sb-thumb__x { position: absolute; top: 4px; right: 4px; width: 32px; height: 32px; border-radius: 50%; border: 0; display: grid; place-items: center; background: rgba(0, 0, 0, .62); color: #fff; cursor: pointer; }
+.sb-add { position: relative; width: 92px; height: 92px; border-radius: 14px; border: 1.5px dashed var(--line); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; padding: 6px; text-align: center; font-size: 12px; font-weight: 700; color: var(--ink); cursor: pointer; background: var(--white); }
+.sb-add input { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
+.sb-add:focus-within { outline: 2px solid var(--ink); outline-offset: 2px; }
+.sb-check { display: flex; align-items: center; gap: 10px; font-size: 14.5px; min-height: 44px; cursor: pointer; }
+.sb-check input { width: 20px; height: 20px; }
+.sb-colors { display: flex; flex-wrap: wrap; gap: 10px; }
+.sb-color { display: flex; align-items: center; gap: 8px; min-height: 48px; padding: 4px 12px 4px 4px; border-radius: 14px; border: 1.5px solid var(--line); background: var(--white); font-size: 13.5px; font-weight: 700; color: var(--ink); font-variant-numeric: tabular-nums; }
+.sb-color input { width: 40px; height: 40px; padding: 0; border: 0; border-radius: 10px; background: none; cursor: pointer; }
+.sb-pal { display: flex; flex-direction: column; gap: 6px; }
+.sb-pal small { font-size: 12.5px; color: var(--muted); }
+.sb-pal__row { display: flex; gap: 8px; flex-wrap: wrap; }
+.sb-pal__row button { width: 44px; height: 44px; border-radius: 12px; border: 2px solid var(--white); box-shadow: 0 0 0 1px var(--line); cursor: pointer; }
+.sb-vibes { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.sb-vibe { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; padding: 10px; border-radius: 14px; border: 1.5px solid var(--line); background: var(--white); text-align: left; cursor: pointer; font: inherit; min-width: 0; }
+.sb-vibe b { font-size: 14px; color: var(--ink); }
+.sb-vibe small { font-size: 12px; color: var(--muted); line-height: 1.35; }
+.sb-vibe__sw { width: 100%; height: 34px; border-radius: 9px; margin-bottom: 4px; }
+.sb-vibe.on { border-color: var(--ink); box-shadow: inset 0 0 0 1.5px var(--ink); }
+.sb-send { display: flex; flex-direction: column; align-items: stretch; gap: 10px; padding-top: 4px; }
+.sb-send .btn { width: 100%; }
+.sb-err { margin: 0; padding: 12px 14px; border-radius: 12px; background: #FDECEC; color: #9B1C1C; font-size: 14px; font-weight: 600; }
+@media (max-width: 560px) {
+  .sb-two { grid-template-columns: 1fr; }
+  .sb-vibes { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
