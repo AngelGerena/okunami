@@ -312,3 +312,18 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .pick-btn{padding:8px 12px}
 .pick-btn.alt{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1.5px var(--gold)}
 .own-sms{display:block;text-align:center;font:500 12.5px var(--body);color:inherit;opacity:.85;text-decoration:underline;text-underline-offset:3px;padding:2px 0 4px;min-height:24px}
+
+/* QR full-screen: press the code to enlarge it for easy scanning */
+.qr-zoom{position:relative;flex:0 0 auto;padding:0;border:0;background:transparent;cursor:zoom-in;border-radius:10px;line-height:0}
+.qr-zoom:focus-visible{outline:2px solid #b8892f;outline-offset:3px}
+.qr-zoom .qr-badge{position:absolute;right:-6px;bottom:-6px;width:26px;height:26px;border-radius:50%;background:#13203f;color:#f1d796;display:grid;place-items:center;box-shadow:0 2px 6px rgba(0,0,0,.25)}
+.qr-zoom .qr-badge svg{width:14px;height:14px}
+.qr-hint{display:block;margin-top:4px;font-size:11.5px;opacity:.75}
+.qr-full{position:fixed;inset:0;z-index:80;background:#fff;color:#13203f;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;
+  padding:calc(20px + env(safe-area-inset-top,0px)) max(20px,env(safe-area-inset-right,0px)) calc(20px + env(safe-area-inset-bottom,0px)) max(20px,env(safe-area-inset-left,0px))}
+.qr-full[hidden]{display:none!important}
+.qr-full img{width:min(86vw,72vh);height:auto;max-width:100%;aspect-ratio:1/1;image-rendering:pixelated;background:#fff}
+.qr-full p{margin:0;text-align:center;font:600 16px/1.4 "Jost","Avenir Next","Segoe UI",system-ui,sans-serif}
+.qr-full p small{display:block;font-weight:400;font-size:13px;color:#5d6478}
+.qr-full .qr-x{position:absolute;top:calc(12px + env(safe-area-inset-top,0px));right:max(12px,env(safe-area-inset-right,0px));width:48px;height:48px;border-radius:50%;border:0;background:#13203f;color:#fff;display:grid;place-items:center;cursor:pointer}
+.qr-full .qr-x:focus-visible{outline:2px solid #b8892f;outline-offset:3px}
