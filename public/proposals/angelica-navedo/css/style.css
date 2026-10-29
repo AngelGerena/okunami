@@ -85,42 +85,6 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .l1 .credit{color:#b9bfd1}
 .l1 .credit a{color:var(--gold-1)}
 
-/* LOOK 2 — Midnight Ballroom: navy, full-bleed portrait, gold foil */
-.l2{background:var(--navy-2);color:#f4ecdc}
-.l2 .hero{position:relative;height:430px;overflow:hidden}
-.l2 .hero img{width:100%;height:100%;object-fit:cover;object-position:50% 12%}
-.l2 .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(12,22,48,0) 40%,rgba(12,22,48,.55) 66%,var(--navy-2) 96%)}
-.l2 .hero .top{position:absolute;left:0;right:0;top:0;z-index:2;padding:16px 18px;display:flex;justify-content:space-between;align-items:center;
-  background:linear-gradient(180deg,rgba(12,22,48,.55),rgba(12,22,48,0))}
-.l2 .chip{font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;padding:6px 10px;border-radius:999px;background:rgba(12,22,48,.55);color:var(--gold-3);border:1px solid rgba(241,215,150,.4)}
-.l2 .hero .who{position:absolute;left:0;right:0;bottom:16px;z-index:2;padding:0 22px}
-.l2 h1{font-family:var(--serif);font-weight:600;font-size:42px;line-height:1;margin:0;color:#fff}
-.l2 h1 em{display:block;font-style:normal;font-family:var(--display);font-size:20px;letter-spacing:.34em;margin-top:8px;
-  background:linear-gradient(90deg,var(--gold-3),var(--gold-1) 40%,var(--gold-2) 70%,var(--gold-3));-webkit-background-clip:text;background-clip:text;color:transparent}
-.l2 .role{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#c9cfe0;margin:10px 0 0}
-.l2 .body{padding:8px 18px 0;display:flex;flex-direction:column;gap:18px}
-.l2 .btn{background:#1b2a52;color:#f4ecdc;box-shadow:inset 0 0 0 1px rgba(217,178,94,.25)}
-.l2 .btn .ico{color:var(--gold-1)}
-.l2 .save{background:linear-gradient(100deg,#f1d796,#d9b25e 45%,#b8892f);color:var(--navy-2)}
-.l2 .save .ico{color:var(--navy-2)}
-.l2 .rows{background:#152448;border-radius:18px;padding:4px 16px}
-.l2 .rows .row+.row{border-top:1px solid rgba(217,178,94,.18)}
-.l2 .row .ico{color:var(--gold-1)}
-.l2 .sec-title{color:var(--gold-1)}
-.l2 .strip{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;margin:0 -18px;padding:0 18px 4px;scrollbar-width:none}
-.l2 .strip::-webkit-scrollbar{display:none}
-.l2 .strip figure{flex:0 0 72%;margin:0;scroll-snap-align:start;position:relative;border-radius:16px;overflow:hidden}
-.l2 .strip img{width:100%;aspect-ratio:4/3;object-fit:cover}
-.l2 .strip figcaption{position:absolute;left:10px;bottom:10px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;background:rgba(12,22,48,.72);padding:5px 9px;border-radius:999px;color:var(--gold-3)}
-.l2 .qr{border:1px solid rgba(217,178,94,.35);border-radius:18px;padding:14px}
-.l2 .qr p{color:#d5d9e6}
-.l2 .foot{padding:22px 18px 0;display:flex;flex-direction:column;gap:12px}
-.l2 .wordmark{color:#f4ecdc}
-.l2 .wordmark .r2{color:var(--gold-1)}
-.l2 .own{background:#f4ecdc;color:var(--navy-2)}
-.l2 .credit{color:#8f97b0}
-.l2 .credit a{color:var(--gold-1)}
-
 /* LOOK 3 — Venue Prints: polaroid collage hero, ivory + navy */
 .l3{background:var(--cream);color:var(--navy)}
 .l3 .collage{position:relative;height:300px;background:linear-gradient(180deg,#dfe9f2 0%,var(--cream) 100%);overflow:hidden}
@@ -334,7 +298,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .l9 .credit{color:#c7a9a3}
 .l9 .credit a{color:#f0c2ae}
 
-@media (max-width:360px){.l5 h1,.l7 h1,.l9 h1{font-size:31px}.l8 h1{font-size:40px}.l6 .keycard{grid-template-columns:80px 1fr}.l6 .keycard img{width:80px;height:100px}.l2 h1{font-size:36px}.l1 h1{font-size:23px}.l4 h1{font-size:42px}}
+@media (max-width:360px){.l5 h1,.l7 h1,.l9 h1{font-size:31px}.l8 h1{font-size:40px}.l6 .keycard{grid-template-columns:80px 1fr}.l6 .keycard img{width:80px;height:100px}.l1 h1{font-size:23px}.l4 h1{font-size:42px}}
 @media (prefers-reduced-motion:no-preference){.card:not([hidden]){animation:rise .35s ease-out}@keyframes rise{from{transform:translateY(8px)}to{transform:none}}}
 
 .brand a{text-decoration:none}

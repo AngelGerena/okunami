@@ -4,7 +4,6 @@
   var pickSms = document.getElementById("pickSms");
   var notes = {
     l1: "Ivory and gold, arch-framed portrait. Closest to her printed banner, so her brand feels consistent.",
-    l2: "Navy with gold foil and a full-bleed portrait. The most dramatic, made for showing across a table.",
     l3: "Her venues as scattered photo prints up top. Leads with the places couples fall in love with.",
     l4: "Wedding-invitation stationery with a Request a Tour button. Speaks directly to brides and planners.",
     l5: "Florida resort greens with palm frond line art and a big smooth curve. Feels like the property itself.",
@@ -13,7 +12,7 @@
     l8: "An ivory envelope sealed with a gold AN monogram on navy velvet. Opens like an invitation.",
     l9: "Blush and rose gold with champagne bubbles and a slanted divider. Soft, bridal and celebratory."
   };
-  var names = {l1:"Gilded Gazebo", l2:"Midnight Ballroom", l3:"Venue Prints", l4:"Save the Date",
+  var names = {l1:"Gilded Gazebo", l3:"Venue Prints", l4:"Save the Date",
     l5:"Palm Breeze", l6:"Marble Concierge", l7:"Golden Hour", l8:"Wax Seal", l9:"Champagne Blush"};
   var tabs = document.querySelectorAll(".tab");
   var pick = document.getElementById("pickBtn");
