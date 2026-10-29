@@ -70,7 +70,7 @@ export function TemplatePanel(p: PanelProps) {
   const [choosing, setChoosing] = useState(!mine);
   const [filter, setFilter] = useState<'all' | 'new' | NicheGroup>('all');
   const niche = NICHES.find((n) => n.id === nicheId) ?? NICHES[0];
-  const classic = TEMPLATES.filter((t) => !t.niche && !RETIRED.has(t.id));
+  const classic = TEMPLATES.filter((t) => !t.niche && !t.hidden && !RETIRED.has(t.id));
   const use = (n: Niche, d: Design) => { p.looks?.markRoll(); p.set((c) => applyDesign(c, n, d)); p.setMode(d.mode); sfx('success', d.sound); };
   const isOn = (d: Design) => p.card.template === d.template && p.card.theme.tokens.light.accent === themeFromSeeds(d.seeds).tokens.light.accent;
 

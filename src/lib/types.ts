@@ -113,7 +113,9 @@ export type TemplateId =
   // Saxophone collection (saxophonists)
   | 'midnightset' | 'velvetroom' | 'blacktie'
   // Band collection (worship bands and ministry groups)
-  | 'reverb' | 'selah' | 'admitone' | 'linernotes';
+  | 'reverb' | 'selah' | 'admitone' | 'linernotes'
+  // OKUNAMI Studio: the configurable base for done-for-you custom cards (not listed in the public gallery)
+  | 'studio';
 
 export interface SocialLink { id: string; network: string; value: string; }   // value = handle or full URL
 export interface Highlight { id: string; icon: string; title: string; subtitle: string; }
@@ -149,6 +151,26 @@ export interface CardData {
   photoVideoUrl?: string;  // living portrait: silent clip over the photo, plays once
   popoutUrl?: string;      // legacy: Top Plate's old pop-out photo. No longer shown or editable; kept so saved cards still load
   music?: { url: string; title: string; sub?: string };  // background music, starts on first tap
+  studio?: StudioConfig;   // only read by the Studio design
+}
+
+/* ---------------------------------------------------------------- OKUNAMI Studio
+   A custom card is the 'studio' design plus one of these settings objects, so building one is setup, not new code. */
+export type StudioHero = 'ring' | 'bleed' | 'split' | 'band' | 'arch';
+export type StudioMotif = 'none' | 'grain' | 'rays' | 'waves' | 'grid' | 'dots' | 'sparkle' | 'stripes';
+export type StudioDivider = 'none' | 'curve' | 'slant' | 'swoop';
+export type StudioSection = 'services' | 'gallery' | 'hours' | 'location' | 'social' | 'contact';
+export type StudioMotion = 'still' | 'calm' | 'lively';
+export type StudioMainKind = 'book' | 'call' | 'whatsapp' | 'order' | 'quote' | 'website' | 'directions' | 'give';
+export interface StudioConfig {
+  hero: StudioHero;
+  motif: StudioMotif;
+  divider: StudioDivider;
+  motion: StudioMotion;
+  sections: StudioSection[];        // order on the card; missing ones are hidden
+  services: 'tiles' | 'rows' | 'chips' | 'numbered';
+  gallery: 'grid' | 'strip' | 'masonry';
+  main?: { kind: StudioMainKind; label: string; url: string };   // the one big button
 }
 
 export interface Card {

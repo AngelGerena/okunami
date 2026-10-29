@@ -29,6 +29,7 @@ import { LyricBook, NowPlaying, Spotlight, VocalRange, Voiceprint } from './sig1
 import { AmethystAfterDark, BlushSatin, ChampagneToast, LeopardLuxe, PearlStrand, RubyGloss, VanityLights, VelvetNoir } from './sig18';
 import { BlackTie, MidnightSet, VelvetRoom } from './sig19';
 import { AdmitOne, LinerNotes, Reverb, Selah } from './sig22';
+import { Studio } from './studio';
 import { Boarding, Confetti, Inbox, Invitation, Monogram, Planner, Recipe, Stained, Toolbelt, Trading, Turntable, Vinyl, Waveform } from './sig2-b';
 import {
   Arrow, Btn, Business, CalendarDays, ContactList, Crisis, Dock, Footer, Highlights, LocationCard, Logo, Name, Photo,
@@ -36,7 +37,9 @@ import {
 } from './blocks';
 import { addressLine, mapsHref, prettyUrl, webHref } from '../lib/links';
 
-export interface TemplateMeta { id: TemplateId; name: string; blurb: string; bestFor: string; niche?: string; }
+export interface TemplateMeta { id: TemplateId; name: string; blurb: string; bestFor: string; niche?: string;
+  /** Not offered in galleries or counts (OKUNAMI Studio custom cards). */
+  hidden?: boolean; }
 
 export const TEMPLATES: TemplateMeta[] = [
   { id: 'cover',   name: 'Editorial Cover',  blurb: 'Full-bleed photo that fades into the page, name set large like a magazine.', bestFor: 'Personal brands, stylists, realtors' },
@@ -299,6 +302,8 @@ export const TEMPLATES: TemplateMeta[] = [
   { id: 'leopard',      name: 'Leopard Luxe',        niche: 'Jewelry and Accessory Sellers', blurb: 'A leopard print band and a side-by-side editorial layout.', bestFor: 'Fashion-forward sellers, accessory boutiques' },
   { id: 'pearlstrand',  name: 'Pearl Strand',        niche: 'Jewelry and Accessory Sellers', blurb: 'A pearl necklace drapes over a round portrait on soft iridescent white.', bestFor: 'Classic and bridal jewelry, timeless brands' },
   { id: 'vanitylights', name: 'Vanity Lights',       niche: 'Jewelry and Accessory Sellers', blurb: 'A Hollywood dressing-room mirror with glowing bulbs around your photo.', bestFor: 'Glam sellers, makeup and jewelry bundles' },
+  // ---- OKUNAMI Studio (custom cards only; set up from a client's brand brief)
+  { id: 'studio', name: 'Studio Custom', hidden: true, blurb: 'A custom card built from your brand brief: hero, pattern, divider and motion set for you.', bestFor: 'OKUNAMI Studio clients' },
 ];
 
 /* ------------------------------------------------------------ 1 Editorial Cover */
@@ -574,6 +579,7 @@ function Journey() {
 }
 
 export const TEMPLATE_COMPONENTS: Record<TemplateId, () => ReactElement> = {
+  studio: Studio,
   cover: Cover, arch: Arch, header: Header, bizcard: BizCard, app: AppProfile,
   rail: Rail, radial: Radial, swiss: Swiss, bento: Bento, journey: Journey,
   tech: Tech, realestate: RealEstate, photo: PhotoLayout, foodtruck: FoodTruck, apparel: Apparel,

@@ -11,6 +11,7 @@ import Admin from './pages/Admin';
 import DemoCard from './pages/DemoCard';
 import Legal from './pages/Legal';
 import Credits from './pages/Credits';
+import StudioBrief from './pages/StudioBrief';
 import { useIsAdmin } from './lib/useAdmin';
 
 function Private({ children }: { children: ReactNode }) {
@@ -39,6 +40,7 @@ export default function App() {
           <Route path="/login" element={<Login mode="signin" />} />
           <Route path="/reset" element={<ResetPassword />} />
           <Route path="/demo/:template" element={<DemoCard />} />
+          <Route path="/studio/brief/:token" element={<StudioBrief />} />
           <Route path="/terms" element={<Legal kind="terms" />} />
           <Route path="/privacy" element={<Legal kind="privacy" />} />
           <Route path="/app" element={<Private><Dashboard /></Private>} />
