@@ -722,7 +722,7 @@ a { color: var(--ink); }
 
 /* EN / ES switch */
 .lang { display: inline-flex; padding: 3px; border-radius: 999px; background: var(--line-2); gap: 2px; }
-.lang button { min-width: 40px; min-height: 36px; padding: 0 10px; border: 0; border-radius: 999px; background: transparent; color: var(--muted); font: inherit; font-weight: 800; font-size: 12.5px; letter-spacing: .05em; cursor: pointer; }
+.lang button { min-width: 44px; min-height: 44px; padding: 0 10px; border: 0; border-radius: 999px; background: transparent; color: var(--muted); font: inherit; font-weight: 800; font-size: 12.5px; letter-spacing: .05em; cursor: pointer; }
 .lang button.on { background: var(--white); color: var(--ink); box-shadow: 0 2px 6px rgba(28,38,64,.16); }
 .lang button:focus-visible { outline: 3px solid var(--gold); outline-offset: 1px; }
 .lang--dark { background: rgba(255,255,255,.14); }

@@ -201,6 +201,9 @@ export default function Editor() {
   const props: PanelProps = { card, set, mode, setMode, selected, setSelected, looks, goStep, ensureSaved, setPublished };
   const Current = STEPS.find((s) => s.id === step)!.Panel;
   const VIS = STEPS.filter((s) => s.id !== 'studio' || card.template === 'studio');
+  /* Step numbers count only the main path, so Publish follows Layout (the folded Advanced steps are optional and unnumbered). */
+  const ADV_IDS = GROUPS.find((g) => g.advanced)!.ids as readonly string[];
+  const MAIN = VIS.filter((s) => !ADV_IDS.includes(s.id));
   const shuffleAll = ShuffleAll(props);
   const onPick = (el: ElementId) => { setSelected(el); setView('full'); setStep('colors'); setPreviewOpen(false); };
   const privateNote = card.published ? t('Preview of your published card.') : t('Private preview. This card is a draft, so nobody else can see it.');
@@ -263,10 +266,10 @@ export default function Editor() {
                   <div id={g.advanced ? 'adv-steps' : undefined} className="ed__grp-b">
                     {g.ids.filter((sid) => VIS.some((x) => x.id === sid)).map((sid) => {
                       const s = STEPS.find((x) => x.id === sid)!;
-                      const n = VIS.findIndex((x) => x.id === sid) + 1;
+                      const n = g.advanced ? 0 : MAIN.findIndex((x) => x.id === sid) + 1;
                       return (
                         <button key={s.id} type="button" className={step === s.id ? 'on' : ''} aria-current={step === s.id ? 'step' : undefined} onClick={() => setStep(s.id)}>
-                          <s.icon size={18} aria-hidden /><span>{t(s.label)}</span><i aria-hidden>{n}</i>
+                          <s.icon size={18} aria-hidden /><span>{t(s.label)}</span>{n > 0 && <i aria-hidden>{n}</i>}
                         </button>
                       );
                     })}
