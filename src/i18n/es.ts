@@ -909,5 +909,7 @@ export const ES: Record<string, string> = {
   "Get a free quote": "Pide un presupuesto gratis",
   "Visit my website": "Visita mi página web",
   "Get directions": "Cómo llegar",
-  "Give online": "Ofrenda en línea"
+  "Give online": "Ofrenda en línea",
+  "No WhatsApp? Send a text": "¿No tienes WhatsApp? Envía un mensaje de texto",
+  "Or send a text": "O envía un mensaje de texto"
 };
