@@ -37,7 +37,11 @@ const LOOKS = [
   { id: "contraband", name: "Contraband" },
   { id: "jersey", name: "Jersey Drop" },
   { id: "wanted", name: "Wanted" },
-  { id: "revelation", name: "Revelation" }
+  { id: "revelation", name: "Revelation" },
+  { id: "spray", name: "Spray Tag" },
+  { id: "subway", name: "Uptown Line" },
+  { id: "hype", name: "Hype Drop" },
+  { id: "mixtape", name: "Holy Mixtape" }
 ];
 
 /* ---------- icons (flat SVG, no emoji) ---------- */
@@ -260,7 +264,214 @@ function lookRevelation() {
   </article>`;
 }
 
-const RENDER = { contraband: lookContraband, jersey: lookJersey, wanted: lookWanted, revelation: lookRevelation };
+/* ---------- LOOK 5: Spray Tag (graffiti wall) ---------- */
+function lookSpray() {
+  const stickers = CONFIG.products.slice(0, 6).map((p, i) => `
+    <a class="sp-sticker sp-s${i}" href="${p.url}" target="_blank" rel="noopener">
+      <span class="sp-sticker-img"><img src="${p.img}" alt="${esc(p.name)}" loading="lazy"></span>
+      <span class="sp-sticker-name">${esc(p.name)}</span>
+      <span class="sp-sticker-price">${esc(p.price)}</span>
+    </a>`).join("");
+  return `
+  <article class="sp">
+    <section class="sp-wall">
+      <span class="sp-drop sp-drop-a">JC</span>
+      <span class="sp-drop sp-drop-b">+</span>
+      <div class="sp-logo-wrap"><img class="sp-logo" src="${CONFIG.logo}" alt="${esc(CONFIG.brand)} logo"></div>
+      <p class="sp-tag">Jesus Cartel</p>
+      <h1 class="sp-name">${esc(CONFIG.person)}</h1>
+      <p class="sp-role"><span>${esc(CONFIG.title)}</span></p>
+      <div class="sp-stencil">Saved by grace / Est. Ocala FL</div>
+    </section>
+    <div class="sp-slant"></div>
+    <section class="sp-actions">${contactButtons("sp-btn")}</section>
+    <section class="sp-row">${actionRow("sp-pill")}</section>
+    ${videoBlock("sp-video")}
+    <section class="sp-sec">
+      <h2 class="sp-h">Sticker Bomb</h2>
+      <div class="sp-grid">${stickers}</div>
+      <a class="sp-all" href="${CONFIG.shop}" target="_blank" rel="noopener">Hit the whole shop ${I.arrow}</a>
+    </section>
+    <section class="sp-mission">
+      <h2 class="sp-h">Why We Paint</h2>
+      <p>${esc(CONFIG.mission)}</p>
+      <p class="sp-impact">${esc(CONFIG.impact)}</p>
+    </section>
+    <section class="sp-qr-block">
+      <div class="sp-qr" data-qr><div class="qr-mini"></div></div>
+      <p>Press the code to open it full screen</p>
+    </section>
+    <section class="sp-verse"><p>${esc(CONFIG.verseText)}</p><span>${esc(CONFIG.verseRef)}</span></section>
+    <section class="sp-social">${socials("sp-soc")}</section>
+    ${credit()}
+  </article>`;
+}
+
+/* ---------- LOOK 6: Uptown Line (subway) ---------- */
+function lookSubway() {
+  const stops = CONFIG.products.map((p, i) => `
+    <a class="sw-stop" href="${p.url}" target="_blank" rel="noopener">
+      <span class="sw-dot${i === 0 ? " sw-dot-x" : ""}"></span>
+      <span class="sw-thumb"><img src="${p.img}" alt="${esc(p.name)}" loading="lazy"></span>
+      <span class="sw-stop-text"><b>${esc(p.name)}</b><small>${esc(p.price)}${i === 0 ? " &middot; Transfer here" : ""}</small></span>
+      ${I.arrow}
+    </a>`).join("");
+  return `
+  <article class="sw">
+    <section class="sw-sign">
+      <div class="sw-sign-top"><span class="sw-bullet">J</span><span class="sw-bullet sw-bullet-c">C</span><span class="sw-dir">Uptown &amp; The Nations</span></div>
+      <p class="sw-station">${esc(CONFIG.brand)}</p>
+      <p class="sw-sub">Every train stops at the Cross</p>
+    </section>
+    <section class="sw-tiles">
+      <div class="sw-mosaic">
+        <img class="sw-logo" src="${CONFIG.logo}" alt="${esc(CONFIG.brand)} logo">
+        <div>
+          <h1 class="sw-name">${esc(CONFIG.person)}</h1>
+          <p class="sw-title">${esc(CONFIG.title)}</p>
+        </div>
+      </div>
+    </section>
+    <section class="sw-actions">${contactButtons("sw-btn")}</section>
+    <section class="sw-row">${actionRow("sw-pill")}</section>
+    ${videoBlock("sw-video")}
+    <section class="sw-sec">
+      <div class="sw-head"><span class="sw-bullet">J</span><h2>Stops on this line</h2></div>
+      <div class="sw-line">${stops}</div>
+    </section>
+    <section class="sw-notice">
+      <p class="sw-notice-h">Service Notice</p>
+      <p>${esc(CONFIG.mission)} ${esc(CONFIG.impact)}</p>
+    </section>
+    <section class="sw-qr-block">
+      <div class="sw-qr" data-qr><div class="qr-mini"></div></div>
+      <div><b>Scan to ride along</b><p>Press the code to open it full screen.</p></div>
+    </section>
+    <section class="sw-verse"><p>&ldquo;${esc(CONFIG.verseText)}&rdquo;</p><span>${esc(CONFIG.verseRef)}</span></section>
+    <section class="sw-social">${socials("sw-soc")}</section>
+    ${credit()}
+  </article>`;
+}
+
+/* ---------- LOOK 7: Hype Drop (shoebox + hang tag) ---------- */
+function lookHype() {
+  const drops = CONFIG.products.slice(0, 6).map((p, i) => `
+    <a class="hd-drop" href="${p.url}" target="_blank" rel="noopener">
+      <span class="hd-drop-img"><img src="${p.img}" alt="${esc(p.name)}" loading="lazy"></span>
+      <span class="hd-drop-sku">JC-${String(17 + i * 7).padStart(4, "0")}</span>
+      <span class="hd-drop-name">${esc(p.name)}</span>
+      <span class="hd-drop-foot"><b>${esc(p.price)}</b><em>Cop</em></span>
+    </a>`).join("");
+  return `
+  <article class="hd">
+    <section class="hd-box">
+      <div class="hd-lid">
+        <img class="hd-logo" src="${CONFIG.logo}" alt="${esc(CONFIG.brand)} logo">
+        <span class="hd-lid-brand">${esc(CONFIG.brand)}</span>
+      </div>
+      <div class="hd-label">
+        <div class="hd-label-main">
+          <span class="hd-k">Style</span>
+          <h1 class="hd-name">${esc(CONFIG.person)}</h1>
+          <span class="hd-v">${esc(CONFIG.title)}</span>
+        </div>
+        <dl class="hd-specs">
+          <div><dt>Colorway</dt><dd>Blood Red / Gold</dd></div>
+          <div><dt>Size</dt><dd>One Body</dd></div>
+          <div><dt>Made in</dt><dd>Ocala, FL</dd></div>
+          <div><dt>Release</dt><dd>Rev 1:7</dd></div>
+        </dl>
+        <div class="hd-barcode" aria-hidden="true"></div>
+        <span class="hd-skuline">SKU JC-0107-REV &nbsp; QTY: UNLIMITED GRACE</span>
+      </div>
+      <div class="hd-live"><span class="hd-pulse"></span>Drop is live</div>
+    </section>
+    <section class="hd-actions">${contactButtons("hd-btn")}</section>
+    <section class="hd-row">${actionRow("hd-pill")}</section>
+    ${videoBlock("hd-video")}
+    <section class="hd-sec">
+      <h2>Release Calendar</h2>
+      <div class="hd-grid">${drops}</div>
+      <a class="hd-all" href="${CONFIG.shop}" target="_blank" rel="noopener">See every release ${I.arrow}</a>
+    </section>
+    <section class="hd-tag-wrap">
+      <div class="hd-tag">
+        <span class="hd-hole"></span>
+        <p class="hd-tag-k">Authenticated</p>
+        <div class="hd-qr" data-qr><div class="qr-mini"></div></div>
+        <p class="hd-tag-s">Press the code to open it full screen</p>
+      </div>
+      <div class="hd-why">
+        <h3>The Mission</h3>
+        <p>${esc(CONFIG.mission)}</p>
+        <p class="hd-impact">${esc(CONFIG.impact)}</p>
+      </div>
+    </section>
+    <section class="hd-verse"><p>&ldquo;${esc(CONFIG.verseText)}&rdquo;</p><span>${esc(CONFIG.verseRef)}</span></section>
+    <section class="hd-social">${socials("hd-soc")}</section>
+    ${credit()}
+  </article>`;
+}
+
+/* ---------- LOOK 8: Holy Mixtape (cassette) ---------- */
+function lookMixtape() {
+  const tracks = CONFIG.products.map((p, i) => `
+    <a class="mx-track" href="${p.url}" target="_blank" rel="noopener">
+      <span class="mx-no">${i < 4 ? "A" : "B"}${(i % 4) + 1}</span>
+      <span class="mx-thumb"><img src="${p.img}" alt="${esc(p.name)}" loading="lazy"></span>
+      <span class="mx-title">${esc(p.name)}</span>
+      <span class="mx-price">${esc(p.price)}</span>
+    </a>`).join("");
+  return `
+  <article class="mx">
+    <section class="mx-hero">
+      <div class="mx-tape">
+        <div class="mx-label">
+          <div class="mx-label-top"><span>Vol. 1</span><span>Type II / High Bias</span></div>
+          <p class="mx-hand">${esc(CONFIG.person)}</p>
+          <p class="mx-hand-sub">${esc(CONFIG.title)} &middot; ${esc(CONFIG.brand)}</p>
+          <div class="mx-stripes"></div>
+          <div class="mx-window">
+            <span class="mx-reel"></span>
+            <span class="mx-ribbon"></span>
+            <span class="mx-reel"></span>
+          </div>
+        </div>
+        <div class="mx-bottom"><span></span><span></span><span></span><span></span></div>
+      </div>
+      <div class="mx-jcard">
+        <img src="${CONFIG.logo}" alt="${esc(CONFIG.brand)} logo">
+        <div>
+          <p class="mx-jk">Now playing</p>
+          <p class="mx-jt">Gospel Mixtape, Side A</p>
+          <p class="mx-js">Recorded live in Ocala, FL</p>
+        </div>
+      </div>
+    </section>
+    <section class="mx-deck">${contactButtons("mx-key")}</section>
+    <section class="mx-row">${actionRow("mx-pill")}</section>
+    ${videoBlock("mx-video")}
+    <section class="mx-sec">
+      <div class="mx-sec-head"><h2>Tracklist</h2><span>8 tracks &middot; Side A + B</span></div>
+      <div class="mx-list">${tracks}</div>
+      <a class="mx-all" href="${CONFIG.shop}" target="_blank" rel="noopener">Play the full album ${I.arrow}</a>
+    </section>
+    <section class="mx-liner">
+      <h2>Liner Notes</h2>
+      <p>${esc(CONFIG.mission)}</p>
+      <p class="mx-impact">${esc(CONFIG.impact)}</p>
+    </section>
+    <section class="mx-qr-block">
+      <div class="mx-qr" data-qr><div class="qr-mini"></div></div>
+      <p>Press the code to open it full screen</p>
+    </section>
+    <section class="mx-verse"><p>&ldquo;${esc(CONFIG.verseText)}&rdquo;</p><span>${esc(CONFIG.verseRef)}</span></section>
+    <section class="mx-social">${socials("mx-soc")}</section>
+    ${credit()}
+  </article>`;
+}
+
+const RENDER = { contraband: lookContraband, jersey: lookJersey, wanted: lookWanted, revelation: lookRevelation, spray: lookSpray, subway: lookSubway, hype: lookHype, mixtape: lookMixtape };
 
 /* ---------- QR ---------- */
 function drawQR(el, size, dark, light) {
@@ -362,7 +573,11 @@ const QR_COLORS = {
   contraband: ["#0a0a0a", "#f4f1ea"],
   jersey: ["#0b0b0b", "#ffffff"],
   wanted: ["#1d1710", "#efe4c9"],
-  revelation: ["#0c0a07", "#f6efdc"]
+  revelation: ["#0c0a07", "#f6efdc"],
+  spray: ["#141416", "#ffffff"],
+  subway: ["#111111", "#ffffff"],
+  hype: ["#111111", "#ffffff"],
+  mixtape: ["#1a1426", "#fbf3df"]
 };
 
 function setLook(id) {
