@@ -139,10 +139,10 @@ button{font:inherit;color:inherit}
 .look-rosa{background:linear-gradient(170deg,#FCECEA 0%,#F7D9D7 50%,#FBEFEE 100%)}
 .rs-top{position:relative;padding:14px 16px 4px}
 .rs-lang{display:flex;justify-content:flex-end}
-.popout{position:relative;width:230px;height:330px;margin:0 auto}
-.pop-tile{position:absolute;left:0;right:0;bottom:0;height:210px;border-radius:40px;background:linear-gradient(180deg,#FFB3B5 0%,#EE6E73 55%,#C9454F 100%);box-shadow:0 18px 34px rgba(194,65,75,.32),inset 0 3px 2px rgba(255,255,255,.6),inset 0 -6px 12px rgba(110,15,30,.3);clip-path:inset(-180px -40px 0 -40px round 40px)}
+.popout{position:relative;width:min(84vw,330px);height:min(118vw,470px);margin:0 auto}
+.pop-tile{position:absolute;left:0;right:0;bottom:0;height:64%;border-radius:40px;background:linear-gradient(180deg,#FFB3B5 0%,#EE6E73 55%,#C9454F 100%);box-shadow:0 18px 34px rgba(194,65,75,.32),inset 0 3px 2px rgba(255,255,255,.6),inset 0 -6px 12px rgba(110,15,30,.3);clip-path:inset(-400px 0 0 0 round 40px)}
 .pop-tile::before{content:"";position:absolute;left:8%;right:8%;top:6px;height:34%;border-radius:40px;background:linear-gradient(180deg,rgba(255,255,255,.55),rgba(255,255,255,0));pointer-events:none}
-.popout .cutout{top:auto;bottom:-6px;left:-28%;width:156%;height:auto;object-fit:contain}
+.popout .cutout{top:auto;bottom:-6px;left:-16%;width:132%;height:auto;object-fit:contain}
 .look-rosa .inside.glassy{margin:14px 12px 0;padding:18px 16px 30px;background:rgba(255,255,255,.62);border:1px solid rgba(255,255,255,.9);border-radius:28px;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
 .look-rosa .credit{margin-bottom:6px}
 
@@ -159,7 +159,8 @@ button{font:inherit;color:inherit}
 /* ---------- 4 PEONIA: arched portrait, script name, big curve ---------- */
 .pe-top{position:relative;text-align:center;padding:14px 16px 74px;background:linear-gradient(180deg,#F8C9C8 0%,#FBDCDA 60%,#FDEDEC 100%)}
 .pe-lang{display:flex;justify-content:flex-end}
-.pe-photo{position:relative;width:190px;height:240px;margin:4px auto 0;border-radius:100px 100px 20px 20px;overflow:hidden;border:5px solid #fff;background:linear-gradient(180deg,#FFE3E2,#F3BDBC);box-shadow:0 14px 30px rgba(194,65,75,.22)}
+.pe-photo{position:relative;width:min(80vw,310px);height:min(104vw,400px);margin:4px auto 0;border-radius:160px 160px 24px 24px;overflow:hidden;border:5px solid #fff;background:linear-gradient(180deg,#FFE3E2,#F3BDBC);box-shadow:0 14px 30px rgba(194,65,75,.22)}
+.pe-photo .cutout{top:auto;bottom:-12%;left:-20%;width:140%;height:auto;object-fit:contain}
 .pe-top .script{margin:12px 0 2px;font-family:var(--script);font-weight:400;font-size:58px;line-height:1;color:var(--rose)}
 .pe-top .curve{position:absolute;left:0;bottom:-1px;width:100%;height:60px}
 .pe-top .curve path{fill:#fff}
@@ -184,19 +185,7 @@ button{font:inherit;color:inherit}
 .chipset{display:flex;flex-wrap:wrap;justify-content:center;gap:6px;margin:12px 0 0}
 .chipset span{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:6px 12px;border-radius:999px;background:var(--blush);color:var(--rose)}
 
-/* ---------- 7 BOMBON: candy bubbles, name on the fade ---------- */
-.bb-hero{position:relative;height:620px;overflow:hidden;background:linear-gradient(180deg,#FFD6D4 0%,#FBC1C3 55%,#FFE9E8 100%)}
-.bub{position:absolute;border-radius:50%;background:radial-gradient(circle at 32% 28%,#FFFFFF 0%,#FFC2C4 30%,#EE6E73 78%);box-shadow:inset 0 -8px 16px rgba(110,15,30,.18);opacity:.9}
-.bub.b1{width:150px;height:150px;left:-40px;top:120px}
-.bub.b2{width:96px;height:96px;right:-18px;top:90px}
-.bub.b3{width:60px;height:60px;right:46px;top:300px}
-.bb-hero .cutout{z-index:2}
-.bb-fade{position:absolute;left:0;right:0;bottom:0;height:200px;z-index:3;background:linear-gradient(180deg,rgba(255,233,232,0) 0%,#FFE9E8 70%)}
-.bb-name{position:absolute;left:0;right:0;bottom:18px;z-index:4;text-align:center}
-.bb-name h1{margin:0;font-family:var(--display);font-weight:400;font-size:clamp(44px,13vw,58px);line-height:1;color:var(--rose)}
-.bb-line{margin:6px 0 0;font-family:var(--script);font-size:30px;color:var(--ink)}
-
-/* ---------- 8 LABIAL: coral diagonal band, vertical name ---------- */
+/* ---------- 7 LABIAL: coral diagonal band, vertical name ---------- */
 .lb-top{position:relative;height:540px;overflow:hidden;background:#fff}
 .lb-band{position:absolute;left:-20%;right:-20%;top:46%;height:150px;background:linear-gradient(180deg,#FF9A9D,#EE6E73 50%,#C9454F);transform:rotate(-14deg);box-shadow:inset 0 3px 2px rgba(255,255,255,.5)}
 .lb-vert{position:absolute;left:8px;top:20px;bottom:20px;writing-mode:vertical-rl;transform:rotate(180deg);font-family:var(--display);font-size:56px;line-height:1;letter-spacing:4px;color:transparent;-webkit-text-stroke:1.4px var(--ink);z-index:1;white-space:nowrap}
@@ -205,32 +194,6 @@ button{font:inherit;color:inherit}
 .lb-stick{top:auto;bottom:34px;right:26px}
 .lb-id{padding:18px 20px 0}
 .lb-id h1{margin:0 0 6px;font-family:var(--display);font-weight:400;font-size:50px;line-height:1}
-
-/* ---------- 9 SEDA: satin sheen, tall oval portrait ---------- */
-.sd-top{position:relative;text-align:center;padding:12px 16px 10px;background:linear-gradient(160deg,#FCEDEA 0%,#F6D9D5 40%,#FBEAE6 70%,#F3D2CF 100%);overflow:hidden}
-.sd-top::before{content:"";position:absolute;inset:-40% -20% auto -20%;height:70%;background:radial-gradient(ellipse at 50% 100%,rgba(255,255,255,.75),transparent 60%);transform:rotate(-8deg);pointer-events:none}
-.sd-lang{position:relative;display:flex;justify-content:flex-end;z-index:2}
-.oval{position:relative;width:220px;height:300px;margin:4px auto 0;border-radius:50%;padding:6px;border:1px solid rgba(194,65,75,.45);box-shadow:0 0 0 7px rgba(255,255,255,.7),0 18px 34px rgba(194,65,75,.18)}
-.oval-in{position:relative;width:100%;height:100%;border-radius:50%;overflow:hidden;background:linear-gradient(180deg,#FFF1EF,#F1CFCC)}
-.sd-top h1{position:relative;margin:16px 0 0;font-family:var(--display);font-weight:400;font-size:46px;line-height:1}
-.sd-script{position:relative;margin:2px 0 6px;font-family:var(--script);font-size:30px;color:var(--rose)}
-
-/* ---------- 10 HISTORIA: Instagram story frame with glossy stickers ---------- */
-.st-wrap{padding:12px 12px 0}
-.st-frame{position:relative;height:600px;border-radius:28px;overflow:hidden;background:linear-gradient(180deg,#F7B9B9 0%,#FBD7D3 55%,#FFEDEA 100%);box-shadow:0 16px 34px rgba(194,65,75,.2)}
-.st-bars{position:absolute;left:12px;right:12px;top:10px;display:flex;gap:4px;z-index:5}
-.st-bars i{flex:1;height:3px;border-radius:3px;background:rgba(255,255,255,.5)}
-.st-bars i.on{background:#fff}
-.st-head{position:absolute;left:12px;right:12px;top:22px;display:flex;align-items:center;gap:8px;z-index:5}
-.st-av{position:relative;width:36px;height:36px;border-radius:50%;overflow:hidden;border:2px solid #fff;background:var(--blush);flex:none}
-.st-av .cutout{width:220%;height:auto;left:-60%;top:-6%}
-.st-head b{font-size:14px}
-.st-head small{font-size:12px;color:var(--mute);flex:1}
-.st-cut{top:40px;height:calc(100% - 40px)}
-.st-stickers{position:absolute;left:0;right:0;bottom:22px;display:flex;flex-direction:column;align-items:center;gap:12px;z-index:5}
-.pill.sticky{min-height:50px;padding:0 24px;font-size:15px;letter-spacing:.5px}
-.s-a{transform:rotate(-4deg)}
-.s-b{transform:rotate(3deg)}
 
 @media (prefers-reduced-motion:reduce){
   .ring,.sticker::after,.referral,.pill::after{animation:none}
