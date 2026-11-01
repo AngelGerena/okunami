@@ -1,0 +1,130 @@
+/* UniqStyle Farmasi card (Peonia look), built on the Farmasi Cover Girl system:
+   Abril Fatface + DM Sans, coral palette, outlined type behind her cutout, ring badge, stories, high-gloss lipstick pills. */
+:root{
+  --paper:#FFFFFF;
+  --ink:#16121A;
+  --coral:#EE6E73;
+  --rose:#C2414B;
+  --mute:#5A4A50;
+  --line:#EADCD6;
+  --blush:#F6E3E1;
+  --studio:#EFE3E1;
+  --display:'Abril Fatface','Bodoni 72',Didot,Georgia,serif;
+  --body:'DM Sans','Helvetica Neue',Helvetica,Arial,sans-serif;
+  --script:'Great Vibes',cursive;
+  color-scheme:light;
+}
+html{font-variant-emoji:text;-webkit-text-size-adjust:100%;overflow-x:hidden}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{color:var(--ink);text-decoration:none}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--rose);outline-offset:3px}
+[hidden]{display:none!important}
+
+/* ---------- card shell ---------- */
+.card{max-width:480px;margin:0 auto;background:var(--paper);overflow:hidden;position:relative}
+.cutout{position:absolute;left:0;top:0;width:100%;height:100%;max-width:none;object-fit:cover;object-position:50% 0}
+
+/* ---------- Cover Girl base (skill) ---------- */
+.cover{position:relative;aspect-ratio:390/560;width:100%;overflow:hidden;background:var(--studio)}
+.cover.tall{aspect-ratio:390/690;background:linear-gradient(180deg,#F4E8E6 0%,#EADAD8 100%)}
+.outline{position:absolute;left:-1.5%;top:10.7%;display:flex;flex-direction:column;font-family:var(--display);font-size:min(28.7vw,138px);line-height:.9;letter-spacing:2px;color:transparent;-webkit-text-stroke:1.5px var(--coral)}
+.cover-top{position:absolute;left:16px;right:16px;top:10px;z-index:5;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.issue{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--ink)}
+.strip{position:absolute;left:0;right:0;bottom:0;z-index:5;min-height:48px;background:var(--ink);color:#FFFFFF;display:flex;align-items:center;justify-content:center;gap:14px;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase}
+.strip a{color:#FFFFFF;min-height:44px;display:flex;align-items:center}
+.strip .sl{color:var(--coral)}
+.lang{display:flex;background:rgba(22,18,26,.45);border-radius:999px;padding:3px;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.lang button{min-width:44px;min-height:34px;border:0;border-radius:999px;background:transparent;color:#FFFFFF;font-size:12px;font-weight:700;letter-spacing:1px;cursor:pointer}
+.lang button[aria-pressed="true"]{background:#FFFFFF;color:var(--ink)}
+
+.sticker{position:absolute;right:30px;top:84px;z-index:6;width:96px;height:96px;border-radius:50%;background:var(--coral);color:#FFFFFF;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;transform:rotate(-10deg);box-shadow:0 8px 22px rgba(194,65,75,.35)}
+.sticker::after{content:"";position:absolute;inset:0;border-radius:50%;box-shadow:0 0 0 0 rgba(238,110,115,.6);animation:ping 2.4s ease-out infinite}
+.ring{position:absolute;left:-22px;top:-22px;width:140px;height:140px;overflow:visible;animation:spin 12s linear infinite;pointer-events:none}
+.ring text{font-family:var(--body);font-size:10.5px;font-weight:700;letter-spacing:1px;fill:var(--ink);paint-order:stroke;stroke:rgba(255,255,255,.85);stroke-width:2.5px}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes ping{0%{box-shadow:0 0 0 0 rgba(238,110,115,.6)}70%{box-shadow:0 0 0 16px rgba(238,110,115,0)}100%{box-shadow:0 0 0 0 rgba(238,110,115,0)}}
+.sticker .s1{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase}
+.sticker .s2{font-family:var(--display);font-size:21px;line-height:1;text-transform:uppercase}
+.sticker .s3{font-size:10px;font-weight:500;padding:0 8px;line-height:1.2}
+.sticker.small{width:80px;height:80px}
+.sticker.small .ring{left:-30px;top:-30px}
+.sticker.small .s2{font-size:17px}
+.sticker.small .s3{font-size:9px}
+
+.cover-name{padding:22px 16px 4px;display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center}
+.cover-name.tight{padding-top:12px}
+.cover-name h1{margin:0;font-family:var(--display);font-weight:400;font-size:clamp(40px,12.5vw,54px);line-height:1;letter-spacing:.5px;color:var(--ink);text-wrap:balance}
+.role{margin:0;font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--rose)}
+.role.center{text-align:center;padding:14px 16px 0}
+
+.inside{padding:8px 20px 36px;display:flex;flex-direction:column;gap:20px}
+.brand{height:30px;width:auto;align-self:center}
+.eyebrow{margin:6px 0 0;font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--mute)}
+.story{display:flex;gap:16px;align-items:flex-start;padding-bottom:18px;border-bottom:1px solid var(--line);transition:transform .15s ease}
+.story:active{transform:scale(.98)}
+.num{font-family:var(--display);font-size:40px;line-height:1;color:var(--coral);flex:none}
+.story-text{display:flex;flex-direction:column;gap:5px;min-width:0}
+.story-title{font-family:var(--display);font-size:26px;line-height:1.08;text-wrap:balance}
+.story-sub{font-size:15px;line-height:1.45;color:var(--mute)}
+
+/* Lipstick pills: high-gloss lacquer with a top highlight and a moving reflection */
+.actions{display:flex;flex-direction:column;gap:12px}
+.pill-row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.pill{position:relative;overflow:hidden;isolation:isolate;border-radius:999px;color:#FFFFFF;display:flex;align-items:center;justify-content:center;gap:7px;font-weight:700;transition:transform .15s ease}
+.pill:active{transform:scale(.97)}
+.pill svg{width:18px;height:18px;flex:none;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;position:relative;z-index:2}
+.pill span{position:relative;z-index:2;white-space:nowrap}
+.pill.save{min-height:60px;font-size:15px;letter-spacing:1px;text-transform:uppercase}
+.pill.ink{min-height:52px;font-size:13px}
+.pill.coral{background:linear-gradient(180deg,#FFA4A6 0%,#EE6E73 42%,#D44E58 78%,#B83A45 100%);box-shadow:0 10px 22px rgba(238,110,115,.42),inset 0 2px 1px rgba(255,255,255,.65),inset 0 -4px 8px rgba(110,15,30,.35);text-shadow:0 1px 1px rgba(110,15,30,.35)}
+.pill.ink{background:linear-gradient(180deg,#5A5260 0%,#24202A 45%,#110E14 75%,#000000 100%);box-shadow:0 8px 18px rgba(22,18,26,.35),inset 0 2px 1px rgba(255,255,255,.35),inset 0 -4px 8px rgba(0,0,0,.5)}
+.pill::before{content:"";position:absolute;left:7%;right:7%;top:3px;height:46%;border-radius:999px;background:linear-gradient(180deg,rgba(255,255,255,.7) 0%,rgba(255,255,255,.12) 100%);z-index:1;pointer-events:none}
+.pill.ink::before{background:linear-gradient(180deg,rgba(255,255,255,.38) 0%,rgba(255,255,255,.04) 100%)}
+.pill::after{content:"";position:absolute;top:0;bottom:0;left:-70%;width:45%;background:linear-gradient(100deg,rgba(255,255,255,0) 0%,rgba(255,255,255,.55) 50%,rgba(255,255,255,0) 100%);transform:skewX(-22deg);z-index:1;pointer-events:none;animation:sheen 5s ease-in-out infinite}
+.pill-row .pill:nth-child(1)::after{animation-delay:.4s}
+.pill-row .pill:nth-child(2)::after{animation-delay:.7s}
+.pill-row .pill:nth-child(3)::after{animation-delay:1s}
+.pill-row .pill:nth-child(4)::after{animation-delay:1.3s}
+@keyframes sheen{0%{left:-70%}35%{left:130%}100%{left:130%}}
+
+.social{display:flex;justify-content:center;flex-wrap:wrap;gap:6px 22px}
+.social a{min-height:44px;display:flex;align-items:center;font-size:13px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase}
+
+.qr{display:flex;align-items:center;gap:14px;width:100%;padding:12px;border-radius:18px;background:#fff;border:1px solid var(--line);text-align:left;cursor:pointer}
+.qr img{width:72px;height:72px;border-radius:8px;flex:none}
+.qr span{display:flex;flex-direction:column;gap:3px}
+.qr b{font-family:var(--display);font-weight:400;font-size:20px}
+.qr small{font-size:13px;color:var(--mute)}
+
+.share{min-height:48px;border:0;background:#FBEDEC;color:var(--rose);font-weight:700;font-size:14px;letter-spacing:1px;text-transform:uppercase;cursor:pointer}
+.toast{margin:-8px 0 0;text-align:center;font-size:13px;color:var(--mute)}
+
+.ref-wrap{display:flex;flex-direction:column;align-items:center;gap:2px;border-top:1px solid var(--line);padding-top:6px}
+.referral{display:flex;align-items:center;justify-content:center;min-height:40px;font-size:13px;font-weight:500;background:linear-gradient(90deg,#A8782E,#E6C27A,#A8782E);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shimmer 4s linear infinite}
+@keyframes shimmer{to{background-position:-200% 0}}
+.ref-sms{font-size:12px;color:var(--mute);text-decoration:underline;text-underline-offset:3px;min-height:32px;display:flex;align-items:center}
+.credit{align-self:center;font-size:11px;letter-spacing:.06em;color:var(--mute);text-decoration:underline;text-underline-offset:3px}
+
+/* full screen QR */
+.qr-full{position:fixed;inset:0;z-index:60;background:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px}
+.qr-full img{width:min(80vw,340px);height:auto}
+.qr-name{font-family:var(--display);font-size:28px;margin:18px 0 0}
+.qr-hint{font-size:13px;color:var(--mute);margin:6px 0 0}
+.qr-close{position:absolute;top:16px;right:16px;width:44px;height:44px;border-radius:50%;display:grid;place-items:center;border:1px solid var(--line);background:#fff;cursor:pointer}
+.qr-close svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round}
+
+/* ---------- Peonia: arched portrait, script name, big curve ---------- */
+.pe-top{position:relative;text-align:center;padding:14px 16px 74px;background:linear-gradient(180deg,#F8C9C8 0%,#FBDCDA 60%,#FDEDEC 100%)}
+.pe-lang{display:flex;justify-content:flex-end}
+.pe-photo{position:relative;width:min(80vw,310px);height:min(104vw,400px);margin:4px auto 0;border-radius:160px 160px 24px 24px;overflow:hidden;border:5px solid #fff;background:linear-gradient(180deg,#FFE3E2,#F3BDBC);box-shadow:0 14px 30px rgba(194,65,75,.22)}
+.pe-photo .cutout{top:auto;bottom:-12%;left:-20%;width:140%;height:auto;object-fit:contain}
+.pe-top .script{margin:12px 0 6px;font-family:var(--script);font-weight:400;font-size:clamp(38px,11vw,54px);line-height:1.05;color:var(--rose);white-space:nowrap}
+.pe-top .curve{position:absolute;left:0;bottom:-1px;width:100%;height:60px}
+.pe-top .curve path{fill:#fff}
+
+@media (prefers-reduced-motion:reduce){
+  .ring,.sticker::after,.referral,.pill::after{animation:none}
+  .story,.pill{transition:none}
+}
