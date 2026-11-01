@@ -8,7 +8,7 @@
     first: 'UniqStyle',
     farmasiId: 'uniqstyle',
     phone: '14070000000',              // TODO: her cell with country code, digits only
-    email: 'hola@uniqstyle.com',       // TODO: her email
+    email: 'yalid04@gmail.com',
     ig: '', fb: '', tt: ''             // TODO: handles; socials stay hidden until filled
   };
   var SHOP = 'https://www.farmasius.com/' + CLIENT.farmasiId;
