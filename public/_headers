@@ -21,12 +21,6 @@
 /disenos/*.vcf
   Content-Type: text/vcard; charset=utf-8
   Content-Disposition: attachment; filename=mayra-soto-burgos.vcf
-/cards/uniqstyle/*.vcf
-  Content-Type: text/vcard; charset=utf-8
-  Content-Disposition: attachment; filename=yalid-betancourt.vcf
-/contact.vcf
-  Content-Type: text/vcard; charset=utf-8
-  Content-Disposition: attachment; filename=yalid-betancourt.vcf
 /proposals/uniqstyle/*.vcf
   Content-Type: text/vcard; charset=utf-8
   Content-Disposition: attachment; filename=uniqstyle.vcf
