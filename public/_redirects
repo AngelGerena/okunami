@@ -1,1 +1,3 @@
+# Client card on its own subdomain (CNAME uniqstyle -> okunami.netlify.app)
+https://uniqstyle.okunami.pro/* /cards/uniqstyle/:splat 200!
 /*    /index.html   200
