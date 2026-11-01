@@ -53,10 +53,7 @@
     { id: 'peonia',    es: 'Peonía',      en: 'Peony' },
     { id: 'atelier',   es: 'Atelier',     en: 'Atelier' },
     { id: 'glow',      es: 'Glow Studio', en: 'Glow Studio' },
-    { id: 'bombon',    es: 'Bombón',      en: 'Bonbon' },
-    { id: 'labial',    es: 'Labial',      en: 'Lipstick' },
-    { id: 'seda',      es: 'Seda',        en: 'Silk' },
-    { id: 'historia',  es: 'Historia',    en: 'Story' }
+    { id: 'labial',    es: 'Labial',      en: 'Lipstick' }
   ];
 
   var lang = 'es';
@@ -136,7 +133,7 @@
   /* her cutout on a soft studio backdrop; bg + cutout share one crop so they line up */
   function cut(cls) { return '<img class="cutout ' + (cls || '') + '" src="images/cutout-tall.webp" alt="' + NAME + '">'; }
 
-  /* ---------- ten looks ---------- */
+  /* ---------- seven looks ---------- */
   var TPL = {
     portada: function () {
       return '<header class="cover tall">' + outline() + cut() +
@@ -174,33 +171,12 @@
         '<div class="chipset"><span>' + k('makeup') + '</span><span>' + k('skin') + '</span><span>' + k('well') + '</span><span>' + k('frag') + '</span></div>' +
         '</section>' + inside();
     },
-    bombon: function () {
-      return '<header class="bb-hero"><span class="bub b1"></span><span class="bub b2"></span><span class="bub b3"></span>' + cut() +
-        '<div class="cover-top"><span class="issue">' + k('issue') + '</span>' + langToggle() + '</div>' +
-        '<div class="bb-fade" aria-hidden="true"></div>' +
-        '<div class="bb-name"><h1>' + NAME + '</h1><p class="bb-line">' + k('glowLine') + '</p></div></header>' +
-        '<p class="role center">' + k('role') + '</p>' + inside();
-    },
     labial: function () {
       return '<header class="lb-top"><div class="lb-band" aria-hidden="true"></div>' +
         '<div class="lb-vert" aria-hidden="true">' + NAME.toUpperCase() + '</div>' +
         '<div class="lb-lang">' + langToggle() + '</div>' +
         '<div class="lb-photo">' + cut() + '</div>' + sticker('small lb-stick') + '</header>' +
         '<div class="lb-id"><h1>' + NAME + '</h1><p class="role">' + k('role') + '</p></div>' + inside();
-    },
-    seda: function () {
-      return '<section class="sd-top"><div class="sd-lang">' + langToggle() + '</div>' +
-        '<div class="oval"><div class="oval-in">' + cut() + '</div></div>' +
-        '<h1>' + NAME + '</h1><p class="sd-script">' + k('silkLine') + '</p><p class="role">' + k('role') + '</p></section>' + inside();
-    },
-    historia: function () {
-      return '<section class="st-wrap"><div class="st-frame">' +
-        '<div class="st-bars" aria-hidden="true"><i class="on"></i><i class="on"></i><i></i><i></i></div>' +
-        '<div class="st-head"><span class="st-av">' + cut() + '</span><b>' + esc(CLIENT.first) + '</b><small>Farmasi</small>' + langToggle() + '</div>' +
-        cut('st-cut') +
-        '<div class="st-stickers"><a class="pill coral sticky s-a" href="' + SHOP + '" target="_blank" rel="noopener">' + ico('bag') + '<span>' + k('shopHere') + '</span></a>' +
-        '<a class="pill ink sticky s-b" href="' + JOIN + '" target="_blank" rel="noopener">' + ico('star') + '<span>' + k('joinMe') + '</span></a></div>' +
-        '</div></section>' + nameBlock() + inside();
     }
   };
 
