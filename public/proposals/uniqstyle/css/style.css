@@ -150,7 +150,7 @@ button{font:inherit;color:inherit}
 /* ---------- 3 EDITORIAL: white, big slant ---------- */
 .ed-hero{position:relative;height:500px;overflow:hidden;background:linear-gradient(180deg,#EFE6E4 0%,#E4D6D4 100%)}
 .ed-hero .slant{position:absolute;bottom:-1px;left:0;width:100%;height:52px;z-index:4}
-.ed-hero .cutout{top:-64px;left:-15%;width:130%;height:auto;object-fit:contain}
+.ed-hero .cutout{top:-48px;left:-11%;width:122%;height:auto;object-fit:contain}
 .ed-hero .slant path{fill:#fff}
 .ed-name{padding:6px 22px 4px}
 .kicker{margin:0;font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--coral)}
