@@ -133,7 +133,8 @@ button{font:inherit;color:inherit}
 .qr-close svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round}
 
 /* ---------- 1 PORTADA: the skill's Cover Girl, elongated ---------- */
-/* uses .cover.tall above */
+/* uses .cover.tall above; her cutout sits a little smaller so the outlined word shows above her */
+.look-portada .cover .cutout{top:auto;bottom:0;left:-14%;width:128%;height:auto;object-fit:contain}
 
 /* ---------- 2 ROSA GLASS: pop-out portrait from a glossy candy tile ---------- */
 .look-rosa{background:linear-gradient(170deg,#FCECEA 0%,#F7D9D7 50%,#FBEFEE 100%)}
