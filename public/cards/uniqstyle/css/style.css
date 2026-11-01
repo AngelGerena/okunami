@@ -120,7 +120,7 @@ button{font:inherit;color:inherit}
 .pe-lang{display:flex;justify-content:flex-end}
 .pe-photo{position:relative;width:min(80vw,310px);height:min(104vw,400px);margin:4px auto 0;border-radius:160px 160px 24px 24px;overflow:hidden;border:5px solid #fff;background:linear-gradient(180deg,#FFE3E2,#F3BDBC);box-shadow:0 14px 30px rgba(194,65,75,.22)}
 .pe-photo .cutout{top:auto;bottom:-12%;left:-20%;width:140%;height:auto;object-fit:contain}
-.pe-top .script{margin:12px 0 2px;font-family:var(--script);font-weight:400;font-size:58px;line-height:1;color:var(--rose)}
+.pe-top .script{margin:12px 0 6px;font-family:var(--script);font-weight:400;font-size:clamp(38px,11vw,54px);line-height:1.05;color:var(--rose);white-space:nowrap}
 .pe-top .curve{position:absolute;left:0;bottom:-1px;width:100%;height:60px}
 .pe-top .curve path{fill:#fff}
 
@@ -128,4 +128,3 @@ button{font:inherit;color:inherit}
   .ring,.sticker::after,.referral,.pill::after{animation:none}
   .story,.pill{transition:none}
 }
-.pe-top .pe-full{position:relative;margin:0 0 6px;font-family:var(--display);font-size:22px;line-height:1.1;color:var(--ink)}

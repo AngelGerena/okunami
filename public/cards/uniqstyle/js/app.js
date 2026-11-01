@@ -90,7 +90,7 @@
   function page() {
     return '<section class="pe-top"><div class="pe-lang">' + langToggle() + '</div>' +
       '<div class="pe-photo"><img class="cutout" src="images/cutout-tall.webp?v=1" alt="' + NAME + '"></div>' +
-      '<h1 class="script">' + esc(CLIENT.first) + '</h1><p class="pe-full">' + NAME + '</p><p class="role">' + k('role') + '</p>' +
+      '<h1 class="script">' + NAME + '</h1><p class="role">' + k('role') + '</p>' +
       '<svg class="curve" viewBox="0 0 100 24" preserveAspectRatio="none" aria-hidden="true"><path d="M0 24 C30 0 70 0 100 24 Z"/></svg></section>' +
       '<section class="inside"><img class="brand" src="images/farmasi-logo.png?v=1" alt="Farmasi">' + stories() + pills() + closing() + '</section>';
   }
