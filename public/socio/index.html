@@ -161,6 +161,7 @@ h1{margin:0;font-family:'Fraunces',Georgia,serif;font-size:34px;line-height:1.05
 .stat.hot b{color:var(--pink)}
 .chips button[aria-pressed="true"]{background:var(--pink);border-color:var(--pink);color:var(--on-pink)}
 .toast{background:var(--ink);color:var(--on-pink)}
+.badge{color:#C9CBE6}
 .badge.lost{background:var(--ink-2);color:var(--muted)}
 .ctag.clawback{background:#3A1712;color:var(--bad)}
 .tree .root{background:var(--ink-2);border-color:#353E86}
@@ -176,6 +177,12 @@ h1{margin:0;font-family:'Fraunces',Georgia,serif;font-size:34px;line-height:1.05
 .advice .tx{background:rgba(255,255,255,.08)}
 .field input,.field textarea,.field select,.edit select,.edit input,.edit textarea,.pick select{color:var(--text)}
 .toast,.btn.pri{font-weight:800}
+/* iOS date fields: keep them inside the form */
+.field{min-width:0}
+input[type=date]{-webkit-appearance:none;appearance:none;display:block;min-width:0;max-width:100%;text-align:left}
+input[type=date]::-webkit-date-and-time-value{text-align:left}
+@keyframes payflash{0%,100%{box-shadow:0 0 0 0 rgba(255,60,172,0)}50%{box-shadow:0 0 0 8px rgba(255,60,172,.45)}}
+.paylink.flash{animation:payflash .9s ease-in-out 3}
 </style>
 </head>
 <body>
@@ -274,7 +281,7 @@ h1{margin:0;font-family:'Fraunces',Georgia,serif;font-size:34px;line-height:1.05
       bonusH: 'Bono del mes', bonusT: function (n, k) { return n >= k ? 'Ganaste $100 este mes (' + n + ' clientes)' : n + ' de ' + k + ' clientes nuevos'; },
       hReady: 'Te lo pagamos dentro de 7 días.', hPending: 'Ventas en su espera de 30 días.', hEarned: 'Desde tu primera venta, con bonos.', hSales: 'Clientes que ya pagaron.',
       bonusHint: function (m) { return '10 clientes nuevos que paguen en ' + m + ' = $100 extra. Un bono por mes.'; },
-      advice: '<b>Consejo:</b> toca <b>+ Agregar persona</b> por cada cliente con quien hables. En su tarjeta, abajo en esta lista, aparece el botón <b>Copiar link de pago</b> (al lado de WhatsApp). Envíale ese link para que pague y la venta queda a tu nombre.',
+      advice: '<b>Consejo:</b> toca <b>+ Agregar persona</b> y guarda al cliente. Su tarjeta aparece abajo en la lista con un botón rosa <b>Copiar link de pago</b>. Envíale ese link para que pague y la venta queda a tu nombre.',
       tips: {
         ready: ['¿Qué es Listo para cobrar?', 'Comisión de ventas que ya pasaron su espera de 30 días, más bonos ganados. Te pagamos dentro de 7 días por PayPal o transferencia. Si hubo un reembolso, ya está descontado.'],
         pending: ['¿Por qué está pendiente?', 'Cada venta espera 30 días por si el cliente pide reembolso. Después pasa a <b>Listo para cobrar</b> y te pagamos dentro de 7 días.'],
@@ -305,14 +312,14 @@ h1{margin:0;font-family:'Fraunces',Georgia,serif;font-size:34px;line-height:1.05
       status: 'Estado', notes: 'Notas', follow: 'Seguimiento', saveRow: 'Guardar', contacted: 'Hablé hoy', payLink: 'Copiar link de pago', call: 'Llamar',
       amount: 'Monto pagado ($)', markPaid: 'Marcar pagado', lastC: 'Último contacto', added: 'Agregado', paidOn: 'Pagado el', commission: 'Tu comisión',
       plan: { pro: 'Pro', plus: 'Pro Plus', team: 'Business' }, month: 'mensual', year: 'anual', design: 'diseño personalizado',
-      empty: 'Nada por aquí todavía.', saved: 'Guardado', copied: 'Link copiado. Pégalo en WhatsApp.', wrong: 'PIN incorrecto.', locked: 'Demasiados intentos. Espera 15 minutos.',
+      empty: 'Nada por aquí todavía.', saved: 'Guardado', savedPay: 'Guardado. Su botón Copiar link de pago está en su tarjeta.', copied: 'Link copiado. Pégalo en WhatsApp.', wrong: 'PIN incorrecto.', locked: 'Demasiados intentos. Espera 15 minutos.',
       fail: 'No se pudo conectar. Intenta otra vez.', needName: 'Escribe el nombre.', needAmount: 'Pon el monto pagado.' },
     en: { title: 'Partner Dashboard | OKUNAMI', loginH: 'Partner Dashboard', loginS: 'Your clients, your sales and your commission in one place.', enter: 'Sign in',
       hello: 'Hi, {n}', helloS: 'Here is how your OKUNAMI sales are going.', sReady: 'Ready to pay out', sPending: 'Pending (30 days)', sEarned: 'Earned in total', sPaid: 'Sales',
       bonusH: 'Monthly bonus', bonusT: function (n, k) { return n >= k ? 'You earned $100 this month (' + n + ' clients)' : n + ' of ' + k + ' new clients'; },
       hReady: 'We pay you within 7 days.', hPending: 'Sales in their 30-day wait.', hEarned: 'Since your first sale, bonuses included.', hSales: 'Clients who have paid.',
       bonusHint: function (m) { return '10 new paying clients in ' + m + ' = $100 extra. One bonus per month.'; },
-      advice: '<b>Tip:</b> tap <b>+ Add person</b> for each client you talk to. Their card, in the list below, gets a <b>Copy payment link</b> button (next to WhatsApp). Send them that link to pay and the sale is credited to you.',
+      advice: '<b>Tip:</b> tap <b>+ Add person</b> and save the client. Their card shows up in the list below with a pink <b>Copy payment link</b> button. Send them that link to pay and the sale is credited to you.',
       tips: {
         ready: ['What is Ready to pay out?', 'Commission from sales that finished their 30-day wait, plus bonuses earned. We pay you within 7 days by PayPal or bank transfer. Any refund is already taken off.'],
         pending: ['Why is it pending?', 'Every sale waits 30 days in case the client asks for a refund. Then it moves to <b>Ready to pay out</b> and we pay you within 7 days.'],
@@ -343,7 +350,7 @@ h1{margin:0;font-family:'Fraunces',Georgia,serif;font-size:34px;line-height:1.05
       status: 'Status', notes: 'Notes', follow: 'Follow up', saveRow: 'Save', contacted: 'Talked today', payLink: 'Copy payment link', call: 'Call',
       amount: 'Amount paid ($)', markPaid: 'Mark paid', lastC: 'Last contact', added: 'Added', paidOn: 'Paid on', commission: 'Your commission',
       plan: { pro: 'Pro', plus: 'Pro Plus', team: 'Business' }, month: 'monthly', year: 'yearly', design: 'custom design',
-      empty: 'Nothing here yet.', saved: 'Saved', copied: 'Link copied. Paste it in WhatsApp.', wrong: 'Wrong PIN.', locked: 'Too many tries. Wait 15 minutes.',
+      empty: 'Nothing here yet.', saved: 'Saved', savedPay: 'Saved. Their Copy payment link button is on their card.', copied: 'Link copied. Paste it in WhatsApp.', wrong: 'Wrong PIN.', locked: 'Too many tries. Wait 15 minutes.',
       fail: 'Could not connect. Try again.', needName: 'Enter the name.', needAmount: 'Enter the amount paid.' }
   };
   var PARTNER_ST = ['new', 'contacted', 'interested', 'not_interested'];
@@ -515,7 +522,7 @@ h1{margin:0;font-family:'Fraunces',Georgia,serif;font-size:34px;line-height:1.05
     }
     if (l.email) { var em = el('a', 'btn soft sm', 'Email'); em.href = 'mailto:' + l.email; acts.appendChild(em); }
     if (l.status !== 'paid' && DATA.card) {
-      var pl = el('button', 'btn soft sm', T.payLink); pl.type = 'button';
+      var pl = el('button', 'btn pink sm paylink', T.payLink); pl.type = 'button'; pl.setAttribute('data-id', l.id);
       pl.addEventListener('click', function () { copy(DATA.card + '?resume=' + l.id).then(function () { toast(T.copied); }); });
       acts.appendChild(pl);
     }
@@ -602,6 +609,13 @@ h1{margin:0;font-family:'Fraunces',Georgia,serif;font-size:34px;line-height:1.05
   $('pick').addEventListener('change', function () { reseller = $('pick').value; filter = 'all'; load(); });
   $('refresh').addEventListener('click', load);
   $('out').addEventListener('click', signOut);
+  // After adding someone, bring their card into view and point at the payment link button.
+  function showPayLink(id) {
+    var b = (id && document.querySelector('.paylink[data-id="' + id + '"]')) || document.querySelector('.paylink');
+    if (!b) return;
+    b.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    b.classList.remove('flash'); void b.offsetWidth; b.classList.add('flash');
+  }
   $('addBtn').addEventListener('click', function () { $('addF').hidden = false; $('aName').focus(); });
   $('addCancel').addEventListener('click', function () { $('addF').hidden = true; });
   $('addF').addEventListener('submit', function (e) {
@@ -609,7 +623,7 @@ h1{margin:0;font-family:'Fraunces',Georgia,serif;font-size:34px;line-height:1.05
     if (!$('aName').value.trim()) { err.textContent = L().needName; err.hidden = false; return; }
     err.hidden = true; btn.disabled = true;
     api({ action: 'add', reseller: reseller, lead: { full_name: $('aName').value, phone: $('aPhone').value, email: $('aEmail').value, business_name: $('aBiz').value, partner_notes: $('aNotes').value, follow_up: $('aFollow').value, lang: lang } })
-      .then(function () { $('addF').reset(); $('addF').hidden = true; toast(L().saved); return load(); })
+      .then(function (r) { $('addF').reset(); $('addF').hidden = true; toast(L().savedPay); var id = r && r.lead && r.lead.id; return load().then(function () { showPayLink(id); }); })
       .catch(function () { err.textContent = L().fail; err.hidden = false; })
       .then(function () { btn.disabled = false; });
   });
