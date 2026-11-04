@@ -309,10 +309,10 @@ input[type=date]::-webkit-date-and-time-value{text-align:left}
       f: { all: 'Todos', due: 'Seguimiento', new: 'Nuevos', talk: 'Hablando', paid: 'Pagados', lost: 'No interesados' },
       st: { new: 'Nuevo', contacted: 'Contactado', interested: 'Interesado', not_interested: 'No interesado', checkout_started: 'Empezó a pagar', awaiting_payment: 'Pago pendiente', paid: 'Pagado' },
       src: { agent: 'Tu tarjeta', form: 'Tu tarjeta', 'mayra-card': 'Tarjeta de Mayra', manual: 'Agregado por ti' },
-      status: 'Estado', notes: 'Notas', follow: 'Seguimiento', saveRow: 'Guardar', contacted: 'Hablé hoy', payLink: 'Copiar link de pago', call: 'Llamar',
+      status: 'Estado', notes: 'Notas', follow: 'Seguimiento', saveRow: 'Guardar', contacted: 'Hablé hoy', payLink: 'Copiar link de pago', call: 'Llamar', text: 'Texto',
       amount: 'Monto pagado ($)', markPaid: 'Marcar pagado', lastC: 'Último contacto', added: 'Agregado', paidOn: 'Pagado el', commission: 'Tu comisión',
       plan: { pro: 'Pro', plus: 'Pro Plus', team: 'Business' }, month: 'mensual', year: 'anual', design: 'diseño personalizado',
-      empty: 'Nada por aquí todavía.', saved: 'Guardado', savedPay: 'Guardado. Su botón Copiar link de pago está en su tarjeta.', copied: 'Link copiado. Pégalo en WhatsApp.', wrong: 'PIN incorrecto.', locked: 'Demasiados intentos. Espera 15 minutos.',
+      empty: 'Nada por aquí todavía.', saved: 'Guardado', savedPay: 'Guardado. Su botón Copiar link de pago está en su tarjeta.', copied: 'Link copiado. Pégalo en WhatsApp o en un texto.', wrong: 'PIN incorrecto.', locked: 'Demasiados intentos. Espera 15 minutos.',
       fail: 'No se pudo conectar. Intenta otra vez.', needName: 'Escribe el nombre.', needAmount: 'Pon el monto pagado.' },
     en: { title: 'Partner Dashboard | OKUNAMI', loginH: 'Partner Dashboard', loginS: 'Your clients, your sales and your commission in one place.', enter: 'Sign in',
       hello: 'Hi, {n}', helloS: 'Here is how your OKUNAMI sales are going.', sReady: 'Ready to pay out', sPending: 'Pending (30 days)', sEarned: 'Earned in total', sPaid: 'Sales',
@@ -347,10 +347,10 @@ input[type=date]::-webkit-date-and-time-value{text-align:left}
       f: { all: 'All', due: 'Follow up', new: 'New', talk: 'Talking', paid: 'Paid', lost: 'Not interested' },
       st: { new: 'New', contacted: 'Contacted', interested: 'Interested', not_interested: 'Not interested', checkout_started: 'Started paying', awaiting_payment: 'Payment pending', paid: 'Paid' },
       src: { agent: 'Your card', form: 'Your card', 'mayra-card': "Mayra's card", manual: 'Added by you' },
-      status: 'Status', notes: 'Notes', follow: 'Follow up', saveRow: 'Save', contacted: 'Talked today', payLink: 'Copy payment link', call: 'Call',
+      status: 'Status', notes: 'Notes', follow: 'Follow up', saveRow: 'Save', contacted: 'Talked today', payLink: 'Copy payment link', call: 'Call', text: 'Text',
       amount: 'Amount paid ($)', markPaid: 'Mark paid', lastC: 'Last contact', added: 'Added', paidOn: 'Paid on', commission: 'Your commission',
       plan: { pro: 'Pro', plus: 'Pro Plus', team: 'Business' }, month: 'monthly', year: 'yearly', design: 'custom design',
-      empty: 'Nothing here yet.', saved: 'Saved', savedPay: 'Saved. Their Copy payment link button is on their card.', copied: 'Link copied. Paste it in WhatsApp.', wrong: 'Wrong PIN.', locked: 'Too many tries. Wait 15 minutes.',
+      empty: 'Nothing here yet.', saved: 'Saved', savedPay: 'Saved. Their Copy payment link button is on their card.', copied: 'Link copied. Paste it in WhatsApp or a text.', wrong: 'Wrong PIN.', locked: 'Too many tries. Wait 15 minutes.',
       fail: 'Could not connect. Try again.', needName: 'Enter the name.', needAmount: 'Enter the amount paid.' }
   };
   var PARTNER_ST = ['new', 'contacted', 'interested', 'not_interested'];
@@ -518,6 +518,7 @@ input[type=date]::-webkit-date-and-time-value{text-align:left}
     var acts = el('div', 'acts'), ph = digits(l.phone);
     if (ph.length >= 11) {
       var wa = el('a', 'btn soft sm', 'WhatsApp'); wa.href = 'https://wa.me/' + ph; wa.target = '_blank'; wa.rel = 'noopener'; acts.appendChild(wa);
+      var sms = el('a', 'btn soft sm', T.text); sms.href = 'sms:+' + ph; acts.appendChild(sms);
       var tel = el('a', 'btn soft sm', T.call); tel.href = 'tel:+' + ph; acts.appendChild(tel);
     }
     if (l.email) { var em = el('a', 'btn soft sm', 'Email'); em.href = 'mailto:' + l.email; acts.appendChild(em); }
