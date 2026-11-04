@@ -5,12 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Panel de Socio | OKUNAMI</title>
 <meta name="robots" content="noindex, nofollow, noai, noimageai">
-<meta name="theme-color" content="#F4F5FB">
+<meta name="theme-color" content="#0B0E2A">
+<meta name="color-scheme" content="dark">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Manrope:wght@400;500;600;700;800&display=swap">
 <style>
-:root{--ink:#0B0E2A;--ink-2:#1B2050;--pink:#FF3CAC;--pink-deep:#C8157E;--pink-soft:#FFE1F1;--paper:#F4F5FB;--white:#FFFFFF;--text:#1C2233;--muted:#5C6378;--line:#E3E4EF;--ok:#2F7A4F;--ok-soft:#E4F3EA;--bad:#B3402A;--warn:#9A6400;--warn-soft:#FFF3D6;color-scheme:light}
+:root{--ink:#F4F5FB;--ink-2:#1E2560;--pink:#FF3CAC;--pink-deep:#FF6FC2;--pink-soft:#3A1435;--paper:#0B0E2A;--white:#151A3D;--text:#E7E8F4;--muted:#A3A7C4;--line:#2A3166;--ok:#6FD39A;--ok-soft:#12382A;--bad:#FF8A7A;--warn:#F2C35B;--warn-soft:#3A2E0C;--on-pink:#0B0E2A;color-scheme:dark}
+/* Dark navy look (Nov 2026): --ink is now the light text color; fills that used to be dark navy use --ink-2 or pink. */
 html{-webkit-text-size-adjust:100%;overflow-x:hidden;font-variant-emoji:text}
 *{box-sizing:border-box}
 body{margin:0;background:var(--paper);color:var(--text);font-family:'Manrope',system-ui,sans-serif;font-size:15px;line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:hidden}
@@ -151,6 +153,29 @@ h1{margin:0;font-family:'Fraunces',Georgia,serif;font-size:34px;line-height:1.05
 .lead .why{margin:0;font-size:12px;color:var(--muted)}
 .foot{text-align:center;color:var(--muted);font-size:12px}
 .foot a{color:var(--muted)}
+/* dark navy overrides */
+.lang button[aria-pressed="true"]{background:var(--pink);color:var(--on-pink)}
+.btn.pri{background:var(--ink);color:var(--on-pink)}
+.btn.pink{color:var(--on-pink)}
+.stat.hot{background:var(--ink-2);border-color:#353E86}
+.stat.hot b{color:var(--pink)}
+.chips button[aria-pressed="true"]{background:var(--pink);border-color:var(--pink);color:var(--on-pink)}
+.toast{background:var(--ink);color:var(--on-pink)}
+.badge.lost{background:var(--ink-2);color:var(--muted)}
+.ctag.clawback{background:#3A1712;color:var(--bad)}
+.tree .root{background:var(--ink-2);border-color:#353E86}
+.tree .root b{color:var(--ink)}
+.tree .total span,.tree .total b{color:var(--on-pink)}
+.tree .seg button[aria-pressed="true"]{background:var(--pink);color:var(--on-pink)}
+.ib[aria-expanded="true"]{color:var(--on-pink)}
+.tip{background:var(--ink-2);border:1px solid #353E86;box-shadow:0 18px 40px -14px rgba(0,0,0,.6)}
+.tip .arrow{background:var(--ink-2);border-left:1px solid #353E86;border-top:1px solid #353E86}
+.advice{color:var(--text)}
+.tip .tn{color:#FFB3DC}
+.tip .x,.tip button{color:#C9CBE6}
+.advice .tx{background:rgba(255,255,255,.08)}
+.field input,.field textarea,.field select,.edit select,.edit input,.edit textarea,.pick select{color:var(--text)}
+.toast,.btn.pri{font-weight:800}
 </style>
 </head>
 <body>
