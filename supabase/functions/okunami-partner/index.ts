@@ -8,13 +8,16 @@
 //   POST { action: 'login', pin }                       -> { token, who, admin }
 //   POST { action: 'list', token, reseller? }            -> { who, admin, reseller, resellers, leads, totals, card }
 //   POST { action: 'add', token, lead:{...} }            -> { lead }      someone the partner talked to (source 'manual')
-//   POST { action: 'update', token, id, status?, follow_up?, partner_notes?, contacted?, amount? } -> { lead }
+//   POST { action: 'update', token, id, status?, follow_up?, partner_notes?, contacted?,
+//          admin only: amount?, design?, plan?, plan_payments?, pay_commission? }  -> { lead }
+//   POST { action: 'bonus_paid', token, reseller, month:'YYYY-MM' }  (admin)  -> { ok }
 //
 // Who: a reseller slug (hiram-diaz) sees only their own leads. 'admin' sees every reseller (picker), and can
-// mark Zelle / Apple Cash payments as paid. Nothing on a reseller's screen shows that the admin can view it.
+// mark Zelle / Apple Cash payments as paid, and record commission payouts.
+// Commission rules live in logic.ts (TERMS): 25% design, 40% of the first 12 months of the plan, $100 bonus at 10+ clients a month. Nothing on a reseller's screen shows that the admin can view it.
 // PINs live hashed in fc_partner_access (set them with: select public.fc_set_partner_pin('hiram-diaz', '1234');).
 import { admin, cors, json } from '../_shared/okunami.ts';
-import { PARTNERS, VIA, PARTNER_STATUSES, ADMIN_STATUSES, clip, makeToken, readToken, totals } from './logic.ts';
+import { PARTNERS, VIA, PARTNER_STATUSES, ADMIN_STATUSES, clip, earning, makeToken, readToken, totals } from './logic.ts';
 
 /* ---------- alerts (email; never throws) ---------- */
 const esc = (s: string) => s.replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]!));
@@ -37,7 +40,7 @@ function tooMany(ip: string, max = 6, ms = 15 * 60_000) {
   return list.length > max;
 }
 
-const LEAD_COLS = 'id, created_at, updated_at, reseller, lang, source, full_name, business_name, business_type, phone, email, plan, billing, seats, studio, studio_cents, payment_method, status, amount_cents, fee_cents, notes, follow_up, last_contact, partner_notes, paid_at';
+const LEAD_COLS = 'id, created_at, updated_at, reseller, lang, source, full_name, business_name, business_type, phone, email, plan, billing, seats, studio, studio_cents, payment_method, status, amount_cents, fee_cents, notes, follow_up, last_contact, partner_notes, paid_at, plan_payments, commission_paid_cents, commission_paid_at';
 
 Deno.serve(async (req) => {
   if (req.method === 'OPTIONS') return new Response('ok', { headers: cors });
@@ -90,12 +93,23 @@ Deno.serve(async (req) => {
     const resellers = isAdmin ? Object.keys(PARTNERS) : [who];
     const reseller = isAdmin ? (PARTNERS[clip(b.reseller, 60)] ? clip(b.reseller, 60) : resellers[0]) : who;
     if (!PARTNERS[reseller]) return json({ error: 'auth' }, 401);
-    const rate = Number(rows.find((r) => r.who === reseller)?.commission_rate ?? 0.4);
 
     if (b.action === 'list') {
       const { data, error } = await db.from('fc_reseller_leads').select(LEAD_COLS).eq('reseller', reseller).neq('source', 'test').order('created_at', { ascending: false }).limit(1000);
       if (error) throw error;
-      return json({ who, admin: isAdmin, reseller, resellers: resellers.map((r) => ({ id: r, name: PARTNERS[r].name })), card: PARTNERS[reseller].card, leads: data ?? [], totals: totals(data ?? [], rate) });
+      const { data: bp } = await db.from('fc_partner_bonus').select('month').eq('reseller', reseller);
+      const leads = (data ?? []).map((l: Record<string, unknown>) => ({ ...l, earning: earning(l) }));
+      return json({ who, admin: isAdmin, reseller, resellers: resellers.map((r) => ({ id: r, name: PARTNERS[r].name })), card: PARTNERS[reseller].card,
+        leads, totals: totals(data ?? [], ((bp ?? []) as { month: string }[]).map((b) => b.month)) });
+    }
+
+    if (b.action === 'bonus_paid') {
+      if (!isAdmin) return json({ error: 'auth' }, 403);
+      const month = clip(b.month, 7);
+      if (!/^\d{4}-\d{2}$/.test(month)) return json({ error: 'bad_request' }, 400);
+      const { error } = await db.from('fc_partner_bonus').upsert({ reseller, month, paid_at: new Date().toISOString() });
+      if (error) throw error;
+      return json({ ok: true });
     }
 
     if (b.action === 'add') {
@@ -113,7 +127,7 @@ Deno.serve(async (req) => {
 
     if (b.action === 'update') {
       const id = clip(b.id, 60);
-      const { data: lead } = await db.from('fc_reseller_leads').select('id, reseller, status').eq('id', id).maybeSingle();
+      const { data: lead } = await db.from('fc_reseller_leads').select(LEAD_COLS).eq('id', id).maybeSingle();
       if (!lead || lead.reseller !== reseller) return json({ error: 'not_found' }, 404);
       const upd: Record<string, unknown> = { updated_at: new Date().toISOString() };
       if (typeof b.status === 'string') {
@@ -122,14 +136,25 @@ Deno.serve(async (req) => {
         if (lead.status === 'paid' && !isAdmin) return json({ error: 'status_not_allowed' }, 403);   // only Angel undoes a sale
         upd.status = b.status;
       }
-      if (isAdmin && b.amount != null) upd.amount_cents = Math.max(0, Math.min(10_000_000, Math.round(Number(b.amount) * 100) || 0));
-      if (upd.status === 'paid' && !(Number(upd.amount_cents ?? 1) > 0)) return json({ error: 'need_amount' }, 400);
+      const cents = (v: unknown) => Math.max(0, Math.min(10_000_000, Math.round(Number(v) * 100) || 0));
+      if (isAdmin && b.amount != null) upd.amount_cents = cents(b.amount);
+      if (isAdmin && (b.design != null || b.plan != null)) {     // the sale split: design (one time) + one plan payment
+        const design = b.design != null ? cents(b.design) : Number(lead.studio_cents) || 0;
+        const plan = b.plan != null ? cents(b.plan) : Math.max(0, (Number(lead.amount_cents) || 0) - (Number(lead.studio_cents) || 0));
+        upd.studio_cents = design || null; upd.studio = design > 0; upd.amount_cents = design + plan;
+      }
+      if (isAdmin && b.plan_payments != null) upd.plan_payments = Math.max(1, Math.min(60, Math.round(Number(b.plan_payments)) || 1));
+      if ((upd.status === 'paid' || ('amount_cents' in upd && lead.status === 'paid')) && !(Number(upd.amount_cents ?? lead.amount_cents) > 0)) return json({ error: 'need_amount' }, 400);
       if ('follow_up' in b) upd.follow_up = /^\d{4}-\d{2}-\d{2}$/.test(String(b.follow_up ?? '')) ? b.follow_up : null;
       if ('partner_notes' in b) upd.partner_notes = clip(b.partner_notes, 2000) || null;
       if (b.contacted === true) upd.last_contact = new Date().toISOString();
+      if (isAdmin && b.pay_commission === true) {                 // pays out everything owed on this sale (or settles a refund)
+        const e = earning({ ...lead, ...upd });
+        upd.commission_paid_cents = e.cleared ? e.earned : 0; upd.commission_paid_at = new Date().toISOString();
+      }
       const { data, error } = await db.from('fc_reseller_leads').update(upd).eq('id', id).select(LEAD_COLS).single();
       if (error) throw error;
-      return json({ lead: data });
+      return json({ lead: { ...data, earning: earning(data) } });
     }
 
     return json({ error: 'Unknown action.' }, 400);

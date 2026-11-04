@@ -75,6 +75,29 @@ h1{margin:0;font-family:'Fraunces',Georgia,serif;font-size:34px;line-height:1.05
 .toast{position:fixed;left:50%;bottom:calc(18px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--white);padding:12px 18px;border-radius:999px;font-weight:700;font-size:14px;z-index:9;max-width:calc(100% - 32px);text-align:center}
 .pick{display:flex;gap:8px;align-items:center}
 .pick select{min-height:40px;border:1px solid var(--line);border-radius:999px;padding:0 12px;background:var(--white);font-weight:700}
+.bonus{background:var(--white);border:1px solid var(--line);border-radius:16px;padding:14px;display:flex;flex-direction:column;gap:8px}
+.bonus .bh{display:flex;justify-content:space-between;align-items:baseline;gap:10px;font-size:14px;font-weight:800;color:var(--ink)}
+.bonus .bh span{font-size:13px;font-weight:700;color:var(--muted);text-align:right}
+.bar{height:10px;border-radius:999px;background:var(--paper);overflow:hidden}
+.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--pink),var(--pink-deep));border-radius:999px}
+.bmonths{display:flex;flex-direction:column;gap:6px}
+.bmonths div{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:13px;color:var(--text)}
+.how{background:var(--white);border:1px solid var(--line);border-radius:16px;padding:0 16px}
+.how summary{list-style:none;cursor:pointer;min-height:52px;display:flex;align-items:center;justify-content:space-between;font-weight:800;color:var(--ink)}
+.how summary::-webkit-details-marker{display:none}
+.how summary svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;transition:transform .2s}
+.how[open] summary svg{transform:rotate(180deg)}
+.how .rates{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:2px 0 12px}
+.how .rate{background:var(--paper);border-radius:12px;padding:10px;display:flex;flex-direction:column;gap:2px;min-width:0}
+.how .rate b{font-family:'Fraunces',Georgia,serif;font-size:24px;line-height:1.05;color:var(--pink-deep)}
+.how .rate span{font-size:12px;font-weight:700;color:var(--muted);line-height:1.3}
+.how ul{margin:0 0 14px;padding-left:18px;display:flex;flex-direction:column;gap:6px;font-size:14px;color:var(--text)}
+.how p{margin:0 0 10px;font-size:14px;color:var(--text)}
+.ctag{display:inline-block;white-space:nowrap;font-size:12px;font-weight:800;border-radius:8px;padding:3px 8px;margin-left:6px;vertical-align:1px}
+.ctag.pending{background:var(--warn-soft);color:var(--warn)}
+.ctag.ready{background:var(--pink-soft);color:var(--pink-deep)}
+.ctag.paid{background:var(--ok-soft);color:var(--ok)}
+.ctag.clawback{background:#FBE7E3;color:var(--bad)}
 .foot{text-align:center;color:var(--muted);font-size:12px}
 .foot a{color:var(--muted)}
 </style>
@@ -105,11 +128,28 @@ h1{margin:0;font-family:'Fraunces',Georgia,serif;font-size:34px;line-height:1.05
     </div>
 
     <div class="stats">
-      <div class="stat hot"><b id="sMonth">$0</b><span data-t="sMonth">Comisión este mes</span></div>
-      <div class="stat"><b id="sTotal">$0</b><span data-t="sTotal">Comisión total</span></div>
+      <div class="stat hot"><b id="sReady">$0</b><span data-t="sReady">Listo para cobrar</span></div>
+      <div class="stat"><b id="sPending">$0</b><span data-t="sPending">Pendiente (30 días)</span></div>
+      <div class="stat"><b id="sEarned">$0</b><span data-t="sEarned">Ganado en total</span></div>
       <div class="stat"><b id="sPaid">0</b><span data-t="sPaid">Ventas</span></div>
-      <div class="stat"><b id="sTalk">0</b><span data-t="sTalk">Hablando</span></div>
     </div>
+
+    <div class="bonus" id="bonus">
+      <div class="bh"><b data-t="bonusH">Bono del mes</b><span id="bonusT"></span></div>
+      <div class="bar" role="progressbar" aria-valuemin="0" id="bonusBar"><i id="bonusFill" style="width:0%"></i></div>
+      <div class="bmonths" id="bonusMonths" hidden></div>
+    </div>
+
+    <details class="how" id="how">
+      <summary><span data-t="howH">Cómo ganas</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary>
+      <div class="rates">
+        <div class="rate"><b>25%</b><span data-t="r1">de cada diseño personalizado</span></div>
+        <div class="rate"><b>40%</b><span data-t="r2">de los primeros 12 meses del plan</span></div>
+        <div class="rate"><b>$100</b><span data-t="r3">de bono con 10+ clientes en un mes</span></div>
+      </div>
+      <ul id="howList"></ul>
+      <p id="howEx" style="color:var(--muted)"></p>
+    </details>
 
     <div class="due" id="due" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span id="dueT"></span></div>
 
@@ -146,7 +186,16 @@ h1{margin:0;font-family:'Fraunces',Georgia,serif;font-size:34px;line-height:1.05
   var KEY = 'okunami-socio-token';
   var D = {
     es: { title: 'Panel de Socio | OKUNAMI', loginH: 'Panel de Socio', loginS: 'Tus clientes, tus ventas y tu comisión en un solo lugar.', enter: 'Entrar',
-      hello: 'Hola, {n}', helloS: 'Así van tus ventas de OKUNAMI.', sMonth: 'Comisión este mes', sTotal: 'Comisión total', sPaid: 'Ventas', sTalk: 'Hablando',
+      hello: 'Hola, {n}', helloS: 'Así van tus ventas de OKUNAMI.', sReady: 'Listo para cobrar', sPending: 'Pendiente (30 días)', sEarned: 'Ganado en total', sPaid: 'Ventas',
+      bonusH: 'Bono del mes', bonusT: function (n, k) { return n >= k ? 'Ganaste $100 este mes (' + n + ' clientes)' : n + ' de ' + k + ' clientes nuevos'; },
+      bonusM: function (m, n) { return 'Bono de ' + m + ' (' + n + ' clientes): $100'; }, bonusPaid: 'Pagado', bonusPayBtn: 'Marcar bono pagado', bonusWait: 'Se paga al cerrar el mes',
+      howH: 'Cómo ganas', r1: 'de cada diseño personalizado', r2: 'de los primeros 12 meses del plan', r3: 'de bono con 10+ clientes en un mes',
+      how: ['Ganas 25% de cada diseño personalizado que vendas.', 'Ganas 40% de lo que el cliente paga por su plan durante sus primeros 12 meses. Si paga anual, cobras todo de una vez; si paga mensual, cobras mes a mes hasta 12 pagos. Después de los 12 meses ya no hay comisión.', 'Bono de $100 en cualquier mes que cierres 10 clientes nuevos o más que paguen.', 'Se paga por venta cuando el pago del cliente se libera, 30 días después de pagar.', 'La comisión es sobre el precio del plan y del diseño. No incluye cargos de procesamiento, impuestos ni créditos de IA.', 'Si un cliente pide reembolso o disputa el pago, esa comisión se descuenta del próximo pago.'],
+      howEx: 'Ejemplo: diseño de $149 + Pro Plus anual de $149 = $37.25 + $59.60 = $96.85 para ti.',
+      cState: { pending: 'Pendiente hasta {d}', ready: 'Lista para pago', paid: 'Pagada el {d}', clawback: 'Reembolso: se descuenta {m}' },
+      cSplit: function (d, p) { return [d ? 'diseño ' + d : '', p ? 'plan ' + p : ''].filter(Boolean).join(' + '); },
+      fDesign: 'Diseño ($)', fPlan: 'Pago del plan ($)', fPays: 'Pagos mensuales cobrados', payC: 'Marcar comisión pagada', settle: 'Marcar reembolso descontado',
+      clawT: function (m) { return 'Hay ' + m + ' en reembolsos que se descuentan del próximo pago.'; },
       add: '+ Agregar persona', refresh: 'Actualizar', addH: 'Alguien con quien hablaste', fName: 'Nombre', fPhone: 'Teléfono o WhatsApp', fBiz: 'Negocio',
       fNotes: 'Notas', fFollow: 'Dar seguimiento el', save: 'Guardar', cancel: 'Cancelar', out: 'Salir', crafted: 'Hecho por',
       due: function (n) { return n === 1 ? 'Tienes 1 persona para dar seguimiento hoy.' : 'Tienes ' + n + ' personas para dar seguimiento hoy.'; },
@@ -159,7 +208,16 @@ h1{margin:0;font-family:'Fraunces',Georgia,serif;font-size:34px;line-height:1.05
       empty: 'Nada por aquí todavía.', saved: 'Guardado', copied: 'Link copiado. Pégalo en WhatsApp.', wrong: 'PIN incorrecto.', locked: 'Demasiados intentos. Espera 15 minutos.',
       fail: 'No se pudo conectar. Intenta otra vez.', needName: 'Escribe el nombre.', needAmount: 'Pon el monto pagado.' },
     en: { title: 'Partner Dashboard | OKUNAMI', loginH: 'Partner Dashboard', loginS: 'Your clients, your sales and your commission in one place.', enter: 'Sign in',
-      hello: 'Hi, {n}', helloS: 'Here is how your OKUNAMI sales are going.', sMonth: 'Commission this month', sTotal: 'Total commission', sPaid: 'Sales', sTalk: 'Talking',
+      hello: 'Hi, {n}', helloS: 'Here is how your OKUNAMI sales are going.', sReady: 'Ready to pay out', sPending: 'Pending (30 days)', sEarned: 'Earned in total', sPaid: 'Sales',
+      bonusH: 'Monthly bonus', bonusT: function (n, k) { return n >= k ? 'You earned $100 this month (' + n + ' clients)' : n + ' of ' + k + ' new clients'; },
+      bonusM: function (m, n) { return m + ' bonus (' + n + ' clients): $100'; }, bonusPaid: 'Paid', bonusPayBtn: 'Mark bonus paid', bonusWait: 'Paid after the month ends',
+      howH: 'How you earn', r1: 'of every custom design', r2: 'of the first 12 months of the plan', r3: 'bonus with 10+ clients in a month',
+      how: ['You earn 25% of every custom design you sell.', 'You earn 40% of what the client pays for their plan during their first 12 months. Yearly plans pay you all at once; monthly plans pay you month by month, up to 12 payments. After 12 months there is no commission.', 'A $100 bonus in any month you close 10 or more new paying clients.', 'Paid per sale once the client’s payment clears, 30 days after they pay.', 'Commission is on the plan and design price. It does not include processing fees, taxes or AI credits.', 'If a client gets a refund or disputes the charge, that commission comes off your next payout.'],
+      howEx: 'Example: a $149 design + Pro Plus yearly at $149 = $37.25 + $59.60 = $96.85 for you.',
+      cState: { pending: 'Pending until {d}', ready: 'Ready to pay out', paid: 'Paid on {d}', clawback: 'Refund: {m} comes off' },
+      cSplit: function (d, p) { return [d ? 'design ' + d : '', p ? 'plan ' + p : ''].filter(Boolean).join(' + '); },
+      fDesign: 'Design ($)', fPlan: 'Plan payment ($)', fPays: 'Monthly payments collected', payC: 'Mark commission paid', settle: 'Mark refund deducted',
+      clawT: function (m) { return 'There is ' + m + ' in refunds that comes off the next payout.'; },
       add: '+ Add person', refresh: 'Refresh', addH: 'Someone you talked to', fName: 'Name', fPhone: 'Phone or WhatsApp', fBiz: 'Business',
       fNotes: 'Notes', fFollow: 'Follow up on', save: 'Save', cancel: 'Cancel', out: 'Sign out', crafted: 'Crafted by',
       due: function (n) { return n === 1 ? 'You have 1 person to follow up with today.' : 'You have ' + n + ' people to follow up with today.'; },
@@ -209,8 +267,9 @@ h1{margin:0;font-family:'Fraunces',Georgia,serif;font-size:34px;line-height:1.05
     var T = L(), t = DATA.totals, me = DATA.resellers.filter(function (r) { return r.id === DATA.reseller; })[0];
     $('hello').textContent = T.hello.replace('{n}', (me ? me.name : '').split(' ')[0]);
     $('pickWrap').hidden = !DATA.admin || DATA.resellers.length < 2;
-    $('sMonth').textContent = money(t.month_commission_cents); $('sTotal').textContent = money(t.commission_cents);
-    $('sPaid').textContent = t.paid; $('sTalk').textContent = t.talking;
+    $('sReady').textContent = money(Math.max(0, t.ready_cents + t.clawback_cents)); $('sPending').textContent = money(t.pending_cents);
+    $('sEarned').textContent = money(t.earned_cents); $('sPaid').textContent = t.paid;
+    renderBonus(t); renderHow();
     var dueN = DATA.leads.filter(isDue).length; $('due').hidden = !dueN; $('dueT').textContent = T.due(dueN);
     var chips = $('chips'); chips.innerHTML = '';
     ['all', 'due', 'new', 'talk', 'paid', 'lost'].forEach(function (k) {
@@ -222,6 +281,31 @@ h1{margin:0;font-family:'Fraunces',Georgia,serif;font-size:34px;line-height:1.05
     var rows = DATA.leads.filter(function (l) { return filter === 'all' || (filter === 'due' ? isDue(l) : bucket(l) === filter); });
     if (!rows.length) { ul.appendChild(el('li', 'empty', T.empty)); return; }
     rows.forEach(function (l) { ul.appendChild(row(l)); });
+  }
+
+  function ymLabel(m) { var d = new Date(m + '-15T12:00:00'); return d.toLocaleDateString(lang === 'en' ? 'en-US' : 'es-US', { month: 'long', year: 'numeric' }); }
+  function renderBonus(t) {
+    var T = L(), b = t.bonus, k = t.terms.bonusAt, n = b.this_month_clients;
+    $('bonusT').textContent = T.bonusT(n, k);
+    $('bonusFill').style.width = Math.min(100, Math.round(n / k * 100)) + '%';
+    $('bonusBar').setAttribute('aria-valuemax', String(k)); $('bonusBar').setAttribute('aria-valuenow', String(Math.min(n, k)));
+    var box = $('bonusMonths'); box.innerHTML = '';
+    b.months.forEach(function (m) {
+      if (m.month === b.this_month) return;   // this month shows in the bar
+      var r = el('div'); r.appendChild(el('span', null, T.bonusM(ymLabel(m.month), m.clients)));
+      if (m.paid) r.appendChild(el('span', 'ctag paid', T.bonusPaid));
+      else if (DATA.admin) { var bt = el('button', 'btn soft sm', T.bonusPayBtn); bt.type = 'button'; bt.addEventListener('click', function () { bt.disabled = true; api({ action: 'bonus_paid', reseller: reseller, month: m.month }).then(function () { toast(T.saved); return load(); }).catch(function () { toast(T.fail); bt.disabled = false; }); }); r.appendChild(bt); }
+      else r.appendChild(el('span', 'ctag ready', T.cState.ready));
+      box.appendChild(r);
+    });
+    if (n >= k) { var w = el('div'); w.appendChild(el('span', null, T.bonusM(ymLabel(b.this_month), n))); w.appendChild(el('span', 'ctag pending', T.bonusWait)); box.appendChild(w); }
+    box.hidden = !box.children.length;
+    if (t.clawback_cents < 0) { var c = el('div'); c.appendChild(el('span', 'ctag clawback', T.clawT(money(-t.clawback_cents)))); box.appendChild(c); box.hidden = false; }
+  }
+  function renderHow() {
+    var T = L(), ul = $('howList'); ul.innerHTML = '';
+    T.how.forEach(function (x) { ul.appendChild(el('li', null, x)); });
+    $('howEx').textContent = T.howEx;
   }
 
   function row(l) {
@@ -248,7 +332,19 @@ h1{margin:0;font-family:'Fraunces',Georgia,serif;font-size:34px;line-height:1.05
       var p = [l.plan ? T.plan[l.plan] + (l.billing ? ' ' + T[l.billing] : '') + (l.plan === 'team' && l.seats ? ' (' + l.seats + ')' : '') : '', l.studio ? T.design : ''].filter(Boolean).join(' + ');
       var m = el('p', 'money', p + (l.amount_cents ? ' · ' + money(l.amount_cents) : ''));
       m.style.margin = '0'; li.appendChild(m);
-      if (l.status === 'paid' && l.amount_cents) { var c = el('p', 'money', T.commission + ': ' + money(Math.round(l.amount_cents * DATA.totals.rate)) + (l.paid_at ? ' · ' + T.paidOn + ' ' + day(l.paid_at) : '')); c.style.margin = '0'; c.style.fontWeight = '800'; li.appendChild(c); }
+    }
+    var e = l.earning;
+    if (e && (e.earned || e.paid_out)) {
+      var c = el('p', 'money'); c.style.margin = '0';
+      var strong = el('b', null, T.commission + ': ' + money(e.earned)); c.appendChild(strong);
+      var split = T.cSplit(e.design_c ? money(e.design_c) : '', e.plan_c ? money(e.plan_c) : '');
+      if (split && e.earned) c.appendChild(document.createTextNode(' (' + split + ')'));
+      if (e.state !== 'none') {
+        var txt = T.cState[e.state].replace('{d}', day(e.state === 'paid' ? l.commission_paid_at : e.clears)).replace('{m}', money(-e.owed));
+        c.appendChild(el('span', 'ctag ' + e.state, txt));
+      }
+      li.appendChild(c);
+      if (l.billing === 'month' && l.status === 'paid') { var pm = el('p', 'money', (lang === 'en' ? 'Monthly payments counted: ' : 'Pagos mensuales contados: ') + e.payments + ' / 12'); pm.style.margin = '0'; pm.style.color = 'var(--muted)'; pm.style.fontSize = '13px'; li.appendChild(pm); }
     }
 
     var acts = el('div', 'acts'), ph = digits(l.phone);
@@ -274,32 +370,43 @@ h1{margin:0;font-family:'Fraunces',Georgia,serif;font-size:34px;line-height:1.05
     sl.appendChild(sel);
     var fl = el('label', null, T.follow), fu = el('input'); fu.type = 'date'; fu.value = l.follow_up || ''; fl.appendChild(fu);
     if (!locked) { ed.appendChild(sl); ed.appendChild(fl); }
-    var amt = null;
+    var dz = null, pz = null, pays = null;
+    function num(lbl, val, cls) { var lb = el('label', cls || null, lbl), i = el('input'); i.type = 'number'; i.inputMode = 'decimal'; i.min = '0'; i.step = '0.01'; if (val != null) i.value = val; lb.appendChild(i); ed.appendChild(lb); return i; }
     if (DATA.admin) {
-      var al = el('label', 'full', T.amount); amt = el('input'); amt.type = 'number'; amt.inputMode = 'decimal'; amt.min = '0'; amt.step = '0.01';
-      if (l.amount_cents) amt.value = (l.amount_cents / 100).toFixed(2); al.appendChild(amt); ed.appendChild(al);
+      var dC = Number(l.studio_cents) || 0, pC = Math.max(0, (Number(l.amount_cents) || 0) - dC);
+      dz = num(T.fDesign, dC ? (dC / 100).toFixed(2) : '');
+      pz = num(T.fPlan, pC ? (pC / 100).toFixed(2) : '');
+      if (l.billing === 'month') { pays = num(T.fPays, String(l.plan_payments || 1), 'full'); pays.step = '1'; pays.min = '1'; pays.max = '12'; pays.inputMode = 'numeric'; }
     }
     var nl = el('label', 'full', T.notes), nt = el('textarea'); nt.value = l.partner_notes || ''; nl.appendChild(nt); ed.appendChild(nl);
     li.appendChild(ed);
 
     var bt = el('div', 'acts');
     var sv = el('button', 'btn pri sm', T.saveRow); sv.type = 'button';
-    sv.addEventListener('click', function () { save(l, { status: sel.value, follow_up: fu.value || null, partner_notes: nt.value, amount: amt && amt.value !== '' ? Number(amt.value) : undefined }, sv); });
+    sv.addEventListener('click', function () {
+      var body = { status: sel.value, follow_up: fu.value || null, partner_notes: nt.value };
+      if (DATA.admin) { body.design = dz.value === '' ? 0 : Number(dz.value); body.plan = pz.value === '' ? 0 : Number(pz.value); if (pays) body.plan_payments = Number(pays.value) || 1; }
+      save(l, body, sv);
+    });
     var ct = el('button', 'btn soft sm', T.contacted); ct.type = 'button';
     ct.addEventListener('click', function () {
       var st = sel.value === 'new' ? 'contacted' : sel.value;
       save(l, { status: st, follow_up: fu.value || null, partner_notes: nt.value, contacted: true }, ct);
     });
     bt.appendChild(sv); if (l.status !== 'paid') bt.appendChild(ct);
+    if (DATA.admin && e && (e.state === 'ready' || e.state === 'clawback')) {
+      var pc = el('button', 'btn pink sm', e.state === 'ready' ? T.payC + ' (' + money(e.owed) + ')' : T.settle); pc.type = 'button';
+      pc.addEventListener('click', function () { save(l, { pay_commission: true }, pc); });
+      bt.appendChild(pc);
+    }
     li.appendChild(bt);
     return li;
   }
 
   function save(l, body, btn) {
     var T = L();
-    if (body.status === 'paid' && DATA.admin && !(body.amount > 0) && !(l.amount_cents > 0)) { toast(T.needAmount); return; }
+    if (DATA.admin && (body.status || l.status) === 'paid' && 'design' in body && !((body.design || 0) + (body.plan || 0) > 0)) { toast(T.needAmount); return; }
     if (body.status === l.status) delete body.status;
-    if (body.amount === undefined) delete body.amount;
     btn.disabled = true;
     api(Object.assign({ action: 'update', id: l.id, reseller: reseller }, body))
       .then(function () { toast(T.saved); return load(); })
