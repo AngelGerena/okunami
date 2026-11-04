@@ -24,5 +24,8 @@
 /proposals/uniqstyle/*.vcf
   Content-Type: text/vcard; charset=utf-8
   Content-Disposition: attachment; filename=uniqstyle.vcf
+/socio/*
+  X-Robots-Tag: noindex, nofollow, noai, noimageai
+  Cache-Control: no-store
 /proposals/*
   X-Robots-Tag: noindex, nofollow, noai, noimageai

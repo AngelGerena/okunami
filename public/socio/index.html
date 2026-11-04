@@ -1,0 +1,353 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Panel de Socio | OKUNAMI</title>
+<meta name="robots" content="noindex, nofollow, noai, noimageai">
+<meta name="theme-color" content="#F4F5FB">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Manrope:wght@400;500;600;700;800&display=swap">
+<style>
+:root{--ink:#0B0E2A;--ink-2:#1B2050;--pink:#FF3CAC;--pink-deep:#C8157E;--pink-soft:#FFE1F1;--paper:#F4F5FB;--white:#FFFFFF;--text:#1C2233;--muted:#5C6378;--line:#E3E4EF;--ok:#2F7A4F;--ok-soft:#E4F3EA;--bad:#B3402A;--warn:#9A6400;--warn-soft:#FFF3D6;color-scheme:light}
+html{-webkit-text-size-adjust:100%;overflow-x:hidden;font-variant-emoji:text}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--text);font-family:'Manrope',system-ui,sans-serif;font-size:15px;line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+button,input,select,textarea{font:inherit;color:inherit}
+[hidden]{display:none!important}
+:focus-visible{outline:2px solid var(--pink);outline-offset:2px}
+.wrap{max-width:560px;margin:0 auto;padding:calc(10px + env(safe-area-inset-top,0px)) 16px 40px;display:flex;flex-direction:column;gap:16px}
+.top{display:flex;justify-content:space-between;align-items:center;min-height:44px}
+.brand{font-weight:800;letter-spacing:3px;font-size:13px;color:var(--ink)}
+.lang{display:flex;background:var(--white);border:1px solid var(--line);border-radius:999px;padding:3px}
+.lang button{min-width:42px;min-height:32px;border:0;border-radius:999px;background:transparent;font-size:12px;font-weight:800;color:var(--muted);cursor:pointer}
+.lang button[aria-pressed="true"]{background:var(--ink);color:var(--white)}
+h1{margin:0;font-family:'Fraunces',Georgia,serif;font-size:34px;line-height:1.05;color:var(--ink)}
+.sub{margin:4px 0 0;color:var(--muted);font-size:14px}
+.card{background:var(--white);border:1px solid var(--line);border-radius:18px;padding:16px}
+.field{display:flex;flex-direction:column;gap:6px}
+.field>span{font-size:12px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--muted)}
+.field input,.field textarea,.field select{min-height:48px;padding:10px 14px;border:1.5px solid var(--line);border-radius:12px;background:var(--white);font-size:16px;width:100%}
+.field textarea{min-height:80px;resize:vertical}
+.btn{min-height:48px;padding:0 20px;border:0;border-radius:999px;font-weight:800;font-size:14px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:8px;text-decoration:none}
+.btn.pri{background:var(--ink);color:var(--white)}
+.btn.pink{background:var(--pink);color:var(--ink)}
+.btn.soft{background:var(--paper);color:var(--ink);border:1px solid var(--line)}
+.btn.sm{min-height:40px;padding:0 14px;font-size:13px}
+.btn:disabled{opacity:.6;cursor:default}
+.err{margin:0;color:var(--bad);font-size:14px;font-weight:600}
+.stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.stat{background:var(--white);border:1px solid var(--line);border-radius:16px;padding:14px;display:flex;flex-direction:column;gap:2px;min-width:0}
+.stat b{font-family:'Fraunces',Georgia,serif;font-size:28px;line-height:1.05;color:var(--ink)}
+.stat span{font-size:11px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--muted)}
+.stat.hot{background:var(--ink);border-color:var(--ink)}
+.stat.hot b{color:var(--pink)}
+.stat.hot span{color:#C9CBE6}
+.due{display:flex;gap:10px;align-items:center;background:var(--warn-soft);color:var(--warn);border-radius:14px;padding:12px 14px;font-weight:700;font-size:14px}
+.due svg{flex:none;width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.chips{display:flex;gap:8px;overflow-x:auto;padding-bottom:2px;scrollbar-width:none}
+.chips::-webkit-scrollbar{display:none}
+.chips button{flex:none;min-height:38px;padding:0 14px;border-radius:999px;border:1px solid var(--line);background:var(--white);font-size:13px;font-weight:700;color:var(--muted);cursor:pointer;white-space:nowrap}
+.chips button[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--white)}
+.list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:12px}
+.lead{background:var(--white);border:1px solid var(--line);border-radius:18px;padding:16px;display:flex;flex-direction:column;gap:10px}
+.lead .row1{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+.lead .who{min-width:0}
+.lead .who b{display:block;font-size:17px;color:var(--ink);overflow-wrap:anywhere}
+.lead .who span{display:block;font-size:13px;color:var(--muted);overflow-wrap:anywhere}
+.badge{flex:none;padding:4px 10px;border-radius:999px;font-size:12px;font-weight:800;background:var(--paper);color:var(--ink-2);white-space:nowrap}
+.badge.paid{background:var(--ok-soft);color:var(--ok)}
+.badge.new{background:var(--pink-soft);color:var(--pink-deep)}
+.badge.lost{background:#F0F0F4;color:var(--muted)}
+.badge.pay{background:var(--warn-soft);color:var(--warn)}
+.meta{display:flex;flex-wrap:wrap;gap:6px}
+.tag{font-size:12px;font-weight:700;color:var(--muted);background:var(--paper);border-radius:8px;padding:3px 8px}
+.tag.fu{background:var(--warn-soft);color:var(--warn)}
+.money{font-size:14px;color:var(--ink)}
+.acts{display:flex;flex-wrap:wrap;gap:8px}
+.edit{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.edit .full{grid-column:1/-1}
+.edit select,.edit input,.edit textarea{min-height:44px;padding:8px 12px;border:1.5px solid var(--line);border-radius:12px;background:var(--white);font-size:15px;width:100%;min-width:0}
+.edit textarea{min-height:64px;resize:vertical}
+.edit label{display:flex;flex-direction:column;gap:4px;font-size:11px;font-weight:800;letter-spacing:.8px;text-transform:uppercase;color:var(--muted);min-width:0}
+.empty{text-align:center;color:var(--muted);padding:24px 8px}
+.toast{position:fixed;left:50%;bottom:calc(18px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--white);padding:12px 18px;border-radius:999px;font-weight:700;font-size:14px;z-index:9;max-width:calc(100% - 32px);text-align:center}
+.pick{display:flex;gap:8px;align-items:center}
+.pick select{min-height:40px;border:1px solid var(--line);border-radius:999px;padding:0 12px;background:var(--white);font-weight:700}
+.foot{text-align:center;color:var(--muted);font-size:12px}
+.foot a{color:var(--muted)}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <div class="top">
+    <span class="brand">OKUNAMI</span>
+    <div class="lang" role="group" aria-label="Language"><button type="button" data-lang="en" aria-pressed="false">EN</button><button type="button" data-lang="es" aria-pressed="true">ES</button></div>
+  </div>
+
+  <!-- Sign in -->
+  <section id="login" class="card" style="display:flex;flex-direction:column;gap:14px">
+    <div><h1 data-t="loginH">Panel de Socio</h1><p class="sub" data-t="loginS">Tus clientes, tus ventas y tu comisión en un solo lugar.</p></div>
+    <form id="loginF" style="display:flex;flex-direction:column;gap:12px" novalidate>
+      <label class="field"><span>PIN</span><input id="pin" type="password" inputmode="numeric" autocomplete="current-password" maxlength="64" required></label>
+      <p class="err" id="pinErr" role="alert" hidden></p>
+      <button class="btn pri" id="pinBtn" type="submit" data-t="enter">Entrar</button>
+    </form>
+  </section>
+
+  <!-- Dashboard -->
+  <section id="app" hidden style="display:flex;flex-direction:column;gap:16px">
+    <div>
+      <h1 id="hello"></h1>
+      <p class="sub" id="helloS" data-t="helloS">Así van tus ventas de OKUNAMI.</p>
+      <div class="pick" id="pickWrap" hidden style="margin-top:10px"><select id="pick" aria-label="Socio"></select></div>
+    </div>
+
+    <div class="stats">
+      <div class="stat hot"><b id="sMonth">$0</b><span data-t="sMonth">Comisión este mes</span></div>
+      <div class="stat"><b id="sTotal">$0</b><span data-t="sTotal">Comisión total</span></div>
+      <div class="stat"><b id="sPaid">0</b><span data-t="sPaid">Ventas</span></div>
+      <div class="stat"><b id="sTalk">0</b><span data-t="sTalk">Hablando</span></div>
+    </div>
+
+    <div class="due" id="due" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span id="dueT"></span></div>
+
+    <div style="display:flex;gap:10px;align-items:center;justify-content:space-between">
+      <button class="btn pink" type="button" id="addBtn" data-t="add">+ Agregar persona</button>
+      <button class="btn soft sm" type="button" id="refresh" data-t="refresh">Actualizar</button>
+    </div>
+
+    <form id="addF" class="card" hidden novalidate style="display:flex;flex-direction:column;gap:12px">
+      <b data-t="addH" style="font-size:17px;color:var(--ink)">Alguien con quien hablaste</b>
+      <label class="field"><span data-t="fName">Nombre</span><input id="aName" autocomplete="off" required></label>
+      <label class="field"><span data-t="fPhone">Teléfono o WhatsApp</span><input id="aPhone" type="tel" inputmode="tel" autocomplete="off"></label>
+      <label class="field"><span>Email</span><input id="aEmail" type="email" inputmode="email" autocomplete="off"></label>
+      <label class="field"><span data-t="fBiz">Negocio</span><input id="aBiz" autocomplete="off"></label>
+      <label class="field"><span data-t="fNotes">Notas</span><textarea id="aNotes"></textarea></label>
+      <label class="field"><span data-t="fFollow">Dar seguimiento el</span><input id="aFollow" type="date"></label>
+      <p class="err" id="addErr" role="alert" hidden></p>
+      <div style="display:flex;gap:10px"><button class="btn pri" type="submit" id="addSave" data-t="save">Guardar</button><button class="btn soft" type="button" id="addCancel" data-t="cancel">Cancelar</button></div>
+    </form>
+
+    <div class="chips" id="chips" role="group" aria-label="Filter"></div>
+    <ul class="list" id="list"></ul>
+    <button class="btn soft sm" type="button" id="out" data-t="out" style="align-self:center">Salir</button>
+  </section>
+
+  <p class="foot">OKUNAMI · <span data-t="crafted">Hecho por</span> <a href="https://finessemedia.pro" target="_blank" rel="noopener">Finesse Media</a></p>
+</main>
+<p class="toast" id="toast" role="status" aria-live="polite" hidden></p>
+
+<script>
+(function () {
+  var API = 'https://hrwzzpmltpsqyynmmeof.supabase.co/functions/v1/okunami-partner';
+  try { var o = new URLSearchParams(location.search).get('api'); if (o && /^http:\/\/localhost:\d+\//.test(o)) API = o; } catch (e) {}
+  var KEY = 'okunami-socio-token';
+  var D = {
+    es: { title: 'Panel de Socio | OKUNAMI', loginH: 'Panel de Socio', loginS: 'Tus clientes, tus ventas y tu comisión en un solo lugar.', enter: 'Entrar',
+      hello: 'Hola, {n}', helloS: 'Así van tus ventas de OKUNAMI.', sMonth: 'Comisión este mes', sTotal: 'Comisión total', sPaid: 'Ventas', sTalk: 'Hablando',
+      add: '+ Agregar persona', refresh: 'Actualizar', addH: 'Alguien con quien hablaste', fName: 'Nombre', fPhone: 'Teléfono o WhatsApp', fBiz: 'Negocio',
+      fNotes: 'Notas', fFollow: 'Dar seguimiento el', save: 'Guardar', cancel: 'Cancelar', out: 'Salir', crafted: 'Hecho por',
+      due: function (n) { return n === 1 ? 'Tienes 1 persona para dar seguimiento hoy.' : 'Tienes ' + n + ' personas para dar seguimiento hoy.'; },
+      f: { all: 'Todos', due: 'Seguimiento', new: 'Nuevos', talk: 'Hablando', paid: 'Pagados', lost: 'No interesados' },
+      st: { new: 'Nuevo', contacted: 'Contactado', interested: 'Interesado', not_interested: 'No interesado', checkout_started: 'Empezó a pagar', awaiting_payment: 'Pago pendiente', paid: 'Pagado' },
+      src: { agent: 'Tu tarjeta', form: 'Tu tarjeta', 'mayra-card': 'Tarjeta de Mayra', manual: 'Agregado por ti' },
+      status: 'Estado', notes: 'Notas', follow: 'Seguimiento', saveRow: 'Guardar', contacted: 'Hablé hoy', payLink: 'Copiar link de pago', call: 'Llamar',
+      amount: 'Monto pagado ($)', markPaid: 'Marcar pagado', lastC: 'Último contacto', added: 'Agregado', paidOn: 'Pagado el', commission: 'Tu comisión',
+      plan: { pro: 'Pro', plus: 'Pro Plus', team: 'Business' }, month: 'mensual', year: 'anual', design: 'diseño personalizado',
+      empty: 'Nada por aquí todavía.', saved: 'Guardado', copied: 'Link copiado. Pégalo en WhatsApp.', wrong: 'PIN incorrecto.', locked: 'Demasiados intentos. Espera 15 minutos.',
+      fail: 'No se pudo conectar. Intenta otra vez.', needName: 'Escribe el nombre.', needAmount: 'Pon el monto pagado.' },
+    en: { title: 'Partner Dashboard | OKUNAMI', loginH: 'Partner Dashboard', loginS: 'Your clients, your sales and your commission in one place.', enter: 'Sign in',
+      hello: 'Hi, {n}', helloS: 'Here is how your OKUNAMI sales are going.', sMonth: 'Commission this month', sTotal: 'Total commission', sPaid: 'Sales', sTalk: 'Talking',
+      add: '+ Add person', refresh: 'Refresh', addH: 'Someone you talked to', fName: 'Name', fPhone: 'Phone or WhatsApp', fBiz: 'Business',
+      fNotes: 'Notes', fFollow: 'Follow up on', save: 'Save', cancel: 'Cancel', out: 'Sign out', crafted: 'Crafted by',
+      due: function (n) { return n === 1 ? 'You have 1 person to follow up with today.' : 'You have ' + n + ' people to follow up with today.'; },
+      f: { all: 'All', due: 'Follow up', new: 'New', talk: 'Talking', paid: 'Paid', lost: 'Not interested' },
+      st: { new: 'New', contacted: 'Contacted', interested: 'Interested', not_interested: 'Not interested', checkout_started: 'Started paying', awaiting_payment: 'Payment pending', paid: 'Paid' },
+      src: { agent: 'Your card', form: 'Your card', 'mayra-card': "Mayra's card", manual: 'Added by you' },
+      status: 'Status', notes: 'Notes', follow: 'Follow up', saveRow: 'Save', contacted: 'Talked today', payLink: 'Copy payment link', call: 'Call',
+      amount: 'Amount paid ($)', markPaid: 'Mark paid', lastC: 'Last contact', added: 'Added', paidOn: 'Paid on', commission: 'Your commission',
+      plan: { pro: 'Pro', plus: 'Pro Plus', team: 'Business' }, month: 'monthly', year: 'yearly', design: 'custom design',
+      empty: 'Nothing here yet.', saved: 'Saved', copied: 'Link copied. Paste it in WhatsApp.', wrong: 'Wrong PIN.', locked: 'Too many tries. Wait 15 minutes.',
+      fail: 'Could not connect. Try again.', needName: 'Enter the name.', needAmount: 'Enter the amount paid.' }
+  };
+  var PARTNER_ST = ['new', 'contacted', 'interested', 'not_interested'];
+  var ADMIN_ST = PARTNER_ST.concat(['checkout_started', 'awaiting_payment', 'paid']);
+  var lang = 'es', token = '', DATA = null, filter = 'all', reseller = '';
+  try { lang = localStorage.getItem('okunami-socio-lang') === 'en' ? 'en' : 'es'; token = localStorage.getItem(KEY) || ''; } catch (e) {}
+  function $(id) { return document.getElementById(id); }
+  function el(t, c, x) { var e = document.createElement(t); if (c) e.className = c; if (x != null) e.textContent = x; return e; }
+  function L() { return D[lang]; }
+  function money(c) { var n = (Number(c) || 0) / 100; return '$' + n.toFixed(2).replace(/\.00$/, ''); }
+  function day(iso) { if (!iso) return ''; var d = /^\d{4}-\d{2}-\d{2}$/.test(iso) ? new Date(iso + 'T12:00:00') : new Date(iso); return d.toLocaleDateString(lang === 'en' ? 'en-US' : 'es-US', { month: 'short', day: 'numeric', year: 'numeric' }); }
+  function time(iso) { var d = new Date(iso), h = d.getHours(), m = d.getMinutes(); return (h % 12 || 12) + ':' + (m < 10 ? '0' : '') + m + ' ' + (h >= 12 ? 'PM' : 'AM'); }
+  function digits(p) { var d = String(p || '').replace(/\D/g, ''); return d.length === 10 ? '1' + d : d; }
+  var tt; function toast(m) { var t = $('toast'); t.textContent = m; t.hidden = false; clearTimeout(tt); tt = setTimeout(function () { t.hidden = true; }, 2600); }
+  function api(body) {
+    return fetch(API, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(Object.assign({ token: token }, body)) })
+      .then(function (r) { return r.json().catch(function () { return {}; }).then(function (d) { if (!r.ok) throw { code: r.status, error: d.error }; return d; }); });
+  }
+  function copy(text) {
+    if (navigator.clipboard && navigator.clipboard.writeText) return navigator.clipboard.writeText(text).catch(function () { fb(text); });
+    fb(text); return Promise.resolve();
+  }
+  function fb(text) { var ta = document.createElement('textarea'); ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0'; document.body.appendChild(ta); ta.select(); try { document.execCommand('copy'); } catch (e) {} ta.remove(); }
+  function today() { var d = new Date(); d.setHours(23, 59, 59, 999); return d; }
+  function isDue(l) { return l.follow_up && l.status !== 'paid' && l.status !== 'not_interested' && new Date(l.follow_up + 'T12:00:00') <= today(); }
+  function bucket(l) { if (l.status === 'paid') return 'paid'; if (l.status === 'not_interested') return 'lost'; if (l.status === 'new') return 'new'; return 'talk'; }
+
+  function translate() {
+    document.documentElement.lang = lang; document.title = L().title;
+    document.querySelectorAll('[data-t]').forEach(function (e) { var v = L()[e.getAttribute('data-t')]; if (typeof v === 'string') e.textContent = v; });
+    document.querySelectorAll('[data-lang]').forEach(function (b) { b.setAttribute('aria-pressed', b.getAttribute('data-lang') === lang ? 'true' : 'false'); });
+  }
+  function setLang(l) { lang = l === 'en' ? 'en' : 'es'; try { localStorage.setItem('okunami-socio-lang', lang); } catch (e) {} translate(); render(); }
+
+  function render() {
+    if (!DATA) return;
+    var T = L(), t = DATA.totals, me = DATA.resellers.filter(function (r) { return r.id === DATA.reseller; })[0];
+    $('hello').textContent = T.hello.replace('{n}', (me ? me.name : '').split(' ')[0]);
+    $('pickWrap').hidden = !DATA.admin || DATA.resellers.length < 2;
+    $('sMonth').textContent = money(t.month_commission_cents); $('sTotal').textContent = money(t.commission_cents);
+    $('sPaid').textContent = t.paid; $('sTalk').textContent = t.talking;
+    var dueN = DATA.leads.filter(isDue).length; $('due').hidden = !dueN; $('dueT').textContent = T.due(dueN);
+    var chips = $('chips'); chips.innerHTML = '';
+    ['all', 'due', 'new', 'talk', 'paid', 'lost'].forEach(function (k) {
+      var n = DATA.leads.filter(function (l) { return k === 'all' || (k === 'due' ? isDue(l) : bucket(l) === k); }).length;
+      var b = el('button', null, T.f[k] + ' (' + n + ')'); b.type = 'button'; b.setAttribute('aria-pressed', k === filter ? 'true' : 'false');
+      b.addEventListener('click', function () { filter = k; render(); }); chips.appendChild(b);
+    });
+    var ul = $('list'); ul.innerHTML = '';
+    var rows = DATA.leads.filter(function (l) { return filter === 'all' || (filter === 'due' ? isDue(l) : bucket(l) === filter); });
+    if (!rows.length) { ul.appendChild(el('li', 'empty', T.empty)); return; }
+    rows.forEach(function (l) { ul.appendChild(row(l)); });
+  }
+
+  function row(l) {
+    var T = L(), li = el('li', 'lead');
+    var r1 = el('div', 'row1'), who = el('div', 'who');
+    who.appendChild(el('b', null, l.full_name || l.business_name || '-'));
+    var sub = [l.business_name, l.business_type].filter(Boolean).join(' · ');
+    if (sub) who.appendChild(el('span', null, sub));
+    var contact = [l.phone, l.email].filter(Boolean).join(' · ');
+    if (contact) who.appendChild(el('span', null, contact));
+    r1.appendChild(who);
+    var cls = l.status === 'paid' ? 'paid' : l.status === 'new' ? 'new' : l.status === 'not_interested' ? 'lost' : (l.status === 'awaiting_payment' || l.status === 'checkout_started') ? 'pay' : '';
+    r1.appendChild(el('span', 'badge ' + cls, T.st[l.status] || l.status));
+    li.appendChild(r1);
+
+    var meta = el('div', 'meta');
+    meta.appendChild(el('span', 'tag', T.src[l.source] || l.source));
+    meta.appendChild(el('span', 'tag', T.added + ' ' + day(l.created_at)));
+    if (l.last_contact) meta.appendChild(el('span', 'tag', T.lastC + ': ' + day(l.last_contact) + ' ' + time(l.last_contact)));
+    if (l.follow_up && l.status !== 'paid') meta.appendChild(el('span', 'tag' + (isDue(l) ? ' fu' : ''), T.follow + ': ' + day(l.follow_up)));
+    li.appendChild(meta);
+
+    if (l.plan || l.amount_cents) {
+      var p = [l.plan ? T.plan[l.plan] + (l.billing ? ' ' + T[l.billing] : '') + (l.plan === 'team' && l.seats ? ' (' + l.seats + ')' : '') : '', l.studio ? T.design : ''].filter(Boolean).join(' + ');
+      var m = el('p', 'money', p + (l.amount_cents ? ' · ' + money(l.amount_cents) : ''));
+      m.style.margin = '0'; li.appendChild(m);
+      if (l.status === 'paid' && l.amount_cents) { var c = el('p', 'money', T.commission + ': ' + money(Math.round(l.amount_cents * DATA.totals.rate)) + (l.paid_at ? ' · ' + T.paidOn + ' ' + day(l.paid_at) : '')); c.style.margin = '0'; c.style.fontWeight = '800'; li.appendChild(c); }
+    }
+
+    var acts = el('div', 'acts'), ph = digits(l.phone);
+    if (ph.length >= 11) {
+      var wa = el('a', 'btn soft sm', 'WhatsApp'); wa.href = 'https://wa.me/' + ph; wa.target = '_blank'; wa.rel = 'noopener'; acts.appendChild(wa);
+      var tel = el('a', 'btn soft sm', T.call); tel.href = 'tel:+' + ph; acts.appendChild(tel);
+    }
+    if (l.email) { var em = el('a', 'btn soft sm', 'Email'); em.href = 'mailto:' + l.email; acts.appendChild(em); }
+    if (l.status !== 'paid' && DATA.card) {
+      var pl = el('button', 'btn soft sm', T.payLink); pl.type = 'button';
+      pl.addEventListener('click', function () { copy(DATA.card + '?resume=' + l.id).then(function () { toast(T.copied); }); });
+      acts.appendChild(pl);
+    }
+    li.appendChild(acts);
+
+    var locked = l.status === 'paid' && !DATA.admin;   // a closed sale: notes only
+    var ed = el('div', 'edit');
+    var sl = el('label', null, T.status), sel = el('select');
+    var opts = DATA.admin ? ADMIN_ST : PARTNER_ST.slice();
+    if (opts.indexOf(l.status) < 0) opts = [l.status].concat(opts);
+    opts.forEach(function (k) { var o = el('option', null, T.st[k] || k); o.value = k; if (k === l.status) o.selected = true; if (!DATA.admin && PARTNER_ST.indexOf(k) < 0) o.disabled = k !== l.status; sel.appendChild(o); });
+    sel.disabled = l.status === 'paid' && !DATA.admin;
+    sl.appendChild(sel);
+    var fl = el('label', null, T.follow), fu = el('input'); fu.type = 'date'; fu.value = l.follow_up || ''; fl.appendChild(fu);
+    if (!locked) { ed.appendChild(sl); ed.appendChild(fl); }
+    var amt = null;
+    if (DATA.admin) {
+      var al = el('label', 'full', T.amount); amt = el('input'); amt.type = 'number'; amt.inputMode = 'decimal'; amt.min = '0'; amt.step = '0.01';
+      if (l.amount_cents) amt.value = (l.amount_cents / 100).toFixed(2); al.appendChild(amt); ed.appendChild(al);
+    }
+    var nl = el('label', 'full', T.notes), nt = el('textarea'); nt.value = l.partner_notes || ''; nl.appendChild(nt); ed.appendChild(nl);
+    li.appendChild(ed);
+
+    var bt = el('div', 'acts');
+    var sv = el('button', 'btn pri sm', T.saveRow); sv.type = 'button';
+    sv.addEventListener('click', function () { save(l, { status: sel.value, follow_up: fu.value || null, partner_notes: nt.value, amount: amt && amt.value !== '' ? Number(amt.value) : undefined }, sv); });
+    var ct = el('button', 'btn soft sm', T.contacted); ct.type = 'button';
+    ct.addEventListener('click', function () {
+      var st = sel.value === 'new' ? 'contacted' : sel.value;
+      save(l, { status: st, follow_up: fu.value || null, partner_notes: nt.value, contacted: true }, ct);
+    });
+    bt.appendChild(sv); if (l.status !== 'paid') bt.appendChild(ct);
+    li.appendChild(bt);
+    return li;
+  }
+
+  function save(l, body, btn) {
+    var T = L();
+    if (body.status === 'paid' && DATA.admin && !(body.amount > 0) && !(l.amount_cents > 0)) { toast(T.needAmount); return; }
+    if (body.status === l.status) delete body.status;
+    if (body.amount === undefined) delete body.amount;
+    btn.disabled = true;
+    api(Object.assign({ action: 'update', id: l.id, reseller: reseller }, body))
+      .then(function () { toast(T.saved); return load(); })
+      .catch(function (e) { toast(e && e.error === 'need_amount' ? T.needAmount : T.fail); })
+      .then(function () { btn.disabled = false; });
+  }
+
+  function load() {
+    return api({ action: 'list', reseller: reseller }).then(function (d) {
+      DATA = d; reseller = d.reseller;
+      if (d.admin) {
+        var pk = $('pick'); pk.innerHTML = '';
+        d.resellers.forEach(function (r) { var o = el('option', null, r.name); o.value = r.id; if (r.id === d.reseller) o.selected = true; pk.appendChild(o); });
+      }
+      $('login').hidden = true; $('app').hidden = false; render();
+    }).catch(function (e) {
+      if (e && e.code === 401) { signOut(); }
+      else toast(L().fail);
+    });
+  }
+  function signOut() { token = ''; DATA = null; try { localStorage.removeItem(KEY); } catch (e) {} $('app').hidden = true; $('login').hidden = false; }
+
+  document.querySelectorAll('[data-lang]').forEach(function (b) { b.addEventListener('click', function () { setLang(b.getAttribute('data-lang')); }); });
+  $('loginF').addEventListener('submit', function (e) {
+    e.preventDefault(); var err = $('pinErr'), btn = $('pinBtn'); btn.disabled = true;
+    fetch(API, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ action: 'login', pin: $('pin').value }) })
+      .then(function (r) { return r.json().then(function (d) { if (!r.ok) throw d; return d; }); })
+      .then(function (d) { token = d.token; try { localStorage.setItem(KEY, token); } catch (x) {} $('pin').value = ''; err.hidden = true; return load(); })
+      .catch(function (d) { err.textContent = d && d.error === 'locked' ? L().locked : d && d.error === 'wrong_pin' ? L().wrong : L().fail; err.hidden = false; })
+      .then(function () { btn.disabled = false; });
+  });
+  $('pick').addEventListener('change', function () { reseller = $('pick').value; filter = 'all'; load(); });
+  $('refresh').addEventListener('click', load);
+  $('out').addEventListener('click', signOut);
+  $('addBtn').addEventListener('click', function () { $('addF').hidden = false; $('aName').focus(); });
+  $('addCancel').addEventListener('click', function () { $('addF').hidden = true; });
+  $('addF').addEventListener('submit', function (e) {
+    e.preventDefault(); var err = $('addErr'), btn = $('addSave');
+    if (!$('aName').value.trim()) { err.textContent = L().needName; err.hidden = false; return; }
+    err.hidden = true; btn.disabled = true;
+    api({ action: 'add', reseller: reseller, lead: { full_name: $('aName').value, phone: $('aPhone').value, email: $('aEmail').value, business_name: $('aBiz').value, partner_notes: $('aNotes').value, follow_up: $('aFollow').value, lang: lang } })
+      .then(function () { $('addF').reset(); $('addF').hidden = true; toast(L().saved); return load(); })
+      .catch(function () { err.textContent = L().fail; err.hidden = false; })
+      .then(function () { btn.disabled = false; });
+  });
+  translate();
+  if (token) load();
+})();
+</script>
+</body>
+</html>
