@@ -259,7 +259,7 @@ export function CoverStory() {
           <p className="auc__kicker" {...el('caption')}>{a.data.kicker || 'Special edition'}</p>
           <Mark a={a} cls="auc__mark" />
         </div>
-        <div className="auc__photo">
+        <div className="auc__photo au-ratio r105">
           <Photo a={a} cls="auc__img" />
           {a.motto && <p className="auc__line" {...el('name')}>&ldquo;{a.motto}&rdquo;</p>}
         </div>
@@ -284,7 +284,7 @@ export function BackCover() {
         <p className="aub__eyebrow" {...el('name')}>{a.data.kicker || a.brand || 'About the author'}</p>
         {a.motto && <p className="aub__blurb" {...el('body')}>{a.motto}</p>}
         <div className="aub__sig" {...el('dividers')}>
-          <div className="aub__frame"><Photo a={a} cls="aub__img" /></div>
+          <div className="aub__frame"><div className="au-ratio r125"><Photo a={a} cls="aub__img" /></div></div>
           <h1 className="aub__name" {...el('name')}>{a.name}</h1>
           {a.role && <p className="aub__role" {...el('caption')}>{a.role}</p>}
         </div>
@@ -348,7 +348,7 @@ export function SignedPrint() {
     <Shell cls="tpl-aus" a={a}>
       <header className="aus__hero">
         <Mark a={a} cls="aus__mark" />
-        <div className="aus__frame" {...el('dividers')}><Photo a={a} cls="aus__img" /></div>
+        <div className="aus__frame" {...el('dividers')}><div className="au-ratio r80"><Photo a={a} cls="aus__img" /></div></div>
         <p className="aus__sig" aria-hidden {...el('name')}>{a.name}</p>
         <h1 className="au-sr">{a.name}</h1>
         {a.role && <p className="aus__role" {...el('caption')}>{a.role}</p>}
@@ -373,7 +373,7 @@ export function ProofSheet() {
           <div className="aup__frames">
             {frames.map((src, i) => (
               <figure key={i} className={i === 1 ? 'is-pick' : ''}>
-                {src ? <img src={src} alt={i === 1 ? a.name : ''} className={`f${i}`} /> : <span className="au-nophoto" />}
+                <div className="au-ratio r133">{src ? <img src={src} alt={i === 1 ? a.name : ''} className={`f${i}`} /> : <span className="au-nophoto" />}</div>
                 <figcaption>{12 + i}</figcaption>
                 {i === 1 && <svg className="aup__circle" viewBox="0 0 120 150" aria-hidden><path d="M60 6C24 4 6 36 7 76c1 42 24 68 56 67 33-1 52-31 50-71C111 33 92 8 57 9 42 10 30 16 22 25" /></svg>}
               </figure>

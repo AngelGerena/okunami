@@ -13,6 +13,12 @@
 .au-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 .au-nophoto { display: block; width: 100%; height: 100%; min-height: 220px; background: linear-gradient(135deg, var(--c-heroBand), color-mix(in srgb, var(--c-accentDetail) 40%, var(--c-heroBand))); }
 .au-logo { height: auto; }
+/* Photo boxes: a fixed-ratio box with the photo filling it (width and height 100%), the same way the other OKUNAMI designs
+   size photos. Sizing the img by aspect-ratio alone makes iPhone Safari draw the photo and then collapse it. */
+.au-ratio { position: relative; width: 100%; overflow: hidden; -webkit-transform: translateZ(0); transform: translateZ(0); }
+.au-ratio::before { content: ""; display: block; padding-top: var(--ratio, 125%); }
+.au-ratio.r105 { --ratio: 105%; } .au-ratio.r125 { --ratio: 125%; } .au-ratio.r80 { --ratio: 80%; } .au-ratio.r133 { --ratio: 133.333%; }
+.au-ratio > img, .au-ratio > .au-nophoto { position: absolute; inset: 0; width: 100%; height: 100%; min-height: 0; max-width: none; object-fit: cover; }
 .au-word { margin: 0; font-family: var(--f-display); font-weight: 700; letter-spacing: .3em; text-transform: uppercase; color: var(--c-name); line-height: 1.1; overflow-wrap: anywhere; }
 .au-spine { position: absolute; left: 0; top: 0; bottom: 0; width: 20px; background: linear-gradient(180deg, color-mix(in srgb, var(--c-accentDetail) 82%, #fff), var(--c-accentDetail)); z-index: 2; }
 .au-spine.is-right { left: auto; right: 0; }
@@ -63,7 +69,7 @@
 .auc__mark.au-logo { width: 100%; max-height: 64px; object-fit: contain; object-position: left center; }
 .auc__mark.au-word { font-size: 22px; }
 .auc__photo { position: relative; }
-.auc__img { width: 100%; aspect-ratio: 1 / 1.05; object-fit: cover; object-position: 50% 18%; filter: grayscale(1) contrast(1.06); }
+.auc__img { object-position: 50% 18%; filter: grayscale(1) contrast(1.06); }
 .auc__line { position: absolute; right: 12px; bottom: 14px; max-width: 54%; margin: 0; padding: 8px 10px; border-radius: 4px; text-align: right; font-family: var(--f-display); font-style: italic; font-weight: 700; font-size: 17px; line-height: 1.22;
   color: var(--c-name); background: color-mix(in srgb, var(--c-pageBg) 88%, transparent); }
 .auc__band { padding: 18px 18px 20px; background: var(--c-heroBand); }
@@ -76,7 +82,7 @@
 .aub__blurb { margin: 14px auto 0; max-width: 30ch; font-family: var(--f-display); font-style: italic; font-size: 15.5px; line-height: 1.6; color: var(--c-body); }
 .aub__sig { display: flex; flex-direction: column; align-items: center; margin-top: 24px; padding-top: 24px; border-top: 1px solid var(--c-name); }
 .aub__frame { width: min(230px, 78%); padding: 7px; border: 1px solid var(--c-name); background: var(--c-pageBg); box-shadow: -10px 10px 0 var(--c-accentDetail); margin-bottom: 20px; }
-.aub__img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 15%; filter: grayscale(1) contrast(1.06); }
+.aub__img { object-position: 50% 15%; filter: grayscale(1) contrast(1.06); }
 .aub__name { margin: 0; font-family: var(--f-display); font-weight: 600; font-size: 32px; line-height: 1.05; font-variant: small-caps; letter-spacing: .02em; color: var(--c-name); overflow-wrap: anywhere; }
 .aub__role { margin: 6px auto 0; max-width: 30ch; font-size: 10.5px; line-height: 1.6; letter-spacing: .14em; text-transform: uppercase; color: var(--c-caption); }
 .aub__band { margin: 26px -44px 0 -22px; padding: 22px 34px 22px 22px; background: var(--c-heroBand); }
@@ -86,7 +92,7 @@
 
 /* ---------------------------------------------------------------- 3 FULL FEATURE */
 .auf__hero { position: relative; min-height: 540px; display: flex; flex-direction: column; justify-content: flex-end; overflow: hidden; background: var(--c-heroBand); color: var(--c-onBand); }
-.auf__img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 45% 18%; filter: grayscale(1) contrast(1.08); }
+.auf__img { position: absolute; inset: 0; width: 100%; height: 100%; max-width: none; -webkit-transform: translateZ(0); transform: translateZ(0); object-fit: cover; object-position: 45% 18%; filter: grayscale(1) contrast(1.08); }
 .auf__shade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,.45) 0%, rgba(0,0,0,0) 22%, rgba(0,0,0,0) 34%, rgba(0,0,0,.62) 58%, rgba(0,0,0,.88) 100%); }
 .auf__mark { position: absolute; z-index: 2; top: 20px; left: 20px; width: 56%; }
 .auf__mark.au-logo { max-height: 56px; object-fit: contain; object-position: left center; filter: brightness(0) invert(1); }
@@ -103,7 +109,7 @@
 .auk__mark.au-logo { max-height: 56px; object-fit: contain; object-position: left center; }
 .auk__mark.au-word { width: auto; font-size: 15px; color: var(--c-onAccent); }
 .auk__block { position: relative; height: 380px; margin-top: 8px; }
-.auk__img { position: absolute; right: 0; bottom: 0; width: 66%; height: 100%; object-fit: cover; object-position: 50% 15%; border-radius: 160px 160px 0 0; }
+.auk__img { position: absolute; right: 0; bottom: 0; width: 66%; height: 100%; -webkit-transform: translateZ(0); transform: translateZ(0); object-fit: cover; object-position: 50% 15%; border-radius: 160px 160px 0 0; }
 .auk__name { position: absolute; z-index: 2; left: 18px; bottom: 16px; margin: 0; font-family: var(--f-display); font-weight: 700; font-size: 72px; line-height: .86; letter-spacing: .01em; text-transform: uppercase; color: var(--c-name); text-shadow: 0 2px 18px color-mix(in srgb, var(--c-accentDetail) 70%, transparent); }
 .auk__name span { display: block; overflow-wrap: anywhere; }
 .auk__band { position: relative; z-index: 3; padding: 14px 20px 16px; background: var(--c-heroBand); }
@@ -115,7 +121,7 @@
 .aus__mark.au-logo { max-height: 60px; object-fit: contain; }
 .aus__mark.au-word { width: auto; font-size: 16px; }
 .aus__frame { position: relative; margin-right: 12px; padding: 8px; border: 1px solid var(--c-name); background: var(--c-pageBg); box-shadow: 12px 12px 0 var(--c-accentDetail); }
-.aus__img { width: 100%; aspect-ratio: 5 / 4; object-fit: cover; object-position: 50% 18%; filter: grayscale(1) contrast(1.05); }
+.aus__img { object-position: 50% 18%; filter: grayscale(1) contrast(1.05); }
 .aus__sig { position: relative; z-index: 2; margin: -32px 0 0; font-family: 'Pinyon Script', 'Snell Roundhand', cursive; font-weight: 400; font-size: 58px; line-height: 1.1; color: var(--c-name); text-shadow: 0 0 12px var(--c-pageBg), 0 0 4px var(--c-pageBg); overflow-wrap: anywhere; }
 .aus__role { margin: 6px auto 0; max-width: 30ch; font-size: 11px; line-height: 1.6; letter-spacing: .16em; text-transform: uppercase; color: var(--c-caption); }
 .aus__quote { margin: 16px 0 0; font-family: var(--f-display); font-weight: 600; font-size: 12px; line-height: 1.5; letter-spacing: .24em; text-transform: uppercase; color: var(--c-accentDetail); }
@@ -132,11 +138,10 @@
 .aup__edge span { overflow: hidden; text-overflow: ellipsis; }
 .aup__frames { display: grid; grid-template-columns: 1fr 1.15fr 1fr; gap: 8px; padding: 24px 10px; align-items: center; }
 .aup__frames figure { position: relative; margin: 0; }
-.aup__frames img { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; filter: grayscale(1) contrast(1.05); }
-.aup__frames img.f0 { object-position: 50% 10%; transform: scale(1.0); }
+.aup__frames img { filter: grayscale(1) contrast(1.05); }
+.aup__frames img.f0 { object-position: 50% 10%; }
 .aup__frames img.f1 { object-position: 50% 16%; filter: none; }
 .aup__frames img.f2 { object-position: 50% 70%; }
-.aup__frames .au-nophoto { min-height: 0; aspect-ratio: 3 / 4; }
 .aup__frames figcaption { position: absolute; left: 4px; bottom: -17px; font-family: var(--f-display); font-weight: 600; font-size: 9px; letter-spacing: .2em; color: #e9b67a; }
 .aup__circle { position: absolute; inset: -14% -16%; width: 132%; height: 128%; fill: none; stroke: var(--c-accentDetail); stroke-width: 3.4; stroke-linecap: round; pointer-events: none; }
 .aup__id { padding: 22px 20px 24px; text-align: center; }
