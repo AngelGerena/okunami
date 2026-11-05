@@ -4,14 +4,14 @@
   var MAYRA_WA = "https://wa.me/17874528141?text=";
   var MAYRA_SMS = "sms:+17874528141?&body=";
 
-  var names = {l1:"Portada", l2:"Escenario", l3:"Manifiesto", l4:"Rosa Ejecutiva", l5:"10 Ciclos", l6:"Al Aire"};
+  var names = {l1:"Portada", l2:"Contraportada", l3:"Editorial", l4:"Rosa & Negro", l5:"Firma", l6:"Hoja de Contacto"};
   var notes = {
     l1: "Portada de revista: tu foto editorial en blanco y negro con la franja rosa de tu libro. Elegante y directa.",
-    l2: "Un reflector sobre ti en el escenario. Para que te contraten: grita conferencista desde el primer segundo.",
-    l3: "Tu lema como el titular principal: Positivismo = Posibilidades. Tipografía de póster, limpia y poderosa.",
-    l4: "Rosa suave con paneles de cristal y botones brillantes. Femenina, ejecutiva y muy tú.",
-    l5: "Los 10 ciclos de tu libro como anillos alrededor de tu foto, con tu lema girando a su alrededor.",
-    l6: "Estilo televisión: luz de Al Aire, tu nombre en el rótulo y tus medios corriendo abajo. La presentadora de TV."
+    l2: "La contraportada de tu libro hecha tarjeta: tu mensaje, tu lema y tu logo en la franja negra.",
+    l3: "Tu foto en blanco y negro a página completa, con tu nombre grande como en una revista.",
+    l4: "Bloque rosa y negro del libro, con tu nombre en letras grandes y tu foto fundida en el rosa.",
+    l5: "Una foto enmarcada con tu firma encima y una sombra rosa. Personal y elegante.",
+    l6: "Una tira de película de fotógrafo con tu mejor toma marcada en rosa. Moderna y creativa."
   };
 
   var tabs = document.querySelectorAll(".tab");
@@ -68,20 +68,6 @@
     var b = card.querySelector("[data-lang]");
     if(b) b.addEventListener("click", function(){ setLang(card, card.dataset.lang !== "en"); });
   });
-
-  // 10 Ciclos: draw ten ring segments
-  var g = document.querySelector(".l5 .ticks");
-  if(g){
-    var ns = "http://www.w3.org/2000/svg", R = 112, C = 150, gap = 6;
-    for(var i=0;i<10;i++){
-      var a0 = (i*36 + gap/2 - 90) * Math.PI/180, a1 = ((i+1)*36 - gap/2 - 90) * Math.PI/180;
-      var p = document.createElementNS(ns, "path");
-      p.setAttribute("d", "M"+(C+R*Math.cos(a0)).toFixed(2)+" "+(C+R*Math.sin(a0)).toFixed(2)+
-        " A"+R+" "+R+" 0 0 1 "+(C+R*Math.cos(a1)).toFixed(2)+" "+(C+R*Math.sin(a1)).toFixed(2));
-      p.setAttribute("class", i === 9 ? "seg on" : "seg");
-      g.appendChild(p);
-    }
-  }
 
   // Spanish hint under each QR (the shared kit adds it in English after this script runs)
   window.addEventListener("load", function(){

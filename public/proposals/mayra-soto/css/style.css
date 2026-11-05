@@ -111,113 +111,87 @@ h1,h2,p{margin:0}
 .l1 .role{font:500 11px/1.6 var(--cond);letter-spacing:.2em;text-transform:uppercase;margin-top:8px;color:#f1c8cc}
 .l1 .divider{background:#000;clip-path:polygon(0 0,100% 0,100% 0,0 100%);height:40px}
 
-/* ========== LOOK 2 - Escenario: spotlight on stage ========== */
-.l2{--bg:#171415;--fg:#f6efee;--soft:#c9bcbe;--panel:#221d1f;--edge:#3a3133;--acc:#f0b9bf;--acc-ink:#2a1015}
-.l2 .hero{padding:22px 20px 44px;text-align:center;overflow:hidden;
-  background:radial-gradient(120% 70% at 50% 0%,#3b2b2e 0%,#1b1718 55%,#151213 100%)}
-.l2 .lang{background:rgba(255,255,255,.12);color:#fff;border-color:rgba(255,255,255,.3)}
-.l2 .hero .logo{width:70%;margin:6px auto 0;position:relative;z-index:2}
-.l2 .beam{position:absolute;left:50%;top:-40px;width:420px;height:470px;transform:translateX(-50%);
-  background:conic-gradient(from 165deg at 50% 0%,transparent 0deg,rgba(255,236,220,.20) 12deg,rgba(255,236,220,.32) 15deg,rgba(255,236,220,.20) 18deg,transparent 30deg);
-  -webkit-mask:linear-gradient(180deg,#000 40%,transparent 100%);mask:linear-gradient(180deg,#000 40%,transparent 100%);pointer-events:none}
-.l2 .spot{position:relative;z-index:2;width:196px;height:196px;margin:24px auto 0;border-radius:50%;overflow:hidden;
-  box-shadow:0 0 0 3px #f0b9bf,0 0 0 9px rgba(240,185,191,.18),0 0 70px 18px rgba(255,226,210,.28)}
-.l2 .spot img{width:100%;height:100%;object-fit:cover;object-position:50% 18%}
-.l2 .floor{width:250px;height:30px;margin:-6px auto 0;border-radius:50%;background:radial-gradient(closest-side,rgba(255,232,220,.30),transparent)}
-.l2 h1{position:relative;z-index:2;font:800 40px/1.05 var(--serif);margin-top:6px;letter-spacing:.01em}
-.l2 .role{font:500 11px/1.65 var(--body);letter-spacing:.18em;text-transform:uppercase;color:#f0b9bf;margin-top:8px}
-.l2 .cue{font:italic 600 17px/1.35 var(--serif);color:#efe4e2;margin-top:12px}
-.l2 .divider{background:#171415;height:38px;margin-top:-24px;border-radius:50% 50% 0 0/100% 100% 0 0;box-shadow:0 -1px 0 rgba(240,185,191,.35)}
-.l2 .cta{background:linear-gradient(180deg,#f7d4d8,#ecaab2 55%,#d78f97);color:#2a1015;box-shadow:inset 0 1px 0 rgba(255,255,255,.6),0 12px 26px -12px rgba(240,170,180,.6)}
-.l2 .topics li{background:#171415}
-.l2 .qr img{border-color:transparent}
-.l2 .badge{background:#3a2a1a;color:#ffd7a6}
+/* ========== LOOK 2 - Contraportada: the book's back cover ========== */
+.l2{--bg:#fff;--panel:#faf6f4;--edge:#eadfdc;--acc:#e8b4b8;--acc-ink:#2a1418}
+.l2 .hero{padding:40px 46px 0 24px;background:#fff;text-align:center}
+.l2 .spine{position:absolute;right:0;top:0;bottom:0;width:22px;background:linear-gradient(180deg,#efc4c7,#e3aab0)}
+.l2 .eyebrow{font:600 30px/1 var(--serif);font-variant:small-caps;letter-spacing:.03em}
+.l2 .blurb{font:400 15.5px/1.6 var(--serif);color:#2c2526;margin:14px auto 0;max-width:30ch}
+.l2 .blurb span{font-style:italic}
+.l2 .sig{display:flex;align-items:center;gap:14px;text-align:left;margin:26px 0 0;padding-top:20px;border-top:1px solid #151313}
+.l2 .dot{width:78px;height:78px;border-radius:50%;overflow:hidden;flex:0 0 auto;box-shadow:0 0 0 3px #fff,0 0 0 4px #151313}
+.l2 .dot img{width:100%;height:100%;object-fit:cover}
+.l2 h1{font:600 28px/1.05 var(--serif);font-variant:small-caps;letter-spacing:.02em}
+.l2 .role{font:500 10.5px/1.6 var(--body);letter-spacing:.14em;text-transform:uppercase;color:#6c5f62;margin-top:5px}
+.l2 .motto{font:500 19px/1.3 var(--serif);margin:18px 0 26px}
+.l2 .band{background:#000;margin:0 -46px 0 -24px;padding:22px 34px 22px 24px}
+.l2 .band .logo{width:74%;margin:0 auto}
+.l2 .divider{background:#000;height:34px;clip-path:polygon(0 0,100% 0,0 100%);margin-right:22px}
 
-/* ========== LOOK 3 - Manifiesto: Positivismo = Posibilidades ========== */
-.l3{--bg:#fbf7f3;--panel:#fff;--edge:#ebe0da;--acc:#151313;--acc-ink:#fff}
-.l3 .hero{padding:18px 20px 26px;background:#fbf7f3}
-.l3 .hero .logo{width:58%;margin-right:auto}
-.l3 .eq{margin:26px 0 22px;display:flex;flex-direction:column;align-items:flex-start;gap:4px}
-.l3 .w1{font:italic 700 clamp(40px,12.5vw,52px)/0.95 var(--serif);color:#151313;letter-spacing:-.01em}
-.l3 .eqsign{display:flex;flex-direction:column;gap:9px;margin:12px 0 12px 4px}
-.l3 .eqsign i{display:block;width:74px;height:9px;background:#e8b4b8;border-radius:2px}
-.l3 .w2{font:700 clamp(28px,9.2vw,38px)/0.95 var(--cond);text-transform:uppercase;letter-spacing:.02em;color:#151313}
-.l3 .who{display:flex;align-items:center;gap:14px;border-top:2px solid #151313;padding-top:16px}
-.l3 .dot{width:84px;height:84px;border-radius:50%;overflow:hidden;flex:0 0 auto;box-shadow:0 0 0 3px #e8b4b8}
-.l3 .dot img{width:100%;height:100%;object-fit:cover;object-position:50% 15%}
-.l3 h1{font:700 30px/1.05 var(--serif)}
-.l3 .role{font:500 11px/1.55 var(--body);letter-spacing:.14em;text-transform:uppercase;color:#6c5f62;margin-top:5px}
-.l3 .divider{background:#151313;height:46px;clip-path:ellipse(75% 100% at 50% 100%);margin-bottom:0}
-.l3 .btn.save{background:linear-gradient(180deg,#3d3537,#151313 55%,#000);color:#fff;box-shadow:inset 0 1px 0 rgba(255,255,255,.22),0 10px 22px -12px rgba(0,0,0,.6)}
-.l3 .buy{background:linear-gradient(180deg,#f6d3d6,#e8b4b8 55%,#d49aa1);color:#2a1418}
-.l3 .names i{background:#e8b4b8}
+/* ========== LOOK 3 - Editorial: full-bleed B&W ========== */
+.l3{--bg:#fff;--panel:#faf6f4;--edge:#eadfdc;--acc:#e8b4b8;--acc-ink:#2a1418}
+.l3 .hero{background:#151313;color:#fff;min-height:540px;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden}
+.l3 .bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:40% 20%;filter:contrast(1.08)}
+.l3 .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.45) 0%,rgba(0,0,0,0) 22%,rgba(0,0,0,0) 45%,rgba(0,0,0,.82) 100%)}
+.l3 .hero>.logo{position:absolute;z-index:2;top:20px;left:20px;width:56%}
+.l3 .lang{background:rgba(0,0,0,.35);color:#fff;border-color:rgba(255,255,255,.4)}
+.l3 .cap{position:relative;z-index:2;padding:0 20px 30px}
+.l3 .kicker{font:500 11px var(--cond);letter-spacing:.28em;text-transform:uppercase;color:#f1c8cc;margin-bottom:8px}
+.l3 h1{font:700 64px/.92 var(--cond);letter-spacing:.03em;text-transform:uppercase}
+.l3 .rule{display:block;width:64px;height:5px;background:#e8b4b8;margin:14px 0 12px}
+.l3 .role{font:500 11px/1.6 var(--body);letter-spacing:.16em;text-transform:uppercase;color:#f3e7e6;max-width:30ch}
+.l3 .divider{background:#fff;height:40px;margin-top:-40px;border-radius:50% 50% 0 0/100% 100% 0 0;position:relative;z-index:3}
 
-/* ========== LOOK 4 - Rosa Ejecutiva: blush glass ========== */
-.l4{--bg:#f9e6e7;--panel:rgba(255,255,255,.62);--edge:rgba(255,255,255,.9);--acc:#b8475f;--acc-ink:#fff;--soft:#6e5359}
-.l4{background:linear-gradient(170deg,#fbeeee 0%,#f3cfd3 38%,#f8e3e1 70%,#f2d2d5 100%)}
-.l4 .hero{padding:20px 20px 10px;text-align:center}
-.l4 .hero .logo{width:72%;margin:8px auto 0}
-.l4 .arch{width:200px;height:250px;margin:20px auto 0;border-radius:110px 110px 18px 18px;overflow:hidden;
-  border:6px solid rgba(255,255,255,.75);box-shadow:0 22px 40px -18px rgba(150,50,70,.55)}
-.l4 .arch img{width:100%;height:100%;object-fit:cover;object-position:50% 20%}
-.l4 h1{font:700 38px/1.05 var(--serif);margin-top:14px;color:#2b1418}
-.l4 .script{font:400 34px/1 var(--script);color:#b8475f;margin-top:2px}
-.l4 .role{font:500 11px/1.6 var(--body);letter-spacing:.16em;text-transform:uppercase;color:#6e5359;margin-top:8px}
-.l4 .divider{height:26px}
-.l4 .panel,.l4 .btn,.l4 .own{backdrop-filter:blur(14px) saturate(140%);-webkit-backdrop-filter:blur(14px) saturate(140%);box-shadow:0 8px 24px -16px rgba(150,50,70,.45)}
-.l4 .btn{background:linear-gradient(180deg,rgba(255,255,255,.85),rgba(255,255,255,.5));color:#3a1d24}
-.l4 .btn.save{color:#fff;background:linear-gradient(180deg,#e28aa0,#b8475f 55%,#8f2f45);box-shadow:inset 0 1px 0 rgba(255,255,255,.45),0 12px 24px -12px rgba(143,47,69,.7)}
-.l4 .cta{background:linear-gradient(180deg,#d77085,#b8475f 55%,#8f2f45);box-shadow:inset 0 1px 0 rgba(255,255,255,.4),0 12px 24px -12px rgba(143,47,69,.7)}
-.l4 .topics li{background:rgba(255,255,255,.7);border-color:rgba(184,71,95,.25)}
-.l4 .qr{border-color:rgba(184,71,95,.2)}
+/* ========== LOOK 4 - Rosa & Negro: color block ========== */
+.l4{--bg:#fff;--panel:#fbf4f4;--edge:#efdfe0;--acc:#151313;--acc-ink:#fff}
+.l4 .hero{background:#e8b4b8;padding-top:20px;overflow:hidden;isolation:isolate}
+.l4 .hero>.logo{width:56%;margin-left:20px;position:relative;z-index:3}
+.l4 .block{position:relative;height:380px;margin-top:6px}
+.l4 h1{position:absolute;z-index:2;left:18px;bottom:16px;font:700 76px/.86 var(--cond);text-transform:uppercase;letter-spacing:.01em;color:#151313}
+.l4 h1 span{display:block}
+.l4 .cut{position:absolute;right:-28px;bottom:0;height:100%;width:auto;max-width:none;mix-blend-mode:multiply;z-index:1}
+.l4 .band{background:#151313;color:#fff;padding:14px 20px 16px;position:relative;z-index:3}
+.l4 .role{font:500 11px/1.6 var(--cond);letter-spacing:.2em;text-transform:uppercase;color:#f1c8cc}
+.l4 .divider{background:#151313;height:30px;clip-path:polygon(0 0,100% 0,100% 100%)}
+.l4 .btn.save{background:linear-gradient(180deg,#3d3537,#151313 55%,#000);color:#fff;box-shadow:inset 0 1px 0 rgba(255,255,255,.22),0 10px 22px -12px rgba(0,0,0,.6)}
+.l4 .cta{background:linear-gradient(180deg,#f6d3d6,#e8b4b8 55%,#d49aa1);color:#2a1418}
+.l4 .buy{background:linear-gradient(180deg,#f6d3d6,#e8b4b8 55%,#d49aa1);color:#2a1418}
+.l4 .names i{background:#e8b4b8}
 
-/* ========== LOOK 5 - 10 Ciclos: rings ========== */
-.l5{--bg:#fff;--panel:#f8f4f2;--edge:#ece3df;--acc:#e8b4b8;--acc-ink:#2a1418}
-.l5 .hero{padding:18px 20px 30px;text-align:center;background:#fff}
-.l5 .hero .logo{width:66%;margin:8px auto 0}
-.l5 .rings{position:relative;width:292px;max-width:100%;aspect-ratio:1;margin:14px auto 4px}
-.l5 .ring{position:absolute;inset:0;width:100%;height:100%}
-.l5 .ring .seg{fill:none;stroke:#151313;stroke-width:5;stroke-linecap:round}
-.l5 .ring .seg.on{stroke:#e8b4b8;stroke-width:7}
-.l5 .ring text{font:600 10.5px var(--body);letter-spacing:.2em;fill:#151313}
-.l5 .ring{animation:spin 60s linear infinite}
-@keyframes spin{to{transform:rotate(360deg)}}
-@media (prefers-reduced-motion:reduce){.l5 .ring{animation:none}}
-.l5 .face{position:absolute;inset:26%;border-radius:50%;overflow:hidden;box-shadow:0 0 0 4px #fff,0 0 0 6px #e8b4b8}
-.l5 .face img{width:100%;height:100%;object-fit:cover;object-position:50% 16%}
-.l5 h1{font:700 42px/1 var(--cond);letter-spacing:.08em;text-transform:uppercase}
-.l5 .role{font:500 11px/1.6 var(--body);letter-spacing:.16em;text-transform:uppercase;color:#6c5f62;margin-top:8px}
-.l5 .divider{background:#151313;height:52px;clip-path:ellipse(80% 100% at 50% 100%);margin-bottom:-1px}
-.l5 .body{background:#151313;--fg:#f6efee;--soft:#c8bcbe;--panel:#211d1e;--edge:#383032;color:#f6efee;padding-top:8px}
-.l5 .topics li{background:#151313}
-.l5 .badge{background:#3a2a1a;color:#ffd7a6}
-.l5 .qr img{border-color:transparent}
-.l5 .cta{background:linear-gradient(180deg,#f7d4d8,#e8b4b8 55%,#d49aa1);color:#2a1418}
-.l5 .foot{background:#151313;--fg:#f6efee;--soft:#c8bcbe;--panel:#211d1e;--edge:#383032;color:#f6efee}
+/* ========== LOOK 5 - Firma: signed photograph ========== */
+.l5{--bg:#fff;--panel:#faf6f4;--edge:#eadfdc;--acc:#e8b4b8;--acc-ink:#2a1418}
+.l5 .hero{padding:20px 22px 30px;background:#fff;text-align:center}
+.l5 .hero>.logo{width:60%;margin:6px auto 22px}
+.l5 .frame{position:relative;border:1px solid #151313;padding:8px;background:#fff;box-shadow:12px 12px 0 #e8b4b8;margin-right:12px}
+.l5 .frame img{width:100%;aspect-ratio:5/4;object-fit:cover;object-position:35% 30%}
+.l5 .signature{font:400 66px/1 var(--script);color:#151313;margin:-34px 0 0;position:relative;z-index:2;text-shadow:0 0 12px #fff,0 0 4px #fff}
+.l5 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.l5 .role{font:500 11px/1.6 var(--body);letter-spacing:.16em;text-transform:uppercase;color:#6c5f62;margin-top:4px}
+.l5 .quote{font:600 12px var(--cond);letter-spacing:.3em;text-transform:uppercase;margin-top:16px}
+.l5 .divider{background:#e8b4b8;height:40px;clip-path:ellipse(70% 100% at 50% 100%);margin-bottom:-1px}
+.l5 .body{border-top:6px solid #e8b4b8}
 
-/* ========== LOOK 6 - Al Aire: TV broadcast ========== */
-.l6{--bg:#fff;--panel:#f7f5f5;--edge:#e7e2e2;--acc:#c8102e;--acc-ink:#fff}
-.l6 .hero{background:#0f0f10;padding:12px 12px 0}
-.l6 .screen{position:relative;border-radius:16px 16px 0 0;overflow:hidden;background:#fff}
-.l6 .screen>img:first-child{width:100%;aspect-ratio:4/4.3;object-fit:cover;object-position:50% 12%}
-.l6 .onair{position:absolute;top:12px;left:12px;display:inline-flex;align-items:center;gap:7px;background:#c8102e;color:#fff;
-  font:600 12px var(--cond);letter-spacing:.22em;padding:6px 11px 6px 9px;border-radius:4px;box-shadow:0 0 18px rgba(200,16,46,.55)}
-.l6 .onair i{width:8px;height:8px;border-radius:50%;background:#fff;animation:blink 1.6s ease-in-out infinite}
-@keyframes blink{50%{opacity:.25}}
-@media (prefers-reduced-motion:reduce){.l6 .onair i{animation:none}}
-.l6 .bug{position:absolute;left:50%;top:18px;transform:translateX(-50%);width:112px;height:auto;opacity:.92}
-.l6 .third{position:absolute;left:0;right:0;bottom:16px;padding-right:22px}
-.l6 h1{display:inline-block;background:#111;color:#fff;font:700 30px/1 var(--cond);letter-spacing:.05em;text-transform:uppercase;padding:10px 16px 9px 16px;border-left:8px solid #c8102e}
-.l6 .role{background:#c8102e;color:#fff;font:600 10.5px/1.5 var(--body);letter-spacing:.12em;text-transform:uppercase;padding:6px 16px;margin-right:auto;max-width:100%}
-.l6 .ticker{background:#c8102e;color:#fff;overflow:hidden;white-space:nowrap;margin:0 -12px;border-top:2px solid #111}
-.l6 .tk-in{display:inline-block;padding:9px 0;animation:tick 26s linear infinite}
-.l6 .tk-in span{font:600 12px var(--cond);letter-spacing:.2em;margin:0 14px}
-.l6 .tk-in span::before{content:"";display:inline-block;width:5px;height:5px;background:#fff;margin-right:14px;vertical-align:middle;transform:rotate(45deg)}
-@keyframes tick{to{transform:translateX(-50%)}}
-@media (prefers-reduced-motion:reduce){.l6 .tk-in{animation:none}}
-.l6 .divider{background:#c8102e;height:30px;clip-path:polygon(0 0,100% 0,100% 30%,0 100%)}
-.l6 .names i{background:#c8102e}
-.l6 .sec{color:#c8102e}
+/* ========== LOOK 6 - Hoja de Contacto: film contact sheet ========== */
+.l6{--bg:#fff;--panel:#faf6f4;--edge:#eadfdc;--acc:#e8b4b8;--acc-ink:#2a1418}
+.l6 .hero{background:#fff}
+.l6 .lang{background:rgba(255,255,255,.9)}
+.l6 .strip{background:#121010;padding:4px 0;position:relative}
+.l6 .strip::before,.l6 .strip::after{content:"";position:absolute;left:0;right:0;height:9px;
+  background:repeating-linear-gradient(90deg,transparent 0 9px,#f3ece6 9px 19px,transparent 19px 26px);opacity:.9}
+.l6 .strip::before{top:30px}.l6 .strip::after{bottom:30px}
+.l6 .edge{display:flex;justify-content:space-between;padding:4px 14px;font:600 9.5px var(--cond);letter-spacing:.24em;color:#e9b67a}
+.l6 .frames{display:grid;grid-template-columns:1fr 1.15fr 1fr;gap:8px;padding:22px 10px;align-items:center}
+.l6 figure{margin:0;position:relative}
+.l6 figure img{width:100%;aspect-ratio:3/4;object-fit:cover;object-position:50% 18%;filter:grayscale(1) contrast(1.05)}
+.l6 figure.pick img{filter:none}
+.l6 figcaption{position:absolute;left:4px;bottom:-17px;font:600 9px var(--cond);letter-spacing:.2em;color:#e9b67a}
+.l6 .circle{position:absolute;inset:-14% -16%;width:132%;height:128%;fill:none;stroke:#f08a99;stroke-width:3.4;stroke-linecap:round;pointer-events:none}
+.l6 .id{padding:22px 20px 24px;text-align:center}
+.l6 .id .logo{width:58%;margin:0 auto 14px}
+.l6 h1{font:700 40px/1 var(--cond);letter-spacing:.06em;text-transform:uppercase}
+.l6 .role{font:500 11px/1.6 var(--body);letter-spacing:.16em;text-transform:uppercase;color:#6c5f62;margin-top:8px}
+.l6 .divider{background:#151313;height:34px;clip-path:polygon(0 100%,100% 0,100% 100%);margin-bottom:-1px}
+.l6 .body{border-top:5px solid #151313}
 
 /* Page footer */
 .fm-foot{max-width:420px;margin:0 auto;padding:0 18px 40px;text-align:center;color:var(--muted);font-size:13px;line-height:1.55}
@@ -228,6 +202,6 @@ h1,h2,p{margin:0}
 @media (max-width:360px){
   .actions{grid-template-columns:repeat(3,1fr);gap:6px}
   .btn{font-size:12px}
-  .l1 h1,.l5 h1{font-size:38px}
+  .l1 h1{font-size:38px}.l3 h1{font-size:54px}.l4 h1{font-size:64px}.l4 .block{height:330px}
   .book{grid-template-columns:86px 1fr}.book>img{width:86px}
 }
