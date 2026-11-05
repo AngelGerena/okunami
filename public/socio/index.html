@@ -183,6 +183,9 @@ input[type=date]{-webkit-appearance:none;appearance:none;display:block;min-width
 input[type=date]::-webkit-date-and-time-value{text-align:left}
 @keyframes payflash{0%,100%{box-shadow:0 0 0 0 rgba(255,60,172,0)}50%{box-shadow:0 0 0 8px rgba(255,60,172,.45)}}
 .paylink.flash{animation:payflash .9s ease-in-out 3}
+.mylink{border:1px dashed var(--line);border-radius:14px;padding:12px 14px;margin:12px 0;display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center}
+.mylink p{margin:0;overflow-wrap:anywhere}
+.mylink small{flex-basis:100%}
 </style>
 </head>
 <body>
@@ -231,10 +234,11 @@ input[type=date]::-webkit-date-and-time-value{text-align:left}
     <details class="how" id="how">
       <summary><span data-t="howH">Cómo ganas</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary>
       <div class="rates">
-        <div class="rate"><b>25%</b><span data-t="r1">de cada diseño personalizado</span></div>
+        <div class="rate"><b>25%</b><span data-t="r1">de cada diseño y agente de IA</span></div>
         <div class="rate"><b>40%</b><span data-t="r2">de los primeros 12 meses del plan</span></div>
         <div class="rate"><b>$100</b><span data-t="r3">de bono con 10+ clientes en un mes</span></div>
       </div>
+      <div class="mylink" id="myLink" hidden></div>
       <div class="tree" id="howTree" aria-label="Ejemplo de comisión"></div>
       <ul id="howList"></ul>
       <p id="howEx" style="color:var(--muted)"></p>
@@ -292,23 +296,24 @@ input[type=date]::-webkit-date-and-time-value{text-align:left}
       nextClear: function (n, d) { return 'Próxima en liberarse: ' + n + ', ' + d + '.'; },
       why: { pending: function (d, p) { return 'Se libera el ' + d + '. Te pagamos a más tardar el ' + p + '.'; }, ready: function (p) { return 'Ya se liberó. Te pagamos a más tardar el ' + p + '.'; }, clawback: 'El cliente recibió reembolso. Este monto se descuenta de tu próximo pago.' },
       bonusM: function (m, n) { return 'Bono de ' + m + ' (' + n + ' clientes): $100'; }, bonusPaid: 'Pagado', bonusPayBtn: 'Marcar bono pagado', bonusWait: 'Se paga al cerrar el mes',
-      howH: 'Cómo ganas', r1: 'de cada diseño personalizado', r2: 'de los primeros 12 meses del plan', r3: 'de bono con 10+ clientes en un mes',
-      how: ['Ganas 25% de cada diseño personalizado que vendas.', 'Ganas 40% de lo que el cliente paga por su plan durante sus primeros 12 meses. Si paga anual, cobras todo de una vez; si paga mensual, cobras mes a mes hasta 12 pagos. Después de los 12 meses ya no hay comisión.', 'Bono de $100 en cualquier mes que cierres 10 clientes nuevos o más que paguen.', 'Se paga por venta cuando el pago del cliente se libera, 30 días después de pagar.', 'La comisión es sobre el precio del plan y del diseño. No incluye cargos de procesamiento, impuestos ni créditos de IA.', 'Si un cliente pide reembolso o disputa el pago, esa comisión se descuenta del próximo pago.'],
-      howEx: 'Con un diseño de $149 en vez de $99, la misma venta te deja $96.85.',
+      howH: 'Cómo ganas', r1: 'de cada diseño y agente de IA', r2: 'de los primeros 12 meses del plan', r3: 'de bono con 10+ clientes en un mes',
+      how: ['Dos formas de ganar. 1) Tarjeta personalizada: yo diseño la tarjeta para tu cliente. 2) Hazlo tú mismo en okunami.pro: tu cliente se registra con tu link o tu código y crea su propia tarjeta.', 'Ganas 25% de todo lo que yo construyo para tus clientes: diseños de tarjetas personalizadas y agentes de IA personalizados (25% por agente, $12.50 por cada agente de $50).', 'Ganas 40% de lo que el cliente paga por su plan durante sus primeros 12 meses, en las dos formas. Si paga anual, cobras todo de una vez; si paga mensual, cobras mes a mes hasta 12 pagos. Después de los 12 meses ya no hay comisión.', 'Tu link y tu código funcionan por 90 días. Siempre comparte los dos. Si el cliente no usa tu link ni tu código, la venta no se puede rastrear.', 'Los planes gratis no generan comisión al principio. Si tu cliente mejora a un plan pagado dentro de los 3 meses de haberse registrado, ganas el 40% de lo que paga por su plan durante sus primeros 12 meses.', 'Bono de $100 en cualquier mes que cierres 10 clientes nuevos o más que paguen.', 'Se paga por venta cuando el pago del cliente se libera, 30 días después de pagar.', 'La comisión es sobre el precio del plan, del diseño y de los agentes. No incluye cargos de procesamiento, impuestos, créditos de IA ni otros extras.', 'Si un cliente pide reembolso o disputa el pago, esa comisión se descuenta del próximo pago.'],
+      howEx: 'Con un diseño de $149 en vez de $99, la misma venta te deja $100.85. Cada agente de IA de $50 te suma $12.50.',
       tree: { aria: 'Ejemplo de comisión en una venta', ask: '¿Cómo paga el cliente su plan?', yearB: 'Anual', monthB: 'Mensual', root: 'El cliente paga', design: 'Diseño personalizado', you: 'Para ti', total: 'Tu comisión en esta venta',
-        year: { root: '$248', plan: 'Pro Plus anual', price: '$149 al año', out: '$59.60', total: '$84.35', note: 'Paga el año completo de una vez, así que cobras tu 40% del plan de una vez.' },
-        month: { root: '$99 + $16 al mes', plan: 'Pro Plus mensual', price: '$16 al mes', out: '$6.40 al mes', total: '$24.75 + $6.40 al mes', note: 'Cobras $6.40 por cada mes que pague, hasta 12 pagos: $76.80 en total. Ganas más que con el anual porque el mensual le cuesta más al cliente en el año ($192 en vez de $149).' },
+        year: { root: '$258', plan: 'Pro Plus anual', price: '$159 al año', out: '$63.60', total: '$88.35', note: 'Paga el año completo de una vez, así que cobras tu 40% del plan de una vez.' },
+        month: { root: '$99 + $16 al mes', plan: 'Pro Plus mensual', price: '$16 al mes', out: '$6.40 al mes', total: '$24.75 + $6.40 al mes', note: 'Cobras $6.40 por cada mes que pague, hasta 12 pagos: $76.80 en total. Ganas más que con el anual porque el mensual le cuesta más al cliente en el año ($192 en vez de $159).' },
         bonus: '<b>+ $100</b> de bono el mes que cierres 10 clientes nuevos o más (uno por mes).', none: '<b>$0</b> después de los primeros 12 meses, y nada sobre cargos de procesamiento, impuestos ni créditos de IA.' },
       cState: { pending: 'Pendiente hasta {d}', ready: 'Lista para pago', paid: 'Pagada el {d}', clawback: 'Reembolso: se descuenta {m}' },
       cSplit: function (d, p) { return [d ? 'diseño ' + d : '', p ? 'plan ' + p : ''].filter(Boolean).join(' + '); },
-      fDesign: 'Diseño ($)', fPlan: 'Pago del plan ($)', fPays: 'Pagos mensuales cobrados', payC: 'Marcar comisión pagada', settle: 'Marcar reembolso descontado',
+      fDesign: 'Diseño + agentes de IA ($)', fPlan: 'Pago del plan ($)', fPays: 'Pagos mensuales cobrados', payC: 'Marcar comisión pagada', settle: 'Marcar reembolso descontado',
       clawT: function (m) { return 'Hay ' + m + ' en reembolsos que se descuentan del próximo pago.'; },
       add: '+ Agregar persona', refresh: 'Actualizar', addH: 'Alguien con quien hablaste', fName: 'Nombre', fPhone: 'Teléfono o WhatsApp', fBiz: 'Negocio',
       fNotes: 'Notas', fFollow: 'Dar seguimiento el', save: 'Guardar', cancel: 'Cancelar', out: 'Salir', crafted: 'Hecho por',
       due: function (n) { return n === 1 ? 'Tienes 1 persona para dar seguimiento hoy.' : 'Tienes ' + n + ' personas para dar seguimiento hoy.'; },
       f: { all: 'Todos', due: 'Seguimiento', new: 'Nuevos', talk: 'Hablando', paid: 'Pagados', lost: 'No interesados' },
       st: { new: 'Nuevo', contacted: 'Contactado', interested: 'Interesado', not_interested: 'No interesado', checkout_started: 'Empezó a pagar', awaiting_payment: 'Pago pendiente', paid: 'Pagado' },
-      src: { agent: 'Tu tarjeta', form: 'Tu tarjeta', 'mayra-card': 'Tarjeta de Mayra', manual: 'Agregado por ti' },
+      src: { agent: 'Tu tarjeta', form: 'Tu tarjeta', 'mayra-card': 'Tarjeta de Mayra', manual: 'Agregado por ti', site: 'okunami.pro (tu link o código)' },
+      myLink: 'Tu link', myCode: 'Tu código', copyLink: 'Copiar link', linkHint: 'Compártelo con el código. Funciona por 90 días.',
       status: 'Estado', notes: 'Notas', follow: 'Seguimiento', saveRow: 'Guardar', contacted: 'Hablé hoy', payLink: 'Copiar link de pago', call: 'Llamar', text: 'Texto',
       amount: 'Monto pagado ($)', markPaid: 'Marcar pagado', lastC: 'Último contacto', added: 'Agregado', paidOn: 'Pagado el', commission: 'Tu comisión',
       plan: { pro: 'Pro', plus: 'Pro Plus', team: 'Business' }, month: 'mensual', year: 'anual', design: 'diseño personalizado',
@@ -330,23 +335,24 @@ input[type=date]::-webkit-date-and-time-value{text-align:left}
       nextClear: function (n, d) { return 'Next to clear: ' + n + ', ' + d + '.'; },
       why: { pending: function (d, p) { return 'Clears on ' + d + '. We pay you by ' + p + '.'; }, ready: function (p) { return 'It cleared. We pay you by ' + p + '.'; }, clawback: 'The client was refunded. This amount comes off your next payout.' },
       bonusM: function (m, n) { return m + ' bonus (' + n + ' clients): $100'; }, bonusPaid: 'Paid', bonusPayBtn: 'Mark bonus paid', bonusWait: 'Paid after the month ends',
-      howH: 'How you earn', r1: 'of every custom design', r2: 'of the first 12 months of the plan', r3: 'bonus with 10+ clients in a month',
-      how: ['You earn 25% of every custom design you sell.', 'You earn 40% of what the client pays for their plan during their first 12 months. Yearly plans pay you all at once; monthly plans pay you month by month, up to 12 payments. After 12 months there is no commission.', 'A $100 bonus in any month you close 10 or more new paying clients.', 'Paid per sale once the client’s payment clears, 30 days after they pay.', 'Commission is on the plan and design price. It does not include processing fees, taxes or AI credits.', 'If a client gets a refund or disputes the charge, that commission comes off your next payout.'],
-      howEx: 'With a $149 design instead of $99, the same sale earns you $96.85.',
+      howH: 'How you earn', r1: 'of every custom design and AI agent', r2: 'of the first 12 months of the plan', r3: 'bonus with 10+ clients in a month',
+      how: ['Two ways to earn. 1) Custom card: I design the card for your client. 2) Do it yourself on okunami.pro: your client signs up with your link or your code and builds their own card.', 'You earn 25% of everything I build for your clients: custom card designs and custom AI agents (25% per agent, $12.50 on each $50 agent).', 'You earn 40% of what the client pays for their plan during their first 12 months, either way. Yearly plans pay you all at once; monthly plans pay you month by month, up to 12 payments. After 12 months there is no commission.', 'Your link and code work for 90 days. Always share both. If a client uses neither, the sale cannot be tracked.', 'Free plans earn nothing at first. If your client upgrades to a paid plan within 3 months of signing up, you earn 40% of their plan payments for their first 12 months.', 'A $100 bonus in any month you close 10 or more new paying clients.', 'Paid per sale once the client’s payment clears, 30 days after they pay.', 'Commission is on the plan, design and agent prices. It does not include processing fees, taxes, AI credits or other add-ons.', 'If a client gets a refund or disputes the charge, that commission comes off your next payout.'],
+      howEx: 'With a $149 design instead of $99, the same sale earns you $100.85. Each $50 AI agent adds $12.50.',
       tree: { aria: 'Commission example for one sale', ask: 'How does the client pay for the plan?', yearB: 'Yearly', monthB: 'Monthly', root: 'The client pays', design: 'Custom design', you: 'For you', total: 'Your commission on this sale',
-        year: { root: '$248', plan: 'Pro Plus yearly', price: '$149 a year', out: '$59.60', total: '$84.35', note: 'They pay the whole year at once, so you get your 40% of the plan at once.' },
-        month: { root: '$99 + $16 a month', plan: 'Pro Plus monthly', price: '$16 a month', out: '$6.40 a month', total: '$24.75 + $6.40 a month', note: 'You get $6.40 for every month they pay, up to 12 payments: $76.80 in total. It adds up to more than yearly because monthly costs the client more over the year ($192 instead of $149).' },
+        year: { root: '$258', plan: 'Pro Plus yearly', price: '$159 a year', out: '$63.60', total: '$88.35', note: 'They pay the whole year at once, so you get your 40% of the plan at once.' },
+        month: { root: '$99 + $16 a month', plan: 'Pro Plus monthly', price: '$16 a month', out: '$6.40 a month', total: '$24.75 + $6.40 a month', note: 'You get $6.40 for every month they pay, up to 12 payments: $76.80 in total. It adds up to more than yearly because monthly costs the client more over the year ($192 instead of $159).' },
         bonus: '<b>+ $100</b> bonus in any month you close 10 or more new clients (one per month).', none: '<b>$0</b> after the first 12 months, and nothing on processing fees, taxes or AI credits.' },
       cState: { pending: 'Pending until {d}', ready: 'Ready to pay out', paid: 'Paid on {d}', clawback: 'Refund: {m} comes off' },
       cSplit: function (d, p) { return [d ? 'design ' + d : '', p ? 'plan ' + p : ''].filter(Boolean).join(' + '); },
-      fDesign: 'Design ($)', fPlan: 'Plan payment ($)', fPays: 'Monthly payments collected', payC: 'Mark commission paid', settle: 'Mark refund deducted',
+      fDesign: 'Design + AI agents ($)', fPlan: 'Plan payment ($)', fPays: 'Monthly payments collected', payC: 'Mark commission paid', settle: 'Mark refund deducted',
       clawT: function (m) { return 'There is ' + m + ' in refunds that comes off the next payout.'; },
       add: '+ Add person', refresh: 'Refresh', addH: 'Someone you talked to', fName: 'Name', fPhone: 'Phone or WhatsApp', fBiz: 'Business',
       fNotes: 'Notes', fFollow: 'Follow up on', save: 'Save', cancel: 'Cancel', out: 'Sign out', crafted: 'Crafted by',
       due: function (n) { return n === 1 ? 'You have 1 person to follow up with today.' : 'You have ' + n + ' people to follow up with today.'; },
       f: { all: 'All', due: 'Follow up', new: 'New', talk: 'Talking', paid: 'Paid', lost: 'Not interested' },
       st: { new: 'New', contacted: 'Contacted', interested: 'Interested', not_interested: 'Not interested', checkout_started: 'Started paying', awaiting_payment: 'Payment pending', paid: 'Paid' },
-      src: { agent: 'Your card', form: 'Your card', 'mayra-card': "Mayra's card", manual: 'Added by you' },
+      src: { agent: 'Your card', form: 'Your card', 'mayra-card': "Mayra's card", manual: 'Added by you', site: 'okunami.pro (your link or code)' },
+      myLink: 'Your link', myCode: 'Your code', copyLink: 'Copy link', linkHint: 'Share it with your code. It works for 90 days.',
       status: 'Status', notes: 'Notes', follow: 'Follow up', saveRow: 'Save', contacted: 'Talked today', payLink: 'Copy payment link', call: 'Call', text: 'Text',
       amount: 'Amount paid ($)', markPaid: 'Mark paid', lastC: 'Last contact', added: 'Added', paidOn: 'Paid on', commission: 'Your commission',
       plan: { pro: 'Pro', plus: 'Pro Plus', team: 'Business' }, month: 'monthly', year: 'yearly', design: 'custom design',
@@ -454,6 +460,16 @@ input[type=date]::-webkit-date-and-time-value{text-align:left}
   var treeMode = 'year';
   function renderHow() {
     var T = L(), ul = $('howList'); ul.innerHTML = '';
+    var ml = $('myLink'); ml.innerHTML = '';
+    if (DATA && DATA.link) {
+      ml.hidden = false;
+      var row = el('p'); row.appendChild(el('span', null, T.myLink + ': ')); row.appendChild(el('b', null, DATA.link.replace(/^https?:\/\//, '')));
+      ml.appendChild(row);
+      if (DATA.code) { var row2 = el('p'); row2.appendChild(el('span', null, T.myCode + ': ')); row2.appendChild(el('b', null, DATA.code)); ml.appendChild(row2); }
+      var cb = el('button', 'btn pink sm', T.copyLink); cb.type = 'button';
+      cb.addEventListener('click', function () { copy(DATA.link).then(function () { toast(T.copied); }); });
+      ml.appendChild(cb); ml.appendChild(el('small', 'hint', T.linkHint));
+    } else ml.hidden = true;
     T.how.forEach(function (x) { ul.appendChild(el('li', null, x)); });
     var R = T.tree, tr = $('howTree');
     tr.setAttribute('aria-label', R.aria);

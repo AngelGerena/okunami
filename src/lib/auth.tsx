@@ -1,6 +1,7 @@
 import { createContext, useContext, useEffect, useState, type ReactNode } from 'react';
 import type { Session } from '@supabase/supabase-js';
 import { IS_DEMO, supabase } from './supabase';
+import { claimRef } from './referral';
 
 interface AuthState { session: Session | null; loading: boolean; demo: boolean; }
 const AuthCtx = createContext<AuthState>({ session: null, loading: true, demo: IS_DEMO });
@@ -19,6 +20,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     const { data: sub } = supabase.auth.onAuthStateChange((_e, s) => { if (!alive) return; setSession(s); setLoading(false); });
     return () => { alive = false; clearTimeout(bail); sub.subscription.unsubscribe(); };
   }, []);
+
+  // Signed in with a reseller code waiting: tag the account (outside the auth callback, so no lock is held).
+  useEffect(() => { if (session) void claimRef(); }, [session]);
 
   return <AuthCtx.Provider value={{ session, loading, demo: IS_DEMO }}>{children}</AuthCtx.Provider>;
 }

@@ -1,9 +1,10 @@
-// POST { plan: 'pro' | 'plus' | 'team', interval: 'month' | 'year', seats?: number (Business only) }  ->  { url }
+// POST { plan: 'pro' | 'plus' | 'team', interval: 'month' | 'year', seats?: number (Business only), ref?: reseller code }  ->  { url }
 // Prices are fixed in _shared/okunami.ts; the browser never sends an amount.
 // Starts Stripe Checkout for the signed-in user. If they already have a subscription,
 // returns a Billing Portal link instead (update card, cancel, invoices), never a second subscription.
 import { admin, clampSeats, cors, currentUser, json, siteUrl, stripe, type Interval, type Plan } from '../_shared/okunami.ts';
 import { buildCheckoutParams } from '../_shared/checkout.ts';
+import { UPGRADE_WINDOW_DAYS, partnerFor } from '../_shared/partners.ts';
 
 Deno.serve(async (req) => {
   if (req.method === 'OPTIONS') return new Response('ok', { headers: cors });
@@ -19,7 +20,13 @@ Deno.serve(async (req) => {
     const db = admin();
     const s = stripe();
     const { data: profile } = await db.from('fc_profiles')
-      .select('id, email, stripe_customer_id, stripe_subscription_id, plan_status').eq('id', user.id).maybeSingle();
+      .select('id, email, stripe_customer_id, stripe_subscription_id, plan_status, created_at, referred_by').eq('id', user.id).maybeSingle();
+
+    // Reseller link or code the browser remembered. Tags the account if nobody has yet, while it is still within 3 months of signing up.
+    const ref = partnerFor(body.ref);
+    if (ref && profile && !profile.referred_by && Date.now() - new Date(profile.created_at).getTime() <= UPGRADE_WINDOW_DAYS * 864e5) {
+      await db.from('fc_profiles').update({ referred_by: ref, referred_at: new Date().toISOString() }).eq('id', user.id).is('referred_by', null);
+    }
 
     // One Stripe customer per OKUNAMI account.
     let customer = profile?.stripe_customer_id as string | null;

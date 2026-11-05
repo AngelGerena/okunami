@@ -35,6 +35,10 @@
   .mx nav .lang button { min-width: 30px; padding: 0 6px; }
   .mx nav .mx-navlink, .mx-btn--sm { font-size: 13px; }
   .mx-btn--sm { padding-left: 11px; padding-right: 11px; }
+  /* Longer Spanish labels: the wordmark gives up width before the buttons are pushed off screen. */
+  .mx-nav > .lp__brand { flex: 0 1 auto; min-width: 0; }
+  .mx-nav nav { flex: none; }
+  .mx .lp__mark { width: 100%; max-width: 130px; height: auto; max-height: 34px; object-fit: contain; object-position: left center; }
 }
 @media (max-width: 340px) {
   .mx .lp__mark { height: 28px; }
@@ -330,6 +334,11 @@
 .mx-studio__card ul { list-style: none; margin: 12px 0 0; padding: 0; display: flex; flex-direction: column; gap: 6px; font-size: 14px; color: rgba(255,255,255,.85); }
 .mx-studio__card li { display: flex; gap: 8px; align-items: flex-start; }
 .mx-studio__card li svg { flex: none; margin-top: 3px; color: var(--c); }
+.mx-agents { background: #0B0E2A; }
+.mx-agents__tag { display: inline-block; vertical-align: 3px; margin-left: 6px; padding: 3px 8px; border-radius: 999px; font-size: 11px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; background: rgba(255,255,255,.12); color: rgba(255,255,255,.85); }
+.mx-agents__soon { border-style: dashed; }
+.mx-agents__price { margin: 28px 0 0; font-size: 16px; line-height: 1.55; color: rgba(255,255,255,.82); max-width: 760px; }
+.mx-agents__price b { color: #fff; }
 .mx-studio__card small { display: block; margin-top: 12px; padding-top: 10px; border-top: 1px dashed rgba(255,255,255,.18); font-size: 12.5px; color: rgba(255,255,255,.62); }
 @media (max-width: 760px) { .mx-paths__grid, .mx-studio__two { grid-template-columns: 1fr; } }
 .mx nav .lang { margin-right: 6px; align-self: center; }

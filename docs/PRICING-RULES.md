@@ -38,13 +38,15 @@ update public.fc_offer_config set value = jsonb_set(jsonb_set(value, '{spots}', 
 ## Tested so far
 27 database checks (rolled back, nothing kept) and 9 checkout-builder cases. **Not tested:** real Stripe payments, truly simultaneous checkouts (the lock is exercised in sequence), a Stripe-side plan change made by hand in the Stripe dashboard.
 
-## Current price list (October 2026)
+## Current price list (November 2026)
+
+Yearly is **2 months free** on every plan (yearly is about 10 times the monthly price).
 
 | Plan | Monthly | Yearly | Cards | Notes |
 |---|---|---|---|---|
 | Lite | free | free | 1 | 3 Lite designs, small badge |
 | Pro | $8 | $79 | 3 | Founding price $5 on Pro monthly only |
-| Pro Plus | $16 | $149 | 1 (one constant, see below) | Everything in Pro plus event sections, multiple languages, connect your own domain (Finesse Media connects it on request), two done-for-you edits a month. Event sections and languages are marked "coming soon" on the site until they exist. |
+| Pro Plus | $16 | $159 (was $149 until Nov 2026; existing yearly subscribers renew at $149) | 1 (one constant, see below) | Everything in Pro plus event sections, multiple languages, connect your own domain (Finesse Media connects it on request), two done-for-you edits a month. Event sections and languages are marked "coming soon" on the site until they exist. |
 | Business | $6 per card | $60 per card | 3 minimum, up to 100 | Priced per card; the customer picks how many with a stepper. Brand lock and team admin are marked "coming soon". |
 
 - Amounts live in `src/lib/plans.ts` (screens) and `supabase/functions/_shared/okunami.ts` (what Stripe charges). Change both together.

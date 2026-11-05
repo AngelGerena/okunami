@@ -42,7 +42,7 @@ export const PLANS: PlanDef[] = [
   { id: 'pro', name: 'Pro', price: 8, yearly: 79, per: 'month', featured: true, cards: 3,
     pitch: 'Every design, forever growing.',
     features: ['Up to 3 cards', 'All {designs} designs', 'Every new OKUNAMI Drop, 3 to 5 designs every other month', 'Brand kit and custom fonts', 'No badge', 'Scan and save stats (coming soon)'] },
-  { id: 'plus', name: 'Pro Plus', price: 16, yearly: 149, per: 'month', cards: PLUS_CARDS,
+  { id: 'plus', name: 'Pro Plus', price: 16, yearly: 159, per: 'month', cards: PLUS_CARDS,
     pitch: 'Everything in Pro, plus hands-on help from me.',
     features: ['Everything in Pro', '1 card', 'Event sections (coming soon)', 'Multiple languages on your card (coming soon)', 'Connect a domain you already own', 'Two done-for-you edits a month by Finesse Media'] },
   { id: 'team', name: 'Business', price: TEAM.monthly, yearly: TEAM.yearly, per: 'card / month', perCard: true,
@@ -56,7 +56,7 @@ export const cardLimit = (plan: PlanId, seats?: number | null): number => (plan 
 export const isPaid = (plan: PlanId) => plan !== 'free';
 
 /** Done-for-you work by Finesse Media (OKUNAMI Studio). Studio cards are hosted on OKUNAMI: a custom card needs Pro or Pro Plus, a custom team design needs Business.
-    Custom designs never include AI agents; agents are a-la-carte and quoted by Angel.
+    Custom designs never include AI agents; agents are a-la-carte, $50 each (AGENT_PRICE), plus prepaid credits.
     `includes` lists only what has been approved for each package: add to it when you confirm more. */
 export const STUDIO = [
   { id: 'signature', name: 'Custom card', from: 149, needs: 'One-time fee. Your card also needs an OKUNAMI Pro or Pro Plus subscription, billed separately.',
@@ -69,6 +69,13 @@ export const STUDIO = [
     blurb: 'One custom design in your brand for the whole team, and I build every staff card so it all matches.',
     includes: ['One brand design for the whole team', 'Your first 3 staff cards built', '$35 for each extra person', 'Matching headshots'] },
 ] as const;
+
+/** Custom AI agents: built by Finesse Media and placed inside a card. $50 per agent, one time, plus prepaid credits. */
+export const AGENT_PRICE = 50;
+export const AGENT_CONTACT = {
+  whatsapp: 'https://wa.me/14079609004?text=' + encodeURIComponent("Hi Angel, I'd like to talk about a custom AI agent for my OKUNAMI card."),
+  sms: 'sms:+14079609004?&body=' + encodeURIComponent("Hi Angel, I'd like to talk about a custom AI agent for my OKUNAMI card."),
+};
 
 export const STUDIO_CONTACT = {
   /** Opens WhatsApp (a chat with me). The page says so before the click. */
