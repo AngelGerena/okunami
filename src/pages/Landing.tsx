@@ -5,7 +5,8 @@ import type { Card } from '../lib/types';
 import { sampleCard } from '../lib/seed';
 import { deriveTokens, randomButton, randomSeeds, FONT_PAIRS } from '../lib/theme';
 import { TEMPLATES } from '../templates';
-import { ALL_DESIGNS, NICHES, applyDesign, sampleFor } from '../lib/niches';
+import { ALL_DESIGNS, NICHES, applyDesign, demoCardFor, sampleFor } from '../lib/niches';
+import { FEATURED, RETIRED } from '../lib/retired';
 import Brand from '../components/Brand';
 import heroLogo from '../assets/okunami-wordmark.png';
 import { APP_NAME, PLANS, STUDIO, STUDIO_CONTACT, TEAM, clampCards, teamTotal } from '../lib/plans';
@@ -13,7 +14,7 @@ import { sfx } from '../lib/sfx';
 import { decorative } from '../lib/a11y';
 import { DESIGN_COUNT, NICHE_COUNT, designsLabel } from '../lib/counts';
 import { HAS_LEGAL, LEGAL } from '../lib/legal';
-import { dollars, useOffer } from '../lib/offers';
+import { dollars, useOffer, useStudioOffer } from '../lib/offers';
 import CardRenderer from '../components/CardRenderer';
 import { rich, useT } from '../lib/i18n';
 import LangToggle from '../components/LangToggle';
@@ -26,7 +27,9 @@ const reduced = () => typeof window !== 'undefined' && window.matchMedia?.('(pre
 const HIDE_ON_LANDING = new Set<string>(['terminal', 'inbox']);
 
 /** The hero phone cycles through these showpiece designs until someone rolls the dice. */
-const SHOWCASE = ['neonsign', 'velvet', 'turntable', 'passport', 'polish', 'synthwave', 'signature', 'lotus', 'nowserving'];
+const SHOWCASE = ['neonsign', 'velvet', 'turntable', 'passport', 'polish', 'synthwave', 'signature', 'stones', 'goldring'];
+/** Gallery order: the Featured 12 first, then niche designs, then the generic starter layouts. */
+const galleryRank = (id: string, niche?: string) => { const f = FEATURED.indexOf(id); return f >= 0 ? f : niche ? 100 : 200; };
 
 function Ticker({ items, tone }: { items: string[]; tone: 'pink' | 'cyan' | 'orange' }) {
   const line = items.join('  ✶  ');
@@ -41,6 +44,8 @@ export default function Landing() {
   const designsLabelT = (n: number) => designsLabel(n, lang);
   const { t, lang } = useT();
   const offer = useOffer();
+  const studio = useStudioOffer();
+  const founding = studio.known && studio.active;
   const base = useMemo(() => sampleCard(), []);
   const showcase = useMemo(() => SHOWCASE.map((t) => ALL_DESIGNS.find((x) => x.design.template === t)).filter(Boolean) as typeof ALL_DESIGNS, []);
   /* Four rows of the marquee: every fourth niche per row, so each row mixes categories. */
@@ -93,15 +98,15 @@ export default function Landing() {
           </div>
           <ul className="mx-ticks">
             <li><Check size={16} /> {t("No app to download")}</li>
-            <li><Check size={16} /> {t("Tap, scan or text it")}</li>
-            <li><Check size={16} /> {t("Saves to any phone in one tap")}</li>
+            <li><Check size={16} /> {t("Scan. Share. Connect. It's that simple.")}</li>
+            <li><Check size={16} /> {t("Saves to any phone in one step")}</li>
           </ul>
         </div>
 
         <div className="mx-hero__stage">
           <img src={heroLogo} alt="" aria-hidden className="mx-hero__logo" />
           <span className="mx-sun" aria-hidden />
-          <span className="mx-sticker mx-sticker--cyan s2">{t("NFC ready")}</span>
+          <span className="mx-sticker mx-sticker--cyan s2">{t("QR ready")}</span>
           <span className="mx-sticker mx-sticker--pink s3">{t("No app needed")}</span>
           <div className="mx-phone" key={rolled ? `r${rolls}` : `s${i}`}>
             <div className="mx-phone__screen" {...decorative}><CardRenderer card={heroCard} mode={heroMode} sound={false} /></div>
@@ -115,7 +120,7 @@ export default function Landing() {
         </div>
       </section>
 
-      <Ticker tone="pink" items={[designsLabelT(DESIGN_COUNT), t('{n} niches', { n: NICHE_COUNT }), t('Tap'), t('Save'), t('Share'), t('NFC and QR'), t('Made in Florida')]} />
+      <Ticker tone="pink" items={[designsLabelT(DESIGN_COUNT), t('{n} niches', { n: NICHE_COUNT }), t('Scan'), t('Save'), t('Share'), t('QR and link'), t('Made in Florida')]} />
 
       {/* ---------------------------------------------------------------- features */}
       <section className="mx-feats" aria-label={t("What you get")}>
@@ -123,11 +128,11 @@ export default function Landing() {
         <div className="mx-feats__grid">
           {[
             { icon: Layers, t: 'N designs', d: 'Neon signs, straight razors, turntables, passports, wax seals. Pro members get new drops every other month.', c: 'pink' },
-            { icon: Palette, t: 'Recolor anything', d: 'Tap any part of your card to change its color. Contrast is checked live so it stays readable.', c: 'cyan' },
+            { icon: Palette, t: 'Recolor anything', d: 'Select any part of your card to change its color. Contrast is checked live so it stays readable.', c: 'cyan' },
             { icon: Smartphone, t: 'Buttons that pop', d: 'Ten styles, eight shapes and eight finishes, tuned for light and dark mode.', c: 'orange' },
             { icon: Type, t: 'Your brand kit', d: 'Pull colors from your logo, paste hex codes from Canva, or upload your own fonts.', c: 'cyan' },
-            { icon: UserPlus, t: 'One-tap save', d: 'Adds your photo, numbers, address and links straight into their contacts.', c: 'orange' },
-            { icon: QrCode, t: 'QR and NFC', d: 'Print it, stick it, tap it. The same link works everywhere.', c: 'pink' },
+            { icon: UserPlus, t: 'One-step save', d: 'Adds your photo, numbers, address and links straight into their contacts.', c: 'orange' },
+            { icon: QrCode, t: 'QR and link', d: 'Print it, stick it, share it. The same link works everywhere.', c: 'pink' },
           ].map((f) => (
             <article key={f.t} className={`mx-tile mx-tile--${f.c}`}>
               <span className="mx-tile__ic"><f.icon size={26} strokeWidth={2} /></span>
@@ -160,17 +165,16 @@ export default function Landing() {
       <section className="mx-layouts" id="layouts">
         <h2 className="mx-h2">{rich(t("Swipe the <x1>wall</x1> of designs."), { x1: (c) => <span className="pink">{c}</span> })}</h2>
         <div className="mx-strip" role="region" aria-label={t("Design gallery. Scrolls sideways. Each design has an Open demo link.")} tabIndex={0}>
-          {[...TEMPLATES].filter((t) => !HIDE_ON_LANDING.has(t.id)).sort((a, b) => Number(Boolean(b.niche)) - Number(Boolean(a.niche))).map((tpl) => {
-            const hit = ALL_DESIGNS.find((x) => x.design.template === tpl.id);
+          {[...TEMPLATES].filter((t) => !t.hidden && !HIDE_ON_LANDING.has(t.id) && !RETIRED.has(t.id)).sort((a, b) => galleryRank(a.id, a.niche) - galleryRank(b.id, b.niche)).map((tpl) => {
+            const demo = demoCardFor(base, tpl.id);
+            const hit = demo.design && demo.niche ? { niche: demo.niche, design: demo.design } : null;
             return (
               <figure key={tpl.id}>
                 <div className="mx-mini" {...decorative}><div className="mx-miniscale">
-                  {hit
-                    ? <CardRenderer card={applyDesign(sampleFor(base, hit.niche), hit.niche, hit.design)} mode={hit.design.mode} sound={false} />
-                    : <CardRenderer card={{ ...base, template: tpl.id }} mode="light" sound={false} />}
+                  <CardRenderer card={demo.card} mode={demo.mode} sound={false} />
                 </div></div>
                 <figcaption>
-                  <b>{hit?.design.name ?? tpl.name}</b><small>{hit ? hit.niche.name : tpl.bestFor}</small>
+                  <b>{hit?.design.name ?? tpl.name}</b><small>{hit ? hit.niche.name : demo.niche?.name ?? tpl.bestFor}</small>
                   <Link className="mx-demo" to={`/demo/${tpl.id}`}>{t("Open demo")}<span className="sr">{t(" of the {v} design", { v: hit?.design.name ?? tpl.name })}</span> <ArrowRight size={14} aria-hidden /></Link>
                 </figcaption>
               </figure>
@@ -202,7 +206,9 @@ export default function Landing() {
               <h3>{t("OKUNAMI Studio")}</h3>
               <p>{t("I design and set up your card for you, starting with a free consult.")}</p>
               <ul>
-                <li><Check size={16} aria-hidden /> {t("One-time setup from $249")}</li>
+                {founding
+                  ? <li><Check size={16} aria-hidden /> <span>{rich(t("<b>Founding 50:</b> custom design {price} instead of {base}. {left} of {spots} spots left, ends Dec 31.", { price: dollars(studio.cents), base: dollars(studio.regular), left: studio.left, spots: studio.spots }), { b: (c) => <b>{c}</b> })}</span></li>
+                  : <li><Check size={16} aria-hidden /> {t("Custom card from $149, custom team design $249")}</li>}
                 <li><Check size={16} aria-hidden /> {t("Plus a OKUNAMI Pro, Pro Plus or Business subscription, which every Studio card needs")}</li>
                 <li><Check size={16} aria-hidden /> {t("I handle the design, copy and setup")}</li>
               </ul>
@@ -265,15 +271,21 @@ export default function Landing() {
       {/* ---------------------------------------------------------------- studio */}
       <section className="mx-studio" id="studio" aria-labelledby="studio-h">
         <div className="mx-studio__in">
-          <header className="mx-studio__head">{rich(t("<x1>OKUNAMI Studio by Finesse Media</x1><x2>Want me to build it for you?</x2><x3>I'm a creative director and photographer. I design your card, shoot your portrait and hand you the tap products.</x3>"), { x1: (c) => <p className="mx-eyebrow">{c}</p>, x2: (c) => <h2 id="studio-h" className="mx-dir__h">{c}</h2>, x3: (c) => <p className="mx-dir__sub">{c}</p> })}</header>
+          <header className="mx-studio__head">{rich(t("<x1>OKUNAMI Studio by Finesse Media</x1><x2>Want me to build it for you?</x2><x3>I'm a creative director and photographer. I design your card and shoot your portrait.</x3>"), { x1: (c) => <p className="mx-eyebrow">{c}</p>, x2: (c) => <h2 id="studio-h" className="mx-dir__h">{c}</h2>, x3: (c) => <p className="mx-dir__sub">{c}</p> })}</header>
 
           <div className="mx-studio__two">
             <section className="mx-studio__box" aria-labelledby="pay-h">
               <h3 id="pay-h">{t("What you pay")}</h3>
               <dl>
-                <div>{rich(t("<x1>Studio setup</x1><x2>One time. From ${from} for a Signature card. Every project is quoted.</x2>", { from: STUDIO[0].from }), { x1: (c) => <dt>{c}</dt>, x2: (c) => <dd>{c}</dd> })}</div>
+                <div>{rich(t("<x1>Studio setup</x1><x2>One time. ${from} for a custom card, or ${team} for a custom team design. Your exact price is confirmed in your free consult, before you pay.</x2>", { from: STUDIO[0].from, team: STUDIO[2].from }), { x1: (c) => <dt>{c}</dt>, x2: (c) => <dd>{c}</dd> })}
+                  <dd className="mx-pay__inc"><strong>{t("What the custom card includes")}</strong>
+                    <ul>{STUDIO[0].includes.map((i) => <li key={i}><Check size={16} aria-hidden /> {t(i)}</li>)}</ul>
+                  </dd>
+                  <dd className="mx-pay__inc">{rich(t("<b>AI agents are separate.</b> Custom AI agents are an à la carte add-on, quoted per agent in your consult."), { b: (c) => <strong>{c}</strong> })}</dd>
+                </div>
                 <div>{rich(t("<x1>OKUNAMI subscription</x1><x2>Required for every Studio card: Pro at ${price} a month, Pro Plus at ${price2} a month, or Business at ${price3} a card a month.</x2>", { price: PLANS[1].price, price2: PLANS[2].price, price3: PLANS[3].price }), { x1: (c) => <dt>{c}</dt>, x2: (c) => <dd>{c}</dd> })}</div>
               </dl>
+              {founding && <p className="mx-founding">{rich(t("<b>Founding 50.</b> The first {spots} customers get a custom card designed for {price} instead of {base}. {left} spots left. Ends at {spots} spots or December 31, 2026, whichever comes first. Needs a Pro or Pro Plus plan. After that the price goes back to {base}. Teams on Business get the custom team design at ${team}.", { spots: studio.spots, price: dollars(studio.cents), base: dollars(studio.regular), left: studio.left, team: STUDIO[2].from }), { b: (c) => <b>{c}</b> })}</p>}
             </section>
             <section className="mx-studio__box" aria-labelledby="how-h">
               <h3 id="how-h">{t("How it works")}</h3>
@@ -281,7 +293,7 @@ export default function Landing() {
                 <li>{rich(t("<b>Request a free consult.</b> Tell me about your business."), { b: (c) => <b>{c}</b> })}</li>
                 <li>{rich(t("<b>I build a private preview.</b> You review it before you pay."), { b: (c) => <b>{c}</b> })}</li>
                 <li>{rich(t("<b>You approve it and pay through Stripe.</b>"), { b: (c) => <b>{c}</b> })}</li>
-                <li>{rich(t("<b>I set up your live address by hand.</b> It is an address on finessemedia.pro that I provide. Connecting your own custom domain yourself is not available yet."), { b: (c) => <b>{c}</b> })}</li>
+                <li>{rich(t("<b>I set up your live address by hand.</b> It is an address on okunami.pro that I provide. Already own a domain? I can connect it for you."), { b: (c) => <b>{c}</b> })}</li>
               </ol>
             </section>
           </div>
@@ -290,16 +302,18 @@ export default function Landing() {
             {STUDIO.map((s) => (
               <article key={s.id} className="mx-studio__card">
                 <h3>{t(s.name)}</h3>
-                <p className="mx-studio__from">{rich(t("from <b>${from}</b>{v}", { from: s.from, v: 'per' in s ? ' ' + t('per person') : '' }), { b: (c) => <b>{c}</b> })}</p>
+                {founding && s.id === 'signature'
+                  ? <p className="mx-studio__from">{rich(t("founding price <b>{price}</b> <s>{base}</s>", { price: dollars(studio.cents), base: dollars(studio.regular) }), { b: (c) => <b>{c}</b>, s: (c) => <s>{c}</s> })}</p>
+                  : <p className="mx-studio__from">{rich(t("from <b>${from}</b>{v}", { from: s.from, v: 'per' in s ? ' ' + t('per person') : '' }), { b: (c) => <b>{c}</b> })}</p>}
                 <p>{t(s.blurb)}</p>
                 <ul>{s.includes.map((x) => <li key={x}><Check size={14} aria-hidden /> {t(x)}</li>)}</ul>
-                {'cardPackage' in s && <small>{t("Needs a OKUNAMI Pro, Pro Plus or Business subscription.")}</small>}
+                {'needs' in s && <small>{t(s.needs)}</small>}
               </article>
             ))}
           </div>
           <div className="mx-dir__foot">
-            <a className="mx-btn mx-btn--pink" href={STUDIO_CONTACT.whatsapp} target="_blank" rel="noopener"><MessageCircle size={18} aria-hidden /> {t("Request a free consult on WhatsApp")}</a>
-            <a className="mx-studio__mail" href={STUDIO_CONTACT.email}>{t("or email angel@finessemedia.pro")}</a>
+            <a className="mx-btn mx-btn--pink" href={founding ? STUDIO_CONTACT.founding : STUDIO_CONTACT.whatsapp} target="_blank" rel="noopener"><MessageCircle size={18} aria-hidden /> {t("Request a free consult on WhatsApp")}</a>
+            <p className="mx-studio__alt"><a href={founding ? STUDIO_CONTACT.foundingSms : STUDIO_CONTACT.sms}>{t("No WhatsApp? Send a text")}</a><a href={STUDIO_CONTACT.email}>{t("or email angel@finessemedia.pro")}</a></p>
             <span>{t("The button opens a WhatsApp chat with me. Prices are starting points; every project is quoted.")}</span>
           </div>
         </div>

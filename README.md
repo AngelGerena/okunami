@@ -1,6 +1,6 @@
 # Finesse Cards
 
-Self-serve digital business cards: sign up, add your details, pick one of ten layouts, recolor anything, publish to a link, QR code or NFC tag.
+Self-serve digital business cards: sign up, add your details, pick one of ten layouts, recolor anything, publish to a link or QR code.
 
 Stack: React + Vite + TypeScript, Supabase (auth, Postgres, storage), Netlify (hosting + functions), Stripe (subscriptions).
 

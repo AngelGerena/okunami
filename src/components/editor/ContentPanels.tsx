@@ -29,6 +29,7 @@ export function ProfilePanel(p: PanelProps) {
     <>
       <NicheSection {...p} />
       {WORSHIP.has(p.card.template) && <WorshipExtras {...p} />}
+      {EOS.has(p.card.template) && <EosExtras {...p} />}
       <Section title={t("Photo and logo")} hint={t("A clear, well-lit headshot gets saved to people's phones with your contact.")}>
         <div className="upl-row">
           <ImageUpload label={t("Profile photo")} value={d.photoUrl} hint={t("Square or portrait, at least 800px.")} onFile={async (f) => put({ photoUrl: await store.uploadImage(f, 'photo') })} onClear={() => put({ photoUrl: '' })} />
@@ -60,9 +61,9 @@ export function ContactPanel(p: PanelProps) {
         <Field label={t("WhatsApp Business number")} type="tel" inputMode="tel" value={d.whatsapp} onChange={(v) => put({ whatsapp: v })} placeholder="1 407 555 0142" hint={t("Include the country code. US numbers start with 1.")} />
         {d.phone && !sameWa && <button type="button" className="btn btn--ghost btn--sm" onClick={() => put({ whatsapp: '1' + d.phone.replace(/\D/g, '').replace(/^1(?=\d{10}$)/, '') })}>{t("Use my phone number for WhatsApp")}</button>}
         <Field label={t("Email")} type="email" inputMode="email" autoComplete="email" value={d.email} onChange={(v) => put({ email: v })} placeholder={t("hello@yourbusiness.com")} />
-        {d.niche === 'consultant' ? <>
-          <Field label={t("Shop link")} type="url" inputMode="url" value={d.website} onChange={(v) => put({ website: v })} placeholder={t("yourbusiness.com")} hint={t("Your store link. Shows as the Shop my picks button on the Glam designs.")} />
-          <Field label={t("Join-my-team link")} type="url" inputMode="url" value={d.bookingUrl} onChange={(v) => put({ bookingUrl: v })} placeholder={t("yourbusiness.com")} hint={t("Your sign-up link for new team members. Shows as the Join my team button.")} />
+        {d.niche === 'consultant' || d.niche === 'grooming' || d.niche === 'jewelry' ? <>
+          <Field label={t("Shop link")} type="url" inputMode="url" value={d.website} onChange={(v) => put({ website: v })} placeholder={t("yourbusiness.com")} hint={t("Your store link. Shows as the shop button on the seller designs.")} />
+          <Field label={t("Join-my-team link")} type="url" inputMode="url" value={d.bookingUrl} onChange={(v) => put({ bookingUrl: v })} placeholder={t("yourbusiness.com")} hint={t("Your sign-up link for new team members. Shows as the Join my team or Build with me button.")} />
         </> : <>
           <Field label={t("Website")} type="url" inputMode="url" value={d.website} onChange={(v) => put({ website: v })} placeholder={t("yourbusiness.com")} />
           <Field label={t("Booking link")} type="url" inputMode="url" value={d.bookingUrl} onChange={(v) => put({ bookingUrl: v })} placeholder={t("calendly.com/you or your booking page")} hint={t("Adds a Book button. Leave empty if you don't take appointments online.")} />
@@ -224,7 +225,7 @@ export function PublishPanel({ card, set, setPublished }: PanelProps) {
   return (
     <>
       <ProBanner card={card} set={set} />
-      <Section title={t("Your card address")} hint={t("This is the link your QR code, NFC tag and Share button use.")}>
+      <Section title={t("Your card address")} hint={t("This is the link your QR code and Share button use.")}>
         <div className="fld">
           <label htmlFor="slug">{t("Address")}</label>
           <div className="slug">
@@ -235,7 +236,7 @@ export function PublishPanel({ card, set, setPublished }: PanelProps) {
             {state === 'checking' && 'Checking...'}{state === 'ok' && 'Available and saved.'}{state === 'taken' && 'Taken. Try adding your city or a number.'}{state === 'idle' && 'Letters, numbers and dashes.'}
           </small>
         </div>
-        {card.published && <p className="note">{t("This card is live. Changing the address breaks links, QR codes and NFC tags that already use the old one.")}</p>}
+        {card.published && <p className="note">{t("This card is live. Changing the address breaks links and QR codes that already use the old one.")}</p>}
       </Section>
       <Section title={t("Status")} hint={t("Preview never publishes a card. A card goes public only when you press Publish.")}>
         <div className={`pub-state ${card.published ? 'is-live' : 'is-draft'}`} role="status">
@@ -264,7 +265,6 @@ export function PublishPanel({ card, set, setPublished }: PanelProps) {
               : <span className="note">{t("The link works after you publish. Until then only the preview shows your card.")}</span>}
           </div>
         </div>
-        <p className="note">{t("Programming an NFC tag? Write this link as a URL record with any NFC writer app.")}</p>
       </Section>
     </>
   );
@@ -295,7 +295,7 @@ function GallerySection(p: PanelProps) {
     <Section title={t("Photos")} hint={t("Your work, menu, listings or products. Up to 9. The first photo leads on Keystone and Lookbook.")} action={d.gallery.length < MAX ? <button type="button" className="btn btn--gold btn--sm" onClick={() => ref.current?.click()} disabled={busy}>{busy ? <Loader2 size={15} className="spin" /> : <Plus size={16} />} Add photos</button> : undefined}>
       {d.gallery.length === 0 && !busy && (
         <button type="button" className="gal-drop" onClick={() => ref.current?.click()} onDragOver={(e) => e.preventDefault()} onDrop={(e) => { e.preventDefault(); add(e.dataTransfer.files); }}>
-          <ImagePlus size={26} strokeWidth={1.5} /><span>{t("Drop photos here or tap to choose")}</span>
+          <ImagePlus size={26} strokeWidth={1.5} /><span>{t("Drop photos here or press to choose")}</span>
         </button>
       )}
       <ul className="gal-edit">
@@ -339,7 +339,7 @@ export function NicheSection(p: PanelProps) {
       {current && !open && (
         <button type="button" className="niche-now" onClick={() => setOpen(true)}>
           <NicheBadge id={current.id} />
-          <span className="niche-now__txt">{t("{length} designs made for you · tap to change", { length: current.designs.length })}</span>
+          <span className="niche-now__txt">{t("{length} designs made for you · select to change", { length: current.designs.length })}</span>
         </button>
       )}
       {open && (
@@ -390,7 +390,7 @@ function SuggestedLinks(p: PanelProps & { onAdded: () => void }) {
   if (!missing.length) return null;
   return (
     <div className="sugg">
-      <span className="sugg__h">{t("Popular with {v}. Tap to add:", { v: n.name.toLowerCase() })}</span>
+      <span className="sugg__h">{t("Popular with {v}. Select to add:", { v: n.name.toLowerCase() })}</span>
       <div className="sugg__chips">
         {missing.map((id) => (
           <button key={id} type="button" className="sugg__chip" onClick={() => { const nid = uid(); put({ socials: [...d.socials, { id: nid, network: id, value: '' }] }); sfx('tap'); window.setTimeout(() => document.getElementById(`lnk-${nid}`)?.focus(), 60); }}>
@@ -434,6 +434,17 @@ function MediaUpload({ label, hint, accept, value, onUrl, kind }: { label: strin
   );
 }
 
+const EOS = new Set(['topplate', 'focuslock', 'seamless', 'playback', 'goldring', 'redgrip', 'tracking', 'mymenu', 'heritage', 'mediumformat', 'digitalback', 'colortarget', 'waistlevel', 'filmback', 'lunar', 'eyeaf', 'zebras', 'peaking', 'slog', 'sensor', 'bokeh', 'filmsim', 'xdials', 'hybridvf', 'filmrecipe', 'instaprint', 'monostrip', 'cinescreen', 'cinebrain', 'focusguide', 'punchin', 'slate']);
+function EosExtras(p: PanelProps) {
+  const { t } = useT();
+  const { d, put } = useData(p);
+  return (
+    <Section title={t("Camera design extras")} hint={t("These show on the camera designs (EOS, Gold Ring, Square Format, Mirrorless, X-Series and Cinema). Everything here is optional.")}>
+      <Field label={t("Gear line")} value={d.kicker ?? ''} onChange={(v) => put({ kicker: v })} maxLength={60} placeholder={t("Shot on Canon EOS 5D Mark III")} hint={t("A short line about your camera or style, shown above your portfolio.")} />
+    </Section>
+  );
+}
+
 function WorshipExtras(p: PanelProps) {
   const { t } = useT();
   const { d, put } = useData(p);
@@ -443,9 +454,9 @@ function WorshipExtras(p: PanelProps) {
         onFile={async (f) => { put({ orgLogoUrl: await store.uploadImage(f, 'logo') }); }} onClear={() => put({ orgLogoUrl: '' })} />
       <Field label={t("Accent line")} value={d.kicker ?? ''} onChange={(v) => put({ kicker: v })} maxLength={60} placeholder={t("Leave blank for the design's own line")} hint={t("The small line above your name, like a verse reference or a ministry motto.")} />
       <MediaUpload kind="video" label={t("Living portrait")} accept="video/mp4,video/webm,video/quicktime" value={d.photoVideoUrl} onUrl={(u) => put({ photoVideoUrl: u })}
-        hint={t("A short silent clip of you smiling or waving (3 to 6 seconds, MP4). It plays once over your photo when the card opens, and again when someone taps the photo.")} />
+        hint={t("A short silent clip of you smiling or waving (3 to 6 seconds, MP4). It plays once over your photo when the card opens, and again when someone presses the photo.")} />
       <MediaUpload kind="audio" label={t("Background music")} accept="audio/mpeg,audio/mp4,audio/aac,audio/*" value={d.music?.url} onUrl={(u) => put({ music: u ? { url: u, title: d.music?.title || 'Instrumental', sub: d.music?.sub } : undefined })}
-        hint={t("An instrumental that starts softly on the visitor's first tap, with a play and pause button. Use music you own or have rights to.")} />
+        hint={t("An instrumental that starts softly when the visitor first interacts with the card, with a play and pause button. Use music you own or have rights to.")} />
       {d.music?.url && (
         <Field label={t("Song title")} value={d.music.title} onChange={(v) => put({ music: { ...d.music!, title: v } })} maxLength={40} placeholder={t("Open the Heavens")} />
       )}

@@ -4,7 +4,7 @@ import { NicheBadge } from '../components/editor/NichePicker';
 import { nicheOf } from '../lib/niches';
 import {
   ArrowLeft, ChevronDown, Contact, Dices, Eye, LayoutTemplate, Link2, MousePointerClick, Moon, Palette, Redo2, Send, Sparkles,
-  Sun, Type, Undo2, User, Volume2, VolumeX, X, SquareStack, Check, Loader2, Heart, ShieldCheck, Zap, RotateCw,
+  Sun, Type, Undo2, User, Volume2, VolumeX, X, SquareStack, Check, Loader2, Heart, ShieldCheck, Zap, RotateCw, Wand2,
 } from 'lucide-react';
 import { useLooks } from '../lib/useLooks';
 import { EditingBar, FavoritesPanel, SaveLookButton } from '../components/editor/Favorites';
@@ -15,6 +15,7 @@ import { setSound, soundOn } from '../lib/sfx';
 import CardRenderer from '../components/CardRenderer';
 import { ContactPanel, HighlightsPanel, LinksPanel, ProfilePanel, PublishPanel } from '../components/editor/ContentPanels';
 import { BrandPanel, ButtonsPanel, ColorsPanel, ShuffleAll, TemplatePanel } from '../components/editor/StylePanels';
+import StudioPanel from '../components/editor/StudioPanel';
 import QuickStart, { useNarrow, type QuickStep } from '../components/editor/QuickStart';
 import type { PanelProps } from '../components/editor/Fields';
 import { VIEW_KEY } from '../lib/editorView';
@@ -28,6 +29,7 @@ const STEPS = [
   { id: 'links', label: 'Links', icon: Link2, Panel: LinksPanel },
   { id: 'highlights', label: 'Services', icon: Sparkles, Panel: HighlightsPanel },
   { id: 'layout', label: 'Layout', icon: LayoutTemplate, Panel: TemplatePanel },
+  { id: 'studio', label: 'Studio', icon: Wand2, Panel: StudioPanel },   // only shown on the Studio design
   { id: 'colors', label: 'Colors', icon: Palette, Panel: ColorsPanel },
   { id: 'buttons', label: 'Buttons', icon: SquareStack, Panel: ButtonsPanel },
   { id: 'brand', label: 'Brand kit', icon: Type, Panel: BrandPanel },
@@ -39,7 +41,7 @@ type StepId = (typeof STEPS)[number]['id'];
 /** Everyday sections stay in view. The four advanced styling sections fold away until they are needed. */
 const GROUPS: { id: string; label: string; ids: StepId[]; advanced?: boolean }[] = [
   { id: 'essentials', label: 'Essentials', ids: ['profile', 'contact', 'links', 'highlights'] },
-  { id: 'design', label: 'Design', ids: ['layout'] },
+  { id: 'design', label: 'Design', ids: ['layout', 'studio'] },
   { id: 'advanced', label: 'Advanced styling', ids: ['colors', 'buttons', 'brand', 'favorites'], advanced: true },
   { id: 'publish', label: 'Publish', ids: ['publish'] },
 ];
@@ -54,7 +56,7 @@ function saveReason(e: unknown): string {
   const raw = e instanceof Error ? e.message : (e && typeof e === 'object' && 'message' in e ? String((e as { message: unknown }).message) : '');
   if (!raw) return tr('Could not save.');
   if (/failed to fetch|networkerror|network request|load failed|offline/i.test(raw) || (typeof navigator !== 'undefined' && !navigator.onLine))
-    return tr('No connection. Your changes stay on this page. Tap Retry when you are back online.');
+    return tr('No connection. Your changes stay on this page. Press Retry when you are back online.');
   return raw;
 }
 
@@ -199,6 +201,10 @@ export default function Editor() {
 
   const props: PanelProps = { card, set, mode, setMode, selected, setSelected, looks, goStep, ensureSaved, setPublished };
   const Current = STEPS.find((s) => s.id === step)!.Panel;
+  const VIS = STEPS.filter((s) => s.id !== 'studio' || card.template === 'studio');
+  /* Step numbers count only the main path, so Publish follows Layout (the folded Advanced steps are optional and unnumbered). */
+  const ADV_IDS = GROUPS.find((g) => g.advanced)!.ids as readonly string[];
+  const MAIN = VIS.filter((s) => !ADV_IDS.includes(s.id));
   const shuffleAll = ShuffleAll(props);
   const onPick = (el: ElementId) => { setSelected(el); setView('full'); setStep('colors'); closePreview.current(); };
   const privateNote = card.published ? t('Preview of your published card.') : t('Private preview. This card is a draft, so nobody else can see it.');
@@ -209,7 +215,7 @@ export default function Editor() {
         <button type="button" role="radio" aria-checked={mode === 'light'} className={mode === 'light' ? 'on' : ''} onClick={() => setMode('light')} aria-label={t("Light mode")}><Sun size={17} /></button>
         <button type="button" role="radio" aria-checked={mode === 'dark'} className={mode === 'dark' ? 'on' : ''} onClick={() => setMode('dark')} aria-label={t("Dark mode")}><Moon size={17} /></button>
       </div>
-      <button type="button" className={`pv-btn ${picking ? 'on' : ''}`} aria-pressed={picking} onClick={() => setPicking(!picking)} title={t("Tap any part of the card to recolor it")}><MousePointerClick size={17} /><span>{t("Tap to recolor")}</span></button>
+      <button type="button" className={`pv-btn ${picking ? 'on' : ''}`} aria-pressed={picking} onClick={() => setPicking(!picking)} title={t("Select any part of the card to recolor it")}><MousePointerClick size={17} /><span>{t("Select to recolor")}</span></button>
       <button type="button" className="pv-btn pv-btn--dice" onClick={shuffleAll} title={t("Shuffle colors, buttons and fonts")}><Dices size={18} /><span>{t("Shuffle all")}</span></button>
       <SaveLookButton api={looks} card={card} onSaved={say} />
       <div className="pv-bar__end">
@@ -259,12 +265,12 @@ export default function Editor() {
                   : <span className="ed__grp-l" aria-hidden>{t(g.label)}</span>}
                 {open && (
                   <div id={g.advanced ? 'adv-steps' : undefined} className="ed__grp-b">
-                    {g.ids.map((sid) => {
+                    {g.ids.filter((sid) => VIS.some((x) => x.id === sid)).map((sid) => {
                       const s = STEPS.find((x) => x.id === sid)!;
-                      const n = STEPS.findIndex((x) => x.id === sid) + 1;
+                      const n = g.advanced ? 0 : MAIN.findIndex((x) => x.id === sid) + 1;
                       return (
                         <button key={s.id} type="button" className={step === s.id ? 'on' : ''} aria-current={step === s.id ? 'step' : undefined} onClick={() => setStep(s.id)}>
-                          <s.icon size={18} aria-hidden /><span>{t(s.label)}</span><i aria-hidden>{n}</i>
+                          <s.icon size={18} aria-hidden /><span>{t(s.label)}</span>{n > 0 && <i aria-hidden>{n}</i>}
                         </button>
                       );
                     })}
@@ -293,8 +299,8 @@ export default function Editor() {
             <h2 className="ed__h">{t(STEPS.find((s) => s.id === step)!.label)}</h2>
             <Current {...props} />
             <div className="ed__next">
-              {STEPS.findIndex((s) => s.id === step) < STEPS.length - 1 && (
-                <button type="button" className="btn btn--ink" onClick={() => { const i = STEPS.findIndex((s) => s.id === step); setStep(STEPS[i + 1].id); document.getElementById('panel')?.scrollTo({ top: 0 }); }}>{t("Next: {label}", { label: t(STEPS[STEPS.findIndex((s) => s.id === step) + 1].label) })}</button>
+              {VIS.findIndex((s) => s.id === step) < VIS.length - 1 && (
+                <button type="button" className="btn btn--ink" onClick={() => { const i = VIS.findIndex((s) => s.id === step); setStep(VIS[i + 1].id); document.getElementById('panel')?.scrollTo({ top: 0 }); }}>{t("Next: {label}", { label: t(VIS[VIS.findIndex((s) => s.id === step) + 1].label) })}</button>
               )}
             </div>
           </>
@@ -306,7 +312,7 @@ export default function Editor() {
           {toolbar}
           {preview}
           <p className="pv-hint pv-hint--state">{privateNote}</p>
-          {picking && <p className="pv-hint">{t("Tap any part of the card to recolor it.")}</p>}
+          {picking && <p className="pv-hint">{t("Select any part of the card to recolor it.")}</p>}
         </aside>
       )}
 
