@@ -114,6 +114,8 @@ export type TemplateId =
   | 'midnightset' | 'velvetroom' | 'blacktie'
   // Band collection (worship bands and ministry groups)
   | 'reverb' | 'selah' | 'admitone' | 'linernotes'
+  // Author collection (speakers, life coaches and authors)
+  | 'coverstory' | 'backcover' | 'fullfeature' | 'colorblock' | 'signedprint' | 'proofsheet'
   // OKUNAMI Studio: the configurable base for done-for-you custom cards (not listed in the public gallery)
   | 'studio';
 

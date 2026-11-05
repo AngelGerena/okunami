@@ -29,6 +29,7 @@ import { LyricBook, NowPlaying, Spotlight, VocalRange, Voiceprint } from './sig1
 import { AmethystAfterDark, BlushSatin, ChampagneToast, LeopardLuxe, PearlStrand, RubyGloss, VanityLights, VelvetNoir } from './sig18';
 import { BlackTie, MidnightSet, VelvetRoom } from './sig19';
 import { AdmitOne, LinerNotes, Reverb, Selah } from './sig22';
+import { BackCover, ColorBlock, CoverStory, FullFeature, ProofSheet, SignedPrint } from './sig24';
 import { Studio } from './studio';
 import { Boarding, Confetti, Inbox, Invitation, Monogram, Planner, Recipe, Stained, Toolbelt, Trading, Turntable, Vinyl, Waveform } from './sig2-b';
 import {
@@ -282,6 +283,12 @@ export const TEMPLATES: TemplateMeta[] = [
   { id: 'selah', name: 'Selah', niche: 'Worship Leaders and Ministries', blurb: 'Warm light pours in over your band name in script, with your verse set in a deep band between two big curves.', bestFor: 'Church worship teams and choirs' },
   { id: 'admitone', name: 'Admit One', niche: 'Worship Leaders and Ministries', blurb: 'Your band photo under stage lights and a concert ticket with your name on it. Your set list reads as ticket stubs.', bestFor: 'Youth worship bands and conferences' },
   { id: 'linernotes', name: 'Liner Notes', niche: 'Worship Leaders and Ministries', blurb: 'An album booklet: your logo as the cover art, your ministry listed like credits and your verse as the special thanks.', bestFor: 'Worship bands with music out' },
+  { id: 'coverstory', name: 'Cover Story', niche: 'Speakers, Coaches and Authors', blurb: 'A magazine cover: a blush book spine, your logo as the masthead, a black and white photo with your motto as a cover line and your name on a black band.', bestFor: 'Speakers, life coaches and authors' },
+  { id: 'backcover', name: 'Back Cover', niche: 'Speakers, Coaches and Authors', blurb: 'The back of your book: a short blurb, a framed author photo with a colored shadow and your logo on the black band.', bestFor: 'Authors and coaches with a book' },
+  { id: 'fullfeature', name: 'Full Feature', niche: 'Speakers, Coaches and Authors', blurb: 'A full-bleed black and white portrait with your name set huge across the bottom, like a magazine feature.', bestFor: 'Keynote speakers and personal brands' },
+  { id: 'colorblock', name: 'Color Block', niche: 'Speakers, Coaches and Authors', blurb: 'A solid accent block with your name stacked in poster type over an arched photo, and your titles on a black band.', bestFor: 'Bold coaches and motivational speakers' },
+  { id: 'signedprint', name: 'Signed Print', niche: 'Speakers, Coaches and Authors', blurb: 'A framed print with a colored offset shadow and your name signed across it in script.', bestFor: 'Life coaches and authors' },
+  { id: 'proofsheet', name: 'Proof Sheet', niche: 'Speakers, Coaches and Authors', blurb: "A photographer's film strip with your best frame circled in grease pencil.", bestFor: 'Creative coaches and media personalities' },
   // ---- Farmasi collection (direct sellers): her line
   { id: 'rougeedit',    name: 'Rouge Edit',     niche: 'Beauty Consultants', blurb: 'A wine and gold magazine cover with your name in italic, a pull quote and a table of contents.', bestFor: 'Farmasi leaders, top beauty sellers' },
   { id: 'blushatelier', name: 'Blush Atelier',  niche: 'Beauty Consultants', blurb: 'An oval cameo portrait, a signed seal and your first name in script.', bestFor: 'New beauty sellers, makeup artists' },
@@ -618,6 +625,7 @@ export const TEMPLATE_COMPONENTS: Record<TemplateId, () => ReactElement> = {
   amethyst: AmethystAfterDark, leopard: LeopardLuxe, pearlstrand: PearlStrand, vanitylights: VanityLights,
   midnightset: MidnightSet, velvetroom: VelvetRoom, blacktie: BlackTie,
   reverb: Reverb, selah: Selah, admitone: AdmitOne, linernotes: LinerNotes,
+  coverstory: CoverStory, backcover: BackCover, fullfeature: FullFeature, colorblock: ColorBlock, signedprint: SignedPrint, proofsheet: ProofSheet,
   rougeedit: RougeEdit, blushatelier: BlushAtelier, noirlash: NoirLash, botanical: Botanical,
   blacklabel: BlackLabel, barberclub: BarberClub, copperforge: CopperForge, cedarsmoke: CedarSmoke, voltsport: VoltSport,
 };
