@@ -26,6 +26,10 @@
   <symbol id="i-mic" viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3" fill="none" stroke="currentColor" stroke-width="1.8"/><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21M8.5 21h7"/></symbol>
   <symbol id="i-book" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" d="M4 5.5C6.5 4 9.5 4 12 6c2.5-2 5.5-2 8-.5V19c-2.5-1.5-5.5-1.5-8 .5-2.5-2-5.5-2-8-.5z"/><path stroke="currentColor" stroke-width="1.8" d="M12 6v13.5"/></symbol>
   <symbol id="i-cart" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M3 4h2.5l2.2 11h10.6l2-8H7"/><circle cx="9.5" cy="19" r="1.4" fill="currentColor"/><circle cx="17" cy="19" r="1.4" fill="currentColor"/></symbol>
+  <symbol id="i-cal" viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"/><path stroke="currentColor" stroke-width="1.8" stroke-linecap="round" d="M3.5 10h17M8 3v4M16 3v4"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></symbol>
+  <symbol id="i-left" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M15 6l-6 6 6 6"/></symbol>
+  <symbol id="i-right" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M9 6l6 6-6 6"/></symbol>
   <symbol id="i-star" viewBox="0 0 24 24"><path fill="currentColor" d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z"/></symbol>
   <symbol id="i-wa" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2.2A9.7 9.7 0 0 0 3.7 16.9L2.3 21.8l5-1.3A9.7 9.7 0 1 0 12 2.2m0 17.7c-1.5 0-3-.4-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 19.9m4.4-6c-.2-.1-1.4-.7-1.7-.8-.2-.1-.4-.1-.5.1l-.8.9c-.1.2-.3.2-.5.1a6.5 6.5 0 0 1-3.2-2.8c-.2-.4.2-.4.7-1.2.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.5-.4h-.5c-.2 0-.4.1-.6.3-.2.2-.8.8-.8 2s.9 2.3 1 2.5c.1.2 1.7 2.6 4.1 3.7 1.5.6 2.1.7 2.9.6.5-.1 1.4-.6 1.6-1.1.2-.6.2-1 .1-1.1l-.3-.3"/></symbol>
 </svg>
@@ -87,8 +91,8 @@
         <li><span data-en="Women in business">Mujer y negocios</span></li>
         <li><span data-en="Life coaching">Coaching de vida</span></li>
       </ul>
-      <a class="cta" data-hire href="https://wa.me/17874528141" target="_blank" rel="noopener"><svg class="ico"><use href="#i-mic"/></svg><span data-en="Request a date">Solicita una fecha</span></a>
-      <a class="cta-sms" data-hire-sms href="sms:+17874528141"><span data-en="Prefer a text? Send it by text message">&iquest;Prefieres texto? Env&iacute;alo por mensaje de texto</span></a>
+      <button class="cta" type="button" data-hire aria-haspopup="dialog"><svg class="ico"><use href="#i-cal"/></svg><span data-en="Request a date">Solicita una fecha</span></button>
+      <p class="cta-note"><span data-en="Pick the day and time, then send it by WhatsApp or text.">Elige el d&iacute;a y la hora, y env&iacute;ala por WhatsApp o texto.</span></p>
     </section>
 
     <section class="panel book">
@@ -152,8 +156,8 @@
         <li><span data-en="Women in business">Mujer y negocios</span></li>
         <li><span data-en="Life coaching">Coaching de vida</span></li>
       </ul>
-      <a class="cta" data-hire href="https://wa.me/17874528141" target="_blank" rel="noopener"><svg class="ico"><use href="#i-mic"/></svg><span data-en="Request a date">Solicita una fecha</span></a>
-      <a class="cta-sms" data-hire-sms href="sms:+17874528141"><span data-en="Prefer a text? Send it by text message">&iquest;Prefieres texto? Env&iacute;alo por mensaje de texto</span></a>
+      <button class="cta" type="button" data-hire aria-haspopup="dialog"><svg class="ico"><use href="#i-cal"/></svg><span data-en="Request a date">Solicita una fecha</span></button>
+      <p class="cta-note"><span data-en="Pick the day and time, then send it by WhatsApp or text.">Elige el d&iacute;a y la hora, y env&iacute;ala por WhatsApp o texto.</span></p>
     </section>
 
     <section class="panel book">
@@ -216,8 +220,8 @@
         <li><span data-en="Women in business">Mujer y negocios</span></li>
         <li><span data-en="Life coaching">Coaching de vida</span></li>
       </ul>
-      <a class="cta" data-hire href="https://wa.me/17874528141" target="_blank" rel="noopener"><svg class="ico"><use href="#i-mic"/></svg><span data-en="Request a date">Solicita una fecha</span></a>
-      <a class="cta-sms" data-hire-sms href="sms:+17874528141"><span data-en="Prefer a text? Send it by text message">&iquest;Prefieres texto? Env&iacute;alo por mensaje de texto</span></a>
+      <button class="cta" type="button" data-hire aria-haspopup="dialog"><svg class="ico"><use href="#i-cal"/></svg><span data-en="Request a date">Solicita una fecha</span></button>
+      <p class="cta-note"><span data-en="Pick the day and time, then send it by WhatsApp or text.">Elige el d&iacute;a y la hora, y env&iacute;ala por WhatsApp o texto.</span></p>
     </section>
 
     <section class="panel book">
@@ -278,8 +282,8 @@
         <li><span data-en="Women in business">Mujer y negocios</span></li>
         <li><span data-en="Life coaching">Coaching de vida</span></li>
       </ul>
-      <a class="cta" data-hire href="https://wa.me/17874528141" target="_blank" rel="noopener"><svg class="ico"><use href="#i-mic"/></svg><span data-en="Request a date">Solicita una fecha</span></a>
-      <a class="cta-sms" data-hire-sms href="sms:+17874528141"><span data-en="Prefer a text? Send it by text message">&iquest;Prefieres texto? Env&iacute;alo por mensaje de texto</span></a>
+      <button class="cta" type="button" data-hire aria-haspopup="dialog"><svg class="ico"><use href="#i-cal"/></svg><span data-en="Request a date">Solicita una fecha</span></button>
+      <p class="cta-note"><span data-en="Pick the day and time, then send it by WhatsApp or text.">Elige el d&iacute;a y la hora, y env&iacute;ala por WhatsApp o texto.</span></p>
     </section>
 
     <section class="panel book">
@@ -340,8 +344,8 @@
         <li><span data-en="Women in business">Mujer y negocios</span></li>
         <li><span data-en="Life coaching">Coaching de vida</span></li>
       </ul>
-      <a class="cta" data-hire href="https://wa.me/17874528141" target="_blank" rel="noopener"><svg class="ico"><use href="#i-mic"/></svg><span data-en="Request a date">Solicita una fecha</span></a>
-      <a class="cta-sms" data-hire-sms href="sms:+17874528141"><span data-en="Prefer a text? Send it by text message">&iquest;Prefieres texto? Env&iacute;alo por mensaje de texto</span></a>
+      <button class="cta" type="button" data-hire aria-haspopup="dialog"><svg class="ico"><use href="#i-cal"/></svg><span data-en="Request a date">Solicita una fecha</span></button>
+      <p class="cta-note"><span data-en="Pick the day and time, then send it by WhatsApp or text.">Elige el d&iacute;a y la hora, y env&iacute;ala por WhatsApp o texto.</span></p>
     </section>
 
     <section class="panel book">
@@ -411,8 +415,8 @@
         <li><span data-en="Women in business">Mujer y negocios</span></li>
         <li><span data-en="Life coaching">Coaching de vida</span></li>
       </ul>
-      <a class="cta" data-hire href="https://wa.me/17874528141" target="_blank" rel="noopener"><svg class="ico"><use href="#i-mic"/></svg><span data-en="Request a date">Solicita una fecha</span></a>
-      <a class="cta-sms" data-hire-sms href="sms:+17874528141"><span data-en="Prefer a text? Send it by text message">&iquest;Prefieres texto? Env&iacute;alo por mensaje de texto</span></a>
+      <button class="cta" type="button" data-hire aria-haspopup="dialog"><svg class="ico"><use href="#i-cal"/></svg><span data-en="Request a date">Solicita una fecha</span></button>
+      <p class="cta-note"><span data-en="Pick the day and time, then send it by WhatsApp or text.">Elige el d&iacute;a y la hora, y env&iacute;ala por WhatsApp o texto.</span></p>
     </section>
 
     <section class="panel book">
@@ -443,6 +447,44 @@
 </article>
 
 </main>
+
+<div class="bk" id="bk" hidden>
+  <div class="bk-sheet" role="dialog" aria-modal="true" aria-labelledby="bkTitle">
+    <div class="bk-head">
+      <div><p class="bk-kicker" data-i18n="kicker">Contrata a Mayra Soto</p><h2 id="bkTitle" data-i18n="title">Solicita una fecha</h2></div>
+      <button class="bk-x" type="button" data-bk-close aria-label="Cerrar"><svg class="ico"><use href="#i-x"/></svg></button>
+    </div>
+    <div class="bk-body">
+      <p class="bk-step" data-i18n="s1">1. Elige el d&iacute;a</p>
+      <div class="cal">
+        <div class="cal-top">
+          <button type="button" class="cal-nav" id="calPrev" aria-label="Mes anterior"><svg class="ico"><use href="#i-left"/></svg></button>
+          <p class="cal-month" id="calMonth" aria-live="polite"></p>
+          <button type="button" class="cal-nav" id="calNext" aria-label="Mes siguiente"><svg class="ico"><use href="#i-right"/></svg></button>
+        </div>
+        <div class="cal-dow" id="calDow"></div>
+        <div class="cal-grid" id="calGrid"></div>
+      </div>
+      <p class="bk-step" data-i18n="s2">2. Elige la hora</p>
+      <div class="slots" id="slots"></div>
+      <p class="bk-step" data-i18n="s3">3. Cu&eacute;ntale del evento</p>
+      <div class="chips" id="evType"></div>
+      <div class="bk-fields">
+        <label><span data-i18n="fName">Tu nombre</span><input id="bkName" type="text" autocomplete="name"></label>
+        <label><span data-i18n="fCity">Ciudad</span><input id="bkCity" type="text" autocomplete="address-level2"></label>
+        <label class="full"><span data-i18n="fSize">Cantidad de personas</span>
+          <select id="bkSize"></select></label>
+      </div>
+    </div>
+    <div class="bk-foot">
+      <p class="bk-sum" id="bkSum" aria-live="polite"></p>
+      <div class="bk-send">
+        <a class="bk-wa" id="bkWa" href="https://wa.me/17874528141" target="_blank" rel="noopener" aria-disabled="true"><svg class="ico"><use href="#i-wa"/></svg>WhatsApp</a>
+        <a class="bk-sms" id="bkSms" href="sms:+17874528141" aria-disabled="true"><svg class="ico"><use href="#i-text"/></svg><span data-i18n="sms">Texto</span></a>
+      </div>
+    </div>
+  </div>
+</div>
 
 <footer class="fm-foot">
   <p class="fm-hi">Hola Mayra, mira los dise&ntilde;os de arriba y presiona <b>Quiero este</b> en tu favorito. Cualquiera se puede ajustar a tu gusto.</p>
