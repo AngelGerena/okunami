@@ -1,0 +1,17 @@
+{
+  "name": "Mayra Soto Life & Business",
+  "short_name": "Mayra Soto",
+  "description": "Conferencista, Life Coach, Autora y Presentadora de TV",
+  "id": "/proposals/mayra-soto/",
+  "start_url": "/proposals/mayra-soto/",
+  "scope": "/proposals/mayra-soto/",
+  "display": "standalone",
+  "background_color": "#151313",
+  "theme_color": "#151313",
+  "lang": "es",
+  "icons": [
+    { "src": "/proposals/mayra-soto/images/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/proposals/mayra-soto/images/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/proposals/mayra-soto/images/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
