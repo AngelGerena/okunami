@@ -17,7 +17,7 @@ import { DESIGN_COUNT, nicheCountLabel } from '../lib/counts';
 import TeamDialog from '../components/TeamDialog';
 import { refreshPlan } from '../lib/usePlan';
 import { INTENT_KEY } from './Login';
-import { PLANS, TEAM, isLocked, FREE_FALLBACK, BUSINESS_CONTACT, MORE_CARDS_CONTACT, cardLimit, clampCards, teamTotal, type PlanId } from '../lib/plans';
+import { PLANS, TEAM, isLocked, FREE_FALLBACK, BUSINESS_CONTACT, BUSINESS_SMS, MORE_CARDS_CONTACT, MORE_CARDS_SMS, cardLimit, clampCards, teamTotal, type PlanId } from '../lib/plans';
 import { usePlan, setDemoPlan } from '../lib/usePlan';
 import type { Card } from '../lib/types';
 import { store } from '../lib/store';
@@ -158,7 +158,9 @@ export default function Dashboard() {
             {plan !== 'free' && <button type="button" className="btn btn--ghost btn--sm" onClick={manage} disabled={paying}>{t("Manage billing")}</button>}
             {(plan === 'plus' || plan === 'team') && <Link to="/app/credits" className="btn btn--ghost btn--sm">{t("AI agents and credits")}</Link>}
             {plan === 'team' && <a className="btn btn--ghost btn--sm" href={MORE_CARDS_CONTACT(cardLimit(plan, seats))} target="_blank" rel="noopener">{t("Change number of cards")}</a>}
+            {plan === 'team' && <a className="btn btn--ghost btn--sm" href={MORE_CARDS_SMS(cardLimit(plan, seats))}>{t("Or send a text")}</a>}
             {(plan === 'pro' || plan === 'plus') && <a className="btn btn--ghost btn--sm" href={BUSINESS_CONTACT} target="_blank" rel="noopener">{t("Move to Business")}</a>}
+            {(plan === 'pro' || plan === 'plus') && <a className="btn btn--ghost btn--sm" href={BUSINESS_SMS}>{t("Or send a text")}</a>}
           </div>
         )}
         {err && <p className="err" role="alert">{err}</p>}

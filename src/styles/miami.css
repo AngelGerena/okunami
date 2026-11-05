@@ -40,7 +40,7 @@
   .mx .lp__mark { height: 28px; }
   .mx-nav { padding-left: 8px; padding-right: 8px; }
   .mx nav { gap: 4px; }
-  .mx nav .lang button { min-width: 26px; min-height: 32px; padding: 0 4px; }
+  .mx nav .lang button { min-width: 30px; min-height: 40px; padding: 0 4px; }
   .mx nav .mx-navlink, .mx-btn--sm { font-size: 12px; }
   .mx-btn--sm { padding-left: 9px; padding-right: 9px; }
 }
@@ -247,6 +247,8 @@
 .mx-studio__from b { font-size: 22px; color: var(--c); }
 .mx-studio__card p { margin: 0; font-size: 15px; line-height: 1.55; color: rgba(255,255,255,.72); }
 .mx-studio__mail { color: var(--c); font-weight: 800; }
+.mx-studio__alt { margin: 0; display: flex; flex-direction: column; align-items: flex-start; gap: 0; }
+.mx-studio__alt a { display: inline-flex; align-items: center; min-height: 44px; color: var(--c); font-weight: 800; }
 
 /* tablets */
 @media (min-width: 641px) and (max-width: 960px) {
@@ -341,10 +343,23 @@
 @media (max-width: 520px) {
   .mx nav { gap: 8px; }
   .mx nav .lang { padding: 2px; margin-right: 0; }
-  .mx nav .lang button { min-width: 34px; min-height: 34px; padding: 0 8px; }
+  .mx nav .lang button { min-width: 40px; min-height: 44px; padding: 0 8px; }
   .mx-btn--sm { padding-left: 14px; padding-right: 14px; }
 }
 .mx-pay__inc { margin-top: 10px; }
 .mx-pay__inc ul { list-style: none; margin: 8px 0 0; padding: 0; display: grid; gap: 6px; }
 .mx-pay__inc li { display: flex; gap: 8px; align-items: flex-start; }
 .mx-pay__inc li svg { flex: none; margin-top: 3px; }
+/* small phones (360px and under): the header ran 13 to 21px past the screen edge and clipped "Start free".
+   Shrink the logo and the language switch width, keep 44px-tall touch targets. Placed last so it wins over the 520px rule. */
+@media (max-width: 380px) {
+  .mx .lp__mark { height: 26px; }
+  .mx nav { gap: 6px; }
+  .mx nav .lang button { min-width: 34px; padding: 0 6px; }
+}
+@media (max-width: 340px) {
+  .mx .lp__mark { height: 22px; }
+  .mx nav { gap: 4px; }
+  .mx nav .lang button { min-width: 30px; padding: 0 4px; }
+  .mx-btn--sm { padding-left: 10px; padding-right: 10px; }
+}

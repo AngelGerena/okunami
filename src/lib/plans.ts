@@ -76,9 +76,15 @@ export const STUDIO_CONTACT = {
   /** Used while the Founding 50 offer is open. */
   founding: 'https://wa.me/14079609004?text=' + encodeURIComponent("Hi Angel, I'd like to claim a Founding 50 spot for an OKUNAMI Studio custom design."),
   email: 'mailto:angel@finessemedia.pro?subject=' + encodeURIComponent('OKUNAMI Studio'),
+  /** Text message backups with the same prefilled message, for people without WhatsApp. */
+  sms: 'sms:+14079609004?&body=' + encodeURIComponent("Hi Angel, I'd like to request a free consult for OKUNAMI Studio."),
+  foundingSms: 'sms:+14079609004?&body=' + encodeURIComponent("Hi Angel, I'd like to claim a Founding 50 spot for an OKUNAMI Studio custom design."),
 };
 
 /** Pro customers who want Business message me directly (the billing portal can only cancel or update a card). */
 /** Business customers who want a different number of cards message me directly (the billing portal can change quantity too, but this keeps it personal). */
 export const MORE_CARDS_CONTACT = (cards: number) => 'https://wa.me/14079609004?text=' + encodeURIComponent(`Hi Angel, my OKUNAMI Business account has ${cards} cards and I'd like to change that number.`);
 export const BUSINESS_CONTACT = 'https://wa.me/14079609004?text=' + encodeURIComponent("Hi Angel, I'd like to move my OKUNAMI account to Business.");
+/** Text message backups for the two WhatsApp links above. */
+export const MORE_CARDS_SMS = (cards: number) => 'sms:+14079609004?&body=' + encodeURIComponent(`Hi Angel, my OKUNAMI Business account has ${cards} cards and I'd like to change that number.`);
+export const BUSINESS_SMS = 'sms:+14079609004?&body=' + encodeURIComponent("Hi Angel, I'd like to move my OKUNAMI account to Business.");

@@ -207,7 +207,7 @@ export default function Landing() {
               <p>{t("I design and set up your card for you, starting with a free consult.")}</p>
               <ul>
                 {founding
-                  ? <li><Check size={16} aria-hidden /> {rich(t("<b>Founding 50:</b> custom design {price} instead of {base}. {left} of {spots} spots left, ends Dec 31.", { price: dollars(studio.cents), base: dollars(studio.regular), left: studio.left, spots: studio.spots }), { b: (c) => <b>{c}</b> })}</li>
+                  ? <li><Check size={16} aria-hidden /> <span>{rich(t("<b>Founding 50:</b> custom design {price} instead of {base}. {left} of {spots} spots left, ends Dec 31.", { price: dollars(studio.cents), base: dollars(studio.regular), left: studio.left, spots: studio.spots }), { b: (c) => <b>{c}</b> })}</span></li>
                   : <li><Check size={16} aria-hidden /> {t("Custom card from $149, custom team design $249")}</li>}
                 <li><Check size={16} aria-hidden /> {t("Plus a OKUNAMI Pro, Pro Plus or Business subscription, which every Studio card needs")}</li>
                 <li><Check size={16} aria-hidden /> {t("I handle the design, copy and setup")}</li>
@@ -313,7 +313,7 @@ export default function Landing() {
           </div>
           <div className="mx-dir__foot">
             <a className="mx-btn mx-btn--pink" href={founding ? STUDIO_CONTACT.founding : STUDIO_CONTACT.whatsapp} target="_blank" rel="noopener"><MessageCircle size={18} aria-hidden /> {t("Request a free consult on WhatsApp")}</a>
-            <a className="mx-studio__mail" href={STUDIO_CONTACT.email}>{t("or email angel@finessemedia.pro")}</a>
+            <p className="mx-studio__alt"><a href={founding ? STUDIO_CONTACT.foundingSms : STUDIO_CONTACT.sms}>{t("No WhatsApp? Send a text")}</a><a href={STUDIO_CONTACT.email}>{t("or email angel@finessemedia.pro")}</a></p>
             <span>{t("The button opens a WhatsApp chat with me. Prices are starting points; every project is quoted.")}</span>
           </div>
         </div>
