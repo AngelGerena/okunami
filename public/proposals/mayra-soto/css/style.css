@@ -118,11 +118,11 @@ h1,h2,p{margin:0}
 .l2 .eyebrow{font:600 30px/1 var(--serif);font-variant:small-caps;letter-spacing:.03em}
 .l2 .blurb{font:400 15.5px/1.6 var(--serif);color:#2c2526;margin:14px auto 0;max-width:30ch}
 .l2 .blurb span{font-style:italic}
-.l2 .sig{display:flex;align-items:center;gap:14px;text-align:left;margin:26px 0 0;padding-top:20px;border-top:1px solid #151313}
-.l2 .dot{width:78px;height:78px;border-radius:50%;overflow:hidden;flex:0 0 auto;box-shadow:0 0 0 3px #fff,0 0 0 4px #151313}
-.l2 .dot img{width:100%;height:100%;object-fit:cover}
-.l2 h1{font:600 28px/1.05 var(--serif);font-variant:small-caps;letter-spacing:.02em}
-.l2 .role{font:500 10.5px/1.6 var(--body);letter-spacing:.14em;text-transform:uppercase;color:#6c5f62;margin-top:5px}
+.l2 .sig{display:flex;flex-direction:column;align-items:center;margin:26px 0 0;padding-top:24px;border-top:1px solid #151313}
+.l2 .author{width:min(230px,78%);border:1px solid #151313;padding:7px;background:#fff;box-shadow:-10px 10px 0 #e8b4b8;margin-bottom:20px}
+.l2 .author img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:42% 8%;filter:contrast(1.06)}
+.l2 h1{font:600 34px/1.05 var(--serif);font-variant:small-caps;letter-spacing:.02em}
+.l2 .role{font:500 10.5px/1.6 var(--body);letter-spacing:.14em;text-transform:uppercase;color:#6c5f62;margin-top:6px;max-width:30ch}
 .l2 .motto{font:500 19px/1.3 var(--serif);margin:18px 0 26px}
 .l2 .band{background:#000;margin:0 -46px 0 -24px;padding:22px 34px 22px 24px}
 .l2 .band .logo{width:74%;margin:0 auto}
