@@ -30,7 +30,7 @@ export type ButtonStyle = 'solid' | 'soft' | 'outline' | 'glass' | 'gradient' | 
 export type ButtonTexture = 'none' | 'grain' | 'linen' | 'brushed' | 'paper' | 'satin' | 'carbon' | 'dots' | 'scanline' | 'circuit';
 
 /** How the card sounds when tapped. */
-export type SoundProfile = 'calm' | 'tech' | 'bright' | 'off';
+export type SoundProfile = 'calm' | 'tech' | 'bright' | 'camera' | 'off';
 
 export interface ButtonSpec { shape: ButtonShape; size: ButtonSize; style: ButtonStyle; texture: ButtonTexture; }
 
@@ -79,8 +79,47 @@ export type TemplateId =
   // glam collection (beauty consultants)
   | 'halo' | 'leaf' | 'coversplit' | 'plum' | 'neonpulse' | 'roseglass' | 'swatchbar' | 'runway' | 'silkcurve' | 'boldblock' | 'sunset' | 'glamrail' | 'growth'
   | 'aperture' | 'viewfinder' | 'lensring' | 'rangefinder' | 'safelight' | 'carbonpro' | 'modedial' | 'pianoblack' | 'filmstrip' | 'softbox' | 'railbleed' | 'railcircle' | 'railarch' | 'railoval' | 'railmark' | 'railblob'
-  // collection seven: photo-led cards
-  | 'sheet' | 'studio' | 'intro' | 'duotone' | 'trust' | 'local' | 'menu' | 'status' | 'chat';
+  // agent collection (realtors)
+  | 'noir' | 'coastal' | 'edit' | 'crest' | 'swissgrid' | 'merlot' | 'linen' | 'roofline' | 'agentprofile'
+  // EOS collection (photographers, pro DSLR)
+  | 'topplate' | 'focuslock' | 'seamless' | 'playback'
+  // Gold Ring collection (photographers who shoot Nikon)
+  | 'goldring' | 'redgrip' | 'tracking' | 'mymenu' | 'heritage'
+  // Square Format collection (medium-format / Hasselblad shooters)
+  | 'mediumformat' | 'digitalback' | 'colortarget' | 'waistlevel' | 'filmback' | 'lunar'
+  // Farmasi collection (direct sellers): her line, then his line
+  | 'rougeedit' | 'blushatelier' | 'noirlash' | 'botanical'
+  | 'blacklabel' | 'barberclub' | 'copperforge' | 'cedarsmoke' | 'voltsport'
+  // Mirrorless collection (Sony-style mirrorless shooters)
+  | 'eyeaf' | 'zebras' | 'peaking' | 'slog' | 'sensor' | 'bokeh'
+  // X-Series collection (Fuji-style retro mirrorless shooters)
+  | 'filmsim' | 'xdials' | 'hybridvf' | 'filmrecipe' | 'instaprint' | 'monostrip'
+  // Cinema collection (cinematographers)
+  | 'cinescreen' | 'cinebrain' | 'focusguide' | 'punchin' | 'slate'
+  // Hacker collection (developers and tech pros, Hollywood style)
+  | 'hackide' | 'bioscan' | 'accessgranted' | 'globetrace' | 'dossier' | 'warroom' | 'coderain' | 'enhance' | 'vault'
+  // Handyman collection (handymen and contractors)
+  | 'tapemeasure' | 'spiritlevel' | 'workorder' | 'sitebadge' | 'paintfan'
+  // Construction collection (general contractors and builders)
+  | 'permit' | 'hivis' | 'ironworks' | 'concrete' | 'lumberstamp'
+  // Redo collection (photo-led replacements from the Oct 2026 audit)
+  | 'reellive' | 'goldenhour' | 'vellum' | 'glossbar' | 'stillwater' | 'glowedit'
+  // Redo alternates (the second look for each Redo design)
+  | 'headliner' | 'listingsheet' | 'letterpress' | 'lacquer' | 'eucalyptus' | 'frosted'
+  // Vocalist collection (singers)
+  | 'voiceprint' | 'lyricbook' | 'vocalrange' | 'spotlight' | 'nowplaying'
+  // Bling collection (jewelry and accessory sellers)
+  | 'velvetnoir' | 'blushsatin' | 'rubygloss' | 'champtoast' | 'amethyst' | 'leopard' | 'pearlstrand' | 'vanitylights'
+  // Saxophone collection (saxophonists)
+  | 'midnightset' | 'velvetroom' | 'blacktie'
+  // Band collection (worship bands and ministry groups)
+  | 'reverb' | 'selah' | 'admitone' | 'linernotes'
+  // Author collection (speakers, life coaches and authors)
+  | 'coverstory' | 'backcover' | 'fullfeature' | 'colorblock' | 'signedprint' | 'proofsheet'
+  // OKUNAMI Studio: the configurable base for done-for-you custom cards (not listed in the public gallery)
+  | 'studio'
+  // photo-led collection (sig25)
+  | 'sheet' | 'monostudio' | 'intro' | 'duotone' | 'trust' | 'local' | 'menu' | 'status' | 'chat';
 
 export interface SocialLink { id: string; network: string; value: string; }   // value = handle or full URL
 export interface Highlight { id: string; icon: string; title: string; subtitle: string; }
@@ -114,7 +153,28 @@ export interface CardData {
   orgLogoUrl?: string;     // full logo lockup (wide), shown under the name
   kicker?: string;         // short accent line above the name
   photoVideoUrl?: string;  // living portrait: silent clip over the photo, plays once
+  popoutUrl?: string;      // legacy: Top Plate's old pop-out photo. No longer shown or editable; kept so saved cards still load
   music?: { url: string; title: string; sub?: string };  // background music, starts on first tap
+  studio?: StudioConfig;   // only read by the Studio design
+}
+
+/* ---------------------------------------------------------------- OKUNAMI Studio
+   A custom card is the 'studio' design plus one of these settings objects, so building one is setup, not new code. */
+export type StudioHero = 'ring' | 'bleed' | 'split' | 'band' | 'arch';
+export type StudioMotif = 'none' | 'grain' | 'rays' | 'waves' | 'grid' | 'dots' | 'sparkle' | 'stripes';
+export type StudioDivider = 'none' | 'curve' | 'slant' | 'swoop';
+export type StudioSection = 'services' | 'gallery' | 'hours' | 'location' | 'social' | 'contact';
+export type StudioMotion = 'still' | 'calm' | 'lively';
+export type StudioMainKind = 'book' | 'call' | 'whatsapp' | 'order' | 'quote' | 'website' | 'directions' | 'give';
+export interface StudioConfig {
+  hero: StudioHero;
+  motif: StudioMotif;
+  divider: StudioDivider;
+  motion: StudioMotion;
+  sections: StudioSection[];        // order on the card; missing ones are hidden
+  services: 'tiles' | 'rows' | 'chips' | 'numbered';
+  gallery: 'grid' | 'strip' | 'masonry';
+  main?: { kind: StudioMainKind; label: string; url: string };   // the one big button
 }
 
 export interface Card {

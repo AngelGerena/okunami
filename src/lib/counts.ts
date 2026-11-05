@@ -24,7 +24,7 @@ export const UNIQUE_DESIGNS = (() => {
   });
 })();
 export const DESIGN_COUNT = UNIQUE_DESIGNS.length;
-export const LAYOUT_COUNT = TEMPLATES.length;
+export const LAYOUT_COUNT = TEMPLATES.filter((t) => !t.hidden).length;
 export const NICHE_COUNT = NICHES.length;
 
 export interface NicheCounts {

@@ -3,7 +3,7 @@ import { Link, useParams } from 'react-router-dom';
 import { ArrowLeft, Sparkles } from 'lucide-react';
 import CardRenderer from '../components/CardRenderer';
 import { sampleCard } from '../lib/seed';
-import { ALL_DESIGNS, applyDesign, sampleFor } from '../lib/niches';
+import { demoCardFor } from '../lib/niches';
 import { TEMPLATES } from '../templates';
 import Brand from '../components/Brand';
 
@@ -13,15 +13,14 @@ import Brand from '../components/Brand';
 export default function DemoCard() {
   const { template = '' } = useParams();
   const base = useMemo(() => sampleCard(), []);
-  const hit = ALL_DESIGNS.find((x) => x.design.template === template);
   const layout = TEMPLATES.find((t) => t.id === template);
   const [note, setNote] = useState<string | null>(null);
 
-  const card = useMemo(() => {
-    if (hit) return applyDesign(sampleFor(base, hit.niche), hit.niche, hit.design);
-    return layout ? { ...base, template: layout.id } : null;
-  }, [hit, layout, base]);
-  const name = hit?.design.name ?? layout?.name ?? 'Design';
+  // Every layout gets sample content from a niche it suits, so a barbershop demo never shows an interior designer.
+  const demo = useMemo(() => (layout ? demoCardFor(base, layout.id) : null), [layout, base]);
+  const card = demo?.card ?? null;
+  const hit = demo?.niche ? { niche: demo.niche, design: demo.design } : null;
+  const name = demo?.design?.name ?? layout?.name ?? 'Design';
 
   useEffect(() => { document.title = `${name} demo | OKUNAMI`; return () => { document.title = 'OKUNAMI'; }; }, [name]);
   useEffect(() => { if (!note) return; const t = setTimeout(() => setNote(null), 3500); return () => clearTimeout(t); }, [note]);
@@ -54,7 +53,7 @@ export default function DemoCard() {
         <Link to="/signup" className="btn btn--gold btn--sm"><Sparkles size={15} aria-hidden /> Use this design</Link>
       </header>
       <main className="demo__stage" onClickCapture={guard}>
-        <div className="demo__phone"><div className="demo__screen"><CardRenderer card={card} mode={hit?.design.mode ?? 'light'} sound={false} /></div></div>
+        <div className="demo__phone"><div className="demo__screen"><CardRenderer card={card} mode={demo?.mode ?? 'light'} sound={false} /></div></div>
       </main>
       {note && <p className="demo__note" role="status">{note}</p>}
     </div>

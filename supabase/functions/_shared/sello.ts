@@ -80,4 +80,4 @@ export function planForAmount(cents: number | null | undefined, interval: string
   return null;
 }
 
-export const siteUrl = () => (Deno.env.get('SELLO_SITE_URL') ?? 'https://selloapp.netlify.app').replace(/\/$/, '');
+export const siteUrl = () => (Deno.env.get('SELLO_SITE_URL') ?? 'https://okunami.pro').replace(/\/$/, '');

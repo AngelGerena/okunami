@@ -296,7 +296,8 @@ export function Magazine() {
     <div className="tpl tpl-mz">
       <section className="mz__cover">
         <Photo className="mz__img" />
-        <h1 className="mz__mast" {...el('accentDetail')}>{(data.business || 'Salon').split(' ')[0]}</h1>
+        {/* Masthead shrinks to fit long names instead of running off the cover. */}
+        <h1 className="mz__mast" {...el('accentDetail')} style={{ ['--mz-fit' as string]: `${Math.min(84, Math.floor(330 / (Math.max(3, (data.business || 'Salon').split(' ')[0].length) * 0.74)))}px` }}>{(data.business || 'Salon').split(' ')[0]}</h1>
         <span className="mz__issue">ISSUE {new Date().getMonth() + 1} · {new Date().getFullYear()}</span>
         <div className="mz__lines">
           {lines.map((h, i) => { const p = priced(h.subtitle); return <p key={h.id} className={`mz__line l${i}`}><b>{h.title}</b><span>{p.price || p.note}</span></p>; })}

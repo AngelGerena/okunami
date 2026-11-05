@@ -26,7 +26,7 @@ type Screen = 'form' | 'confirm' | 'link' | 'forgot' | 'reset-sent';
 const friendly = (m: string) => {
   const s = m.toLowerCase();
   if (s.includes('invalid login')) return tr("That email and password don't match. Try again, or reset your password below.");
-  if (s.includes('email not confirmed')) return tr('Your email is not verified yet. Open the verification link we sent, or tap Resend verification email.');
+  if (s.includes('email not confirmed')) return tr('Your email is not verified yet. Open the verification link we sent, or press Resend verification email.');
   if (s.includes('already registered') || s.includes('already been registered')) return tr('That email already has an account. Sign in instead.');
   if (s.includes('rate limit') || s.includes('too many')) return tr('Too many tries for now. Wait a few minutes and try again.');
   if (s.includes('password') && s.includes('characters')) return tr('Use at least 8 characters for your password.');
@@ -144,7 +144,7 @@ export default function Login({ mode }: { mode: 'signup' | 'signin' }) {
   };
 
   const resendConfirm = async () => {
-    if (!email) { setErr(tr('Type your email above first, then tap Resend verification email.')); return; }
+    if (!email) { setErr(tr('Type your email above first, then press Resend verification email.')); return; }
     setLinkNotice(null);
     setBusy('resend');
     const { error } = await supabase.auth.resend({ type: 'signup', email, options: { emailRedirectTo: home } });
@@ -180,7 +180,7 @@ export default function Login({ mode }: { mode: 'signup' | 'signin' }) {
           <>
             <SentHead title={t("Verify your email")} body={<>{rich(t("A verification link is on its way to <b>{email}</b>. Verifying your email and signing in are two separate steps.", { email }), { b: (c) => <b>{c}</b> })}</>} />
             <ol className="auth__steps">
-              <li>{rich(t("<b>Tap the link in the email.</b> It verifies your email and signs in the browser where it opens, so open it in the same browser you are using here if you can."), { b: (c) => <b>{c}</b> })}</li>
+              <li>{rich(t("<b>Open the link in the email.</b> It verifies your email and signs in the browser where it opens, so open it in the same browser you are using here if you can."), { b: (c) => <b>{c}</b> })}</li>
               <li>{rich(t("<b>Opened it on your phone or another device?</b> Your email is still verified. Come back to this screen and sign in with your email and password."), { b: (c) => <b>{c}</b> })}</li>
               <li>{rich(t("<b>The link opened inside your email app?</b> If you do not see your cards afterward, open the link in Safari or Chrome instead."), { b: (c) => <b>{c}</b> })}</li>
             </ol>
