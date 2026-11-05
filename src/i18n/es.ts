@@ -555,6 +555,8 @@ export const ES: Record<string, string> = {
   "Churches and Ministries": "Iglesias y ministerios",
   "Service times first, plan your visit, watch live, give, prayer requests.": "Primero los horarios de servicio, planifica tu visita, mira en vivo, da y envía peticiones de oración.",
   "Worship Leaders and Ministries": "Líderes de alabanza y ministerios",
+  "Speakers, Coaches and Authors": "Conferencistas, coaches y autores",
+  "The Author Collection: editorial book-cover designs with a booking calendar for keynotes, coaching and events.": "La Colección Autor: diseños editoriales estilo portada de libro, con calendario de reservas para conferencias, coaching y eventos.",
   "The Worship Collection: high tech meets worship, with living portraits, music and gold-and-purple light.": "La Colección Worship: alta tecnología y alabanza, con retratos animados, música y luz dorada y púrpura.",
   "Nonprofits": "Organizaciones sin fines de lucro",
   "Events, volunteer, donate and share.": "Eventos, voluntariado, donaciones y compartir.",

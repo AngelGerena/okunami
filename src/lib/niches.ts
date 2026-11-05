@@ -818,6 +818,27 @@ const NICHE_LIST: Niche[] = [
     ],
   },
   {
+    id: 'speaker', name: 'Speakers, Coaches and Authors', group: 'Professional', icon: 'star',
+    blurb: 'The Author Collection: editorial book-cover designs with a booking calendar for keynotes, coaching and events.',
+    highlightsTitle: 'Speaking topics',
+    highlights: [
+      { icon: 'star', title: 'Leadership', subtitle: 'Keynotes and conferences' },
+      { icon: 'heart', title: 'Mindset', subtitle: 'Talks and workshops' },
+      { icon: 'briefcase', title: 'Entrepreneurship', subtitle: 'Business events' },
+      { icon: 'book', title: 'Life coaching', subtitle: 'One on one and groups' },
+    ],
+    tagline: 'Your next chapter starts today.',
+    suggestedLinks: ['instagram', 'facebook', 'youtube', 'linkedin'],
+    designs: [
+      d('coverstory', 'Cover Story', 'A magazine cover with a blush book spine, a black and white photo and your name on a black band.', ['#151313', '#E8B4B8', '#FFFFFF'], 'light', ['Oswald', 'Jost'], ['rounded', 'large', 'solid', 'none'], 'calm', 0.8, true),
+      d('backcover', 'Back Cover', 'The back of your book: a blurb, a framed author photo and your logo on a black band.', ['#151313', '#C99A6B', '#FFFFFF'], 'light', ['Playfair Display', 'Jost'], ['rounded', 'large', 'solid', 'none'], 'calm', 0.8, true),
+      d('fullfeature', 'Full Feature', 'A full-bleed black and white portrait with your name set huge, like a magazine feature.', ['#151313', '#E8B4B8', '#FFFFFF'], 'light', ['Oswald', 'Jost'], ['rounded', 'large', 'solid', 'none'], 'calm', 0.8, true),
+      d('colorblock', 'Color Block', 'A solid accent block with your name stacked in poster type over an arched photo.', ['#151313', '#E8B4B8', '#FFFFFF'], 'light', ['Oswald', 'Jost'], ['square', 'large', 'solid', 'none'], 'bright', 0.4, true),
+      d('signedprint', 'Signed Print', 'A framed print with a colored shadow and your name signed across it in script.', ['#151313', '#E8B4B8', '#FFFFFF'], 'light', ['Playfair Display', 'Jost'], ['pill', 'large', 'solid', 'none'], 'calm', 1, true),
+      d('proofsheet', 'Proof Sheet', "A photographer's film strip with your best frame circled in grease pencil.", ['#151313', '#F08A99', '#FFFFFF'], 'light', ['Oswald', 'Jost'], ['rounded', 'large', 'solid', 'none'], 'calm', 0.8, true),
+    ],
+  },
+  {
     id: 'nonprofit', name: 'Nonprofits', group: 'Community', icon: 'heart',
     blurb: 'Events, volunteer, donate and share.',
     highlightsTitle: 'Get involved',
@@ -887,6 +908,7 @@ export const TEMPLATE_EXTRA_FONTS: Partial<Record<TemplateId, string[]>> = {
   voiceprint: ['JetBrains Mono'], lyricbook: ['JetBrains Mono', 'Caveat'], vocalrange: ['JetBrains Mono'], spotlight: ['JetBrains Mono', 'Fraunces', 'Caveat'], nowplaying: ['JetBrains Mono'],
   midnightset: ['DM Mono', 'Pinyon Script'], velvetroom: ['DM Mono'], blacktie: ['DM Mono', 'Pinyon Script'],
   reverb: [], selah: ['Pinyon Script'], admitone: ['IBM Plex Mono'], linernotes: [],
+  coverstory: [], backcover: [], fullfeature: [], colorblock: [], signedprint: ['Pinyon Script'], proofsheet: [],
   cinescreen: ['JetBrains Mono'], cinebrain: ['JetBrains Mono'], focusguide: ['JetBrains Mono'], punchin: ['JetBrains Mono'], slate: ['JetBrains Mono'],
   terminal: ['VT323', 'IBM Plex Mono'],
   radar: ['Share Tech Mono'],
@@ -971,6 +993,7 @@ export const NICHE_SAMPLES: Record<string, NicheSample> = {
   grooming:     { business: 'Black Label Grooming', fullName: 'Marco Delgado', jobTitle: 'Independent Influencer', tagline: 'Grooming that keeps it simple', hours: 'Orders ship weekly' },
   consultant:   { business: 'Glow Society', fullName: 'Valeria Santos', jobTitle: 'Beauty Influencer', tagline: 'Makeup, skincare and fragrance I actually use', hours: 'Orders ship weekly' },
   worship:      { business: 'Kingdom Harmony', fullName: 'Isabel Rivera', jobTitle: 'Psalmist | Worship Ministry', tagline: '"Sing to the Lord a new song; sing to the Lord, all the earth." Psalm 96:1', hours: 'Booking conferences and worship nights' },
+  speaker:      { business: 'Rise & Lead', fullName: 'Elena Vaughn', jobTitle: 'Speaker · Life Coach · Author', tagline: 'Your next chapter starts today.', hours: 'Booking events year-round' },
   church:       { business: 'Grace Harbor Church', fullName: 'Pastor Joanna Allen', jobTitle: 'Lead Pastor', tagline: 'There is a place for you here', hours: 'Sundays 9am and 11am' },
   nonprofit:    { business: 'Neighbors United', fullName: 'Grace Okafor', jobTitle: 'Executive Director', tagline: 'Neighbors helping neighbors', hours: 'Mon-Fri 9am-5pm' },
 };
