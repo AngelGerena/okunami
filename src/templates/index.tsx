@@ -37,6 +37,7 @@ import {
   QrBtn, SaveBtn, ShareBtn, SocialLinks, Title, el, useCard, useContactActions,
 } from './blocks';
 import { addressLine, mapsHref, prettyUrl, webHref } from '../lib/links';
+import { Chat, Duotone, Intro, Local, MonoStudio, ServiceMenu, Sheet, Status, Trust } from './sig25';
 
 export interface TemplateMeta { id: TemplateId; name: string; blurb: string; bestFor: string; niche?: string;
   /** Not offered in galleries or counts (OKUNAMI Studio custom cards). */
@@ -311,6 +312,15 @@ export const TEMPLATES: TemplateMeta[] = [
   { id: 'vanitylights', name: 'Vanity Lights',       niche: 'Jewelry and Accessory Sellers', blurb: 'A Hollywood dressing-room mirror with glowing bulbs around your photo.', bestFor: 'Glam sellers, makeup and jewelry bundles' },
   // ---- OKUNAMI Studio (custom cards only; set up from a client's brand brief)
   { id: 'studio', name: 'Studio Custom', hidden: true, blurb: 'A custom card built from your brand brief: hero, pattern, divider and motion set for you.', bestFor: 'OKUNAMI Studio clients' },
+  { id: 'sheet',      name: 'Profile Sheet',     niche: 'Beauty', blurb: 'Full photo with a white panel that slides up over it, like a phone contact card.', bestFor: 'Med spas, salons, any owner' },
+  { id: 'monostudio', name: 'Monochrome Studio', niche: 'Creative', blurb: 'Black-and-white portrait, a huge name over it and a numbered link list.', bestFor: 'Designers, stylists, luxury brands' },
+  { id: 'intro',      name: 'Video Intro',       niche: 'Professional', blurb: 'A short intro video up top, then one clear booking button.', bestFor: 'Coaches, consultants, pastors' },
+  { id: 'duotone',    name: 'Duotone',           niche: 'Fitness', blurb: 'Your photo in two brand colors with a bold condensed name.', bestFor: 'Trainers, barbers, youth ministries' },
+  { id: 'trust',      name: 'Trust Builder',     niche: 'Home services', blurb: 'Reviews, credentials and clear prices, built to earn the call.', bestFor: 'Inspectors, contractors, clinics' },
+  { id: 'local',      name: 'Local',             niche: 'Food and shops', blurb: 'A map with your pin, hours and one-tap directions.', bestFor: 'Cafes, restaurants, shops' },
+  { id: 'menu',       name: 'Service Menu',      niche: 'Beauty', blurb: 'Swipeable service cards with prices and a booking button.', bestFor: 'Salons, nails, barbers, spas' },
+  { id: 'status',     name: 'Live Status',       niche: 'Home services', blurb: 'An availability badge, hours and service area up front.', bestFor: 'Mobile notaries, cleaners, handymen' },
+  { id: 'chat',       name: 'Conversation',      niche: 'Professional', blurb: 'Your card as a text thread with quick replies and a message box.', bestFor: 'Travel agents, creators, assistants' },
 ];
 
 /* ------------------------------------------------------------ 1 Editorial Cover */
@@ -628,4 +638,5 @@ export const TEMPLATE_COMPONENTS: Record<TemplateId, () => ReactElement> = {
   coverstory: CoverStory, backcover: BackCover, fullfeature: FullFeature, colorblock: ColorBlock, signedprint: SignedPrint, proofsheet: ProofSheet,
   rougeedit: RougeEdit, blushatelier: BlushAtelier, noirlash: NoirLash, botanical: Botanical,
   blacklabel: BlackLabel, barberclub: BarberClub, copperforge: CopperForge, cedarsmoke: CedarSmoke, voltsport: VoltSport,
+  sheet: Sheet, monostudio: MonoStudio, intro: Intro, duotone: Duotone, trust: Trust, local: Local, menu: ServiceMenu, status: Status, chat: Chat,
 };

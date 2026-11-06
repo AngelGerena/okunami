@@ -117,7 +117,9 @@ export type TemplateId =
   // Author collection (speakers, life coaches and authors)
   | 'coverstory' | 'backcover' | 'fullfeature' | 'colorblock' | 'signedprint' | 'proofsheet'
   // OKUNAMI Studio: the configurable base for done-for-you custom cards (not listed in the public gallery)
-  | 'studio';
+  | 'studio'
+  // photo-led collection (sig25)
+  | 'sheet' | 'monostudio' | 'intro' | 'duotone' | 'trust' | 'local' | 'menu' | 'status' | 'chat';
 
 export interface SocialLink { id: string; network: string; value: string; }   // value = handle or full URL
 export interface Highlight { id: string; icon: string; title: string; subtitle: string; }
