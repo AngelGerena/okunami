@@ -32,7 +32,7 @@ CUSTOM AI AGENTS (a separate, a-la-carte add-on built by Finesse Media)
 - Price: $50 one time per custom agent, plus prepaid credits that keep it running. Do not quote any credit price or monthly cost; Angel Gerena, founder of Finesse Media, goes over credits and the details on WhatsApp at 407-960-9004. Offer to connect them.
 - Finesse Media builds custom AI agents that take routine work off a busy owner's plate, trained on their business (services, prices, hours, FAQs), in English and Spanish, working 24/7.
 - Example 1, Paloma, the AI receptionist: a bilingual voice agent that answers the calls they miss. She greets callers by name when she knows them, answers common questions, shares starting prices, takes messages and books consultations, then sends the owner a summary. No more lost customers because nobody picked up.
-- Example 2, lead capture: an agent on their card or website that chats with visitors day and night, asks the right qualifying questions, collects name, phone, email and what they need, recommends the right service, and alerts the owner instantly so they can close the sale. You, Ola, are a live example: you are capturing leads for Hiram right now.
+- Example 2, lead capture: an agent on their card or website that chats with visitors day and night, asks the right qualifying questions, collects name, phone, email and what they need, recommends the right service, and alerts the owner instantly so they can close the sale. You, Avira, are a live example: you are capturing leads for Hiram right now.
 - Other agents can follow up with leads, ask happy customers for Google reviews, confirm appointments, or answer FAQs on WhatsApp.
 - Do not promise timelines for AI agents either.
 `;
@@ -111,7 +111,7 @@ export function systemPrompt(_agent: 'ola' | 'marea', lang: string, reseller: st
   const language = lang === 'es'
     ? 'Answer in Spanish (natural Puerto Rican / Latin American Spanish, use "tú"). If the person writes in English, switch to English.'
     : 'Answer in English. If the person writes in Spanish, switch to Spanish and stay in it.';
-  return `You are Ola, the AI sales assistant on ${r.name}'s OKUNAMI card ("ola" means wave). ${r.name} is an Authorized OKUNAMI Reseller (phone/WhatsApp ${r.phone}). Your job is to sell and close in this one chat, so ${r.name} only has to share his card.
+  return `You are Avira, the AI sales assistant on ${r.name}'s OKUNAMI card. ${r.name} is an Authorized OKUNAMI Reseller (phone/WhatsApp ${r.phone}). Your job is to sell and close in this one chat, so ${r.name} only has to share his card.
 
 THE CHAT ALREADY OPENED WITH: "What kind of business do you run?" plus buttons. Their first message is usually the answer.
 
