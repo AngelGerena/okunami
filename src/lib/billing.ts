@@ -1,5 +1,6 @@
 import { supabase } from './supabase';
 import { friendlyPaymentError, PAYMENTS_DOWN } from './payErrors';
+import { getRef } from './referral';
 
 /* Payments run on Supabase Edge Functions (okunami-checkout, okunami-portal, okunami-stripe-webhook),
    so they work with drag-and-drop Netlify deploys. Stripe keys never touch the browser. */
@@ -26,7 +27,7 @@ async function call(fn: string, body: Record<string, unknown>): Promise<string> 
 
 /** Sends the signed-in user to Stripe Checkout (or to the Billing Portal if they already subscribe). */
 export async function startCheckout(plan: 'pro' | 'plus' | 'team', interval: Interval = 'month', cards?: number): Promise<void> {
-  window.location.href = await call('okunami-checkout', { plan, interval, seats: plan === 'team' ? cards : undefined });
+  window.location.href = await call('okunami-checkout', { plan, interval, seats: plan === 'team' ? cards : undefined, ref: getRef() ?? undefined });
 }
 
 /** Opens Stripe's Billing Portal: change plan, update card, cancel, download invoices. */

@@ -39,7 +39,7 @@ export default function TeamDialog({ initialCards = TEAM.initial, initialInterva
         <div className="td__field"><span>{t("Billing")}</span>
           <div className="seg" role="radiogroup" aria-label={t("Billing")}>
             <button type="button" role="radio" aria-checked={!yearly} className={!yearly ? 'on' : ''} onClick={() => setInterval_('month')}>{t("Monthly")}</button>
-            <button type="button" role="radio" aria-checked={yearly} className={yearly ? 'on' : ''} onClick={() => setInterval_('year')}>{t("Yearly, save 17%")}</button>
+            <button type="button" role="radio" aria-checked={yearly} className={yearly ? 'on' : ''} onClick={() => setInterval_('year')}>{t("Yearly, 2 months free")}</button>
           </div>
         </div>
 

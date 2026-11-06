@@ -2,6 +2,7 @@
 // Authentication is Stripe's signature (STRIPE_WEBHOOK_SECRET), so JWT checking is off for this function.
 import Stripe from 'npm:stripe@17.7.0';
 import { clampSeats, admin, env, planForAmount, planForPrice, stripe, type Plan } from '../_shared/okunami.ts';
+import { countRenewal, creditReferral } from '../_shared/referrals.ts';
 
 const PAID = ['active', 'trialing', 'past_due'];
 
@@ -66,6 +67,13 @@ async function applySubscription(sub: Stripe.Subscription, userIdHint?: string |
   if (!userId) { console.error('No OKUNAMI account matches this subscription; nothing changed', sub.id, customer); return; }
   const { error } = await db.from('fc_profiles').update(update).eq('id', userId);
   if (error) throw error;
+  // A reseller's client who signed up with their link or code: the first paid plan goes on the reseller's dashboard.
+  if (paid && sub.status !== 'trialing') {
+    await creditReferral(db, userId, {
+      plan, interval: item?.price?.recurring?.interval ?? null, seats: (update.seats as number | null) ?? null,
+      amountCents: (item?.price?.unit_amount ?? 0) * (item?.quantity ?? 1),
+    });
+  }
 }
 
 Deno.serve(async (req) => {
@@ -92,6 +100,16 @@ Deno.serve(async (req) => {
       case 'checkout.session.expired': {
         const session = event.data.object as Stripe.Checkout.Session;
         await admin().rpc('fc_founding_release_session', { p_session: session.id });   // an unpaid checkout frees its founding spot
+        break;
+      }
+      case 'invoice.paid': {
+        // Monthly renewals of a reseller's okunami.pro sale count toward the 12 plan payments that earn commission.
+        const inv = event.data.object as Stripe.Invoice;
+        if (inv.billing_reason === 'subscription_cycle' && inv.customer) {
+          const customer = typeof inv.customer === 'string' ? inv.customer : inv.customer.id;
+          const { data: prof } = await admin().from('fc_profiles').select('id').eq('stripe_customer_id', customer).maybeSingle();
+          if (prof?.id && inv.id) await countRenewal(admin(), prof.id, inv.id);
+        }
         break;
       }
       case 'customer.subscription.created':
