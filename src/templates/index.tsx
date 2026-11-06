@@ -12,6 +12,25 @@ import { Bag, CaseFile, Cluster, ContactSheet, Diner, Flash, FloorPlan, HangTag,
 import { Aperture, CarbonPro, FilmStrip, LensRing, ModeDial, PianoBlack, Rangefinder, Safelight, Softbox, Viewfinder } from './sig6';
 import { Growth, Bamboo, Blowout, Chalkboard, Clipper, Lotus, Magazine, NeonSign, Polish, Razor, Shimmer, Stations, Stones, Tips } from './sig3';
 import { BoldBlock, CoverSplit, GlamRailArch, GlamRailBleed, GlamRailBlob, GlamRailCircle, GlamRailLeaf, GlamRailMark, GlamRailOval, Halo, Leaf, NeonPulse, Plum, RoseGlass, Runway, SilkCurve, Sunset, SwatchBar } from './sig5';
+import { AgentProfile, Coastal, Crest, Edit, Linen, Merlot, Noir, Roofline, SwissGrid } from './sig7';
+import { FocusLock, Playback, Seamless, TopPlate } from './sig8';
+import { GoldRing, Heritage, MyMenu, RedGrip, Tracking } from './sig9';
+import { ColorTarget, DigitalBack, FilmBack, Lunar, MediumFormat, WaistLevel } from './sig10';
+import { BarberClub, BlackLabel, BlushAtelier, Botanical, CedarSmoke, CopperForge, NoirLash, RougeEdit, VoltSport } from './sig11';
+import { Bokeh, EyeAF, Peaking, SLog, Sensor, Zebras } from './sig12';
+import { FilmRecipe, FilmSim, HybridVF, InstaPrint, MonoStrip, XDials } from './sig13';
+import { CineBrain, CineScreen, FocusGuide, PunchIn, Slate } from './sig14';
+import { AccessGranted, BioScan, CodeRain, Dossier, Enhance, GlobeTrace, HackIDE, Vault, WarRoom } from './sig15';
+import { PaintFan, SiteBadge, SpiritLevel, TapeMeasure, WorkOrder } from './sig16';
+import { Concrete, HiVis, Ironworks, LumberStamp, Permit } from './sig21';
+import { GlossBar, GlowEdit, GoldenHour, ReelLive, Stillwater, Vellum } from './sig20';
+import { Eucalyptus, Frosted, Headliner, Lacquer, Letterpress, ListingSheet } from './sig23';
+import { LyricBook, NowPlaying, Spotlight, VocalRange, Voiceprint } from './sig17';
+import { AmethystAfterDark, BlushSatin, ChampagneToast, LeopardLuxe, PearlStrand, RubyGloss, VanityLights, VelvetNoir } from './sig18';
+import { BlackTie, MidnightSet, VelvetRoom } from './sig19';
+import { AdmitOne, LinerNotes, Reverb, Selah } from './sig22';
+import { BackCover, ColorBlock, CoverStory, FullFeature, ProofSheet, SignedPrint } from './sig24';
+import { Studio } from './studio';
 import { Boarding, Confetti, Inbox, Invitation, Monogram, Planner, Recipe, Stained, Toolbelt, Trading, Turntable, Vinyl, Waveform } from './sig2-b';
 import {
   Arrow, Btn, Business, CalendarDays, ContactList, Crisis, Dock, Footer, Highlights, LocationCard, Logo, Name, Photo,
@@ -19,7 +38,9 @@ import {
 } from './blocks';
 import { addressLine, mapsHref, prettyUrl, webHref } from '../lib/links';
 
-export interface TemplateMeta { id: TemplateId; name: string; blurb: string; bestFor: string; niche?: string; }
+export interface TemplateMeta { id: TemplateId; name: string; blurb: string; bestFor: string; niche?: string;
+  /** Not offered in galleries or counts (OKUNAMI Studio custom cards). */
+  hidden?: boolean; }
 
 export const TEMPLATES: TemplateMeta[] = [
   { id: 'cover',   name: 'Editorial Cover',  blurb: 'Full-bleed photo that fades into the page, name set large like a magazine.', bestFor: 'Personal brands, stylists, realtors' },
@@ -35,7 +56,7 @@ export const TEMPLATES: TemplateMeta[] = [
   // ---- niche layouts
   { id: 'tech',       name: 'Mainframe',   niche: 'Tech and IT',                  blurb: 'Boot sequence, neon grid, glitch type, holographic tilt, keyboard commands.', bestFor: 'Developers, IT, startups, AI and gaming' },
   { id: 'realestate', name: 'Keystone',    niche: 'Real Estate',           blurb: 'Property hero, agent card, home-value call to action, listings strip.', bestFor: 'Agents, brokers, property managers' },
-  { id: 'photo',      name: 'Darkroom',    niche: 'Photo and Video',           blurb: 'Gallery first. Minimal type, masonry grid, book a session.', bestFor: 'Photographers, videographers, artists' },
+  { id: 'photo',      name: 'Darkroom',    niche: 'Tattoo and Art',           blurb: 'Ink black and red. Portfolio first, styles list, book a consult.', bestFor: 'Tattoo artists, illustrators, studios' },
   { id: 'foodtruck',  name: 'Street Menu', niche: 'Food Trucks',           blurb: 'Marquee sign, where-we-are-today, priced menu, order-ahead buttons.', bestFor: 'Food trucks, pop-ups, caterers' },
   { id: 'apparel',    name: 'Lookbook',    niche: 'Apparel and Accessories', blurb: 'Editorial cover, swipeable lookbook, shop the collection.', bestFor: 'Clothing brands, jewelry, boutiques' },
   { id: 'mechanic',   name: 'Garage',      niche: 'Auto and Mechanics',             blurb: 'Hazard stripe, giant call button, services grid, shop hours.', bestFor: 'Auto repair, detailing, tire shops' },
@@ -166,6 +187,130 @@ export const TEMPLATES: TemplateMeta[] = [
   { id: 'railmark',   name: 'Glam Rail Leaf Mark',  niche: 'Beauty Consultants', blurb: 'The glam rail with your photo cut into a two-petal leaf mark.', bestFor: 'Farmasi influencers, beauty sellers' },
   { id: 'railblob',   name: 'Glam Rail Blob',       niche: 'Beauty Consultants', blurb: 'The glam rail with a soft organic photo shape that slowly morphs.', bestFor: 'Bold personal brands, creators' },
   { id: 'sunset',     name: 'Sunset Bloom', niche: 'Beauty Consultants', blurb: 'A peach-to-coral sky and a round portrait on a white sheet.', bestFor: 'Beauty influencers, skincare' },
+  // ---- agent collection (realtors)
+  { id: 'noir',         name: 'Gallery Noir',     niche: 'Real Estate', blurb: 'Black gallery walls, a spotlit portrait in a gold hairline frame.', bestFor: 'Luxury realtors, brokers' },
+  { id: 'coastal',      name: 'Coastal Estate',   niche: 'Real Estate', blurb: 'A sea-blue sky, a setting sun behind your portrait and a soft wave.', bestFor: 'Beach and waterfront agents' },
+  { id: 'edit',         name: 'The Edit',         niche: 'Real Estate', blurb: 'A magazine cover with your last name as the masthead and services as cover lines.', bestFor: 'Realtors, personal brands' },
+  { id: 'crest',        name: 'Monogram Crest',   niche: 'Real Estate', blurb: 'Ivory and gold, a ringed portrait crest with your initials on a diamond seal.', bestFor: 'Luxury agents, advisors' },
+  { id: 'swissgrid',    name: 'Swiss Grid',       niche: 'Real Estate', blurb: 'Bold stacked name, a color photo block and a numbered action list.', bestFor: 'Modern agents, teams' },
+  { id: 'merlot',       name: 'Merlot and Gold',  niche: 'Real Estate', blurb: 'Deep wine, an oval gold-framed portrait and a glossy gold button.', bestFor: 'Luxury agents, feminine brands' },
+  { id: 'linen',        name: 'Linen Signature',  niche: 'Real Estate', blurb: 'Soft linen, an arched photo and your first name written like a signature.', bestFor: 'Boutique agents, designers' },
+  { id: 'roofline',     name: 'Roofline',         niche: 'Real Estate', blurb: 'Your portrait inside a house-shaped window under a drawn roofline.', bestFor: 'Realtors, home builders' },
+  { id: 'agentprofile', name: 'Agent Profile',    niche: 'Real Estate', blurb: 'A premium profile sheet: market, specialties, office and featured listings.', bestFor: 'Realtors, brokers, loan officers' },
+  // ---- EOS collection (photographers, pro DSLR)
+  { id: 'topplate',  name: 'Top Plate',  niche: 'Photo and Video', blurb: 'A pro camera body: your photo in a red-ring lens behind opening aperture blades, a green top LCD and a shutter that saves your contact.', bestFor: 'Portrait and headshot photographers' },
+  { id: 'focuslock', name: 'Focus Lock', niche: 'Photo and Video', blurb: 'Through the viewfinder: 61 AF points lock onto your face over a green exposure readout.', bestFor: 'Photographers, videographers' },
+  { id: 'seamless',  name: 'Seamless',   niche: 'Photo and Video', blurb: 'A clean studio seamless, huge stacked name and glossy black keys with a red Book key.', bestFor: 'Headshot and studio photographers' },
+  { id: 'playback',  name: 'Playback',   niche: 'Photo and Video', blurb: 'The rear camera screen: your shot with a live RGB histogram, and contact options as a quick-control grid.', bestFor: 'Photographers, camera creators' },
+  // ---- Gold Ring collection (photographers who shoot Nikon)
+  { id: 'goldring', name: 'Gold Ring', niche: 'Photo and Video', blurb: 'Your photo inside a pro zoom lens: knurled zoom ring, a gold ring, a yellow focus scale and a zoom bar.', bestFor: 'Nikon shooters, portrait photographers' },
+  { id: 'redgrip',  name: 'Red Grip',  niche: 'Photo and Video', blurb: 'The camera from the top: mode dial, a top LCD that lights up and a red grip line under your name.', bestFor: 'Nikon shooters, event photographers' },
+  { id: 'tracking', name: 'Tracking',  niche: 'Photo and Video', blurb: 'Through the viewfinder: a yellow eye-tracking box locks onto your face over an exposure readout.', bestFor: 'Nikon shooters, sports and wedding photographers' },
+  { id: 'mymenu',   name: 'My Menu',   niche: 'Photo and Video', blurb: 'Your card as the camera menu: tab icons, a yellow selected row and a quick-menu grid for every action.', bestFor: 'Nikon shooters, camera creators' },
+  { id: 'heritage', name: 'Heritage',  niche: 'Photo and Video', blurb: 'A chrome film body with a speed dial and frame counter, and your photo as a print on black leatherette.', bestFor: 'Film and documentary photographers' },
+  // ---- Square Format collection (medium-format / Hasselblad shooters)
+  { id: 'mediumformat', name: 'Medium Format', niche: 'Photo and Video', blurb: 'A brushed aluminum body with a slim top display, an orange shutter that saves you and your photo in wide 4:3.', bestFor: 'Medium-format and fine art photographers' },
+  { id: 'digitalback',  name: 'Digital Back',  niche: 'Photo and Video', blurb: 'A modular digital back with a square screen, framing guides, a 16-bit readout and a chrome mount plate.', bestFor: 'Medium-format and studio photographers' },
+  { id: 'colortarget',  name: 'Color Target',  niche: 'Photo and Video', blurb: 'A clean white gallery look with a color-calibration card tucked into the corner of your portrait.', bestFor: 'Portrait and product photographers' },
+  { id: 'waistlevel',   name: 'Waist Level',   niche: 'Photo and Video', blurb: 'Looking down into a waist-level finder: chrome hood, opened flaps, a focusing grid and your photo on the ground glass.', bestFor: 'Film and medium-format photographers' },
+  { id: 'filmback',     name: 'Film Back',     niche: 'Photo and Video', blurb: 'A film magazine: a dark slide rises with your name engraved, above a 120 film strip and a frame counter.', bestFor: 'Film photographers' },
+  { id: 'lunar',        name: 'Lunar',         niche: 'Photo and Video', blurb: 'The moon camera: black space, Earthrise, mission data and your photo marked with reseau crosses.', bestFor: 'Photographers who want a showstopper' },
+  // ---- Mirrorless collection (Sony-style mirrorless shooters)
+  { id: 'eyeaf',   name: 'Eye AF',  niche: 'Photo and Video', blurb: 'Through the electronic viewfinder: a tracking box finds your face and locks green, with a half-press shutter that beeps twice.', bestFor: 'Mirrorless shooters, portrait and wedding photographers' },
+  { id: 'zebras',  name: 'Zebras',  niche: 'Photo and Video', blurb: 'Real exposure zebras striped over the brightest parts of your own photo, with an on and off switch.', bestFor: 'Mirrorless shooters, studio and portrait photographers' },
+  { id: 'peaking', name: 'Peaking', niche: 'Photo and Video', blurb: 'Manual focus mode: red focus peaking traces the sharp edges of your photo as the focus distance settles.', bestFor: 'Mirrorless shooters, manual-lens photographers' },
+  { id: 'slog',    name: 'S-Log',   niche: 'Photo and Video', blurb: 'A cinema rig: a flat log image that grades into full color, a red record frame, tally light and running timecode.', bestFor: 'Hybrid photo and video shooters, filmmakers' },
+  { id: 'sensor',  name: 'Sensor',  niche: 'Photo and Video', blurb: 'Lens off: a chrome mount with an accent ring and your portrait reflected in the shimmering full-frame sensor.', bestFor: 'Mirrorless shooters, camera creators' },
+  { id: 'bokeh',   name: 'Bokeh',   niche: 'Photo and Video', blurb: 'Warm bokeh orbs drift over your portrait, with a wide-open lens tag and your name set over the fade.', bestFor: 'Portrait and wedding photographers' },
+  // ---- X-Series collection (Fuji-style retro mirrorless shooters)
+  { id: 'filmsim', name: 'Film Sim', niche: 'Photo and Video', blurb: 'Your portrait under a film simulation menu: tap Chrome, Vivid, Neg, Cine or Mono and the photo regrades live.', bestFor: 'Fuji shooters, portrait and street photographers' },
+  { id: 'xdials', name: 'Dials', niche: 'Photo and Video', blurb: 'A machined silver top plate with working ISO, shutter and exposure dials. Turn them and the meter and photo respond.', bestFor: 'Fuji shooters, manual-control photographers' },
+  { id: 'hybridvf', name: 'Viewfinder', niche: 'Photo and Video', blurb: 'A hybrid viewfinder: bright frame lines in optical mode, then flip the lever to the electronic view.', bestFor: 'Fuji shooters, street and documentary photographers' },
+  { id: 'filmrecipe', name: 'Recipe', niche: 'Photo and Video', blurb: 'Clean and editorial: your signature film recipe printed like a trading card, with a red signature stamp.', bestFor: 'Fuji shooters who share their film recipes' },
+  { id: 'instaprint', name: 'Instant', niche: 'Photo and Video', blurb: 'An instant print slides out of the slot and develops on screen, signed with your name. Tap it to shake.', bestFor: 'Event, wedding and lifestyle photographers' },
+  { id: 'monostrip', name: 'Mono', niche: 'Photo and Video', blurb: 'Grainy black and white on a film strip with edge markings, a big serif name and yellow, red and green filters.', bestFor: 'Black and white, street and portrait photographers' },
+  // ---- Cinema collection (cinematographers)
+  { id: 'cinescreen', name: 'Cine Screen', niche: 'Photo and Video', blurb: 'A cinema camera touchscreen with a live histogram, audio meters and false color from your photo. Hit REC and the timecode rolls.', bestFor: 'Cinematographers, Blackmagic shooters' },
+  { id: 'cinebrain', name: 'Cine Brain', niche: 'Photo and Video', blurb: 'A machined black cinema body with a red-rimmed monitor, live histogram, clipping posts and swappable frame guides.', bestFor: 'Cinematographers, RED shooters' },
+  { id: 'focusguide', name: 'Focus Guide', niche: 'Photo and Video', blurb: 'Hybrid cinema mode: a dual pixel focus guide closes in and turns green as your shot racks into focus.', bestFor: 'Cinematographers, Canon R5 C and Cinema EOS shooters' },
+  { id: 'punchin', name: '8K Punch', niche: 'Photo and Video', blurb: 'Your full 8K frame on a thirds grid. Punch in 5x on the eyes to show every detail, then pull back out.', bestFor: 'Hybrid filmmakers, Canon R5 shooters' },
+  { id: 'slate', name: 'Slate', niche: 'Photo and Video', blurb: 'A clapperboard with your production name, a take that counts up on every clap and running LED timecode.', bestFor: 'Cinematographers, directors and video crews' },
+  // ---- Hacker collection (developers and tech pros, Hollywood style)
+  { id: 'hackide', name: 'IDE', niche: 'Tech and IT', blurb: 'Your card as a code editor: your profile as a syntax-highlighted object with tabs and a status bar. Hit Run and the terminal saves the contact.', bestFor: 'Developers and engineers' },
+  { id: 'bioscan', name: 'Bio-Scan', niche: 'Tech and IT', blurb: 'A red targeting HUD over your portrait: scan line, face mesh, a rotating match ring and IDENTITY VERIFIED.', bestFor: 'Developers, security and IT pros' },
+  { id: 'accessgranted', name: 'Access', niche: 'Tech and IT', blurb: 'The movie hack: ACCESS DENIED flashes, the password cracks one character at a time, then ACCESS GRANTED slams in and your photo un-blurs.', bestFor: 'Developers, security and IT pros' },
+  { id: 'globetrace', name: 'Trace', niche: 'Tech and IT', blurb: 'A spinning wireframe globe traces a signal hop by hop across the world until it locks onto your state. TRACE COMPLETE.', bestFor: 'Developers, IT and network pros' },
+  { id: 'dossier', name: 'Dossier', niche: 'Tech and IT', blurb: 'A classified file on the desk: paper-clipped photo, TOP SECRET stamp and redacted lines that lift when you tap Declassify.', bestFor: 'Developers, consultants and security pros' },
+  { id: 'warroom', name: 'War Room', niche: 'Tech and IT', blurb: 'A command-center wall of monitors: facial lock on your photo, intercept waveform, radar sweep, decrypt stream and a breaking ticker.', bestFor: 'Developers, startups and IT teams' },
+  { id: 'coderain', name: 'Code Rain', niche: 'Tech and IT', blurb: 'Your portrait built out of falling green code. The rain pours down and settles into your face, made from your real photo.', bestFor: 'Developers and AI builders' },
+  { id: 'enhance', name: 'Enhance', niche: 'Tech and IT', blurb: 'Grainy security cam footage that zooms in and sharpens on your face, step by step, until MATCH FOUND locks on.', bestFor: 'Developers, security and IT pros' },
+  { id: 'vault', name: 'Vault', niche: 'Tech and IT', blurb: 'A steel vault door with a gold wheel. Press the fingerprint pad, the scanner sweeps and the door swings open on you.', bestFor: 'Developers, fintech and security pros' },
+  // ---- Handyman collection (handymen and contractors)
+  { id: 'tapemeasure', name: 'Tape', niche: 'Handyman and Contractors', blurb: 'A big tape measure with your photo in the case. Pull the blade out and it runs across the card; your services sit on ruler tiles.', bestFor: 'Handymen, carpenters and contractors' },
+  { id: 'spiritlevel', name: 'Level', niche: 'Handyman and Contractors', blurb: 'Your photo hangs crooked above a spirit level. Press Level it, or tilt your phone, and the frame swings dead straight.', bestFor: 'Handymen, installers and remodelers' },
+  { id: 'workorder', name: 'Work Order', niche: 'Handyman and Contractors', blurb: 'A carbon-copy work order with your photo clipped on. Your job list checks itself off, your signature writes in and the stamp lands.', bestFor: 'Handymen, contractors and repair pros' },
+  { id: 'sitebadge', name: 'Site Badge', niche: 'Handyman and Contractors', blurb: 'A hi-vis vest with your ID badge swinging on a lanyard. Press the badge and it flips over to a QR code.', bestFor: 'Contractors, crews and job-site pros' },
+  { id: 'paintfan', name: 'Paint Fan', niche: 'Handyman and Contractors', blurb: 'A paint fan deck with your photo on top. Open it and every swatch is a contact button, like Call Me Coral and Book It Blue.', bestFor: 'Painters, handymen and remodelers' },
+  { id: 'permit', name: 'Permit', niche: 'Construction', blurb: 'A building permit posted on plywood. Your license and insurance sit in the permit fields, an APPROVED stamp lands, and your services read as inspections that passed.', bestFor: 'General contractors and remodelers' },
+  { id: 'hivis', name: 'Hi-Vis', niche: 'Construction', blurb: 'Your photo full screen with your name over it, finished with a strip of reflective vest tape. Your certifications sit right under it as badges.', bestFor: 'Crews, roofers, framers and trades' },
+  { id: 'ironworks', name: 'Ironworks', niche: 'Construction', blurb: 'A cinematic black-and-white photo, heavy steel-yard type and a bolted plate. Your services read as a load chart.', bestFor: 'Commercial builders, steel and larger GCs' },
+  { id: 'concrete', name: 'Concrete', niche: 'Construction', blurb: 'Your name spray-stenciled on raw concrete under a wood form board, with the year you started pressed into the slab.', bestFor: 'Concrete, pavers, driveways and masonry' },
+  { id: 'lumberstamp', name: 'Lumber Stamp', niche: 'Construction', blurb: 'Your name inked in a lumber-mill grade stamp on a pine board, your photo pinned up like a print, and your services as a penciled cut list.', bestFor: 'Carpenters, framers, decks and trim' },
+  { id: 'reellive', name: 'Reel Live', niche: 'Creators and Influencers', blurb: 'Your card plays like a live story: your photo cross-fades through your services with a slow camera push, and Call, DM and Email sit in the side rail.', bestFor: 'Creators, influencers and speakers' },
+  { id: 'goldenhour', name: 'Golden Hour', niche: 'Real Estate', blurb: 'Your photo full screen in warm sunset light, your last name in gold italic and a brushed-gold slant leading into your listings and services.', bestFor: 'Realtors and luxury agents' },
+  { id: 'vellum', name: 'Vellum', niche: 'Weddings and Events', blurb: 'Your photo under a sheet of translucent vellum with your name in script and a gold wax seal that presses down when the card opens.', bestFor: 'Wedding planners and event designers' },
+  { id: 'glossbar', name: 'Gloss Bar', niche: 'Nail Spas and Lashes', blurb: 'Your photo with a wet-gloss sheen and a row of polish shades. Pick a shade and the whole card changes color to match, prices included.', bestFor: 'Nail artists and lash techs' },
+  { id: 'stillwater', name: 'Stillwater', niche: 'Massage and Day Spas', blurb: 'A candlelit photo, a band of dark stone and a live breathing guide that slowly says breathe in, breathe out, above a spa-style menu.', bestFor: 'Massage therapists and day spas' },
+  { id: 'glowedit', name: 'Glow Edit', niche: 'Beauty Consultants', blurb: 'You on the cover of your own beauty magazine: a big masthead, cover lines that slide in, and your categories as the table of contents.', bestFor: 'Beauty sellers and influencers' },
+  { id: 'headliner', name: 'Headliner', niche: 'Creators and Influencers', blurb: 'A concert poster: your photo under a spotlight, two slanted ribbons scrolling your services and a spinning Book me badge.', bestFor: 'Creators, hosts and performers' },
+  { id: 'listingsheet', name: 'Listing Sheet', niche: 'Real Estate', blurb: 'A luxury listing sheet where you are the listing: a Featured Agent ribbon, a brass key tag and your market and specialties in a spec grid.', bestFor: 'Realtors and brokers' },
+  { id: 'letterpress', name: 'Letterpress', niche: 'Weddings and Events', blurb: 'Gold foil initials pressed into cotton paper with a slow light sweep, your photo taped on as a print and your services as an order of ceremony.', bestFor: 'Wedding planners and stationers' },
+  { id: 'lacquer', name: 'Lacquer', niche: 'Nail Spas and Lashes', blurb: 'Deep and glossy: your studio name over your photo, a liquid lacquer pour as the divider and each service as a glossy shade swatch with its price.', bestFor: 'High-end nail and lash studios' },
+  { id: 'eucalyptus', name: 'Eucalyptus', niche: 'Massage and Day Spas', blurb: 'Bright and airy: your photo opens into a smooth curve, and each treatment sits on a polished river stone with its time.', bestFor: 'Massage therapists and day spas' },
+  { id: 'frosted', name: 'Frosted', niche: 'Beauty Consultants', blurb: 'Your photo full screen with a frosted glass panel over it and an iridescent edge that slowly travels around the glass.', bestFor: 'Beauty sellers and influencers' },
+  // ---- Vocalist collection (singers)
+  { id: 'voiceprint', name: 'Voiceprint', niche: 'DJs and Musicians', blurb: 'A black-and-white portrait with your voice drawn across it as a waveform. Press play and it sings while the wave moves.', bestFor: 'Singers and session vocalists' },
+  { id: 'lyricbook', name: 'Lyric Book', niche: 'DJs and Musicians', blurb: 'A page from your songwriting notebook with your polaroid taped on. Press Sing it and each word lights up as it is sung.', bestFor: 'Singer-songwriters' },
+  { id: 'vocalrange', name: 'Range', niche: 'DJs and Musicians', blurb: 'A glowing piano-roll range chart. Press any note to hear it sung, or run the whole scale.', bestFor: 'Vocalists, vocal coaches and choirs' },
+  { id: 'spotlight', name: 'Spotlight', niche: 'DJs and Musicians', blurb: 'A follow-spot sweeps a dark stage and finds you. Your setlist taped to the floor is the contact buttons.', bestFor: 'Live singers and wedding vocalists' },
+  { id: 'nowplaying', name: 'Now Playing', niche: 'DJs and Musicians', blurb: 'A music player where your photo is the cover art. Play sings a line about you, with Book, Stream and Share tabs.', bestFor: 'Singers and recording artists' },
+  // ---- Saxophone collection (saxophonists)
+  { id: 'midnightset', name: 'Midnight Set', niche: 'DJs and Musicians', blurb: 'Hands on a gold saxophone fill the card behind a thin gold frame. Mother-of-pearl sax keys are your contact buttons, and each plays a note.', bestFor: 'Saxophonists and horn players' },
+  { id: 'velvetroom', name: 'Velvet Room', niche: 'DJs and Musicians', blurb: 'A saxophone photo crowns an oxblood velvet card, with a big gold curve, your portrait in a gold medallion and pearl sax keys.', bestFor: 'Wedding and event saxophonists' },
+  { id: 'blacktie', name: 'Black Tie', niche: 'DJs and Musicians', blurb: 'An engraved invitation on black card stock: double gold border, a saxophone in an arched window and an RSVP row of contacts.', bestFor: 'Saxophonists for galas and weddings' },
+  // ---- Band collection (worship bands and ministry groups)
+  { id: 'reverb', name: 'Reverb', niche: 'Worship Leaders and Ministries', blurb: 'Your band name repeats and fades like an echo while sound rings pulse out from your logo, in deep color with a glowing accent.', bestFor: 'Worship bands and worship nights' },
+  { id: 'selah', name: 'Selah', niche: 'Worship Leaders and Ministries', blurb: 'Warm light pours in over your band name in script, with your verse set in a deep band between two big curves.', bestFor: 'Church worship teams and choirs' },
+  { id: 'admitone', name: 'Admit One', niche: 'Worship Leaders and Ministries', blurb: 'Your band photo under stage lights and a concert ticket with your name on it. Your set list reads as ticket stubs.', bestFor: 'Youth worship bands and conferences' },
+  { id: 'linernotes', name: 'Liner Notes', niche: 'Worship Leaders and Ministries', blurb: 'An album booklet: your logo as the cover art, your ministry listed like credits and your verse as the special thanks.', bestFor: 'Worship bands with music out' },
+  { id: 'coverstory', name: 'Cover Story', niche: 'Speakers, Coaches and Authors', blurb: 'A magazine cover: a blush book spine, your logo as the masthead, a black and white photo with your motto as a cover line and your name on a black band.', bestFor: 'Speakers, life coaches and authors' },
+  { id: 'backcover', name: 'Back Cover', niche: 'Speakers, Coaches and Authors', blurb: 'The back of your book: a short blurb, a framed author photo with a colored shadow and your logo on the black band.', bestFor: 'Authors and coaches with a book' },
+  { id: 'fullfeature', name: 'Full Feature', niche: 'Speakers, Coaches and Authors', blurb: 'A full-bleed black and white portrait with your name set huge across the bottom, like a magazine feature.', bestFor: 'Keynote speakers and personal brands' },
+  { id: 'colorblock', name: 'Color Block', niche: 'Speakers, Coaches and Authors', blurb: 'A solid accent block with your name stacked in poster type over an arched photo, and your titles on a black band.', bestFor: 'Bold coaches and motivational speakers' },
+  { id: 'signedprint', name: 'Signed Print', niche: 'Speakers, Coaches and Authors', blurb: 'A framed print with a colored offset shadow and your name signed across it in script.', bestFor: 'Life coaches and authors' },
+  { id: 'proofsheet', name: 'Proof Sheet', niche: 'Speakers, Coaches and Authors', blurb: "A photographer's film strip with your best frame circled in grease pencil.", bestFor: 'Creative coaches and media personalities' },
+  // ---- Farmasi collection (direct sellers): her line
+  { id: 'rougeedit',    name: 'Rouge Edit',     niche: 'Beauty Consultants', blurb: 'A wine and gold magazine cover with your name in italic, a pull quote and a table of contents.', bestFor: 'Farmasi leaders, top beauty sellers' },
+  { id: 'blushatelier', name: 'Blush Atelier',  niche: 'Beauty Consultants', blurb: 'An oval cameo portrait, a signed seal and your first name in script.', bestFor: 'New beauty sellers, makeup artists' },
+  { id: 'noirlash',     name: 'Noir Lash',      niche: 'Beauty Consultants', blurb: 'Stacked bold type, a slanted photo cut and a scrolling hot pink tape.', bestFor: 'Lash and makeup sellers, TikTok recruiters' },
+  { id: 'botanical',    name: 'Botanical',      niche: 'Beauty Consultants', blurb: 'Sage and leaf sprigs around your photo, with an ingredients label for your tagline.', bestFor: 'Skincare and wellness sellers' },
+  // ---- Farmasi collection: his line
+  { id: 'blacklabel',   name: 'Black Label',    niche: "Men's Grooming", blurb: 'A luxury cologne box: gold corners, a monogram crest and a scent-notes bar.', bestFor: 'Men selling fragrance and grooming, team leaders' },
+  { id: 'barberclub',   name: 'Barber Club',    niche: "Men's Grooming", blurb: 'Barber-pole stripes, a round portrait badge, ticket-stub links and a chair menu.', bestFor: 'Barbers who sell, beard-care sellers' },
+  { id: 'copperforge',  name: 'Copper Forge',   niche: "Men's Grooming", blurb: 'A copper blueprint cover, heavy condensed type and a spec sheet.', bestFor: 'Tradesmen, gym owners, practical sellers' },
+  { id: 'cedarsmoke',   name: 'Cedar and Smoke', niche: "Men's Grooming", blurb: 'Wood grain, drifting smoke and a fragrance pyramid of top, heart and base notes.', bestFor: 'Fragrance lovers, mature customers' },
+  { id: 'voltsport',    name: 'Volt Sport',     niche: "Men's Grooming", blurb: 'Volt green with speed stripes, a giant italic GO and an AM and PM routine.', bestFor: 'Gym guys, coaches, young recruiters' },
+  // ---- Bling collection (jewelry and accessory sellers)
+  { id: 'velvetnoir',   name: 'Velvet Noir',         niche: 'Jewelry and Accessory Sellers', blurb: 'Black velvet, a rose-gold ring around your photo and your name in shimmering foil.', bestFor: 'Jewelry consultants, evening and luxury pieces' },
+  { id: 'blushsatin',   name: 'Blush Satin',         niche: 'Jewelry and Accessory Sellers', blurb: 'Rippling pink satin and an arched portrait framed like a boudoir mirror.', bestFor: 'Jewelry and accessory sellers, soft and feminine brands' },
+  { id: 'rubygloss',    name: 'Ruby Gloss',          niche: 'Jewelry and Accessory Sellers', blurb: 'A full-bleed portrait cut on a slant with lipstick-red gloss buttons.', bestFor: 'Bold sellers, team leaders, live-sale hosts' },
+  { id: 'champtoast',   name: 'Champagne Toast',     niche: 'Jewelry and Accessory Sellers', blurb: 'Champagne bubbles rise behind a gold oval portrait and your first name in script.', bestFor: 'Party-plan hosts, celebration sellers' },
+  { id: 'amethyst',     name: 'Amethyst After Dark', niche: 'Jewelry and Accessory Sellers', blurb: 'Your photo cut like a gemstone, with sparkles twinkling around it.', bestFor: 'Night-out looks, statement jewelry' },
+  { id: 'leopard',      name: 'Leopard Luxe',        niche: 'Jewelry and Accessory Sellers', blurb: 'A leopard print band and a side-by-side editorial layout.', bestFor: 'Fashion-forward sellers, accessory boutiques' },
+  { id: 'pearlstrand',  name: 'Pearl Strand',        niche: 'Jewelry and Accessory Sellers', blurb: 'A pearl necklace drapes over a round portrait on soft iridescent white.', bestFor: 'Classic and bridal jewelry, timeless brands' },
+  { id: 'vanitylights', name: 'Vanity Lights',       niche: 'Jewelry and Accessory Sellers', blurb: 'A Hollywood dressing-room mirror with glowing bulbs around your photo.', bestFor: 'Glam sellers, makeup and jewelry bundles' },
+  // ---- OKUNAMI Studio (custom cards only; set up from a client's brand brief)
+  { id: 'studio', name: 'Studio Custom', hidden: true, blurb: 'A custom card built from your brand brief: hero, pattern, divider and motion set for you.', bestFor: 'OKUNAMI Studio clients' },
 ];
 
 /* ------------------------------------------------------------ 1 Editorial Cover */
@@ -441,6 +586,7 @@ function Journey() {
 }
 
 export const TEMPLATE_COMPONENTS: Record<TemplateId, () => ReactElement> = {
+  studio: Studio,
   cover: Cover, arch: Arch, header: Header, bizcard: BizCard, app: AppProfile,
   rail: Rail, radial: Radial, swiss: Swiss, bento: Bento, journey: Journey,
   tech: Tech, realestate: RealEstate, photo: PhotoLayout, foodtruck: FoodTruck, apparel: Apparel,
@@ -462,4 +608,24 @@ export const TEMPLATE_COMPONENTS: Record<TemplateId, () => ReactElement> = {
   runway: Runway, silkcurve: SilkCurve, boldblock: BoldBlock, sunset: Sunset, glamrail: GlamRailLeaf,
   aperture: Aperture, viewfinder: Viewfinder, lensring: LensRing, rangefinder: Rangefinder, safelight: Safelight, carbonpro: CarbonPro, modedial: ModeDial, pianoblack: PianoBlack, filmstrip: FilmStrip, softbox: Softbox,
   railbleed: GlamRailBleed, railcircle: GlamRailCircle, railarch: GlamRailArch, railoval: GlamRailOval, railmark: GlamRailMark, railblob: GlamRailBlob,
+  noir: Noir, coastal: Coastal, edit: Edit, crest: Crest, swissgrid: SwissGrid, merlot: Merlot, linen: Linen, roofline: Roofline, agentprofile: AgentProfile,
+  topplate: TopPlate, focuslock: FocusLock, seamless: Seamless, playback: Playback,
+  goldring: GoldRing, redgrip: RedGrip, tracking: Tracking, mymenu: MyMenu, heritage: Heritage,
+  mediumformat: MediumFormat, digitalback: DigitalBack, colortarget: ColorTarget, waistlevel: WaistLevel, filmback: FilmBack, lunar: Lunar,
+  eyeaf: EyeAF, zebras: Zebras, peaking: Peaking, slog: SLog, sensor: Sensor, bokeh: Bokeh,
+  filmsim: FilmSim, xdials: XDials, hybridvf: HybridVF, filmrecipe: FilmRecipe, instaprint: InstaPrint, monostrip: MonoStrip,
+  cinescreen: CineScreen, cinebrain: CineBrain, focusguide: FocusGuide, punchin: PunchIn, slate: Slate,
+  hackide: HackIDE, bioscan: BioScan, accessgranted: AccessGranted, globetrace: GlobeTrace, dossier: Dossier, warroom: WarRoom, coderain: CodeRain, enhance: Enhance, vault: Vault,
+  tapemeasure: TapeMeasure, spiritlevel: SpiritLevel, workorder: WorkOrder, sitebadge: SiteBadge, paintfan: PaintFan,
+  permit: Permit, hivis: HiVis, ironworks: Ironworks, concrete: Concrete, lumberstamp: LumberStamp,
+  reellive: ReelLive, goldenhour: GoldenHour, vellum: Vellum, glossbar: GlossBar, stillwater: Stillwater, glowedit: GlowEdit,
+  headliner: Headliner, listingsheet: ListingSheet, letterpress: Letterpress, lacquer: Lacquer, eucalyptus: Eucalyptus, frosted: Frosted,
+  voiceprint: Voiceprint, lyricbook: LyricBook, vocalrange: VocalRange, spotlight: Spotlight, nowplaying: NowPlaying,
+  velvetnoir: VelvetNoir, blushsatin: BlushSatin, rubygloss: RubyGloss, champtoast: ChampagneToast,
+  amethyst: AmethystAfterDark, leopard: LeopardLuxe, pearlstrand: PearlStrand, vanitylights: VanityLights,
+  midnightset: MidnightSet, velvetroom: VelvetRoom, blacktie: BlackTie,
+  reverb: Reverb, selah: Selah, admitone: AdmitOne, linernotes: LinerNotes,
+  coverstory: CoverStory, backcover: BackCover, fullfeature: FullFeature, colorblock: ColorBlock, signedprint: SignedPrint, proofsheet: ProofSheet,
+  rougeedit: RougeEdit, blushatelier: BlushAtelier, noirlash: NoirLash, botanical: Botanical,
+  blacklabel: BlackLabel, barberclub: BarberClub, copperforge: CopperForge, cedarsmoke: CedarSmoke, voltsport: VoltSport,
 };

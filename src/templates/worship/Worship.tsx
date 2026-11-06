@@ -7,6 +7,7 @@
    ===================================================================== */
 import { useEffect, useMemo, useRef, useState, type CSSProperties, type ReactNode } from 'react';
 import { useCard } from '../blocks';
+import { chime } from '../../lib/sfx';
 import { ensureContrast, mix } from '../../lib/color';
 import { NETWORK_BY_ID, socialUrl } from '../../lib/socials';
 import { addressLine, mapsHref, prettyUrl, telHref, waHref, webHref } from '../../lib/links';
@@ -47,28 +48,9 @@ const Brand = ({ network }: { network: string }) => {
   return n?.path ? <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden><path d={n.path} /></svg> : I.globe;
 };
 
-/* ---------------------------------------------------------------- sounds (engine SFX, always on) */
-let actx: AudioContext | null = null;
-function ctx() {
-  if (typeof window === 'undefined') return null;
-  if (!actx) {
-    const AC = window.AudioContext || (window as unknown as { webkitAudioContext?: typeof AudioContext }).webkitAudioContext;
-    if (!AC) return null;
-    try { const nav = navigator as unknown as { audioSession?: { type: string } }; if (nav.audioSession) nav.audioSession.type = 'playback'; } catch { /* ignore */ }
-    actx = new AC();
-  }
-  if (actx.state === 'suspended') actx.resume();
-  return actx;
-}
-function tone(f: number, dur: number, vol: number, delay = 0, type: OscillatorType = 'sine', to?: number) {
-  const c = ctx(); if (!c) return;
-  const t = c.currentTime + delay, o = c.createOscillator(), g = c.createGain();
-  o.type = type; o.frequency.setValueAtTime(f, t); if (to) o.frequency.exponentialRampToValueAtTime(to, t + dur);
-  g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(vol * 0.32, t + 0.006); g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
-  o.connect(g); g.connect(c.destination); o.start(t); o.stop(t + dur + 0.02);
-}
-const sparkleSound = () => { [784, 880, 1047, 1175, 1319, 1568, 1760, 2093].forEach((f, i) => tone(f, 0.28, 0.42 - i * 0.035, i * 0.032, 'triangle')); tone(3136, 0.55, 0.07, 0.2); };
-const orbSound = () => { tone(523, 0.5, 0.3); tone(784, 0.5, 0.2, 0.04); tone(1046, 0.6, 0.14, 0.08); };
+/* ---------------------------------------------------------------- sounds: soft chimes from lib/sfx (respect the sound setting) */
+const sparkleSound = () => chime('sparkle');
+const orbSound = () => chime('orb');
 
 /* ---------------------------------------------------------------- per-skin decor (skin-decor.js) */
 function Bg({ skin }: { skin: SkinId }) {
@@ -235,7 +217,7 @@ function WorshipCard({ skin, layout }: { skin: SkinId; layout: Layout }) {
 
   const dockItems = [
     data.phone && <a key="call" className="w-press" href={telHref(data.phone)}>{I.phone}<span>Call</span></a>,
-    wa && <a key="wa" className="w-press w-wa" href={waHref(wa, `Hi ${data.fullName.split(' ')[0]}, I just tapped your card.`)} target="_blank" rel="noopener">{I.whatsapp}<span>WhatsApp</span></a>,
+    wa && <a key="wa" className="w-press w-wa" href={waHref(wa, `Hi ${data.fullName.split(' ')[0]}, I just opened your card.`)} target="_blank" rel="noopener">{I.whatsapp}<span>WhatsApp</span></a>,
     data.email && <a key="em" className="w-press w-em" href={`mailto:${data.email}`}>{I.mail}<span>Email</span></a>,
   ].filter(Boolean);
   const railExtra = [
@@ -245,7 +227,7 @@ function WorshipCard({ skin, layout }: { skin: SkinId; layout: Layout }) {
   const musicBtn = data.music?.url ? (
     <button type="button" className={`w-pill w-glass w-music-pill w-press ${music.on ? 'w-on' : ''}`} aria-pressed={music.on} aria-label={music.on ? 'Pause music' : 'Play music'} title={data.music.title} onClick={(e) => { e.stopPropagation(); music.toggle(); }}>
       <span className="w-eq" aria-hidden><i /><i /><i /><i /></span>
-      <span className="w-m-txt"><span className="w-m-title">{data.music.title}</span><span className="w-m-sub">{music.started ? (data.music.sub || data.business) : 'Tap to listen'}</span></span>
+      <span className="w-m-txt"><span className="w-m-title">{data.music.title}</span><span className="w-m-sub">{music.started ? (data.music.sub || data.business) : 'Press to listen'}</span></span>
       <span className="w-m-short">Music</span>
     </button>
   ) : null;

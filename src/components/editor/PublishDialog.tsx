@@ -44,7 +44,7 @@ export default function PublishDialog({ card, onConfirm, onClose, onChangeAddres
         <ul className="pdlg__notes">
           <li>{t("Your latest edits are saved first.")}</li>
           <li>{t("You can unpublish at any time. The link then stops working until you publish again.")}</li>
-          {autoAddress && <li className="warn">This is an automatic address. Once you print a QR code or program an NFC tag with it, changing it will break them.{onChangeAddress && <>{rich(t("<x1>Choose a better address first</x1>"), { x1: (c) => <button type="button" className="linklike" onClick={onChangeAddress}>{c}</button> })}</>}</li>}
+          {autoAddress && <li className="warn">This is an automatic address. Once you print a QR code with it, changing it will break it.{onChangeAddress && <>{rich(t("<x1>Choose a better address first</x1>"), { x1: (c) => <button type="button" className="linklike" onClick={onChangeAddress}>{c}</button> })}</>}</li>}
           {locked && <li className="warn">{t("Your Lite plan publishes only the free {v} design. Visitors will see that design instead of {v2} until you upgrade.", { v: nameOf(FREE_FALLBACK), v2: nameOf(card.template) })}</li>}
         </ul>
         {err && <p className="err" role="alert">{err}</p>}

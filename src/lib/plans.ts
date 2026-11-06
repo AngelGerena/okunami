@@ -38,10 +38,10 @@ export const teamTotal = (cards: number, yearly: boolean): number => clampCards(
 export const PLANS: PlanDef[] = [
   { id: 'free', name: 'Lite', price: 0, yearly: 0, per: 'forever', cards: 1,
     pitch: 'A clean card that gets the job done.',
-    features: ['1 card', '3 Lite designs', 'Preview every Pro design on your own card', 'Colors, fonts and dice shuffle', 'Save to contacts, QR and NFC', 'Small "Made with OKUNAMI" badge'] },
+    features: ['1 card', '3 Lite designs', 'Preview every Pro design on your own card', 'Colors, fonts and dice shuffle', 'Save to contacts, QR and link', 'Small "Made with OKUNAMI" badge'] },
   { id: 'pro', name: 'Pro', price: 8, yearly: 79, per: 'month', featured: true, cards: 3,
     pitch: 'Every design, forever growing.',
-    features: ['Up to 3 cards', 'All {designs} designs', 'Every new OKUNAMI Drop, 3 to 5 designs every other month', 'Brand kit and custom fonts', 'No badge', 'Tap and save stats (coming soon)'] },
+    features: ['Up to 3 cards', 'All {designs} designs', 'Every new OKUNAMI Drop, 3 to 5 designs every other month', 'Brand kit and custom fonts', 'No badge', 'Scan and save stats (coming soon)'] },
   { id: 'plus', name: 'Pro Plus', price: 16, yearly: 149, per: 'month', cards: PLUS_CARDS,
     pitch: 'Everything in Pro, plus hands-on help from me.',
     features: ['Everything in Pro', '1 card', 'Event sections (coming soon)', 'Multiple languages on your card (coming soon)', 'Connect a domain you already own', 'Two done-for-you edits a month by Finesse Media'] },
@@ -55,35 +55,41 @@ export const cardLimit = (plan: PlanId, seats?: number | null): number => (plan 
 /** Plans that are paid (every design unlocked, no badge). */
 export const isPaid = (plan: PlanId) => plan !== 'free';
 
-/** Done-for-you work by Finesse Media (OKUNAMI Studio). Studio cards are hosted on OKUNAMI and need a Pro, Pro Plus or Business subscription.
+/** Done-for-you work by Finesse Media (OKUNAMI Studio). Studio cards are hosted on OKUNAMI: a custom card needs Pro or Pro Plus, a custom team design needs Business.
+    Custom designs never include AI agents; agents are a-la-carte and quoted by Angel.
     `includes` lists only what has been approved for each package: add to it when you confirm more. */
 export const STUDIO = [
-  { id: 'signature', name: 'Signature card', from: 249, cardPackage: true,
+  { id: 'signature', name: 'Custom card', from: 149, needs: 'One-time fee. Your card also needs an OKUNAMI Pro or Pro Plus subscription, billed separately.',
     blurb: 'I design your card from scratch in your exact brand.',
     includes: ['A card designed from scratch in your exact brand', 'Custom animation', 'Copywriting', 'Full setup', 'One round of revisions'] },
-  { id: 'portrait', name: 'Living Portrait', from: 99,
+  { id: 'portrait', name: 'Living Portrait', from: 49,
     blurb: 'Your photo becomes a short looping video of you smiling and waving.',
     includes: ['Animated from a photo you already have, or filmed live at a headshot session'] },
-  { id: 'tap', name: 'Tap products', from: 29,
-    blurb: 'Physical products that open your card with a tap.',
-    includes: ['Metal, wood or matte NFC cards', '"Tap to book" countertop stands and window decals'] },
-  { id: 'team', name: 'Team setup', from: 35, per: 'person', cardPackage: true,
-    blurb: 'I set up every staff card so the whole team matches.',
-    includes: ['Every staff card built', 'Matching headshots', 'Branded NFC cards for the whole team'] },
+  { id: 'team', name: 'Custom team design', from: 249, needs: 'One-time fee. Each card also needs an OKUNAMI Business subscription, billed separately.',
+    blurb: 'One custom design in your brand for the whole team, and I build every staff card so it all matches.',
+    includes: ['One brand design for the whole team', 'Your first 3 staff cards built', '$35 for each extra person', 'Matching headshots'] },
 ] as const;
 
 export const STUDIO_CONTACT = {
   /** Opens WhatsApp (a chat with me). The page says so before the click. */
   whatsapp: 'https://wa.me/14079609004?text=' + encodeURIComponent("Hi Angel, I'd like to request a free consult for OKUNAMI Studio."),
+  /** Used while the Founding 50 offer is open. */
+  founding: 'https://wa.me/14079609004?text=' + encodeURIComponent("Hi Angel, I'd like to claim a Founding 50 spot for an OKUNAMI Studio custom design."),
   email: 'mailto:angel@finessemedia.pro?subject=' + encodeURIComponent('OKUNAMI Studio'),
+  /** Text message backups with the same prefilled message, for people without WhatsApp. */
+  sms: 'sms:+14079609004?&body=' + encodeURIComponent("Hi Angel, I'd like to request a free consult for OKUNAMI Studio."),
+  foundingSms: 'sms:+14079609004?&body=' + encodeURIComponent("Hi Angel, I'd like to claim a Founding 50 spot for an OKUNAMI Studio custom design."),
 };
 
 /** Pro customers who want Business message me directly (the billing portal can only cancel or update a card). */
 /** Business customers who want a different number of cards message me directly (the billing portal can change quantity too, but this keeps it personal). */
 export const MORE_CARDS_CONTACT = (cards: number) => 'https://wa.me/14079609004?text=' + encodeURIComponent(`Hi Angel, my OKUNAMI Business account has ${cards} cards and I'd like to change that number.`);
 export const BUSINESS_CONTACT = 'https://wa.me/14079609004?text=' + encodeURIComponent("Hi Angel, I'd like to move my OKUNAMI account to Business.");
+/** Text message backups for the two WhatsApp links above. */
+export const MORE_CARDS_SMS = (cards: number) => 'sms:+14079609004?&body=' + encodeURIComponent(`Hi Angel, my OKUNAMI Business account has ${cards} cards and I'd like to change that number.`);
+export const BUSINESS_SMS = 'sms:+14079609004?&body=' + encodeURIComponent("Hi Angel, I'd like to move my OKUNAMI account to Business.");
 
-/* Your own domain (vcard.theirsite.com). Keep in step with fc_domain_allowed() (migration 0018)
+/* Your own domain (vcard.theirsite.com). Keep in step with fc_domain_allowed() (migration 0027)
    and supabase/functions/okunami-domain (prices) and _shared/domains.ts (DOMAIN_TARGET). */
 export const DOMAIN_PLANS: PlanId[] = ['plus', 'team'];
 export const DOMAIN_TARGET = 'okunami.netlify.app';

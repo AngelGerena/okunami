@@ -27,11 +27,11 @@ function useSteps(provider: ProviderId, root: string): string[] {
   const { t } = useT();
   const add = t("Add a record with the 3 values below, then save.");
   switch (provider) {
-    case 'godaddy': return [t("Sign in to GoDaddy, open My Products, then DNS next to {root}.", { root }), t("Tap Add New Record and pick CNAME."), add];
-    case 'spaceship': return [t("Sign in to Spaceship and open Domain Manager."), t("Pick {root}, then open Advanced DNS and tap Add record.", { root }), add];
-    case 'namecheap': return [t("Sign in to Namecheap and open Domain List."), t("Tap Manage next to {root}, then Advanced DNS, then Add New Record.", { root }), add];
-    case 'squarespace': return [t("Sign in to Squarespace and open Domains."), t("Pick {root}, open DNS, then tap Add record.", { root }), add];
-    case 'wix': return [t("Sign in to Wix and open Domains."), t("Tap the three dots next to {root}, then Manage DNS records. Find CNAME and tap Add record.", { root }), add];
+    case 'godaddy': return [t("Sign in to GoDaddy, open My Products, then DNS next to {root}.", { root }), t("Select Add New Record and pick CNAME."), add];
+    case 'spaceship': return [t("Sign in to Spaceship and open Domain Manager."), t("Pick {root}, then open Advanced DNS and select Add record.", { root }), add];
+    case 'namecheap': return [t("Sign in to Namecheap and open Domain List."), t("Select Manage next to {root}, then Advanced DNS, then Add New Record.", { root }), add];
+    case 'squarespace': return [t("Sign in to Squarespace and open Domains."), t("Pick {root}, open DNS, then select Add record.", { root }), add];
+    case 'wix': return [t("Sign in to Wix and open Domains."), t("Select the three dots next to {root}, then Manage DNS records. Find CNAME and select Add record.", { root }), add];
     case 'cloudflare': return [t("Sign in to Cloudflare and pick {root}.", { root }), t("Open DNS, then Records, then Add record."), add, t("Set Proxy status to DNS only (gray cloud). The orange cloud blocks the secure lock.")];
     default: return [t("Sign in where you bought {root} and find its DNS settings.", { root }), t("Add a new record and pick CNAME."), add];
   }
@@ -91,7 +91,7 @@ export default function DomainPanel({ card, onChange }: { card: Card; onChange?:
       <Section title={t("Your own domain")} hint={t("Use a website you already own, like vcard.yourbusiness.com.")}>
         <div className="dom-lock">
           <span className="dom-lock__ic"><Lock size={18} /></span>
-          <div><b>{t("Comes with Pro Plus and Business")}</b><small>{t("Your QR code, NFC tag and Share button would all use your own domain.")}</small></div>
+          <div><b>{t("Comes with Pro Plus and Business")}</b><small>{t("Your QR code and Share button would both use your own domain.")}</small></div>
           <button type="button" className="btn btn--gold btn--sm" onClick={upgrade}><Crown size={14} /> {t("Upgrade")}</button>
         </div>
       </Section>
@@ -148,7 +148,7 @@ export default function DomainPanel({ card, onChange }: { card: Card; onChange?:
                 <span className="dom-live__ic"><Check size={26} strokeWidth={3} /></span>
                 <b className="dom-big">{t("You're connected")}</b>
                 <span className="dom-pill"><ShieldCheck size={14} /> {row.domain}</span>
-                <p className="note">{t("Your QR code, NFC tag and Share button now use your domain. Your okunami.pro link keeps working too.")}</p>
+                <p className="note">{t("Your QR code and Share button now use your domain. Your okunami.pro link keeps working too.")}</p>
                 <a className="btn btn--gold" href={`https://${row.domain}`} target="_blank" rel="noopener"><ExternalLink size={16} /> {t("Open my card")}</a>
               </div>
             )}
@@ -172,7 +172,7 @@ export default function DomainPanel({ card, onChange }: { card: Card; onChange?:
                 </div>
                 <ol className="dom-steps">{steps.map((x) => <li key={x}>{x}</li>)}</ol>
                 <RecordBox domain={row.domain} />
-                <p className="note">{t("Stuck? Tap Stop using this domain, then pick Domain Hookup and Angel will do it for you.")}</p>
+                <p className="note">{t("Stuck? Select Stop using this domain, then pick Domain Hookup and Angel will do it for you.")}</p>
               </>
             )}
             {s === 'checking_ssl' && (

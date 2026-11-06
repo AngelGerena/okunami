@@ -53,6 +53,7 @@ export function Quantum() {
             </Act>
           ))}
         </div>
+        <div className="row full"><ShareBtn /><QrBtn /></div>
         {data.highlights.length > 0 && (
           <section className="fc-sec full">
             <h2 className="qu__h" {...el('caption')}>{data.highlightsTitle}</h2>

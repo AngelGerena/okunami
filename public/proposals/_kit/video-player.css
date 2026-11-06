@@ -1,0 +1,12 @@
+/* OKUNAMI kit: in-card video player. YouTube and Vimeo play inside the card instead of leaving it. */
+.okv-sheet{position:fixed;inset:0;z-index:70;display:flex;align-items:flex-end;justify-content:center;background:rgba(8,12,26,.72)}
+.okv-sheet[hidden]{display:none!important}
+.okv-panel{width:100%;max-width:520px;background:#0c1630;color:#f4ecdc;border-radius:22px 22px 0 0;display:flex;flex-direction:column;gap:10px;
+  padding:12px max(14px,env(safe-area-inset-right,0px)) calc(14px + env(safe-area-inset-bottom,0px)) max(14px,env(safe-area-inset-left,0px))}
+.okv-top{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.okv-top b{font:600 18px/1.25 Georgia,"Times New Roman",serif;min-width:0}
+.okv-close{width:44px;height:44px;border-radius:50%;border:0;background:rgba(255,255,255,.12);color:#fff;display:grid;place-items:center;cursor:pointer;flex:0 0 auto}
+.okv-close:focus-visible{outline:2px solid #d9b25e;outline-offset:2px}
+.okv-frame,.okv-inline-playing{position:relative;width:100%;aspect-ratio:16/9;max-width:100%;border-radius:14px;overflow:hidden;background:#000}
+.okv-frame iframe,.okv-inline-playing iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.okv-out{align-self:center;font-size:12.5px;color:#cfd4e3;text-underline-offset:3px;min-height:24px}

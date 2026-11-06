@@ -2,8 +2,9 @@ import { useCallback, useEffect, useState, type ReactNode } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import {
   ArrowLeft, ArrowRightLeft, BarChart3, ChevronDown, ChevronUp, ExternalLink, Eye, EyeOff, LayoutGrid, Loader2,
-  Globe2, LogOut, MessageCircle, Pencil, RefreshCw, Search, ShieldCheck, Users, X,
+  Globe2, LogOut, MessageCircle, Pencil, RefreshCw, Search, ShieldCheck, Users, Wand2, X,
 } from 'lucide-react';
+import StudioTab from '../components/admin/StudioTab';
 import { TEAM, cardLimit } from '../lib/plans';
 import { adminApi, type AdminCard, type AdminDomain, type AdminLog, type AdminStats, type AdminUser, type PlanHow, type PlanId } from '../lib/adminApi';
 import { useAuth } from '../lib/auth';
@@ -161,7 +162,7 @@ function Overview({ rev }: { rev: number }) {
         <Kpi label="Complimentary or paid outside Stripe" value={stats.offline} sub="Not counted in the monthly estimate" />
         <Kpi tone="orange" label="Cards" value={stats.cards} sub={`${stats.published} live`} />
         <Kpi label="Card views (7 days)" value={stats.views_7d.toLocaleString()} sub={`${stats.saves_7d.toLocaleString()} saved to phones`} />
-        <Kpi label="Taps (7 days)" value={stats.taps_7d.toLocaleString()} sub="Calls, texts, bookings, shares" />
+        <Kpi label="Actions (7 days)" value={stats.taps_7d.toLocaleString()} sub="Calls, texts, bookings, shares" />
       </div>
 
       <div className="adm-grid">
@@ -511,11 +512,12 @@ function TransferDialog({ card, ctx }: { card: AdminCard; ctx: Ctx }) {
 }
 
 /* ------------------------------------------------------------------ the page */
-type Tab = 'overview' | 'customers' | 'cards' | 'domains';
+type Tab = 'overview' | 'customers' | 'cards' | 'studio' | 'domains';
 const TABS: { id: Tab; label: string; icon: typeof Users }[] = [
   { id: 'overview', label: 'Overview', icon: BarChart3 },
   { id: 'customers', label: 'Customers', icon: Users },
   { id: 'cards', label: 'Cards', icon: LayoutGrid },
+  { id: 'studio', label: 'Studio', icon: Wand2 },
   { id: 'domains', label: 'Domains', icon: Globe2 },
 ];
 
@@ -523,7 +525,7 @@ export default function Admin() {
   const { session, demo } = useAuth();
   const [params, setParams] = useSearchParams();
   const raw = params.get('tab');
-  const tab: Tab = raw === 'customers' || raw === 'cards' || raw === 'domains' ? raw : 'overview';
+  const tab: Tab = raw === 'customers' || raw === 'cards' || raw === 'studio' || raw === 'domains' ? raw : 'overview';
   const setTab = (t: Tab) => setParams(t === 'overview' ? {} : { tab: t }, { replace: true });
   const [dialog, setDialog] = useState<Dialog>(null);
   const [notice, setNotice] = useState<{ text: string; bad: boolean } | null>(null);
@@ -566,6 +568,7 @@ export default function Admin() {
           {tab === 'overview' && <Overview rev={rev} />}
           {tab === 'customers' && <Customers ctx={ctx} rev={rev} />}
           {tab === 'cards' && <CardsTab ctx={ctx} rev={rev} />}
+          {tab === 'studio' && <StudioTab flash={flash} rev={rev} />}
           {tab === 'domains' && <DomainsTab ctx={ctx} rev={rev} />}
         </div>
       </main>

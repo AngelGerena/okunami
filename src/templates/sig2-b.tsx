@@ -123,6 +123,7 @@ export function Toolbelt() {
             <Act key={a.key} a={a} className={`tb__pocket ${i === 0 ? 'is-primary' : ''}`} elId={i === 0 ? 'accentDetail' : 'heroBand'}><span className="tb__rivet" /><span className="tb__ic">{a.icon}</span><span className="tb__l">{a.label}</span></Act>
           ))}</div>
         </section>
+        <div className="row"><ShareBtn /><QrBtn /></div>
         {data.tagline && <p className="tb__tag" {...el('body')}>{data.tagline}</p>}
         {data.highlights.length > 0 && <div className="tb__jobs">{data.highlights.map((h) => <article key={h.id} {...el('cardBg')}><span {...el('icons')}><HIcon name={h.icon} size={22} /></span><b {...el('body')}>{h.title}</b><small {...el('caption')}>{h.subtitle}</small></article>)}</div>}
         <Gallery variant="pair" title="Before and after" max={4} />
@@ -193,10 +194,10 @@ export function Trading() {
           <span className="tc__face back" {...el('cardBg')}>
             <b className="tc__bh" {...el('name')}>{data.fullName}</b>
             <ul>{data.highlights.map((h) => <li key={h.id}><span {...el('accentDetail')}>{h.title}</span><small {...el('caption')}>{h.subtitle}</small></li>)}</ul>
-            <small className="tc__tap" {...el('caption')}>Tap to flip back</small>
+            <small className="tc__tap" {...el('caption')}>Press to flip back</small>
           </span>
         </button>
-        <p className="tc__hint" {...el('caption')}>Tap the card to flip it</p>
+        <p className="tc__hint" {...el('caption')}>Press the card to flip it</p>
         <div className="stack-sm full">
           {data.bookingUrl && <Btn variant="primary" block href={webHref(data.bookingUrl)} icon={<CalendarDays size={18} />}>Book a session</Btn>}
           <div className="row"><SaveBtn variant="secondary" /><ShareBtn iconOnly /><QrBtn iconOnly /></div>
@@ -234,6 +235,7 @@ export function Turntable() {
             <span className="tt__padic">{a.icon}</span><span className="tt__padl">{a.label}</span>
           </Act>
         ))}</div>
+        <div className="row"><QrBtn /></div>
         {data.highlights.length > 0 && <div className="tt__genres">{data.highlights.map((h) => <span key={h.id} className="tt__genre" {...el('cardBg')}><b {...el('body')}>{h.title}</b><small {...el('caption')}>{h.subtitle}</small></span>)}</div>}
         <Gallery variant="strip" title="Live sets" />
         <SocialLinks variant="pills" title="" />
@@ -331,7 +333,7 @@ export function Invitation() {
             <p className="iv__script" {...el('accentDetail')}>{data.fullName}</p>
             <p className="iv__title" {...el('caption')}>{data.jobTitle}</p>
           </div>
-          <span className="iv__front" {...el('heroBand')} />
+          <span className="iv__front" {...el('heroBand')}><span className="iv__addr" {...el('accentDetail')}>{data.business || data.fullName}</span></span>
           <span className="iv__flap" {...el('heroBand')}><span className="iv__seal" {...el('accentDetail')}>{initials(data.fullName)}</span></span>
         </div>
         {data.tagline && <p className="iv__tag" {...el('body')}>{data.tagline}</p>}
@@ -384,7 +386,7 @@ export function Inbox() {
   const first = (data.fullName || 'Me').split(' ')[0];
   const subjects: Record<string, string> = {
     save: `Add ${first} to your contacts`, call: 'Quick call? I pick up', wa: 'Message me on WhatsApp', book: 'Grab a time on my calendar',
-    email: 'Send me your to-do list', map: 'Where to find me', web: 'See my full services', share: 'Forward this card', qr: 'Scan to save',
+    email: 'Send me your to-do list', map: 'Where to find me', web: 'See my full services', share: 'Forward this card', qr: 'Scan my QR code',
   };
   const [read, setRead] = useState<Record<string, boolean>>({});
   return (
@@ -398,7 +400,7 @@ export function Inbox() {
               <Act a={{ ...a, run: a.run ? () => { setRead((r) => ({ ...r, [a.key]: true })); a.run!(); } : undefined }} className={`ib__mail ${i === 0 ? 'is-primary' : ''}`} elId={i === 0 ? 'iconBg' : 'cardBg'}>
                 <span className="ib__dot" {...el('accentDetail')} />
                 <span className="ib__av" {...el('iconBg')}><span {...el('icons')}>{a.icon}</span></span>
-                <span className="ib__txt"><b {...el('body')}>{subjects[a.key] ?? a.label}</b><small {...el('caption')}>{a.sub || data.business || 'Tap to open'}</small></span>
+                <span className="ib__txt"><b {...el('body')}>{subjects[a.key] ?? a.label}</b><small {...el('caption')}>{a.sub || data.business || 'Press to open'}</small></span>
                 <span className="ib__when" {...el('caption')}>{i === 0 ? 'now' : `${i * 7}m`}</span>
               </Act>
             </li>

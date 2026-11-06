@@ -1,0 +1,640 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Panel de Socio | OKUNAMI</title>
+<meta name="robots" content="noindex, nofollow, noai, noimageai">
+<meta name="theme-color" content="#0B0E2A">
+<meta name="color-scheme" content="dark">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Manrope:wght@400;500;600;700;800&display=swap">
+<style>
+:root{--ink:#F4F5FB;--ink-2:#1E2560;--pink:#FF3CAC;--pink-deep:#FF6FC2;--pink-soft:#3A1435;--paper:#0B0E2A;--white:#151A3D;--text:#E7E8F4;--muted:#A3A7C4;--line:#2A3166;--ok:#6FD39A;--ok-soft:#12382A;--bad:#FF8A7A;--warn:#F2C35B;--warn-soft:#3A2E0C;--on-pink:#0B0E2A;color-scheme:dark}
+/* Dark navy look (Nov 2026): --ink is now the light text color; fills that used to be dark navy use --ink-2 or pink. */
+html{-webkit-text-size-adjust:100%;overflow-x:hidden;font-variant-emoji:text}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--text);font-family:'Manrope',system-ui,sans-serif;font-size:15px;line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+button,input,select,textarea{font:inherit;color:inherit}
+[hidden]{display:none!important}
+:focus-visible{outline:2px solid var(--pink);outline-offset:2px}
+.wrap{max-width:560px;margin:0 auto;padding:calc(10px + env(safe-area-inset-top,0px)) 16px 40px;display:flex;flex-direction:column;gap:16px}
+.top{display:flex;justify-content:space-between;align-items:center;min-height:44px}
+.brand{font-weight:800;letter-spacing:3px;font-size:13px;color:var(--ink)}
+.lang{display:flex;background:var(--white);border:1px solid var(--line);border-radius:999px;padding:3px}
+.lang button{min-width:42px;min-height:32px;border:0;border-radius:999px;background:transparent;font-size:12px;font-weight:800;color:var(--muted);cursor:pointer}
+.lang button[aria-pressed="true"]{background:var(--ink);color:var(--white)}
+h1{margin:0;font-family:'Fraunces',Georgia,serif;font-size:34px;line-height:1.05;color:var(--ink)}
+.sub{margin:4px 0 0;color:var(--muted);font-size:14px}
+.card{background:var(--white);border:1px solid var(--line);border-radius:18px;padding:16px}
+.field{display:flex;flex-direction:column;gap:6px}
+.field>span{font-size:12px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--muted)}
+.field input,.field textarea,.field select{min-height:48px;padding:10px 14px;border:1.5px solid var(--line);border-radius:12px;background:var(--white);font-size:16px;width:100%}
+.field textarea{min-height:80px;resize:vertical}
+.btn{min-height:48px;padding:0 20px;border:0;border-radius:999px;font-weight:800;font-size:14px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:8px;text-decoration:none}
+.btn.pri{background:var(--ink);color:var(--white)}
+.btn.pink{background:var(--pink);color:var(--ink)}
+.btn.soft{background:var(--paper);color:var(--ink);border:1px solid var(--line)}
+.btn.sm{min-height:40px;padding:0 14px;font-size:13px}
+.btn:disabled{opacity:.6;cursor:default}
+.err{margin:0;color:var(--bad);font-size:14px;font-weight:600}
+.stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.stat{background:var(--white);border:1px solid var(--line);border-radius:16px;padding:14px;display:flex;flex-direction:column;gap:2px;min-width:0}
+.stat b{font-family:'Fraunces',Georgia,serif;font-size:28px;line-height:1.05;color:var(--ink)}
+.stat span{font-size:11px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--muted)}
+.stat.hot{background:var(--ink);border-color:var(--ink)}
+.stat.hot b{color:var(--pink)}
+.stat.hot span{color:#C9CBE6}
+.due{display:flex;gap:10px;align-items:center;background:var(--warn-soft);color:var(--warn);border-radius:14px;padding:12px 14px;font-weight:700;font-size:14px}
+.due svg{flex:none;width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.chips{display:flex;gap:8px;overflow-x:auto;padding-bottom:2px;scrollbar-width:none}
+.chips::-webkit-scrollbar{display:none}
+.chips button{flex:none;min-height:38px;padding:0 14px;border-radius:999px;border:1px solid var(--line);background:var(--white);font-size:13px;font-weight:700;color:var(--muted);cursor:pointer;white-space:nowrap}
+.chips button[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--white)}
+.list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:12px}
+.lead{background:var(--white);border:1px solid var(--line);border-radius:18px;padding:16px;display:flex;flex-direction:column;gap:10px}
+.lead .row1{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+.lead .who{min-width:0}
+.lead .who b{display:block;font-size:17px;color:var(--ink);overflow-wrap:anywhere}
+.lead .who span{display:block;font-size:13px;color:var(--muted);overflow-wrap:anywhere}
+.badge{flex:none;padding:4px 10px;border-radius:999px;font-size:12px;font-weight:800;background:var(--paper);color:var(--ink-2);white-space:nowrap}
+.badge.paid{background:var(--ok-soft);color:var(--ok)}
+.badge.new{background:var(--pink-soft);color:var(--pink-deep)}
+.badge.lost{background:#F0F0F4;color:var(--muted)}
+.badge.pay{background:var(--warn-soft);color:var(--warn)}
+.meta{display:flex;flex-wrap:wrap;gap:6px}
+.tag{font-size:12px;font-weight:700;color:var(--muted);background:var(--paper);border-radius:8px;padding:3px 8px}
+.tag.fu{background:var(--warn-soft);color:var(--warn)}
+.money{font-size:14px;color:var(--ink)}
+.acts{display:flex;flex-wrap:wrap;gap:8px}
+.edit{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.edit .full{grid-column:1/-1}
+.edit select,.edit input,.edit textarea{min-height:44px;padding:8px 12px;border:1.5px solid var(--line);border-radius:12px;background:var(--white);font-size:15px;width:100%;min-width:0}
+.edit textarea{min-height:64px;resize:vertical}
+.edit label{display:flex;flex-direction:column;gap:4px;font-size:11px;font-weight:800;letter-spacing:.8px;text-transform:uppercase;color:var(--muted);min-width:0}
+.empty{text-align:center;color:var(--muted);padding:24px 8px}
+.toast{position:fixed;left:50%;bottom:calc(18px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--white);padding:12px 18px;border-radius:999px;font-weight:700;font-size:14px;z-index:9;max-width:calc(100% - 32px);text-align:center}
+.pick{display:flex;gap:8px;align-items:center}
+.pick select{min-height:40px;border:1px solid var(--line);border-radius:999px;padding:0 12px;background:var(--white);font-weight:700}
+.bonus{background:var(--white);border:1px solid var(--line);border-radius:16px;padding:14px;display:flex;flex-direction:column;gap:8px}
+.bonus .bh{display:flex;justify-content:space-between;align-items:baseline;gap:10px;font-size:14px;font-weight:800;color:var(--ink)}
+.bonus .bh span{font-size:13px;font-weight:700;color:var(--muted);text-align:right}
+.bar{height:10px;border-radius:999px;background:var(--paper);overflow:hidden}
+.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--pink),var(--pink-deep));border-radius:999px}
+.bmonths{display:flex;flex-direction:column;gap:6px}
+.bmonths div{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:13px;color:var(--text)}
+.how{background:var(--white);border:1px solid var(--line);border-radius:16px;padding:0 16px}
+.how summary{list-style:none;cursor:pointer;min-height:52px;display:flex;align-items:center;justify-content:space-between;font-weight:800;color:var(--ink)}
+.how summary::-webkit-details-marker{display:none}
+.how summary svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;transition:transform .2s}
+.how[open] summary svg{transform:rotate(180deg)}
+.how .rates{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:2px 0 12px}
+.how .rate{background:var(--paper);border-radius:12px;padding:10px;display:flex;flex-direction:column;gap:2px;min-width:0}
+.how .rate b{font-family:'Fraunces',Georgia,serif;font-size:24px;line-height:1.05;color:var(--pink-deep)}
+.how .rate span{font-size:12px;font-weight:700;color:var(--muted);line-height:1.3}
+.how ul{margin:0 0 14px;padding-left:18px;display:flex;flex-direction:column;gap:6px;font-size:14px;color:var(--text)}
+.how p{margin:0 0 10px;font-size:14px;color:var(--text)}
+.tree{display:flex;flex-direction:column;align-items:stretch;margin:4px 0 14px;font-variant-numeric:tabular-nums}
+.tree .nd{background:var(--white);border:1.5px solid var(--line);border-radius:14px;padding:10px 12px;display:flex;flex-direction:column;gap:2px;min-width:0;text-align:center}
+.tree .nd span{font-size:12px;font-weight:700;color:var(--muted);line-height:1.3}
+.tree .nd b{font-family:'Fraunces',Georgia,serif;font-size:22px;line-height:1.1;color:var(--ink)}
+.tree .root{align-self:center;min-width:180px;background:var(--ink);border-color:var(--ink)}
+.tree .root span{color:#C9CBE6}.tree .root b{color:var(--white)}
+.tree .stem{align-self:center;width:2px;height:16px;background:var(--line)}
+.tree .brs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;position:relative;padding:16px 0}
+.tree .brs::before,.tree .brs::after{content:"";position:absolute;left:25%;right:25%;height:2px;background:var(--line)}
+.tree .brs::before{top:0}.tree .brs::after{bottom:0}
+.tree .br{position:relative;display:flex;flex-direction:column;align-items:stretch;justify-content:space-between;gap:0}
+.tree .br::before,.tree .br::after{content:"";position:absolute;left:50%;width:2px;height:16px;background:var(--line);transform:translateX(-1px)}
+.tree .br::before{top:-16px}.tree .br::after{bottom:-16px}
+.tree .pct{align-self:center;margin:6px 0;padding:3px 10px;border-radius:999px;background:var(--pink-soft);color:var(--pink-deep);font-size:13px;font-weight:800}
+.tree .out{border-color:var(--pink)}
+.tree .out b{color:var(--pink-deep)}
+.tree .total{align-self:center;min-width:200px;background:var(--pink);border-color:var(--pink)}
+.tree .total span,.tree .total b{color:var(--ink)}
+.tree .plus{display:flex;flex-direction:column;gap:6px;margin-top:12px}
+.tree .plus p{margin:0;font-size:13px;color:var(--text);background:var(--paper);border-radius:10px;padding:8px 10px}
+.tree .plus p b{color:var(--ink)}
+.tree .ask{margin:0 0 8px;text-align:center;font-size:13px;font-weight:700;color:var(--muted)}
+.tree .seg{align-self:center;display:flex;background:var(--paper);border:1px solid var(--line);border-radius:999px;padding:3px;margin-bottom:12px}
+.tree .seg button{min-width:96px;min-height:40px;border:0;border-radius:999px;background:transparent;font:800 14px 'Manrope',sans-serif;color:var(--muted);cursor:pointer}
+.tree .seg button[aria-pressed="true"]{background:var(--ink);color:var(--white)}
+.tree .nd b{overflow-wrap:anywhere}
+.tree .tnote{margin:12px 0 0;font-size:13px;line-height:1.45;color:var(--text);text-align:center}
+.ctag{display:inline-block;white-space:nowrap;font-size:12px;font-weight:800;border-radius:8px;padding:3px 8px;margin-left:6px;vertical-align:1px}
+.ctag.pending{background:var(--warn-soft);color:var(--warn)}
+.ctag.ready{background:var(--pink-soft);color:var(--pink-deep)}
+.ctag.paid{background:var(--ok-soft);color:var(--ok)}
+.ctag.clawback{background:#FBE7E3;color:var(--bad)}
+.stats-wrap{position:relative}
+.stat .lbl,.bonus .lbl{display:flex;align-items:center;gap:6px}
+.stat .lbl span{font-size:11px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:inherit}
+.stat .hint{font-size:12px;line-height:1.4;color:var(--muted);letter-spacing:0;text-transform:none;font-weight:500}
+.stat.hot .hint{color:#C9CBE6}
+.bonus .hint{font-size:12px;line-height:1.45;color:var(--muted)}
+.ib{text-transform:none;letter-spacing:0;flex:none;width:24px;height:24px;padding:0;border:1.5px solid currentColor;border-radius:50%;background:transparent;color:var(--muted);font:800 12px/1 'Manrope',sans-serif;cursor:pointer;display:inline-grid;place-items:center;position:relative}
+.ib::after{content:"";position:absolute;inset:-10px}
+.stat.hot .ib{color:#C9CBE6}
+.ib[aria-expanded="true"]{background:var(--pink);border-color:var(--pink);color:var(--ink)}
+.stats .tip{grid-column:1/-1;margin-top:0}
+.tip{position:relative;margin-top:10px;background:var(--ink);color:#F4F5FB;border-radius:16px;padding:12px 14px 14px;display:flex;flex-direction:column;gap:6px;box-shadow:0 18px 40px -14px rgba(11,14,42,.55)}
+.tip .arrow{position:absolute;top:-6px;width:12px;height:12px;background:var(--ink);transform:rotate(45deg)}
+.tip .th{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.tip .th b{font-size:15px}
+.tip p{margin:0;font-size:14px;line-height:1.5;color:#C9CBE6}
+.tip p b{color:var(--pink)}
+.tip .tn{font-size:13px;color:var(--pink-soft)}
+.tx{flex:none;width:36px;height:36px;border:0;border-radius:50%;background:rgba(255,255,255,.1);color:inherit;font:700 18px 'Manrope',sans-serif;cursor:pointer}
+.advice{display:flex;gap:10px;align-items:flex-start;background:var(--pink-soft);color:var(--ink);border-radius:14px;padding:10px 10px 10px 14px}
+.advice svg{flex:none;width:20px;height:20px;margin-top:2px;stroke:var(--pink-deep);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.advice p{margin:0;flex:1;font-size:13px;line-height:1.45}
+.advice .tx{background:rgba(11,14,42,.06);width:32px;height:32px}
+.lead .why{margin:0;font-size:12px;color:var(--muted)}
+.foot{text-align:center;color:var(--muted);font-size:12px}
+.foot a{color:var(--muted)}
+/* dark navy overrides */
+.lang button[aria-pressed="true"]{background:var(--pink);color:var(--on-pink)}
+.btn.pri{background:var(--ink);color:var(--on-pink)}
+.btn.pink{color:var(--on-pink)}
+.stat.hot{background:var(--ink-2);border-color:#353E86}
+.stat.hot b{color:var(--pink)}
+.chips button[aria-pressed="true"]{background:var(--pink);border-color:var(--pink);color:var(--on-pink)}
+.toast{background:var(--ink);color:var(--on-pink)}
+.badge{color:#C9CBE6}
+.badge.lost{background:var(--ink-2);color:var(--muted)}
+.ctag.clawback{background:#3A1712;color:var(--bad)}
+.tree .root{background:var(--ink-2);border-color:#353E86}
+.tree .root b{color:var(--ink)}
+.tree .total span,.tree .total b{color:var(--on-pink)}
+.tree .seg button[aria-pressed="true"]{background:var(--pink);color:var(--on-pink)}
+.ib[aria-expanded="true"]{color:var(--on-pink)}
+.tip{background:var(--ink-2);border:1px solid #353E86;box-shadow:0 18px 40px -14px rgba(0,0,0,.6)}
+.tip .arrow{background:var(--ink-2);border-left:1px solid #353E86;border-top:1px solid #353E86}
+.advice{color:var(--text)}
+.tip .tn{color:#FFB3DC}
+.tip .x,.tip button{color:#C9CBE6}
+.advice .tx{background:rgba(255,255,255,.08)}
+.field input,.field textarea,.field select,.edit select,.edit input,.edit textarea,.pick select{color:var(--text)}
+.toast,.btn.pri{font-weight:800}
+/* iOS date fields: keep them inside the form */
+.field{min-width:0}
+input[type=date]{-webkit-appearance:none;appearance:none;display:block;min-width:0;max-width:100%;text-align:left}
+input[type=date]::-webkit-date-and-time-value{text-align:left}
+@keyframes payflash{0%,100%{box-shadow:0 0 0 0 rgba(255,60,172,0)}50%{box-shadow:0 0 0 8px rgba(255,60,172,.45)}}
+.paylink.flash{animation:payflash .9s ease-in-out 3}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <div class="top">
+    <span class="brand">OKUNAMI</span>
+    <div class="lang" role="group" aria-label="Language"><button type="button" data-lang="en" aria-pressed="false">EN</button><button type="button" data-lang="es" aria-pressed="true">ES</button></div>
+  </div>
+
+  <!-- Sign in -->
+  <section id="login" class="card" style="display:flex;flex-direction:column;gap:14px">
+    <div><h1 data-t="loginH">Panel de Socio</h1><p class="sub" data-t="loginS">Tus clientes, tus ventas y tu comisión en un solo lugar.</p></div>
+    <form id="loginF" style="display:flex;flex-direction:column;gap:12px" novalidate>
+      <label class="field"><span>PIN</span><input id="pin" type="password" inputmode="numeric" autocomplete="current-password" maxlength="64" required></label>
+      <p class="err" id="pinErr" role="alert" hidden></p>
+      <button class="btn pri" id="pinBtn" type="submit" data-t="enter">Entrar</button>
+    </form>
+  </section>
+
+  <!-- Dashboard -->
+  <section id="app" hidden style="display:flex;flex-direction:column;gap:16px">
+    <div>
+      <h1 id="hello"></h1>
+      <p class="sub" id="helloS" data-t="helloS">Así van tus ventas de OKUNAMI.</p>
+      <div class="pick" id="pickWrap" hidden style="margin-top:10px"><select id="pick" aria-label="Socio"></select></div>
+    </div>
+
+    <div class="stats-wrap" id="statsWrap">
+    <div class="stats">
+      <div class="stat hot"><b id="sReady">$0</b><span class="lbl"><span data-t="sReady">Listo para cobrar</span><button type="button" class="ib" data-tip="ready" aria-label="Info" aria-expanded="false">i</button></span><small class="hint" data-t="hReady">Te lo pagamos dentro de 7 días.</small></div>
+      <div class="stat"><b id="sPending">$0</b><span class="lbl"><span data-t="sPending">Pendiente (30 días)</span><button type="button" class="ib" data-tip="pending" aria-label="Info" aria-expanded="false">i</button></span><small class="hint" data-t="hPending">Ventas en su espera de 30 días.</small></div>
+      <div class="stat"><b id="sEarned">$0</b><span class="lbl"><span data-t="sEarned">Ganado en total</span><button type="button" class="ib" data-tip="earned" aria-label="Info" aria-expanded="false">i</button></span><small class="hint" data-t="hEarned">Desde tu primera venta, con bonos.</small></div>
+      <div class="stat"><b id="sPaid">0</b><span class="lbl"><span data-t="sPaid">Ventas</span><button type="button" class="ib" data-tip="sales" aria-label="Info" aria-expanded="false">i</button></span><small class="hint" data-t="hSales">Clientes que ya pagaron.</small></div>
+    <div class="tip" id="tip" role="dialog" aria-live="polite" hidden><i class="arrow" id="tipArrow"></i><div class="th"><b id="tipH"></b><button type="button" class="tx" id="tipX" aria-label="Cerrar">×</button></div><p id="tipP"></p><p class="tn" id="tipN" hidden></p></div>
+    </div>
+    </div>
+
+    <div class="bonus" id="bonus">
+      <div class="bh"><b class="lbl"><span data-t="bonusH">Bono del mes</span><button type="button" class="ib" data-tip="bonus" aria-label="Info" aria-expanded="false">i</button></b><span id="bonusT"></span></div>
+      <div class="bar" role="progressbar" aria-valuemin="0" id="bonusBar"><i id="bonusFill" style="width:0%"></i></div>
+      <small class="hint" id="bonusHint"></small>
+      <div class="tip" id="tipB" role="dialog" aria-live="polite" hidden><div class="th"><b id="tipBH"></b><button type="button" class="tx" id="tipBX" aria-label="Cerrar">×</button></div><p id="tipBP"></p></div>
+      <div class="bmonths" id="bonusMonths" hidden></div>
+    </div>
+
+    <details class="how" id="how">
+      <summary><span data-t="howH">Cómo ganas</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary>
+      <div class="rates">
+        <div class="rate"><b>25%</b><span data-t="r1">de cada diseño personalizado</span></div>
+        <div class="rate"><b>40%</b><span data-t="r2">de los primeros 12 meses del plan</span></div>
+        <div class="rate"><b>$100</b><span data-t="r3">de bono con 10+ clientes en un mes</span></div>
+      </div>
+      <div class="tree" id="howTree" aria-label="Ejemplo de comisión"></div>
+      <ul id="howList"></ul>
+      <p id="howEx" style="color:var(--muted)"></p>
+    </details>
+
+    <div class="advice" id="advice" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5"/><path d="M12 8h.01"/></svg><p data-t="advice" data-html="1"></p><button type="button" class="tx" id="adviceX" aria-label="Cerrar">×</button></div>
+
+    <div class="due" id="due" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span id="dueT"></span></div>
+
+    <div style="display:flex;gap:10px;align-items:center;justify-content:space-between">
+      <button class="btn pink" type="button" id="addBtn" data-t="add">+ Agregar persona</button>
+      <button class="btn soft sm" type="button" id="refresh" data-t="refresh">Actualizar</button>
+    </div>
+
+    <form id="addF" class="card" hidden novalidate style="display:flex;flex-direction:column;gap:12px">
+      <b data-t="addH" style="font-size:17px;color:var(--ink)">Alguien con quien hablaste</b>
+      <label class="field"><span data-t="fName">Nombre</span><input id="aName" autocomplete="off" required></label>
+      <label class="field"><span data-t="fPhone">Teléfono o WhatsApp</span><input id="aPhone" type="tel" inputmode="tel" autocomplete="off"></label>
+      <label class="field"><span>Email</span><input id="aEmail" type="email" inputmode="email" autocomplete="off"></label>
+      <label class="field"><span data-t="fBiz">Negocio</span><input id="aBiz" autocomplete="off"></label>
+      <label class="field"><span data-t="fNotes">Notas</span><textarea id="aNotes"></textarea></label>
+      <label class="field"><span data-t="fFollow">Dar seguimiento el</span><input id="aFollow" type="date"></label>
+      <p class="err" id="addErr" role="alert" hidden></p>
+      <div style="display:flex;gap:10px"><button class="btn pri" type="submit" id="addSave" data-t="save">Guardar</button><button class="btn soft" type="button" id="addCancel" data-t="cancel">Cancelar</button></div>
+    </form>
+
+    <div class="chips" id="chips" role="group" aria-label="Filter"></div>
+    <ul class="list" id="list"></ul>
+    <button class="btn soft sm" type="button" id="out" data-t="out" style="align-self:center">Salir</button>
+  </section>
+
+  <p class="foot">OKUNAMI · <span data-t="crafted">Hecho por</span> <a href="https://finessemedia.pro" target="_blank" rel="noopener">Finesse Media</a></p>
+</main>
+<p class="toast" id="toast" role="status" aria-live="polite" hidden></p>
+
+<script>
+(function () {
+  var API = 'https://hrwzzpmltpsqyynmmeof.supabase.co/functions/v1/okunami-partner';
+  try { var o = new URLSearchParams(location.search).get('api'); if (o && /^http:\/\/localhost:\d+\//.test(o)) API = o; } catch (e) {}
+  var KEY = 'okunami-socio-token';
+  var D = {
+    es: { title: 'Panel de Socio | OKUNAMI', loginH: 'Panel de Socio', loginS: 'Tus clientes, tus ventas y tu comisión en un solo lugar.', enter: 'Entrar',
+      hello: 'Hola, {n}', helloS: 'Así van tus ventas de OKUNAMI.', sReady: 'Listo para cobrar', sPending: 'Pendiente (30 días)', sEarned: 'Ganado en total', sPaid: 'Ventas',
+      bonusH: 'Bono del mes', bonusT: function (n, k) { return n >= k ? 'Ganaste $100 este mes (' + n + ' clientes)' : n + ' de ' + k + ' clientes nuevos'; },
+      hReady: 'Te lo pagamos dentro de 7 días.', hPending: 'Ventas en su espera de 30 días.', hEarned: 'Desde tu primera venta, con bonos.', hSales: 'Clientes que ya pagaron.',
+      bonusHint: function (m) { return '10 clientes nuevos que paguen en ' + m + ' = $100 extra. Un bono por mes.'; },
+      advice: '<b>Consejo:</b> toca <b>+ Agregar persona</b> y guarda al cliente. Su tarjeta aparece abajo en la lista con un botón rosa <b>Copiar link de pago</b>. Envíale ese link para que pague y la venta queda a tu nombre.',
+      tips: {
+        ready: ['¿Qué es Listo para cobrar?', 'Comisión de ventas que ya pasaron su espera de 30 días, más bonos ganados. Te pagamos dentro de 7 días por PayPal o transferencia. Si hubo un reembolso, ya está descontado.'],
+        pending: ['¿Por qué está pendiente?', 'Cada venta espera 30 días por si el cliente pide reembolso. Después pasa a <b>Listo para cobrar</b> y te pagamos dentro de 7 días.'],
+        earned: ['¿Qué es Ganado en total?', 'Todo lo que has ganado desde que empezaste: diseños, planes y bonos. Incluye lo que ya te pagamos.'],
+        sales: ['¿Qué cuenta como venta?', 'Un cliente a tu nombre que ya pagó. Las personas que todavía están decidiendo aparecen en tu lista como Nuevo o Hablando.'],
+        bonus: ['¿Cómo funciona el bono?', 'Cierra 10 clientes nuevos que paguen en el mismo mes y ganas <b>$100</b>. Es un bono por mes, aunque cierres más de 10. El conteo empieza de nuevo el día 1 y el bono se paga cuando cierra el mes.']
+      },
+      nextClear: function (n, d) { return 'Próxima en liberarse: ' + n + ', ' + d + '.'; },
+      why: { pending: function (d, p) { return 'Se libera el ' + d + '. Te pagamos a más tardar el ' + p + '.'; }, ready: function (p) { return 'Ya se liberó. Te pagamos a más tardar el ' + p + '.'; }, clawback: 'El cliente recibió reembolso. Este monto se descuenta de tu próximo pago.' },
+      bonusM: function (m, n) { return 'Bono de ' + m + ' (' + n + ' clientes): $100'; }, bonusPaid: 'Pagado', bonusPayBtn: 'Marcar bono pagado', bonusWait: 'Se paga al cerrar el mes',
+      howH: 'Cómo ganas', r1: 'de cada diseño personalizado', r2: 'de los primeros 12 meses del plan', r3: 'de bono con 10+ clientes en un mes',
+      how: ['Ganas 25% de cada diseño personalizado que vendas.', 'Ganas 40% de lo que el cliente paga por su plan durante sus primeros 12 meses. Si paga anual, cobras todo de una vez; si paga mensual, cobras mes a mes hasta 12 pagos. Después de los 12 meses ya no hay comisión.', 'Bono de $100 en cualquier mes que cierres 10 clientes nuevos o más que paguen.', 'Se paga por venta cuando el pago del cliente se libera, 30 días después de pagar.', 'La comisión es sobre el precio del plan y del diseño. No incluye cargos de procesamiento, impuestos ni créditos de IA.', 'Si un cliente pide reembolso o disputa el pago, esa comisión se descuenta del próximo pago.'],
+      howEx: 'Con un diseño de $149 en vez de $99, la misma venta te deja $96.85.',
+      tree: { aria: 'Ejemplo de comisión en una venta', ask: '¿Cómo paga el cliente su plan?', yearB: 'Anual', monthB: 'Mensual', root: 'El cliente paga', design: 'Diseño personalizado', you: 'Para ti', total: 'Tu comisión en esta venta',
+        year: { root: '$248', plan: 'Pro Plus anual', price: '$149 al año', out: '$59.60', total: '$84.35', note: 'Paga el año completo de una vez, así que cobras tu 40% del plan de una vez.' },
+        month: { root: '$99 + $16 al mes', plan: 'Pro Plus mensual', price: '$16 al mes', out: '$6.40 al mes', total: '$24.75 + $6.40 al mes', note: 'Cobras $6.40 por cada mes que pague, hasta 12 pagos: $76.80 en total. Ganas más que con el anual porque el mensual le cuesta más al cliente en el año ($192 en vez de $149).' },
+        bonus: '<b>+ $100</b> de bono el mes que cierres 10 clientes nuevos o más (uno por mes).', none: '<b>$0</b> después de los primeros 12 meses, y nada sobre cargos de procesamiento, impuestos ni créditos de IA.' },
+      cState: { pending: 'Pendiente hasta {d}', ready: 'Lista para pago', paid: 'Pagada el {d}', clawback: 'Reembolso: se descuenta {m}' },
+      cSplit: function (d, p) { return [d ? 'diseño ' + d : '', p ? 'plan ' + p : ''].filter(Boolean).join(' + '); },
+      fDesign: 'Diseño ($)', fPlan: 'Pago del plan ($)', fPays: 'Pagos mensuales cobrados', payC: 'Marcar comisión pagada', settle: 'Marcar reembolso descontado',
+      clawT: function (m) { return 'Hay ' + m + ' en reembolsos que se descuentan del próximo pago.'; },
+      add: '+ Agregar persona', refresh: 'Actualizar', addH: 'Alguien con quien hablaste', fName: 'Nombre', fPhone: 'Teléfono o WhatsApp', fBiz: 'Negocio',
+      fNotes: 'Notas', fFollow: 'Dar seguimiento el', save: 'Guardar', cancel: 'Cancelar', out: 'Salir', crafted: 'Hecho por',
+      due: function (n) { return n === 1 ? 'Tienes 1 persona para dar seguimiento hoy.' : 'Tienes ' + n + ' personas para dar seguimiento hoy.'; },
+      f: { all: 'Todos', due: 'Seguimiento', new: 'Nuevos', talk: 'Hablando', paid: 'Pagados', lost: 'No interesados' },
+      st: { new: 'Nuevo', contacted: 'Contactado', interested: 'Interesado', not_interested: 'No interesado', checkout_started: 'Empezó a pagar', awaiting_payment: 'Pago pendiente', paid: 'Pagado' },
+      src: { agent: 'Tu tarjeta', form: 'Tu tarjeta', 'mayra-card': 'Tarjeta de Mayra', manual: 'Agregado por ti' },
+      status: 'Estado', notes: 'Notas', follow: 'Seguimiento', saveRow: 'Guardar', contacted: 'Hablé hoy', payLink: 'Copiar link de pago', call: 'Llamar', text: 'Texto',
+      amount: 'Monto pagado ($)', markPaid: 'Marcar pagado', lastC: 'Último contacto', added: 'Agregado', paidOn: 'Pagado el', commission: 'Tu comisión',
+      plan: { pro: 'Pro', plus: 'Pro Plus', team: 'Business' }, month: 'mensual', year: 'anual', design: 'diseño personalizado',
+      empty: 'Nada por aquí todavía.', saved: 'Guardado', savedPay: 'Guardado. Su botón Copiar link de pago está en su tarjeta.', copied: 'Link copiado. Pégalo en WhatsApp o en un texto.', wrong: 'PIN incorrecto.', locked: 'Demasiados intentos. Espera 15 minutos.',
+      fail: 'No se pudo conectar. Intenta otra vez.', needName: 'Escribe el nombre.', needAmount: 'Pon el monto pagado.' },
+    en: { title: 'Partner Dashboard | OKUNAMI', loginH: 'Partner Dashboard', loginS: 'Your clients, your sales and your commission in one place.', enter: 'Sign in',
+      hello: 'Hi, {n}', helloS: 'Here is how your OKUNAMI sales are going.', sReady: 'Ready to pay out', sPending: 'Pending (30 days)', sEarned: 'Earned in total', sPaid: 'Sales',
+      bonusH: 'Monthly bonus', bonusT: function (n, k) { return n >= k ? 'You earned $100 this month (' + n + ' clients)' : n + ' of ' + k + ' new clients'; },
+      hReady: 'We pay you within 7 days.', hPending: 'Sales in their 30-day wait.', hEarned: 'Since your first sale, bonuses included.', hSales: 'Clients who have paid.',
+      bonusHint: function (m) { return '10 new paying clients in ' + m + ' = $100 extra. One bonus per month.'; },
+      advice: '<b>Tip:</b> tap <b>+ Add person</b> and save the client. Their card shows up in the list below with a pink <b>Copy payment link</b> button. Send them that link to pay and the sale is credited to you.',
+      tips: {
+        ready: ['What is Ready to pay out?', 'Commission from sales that finished their 30-day wait, plus bonuses earned. We pay you within 7 days by PayPal or bank transfer. Any refund is already taken off.'],
+        pending: ['Why is it pending?', 'Every sale waits 30 days in case the client asks for a refund. Then it moves to <b>Ready to pay out</b> and we pay you within 7 days.'],
+        earned: ['What is Earned in total?', 'Everything you have earned since you started: designs, plans and bonuses. It includes what we already paid you.'],
+        sales: ['What counts as a sale?', 'A client in your name who has paid. People still deciding show in your list as New or Talking.'],
+        bonus: ['How does the bonus work?', 'Close 10 new paying clients in the same month and you earn <b>$100</b>. It is one bonus per month, even if you close more than 10. The count starts over on the 1st and the bonus is paid after the month ends.']
+      },
+      nextClear: function (n, d) { return 'Next to clear: ' + n + ', ' + d + '.'; },
+      why: { pending: function (d, p) { return 'Clears on ' + d + '. We pay you by ' + p + '.'; }, ready: function (p) { return 'It cleared. We pay you by ' + p + '.'; }, clawback: 'The client was refunded. This amount comes off your next payout.' },
+      bonusM: function (m, n) { return m + ' bonus (' + n + ' clients): $100'; }, bonusPaid: 'Paid', bonusPayBtn: 'Mark bonus paid', bonusWait: 'Paid after the month ends',
+      howH: 'How you earn', r1: 'of every custom design', r2: 'of the first 12 months of the plan', r3: 'bonus with 10+ clients in a month',
+      how: ['You earn 25% of every custom design you sell.', 'You earn 40% of what the client pays for their plan during their first 12 months. Yearly plans pay you all at once; monthly plans pay you month by month, up to 12 payments. After 12 months there is no commission.', 'A $100 bonus in any month you close 10 or more new paying clients.', 'Paid per sale once the client’s payment clears, 30 days after they pay.', 'Commission is on the plan and design price. It does not include processing fees, taxes or AI credits.', 'If a client gets a refund or disputes the charge, that commission comes off your next payout.'],
+      howEx: 'With a $149 design instead of $99, the same sale earns you $96.85.',
+      tree: { aria: 'Commission example for one sale', ask: 'How does the client pay for the plan?', yearB: 'Yearly', monthB: 'Monthly', root: 'The client pays', design: 'Custom design', you: 'For you', total: 'Your commission on this sale',
+        year: { root: '$248', plan: 'Pro Plus yearly', price: '$149 a year', out: '$59.60', total: '$84.35', note: 'They pay the whole year at once, so you get your 40% of the plan at once.' },
+        month: { root: '$99 + $16 a month', plan: 'Pro Plus monthly', price: '$16 a month', out: '$6.40 a month', total: '$24.75 + $6.40 a month', note: 'You get $6.40 for every month they pay, up to 12 payments: $76.80 in total. It adds up to more than yearly because monthly costs the client more over the year ($192 instead of $149).' },
+        bonus: '<b>+ $100</b> bonus in any month you close 10 or more new clients (one per month).', none: '<b>$0</b> after the first 12 months, and nothing on processing fees, taxes or AI credits.' },
+      cState: { pending: 'Pending until {d}', ready: 'Ready to pay out', paid: 'Paid on {d}', clawback: 'Refund: {m} comes off' },
+      cSplit: function (d, p) { return [d ? 'design ' + d : '', p ? 'plan ' + p : ''].filter(Boolean).join(' + '); },
+      fDesign: 'Design ($)', fPlan: 'Plan payment ($)', fPays: 'Monthly payments collected', payC: 'Mark commission paid', settle: 'Mark refund deducted',
+      clawT: function (m) { return 'There is ' + m + ' in refunds that comes off the next payout.'; },
+      add: '+ Add person', refresh: 'Refresh', addH: 'Someone you talked to', fName: 'Name', fPhone: 'Phone or WhatsApp', fBiz: 'Business',
+      fNotes: 'Notes', fFollow: 'Follow up on', save: 'Save', cancel: 'Cancel', out: 'Sign out', crafted: 'Crafted by',
+      due: function (n) { return n === 1 ? 'You have 1 person to follow up with today.' : 'You have ' + n + ' people to follow up with today.'; },
+      f: { all: 'All', due: 'Follow up', new: 'New', talk: 'Talking', paid: 'Paid', lost: 'Not interested' },
+      st: { new: 'New', contacted: 'Contacted', interested: 'Interested', not_interested: 'Not interested', checkout_started: 'Started paying', awaiting_payment: 'Payment pending', paid: 'Paid' },
+      src: { agent: 'Your card', form: 'Your card', 'mayra-card': "Mayra's card", manual: 'Added by you' },
+      status: 'Status', notes: 'Notes', follow: 'Follow up', saveRow: 'Save', contacted: 'Talked today', payLink: 'Copy payment link', call: 'Call', text: 'Text',
+      amount: 'Amount paid ($)', markPaid: 'Mark paid', lastC: 'Last contact', added: 'Added', paidOn: 'Paid on', commission: 'Your commission',
+      plan: { pro: 'Pro', plus: 'Pro Plus', team: 'Business' }, month: 'monthly', year: 'yearly', design: 'custom design',
+      empty: 'Nothing here yet.', saved: 'Saved', savedPay: 'Saved. Their Copy payment link button is on their card.', copied: 'Link copied. Paste it in WhatsApp or a text.', wrong: 'Wrong PIN.', locked: 'Too many tries. Wait 15 minutes.',
+      fail: 'Could not connect. Try again.', needName: 'Enter the name.', needAmount: 'Enter the amount paid.' }
+  };
+  var PARTNER_ST = ['new', 'contacted', 'interested', 'not_interested'];
+  var ADMIN_ST = PARTNER_ST.concat(['checkout_started', 'awaiting_payment', 'paid']);
+  var lang = 'es', token = '', DATA = null, filter = 'all', reseller = '';
+  try { lang = localStorage.getItem('okunami-socio-lang') === 'en' ? 'en' : 'es'; token = localStorage.getItem(KEY) || ''; } catch (e) {}
+  function $(id) { return document.getElementById(id); }
+  function el(t, c, x) { var e = document.createElement(t); if (c) e.className = c; if (x != null) e.textContent = x; return e; }
+  function L() { return D[lang]; }
+  function money(c) { var n = (Number(c) || 0) / 100; return '$' + n.toFixed(2).replace(/\.00$/, ''); }
+  function day(iso) { if (!iso) return ''; var d = /^\d{4}-\d{2}-\d{2}$/.test(iso) ? new Date(iso + 'T12:00:00') : new Date(iso); return d.toLocaleDateString(lang === 'en' ? 'en-US' : 'es-US', { month: 'short', day: 'numeric', year: 'numeric' }); }
+  function time(iso) { var d = new Date(iso), h = d.getHours(), m = d.getMinutes(); return (h % 12 || 12) + ':' + (m < 10 ? '0' : '') + m + ' ' + (h >= 12 ? 'PM' : 'AM'); }
+  function digits(p) { var d = String(p || '').replace(/\D/g, ''); return d.length === 10 ? '1' + d : d; }
+  var tt; function toast(m) { var t = $('toast'); t.textContent = m; t.hidden = false; clearTimeout(tt); tt = setTimeout(function () { t.hidden = true; }, 2600); }
+  function api(body) {
+    return fetch(API, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(Object.assign({ token: token }, body)) })
+      .then(function (r) { return r.json().catch(function () { return {}; }).then(function (d) { if (!r.ok) throw { code: r.status, error: d.error }; return d; }); });
+  }
+  function copy(text) {
+    if (navigator.clipboard && navigator.clipboard.writeText) return navigator.clipboard.writeText(text).catch(function () { fb(text); });
+    fb(text); return Promise.resolve();
+  }
+  function fb(text) { var ta = document.createElement('textarea'); ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0'; document.body.appendChild(ta); ta.select(); try { document.execCommand('copy'); } catch (e) {} ta.remove(); }
+  function today() { var d = new Date(); d.setHours(23, 59, 59, 999); return d; }
+  function isDue(l) { return l.follow_up && l.status !== 'paid' && l.status !== 'not_interested' && new Date(l.follow_up + 'T12:00:00') <= today(); }
+  function bucket(l) { if (l.status === 'paid') return 'paid'; if (l.status === 'not_interested') return 'lost'; if (l.status === 'new') return 'new'; return 'talk'; }
+
+  function translate() {
+    document.documentElement.lang = lang; document.title = L().title;
+    document.querySelectorAll('[data-t]').forEach(function (e) { var v = L()[e.getAttribute('data-t')]; if (typeof v === 'string') { if (e.hasAttribute('data-html')) e.innerHTML = v; else e.textContent = v; } });
+    document.querySelectorAll('.ib').forEach(function (b) { var k = b.getAttribute('data-tip'); if (L().tips[k]) b.setAttribute('aria-label', L().tips[k][0]); });
+    $('tipX').setAttribute('aria-label', lang === 'en' ? 'Close' : 'Cerrar'); $('tipBX').setAttribute('aria-label', lang === 'en' ? 'Close' : 'Cerrar'); $('adviceX').setAttribute('aria-label', lang === 'en' ? 'Close' : 'Cerrar');
+    document.querySelectorAll('[data-lang]').forEach(function (b) { b.setAttribute('aria-pressed', b.getAttribute('data-lang') === lang ? 'true' : 'false'); });
+  }
+  function setLang(l) { lang = l === 'en' ? 'en' : 'es'; try { localStorage.setItem('okunami-socio-lang', lang); } catch (e) {} translate(); render(); }
+
+  function render() {
+    if (!DATA) return;
+    var T = L(), t = DATA.totals, me = DATA.resellers.filter(function (r) { return r.id === DATA.reseller; })[0];
+    $('hello').textContent = T.hello.replace('{n}', (me ? me.name : '').split(' ')[0]);
+    $('pickWrap').hidden = !DATA.admin || DATA.resellers.length < 2;
+    $('sReady').textContent = money(Math.max(0, t.ready_cents + t.clawback_cents)); $('sPending').textContent = money(t.pending_cents);
+    $('sEarned').textContent = money(t.earned_cents); $('sPaid').textContent = t.paid;
+    renderBonus(t); renderHow(); if (openTip) showTip(openTip);
+    try { $('advice').hidden = localStorage.getItem('okunami-socio-advice') === 'off'; } catch (x) { $('advice').hidden = false; }
+    var dueN = DATA.leads.filter(isDue).length; $('due').hidden = !dueN; $('dueT').textContent = T.due(dueN);
+    var chips = $('chips'); chips.innerHTML = '';
+    ['all', 'due', 'new', 'talk', 'paid', 'lost'].forEach(function (k) {
+      var n = DATA.leads.filter(function (l) { return k === 'all' || (k === 'due' ? isDue(l) : bucket(l) === k); }).length;
+      var b = el('button', null, T.f[k] + ' (' + n + ')'); b.type = 'button'; b.setAttribute('aria-pressed', k === filter ? 'true' : 'false');
+      b.addEventListener('click', function () { filter = k; render(); }); chips.appendChild(b);
+    });
+    var ul = $('list'); ul.innerHTML = '';
+    var rows = DATA.leads.filter(function (l) { return filter === 'all' || (filter === 'due' ? isDue(l) : bucket(l) === filter); });
+    if (!rows.length) { ul.appendChild(el('li', 'empty', T.empty)); return; }
+    rows.forEach(function (l) { ul.appendChild(row(l)); });
+  }
+
+  function ymLabel(m) { var d = new Date(m + '-15T12:00:00'); return d.toLocaleDateString(lang === 'en' ? 'en-US' : 'es-US', { month: 'long', year: 'numeric' }); }
+  function renderBonus(t) {
+    var T = L(), b = t.bonus, k = t.terms.bonusAt, n = b.this_month_clients;
+    $('bonusT').textContent = T.bonusT(n, k);
+    $('bonusHint').textContent = T.bonusHint(new Date(b.this_month + '-15T12:00:00').toLocaleDateString(lang === 'en' ? 'en-US' : 'es-US', { month: 'long' }));
+    $('bonusFill').style.width = Math.min(100, Math.round(n / k * 100)) + '%';
+    $('bonusBar').setAttribute('aria-valuemax', String(k)); $('bonusBar').setAttribute('aria-valuenow', String(Math.min(n, k)));
+    var box = $('bonusMonths'); box.innerHTML = '';
+    b.months.forEach(function (m) {
+      if (m.month === b.this_month) return;   // this month shows in the bar
+      var r = el('div'); r.appendChild(el('span', null, T.bonusM(ymLabel(m.month), m.clients)));
+      if (m.paid) r.appendChild(el('span', 'ctag paid', T.bonusPaid));
+      else if (DATA.admin) { var bt = el('button', 'btn soft sm', T.bonusPayBtn); bt.type = 'button'; bt.addEventListener('click', function () { bt.disabled = true; api({ action: 'bonus_paid', reseller: reseller, month: m.month }).then(function () { toast(T.saved); return load(); }).catch(function () { toast(T.fail); bt.disabled = false; }); }); r.appendChild(bt); }
+      else r.appendChild(el('span', 'ctag ready', T.cState.ready));
+      box.appendChild(r);
+    });
+    if (n >= k) { var w = el('div'); w.appendChild(el('span', null, T.bonusM(ymLabel(b.this_month), n))); w.appendChild(el('span', 'ctag pending', T.bonusWait)); box.appendChild(w); }
+    box.hidden = !box.children.length;
+    if (t.clawback_cents < 0) { var c = el('div'); var cw = el('span', 'ctag clawback', T.clawT(money(-t.clawback_cents))); cw.style.whiteSpace = 'normal'; cw.style.marginLeft = '0'; c.appendChild(cw); box.appendChild(c); box.hidden = false; }
+  }
+  var openTip = '';
+  function showTip(k) {
+    var T = L(), isB = k === 'bonus', box = $(isB ? 'tipB' : 'tip');
+    $(isB ? 'tip' : 'tipB').hidden = true;
+    document.querySelectorAll('.ib').forEach(function (b) { b.setAttribute('aria-expanded', b.getAttribute('data-tip') === k ? 'true' : 'false'); });
+    $(isB ? 'tipBH' : 'tipH').textContent = T.tips[k][0];
+    $(isB ? 'tipBP' : 'tipP').innerHTML = T.tips[k][1];
+    if (!isB) {
+      var n = $('tipN'); n.hidden = true;
+      if (k === 'pending' && DATA) {
+        var next = DATA.leads.filter(function (l) { return l.earning && l.earning.state === 'pending'; }).sort(function (a, b) { return a.earning.clears < b.earning.clears ? -1 : 1; })[0];
+        if (next) { n.textContent = T.nextClear(next.full_name || next.business_name || '-', day(next.earning.clears)); n.hidden = false; }
+      }
+      var btn = document.querySelector('.ib[data-tip="' + k + '"]'), wrap = $('statsWrap'), grid = wrap.querySelector('.stats');
+      var cards = Array.prototype.slice.call(grid.querySelectorAll('.stat')), idx = cards.indexOf(btn.closest('.stat'));
+      var after = cards[Math.min(cards.length - 1, idx | 1)]; grid.insertBefore(box, after.nextSibling);
+      var x = btn.getBoundingClientRect().left + btn.offsetWidth / 2 - wrap.getBoundingClientRect().left;
+      $('tipArrow').style.left = Math.max(14, Math.min(wrap.offsetWidth - 26, x - 6)) + 'px';
+    }
+    box.hidden = false; openTip = k;
+  }
+  function hideTips() { $('tip').hidden = true; $('tipB').hidden = true; openTip = ''; document.querySelectorAll('.ib').forEach(function (b) { b.setAttribute('aria-expanded', 'false'); }); }
+  var treeMode = 'year';
+  function renderHow() {
+    var T = L(), ul = $('howList'); ul.innerHTML = '';
+    T.how.forEach(function (x) { ul.appendChild(el('li', null, x)); });
+    var R = T.tree, tr = $('howTree');
+    tr.setAttribute('aria-label', R.aria);
+    var M = R[treeMode];
+    tr.innerHTML = '<p class="ask">' + R.ask + '</p><div class="seg" role="group" aria-label="' + R.ask + '">' +
+        '<button type="button" data-mode="year" aria-pressed="' + (treeMode === 'year') + '">' + R.yearB + '</button>' +
+        '<button type="button" data-mode="month" aria-pressed="' + (treeMode === 'month') + '">' + R.monthB + '</button></div>' +
+      '<div class="nd root"><span>' + R.root + '</span><b>' + M.root + '</b></div><div class="stem"></div>' +
+      '<div class="brs">' +
+        '<div class="br"><div class="nd"><span>' + R.design + '</span><b>$99</b></div><span class="pct">× 25%</span><div class="nd out"><span>' + R.you + '</span><b>$24.75</b></div></div>' +
+        '<div class="br"><div class="nd"><span>' + M.plan + '</span><b>' + M.price + '</b></div><span class="pct">× 40%</span><div class="nd out"><span>' + R.you + '</span><b>' + M.out + '</b></div></div>' +
+      '</div><div class="stem"></div>' +
+      '<div class="nd total"><span>' + R.total + '</span><b>' + M.total + '</b></div>' +
+      '<p class="tnote">' + M.note + '</p>' +
+      '<div class="plus"><p>' + R.bonus + '</p><p>' + R.none + '</p></div>';
+    tr.querySelectorAll('.seg button').forEach(function (b) { b.addEventListener('click', function () { treeMode = b.getAttribute('data-mode'); renderHow(); }); });
+    $('howEx').textContent = T.howEx;
+  }
+
+  function row(l) {
+    var T = L(), li = el('li', 'lead');
+    var r1 = el('div', 'row1'), who = el('div', 'who');
+    who.appendChild(el('b', null, l.full_name || l.business_name || '-'));
+    var sub = [l.business_name, l.business_type].filter(Boolean).join(' · ');
+    if (sub) who.appendChild(el('span', null, sub));
+    var contact = [l.phone, l.email].filter(Boolean).join(' · ');
+    if (contact) who.appendChild(el('span', null, contact));
+    r1.appendChild(who);
+    var cls = l.status === 'paid' ? 'paid' : l.status === 'new' ? 'new' : l.status === 'not_interested' ? 'lost' : (l.status === 'awaiting_payment' || l.status === 'checkout_started') ? 'pay' : '';
+    r1.appendChild(el('span', 'badge ' + cls, T.st[l.status] || l.status));
+    li.appendChild(r1);
+
+    var meta = el('div', 'meta');
+    meta.appendChild(el('span', 'tag', T.src[l.source] || l.source));
+    meta.appendChild(el('span', 'tag', T.added + ' ' + day(l.created_at)));
+    if (l.last_contact) meta.appendChild(el('span', 'tag', T.lastC + ': ' + day(l.last_contact) + ' ' + time(l.last_contact)));
+    if (l.follow_up && l.status !== 'paid') meta.appendChild(el('span', 'tag' + (isDue(l) ? ' fu' : ''), T.follow + ': ' + day(l.follow_up)));
+    li.appendChild(meta);
+
+    if (l.plan || l.amount_cents) {
+      var p = [l.plan ? T.plan[l.plan] + (l.billing ? ' ' + T[l.billing] : '') + (l.plan === 'team' && l.seats ? ' (' + l.seats + ')' : '') : '', l.studio ? T.design : ''].filter(Boolean).join(' + ');
+      var m = el('p', 'money', p + (l.amount_cents ? ' · ' + money(l.amount_cents) : ''));
+      m.style.margin = '0'; li.appendChild(m);
+    }
+    var e = l.earning;
+    if (e && (e.earned || e.paid_out)) {
+      var c = el('p', 'money'); c.style.margin = '0';
+      var strong = el('b', null, T.commission + ': ' + money(e.earned)); c.appendChild(strong);
+      var split = T.cSplit(e.design_c ? money(e.design_c) : '', e.plan_c ? money(e.plan_c) : '');
+      if (split && e.earned) c.appendChild(document.createTextNode(' (' + split + ')'));
+      if (e.state !== 'none') {
+        var txt = T.cState[e.state].replace('{d}', day(e.state === 'paid' ? l.commission_paid_at : e.clears)).replace('{m}', money(-e.owed));
+        c.appendChild(el('span', 'ctag ' + e.state, txt));
+      }
+      li.appendChild(c);
+      var plus7 = function (iso) { return day(new Date(new Date(iso).getTime() + 7 * 864e5).toISOString()); };
+      var why = e.state === 'pending' ? T.why.pending(day(e.clears), plus7(e.clears)) : e.state === 'ready' ? T.why.ready(plus7(e.clears)) : e.state === 'clawback' ? T.why.clawback : '';
+      if (why) li.appendChild(el('p', 'why', why));
+      if (l.billing === 'month' && l.status === 'paid') { var pm = el('p', 'money', (lang === 'en' ? 'Monthly payments counted: ' : 'Pagos mensuales contados: ') + e.payments + ' / 12'); pm.style.margin = '0'; pm.style.color = 'var(--muted)'; pm.style.fontSize = '13px'; li.appendChild(pm); }
+    }
+
+    var acts = el('div', 'acts'), ph = digits(l.phone);
+    if (ph.length >= 11) {
+      var wa = el('a', 'btn soft sm', 'WhatsApp'); wa.href = 'https://wa.me/' + ph; wa.target = '_blank'; wa.rel = 'noopener'; acts.appendChild(wa);
+      var sms = el('a', 'btn soft sm', T.text); sms.href = 'sms:+' + ph; acts.appendChild(sms);
+      var tel = el('a', 'btn soft sm', T.call); tel.href = 'tel:+' + ph; acts.appendChild(tel);
+    }
+    if (l.email) { var em = el('a', 'btn soft sm', 'Email'); em.href = 'mailto:' + l.email; acts.appendChild(em); }
+    if (l.status !== 'paid' && DATA.card) {
+      var pl = el('button', 'btn pink sm paylink', T.payLink); pl.type = 'button'; pl.setAttribute('data-id', l.id);
+      pl.addEventListener('click', function () { copy(DATA.card + '?resume=' + l.id).then(function () { toast(T.copied); }); });
+      acts.appendChild(pl);
+    }
+    li.appendChild(acts);
+
+    var locked = l.status === 'paid' && !DATA.admin;   // a closed sale: notes only
+    var ed = el('div', 'edit');
+    var sl = el('label', null, T.status), sel = el('select');
+    var opts = DATA.admin ? ADMIN_ST : PARTNER_ST.slice();
+    if (opts.indexOf(l.status) < 0) opts = [l.status].concat(opts);
+    opts.forEach(function (k) { var o = el('option', null, T.st[k] || k); o.value = k; if (k === l.status) o.selected = true; if (!DATA.admin && PARTNER_ST.indexOf(k) < 0) o.disabled = k !== l.status; sel.appendChild(o); });
+    sel.disabled = l.status === 'paid' && !DATA.admin;
+    sl.appendChild(sel);
+    var fl = el('label', null, T.follow), fu = el('input'); fu.type = 'date'; fu.value = l.follow_up || ''; fl.appendChild(fu);
+    if (!locked) { ed.appendChild(sl); ed.appendChild(fl); }
+    var dz = null, pz = null, pays = null;
+    function num(lbl, val, cls) { var lb = el('label', cls || null, lbl), i = el('input'); i.type = 'number'; i.inputMode = 'decimal'; i.min = '0'; i.step = '0.01'; if (val != null) i.value = val; lb.appendChild(i); ed.appendChild(lb); return i; }
+    if (DATA.admin) {
+      var dC = Number(l.studio_cents) || 0, pC = Math.max(0, (Number(l.amount_cents) || 0) - dC);
+      dz = num(T.fDesign, dC ? (dC / 100).toFixed(2) : '');
+      pz = num(T.fPlan, pC ? (pC / 100).toFixed(2) : '');
+      if (l.billing === 'month') { pays = num(T.fPays, String(l.plan_payments || 1), 'full'); pays.step = '1'; pays.min = '1'; pays.max = '12'; pays.inputMode = 'numeric'; }
+    }
+    var nl = el('label', 'full', T.notes), nt = el('textarea'); nt.value = l.partner_notes || ''; nl.appendChild(nt); ed.appendChild(nl);
+    li.appendChild(ed);
+
+    var bt = el('div', 'acts');
+    var sv = el('button', 'btn pri sm', T.saveRow); sv.type = 'button';
+    sv.addEventListener('click', function () {
+      var body = { status: sel.value, follow_up: fu.value || null, partner_notes: nt.value };
+      if (DATA.admin) { body.design = dz.value === '' ? 0 : Number(dz.value); body.plan = pz.value === '' ? 0 : Number(pz.value); if (pays) body.plan_payments = Number(pays.value) || 1; }
+      save(l, body, sv);
+    });
+    var ct = el('button', 'btn soft sm', T.contacted); ct.type = 'button';
+    ct.addEventListener('click', function () {
+      var st = sel.value === 'new' ? 'contacted' : sel.value;
+      save(l, { status: st, follow_up: fu.value || null, partner_notes: nt.value, contacted: true }, ct);
+    });
+    bt.appendChild(sv); if (l.status !== 'paid') bt.appendChild(ct);
+    if (DATA.admin && e && (e.state === 'ready' || e.state === 'clawback')) {
+      var pc = el('button', 'btn pink sm', e.state === 'ready' ? T.payC + ' (' + money(e.owed) + ')' : T.settle); pc.type = 'button';
+      pc.addEventListener('click', function () { save(l, { pay_commission: true }, pc); });
+      bt.appendChild(pc);
+    }
+    li.appendChild(bt);
+    return li;
+  }
+
+  function save(l, body, btn) {
+    var T = L();
+    if (DATA.admin && (body.status || l.status) === 'paid' && 'design' in body && !((body.design || 0) + (body.plan || 0) > 0)) { toast(T.needAmount); return; }
+    if (body.status === l.status) delete body.status;
+    btn.disabled = true;
+    api(Object.assign({ action: 'update', id: l.id, reseller: reseller }, body))
+      .then(function () { toast(T.saved); return load(); })
+      .catch(function (e) { toast(e && e.error === 'need_amount' ? T.needAmount : T.fail); })
+      .then(function () { btn.disabled = false; });
+  }
+
+  function load() {
+    return api({ action: 'list', reseller: reseller }).then(function (d) {
+      DATA = d; reseller = d.reseller;
+      if (d.admin) {
+        var pk = $('pick'); pk.innerHTML = '';
+        d.resellers.forEach(function (r) { var o = el('option', null, r.name); o.value = r.id; if (r.id === d.reseller) o.selected = true; pk.appendChild(o); });
+      }
+      $('login').hidden = true; $('app').hidden = false; render();
+    }).catch(function (e) {
+      if (e && e.code === 401) { signOut(); }
+      else toast(L().fail);
+    });
+  }
+  function signOut() { token = ''; DATA = null; try { localStorage.removeItem(KEY); } catch (e) {} $('app').hidden = true; $('login').hidden = false; }
+
+  document.querySelectorAll('[data-lang]').forEach(function (b) { b.addEventListener('click', function () { setLang(b.getAttribute('data-lang')); }); });
+  $('loginF').addEventListener('submit', function (e) {
+    e.preventDefault(); var err = $('pinErr'), btn = $('pinBtn'); btn.disabled = true;
+    fetch(API, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ action: 'login', pin: $('pin').value }) })
+      .then(function (r) { return r.json().then(function (d) { if (!r.ok) throw d; return d; }); })
+      .then(function (d) { token = d.token; try { localStorage.setItem(KEY, token); } catch (x) {} $('pin').value = ''; err.hidden = true; return load(); })
+      .catch(function (d) { err.textContent = d && d.error === 'locked' ? L().locked : d && d.error === 'wrong_pin' ? L().wrong : L().fail; err.hidden = false; })
+      .then(function () { btn.disabled = false; });
+  });
+  $('pick').addEventListener('change', function () { reseller = $('pick').value; filter = 'all'; load(); });
+  $('refresh').addEventListener('click', load);
+  $('out').addEventListener('click', signOut);
+  // After adding someone, bring their card into view and point at the payment link button.
+  function showPayLink(id) {
+    var b = (id && document.querySelector('.paylink[data-id="' + id + '"]')) || document.querySelector('.paylink');
+    if (!b) return;
+    b.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    b.classList.remove('flash'); void b.offsetWidth; b.classList.add('flash');
+  }
+  $('addBtn').addEventListener('click', function () { $('addF').hidden = false; $('aName').focus(); });
+  $('addCancel').addEventListener('click', function () { $('addF').hidden = true; });
+  $('addF').addEventListener('submit', function (e) {
+    e.preventDefault(); var err = $('addErr'), btn = $('addSave');
+    if (!$('aName').value.trim()) { err.textContent = L().needName; err.hidden = false; return; }
+    err.hidden = true; btn.disabled = true;
+    api({ action: 'add', reseller: reseller, lead: { full_name: $('aName').value, phone: $('aPhone').value, email: $('aEmail').value, business_name: $('aBiz').value, partner_notes: $('aNotes').value, follow_up: $('aFollow').value, lang: lang } })
+      .then(function (r) { $('addF').reset(); $('addF').hidden = true; toast(L().savedPay); var id = r && r.lead && r.lead.id; return load().then(function () { showPayLink(id); }); })
+      .catch(function () { err.textContent = L().fail; err.hidden = false; })
+      .then(function () { btn.disabled = false; });
+  });
+  document.querySelectorAll('.ib').forEach(function (b) { b.addEventListener('click', function (ev) { ev.stopPropagation(); var k = b.getAttribute('data-tip'); if (openTip === k) hideTips(); else showTip(k); }); });
+  $('tipX').addEventListener('click', hideTips); $('tipBX').addEventListener('click', hideTips);
+  document.addEventListener('keydown', function (ev) { if (ev.key === 'Escape' && openTip) hideTips(); });
+  $('adviceX').addEventListener('click', function () { $('advice').hidden = true; try { localStorage.setItem('okunami-socio-advice', 'off'); } catch (x) {} });
+  translate();
+  if (token) load();
+})();
+</script>
+</body>
+</html>
