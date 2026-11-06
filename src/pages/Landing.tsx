@@ -9,7 +9,7 @@ import { ALL_DESIGNS, NICHES, applyDesign, demoCardFor, sampleFor } from '../lib
 import { FEATURED, RETIRED } from '../lib/retired';
 import Brand from '../components/Brand';
 import heroLogo from '../assets/okunami-wordmark.png';
-import { APP_NAME, PLANS, STUDIO, STUDIO_CONTACT, TEAM, clampCards, teamTotal } from '../lib/plans';
+import { AGENT_CONTACT, AGENT_PRICE, APP_NAME, PLANS, STUDIO, STUDIO_CONTACT, TEAM, clampCards, teamTotal } from '../lib/plans';
 import { sfx } from '../lib/sfx';
 import { decorative } from '../lib/a11y';
 import { DESIGN_COUNT, NICHE_COUNT, designsLabel } from '../lib/counts';
@@ -223,7 +223,7 @@ export default function Landing() {
         <h2 className="mx-h2 mx-h2--dark">{rich(t("Start free. <x1>Go loud</x1> for $8."), { x1: (c) => <span className="pinkdeep">{c}</span> })}</h2>
         <div className="mx-bill" role="radiogroup" aria-label={t("Billing")}>
           <button type="button" role="radio" aria-checked={!yearly} className={!yearly ? 'on' : ''} onClick={() => setYearly(false)}>{t("Monthly")}</button>
-          <button type="button" role="radio" aria-checked={yearly} className={yearly ? 'on' : ''} onClick={() => setYearly(true)}>{rich(t("Yearly <x1>Save up to 22%</x1>"), { x1: (c) => <span>{c}</span> })}</button>
+          <button type="button" role="radio" aria-checked={yearly} className={yearly ? 'on' : ''} onClick={() => setYearly(true)}>{rich(t("Yearly <x1>2 months free</x1>"), { x1: (c) => <span>{c}</span> })}</button>
         </div>
         <div className="mx-plans">
           {PLANS.map((p) => {
@@ -281,7 +281,7 @@ export default function Landing() {
                   <dd className="mx-pay__inc"><strong>{t("What the custom card includes")}</strong>
                     <ul>{STUDIO[0].includes.map((i) => <li key={i}><Check size={16} aria-hidden /> {t(i)}</li>)}</ul>
                   </dd>
-                  <dd className="mx-pay__inc">{rich(t("<b>AI agents are separate.</b> Custom AI agents are an à la carte add-on, quoted per agent in your consult."), { b: (c) => <strong>{c}</strong> })}</dd>
+                  <dd className="mx-pay__inc">{rich(t("<b>AI agents are separate.</b> Custom AI agents start at ${price} each. See AI agents below.", { price: AGENT_PRICE }), { b: (c) => <strong>{c}</strong> })}</dd>
                 </div>
                 <div>{rich(t("<x1>OKUNAMI subscription</x1><x2>Required for every Studio card: Pro at ${price} a month, Pro Plus at ${price2} a month, or Business at ${price3} a card a month.</x2>", { price: PLANS[1].price, price2: PLANS[2].price, price3: PLANS[3].price }), { x1: (c) => <dt>{c}</dt>, x2: (c) => <dd>{c}</dd> })}</div>
               </dl>
@@ -315,6 +315,63 @@ export default function Landing() {
             <a className="mx-btn mx-btn--pink" href={founding ? STUDIO_CONTACT.founding : STUDIO_CONTACT.whatsapp} target="_blank" rel="noopener"><MessageCircle size={18} aria-hidden /> {t("Request a free consult on WhatsApp")}</a>
             <p className="mx-studio__alt"><a href={founding ? STUDIO_CONTACT.foundingSms : STUDIO_CONTACT.sms}>{t("No WhatsApp? Send a text")}</a><a href={STUDIO_CONTACT.email}>{t("or email angel@finessemedia.pro")}</a></p>
             <span>{t("The button opens a WhatsApp chat with me. Prices are starting points; every project is quoted.")}</span>
+          </div>
+        </div>
+      </section>
+
+      {/* ---------------------------------------------------------------- AI agents */}
+      <section className="mx-studio mx-agents" id="agents" aria-labelledby="agents-h">
+        <div className="mx-studio__in">
+          <header className="mx-studio__head">
+            <p className="mx-eyebrow">{t("Custom AI agents")}</p>
+            <h2 id="agents-h" className="mx-dir__h">{t("Your card can work for you 24/7.")}</h2>
+            <p className="mx-dir__sub">{t("I build an assistant around your business and put it right inside your card. It answers your customers, sells for you and brings you leads, in English and Spanish.")}</p>
+          </header>
+          <div className="mx-studio__grid">
+            <article className="mx-studio__card">
+              <h3>{t("Front Desk Assistant")}</h3>
+              <p className="mx-studio__from">{rich(t("<b>${price}</b> one time", { price: AGENT_PRICE }), { b: (c) => <b>{c}</b> })}</p>
+              <p>{t("Answers your customers' questions, even at 2 AM.")}</p>
+              <ul>
+                <li><Check size={14} aria-hidden /> {t("Services, hours, prices and location")}</li>
+                <li><Check size={14} aria-hidden /> {t("Only uses the info you give it, never guesses")}</li>
+                <li><Check size={14} aria-hidden /> {t("Sends ready-to-buy visitors straight to you")}</li>
+              </ul>
+            </article>
+            <article className="mx-studio__card">
+              <h3>{t("Sales and Enrollment Agent")}</h3>
+              <p className="mx-studio__from">{rich(t("<b>${price}</b> one time", { price: AGENT_PRICE }), { b: (c) => <b>{c}</b> })}</p>
+              <p>{t("Walks people through your offer and signs them up.")}</p>
+              <ul>
+                <li><Check size={14} aria-hidden /> {t("Answers common questions and doubts")}</li>
+                <li><Check size={14} aria-hidden /> {t("Gets their number early, so no lead is lost")}</li>
+                <li><Check size={14} aria-hidden /> {t("Sends finish-later reminders")}</li>
+              </ul>
+            </article>
+            <article className="mx-studio__card">
+              <h3>{t("Product and Team Recruiter")}</h3>
+              <p className="mx-studio__from">{rich(t("<b>${price}</b> one time", { price: AGENT_PRICE }), { b: (c) => <b>{c}</b> })}</p>
+              <p>{t("Shares your products and finds new team members.")}</p>
+              <ul>
+                <li><Check size={14} aria-hidden /> {t("Answers product questions")}</li>
+                <li><Check size={14} aria-hidden /> {t("Shares your upcoming events")}</li>
+                <li><Check size={14} aria-hidden /> {t("Runs a quick is-this-a-fit quiz for recruits")}</li>
+              </ul>
+            </article>
+            <article className="mx-studio__card mx-agents__soon">
+              <h3>{t("Lead Catcher")} <span className="mx-agents__tag">{t("Coming soon")}</span></h3>
+              <p className="mx-studio__from">{rich(t("<b>${price}</b> one time", { price: AGENT_PRICE }), { b: (c) => <b>{c}</b> })}</p>
+              <p>{t("Catches leads while you sleep.")}</p>
+              <ul>
+                <li><Check size={14} aria-hidden /> {t("Collects name, phone and what they need")}</li>
+                <li><Check size={14} aria-hidden /> {t("Alerts you by WhatsApp and email")}</li>
+              </ul>
+            </article>
+          </div>
+          <p className="mx-agents__price">{rich(t("<b>${price} per agent</b>, one time, plus prepaid credits you control. No surprise bills: when credits run out, the agent pauses and your card keeps working.", { price: AGENT_PRICE }), { b: (c) => <b>{c}</b> })}</p>
+          <div className="mx-dir__foot">
+            <a className="mx-btn mx-btn--pink" href={AGENT_CONTACT.whatsapp} target="_blank" rel="noopener"><MessageCircle size={18} aria-hidden /> {t("Talk to me about an AI agent")}</a>
+            <p className="mx-studio__alt"><a href={AGENT_CONTACT.sms}>{t("No WhatsApp? Send a text")}</a></p>
           </div>
         </div>
       </section>

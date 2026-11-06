@@ -1,10 +1,9 @@
 // Pure helpers for okunami-partner (tested in logic.test.ts).
 import { createHmac, timingSafeEqual } from 'node:crypto';
 
-/* Each reseller's card: the dashboard's "checkout link" reopens a saved enrollment there (?resume=<id>). */
-export const PARTNERS: Record<string, { name: string; email: string; card: string }> = {
-  'hiram-diaz': { name: 'Hiram Diaz', email: 'hiramdiazm@gmail.com', card: 'https://hiram-okunami.netlify.app/' },
-};
+/* Each reseller (name, email, card, link, code) lives in _shared/partners.ts. */
+import { PARTNERS } from '../_shared/partners.ts';
+export { PARTNERS };
 /* Cards allowed to send referrals with action 'refer'. */
 export const VIA: Record<string, { label: string; prefix: string }> = {
   'mayra-card': { label: "Mayra Soto Burgos's card", prefix: 'MSB' },
@@ -33,7 +32,11 @@ export function readToken(token: string, hashFor: (who: string) => string | null
 }
 
 /* ---------- the reseller plan (Nov 2026): the one place these numbers live ----------
-   25% of a custom card design. 40% of the client's first 12 months of plan payments, nothing after that.
+   25% of every one-time build: custom card designs and custom AI agents (25% per agent, $12.50 on a $50 agent).
+   One-time build money is recorded in studio_cents (the dashboard's "Design + AI agents" field).
+   40% of the client's first 12 months of plan payments, nothing after that.
+   Sales from okunami.pro count when the client signed up with the reseller's link or code (remembered 90 days)
+   and paid for a plan within 3 months of signing up.
    $100 bonus in any calendar month with 10 or more new paying clients.
    Paid per sale once the client's payment has cleared (30 days after it was paid).
    Figured on the design and plan prices only: never on processing fees, taxes or AI credits.

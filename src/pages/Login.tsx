@@ -12,6 +12,7 @@ import { HAS_LEGAL, LEGAL } from '../lib/legal';
 import { dollars, useOffer } from '../lib/offers';
 import { rich, useT, tr } from '../lib/i18n';
 import LangToggle from '../components/LangToggle';
+import { getRef, rememberRef } from '../lib/referral';
 
 /* Sign in and sign up on one screen, three ways in:
    1. Continue with Google (shows only when Google is enabled in Supabase)
@@ -71,6 +72,7 @@ export default function Login({ mode }: { mode: 'signup' | 'signin' }) {
   const [err, setErr] = useState('');
   const [needsConfirm, setNeedsConfirm] = useState(false);
   const [linkNotice, setLinkNotice] = useState<string | null>(() => takeAuthError());   // bad confirmation link
+  const [refCode, setRefCode] = useState(() => getRef() ?? '');   // reseller code: from their link, or typed here
 
   const planId = params.get('plan');
   const plan = PLANS.find((p) => p.id === planId && p.price > 0);
@@ -93,6 +95,7 @@ export default function Login({ mode }: { mode: 'signup' | 'signin' }) {
   /* ---------------------------------------------- email and password */
   const submit = async (e: FormEvent) => {
     e.preventDefault();
+    if (isJoin && refCode.trim()) rememberRef(refCode);
     setErr(''); setNeedsConfirm(false);
     if (demo) { nav('/app'); return; }
     if (password.length < 8) { setErr(tr('Use at least 8 characters for your password.')); return; }
@@ -114,6 +117,7 @@ export default function Login({ mode }: { mode: 'signup' | 'signin' }) {
 
   /* ---------------------------------------------- Google */
   const google = async () => {
+    if (isJoin && refCode.trim()) rememberRef(refCode);
     setErr('');
     if (demo) { nav('/app'); return; }
     setBusy('google');
@@ -123,6 +127,7 @@ export default function Login({ mode }: { mode: 'signup' | 'signin' }) {
 
   /* ---------------------------------------------- magic link */
   const sendLink = async () => {
+    if (isJoin && refCode.trim()) rememberRef(refCode);
     setErr('');
     if (!email) { setErr(tr('Enter your email above first.')); return; }
     if (demo) { nav('/app'); return; }
@@ -284,6 +289,12 @@ export default function Login({ mode }: { mode: 'signup' | 'signin' }) {
                   </span>
                 )}
               </div>
+              {isJoin && (
+                <div className="fld">
+                  <label htmlFor="refcode">{t("Referral code (optional)")}</label>
+                  <input id="refcode" type="text" autoComplete="off" autoCapitalize="characters" maxLength={40} value={refCode} onChange={(e) => setRefCode(e.target.value.toUpperCase())} placeholder={t("Who told you about OKUNAMI?")} />
+                </div>
+              )}
               <button className="btn btn--gold btn--lg" disabled={busy === 'password'}>
                 {busy === 'password' ? <Loader2 className="spin" size={18} /> : null}
                 {isJoin ? t('Create my account') : t('Sign in')}

@@ -1,4 +1,5 @@
 import './lib/authLanding';   // must run before the router or Supabase touch the address
+import { captureRef } from './lib/referral';
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import App from './App';
@@ -39,6 +40,7 @@ import './styles/miami.css';
 import './styles/admin.css';
 import './styles/domain.css';
 
+captureRef();   // reseller link (?ref=hiram), remembered 90 days
 const root = createRoot(document.getElementById('root')!);
 root.render(configError
   ? <div className="center-msg"><h1>Setup needed</h1><p>{configError}</p></div>

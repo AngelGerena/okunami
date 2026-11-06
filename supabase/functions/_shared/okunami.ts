@@ -38,8 +38,12 @@ export type Interval = 'month' | 'year';
    Amounts are in cents (USD). Keep them in step with the pricing shown on the site (src/lib/plans.ts). */
 export const CENTS: Record<Plan, Record<Interval, number>> = {
   pro: { month: 800, year: 7900 },
-  plus: { month: 1600, year: 14900 },
+  plus: { month: 1600, year: 15900 },   // yearly = 2 months free (Nov 2026; was $149)
   team: { month: 600, year: 6000 },   // Business is PER CARD ($6 a month, $60 a year)
+};
+/* Older prices that existing subscribers still pay (renewals keep the price they signed up at). Recognised, never charged to anyone new. */
+const LEGACY_CENTS: Partial<Record<Plan, Partial<Record<Interval, number[]>>>> = {
+  plus: { year: [14900] },
 };
 const FOUNDING_CENTS = 500;   // fallback only; the live price is read from fc_offer_config
 const NAMES: Record<Plan, string> = { pro: 'OKUNAMI Pro', plus: 'OKUNAMI Pro Plus', team: 'OKUNAMI Business (per card)' };
@@ -85,6 +89,7 @@ export function planForAmount(cents: number | null | undefined, interval: string
   if (cents == null || !interval) return null;
   if (interval === 'month' && cents === foundingCents) return 'pro';
   for (const plan of ['pro', 'plus', 'team'] as Plan[]) if (CENTS[plan][interval as Interval] === cents) return plan;
+  for (const plan of ['pro', 'plus', 'team'] as Plan[]) if (LEGACY_CENTS[plan]?.[interval as Interval]?.includes(cents)) return plan;
   return null;
 }
 

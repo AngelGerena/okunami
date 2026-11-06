@@ -14,23 +14,15 @@
 //
 // Who: a reseller slug (hiram-diaz) sees only their own leads. 'admin' sees every reseller (picker), and can
 // mark Zelle / Apple Cash payments as paid, and record commission payouts.
-// Commission rules live in logic.ts (TERMS): 25% design, 40% of the first 12 months of the plan, $100 bonus at 10+ clients a month. Nothing on a reseller's screen shows that the admin can view it.
+// Commission rules live in logic.ts (TERMS): 25% of one-time builds (custom designs and custom AI agents), 40% of the first 12 months of the plan, $100 bonus at 10+ clients a month.
+// Sales made on okunami.pro with the reseller's link or code arrive here on their own (source 'site', see _shared/referrals.ts). Nothing on a reseller's screen shows that the admin can view it.
 // PINs live hashed in fc_partner_access (set them with: select public.fc_set_partner_pin('hiram-diaz', '1234');).
 import { admin, cors, json } from '../_shared/okunami.ts';
+import { partnerEmail } from '../_shared/partners.ts';
 import { PARTNERS, VIA, PARTNER_STATUSES, ADMIN_STATUSES, clip, earning, makeToken, readToken, totals } from './logic.ts';
 
 /* ---------- alerts (email; never throws) ---------- */
-const esc = (s: string) => s.replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]!));
-async function email(to: string[], subject: string, lines: string[]) {
-  const key = Deno.env.get('RESEND_API_KEY');
-  if (!key || !to.length) return;
-  const from = Deno.env.get('OKUNAMI_ALERT_FROM') ?? Deno.env.get('OKUNAMI_WELCOME_FROM') ?? 'OKUNAMI <hello@okunami.pro>';
-  await fetch('https://api.resend.com/emails', {
-    method: 'POST', headers: { Authorization: `Bearer ${key}`, 'Content-Type': 'application/json' },
-    body: JSON.stringify({ from, to, reply_to: 'angel@finessemedia.pro', subject, text: lines.join('\n'),
-      html: `<div style="max-width:560px;margin:0 auto;padding:24px 18px;font:15px/1.55 -apple-system,Segoe UI,Helvetica,Arial,sans-serif;color:#0B0E2A">${lines.map((l) => `<p style="margin:0 0 10px">${esc(l)}</p>`).join('')}</div>` }),
-  }).catch((e) => console.error('partner email failed', e));
-}
+const email = partnerEmail;
 
 /* ---------- login rate limit (per IP, in memory) ---------- */
 const tries = new Map<string, number[]>();
@@ -99,7 +91,7 @@ Deno.serve(async (req) => {
       if (error) throw error;
       const { data: bp } = await db.from('fc_partner_bonus').select('month').eq('reseller', reseller);
       const leads = (data ?? []).map((l: Record<string, unknown>) => ({ ...l, earning: earning(l) }));
-      return json({ who, admin: isAdmin, reseller, resellers: resellers.map((r) => ({ id: r, name: PARTNERS[r].name })), card: PARTNERS[reseller].card,
+      return json({ who, admin: isAdmin, reseller, resellers: resellers.map((r) => ({ id: r, name: PARTNERS[r].name })), card: PARTNERS[reseller].card, link: PARTNERS[reseller].link, code: PARTNERS[reseller].code,
         leads, totals: totals(data ?? [], ((bp ?? []) as { month: string }[]).map((b) => b.month)) });
     }
 
