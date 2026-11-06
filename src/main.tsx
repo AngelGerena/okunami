@@ -38,6 +38,7 @@ import './styles/worship-engine.css';
 import './styles/worship-okunami.css';
 import './styles/miami.css';
 import './styles/admin.css';
+import './styles/domain.css';
 
 captureRef();   // reseller link (?ref=hiram), remembered 90 days
 const root = createRoot(document.getElementById('root')!);

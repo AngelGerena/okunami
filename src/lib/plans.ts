@@ -47,7 +47,7 @@ export const PLANS: PlanDef[] = [
     features: ['Everything in Pro', '1 card', 'Event sections (coming soon)', 'Multiple languages on your card (coming soon)', 'Connect a domain you already own', 'Two done-for-you edits a month by Finesse Media'] },
   { id: 'team', name: 'Business', price: TEAM.monthly, yearly: TEAM.yearly, per: 'card / month', perCard: true,
     pitch: 'Matching cards for your whole team. Pay only for the cards you need.',
-    features: ['Everything in Pro', 'Pay per card, from 3 cards', 'Matching designs with brand lock (coming soon)', 'Team admin (coming soon)', 'Priority support, straight from me'] },
+    features: ['Everything in Pro', 'Pay per card, from 3 cards', 'Connect a domain you already own', 'Matching designs with brand lock (coming soon)', 'Team admin (coming soon)', 'Priority support, straight from me'] },
 ];
 
 /** How many cards an account may have. Keep in step with fc_card_limit() in the database. */
@@ -95,3 +95,10 @@ export const BUSINESS_CONTACT = 'https://wa.me/14079609004?text=' + encodeURICom
 /** Text message backups for the two WhatsApp links above. */
 export const MORE_CARDS_SMS = (cards: number) => 'sms:+14079609004?&body=' + encodeURIComponent(`Hi Angel, my OKUNAMI Business account has ${cards} cards and I'd like to change that number.`);
 export const BUSINESS_SMS = 'sms:+14079609004?&body=' + encodeURIComponent("Hi Angel, I'd like to move my OKUNAMI account to Business.");
+
+/* Your own domain (vcard.theirsite.com). Keep in step with fc_domain_allowed() (migration 0027)
+   and supabase/functions/okunami-domain (prices) and _shared/domains.ts (DOMAIN_TARGET). */
+export const DOMAIN_PLANS: PlanId[] = ['plus', 'team'];
+export const DOMAIN_TARGET = 'okunami.netlify.app';
+export const DOMAIN_PRICE = { hookup: 39, register: 49 };
+export const canUseDomain = (plan: PlanId) => DOMAIN_PLANS.includes(plan);

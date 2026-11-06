@@ -32,6 +32,13 @@ export interface AdminLog {
   target_email: string | null; card_slug: string | null; detail: string | null;
 }
 
+export interface AdminDomain {
+  id: string; card_id: string; slug: string; owner_email: string | null; full_name: string | null; business: string | null;
+  domain: string; method: 'diy' | 'hookup' | 'register'; provider: string | null; contact_phone: string | null;
+  status: 'pending_payment' | 'requested' | 'waiting_dns' | 'checking_ssl' | 'connected';
+  paid_cents: number; last_checked_at: string | null; connected_at: string | null; admin_note: string | null; created_at: string; updated_at: string;
+}
+
 export interface UsersQuery { q?: string; plan?: string; limit?: number; offset?: number }
 export interface CardsQuery { user?: string; q?: string; limit?: number }
 
@@ -43,6 +50,9 @@ export interface AdminApi {
   setPublished(card: string, published: boolean, reason?: string): Promise<void>;
   transfer(card: string, email: string): Promise<string>;
   recent(): Promise<AdminLog[]>;
+  domains(): Promise<AdminDomain[]>;
+  domainNote(id: string, note: string): Promise<void>;
+  checkDomain(id: string): Promise<AdminDomain['status']>;
 }
 
 /* ------------------------------------------------------------------ real */
@@ -60,6 +70,13 @@ const realApi: AdminApi = {
   setPublished: (card, published, reason) => rpc<void>('fc_admin_set_published', { p_card: card, p_published: published, p_reason: reason || null }),
   transfer: (card, email) => rpc<string>('fc_admin_transfer_card', { p_card: card, p_to_email: email }),
   recent: () => rpc<AdminLog[]>('fc_admin_recent', { p_limit: 25 }),
+  domains: () => rpc<AdminDomain[]>('fc_admin_domains', { p_limit: 200 }),
+  domainNote: (id, note) => rpc<void>('fc_admin_domain_note', { p_id: id, p_note: note }),
+  async checkDomain(id) {
+    const { data, error } = await supabase.functions.invoke('okunami-domain', { body: { action: 'admin_check', domainId: id } });
+    if (error || data?.error) throw new Error(data?.error ?? error?.message ?? 'Check failed.');
+    return data.status;
+  },
 };
 
 /* ------------------------------------------------------------------ demo (sample data, lives in memory) */
@@ -94,6 +111,11 @@ function makeDemo(): AdminApi {
     { id: 3, created_at: iso(0.2 * day), admin_email: 'angel@finessemedia.pro', action: 'plan', target_email: 'nora@armoniadelreino.org', card_slug: null, detail: 'free to pro (complimentary)' },
     { id: 2, created_at: iso(1.5 * day), admin_email: 'angel@finessemedia.pro', action: 'transfer', target_email: 'hello@confettiandco.com', card_slug: 'confetti', detail: 'from angel@finessemedia.pro' },
     { id: 1, created_at: iso(2 * day), admin_email: 'angel@finessemedia.pro', action: 'plan', target_email: 'pastor@gracechurch.org', card_slug: null, detail: 'free to pro (paid outside Stripe)' },
+  ];
+  const domains: AdminDomain[] = [
+    { id: 'd1', card_id: 'c3', slug: 'urban-cutz', owner_email: 'kay@urbancutz.com', full_name: 'Klara "Kay" Thomas', business: 'Urban Cutz', domain: 'vcard.urbancutz.com', method: 'hookup', provider: 'godaddy', contact_phone: '(407) 555-0123', status: 'requested', paid_cents: 3900, last_checked_at: null, connected_at: null, admin_note: null, created_at: iso(0.1 * day), updated_at: iso(0.1 * day) },
+    { id: 'd2', card_id: 'c5', slug: 'confetti', owner_email: 'hello@confettiandco.com', full_name: 'Alana Price', business: 'Confetti & Co. Events', domain: 'card.confettiandco.com', method: 'diy', provider: 'squarespace', contact_phone: null, status: 'checking_ssl', paid_cents: 0, last_checked_at: iso(0.05 * day), connected_at: null, admin_note: null, created_at: iso(1 * day), updated_at: iso(0.05 * day) },
+    { id: 'd3', card_id: 'c7', slug: 'grace-harbor', owner_email: 'pastor@gracechurch.org', full_name: 'Joanna Allen', business: 'Grace Harbor Church', domain: 'connect.graceharbor.org', method: 'hookup', provider: 'wix', contact_phone: '(321) 555-0188', status: 'connected', paid_cents: 0, last_checked_at: iso(2 * day), connected_at: iso(2 * day), admin_note: 'Free, yearly plan', created_at: iso(3 * day), updated_at: iso(2 * day) },
   ];
   let logId = 3;
   const note = (action: string, target_email: string | null, card_slug: string | null, detail: string | null) => {
@@ -166,6 +188,15 @@ function makeDemo(): AdminApi {
       return wait(e);
     },
     async recent() { return wait(log.slice(0, 25)); },
+    async domains() { return wait(domains.filter((d) => d.status !== ('canceled' as string))); },
+    async domainNote(id, n) { const d = domains.find((x) => x.id === id); if (d) d.admin_note = n.trim() || null; return wait(undefined); },
+    async checkDomain(id) {
+      const d = domains.find((x) => x.id === id);
+      if (!d) return fail('Not found.');
+      d.status = d.status === 'checking_ssl' ? 'connected' : d.status === 'connected' ? 'connected' : 'checking_ssl';
+      d.last_checked_at = new Date().toISOString();
+      return wait(d.status);
+    },
   };
 }
 

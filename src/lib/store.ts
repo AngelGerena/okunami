@@ -3,6 +3,7 @@ import { IS_DEMO, supabase } from './supabase';
 import { blankData, sampleCard, uid, withDefaults } from './seed';
 import { themeFromSeeds, PRESETS } from './theme';
 import { FREE_FALLBACK, isLocked, type PlanId } from './plans';
+import { setCardDomain } from './links';
 
 /* One API, two backends. Pages never touch Supabase directly, so the demo
    build and the real app run the same screens against the same shapes. */
@@ -106,6 +107,20 @@ export const store = {
     if (error) throw error;
     if (!data) return null;
     const r = data as Row & { badge: boolean };
+    // A card connected to its owner's own domain shares that domain (QR, Share). Best effort: older databases lack the function.
+    const { data: own } = await supabase.rpc('fc_card_domain', { p_slug: slug }).then((x) => x, () => ({ data: null }));
+    setCardDomain(slug, typeof own === 'string' ? own : null);
+    return { ...fromRow(r), badge: r.badge };
+  },
+
+  /** The card that lives on a client's own domain (vcard.theirsite.com), or null. */
+  async publicCardByHost(host: string): Promise<Card | null> {
+    if (IS_DEMO) return null;
+    const { data, error } = await supabase.rpc('fc_public_card_by_host', { p_host: host });
+    if (error) throw error;
+    if (!data) return null;
+    const r = data as Row & { badge: boolean; domain: string };
+    setCardDomain(r.slug, r.domain);
     return { ...fromRow(r), badge: r.badge };
   },
 
