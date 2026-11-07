@@ -40,6 +40,9 @@ function Ticker({ items, tone }: { items: string[]; tone: 'pink' | 'cyan' | 'ora
   );
 }
 
+/** Klarna Pay in 4 is offered at Stripe checkout on yearly plans up to this amount (USD). */
+const KLARNA_MAX = 2000;
+
 export default function Landing() {
   const designsLabelT = (n: number) => designsLabel(n, lang);
   const { t, lang } = useT();
@@ -237,6 +240,10 @@ export default function Landing() {
                 <h3>{t(p.name)}</h3>
                 <p className="mx-price"><b>${shown % 1 ? shown.toFixed(2) : shown}</b><span>/{p.price === 0 ? t('forever') : perCard ? t('card a month') : t('month')}</span></p>
                 <p className="mx-billnote">{p.price === 0 ? t('No card needed') : yearly ? (perCard ? t('Billed ${y} per card a year', { y: p.yearly }) : t('Billed ${y} a year', { y: p.yearly })) : t('Billed monthly, cancel anytime')}</p>
+                {yearly && p.price > 0 && (() => {
+                  const due = perCard ? total : p.yearly;   // Klarna Pay in 4 covers $1 to $2,000
+                  return due <= KLARNA_MAX ? <p className="mx-klarna">{t('or 4 payments of ${x} with Klarna', { x: (due / 4).toFixed(2) })}</p> : null;
+                })()}
                 {p.id === 'pro' && offer.known && offer.active && (
                   <p className="mx-offernote">{yearly ? t("Founding price is for monthly billing only.") : t("Founding price {price} while spots last ({left} left)", { price: dollars(offer.cents), left: offer.left })}</p>
                 )}
