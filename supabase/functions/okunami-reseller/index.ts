@@ -4,7 +4,8 @@
 // POST { action: 'health' }                                   -> { ai: boolean }
 // POST { action: 'agent', lang, reseller, messages:[{role,content}], lead_id? } -> { reply, lead_id, designs?, lead? (ready to pay) }
 // POST { action: 'save', reseller, lang, lead:{...} }          -> { lead }            (scripted fallback, no AI)
-// POST { action: 'pay', id, method:'card'|'zelle'|'applecash', plan, billing, seats, returnUrl } -> { url? , ok }
+// POST { action: 'pay', id, method:'card'|'klarna'|'zelle'|'applecash', plan, billing, seats, returnUrl } -> { url? , ok }
+//      klarna: yearly plans only, without a custom design (Klarna Pay in 4 does not mix a subscription with a one-time charge)
 // POST { action: 'confirm', id, session }                     -> { paid }
 // POST { action: 'lead', id?, lead:{...} }                    -> { id }              (scripted: save as soon as there is a name and phone)
 // POST { action: 'details', id, details:{...} }               -> { ok }              (after payment: address, hours, what goes on the card)
@@ -32,6 +33,11 @@ const clip = (v: unknown, n = 400) => (typeof v === 'string' ? v.trim().slice(0,
 export function feeFor(cents: number): number {
   return Math.ceil((cents + 30) / (1 - 0.029)) - cents;
 }
+/** Klarna costs 5.99% + 30c; the buyer covers it the same way. */
+export function klarnaFeeFor(cents: number): number {
+  return Math.ceil((cents + 30) / (1 - 0.0599)) - cents;
+}
+const KLARNA_MAX = 200000;   // Klarna Pay in 4 tops out at $2,000
 function planCents(plan: Plan, billing: Interval, seats: number) {
   return CENTS[plan][billing] * (plan === 'team' ? clampSeats(seats) : 1);
 }
@@ -220,7 +226,7 @@ async function pay(b: Record<string, unknown>) {
   const plan: Plan = b.plan === 'team' ? 'team' : b.plan === 'plus' ? 'plus' : 'pro';
   const billing: Interval = b.billing === 'year' ? 'year' : 'month';
   const seats = plan === 'team' ? clampSeats(b.seats) : null;
-  const method = b.method === 'zelle' ? 'zelle' : b.method === 'applecash' ? 'applecash' : 'card';
+  const method = b.method === 'zelle' ? 'zelle' : b.method === 'applecash' ? 'applecash' : b.method === 'klarna' ? 'klarna' : 'card';
   const base = planCents(plan, billing, seats ?? 1);
 
   // Custom design, charged once with the plan. Pro and Pro Plus get the custom card: hold a Founding 50 spot,
@@ -245,8 +251,11 @@ async function pay(b: Record<string, unknown>) {
   const designName = teamDesign ? 'OKUNAMI Studio custom team design'
     : founding ? `OKUNAMI Studio custom card (Founding 50 price, regular $${(regularCents / 100).toFixed(0)})` : 'OKUNAMI Studio custom card';
   const dueNow = base + studioCents;
+  if (method === 'klarna' && (billing !== 'year' || wantsStudio || dueNow + klarnaFeeFor(dueNow) > KLARNA_MAX)) {
+    return json({ error: lead.lang === 'es' ? 'Klarna está disponible solo para planes anuales sin diseño a la medida. Usa tarjeta, Zelle o Apple Cash.' : 'Klarna is available for yearly plans without a custom design. Please use card, Zelle or Apple Cash.' }, 400);
+  }
 
-  if (method !== 'card') {
+  if (method === 'zelle' || method === 'applecash') {
     await db.from('fc_reseller_leads').update({ plan, billing, seats, studio: wantsStudio, studio_cents: wantsStudio ? studioCents : null, payment_method: method, status: 'awaiting_payment', amount_cents: dueNow, fee_cents: 0, updated_at: new Date().toISOString() }).eq('id', id);
     const how = method === 'zelle' ? 'Zelle' : 'Apple Cash';
     await alert(recipients(lead.reseller), `${how} payment coming: ${lead.business_name ?? lead.full_name} ($${(dueNow / 100).toFixed(2)})`,
@@ -256,7 +265,7 @@ async function pay(b: Record<string, unknown>) {
     return json({ ok: true, amount_cents: dueNow, studio_cents: studioCents, founding, team_design: teamDesign });
   }
 
-  const fee = feeFor(base);
+  const fee = method === 'klarna' ? klarnaFeeFor(base) : feeFor(base);
   // One-time part of the processing fee for the design, so the first charge still nets the full amount.
   const firstFee = wantsStudio ? feeFor(dueNow) - fee : 0;
   const ret = typeof b.returnUrl === 'string' && OK_RETURN.test(b.returnUrl) ? b.returnUrl.split('#')[0].split('?')[0] : 'https://okunami.pro/';
@@ -264,10 +273,10 @@ async function pay(b: Record<string, unknown>) {
   const session = await stripe().checkout.sessions.create({
     mode: 'subscription',
     customer_email: lead.email ?? undefined,
-    payment_method_types: ['card'],
+    payment_method_types: [method === 'klarna' ? 'klarna' : 'card'],
     line_items: [
       lineItemFor(plan, billing, false, 0, seats ?? 1),   // the plan stays first: the OKUNAMI webhook reads item 0
-      { quantity: 1, price_data: { currency: 'usd', unit_amount: fee, recurring: { interval: billing }, product_data: { name: 'Card processing fee' } } },
+      { quantity: 1, price_data: { currency: 'usd', unit_amount: fee, recurring: { interval: billing }, product_data: { name: method === 'klarna' ? 'Klarna processing fee' : 'Card processing fee' } } },
       ...(wantsStudio ? [
         { quantity: 1, price_data: { currency: 'usd', unit_amount: studioCents, product_data: { name: designName } } },
         ...(firstFee > 0 ? [{ quantity: 1, price_data: { currency: 'usd', unit_amount: firstFee, product_data: { name: 'Card processing fee (custom design)' } } }] : []),
@@ -280,7 +289,7 @@ async function pay(b: Record<string, unknown>) {
     cancel_url: `${ret}?checkout=canceled`,
   });
   if (claimId) await db.rpc('fc_studio_attach', { p_claim: claimId, p_session: session.id });
-  await db.from('fc_reseller_leads').update({ plan, billing, seats, studio: wantsStudio, studio_cents: wantsStudio ? studioCents : null, payment_method: 'card', status: 'checkout_started', stripe_session_id: session.id, amount_cents: dueNow, fee_cents: fee + firstFee, updated_at: new Date().toISOString() }).eq('id', id);
+  await db.from('fc_reseller_leads').update({ plan, billing, seats, studio: wantsStudio, studio_cents: wantsStudio ? studioCents : null, payment_method: method, status: 'checkout_started', stripe_session_id: session.id, amount_cents: dueNow, fee_cents: fee + firstFee, updated_at: new Date().toISOString() }).eq('id', id);
   return json({ url: session.url, amount_cents: dueNow, fee_cents: fee + firstFee, studio_cents: studioCents, founding, team_design: teamDesign });
 }
 
@@ -296,7 +305,7 @@ async function confirm(b: Record<string, unknown>) {
     await db.from('fc_reseller_leads').update({ status: 'paid', updated_at: new Date().toISOString() }).eq('id', id).neq('status', 'paid');
     await db.rpc('fc_studio_mark_paid', { p_session: sid });
     await alert(recipients(lead.reseller), `PAID: ${lead.business_name ?? lead.full_name} signed up for OKUNAMI`,
-      [`${lead.full_name} paid by card ($${((s.amount_total ?? 0) / 100).toFixed(2)} incl. processing fee). Time to build their card.`, ...leadLines(lead)]);
+      [`${lead.full_name} paid by ${lead.payment_method === 'klarna' ? 'Klarna' : 'card'} ($${((s.amount_total ?? 0) / 100).toFixed(2)} incl. processing fee). Time to build their card.`, ...leadLines(lead)]);
   }
   return json({ paid, name: lead.full_name });
 }
