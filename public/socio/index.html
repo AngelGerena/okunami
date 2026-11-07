@@ -11,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Manrope:wght@400;500;600;700;800&display=swap">
 <style>
-:root{--ink:#F4F5FB;--ink-2:#1E2560;--pink:#FF3CAC;--pink-deep:#FF6FC2;--pink-soft:#3A1435;--paper:#0B0E2A;--white:#151A3D;--text:#E7E8F4;--muted:#A3A7C4;--line:#2A3166;--ok:#6FD39A;--ok-soft:#12382A;--bad:#FF8A7A;--warn:#F2C35B;--warn-soft:#3A2E0C;--on-pink:#0B0E2A;color-scheme:dark}
+:root{--cyan:#00E5FF;--warn-c:#FF8A00;--ink:#F4F5FB;--ink-2:#1E2560;--pink:#FF3CAC;--pink-deep:#FF6FC2;--pink-soft:#3A1435;--paper:#0B0E2A;--white:#151A3D;--text:#E7E8F4;--muted:#A3A7C4;--line:#2A3166;--ok:#6FD39A;--ok-soft:#12382A;--bad:#FF8A7A;--warn:#F2C35B;--warn-soft:#3A2E0C;--on-pink:#0B0E2A;color-scheme:dark}
 /* Dark navy look (Nov 2026): --ink is now the light text color; fills that used to be dark navy use --ink-2 or pink. */
 html{-webkit-text-size-adjust:100%;overflow-x:hidden;font-variant-emoji:text}
 *{box-sizing:border-box}
@@ -95,33 +95,45 @@ h1{margin:0;font-family:'Fraunces',Georgia,serif;font-size:34px;line-height:1.05
 .how .rate span{font-size:12px;font-weight:700;color:var(--muted);line-height:1.3}
 .how ul{margin:0 0 14px;padding-left:18px;display:flex;flex-direction:column;gap:6px;font-size:14px;color:var(--text)}
 .how p{margin:0 0 10px;font-size:14px;color:var(--text)}
-.tree{display:flex;flex-direction:column;align-items:stretch;margin:4px 0 14px;font-variant-numeric:tabular-nums}
-.tree .nd{background:var(--white);border:1.5px solid var(--line);border-radius:14px;padding:10px 12px;display:flex;flex-direction:column;gap:2px;min-width:0;text-align:center}
-.tree .nd span{font-size:12px;font-weight:700;color:var(--muted);line-height:1.3}
-.tree .nd b{font-family:'Fraunces',Georgia,serif;font-size:22px;line-height:1.1;color:var(--ink)}
-.tree .root{align-self:center;min-width:180px;background:var(--ink);border-color:var(--ink)}
-.tree .root span{color:#C9CBE6}.tree .root b{color:var(--white)}
-.tree .stem{align-self:center;width:2px;height:16px;background:var(--line)}
-.tree .brs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;position:relative;padding:16px 0}
-.tree .brs::before,.tree .brs::after{content:"";position:absolute;left:25%;right:25%;height:2px;background:var(--line)}
-.tree .brs::before{top:0}.tree .brs::after{bottom:0}
-.tree .br{position:relative;display:flex;flex-direction:column;align-items:stretch;justify-content:space-between;gap:0}
-.tree .br::before,.tree .br::after{content:"";position:absolute;left:50%;width:2px;height:16px;background:var(--line);transform:translateX(-1px)}
-.tree .br::before{top:-16px}.tree .br::after{bottom:-16px}
-.tree .pct{align-self:center;margin:6px 0;padding:3px 10px;border-radius:999px;background:var(--pink-soft);color:var(--pink-deep);font-size:13px;font-weight:800}
-.tree .out{border-color:var(--pink)}
-.tree .out b{color:var(--pink-deep)}
-.tree .total{align-self:center;min-width:200px;background:var(--pink);border-color:var(--pink)}
-.tree .total span,.tree .total b{color:var(--ink)}
-.tree .plus{display:flex;flex-direction:column;gap:6px;margin-top:12px}
-.tree .plus p{margin:0;font-size:13px;color:var(--text);background:var(--paper);border-radius:10px;padding:8px 10px}
-.tree .plus p b{color:var(--ink)}
-.tree .ask{margin:0 0 8px;text-align:center;font-size:13px;font-weight:700;color:var(--muted)}
-.tree .seg{align-self:center;display:flex;background:var(--paper);border:1px solid var(--line);border-radius:999px;padding:3px;margin-bottom:12px}
-.tree .seg button{min-width:96px;min-height:40px;border:0;border-radius:999px;background:transparent;font:800 14px 'Manrope',sans-serif;color:var(--muted);cursor:pointer}
-.tree .seg button[aria-pressed="true"]{background:var(--ink);color:var(--white)}
-.tree .nd b{overflow-wrap:anywhere}
-.tree .tnote{margin:12px 0 0;font-size:13px;line-height:1.45;color:var(--text);text-align:center}
+.guide{display:flex;flex-direction:column;gap:6px;padding-bottom:14px}
+.guide h3{margin:14px 0 0;font-family:'Fraunces',Georgia,serif;font-size:21px;line-height:1.15;color:var(--ink)}
+.guide h4{margin:12px 0 0;font-size:15px;color:var(--ink)}
+.guide .gs{margin:0;font-size:13px;color:var(--muted)}
+.gt{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums;font-size:14px}
+.gt th,.gt td{text-align:left;padding:9px 4px;border-bottom:1px solid var(--line);vertical-align:top}
+.gt th{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:800}
+.gt .m{text-align:right}
+.gt tr:last-child td{border-bottom:0}
+.gt .k{display:block;font-size:12px;color:var(--muted);font-weight:500;line-height:1.35}
+.gt .e{color:var(--pink-deep);font-weight:800;font-size:16px}
+.gt .e.y{color:var(--cyan)}
+.gk{border:1.5px solid var(--cyan);border-radius:14px;padding:12px;display:flex;flex-direction:column;gap:6px;margin-top:6px}
+.gk b{color:var(--cyan);font-size:13px;letter-spacing:.06em;text-transform:uppercase}
+.gk p{margin:0;font-size:14px}
+.gw{border:1px solid var(--line);border-radius:14px;padding:12px;display:flex;flex-direction:column;gap:8px;margin-top:6px}
+.gw b{color:var(--ink);font-size:15px}
+.gw ul{margin:0}
+.gtl{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
+.gtl div{background:var(--paper);border-radius:10px;padding:8px;font-size:12px;line-height:1.35;color:var(--text)}
+.gtl div b{display:block;font-size:13px;color:var(--warn-c)}
+@media (max-width:420px){.gtl{grid-template-columns:1fr}}
+.gc{display:flex;flex-direction:column;gap:2px}
+.gc .cr{display:grid;grid-template-columns:minmax(0,1fr) 108px;gap:10px;align-items:center;border-bottom:1px solid var(--line);padding:6px 0}
+.gc .cr label{font-weight:700;font-size:14px;color:var(--ink)}
+.gc .cr label span{display:block;font-weight:500;font-size:12px;color:var(--muted)}
+.gc .st{display:grid;grid-template-columns:32px 1fr 32px;border:1.5px solid var(--line);border-radius:999px;overflow:hidden;background:var(--paper)}
+.gc .st button{border:0;background:transparent;color:var(--ink);font:800 17px 'Manrope',sans-serif;min-height:36px;cursor:pointer}
+.gc .st input{width:100%;min-width:0;border:0;background:transparent;color:var(--ink);text-align:center;font:800 15px 'Manrope',sans-serif;-moz-appearance:textfield}
+.gc .st input::-webkit-outer-spin-button,.gc .st input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+.gtot{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:10px}
+.gtot div{background:var(--paper);border-radius:12px;padding:10px;display:flex;flex-direction:column;gap:2px;min-width:0}
+.gtot span{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:800}
+.gtot b{font-family:'Fraunces',Georgia,serif;font-size:26px;line-height:1.1;color:var(--pink-deep);font-variant-numeric:tabular-nums}
+.gtot div:nth-child(2) b{color:var(--cyan)}
+.gtot small{font-size:12px;color:var(--muted);line-height:1.35}
+.gtot .w{grid-column:1/-1}
+.gtot .w b{font-size:20px;color:var(--warn-c)}
+@media (max-width:380px){.gtot{grid-template-columns:1fr}}
 .ctag{display:inline-block;white-space:nowrap;font-size:12px;font-weight:800;border-radius:8px;padding:3px 8px;margin-left:6px;vertical-align:1px}
 .ctag.pending{background:var(--warn-soft);color:var(--warn)}
 .ctag.ready{background:var(--pink-soft);color:var(--pink-deep)}
@@ -164,10 +176,6 @@ h1{margin:0;font-family:'Fraunces',Georgia,serif;font-size:34px;line-height:1.05
 .badge{color:#C9CBE6}
 .badge.lost{background:var(--ink-2);color:var(--muted)}
 .ctag.clawback{background:#3A1712;color:var(--bad)}
-.tree .root{background:var(--ink-2);border-color:#353E86}
-.tree .root b{color:var(--ink)}
-.tree .total span,.tree .total b{color:var(--on-pink)}
-.tree .seg button[aria-pressed="true"]{background:var(--pink);color:var(--on-pink)}
 .ib[aria-expanded="true"]{color:var(--on-pink)}
 .tip{background:var(--ink-2);border:1px solid #353E86;box-shadow:0 18px 40px -14px rgba(0,0,0,.6)}
 .tip .arrow{background:var(--ink-2);border-left:1px solid #353E86;border-top:1px solid #353E86}
@@ -232,16 +240,14 @@ input[type=date]::-webkit-date-and-time-value{text-align:left}
     </div>
 
     <details class="how" id="how">
-      <summary><span data-t="howH">Cómo ganas</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary>
+      <summary><span data-t="howH">Tu guía de ganancias</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary>
       <div class="rates">
-        <div class="rate"><b>25%</b><span data-t="r1">de cada diseño y agente de IA</span></div>
-        <div class="rate"><b>40%</b><span data-t="r2">de los primeros 12 meses del plan</span></div>
-        <div class="rate"><b>$100</b><span data-t="r3">de bono con 10+ clientes en un mes</span></div>
+        <div class="rate"><b>40%</b><span data-t="r2">de cada pago del plan durante los primeros 12 meses del cliente</span></div>
+        <div class="rate"><b>25%</b><span data-t="r1">de cada diseño a la medida y cada agente de IA</span></div>
+        <div class="rate"><b>+$100</b><span data-t="r3">de bono cualquier mes que traigas 10 o más clientes nuevos que paguen</span></div>
       </div>
       <div class="mylink" id="myLink" hidden></div>
-      <div class="tree" id="howTree" aria-label="Ejemplo de comisión"></div>
-      <ul id="howList"></ul>
-      <p id="howEx" style="color:var(--muted)"></p>
+      <div class="guide" id="guide"></div>
     </details>
 
     <div class="advice" id="advice" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5"/><path d="M12 8h.01"/></svg><p data-t="advice" data-html="1"></p><button type="button" class="tx" id="adviceX" aria-label="Cerrar">×</button></div>
@@ -296,13 +302,37 @@ input[type=date]::-webkit-date-and-time-value{text-align:left}
       nextClear: function (n, d) { return 'Próxima en liberarse: ' + n + ', ' + d + '.'; },
       why: { pending: function (d, p) { return 'Se libera el ' + d + '. Te pagamos a más tardar el ' + p + '.'; }, ready: function (p) { return 'Ya se liberó. Te pagamos a más tardar el ' + p + '.'; }, clawback: 'El cliente recibió reembolso. Este monto se descuenta de tu próximo pago.' },
       bonusM: function (m, n) { return 'Bono de ' + m + ' (' + n + ' clientes): $100'; }, bonusPaid: 'Pagado', bonusPayBtn: 'Marcar bono pagado', bonusWait: 'Se paga al cerrar el mes',
-      howH: 'Cómo ganas', r1: 'de cada diseño y agente de IA', r2: 'de los primeros 12 meses del plan', r3: 'de bono con 10+ clientes en un mes',
-      how: ['Dos formas de ganar. 1) Tarjeta personalizada: yo diseño la tarjeta para tu cliente. 2) Hazlo tú mismo en okunami.pro: tu cliente se registra con tu link o tu código y crea su propia tarjeta.', 'Ganas 25% de todo lo que yo construyo para tus clientes: diseños de tarjetas personalizadas y agentes de IA personalizados (25% por agente, $12.50 por cada agente de $50).', 'Ganas 40% de lo que el cliente paga por su plan durante sus primeros 12 meses, en las dos formas. Si paga anual, cobras todo de una vez; si paga mensual, cobras mes a mes hasta 12 pagos. Después de los 12 meses ya no hay comisión.', 'Tu link y tu código funcionan por 90 días. Siempre comparte los dos. Si el cliente no usa tu link ni tu código, la venta no se puede rastrear.', 'Los planes gratis no generan comisión al principio. Si tu cliente mejora a un plan pagado dentro de los 3 meses de haberse registrado, ganas el 40% de lo que paga por su plan durante sus primeros 12 meses.', 'Bono de $100 en cualquier mes que cierres 10 clientes nuevos o más que paguen.', 'Se paga por venta cuando el pago del cliente se libera, 30 días después de pagar.', 'La comisión es sobre el precio del plan, del diseño y de los agentes. No incluye cargos de procesamiento, impuestos, créditos de IA ni otros extras.', 'Si un cliente pide reembolso o disputa el pago, esa comisión se descuenta del próximo pago.'],
-      howEx: 'Con un diseño de $149 en vez de $99, la misma venta te deja $100.85. Cada agente de IA de $50 te suma $12.50.',
-      tree: { aria: 'Ejemplo de comisión en una venta', ask: '¿Cómo paga el cliente su plan?', yearB: 'Anual', monthB: 'Mensual', root: 'El cliente paga', design: 'Diseño personalizado', you: 'Para ti', total: 'Tu comisión en esta venta',
-        year: { root: '$258', plan: 'Pro Plus anual', price: '$159 al año', out: '$63.60', total: '$88.35', note: 'Paga el año completo de una vez, así que cobras tu 40% del plan de una vez.' },
-        month: { root: '$99 + $16 al mes', plan: 'Pro Plus mensual', price: '$16 al mes', out: '$6.40 al mes', total: '$24.75 + $6.40 al mes', note: 'Cobras $6.40 por cada mes que pague, hasta 12 pagos: $76.80 en total. Ganas más que con el anual porque el mensual le cuesta más al cliente en el año ($192 en vez de $159).' },
-        bonus: '<b>+ $100</b> de bono el mes que cierres 10 clientes nuevos o más (uno por mes).', none: '<b>$0</b> después de los primeros 12 meses, y nada sobre cargos de procesamiento, impuestos ni créditos de IA.' },
+      howH: 'Tu guía de ganancias', r1: 'de cada diseño a la medida y cada agente de IA', r2: 'de cada pago del plan durante los primeros 12 meses del cliente', r3: 'de bono cualquier mes que traigas 10 o más clientes nuevos que paguen',
+      G: {
+        plansH: 'Planes: lo que ganas por cliente', plansS: 'El anual te paga toda la comisión de una vez. El mensual te paga cada mes que el cliente paga, hasta 12 meses.',
+        th: ['Plan', 'Anual', 'Mensual'], once: 'de una vez',
+        plans: [['Pro', '$79 al año o $8 al mes', '$31.60', 'de una vez', '$3.20', 'al mes, hasta $38.40'],
+          ['Pro Plus', '$159 al año o $16 al mes', '$63.60', 'de una vez', '$6.40', 'al mes, hasta $76.80'],
+          ['Business', '$60 por tarjeta al año o $6 por tarjeta al mes, mínimo 3 tarjetas', '$24.00', 'por tarjeta, de una vez', '$2.40', 'por tarjeta al mes, hasta $28.80'],
+          ['Business, equipo de 10', '', '$240.00', 'de una vez', '$24.00', 'al mes, hasta $288']],
+        kH: 'Vende el anual con Klarna', k1: 'Los clientes pueden dividir cualquier plan anual en 4 pagos sin intereses con Klarna. Pro Plus en okunami.pro son 4 pagos de $39.75. Tú igual ganas tu comisión completa enseguida, porque Klarna nos paga el año completo por adelantado.', k2: 'La frase: "Dos meses gratis, y lo puedes dividir en 4 pagos."',
+        customH: 'Suma una tarjeta a la medida: gana más en la misma venta', customS: 'Angel diseña la tarjeta desde cero con la marca del cliente. Es un pago único aparte de cualquier plan.',
+        cth: ['Extra', 'El cliente paga', 'Tú ganas'],
+        custom: [['Tarjeta a la medida, precio Fundadores 50', 'hasta que se acaben los 50 lugares o el 31 de dic. de 2026', '$99', '$24.75'],
+          ['Tarjeta a la medida, precio regular', '', '$149', '$37.25'],
+          ['Diseño de equipo (Business)', 'incluye 3 tarjetas; cada persona extra es $35, ganas $8.75', '$249', '$62.25'],
+          ['Agente de IA a la medida', 'por agente', '$50', '$12.50']],
+        combosH: 'Tus mejores combinaciones (precio Fundadores)',
+        combos: [['Tarjeta a la medida + Pro Plus anual', '$88.35', 'de una vez', 1], ['Tarjeta a la medida + Pro anual', '$56.35', 'de una vez', 1],
+          ['Tarjeta a la medida + Pro Plus mensual', '$24.75', '+ $6.40 al mes, hasta $101.55', 0], ['Tarjeta a la medida + Pro mensual', '$24.75', '+ $3.20 al mes, hasta $63.15', 0],
+          ['Súmale un agente de IA a cualquiera', '+$12.50', 'cada uno', 0]],
+        customN: 'Cuando terminen los Fundadores 50, la tarjeta a la medida pasa a $149 y ganas $37.25 en vez de $24.75. Klarna cubre el plan; el diseño a la medida se paga con tarjeta, Zelle o Apple Cash.',
+        waysH: 'Cómo un cliente se vuelve tuyo',
+        w1: 'Se inscriben en tu tarjeta', w1l: ['Avira, la asistente de tu tarjeta, les enseña diseños, escoge el plan con ellos y cobra el pago.', 'Toda venta hecha en tu tarjeta es tuya automáticamente. No tienes que llevar cuenta.'],
+        w2: 'Se inscriben en okunami.pro con tu enlace o código', w2l: ['Tu enlace se recuerda en su celular por 90 días. Si regresan y se inscriben dentro de 90 días, son tuyos.', 'Después de 90 días, o en otro celular, solo escriben tu código en la casilla de código de referido al inscribirse.', 'Una vez su cuenta queda marcada a tu nombre, se queda tuya.'],
+        tl: [['Plan pagado enseguida', 'Ganas en esa venta.'], ['Empieza gratis, sube antes de 3 meses', 'Ganas en esa venta, mismas tasas.'], ['Sube después de 3 meses', 'Sin comisión. Dale seguimiento temprano.']],
+        calcH: 'Tu mes, tus números', calcS: 'Cambia los números para ver lo que te paga un mes de ventas. Viene con un ejemplo.',
+        calc: [['Pro Plus anual', '$63.60 cada uno'], ['Pro anual', '$31.60 cada uno'], ['Pro Plus mensual', '$6.40 al mes cada uno'], ['Pro mensual', '$3.20 al mes cada uno'], ['Tarjetas a la medida (Fundadores)', '$24.75 cada una, sumada a una venta de plan'], ['Agentes de IA', '$12.50 cada uno']],
+        tNow: 'Cobras por este mes', tMo: 'Más, cada uno de los próximos 11 meses', tMoN: 'De tus clientes de plan mensual, mientras sigan pagando', tCl: 'Clientes nuevos que pagaron este mes',
+        tBonus: function (n) { return n + ' · bono de $100 incluido'; }, tLeft: function (n, k) { return n + ' · te faltan ' + k + ' para el bono de $100'; },
+        rulesH: 'Cuándo y cómo cobras',
+        rules: ['Cada comisión se paga 30 días después de que el pago del cliente se confirma.', 'Planes mensuales: cobras por cada mes que el cliente paga, hasta sus primeros 12 pagos.', 'Planes anuales, incluso con Klarna: tu 40% completo cuenta en cuanto se confirma el pago.', 'El bono de $100 es uno por mes y se paga cuando termina el mes. El conteo empieza de nuevo el día 1.', 'Si un cliente recibe un reembolso, se quita la comisión de ese pago.', 'Tu comisión se calcula solo sobre los precios del plan, el diseño y los agentes. Los cargos de procesamiento, impuestos y créditos de IA nunca se cuentan ni se restan.']
+      },
       cState: { pending: 'Pendiente hasta {d}', ready: 'Lista para pago', paid: 'Pagada el {d}', clawback: 'Reembolso: se descuenta {m}' },
       cSplit: function (d, p) { return [d ? 'diseño ' + d : '', p ? 'plan ' + p : ''].filter(Boolean).join(' + '); },
       fDesign: 'Diseño + agentes de IA ($)', fPlan: 'Pago del plan ($)', fPays: 'Pagos mensuales cobrados', payC: 'Marcar comisión pagada', settle: 'Marcar reembolso descontado',
@@ -335,13 +365,37 @@ input[type=date]::-webkit-date-and-time-value{text-align:left}
       nextClear: function (n, d) { return 'Next to clear: ' + n + ', ' + d + '.'; },
       why: { pending: function (d, p) { return 'Clears on ' + d + '. We pay you by ' + p + '.'; }, ready: function (p) { return 'It cleared. We pay you by ' + p + '.'; }, clawback: 'The client was refunded. This amount comes off your next payout.' },
       bonusM: function (m, n) { return m + ' bonus (' + n + ' clients): $100'; }, bonusPaid: 'Paid', bonusPayBtn: 'Mark bonus paid', bonusWait: 'Paid after the month ends',
-      howH: 'How you earn', r1: 'of every custom design and AI agent', r2: 'of the first 12 months of the plan', r3: 'bonus with 10+ clients in a month',
-      how: ['Two ways to earn. 1) Custom card: I design the card for your client. 2) Do it yourself on okunami.pro: your client signs up with your link or your code and builds their own card.', 'You earn 25% of everything I build for your clients: custom card designs and custom AI agents (25% per agent, $12.50 on each $50 agent).', 'You earn 40% of what the client pays for their plan during their first 12 months, either way. Yearly plans pay you all at once; monthly plans pay you month by month, up to 12 payments. After 12 months there is no commission.', 'Your link and code work for 90 days. Always share both. If a client uses neither, the sale cannot be tracked.', 'Free plans earn nothing at first. If your client upgrades to a paid plan within 3 months of signing up, you earn 40% of their plan payments for their first 12 months.', 'A $100 bonus in any month you close 10 or more new paying clients.', 'Paid per sale once the client’s payment clears, 30 days after they pay.', 'Commission is on the plan, design and agent prices. It does not include processing fees, taxes, AI credits or other add-ons.', 'If a client gets a refund or disputes the charge, that commission comes off your next payout.'],
-      howEx: 'With a $149 design instead of $99, the same sale earns you $100.85. Each $50 AI agent adds $12.50.',
-      tree: { aria: 'Commission example for one sale', ask: 'How does the client pay for the plan?', yearB: 'Yearly', monthB: 'Monthly', root: 'The client pays', design: 'Custom design', you: 'For you', total: 'Your commission on this sale',
-        year: { root: '$258', plan: 'Pro Plus yearly', price: '$159 a year', out: '$63.60', total: '$88.35', note: 'They pay the whole year at once, so you get your 40% of the plan at once.' },
-        month: { root: '$99 + $16 a month', plan: 'Pro Plus monthly', price: '$16 a month', out: '$6.40 a month', total: '$24.75 + $6.40 a month', note: 'You get $6.40 for every month they pay, up to 12 payments: $76.80 in total. It adds up to more than yearly because monthly costs the client more over the year ($192 instead of $159).' },
-        bonus: '<b>+ $100</b> bonus in any month you close 10 or more new clients (one per month).', none: '<b>$0</b> after the first 12 months, and nothing on processing fees, taxes or AI credits.' },
+      howH: 'Your earnings guide', r1: 'of every custom card design and every AI agent', r2: "of every plan payment for the client's first 12 months", r3: 'bonus any month you bring in 10 or more new paying clients',
+      G: {
+        plansH: 'Plans: what you earn per client', plansS: 'Yearly pays you the whole commission at once. Monthly pays you every month the client pays, up to 12 months.',
+        th: ['Plan', 'Yearly', 'Monthly'], once: 'paid at once',
+        plans: [['Pro', '$79 a year or $8 a month', '$31.60', 'paid at once', '$3.20', 'a month, up to $38.40'],
+          ['Pro Plus', '$159 a year or $16 a month', '$63.60', 'paid at once', '$6.40', 'a month, up to $76.80'],
+          ['Business', '$60 a card a year or $6 a card a month, 3 cards minimum', '$24.00', 'per card, at once', '$2.40', 'per card a month, up to $28.80'],
+          ['Business, team of 10', '', '$240.00', 'at once', '$24.00', 'a month, up to $288']],
+        kH: 'Sell yearly with Klarna', k1: 'Clients can split any yearly plan into 4 interest-free payments with Klarna. Pro Plus on okunami.pro is 4 payments of $39.75. You still earn your full commission right away, because Klarna pays us the whole year up front.', k2: 'The pitch: "Two months free, and you can split it into 4 payments."',
+        customH: 'Add a custom card: earn more on the same sale', customS: "Angel designs the card from scratch in the client's brand. It's a one-time price on top of any plan.",
+        cth: ['Add-on', 'Client pays', 'You earn'],
+        custom: [['Custom card, Founding 50 price', 'until 50 spots are gone or Dec 31, 2026', '$99', '$24.75'],
+          ['Custom card, regular price', '', '$149', '$37.25'],
+          ['Custom team design (Business)', 'includes 3 cards; each extra person is $35, you earn $8.75', '$249', '$62.25'],
+          ['Custom AI agent', 'per agent', '$50', '$12.50']],
+        combosH: 'Your best combos (Founding price)',
+        combos: [['Custom card + Pro Plus yearly', '$88.35', 'at once', 1], ['Custom card + Pro yearly', '$56.35', 'at once', 1],
+          ['Custom card + Pro Plus monthly', '$24.75', '+ $6.40 a month, up to $101.55', 0], ['Custom card + Pro monthly', '$24.75', '+ $3.20 a month, up to $63.15', 0],
+          ['Add an AI agent to any of these', '+$12.50', 'each', 0]],
+        customN: 'When the Founding 50 ends, the custom card goes to $149 and you earn $37.25 on it instead of $24.75. Klarna covers the plan; the custom design is paid by card, Zelle or Apple Cash.',
+        waysH: 'How a client becomes yours',
+        w1: 'They sign up on your card', w1l: ['Avira, the assistant on your card, shows them designs, picks a plan with them and takes the payment.', 'Every sale made on your card is yours automatically. Nothing to track.'],
+        w2: 'They sign up on okunami.pro with your link or code', w2l: ["Your link is remembered on their phone for 90 days. If they come back and sign up within 90 days, they're yours.", 'After 90 days, or on a different phone, they just type your code in the referral code box when they sign up.', 'Once their account is tagged to you, it stays yours.'],
+        tl: [['Paid plan right away', 'You earn on it.'], ['Start free, upgrade within 3 months', 'You earn on it, same rates.'], ['Upgrade after 3 months', 'No commission. Follow up early.']],
+        calcH: 'Your month, your numbers', calcS: 'Change the numbers to see what a month of sales pays you. Example filled in.',
+        calc: [['Pro Plus yearly', '$63.60 each'], ['Pro yearly', '$31.60 each'], ['Pro Plus monthly', '$6.40 a month each'], ['Pro monthly', '$3.20 a month each'], ['Custom cards (Founding)', '$24.75 each, added to a plan sale'], ['AI agents', '$12.50 each']],
+        tNow: 'Paid for this month', tMo: 'Plus, each of the next 11 months', tMoN: 'From your monthly-plan clients, for as long as they keep paying', tCl: 'New paying clients this month',
+        tBonus: function (n) { return n + ' · $100 bonus included'; }, tLeft: function (n, k) { return n + ' · ' + k + ' more for the $100 bonus'; },
+        rulesH: 'When and how you get paid',
+        rules: ["Each commission is paid 30 days after the client's payment clears.", "Monthly plans: you're paid for each month the client pays, up to their first 12 payments.", 'Yearly plans, including Klarna: your full 40% counts as soon as the payment clears.', 'The $100 bonus is one per month and is paid after the month ends. The count starts over on the 1st.', 'If a client gets a refund, the commission on that payment is removed.', 'Your commission is figured on the plan, design and agent prices only. Processing fees, taxes and AI credits are never counted and never come out of it.']
+      },
       cState: { pending: 'Pending until {d}', ready: 'Ready to pay out', paid: 'Paid on {d}', clawback: 'Refund: {m} comes off' },
       cSplit: function (d, p) { return [d ? 'design ' + d : '', p ? 'plan ' + p : ''].filter(Boolean).join(' + '); },
       fDesign: 'Design + AI agents ($)', fPlan: 'Plan payment ($)', fPays: 'Monthly payments collected', payC: 'Mark commission paid', settle: 'Mark refund deducted',
@@ -457,9 +511,8 @@ input[type=date]::-webkit-date-and-time-value{text-align:left}
     box.hidden = false; openTip = k;
   }
   function hideTips() { $('tip').hidden = true; $('tipB').hidden = true; openTip = ''; document.querySelectorAll('.ib').forEach(function (b) { b.setAttribute('aria-expanded', 'false'); }); }
-  var treeMode = 'year';
   function renderHow() {
-    var T = L(), ul = $('howList'); ul.innerHTML = '';
+    var T = L();
     var ml = $('myLink'); ml.innerHTML = '';
     if (DATA && DATA.link) {
       ml.hidden = false;
@@ -470,23 +523,39 @@ input[type=date]::-webkit-date-and-time-value{text-align:left}
       cb.addEventListener('click', function () { copy(DATA.link).then(function () { toast(T.copied); }); });
       ml.appendChild(cb); ml.appendChild(el('small', 'hint', T.linkHint));
     } else ml.hidden = true;
-    T.how.forEach(function (x) { ul.appendChild(el('li', null, x)); });
-    var R = T.tree, tr = $('howTree');
-    tr.setAttribute('aria-label', R.aria);
-    var M = R[treeMode];
-    tr.innerHTML = '<p class="ask">' + R.ask + '</p><div class="seg" role="group" aria-label="' + R.ask + '">' +
-        '<button type="button" data-mode="year" aria-pressed="' + (treeMode === 'year') + '">' + R.yearB + '</button>' +
-        '<button type="button" data-mode="month" aria-pressed="' + (treeMode === 'month') + '">' + R.monthB + '</button></div>' +
-      '<div class="nd root"><span>' + R.root + '</span><b>' + M.root + '</b></div><div class="stem"></div>' +
-      '<div class="brs">' +
-        '<div class="br"><div class="nd"><span>' + R.design + '</span><b>$99</b></div><span class="pct">× 25%</span><div class="nd out"><span>' + R.you + '</span><b>$24.75</b></div></div>' +
-        '<div class="br"><div class="nd"><span>' + M.plan + '</span><b>' + M.price + '</b></div><span class="pct">× 40%</span><div class="nd out"><span>' + R.you + '</span><b>' + M.out + '</b></div></div>' +
-      '</div><div class="stem"></div>' +
-      '<div class="nd total"><span>' + R.total + '</span><b>' + M.total + '</b></div>' +
-      '<p class="tnote">' + M.note + '</p>' +
-      '<div class="plus"><p>' + R.bonus + '</p><p>' + R.none + '</p></div>';
-    tr.querySelectorAll('.seg button').forEach(function (b) { b.addEventListener('click', function () { treeMode = b.getAttribute('data-mode'); renderHow(); }); });
-    $('howEx').textContent = T.howEx;
+    renderGuide(T.G, DATA && DATA.code);
+  }
+  var CALC_RATES = [[6360, 0], [3160, 0], [640, 640], [320, 320], [2475, 0], [1250, 0]], CALC_CLIENTS = 4;
+  var calcVals = [5, 3, 1, 1, 4, 1];
+  function esc(x) { return String(x).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+  function renderGuide(G, code) {
+    var g = $('guide'), h = '';
+    h += '<h3>' + esc(G.plansH) + '</h3><p class="gs">' + esc(G.plansS) + '</p><div style="overflow-x:auto"><table class="gt"><thead><tr><th>' + esc(G.th[0]) + '</th><th class="m">' + esc(G.th[1]) + '</th><th class="m">' + esc(G.th[2]) + '</th></tr></thead><tbody>';
+    G.plans.forEach(function (r) { h += '<tr><td>' + esc(r[0]) + (r[1] ? '<span class="k">' + esc(r[1]) + '</span>' : '') + '</td><td class="m"><span class="e y">' + r[2] + '</span><span class="k">' + esc(r[3]) + '</span></td><td class="m"><span class="e">' + r[4] + '</span><span class="k">' + esc(r[5]) + '</span></td></tr>'; });
+    h += '</tbody></table></div><div class="gk"><b>' + esc(G.kH) + '</b><p>' + esc(G.k1) + '</p><p>' + esc(G.k2) + '</p></div>';
+    h += '<h3>' + esc(G.customH) + '</h3><p class="gs">' + esc(G.customS) + '</p><div style="overflow-x:auto"><table class="gt"><thead><tr><th>' + esc(G.cth[0]) + '</th><th class="m">' + esc(G.cth[1]) + '</th><th class="m">' + esc(G.cth[2]) + '</th></tr></thead><tbody>';
+    G.custom.forEach(function (r) { h += '<tr><td>' + esc(r[0]) + (r[1] ? '<span class="k">' + esc(r[1]) + '</span>' : '') + '</td><td class="m">' + r[2] + '</td><td class="m"><span class="e">' + r[3] + '</span></td></tr>'; });
+    h += '</tbody></table></div><h4>' + esc(G.combosH) + '</h4><table class="gt"><tbody>';
+    G.combos.forEach(function (r) { h += '<tr><td>' + esc(r[0]) + '</td><td class="m"><span class="e' + (r[3] ? ' y' : '') + '">' + r[1] + '</span><span class="k">' + esc(r[2]) + '</span></td></tr>'; });
+    h += '</tbody></table><p class="gs">' + esc(G.customN) + '</p>';
+    h += '<h3>' + esc(G.waysH) + '</h3>';
+    h += '<div class="gw"><b>1. ' + esc(G.w1) + '</b><ul>' + G.w1l.map(function (x) { return '<li>' + esc(x) + '</li>'; }).join('') + '</ul></div>';
+    h += '<div class="gw"><b>2. ' + esc(G.w2) + (code ? ' (' + esc(code) + ')' : '') + '</b><ul>' + G.w2l.map(function (x) { return '<li>' + esc(x) + '</li>'; }).join('') + '</ul><div class="gtl">' + G.tl.map(function (x) { return '<div><b>' + esc(x[0]) + '</b>' + esc(x[1]) + '</div>'; }).join('') + '</div></div>';
+    h += '<h3>' + esc(G.calcH) + '</h3><p class="gs">' + esc(G.calcS) + '</p><div class="gc">';
+    G.calc.forEach(function (r, i) { h += '<div class="cr"><label for="gc' + i + '">' + esc(r[0]) + '<span>' + esc(r[1]) + '</span></label><div class="st"><button type="button" data-i="' + i + '" data-d="-1" aria-label="-">-</button><input id="gc' + i + '" type="number" inputmode="numeric" min="0" max="99" value="' + calcVals[i] + '"><button type="button" data-i="' + i + '" data-d="1" aria-label="+">+</button></div></div>'; });
+    h += '<div class="gtot" aria-live="polite"><div><span>' + esc(G.tNow) + '</span><b id="gNow"></b></div><div><span>' + esc(G.tMo) + '</span><b id="gMo"></b><small>' + esc(G.tMoN) + '</small></div><div class="w"><span>' + esc(G.tCl) + '</span><b id="gCl"></b></div></div></div>';
+    h += '<h3>' + esc(G.rulesH) + '</h3><ul>' + G.rules.map(function (x) { return '<li>' + esc(x) + '</li>'; }).join('') + '</ul>';
+    g.innerHTML = h;
+    function calc() {
+      var now = 0, mo = 0, cl = 0;
+      calcVals.forEach(function (n, i) { now += n * CALC_RATES[i][0]; mo += n * CALC_RATES[i][1]; if (i < CALC_CLIENTS) cl += n; });
+      if (cl >= 10) now += 10000;
+      $('gNow').textContent = money(now); $('gMo').textContent = money(mo);
+      $('gCl').textContent = cl >= 10 ? G.tBonus(cl) : G.tLeft(cl, 10 - cl);
+    }
+    g.querySelectorAll('.st button').forEach(function (b) { b.addEventListener('click', function () { var i = +b.getAttribute('data-i'); calcVals[i] = Math.max(0, Math.min(99, calcVals[i] + Number(b.getAttribute('data-d')))); $('gc' + i).value = calcVals[i]; calc(); }); });
+    g.querySelectorAll('.st input').forEach(function (inp, i) { inp.addEventListener('input', function () { var n = parseInt(inp.value, 10); calcVals[i] = isFinite(n) && n > 0 ? Math.min(n, 99) : 0; calc(); }); });
+    calc();
   }
 
   function row(l) {
