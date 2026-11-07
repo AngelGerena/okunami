@@ -466,6 +466,7 @@ export const ES: Record<string, string> = {
   "No card needed": "No se necesita tarjeta",
   "Billed ${y} per card a year": "Se factura ${y} por tarjeta al año",
   "Billed ${y} a year": "Se factura ${y} al año",
+  "or 4 payments of ${x} with Klarna": "o 4 pagos de ${x} con Klarna",
   "Billed monthly, cancel anytime": "Facturación mensual, cancela cuando quieras",
   "a year (about ${m} a month)": "al año (unos ${m} al mes)",
   "a month": "al mes",
