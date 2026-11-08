@@ -32,28 +32,31 @@ export function readToken(token: string, hashFor: (who: string) => string | null
 }
 
 /* ---------- the reseller plan (Nov 2026): the one place these numbers live ----------
-   25% of every one-time build: custom card designs and custom AI agents (25% per agent, $12.50 on a $50 agent).
-   One-time build money is recorded in studio_cents (the dashboard's "Design + AI agents" field).
-   40% of the client's first 12 months of plan payments, nothing after that.
+   30% of the client's first 12 months of plan payments, nothing after that.
+   Flat finder's fees on one-time builds, because Angel does the build: $15 per custom card (Founding or regular price),
+   $25 per custom team design (Business, any team size), $10 per custom AI agent.
+   A sale counts as a custom design when studio is true (or studio_cents > 0); agents sold are counted in agent_count.
    Sales from okunami.pro count when the client signed up with the reseller's link or code (remembered 90 days)
    and paid for a plan within 3 months of signing up.
-   $100 bonus in any calendar month with 10 or more new paying clients.
+   $100 bonus in any calendar month with 10 or more new paying clients (one bonus per month).
    Paid per sale once the client's payment has cleared (30 days after it was paid).
-   Figured on the design and plan prices only: never on processing fees, taxes or AI credits.
+   Figured on the plan price only: never on processing fees, taxes or AI credits.
    A refunded or disputed sale earns nothing; commission already paid on it comes off the next payout. */
-export const TERMS = { designRate: 0.25, planRate: 0.40, planMonths: 12, bonusCents: 10000, bonusAt: 10, clearDays: 30 };
+export const TERMS = { planRate: 0.30, planMonths: 12, cardFeeCents: 1500, teamDesignFeeCents: 2500, agentFeeCents: 1000, bonusCents: 10000, bonusAt: 10, clearDays: 30 };
 
 type Lead = Record<string, unknown>;
 const n = (v: unknown) => Number(v) || 0;
 const ym = (d: unknown) => { const x = new Date(String(d)); return `${x.getUTCFullYear()}-${String(x.getUTCMonth() + 1).padStart(2, '0')}`; };
 
-/** What one sale earns. amount_cents = design + one plan payment; studio_cents = the design part. */
+/** What one sale earns. amount_cents = design + one plan payment; studio_cents = the design part (the plan part is what earns 30%). */
 export function earning(l: Lead, now = new Date()) {
   const paid = l.status === 'paid';
   const design = Math.max(0, n(l.studio_cents));
   const plan = Math.max(0, n(l.amount_cents) - design);                     // one plan payment
   const payments = l.billing === 'month' ? Math.min(TERMS.planMonths, Math.max(1, n(l.plan_payments) || 1)) : 1;   // a yearly payment covers all 12 months
-  const design_c = paid ? Math.round(design * TERMS.designRate) : 0;
+  const hasDesign = l.studio === true || design > 0;
+  const agents = Math.max(0, Math.min(50, Math.round(n(l.agent_count))));
+  const design_c = paid ? (hasDesign ? (l.plan === 'team' ? TERMS.teamDesignFeeCents : TERMS.cardFeeCents) : 0) + agents * TERMS.agentFeeCents : 0;   // flat fees
   const plan_c = paid ? Math.round(plan * payments * TERMS.planRate) : 0;
   const earned = design_c + plan_c;
   const clears = l.paid_at ? new Date(new Date(String(l.paid_at)).getTime() + TERMS.clearDays * DAY) : null;

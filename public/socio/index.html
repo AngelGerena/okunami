@@ -89,7 +89,7 @@ h1{margin:0;font-family:'Fraunces',Georgia,serif;font-size:34px;line-height:1.05
 .how summary::-webkit-details-marker{display:none}
 .how summary svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;transition:transform .2s}
 .how[open] summary svg{transform:rotate(180deg)}
-.how .rates{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:2px 0 12px}
+.how .rates{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:2px 0 12px}
 .how .rate{background:var(--paper);border-radius:12px;padding:10px;display:flex;flex-direction:column;gap:2px;min-width:0}
 .how .rate b{font-family:'Fraunces',Georgia,serif;font-size:24px;line-height:1.05;color:var(--pink-deep)}
 .how .rate span{font-size:12px;font-weight:700;color:var(--muted);line-height:1.3}
@@ -242,8 +242,9 @@ input[type=date]::-webkit-date-and-time-value{text-align:left}
     <details class="how" id="how">
       <summary><span data-t="howH">Tu guía de ganancias</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary>
       <div class="rates">
-        <div class="rate"><b>40%</b><span data-t="r2">de cada pago del plan durante los primeros 12 meses del cliente</span></div>
-        <div class="rate"><b>25%</b><span data-t="r1">de cada diseño a la medida y cada agente de IA</span></div>
+        <div class="rate"><b>30%</b><span data-t="r2">de cada pago del plan durante los primeros 12 meses del cliente</span></div>
+        <div class="rate"><b>$15</b><span data-t="r1">fijo por cada tarjeta a la medida ($25 por un diseño de equipo)</span></div>
+        <div class="rate"><b>$10</b><span data-t="r4">fijo por cada agente de IA a la medida</span></div>
         <div class="rate"><b>+$100</b><span data-t="r3">de bono cualquier mes que traigas 10 o más clientes nuevos que paguen</span></div>
       </div>
       <div class="mylink" id="myLink" hidden></div>
@@ -302,40 +303,40 @@ input[type=date]::-webkit-date-and-time-value{text-align:left}
       nextClear: function (n, d) { return 'Próxima en liberarse: ' + n + ', ' + d + '.'; },
       why: { pending: function (d, p) { return 'Se libera el ' + d + '. Te pagamos a más tardar el ' + p + '.'; }, ready: function (p) { return 'Ya se liberó. Te pagamos a más tardar el ' + p + '.'; }, clawback: 'El cliente recibió reembolso. Este monto se descuenta de tu próximo pago.' },
       bonusM: function (m, n) { return 'Bono de ' + m + ' (' + n + ' clientes): $100'; }, bonusPaid: 'Pagado', bonusPayBtn: 'Marcar bono pagado', bonusWait: 'Se paga al cerrar el mes',
-      howH: 'Tu guía de ganancias', r1: 'de cada diseño a la medida y cada agente de IA', r2: 'de cada pago del plan durante los primeros 12 meses del cliente', r3: 'de bono cualquier mes que traigas 10 o más clientes nuevos que paguen',
+      howH: 'Tu guía de ganancias', r1: 'fijo por cada tarjeta a la medida ($25 por un diseño de equipo)', r4: 'fijo por cada agente de IA a la medida', r2: 'de cada pago del plan durante los primeros 12 meses del cliente', r3: 'de bono cualquier mes que traigas 10 o más clientes nuevos que paguen',
       G: {
         plansH: 'Planes: lo que ganas por cliente', plansS: 'El anual te paga toda la comisión de una vez. El mensual te paga cada mes que el cliente paga, hasta 12 meses.',
         th: ['Plan', 'Anual', 'Mensual'], once: 'de una vez',
-        plans: [['Pro', '$79 al año o $8 al mes', '$31.60', 'de una vez', '$3.20', 'al mes, hasta $38.40'],
-          ['Pro Plus', '$159 al año o $16 al mes', '$63.60', 'de una vez', '$6.40', 'al mes, hasta $76.80'],
-          ['Business', '$60 por tarjeta al año o $6 por tarjeta al mes, mínimo 3 tarjetas', '$24.00', 'por tarjeta, de una vez', '$2.40', 'por tarjeta al mes, hasta $28.80'],
-          ['Business, equipo de 10', '', '$240.00', 'de una vez', '$24.00', 'al mes, hasta $288']],
+        plans: [['Pro', '$79 al año o $8 al mes', '$23.70', 'de una vez', '$2.40', 'al mes, hasta $28.80'],
+          ['Pro Plus', '$159 al año o $16 al mes', '$47.70', 'de una vez', '$4.80', 'al mes, hasta $57.60'],
+          ['Business', '$60 por tarjeta al año o $6 por tarjeta al mes, mínimo 3 tarjetas', '$18.00', 'por tarjeta, de una vez', '$1.80', 'por tarjeta al mes, hasta $21.60'],
+          ['Business, equipo de 10', '', '$180.00', 'de una vez', '$18.00', 'al mes, hasta $216']],
         kH: 'Vende el anual con Klarna', k1: 'Los clientes pueden dividir cualquier plan anual en 4 pagos sin intereses con Klarna. Pro Plus en okunami.pro son 4 pagos de $39.75. Tú igual ganas tu comisión completa enseguida, porque Klarna nos paga el año completo por adelantado.', k2: 'La frase: "Dos meses gratis, y lo puedes dividir en 4 pagos."',
-        customH: 'Suma una tarjeta a la medida: gana más en la misma venta', customS: 'Angel diseña la tarjeta desde cero con la marca del cliente. Es un pago único aparte de cualquier plan.',
+        customH: 'Suma una tarjeta a la medida: gana más en la misma venta', customS: 'Angel diseña la tarjeta desde cero con la marca del cliente. Es un pago único aparte de cualquier plan. Como Angel hace el trabajo, ganas una comisión fija por traer la venta.',
         cth: ['Extra', 'El cliente paga', 'Tú ganas'],
-        custom: [['Tarjeta a la medida, precio Fundadores 50', 'hasta que se acaben los 50 lugares o el 31 de dic. de 2026', '$99', '$24.75'],
-          ['Tarjeta a la medida, precio regular', '', '$149', '$37.25'],
-          ['Diseño de equipo (Business)', 'incluye 3 tarjetas; cada persona extra es $35, ganas $8.75', '$249', '$62.25'],
-          ['Agente de IA a la medida', 'por agente', '$50', '$12.50']],
-        combosH: 'Tus mejores combinaciones (precio Fundadores)',
-        combos: [['Tarjeta a la medida + Pro Plus anual', '$88.35', 'de una vez', 1], ['Tarjeta a la medida + Pro anual', '$56.35', 'de una vez', 1],
-          ['Tarjeta a la medida + Pro Plus mensual', '$24.75', '+ $6.40 al mes, hasta $101.55', 0], ['Tarjeta a la medida + Pro mensual', '$24.75', '+ $3.20 al mes, hasta $63.15', 0],
-          ['Súmale un agente de IA a cualquiera', '+$12.50', 'cada uno', 0]],
-        customN: 'Cuando terminen los Fundadores 50, la tarjeta a la medida pasa a $149 y ganas $37.25 en vez de $24.75. Klarna cubre el plan; el diseño a la medida se paga con tarjeta, Zelle o Apple Cash.',
+        custom: [['Tarjeta a la medida, precio Fundadores 50', 'hasta que se acaben los 50 lugares o el 31 de dic. de 2026', '$99', '$15'],
+          ['Tarjeta a la medida, precio regular', '', '$149', '$15'],
+          ['Diseño de equipo (Business)', 'incluye 3 tarjetas; cada persona extra es $35. Ganas $25 sin importar el tamaño del equipo', '$249', '$25'],
+          ['Agente de IA a la medida', 'por agente', '$50', '$10']],
+        combosH: 'Tus mejores combinaciones',
+        combos: [['Tarjeta a la medida + Pro Plus anual', '$62.70', 'de una vez', 1], ['Tarjeta a la medida + Pro anual', '$38.70', 'de una vez', 1],
+          ['Tarjeta a la medida + Pro Plus mensual', '$15', '+ $4.80 al mes, hasta $72.60', 0], ['Tarjeta a la medida + Pro mensual', '$15', '+ $2.40 al mes, hasta $43.80', 0],
+          ['Súmale un agente de IA a cualquiera', '+$10', 'cada uno', 0]],
+        customN: 'Ganas los mismos $15 por tarjeta a la medida con precio Fundadores ($99) o regular ($149). Klarna cubre el plan; el diseño a la medida se paga con tarjeta, Zelle o Apple Cash.',
         waysH: 'Cómo un cliente se vuelve tuyo',
         w1: 'Se inscriben en tu tarjeta', w1l: ['Avira, la asistente de tu tarjeta, les enseña diseños, escoge el plan con ellos y cobra el pago.', 'Toda venta hecha en tu tarjeta es tuya automáticamente. No tienes que llevar cuenta.'],
         w2: 'Se inscriben en okunami.pro con tu enlace o código', w2l: ['Tu enlace se recuerda en su celular por 90 días. Si regresan y se inscriben dentro de 90 días, son tuyos.', 'Después de 90 días, o en otro celular, solo escriben tu código en la casilla de código de referido al inscribirse.', 'Una vez su cuenta queda marcada a tu nombre, se queda tuya.'],
         tl: [['Plan pagado enseguida', 'Ganas en esa venta.'], ['Empieza gratis, sube antes de 3 meses', 'Ganas en esa venta, mismas tasas.'], ['Sube después de 3 meses', 'Sin comisión. Dale seguimiento temprano.']],
         calcH: 'Tu mes, tus números', calcS: 'Cambia los números para ver lo que te paga un mes de ventas. Viene con un ejemplo.',
-        calc: [['Pro Plus anual', '$63.60 cada uno'], ['Pro anual', '$31.60 cada uno'], ['Pro Plus mensual', '$6.40 al mes cada uno'], ['Pro mensual', '$3.20 al mes cada uno'], ['Tarjetas a la medida (Fundadores)', '$24.75 cada una, sumada a una venta de plan'], ['Agentes de IA', '$12.50 cada uno']],
+        calc: [['Pro Plus anual', '$47.70 cada uno'], ['Pro anual', '$23.70 cada uno'], ['Pro Plus mensual', '$4.80 al mes cada uno'], ['Pro mensual', '$2.40 al mes cada uno'], ['Tarjetas a la medida', '$15 cada una, sumada a una venta de plan'], ['Agentes de IA', '$10 cada uno']],
         tNow: 'Cobras por este mes', tMo: 'Más, cada uno de los próximos 11 meses', tMoN: 'De tus clientes de plan mensual, mientras sigan pagando', tCl: 'Clientes nuevos que pagaron este mes',
         tBonus: function (n) { return n + ' · bono de $100 incluido'; }, tLeft: function (n, k) { return n + ' · te faltan ' + k + ' para el bono de $100'; },
         rulesH: 'Cuándo y cómo cobras',
-        rules: ['Cada comisión se paga 30 días después de que el pago del cliente se confirma.', 'Planes mensuales: cobras por cada mes que el cliente paga, hasta sus primeros 12 pagos.', 'Planes anuales, incluso con Klarna: tu 40% completo cuenta en cuanto se confirma el pago.', 'El bono de $100 es uno por mes y se paga cuando termina el mes. El conteo empieza de nuevo el día 1.', 'Si un cliente recibe un reembolso, se quita la comisión de ese pago.', 'Tu comisión se calcula solo sobre los precios del plan, el diseño y los agentes. Los cargos de procesamiento, impuestos y créditos de IA nunca se cuentan ni se restan.']
+        rules: ['Cada comisión se paga 30 días después de que el pago del cliente se confirma.', 'Planes mensuales: cobras por cada mes que el cliente paga, hasta sus primeros 12 pagos.', 'Planes anuales, incluso con Klarna: tu 30% completo cuenta en cuanto se confirma el pago.', 'El bono de $100 es uno por mes y se paga cuando termina el mes. El conteo empieza de nuevo el día 1.', 'Si un cliente recibe un reembolso, se quita la comisión de ese pago.', 'Los planes te pagan 30%. Los diseños a la medida y los agentes de IA te pagan una comisión fija ($15, $25 o $10), porque Angel hace el trabajo. Los cargos de procesamiento, impuestos y créditos de IA nunca se cuentan ni se restan.']
       },
       cState: { pending: 'Pendiente hasta {d}', ready: 'Lista para pago', paid: 'Pagada el {d}', clawback: 'Reembolso: se descuenta {m}' },
       cSplit: function (d, p) { return [d ? 'diseño ' + d : '', p ? 'plan ' + p : ''].filter(Boolean).join(' + '); },
-      fDesign: 'Diseño + agentes de IA ($)', fPlan: 'Pago del plan ($)', fPays: 'Pagos mensuales cobrados', payC: 'Marcar comisión pagada', settle: 'Marcar reembolso descontado',
+      fDesign: 'Diseño a la medida ($)', fAgents: 'Agentes de IA vendidos', fPlan: 'Pago del plan ($)', fPays: 'Pagos mensuales cobrados', payC: 'Marcar comisión pagada', settle: 'Marcar reembolso descontado',
       clawT: function (m) { return 'Hay ' + m + ' en reembolsos que se descuentan del próximo pago.'; },
       add: '+ Agregar persona', refresh: 'Actualizar', addH: 'Alguien con quien hablaste', fName: 'Nombre', fPhone: 'Teléfono o WhatsApp', fBiz: 'Negocio',
       fNotes: 'Notas', fFollow: 'Dar seguimiento el', save: 'Guardar', cancel: 'Cancelar', out: 'Salir', crafted: 'Hecho por',
@@ -365,40 +366,40 @@ input[type=date]::-webkit-date-and-time-value{text-align:left}
       nextClear: function (n, d) { return 'Next to clear: ' + n + ', ' + d + '.'; },
       why: { pending: function (d, p) { return 'Clears on ' + d + '. We pay you by ' + p + '.'; }, ready: function (p) { return 'It cleared. We pay you by ' + p + '.'; }, clawback: 'The client was refunded. This amount comes off your next payout.' },
       bonusM: function (m, n) { return m + ' bonus (' + n + ' clients): $100'; }, bonusPaid: 'Paid', bonusPayBtn: 'Mark bonus paid', bonusWait: 'Paid after the month ends',
-      howH: 'Your earnings guide', r1: 'of every custom card design and every AI agent', r2: "of every plan payment for the client's first 12 months", r3: 'bonus any month you bring in 10 or more new paying clients',
+      howH: 'Your earnings guide', r1: 'flat for every custom card ($25 for a team design)', r4: 'flat for every custom AI agent', r2: "of every plan payment for the client's first 12 months", r3: 'bonus any month you bring in 10 or more new paying clients',
       G: {
         plansH: 'Plans: what you earn per client', plansS: 'Yearly pays you the whole commission at once. Monthly pays you every month the client pays, up to 12 months.',
         th: ['Plan', 'Yearly', 'Monthly'], once: 'paid at once',
-        plans: [['Pro', '$79 a year or $8 a month', '$31.60', 'paid at once', '$3.20', 'a month, up to $38.40'],
-          ['Pro Plus', '$159 a year or $16 a month', '$63.60', 'paid at once', '$6.40', 'a month, up to $76.80'],
-          ['Business', '$60 a card a year or $6 a card a month, 3 cards minimum', '$24.00', 'per card, at once', '$2.40', 'per card a month, up to $28.80'],
-          ['Business, team of 10', '', '$240.00', 'at once', '$24.00', 'a month, up to $288']],
+        plans: [['Pro', '$79 a year or $8 a month', '$23.70', 'paid at once', '$2.40', 'a month, up to $28.80'],
+          ['Pro Plus', '$159 a year or $16 a month', '$47.70', 'paid at once', '$4.80', 'a month, up to $57.60'],
+          ['Business', '$60 a card a year or $6 a card a month, 3 cards minimum', '$18.00', 'per card, at once', '$1.80', 'per card a month, up to $21.60'],
+          ['Business, team of 10', '', '$180.00', 'at once', '$18.00', 'a month, up to $216']],
         kH: 'Sell yearly with Klarna', k1: 'Clients can split any yearly plan into 4 interest-free payments with Klarna. Pro Plus on okunami.pro is 4 payments of $39.75. You still earn your full commission right away, because Klarna pays us the whole year up front.', k2: 'The pitch: "Two months free, and you can split it into 4 payments."',
-        customH: 'Add a custom card: earn more on the same sale', customS: "Angel designs the card from scratch in the client's brand. It's a one-time price on top of any plan.",
+        customH: 'Add a custom card: earn more on the same sale', customS: "Angel designs the card from scratch in the client's brand. It's a one-time price on top of any plan. Since Angel does the build, you earn a flat finder's fee for bringing in the sale.",
         cth: ['Add-on', 'Client pays', 'You earn'],
-        custom: [['Custom card, Founding 50 price', 'until 50 spots are gone or Dec 31, 2026', '$99', '$24.75'],
-          ['Custom card, regular price', '', '$149', '$37.25'],
-          ['Custom team design (Business)', 'includes 3 cards; each extra person is $35, you earn $8.75', '$249', '$62.25'],
-          ['Custom AI agent', 'per agent', '$50', '$12.50']],
-        combosH: 'Your best combos (Founding price)',
-        combos: [['Custom card + Pro Plus yearly', '$88.35', 'at once', 1], ['Custom card + Pro yearly', '$56.35', 'at once', 1],
-          ['Custom card + Pro Plus monthly', '$24.75', '+ $6.40 a month, up to $101.55', 0], ['Custom card + Pro monthly', '$24.75', '+ $3.20 a month, up to $63.15', 0],
-          ['Add an AI agent to any of these', '+$12.50', 'each', 0]],
-        customN: 'When the Founding 50 ends, the custom card goes to $149 and you earn $37.25 on it instead of $24.75. Klarna covers the plan; the custom design is paid by card, Zelle or Apple Cash.',
+        custom: [['Custom card, Founding 50 price', 'until 50 spots are gone or Dec 31, 2026', '$99', '$15'],
+          ['Custom card, regular price', '', '$149', '$15'],
+          ['Custom team design (Business)', 'includes 3 cards; each extra person is $35. You earn $25 whatever the team size', '$249', '$25'],
+          ['Custom AI agent', 'per agent', '$50', '$10']],
+        combosH: 'Your best combos',
+        combos: [['Custom card + Pro Plus yearly', '$62.70', 'at once', 1], ['Custom card + Pro yearly', '$38.70', 'at once', 1],
+          ['Custom card + Pro Plus monthly', '$15', '+ $4.80 a month, up to $72.60', 0], ['Custom card + Pro monthly', '$15', '+ $2.40 a month, up to $43.80', 0],
+          ['Add an AI agent to any of these', '+$10', 'each', 0]],
+        customN: 'You earn the same $15 on a custom card at the Founding price ($99) or the regular price ($149). Klarna covers the plan; the custom design is paid by card, Zelle or Apple Cash.',
         waysH: 'How a client becomes yours',
         w1: 'They sign up on your card', w1l: ['Avira, the assistant on your card, shows them designs, picks a plan with them and takes the payment.', 'Every sale made on your card is yours automatically. Nothing to track.'],
         w2: 'They sign up on okunami.pro with your link or code', w2l: ["Your link is remembered on their phone for 90 days. If they come back and sign up within 90 days, they're yours.", 'After 90 days, or on a different phone, they just type your code in the referral code box when they sign up.', 'Once their account is tagged to you, it stays yours.'],
         tl: [['Paid plan right away', 'You earn on it.'], ['Start free, upgrade within 3 months', 'You earn on it, same rates.'], ['Upgrade after 3 months', 'No commission. Follow up early.']],
         calcH: 'Your month, your numbers', calcS: 'Change the numbers to see what a month of sales pays you. Example filled in.',
-        calc: [['Pro Plus yearly', '$63.60 each'], ['Pro yearly', '$31.60 each'], ['Pro Plus monthly', '$6.40 a month each'], ['Pro monthly', '$3.20 a month each'], ['Custom cards (Founding)', '$24.75 each, added to a plan sale'], ['AI agents', '$12.50 each']],
+        calc: [['Pro Plus yearly', '$47.70 each'], ['Pro yearly', '$23.70 each'], ['Pro Plus monthly', '$4.80 a month each'], ['Pro monthly', '$2.40 a month each'], ['Custom cards', '$15 each, added to a plan sale'], ['AI agents', '$10 each']],
         tNow: 'Paid for this month', tMo: 'Plus, each of the next 11 months', tMoN: 'From your monthly-plan clients, for as long as they keep paying', tCl: 'New paying clients this month',
         tBonus: function (n) { return n + ' · $100 bonus included'; }, tLeft: function (n, k) { return n + ' · ' + k + ' more for the $100 bonus'; },
         rulesH: 'When and how you get paid',
-        rules: ["Each commission is paid 30 days after the client's payment clears.", "Monthly plans: you're paid for each month the client pays, up to their first 12 payments.", 'Yearly plans, including Klarna: your full 40% counts as soon as the payment clears.', 'The $100 bonus is one per month and is paid after the month ends. The count starts over on the 1st.', 'If a client gets a refund, the commission on that payment is removed.', 'Your commission is figured on the plan, design and agent prices only. Processing fees, taxes and AI credits are never counted and never come out of it.']
+        rules: ["Each commission is paid 30 days after the client's payment clears.", "Monthly plans: you're paid for each month the client pays, up to their first 12 payments.", 'Yearly plans, including Klarna: your full 30% counts as soon as the payment clears.', 'The $100 bonus is one per month and is paid after the month ends. The count starts over on the 1st.', 'If a client gets a refund, the commission on that payment is removed.', 'Plans pay you 30%. Custom designs and AI agents pay you a flat fee ($15, $25 or $10), because Angel does the build. Processing fees, taxes and AI credits are never counted and never come out of it.']
       },
       cState: { pending: 'Pending until {d}', ready: 'Ready to pay out', paid: 'Paid on {d}', clawback: 'Refund: {m} comes off' },
       cSplit: function (d, p) { return [d ? 'design ' + d : '', p ? 'plan ' + p : ''].filter(Boolean).join(' + '); },
-      fDesign: 'Design + AI agents ($)', fPlan: 'Plan payment ($)', fPays: 'Monthly payments collected', payC: 'Mark commission paid', settle: 'Mark refund deducted',
+      fDesign: 'Custom design ($)', fAgents: 'AI agents sold', fPlan: 'Plan payment ($)', fPays: 'Monthly payments collected', payC: 'Mark commission paid', settle: 'Mark refund deducted',
       clawT: function (m) { return 'There is ' + m + ' in refunds that comes off the next payout.'; },
       add: '+ Add person', refresh: 'Refresh', addH: 'Someone you talked to', fName: 'Name', fPhone: 'Phone or WhatsApp', fBiz: 'Business',
       fNotes: 'Notes', fFollow: 'Follow up on', save: 'Save', cancel: 'Cancel', out: 'Sign out', crafted: 'Crafted by',
@@ -525,7 +526,7 @@ input[type=date]::-webkit-date-and-time-value{text-align:left}
     } else ml.hidden = true;
     renderGuide(T.G, DATA && DATA.code);
   }
-  var CALC_RATES = [[6360, 0], [3160, 0], [640, 640], [320, 320], [2475, 0], [1250, 0]], CALC_CLIENTS = 4;
+  var CALC_RATES = [[4770, 0], [2370, 0], [480, 480], [240, 240], [1500, 0], [1000, 0]], CALC_CLIENTS = 4;
   var calcVals = [5, 3, 1, 1, 4, 1];
   function esc(x) { return String(x).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
   function renderGuide(G, code) {
@@ -624,12 +625,13 @@ input[type=date]::-webkit-date-and-time-value{text-align:left}
     sl.appendChild(sel);
     var fl = el('label', null, T.follow), fu = el('input'); fu.type = 'date'; fu.value = l.follow_up || ''; fl.appendChild(fu);
     if (!locked) { ed.appendChild(sl); ed.appendChild(fl); }
-    var dz = null, pz = null, pays = null;
+    var dz = null, pz = null, pays = null, ag = null;
     function num(lbl, val, cls) { var lb = el('label', cls || null, lbl), i = el('input'); i.type = 'number'; i.inputMode = 'decimal'; i.min = '0'; i.step = '0.01'; if (val != null) i.value = val; lb.appendChild(i); ed.appendChild(lb); return i; }
     if (DATA.admin) {
       var dC = Number(l.studio_cents) || 0, pC = Math.max(0, (Number(l.amount_cents) || 0) - dC);
       dz = num(T.fDesign, dC ? (dC / 100).toFixed(2) : '');
       pz = num(T.fPlan, pC ? (pC / 100).toFixed(2) : '');
+      ag = num(T.fAgents, String(l.agent_count || 0)); ag.step = '1'; ag.max = '50'; ag.inputMode = 'numeric';
       if (l.billing === 'month') { pays = num(T.fPays, String(l.plan_payments || 1), 'full'); pays.step = '1'; pays.min = '1'; pays.max = '12'; pays.inputMode = 'numeric'; }
     }
     var nl = el('label', 'full', T.notes), nt = el('textarea'); nt.value = l.partner_notes || ''; nl.appendChild(nt); ed.appendChild(nl);
@@ -639,7 +641,7 @@ input[type=date]::-webkit-date-and-time-value{text-align:left}
     var sv = el('button', 'btn pri sm', T.saveRow); sv.type = 'button';
     sv.addEventListener('click', function () {
       var body = { status: sel.value, follow_up: fu.value || null, partner_notes: nt.value };
-      if (DATA.admin) { body.design = dz.value === '' ? 0 : Number(dz.value); body.plan = pz.value === '' ? 0 : Number(pz.value); if (pays) body.plan_payments = Number(pays.value) || 1; }
+      if (DATA.admin) { body.design = dz.value === '' ? 0 : Number(dz.value); body.plan = pz.value === '' ? 0 : Number(pz.value); if (pays) body.plan_payments = Number(pays.value) || 1; body.agents = Math.max(0, parseInt(ag.value, 10) || 0); }
       save(l, body, sv);
     });
     var ct = el('button', 'btn soft sm', T.contacted); ct.type = 'button';

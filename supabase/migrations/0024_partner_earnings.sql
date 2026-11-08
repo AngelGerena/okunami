@@ -1,4 +1,4 @@
--- Reseller plan (Nov 2026): 25% of a custom design, 40% of the first 12 months of plan payments, $100 bonus
+-- Reseller plan (Nov 2026, first version; see 0029 for the current rates): 25% of a custom design, 40% of the first 12 months of plan payments, $100 bonus
 -- for 10+ new paying clients in a month, paid per sale once the client's payment clears (30 days).
 -- The math lives in supabase/functions/okunami-partner/logic.ts (TERMS). These columns record what happened.
 alter table public.fc_reseller_leads

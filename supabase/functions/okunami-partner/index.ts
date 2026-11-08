@@ -9,12 +9,12 @@
 //   POST { action: 'list', token, reseller? }            -> { who, admin, reseller, resellers, leads, totals, card }
 //   POST { action: 'add', token, lead:{...} }            -> { lead }      someone the partner talked to (source 'manual')
 //   POST { action: 'update', token, id, status?, follow_up?, partner_notes?, contacted?,
-//          admin only: amount?, design?, plan?, plan_payments?, pay_commission? }  -> { lead }
+//          admin only: amount?, design?, plan?, plan_payments?, agents?, pay_commission? }  -> { lead }
 //   POST { action: 'bonus_paid', token, reseller, month:'YYYY-MM' }  (admin)  -> { ok }
 //
 // Who: a reseller slug (hiram-diaz) sees only their own leads. 'admin' sees every reseller (picker), and can
 // mark Zelle / Apple Cash payments as paid, and record commission payouts.
-// Commission rules live in logic.ts (TERMS): 25% of one-time builds (custom designs and custom AI agents), 40% of the first 12 months of the plan, $100 bonus at 10+ clients a month.
+// Commission rules live in logic.ts (TERMS): 30% of the first 12 months of the plan; flat fees of $15 per custom card, $25 per team design and $10 per AI agent; $100 bonus at 10+ clients a month.
 // Sales made on okunami.pro with the reseller's link or code arrive here on their own (source 'site', see _shared/referrals.ts). Nothing on a reseller's screen shows that the admin can view it.
 // PINs live hashed in fc_partner_access (set them with: select public.fc_set_partner_pin('hiram-diaz', '1234');).
 import { admin, cors, json } from '../_shared/okunami.ts';
@@ -32,7 +32,7 @@ function tooMany(ip: string, max = 6, ms = 15 * 60_000) {
   return list.length > max;
 }
 
-const LEAD_COLS = 'id, created_at, updated_at, reseller, lang, source, full_name, business_name, business_type, phone, email, plan, billing, seats, studio, studio_cents, payment_method, status, amount_cents, fee_cents, notes, follow_up, last_contact, partner_notes, paid_at, plan_payments, commission_paid_cents, commission_paid_at';
+const LEAD_COLS = 'id, created_at, updated_at, reseller, lang, source, full_name, business_name, business_type, phone, email, plan, billing, seats, studio, studio_cents, payment_method, status, amount_cents, fee_cents, notes, follow_up, last_contact, partner_notes, paid_at, plan_payments, agent_count, commission_paid_cents, commission_paid_at';
 
 Deno.serve(async (req) => {
   if (req.method === 'OPTIONS') return new Response('ok', { headers: cors });
@@ -135,6 +135,7 @@ Deno.serve(async (req) => {
         const plan = b.plan != null ? cents(b.plan) : Math.max(0, (Number(lead.amount_cents) || 0) - (Number(lead.studio_cents) || 0));
         upd.studio_cents = design || null; upd.studio = design > 0; upd.amount_cents = design + plan;
       }
+      if (isAdmin && b.agents != null) upd.agent_count = Math.max(0, Math.min(50, Math.round(Number(b.agents)) || 0));
       if (isAdmin && b.plan_payments != null) upd.plan_payments = Math.max(1, Math.min(60, Math.round(Number(b.plan_payments)) || 1));
       if ((upd.status === 'paid' || ('amount_cents' in upd && lead.status === 'paid')) && !(Number(upd.amount_cents ?? lead.amount_cents) > 0)) return json({ error: 'need_amount' }, 400);
       if ('follow_up' in b) upd.follow_up = /^\d{4}-\d{2}-\d{2}$/.test(String(b.follow_up ?? '')) ? b.follow_up : null;
