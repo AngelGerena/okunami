@@ -3,7 +3,7 @@
 
 export const PARTNERS: Record<string, { name: string; email: string; card: string; code: string; link: string }> = {
   'hiram-diaz': {
-    name: 'Hiram Diaz', email: 'hiramdiazm@gmail.com', card: 'https://hiram-okunami.netlify.app/',
+    name: 'Hiram Diaz', email: 'hiramdiazm@gmail.com', card: 'https://hiram.okunami.pro/',
     code: 'HIRAM', link: 'https://okunami.pro/?ref=hiram',
   },
 };
