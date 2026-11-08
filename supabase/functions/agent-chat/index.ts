@@ -96,8 +96,10 @@ Deno.serve(async (req) => {
           systemInstruction: { parts: [{ text: system }] },
           contents: messages.map((m) => ({ role: m.role === 'assistant' ? 'model' : 'user', parts: [{ text: m.content }] })),
           generationConfig: {
-            temperature: 0, maxOutputTokens: maxOut + 120,
-            thinkingConfig: { thinkingBudget: 0 },   // no hidden reasoning tokens: cheaper and predictable
+            maxOutputTokens: maxOut + 120,
+            // Keep hidden reasoning to a minimum: cheaper and predictable. Gemini 3 models take thinkingLevel and reject
+            // (or will reject) temperature; older models take thinkingBudget 0 and temperature 0.
+            ...(/^gemini-[3-9]/.test(model) ? { thinkingConfig: { thinkingLevel: 'minimal' } } : { temperature: 0, thinkingConfig: { thinkingBudget: 0 } }),
             responseMimeType: 'application/json',
             responseSchema: { type: 'OBJECT', properties: { found: { type: 'BOOLEAN' }, answer: { type: 'STRING' }, quote: { type: 'STRING' } }, required: ['found', 'answer', 'quote'] },
           },
