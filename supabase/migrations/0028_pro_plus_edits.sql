@@ -27,6 +27,8 @@ create index if not exists fc_edit_requests_status on public.fc_edit_requests(st
 alter table public.fc_edit_requests enable row level security;
 drop policy if exists fc_edit_requests_read on public.fc_edit_requests;
 create policy fc_edit_requests_read on public.fc_edit_requests for select using (owner_id = auth.uid() or public.fc_is_admin());
+-- Members and admins read through the functions below, so Angel's private notes never reach the browser directly.
+revoke all on public.fc_edit_requests from anon, authenticated;
 
 /** Edits included per month on Pro Plus. Keep in step with EDITS_PER_MONTH in src/lib/edits.ts. */
 create or replace function public.fc_edit_limit() returns int language sql immutable as $$ select 2 $$;
