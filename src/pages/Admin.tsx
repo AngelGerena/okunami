@@ -2,11 +2,11 @@ import { useCallback, useEffect, useState, type ReactNode } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import {
   ArrowLeft, ArrowRightLeft, BarChart3, ChevronDown, ChevronUp, ExternalLink, Eye, EyeOff, LayoutGrid, Loader2,
-  Globe2, LogOut, MessageCircle, Pencil, RefreshCw, Search, ShieldCheck, Users, Wand2, X,
+  Check, Globe2, LogOut, MessageCircle, Pencil, PencilRuler, RefreshCw, Search, ShieldCheck, Users, Wand2, X,
 } from 'lucide-react';
 import StudioTab from '../components/admin/StudioTab';
 import { TEAM, cardLimit } from '../lib/plans';
-import { adminApi, type AdminCard, type AdminDomain, type AdminLog, type AdminStats, type AdminUser, type PlanHow, type PlanId } from '../lib/adminApi';
+import { adminApi, type AdminCard, type AdminDomain, type AdminEdit, type AdminLog, type AdminStats, type AdminUser, type PlanHow, type PlanId } from '../lib/adminApi';
 import { useAuth } from '../lib/auth';
 import { supabase } from '../lib/supabase';
 import { TEMPLATES } from '../templates';
@@ -409,6 +409,77 @@ function DomainsTab({ ctx, rev }: { ctx: Ctx; rev: number }) {
   );
 }
 
+/* ------------------------------------------------------------------ Pro Plus edits */
+const EDIT_STATUS: Record<AdminEdit['status'], { label: string; tone: 'ok' | 'muted' | 'bad' }> = {
+  open: { label: 'New: needs you', tone: 'bad' },
+  done: { label: 'Done', tone: 'ok' },
+  declined: { label: 'Not a small edit (quote)', tone: 'muted' },
+};
+
+function EditRow({ e, ctx }: { e: AdminEdit; ctx: Ctx }) {
+  const [busy, setBusy] = useState(false);
+  const [note, setNote] = useState(e.admin_note ?? '');
+  const st = EDIT_STATUS[e.status];
+  const who = e.business || e.card_name || e.owner_name || e.owner_email || 'Member';
+  const act = async (kind: 'done' | 'decline') => {
+    if (kind === 'decline' && !window.confirm(`Mark this as bigger than a small edit? ${who} gets the edit back and an email saying you will send a quote.`)) return;
+    setBusy(true);
+    try {
+      if (kind === 'done') await adminApi.editDone(e.id); else await adminApi.editDecline(e.id, note);
+      ctx.flash(kind === 'done' ? `${who} was emailed that the edit is done.` : `${who} was told you will quote it. The edit did not count.`);
+      ctx.reload();
+    } catch (err) { ctx.flash(errText(err), true); }
+    setBusy(false);
+  };
+  return (
+    <li className="adm-row adm-row--card adm-dom">
+      <div className="adm-row__main">
+        <b>{who} <span className={`adm-pill adm-pill--${st.tone}`}>{st.label}</span></b>
+        <p className="adm-edit__what">{e.details}</p>
+        {e.photo_url && <a className="adm-edit__photo" href={e.photo_url} target="_blank" rel="noopener"><img src={e.photo_url} alt="Photo they sent" /></a>}
+        <div className="adm-dom__meta">
+          <span>Edit {e.used_this_month} of 2 for {e.period}</span>
+          {e.slug && <span>Card: /{e.slug}</span>}
+          <span>Asked {ago(e.created_at)}{e.done_at ? ` · done ${ago(e.done_at)}` : ''}</span>
+          {e.owner_email && <span>{e.owner_email}</span>}
+        </div>
+        <label className="adm-dom__note"><span className="sr">Private note</span>
+          <input value={note} onChange={(ev) => setNote(ev.target.value)} onBlur={() => { if (note !== (e.admin_note ?? '')) adminApi.editNote(e.id, note).catch((err) => ctx.flash(errText(err), true)); }} placeholder={e.status === 'open' ? 'Note (sent to them if you tap Not a small edit)' : 'Private note'} maxLength={500} />
+        </label>
+      </div>
+      <div className="adm-row__acts">
+        {e.slug && <Link className="btn btn--ghost btn--sm" to={`/app/cards/${e.card_id}`}><Pencil size={15} /> Edit card</Link>}
+        {e.slug && <a className="btn btn--ghost btn--sm" href={liveUrl(e.slug)} target="_blank" rel="noopener"><ExternalLink size={15} /> View</a>}
+        {e.owner_email && <a className="btn btn--ghost btn--sm" href={`mailto:${e.owner_email}?subject=${encodeURIComponent('Your OKUNAMI edit')}`}>Email</a>}
+        {e.status === 'open' && <button type="button" className="btn btn--ghost btn--sm" onClick={() => act('decline')} disabled={busy}>Not a small edit</button>}
+        {e.status === 'open' && <button type="button" className="btn btn--gold btn--sm" onClick={() => act('done')} disabled={busy}>{busy ? <Loader2 size={15} className="spin" /> : <Check size={15} />} Mark done</button>}
+      </div>
+    </li>
+  );
+}
+
+function EditsTab({ ctx, rev }: { ctx: Ctx; rev: number }) {
+  const [rows, setRows] = useState<AdminEdit[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [err, setErr] = useState('');
+  useEffect(() => {
+    let alive = true;
+    setLoading(true);
+    adminApi.edits().then((r) => { if (alive) { setRows(r); setErr(''); } }).catch((e) => { if (alive) setErr(errText(e)); }).finally(() => { if (alive) setLoading(false); });
+    return () => { alive = false; };
+  }, [rev]);
+  const waiting = rows.filter((r) => r.status === 'open').length;
+  return (
+    <>
+      <p className="adm-lead">Pro Plus members get up to <b>2 small edits a month</b> (hours, photos, prices, links, text), done within <b>2 business days</b>. Make the change with <b>Edit card</b>, then tap <b>Mark done</b> and they get an email. If it is bigger than a small edit (a new design or a new section), tap <b>Not a small edit</b>: it gives them the edit back and tells them you will send a quote. Anything you type in the note box goes in that email.</p>
+      <p className="adm-count" role="status">{loading ? 'Loading...' : `${rows.length} request${rows.length === 1 ? '' : 's'}${waiting ? `, ${waiting} waiting on you` : ''}`}</p>
+      {err && <p className="err" role="alert">{err}</p>}
+      {!loading && !err && rows.length === 0 && <p className="adm-empty">No edit requests yet.</p>}
+      <ul className="adm-list">{rows.map((e) => <EditRow key={e.id} e={e} ctx={ctx} />)}</ul>
+    </>
+  );
+}
+
 /* ------------------------------------------------------------------ dialogs */
 function PlanDialog({ user, ctx }: { user: AdminUser; ctx: Ctx }) {
   const currentHow: PlanHow = user.plan_status === 'manual' ? 'manual' : 'comped';
@@ -512,20 +583,21 @@ function TransferDialog({ card, ctx }: { card: AdminCard; ctx: Ctx }) {
 }
 
 /* ------------------------------------------------------------------ the page */
-type Tab = 'overview' | 'customers' | 'cards' | 'studio' | 'domains';
+type Tab = 'overview' | 'customers' | 'cards' | 'studio' | 'domains' | 'edits';
 const TABS: { id: Tab; label: string; icon: typeof Users }[] = [
   { id: 'overview', label: 'Overview', icon: BarChart3 },
   { id: 'customers', label: 'Customers', icon: Users },
   { id: 'cards', label: 'Cards', icon: LayoutGrid },
   { id: 'studio', label: 'Studio', icon: Wand2 },
   { id: 'domains', label: 'Domains', icon: Globe2 },
+  { id: 'edits', label: 'Edits', icon: PencilRuler },
 ];
 
 export default function Admin() {
   const { session, demo } = useAuth();
   const [params, setParams] = useSearchParams();
   const raw = params.get('tab');
-  const tab: Tab = raw === 'customers' || raw === 'cards' || raw === 'studio' || raw === 'domains' ? raw : 'overview';
+  const tab: Tab = raw === 'customers' || raw === 'cards' || raw === 'studio' || raw === 'domains' || raw === 'edits' ? raw : 'overview';
   const setTab = (t: Tab) => setParams(t === 'overview' ? {} : { tab: t }, { replace: true });
   const [dialog, setDialog] = useState<Dialog>(null);
   const [notice, setNotice] = useState<{ text: string; bad: boolean } | null>(null);
@@ -570,6 +642,7 @@ export default function Admin() {
           {tab === 'cards' && <CardsTab ctx={ctx} rev={rev} />}
           {tab === 'studio' && <StudioTab flash={flash} rev={rev} />}
           {tab === 'domains' && <DomainsTab ctx={ctx} rev={rev} />}
+          {tab === 'edits' && <EditsTab ctx={ctx} rev={rev} />}
         </div>
       </main>
 

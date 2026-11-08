@@ -166,3 +166,8 @@
 .adm-dom__meta span { display: inline-flex; align-items: center; gap: 5px; overflow-wrap: anywhere; }
 .adm-dom__note input { margin-top: 10px; width: 100%; max-width: 420px; min-height: 40px; padding: 0 12px; border: 1.5px solid var(--line); border-radius: 10px; background: var(--paper-2); font-size: 14px; }
 @media (max-width: 700px) { .adm-list > .adm-dom { grid-template-columns: 1fr; } .adm-dom .adm-row__acts { justify-content: flex-start; } }
+
+/* Pro Plus edit requests */
+.adm-edit__what { margin: 6px 0 4px; font-size: 14px; line-height: 1.45; white-space: pre-wrap; overflow-wrap: anywhere; }
+.adm-edit__photo { display: inline-block; width: 84px; height: 84px; border-radius: 10px; overflow: hidden; border: 1px solid var(--line); margin: 4px 0; }
+.adm-edit__photo img { width: 100%; height: 100%; object-fit: cover; display: block; }

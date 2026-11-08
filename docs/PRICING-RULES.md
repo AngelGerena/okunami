@@ -46,10 +46,20 @@ Yearly is **2 months free** on every plan (yearly is about 10 times the monthly 
 |---|---|---|---|---|
 | Lite | free | free | 1 | 3 Lite designs, small badge |
 | Pro | $8 | $79 | 3 | Founding price $5 on Pro monthly only |
-| Pro Plus | $16 | $159 (was $149 until Nov 2026; existing yearly subscribers renew at $149) | 1 (one constant, see below) | Everything in Pro plus event sections, multiple languages, connect your own domain (Finesse Media connects it on request), two done-for-you edits a month. Event sections and languages are marked "coming soon" on the site until they exist. |
+| Pro Plus | $16 | $159 (was $149 until Nov 2026; existing yearly subscribers renew at $149) | 1 (one constant, see below) | Everything in Pro plus event sections, multiple languages, connect your own domain (Finesse Media connects it on request), up to 2 small edits a month by Finesse Media (see "Pro Plus edits" below). Event sections and languages are marked "coming soon" on the site until they exist. |
 | Business | $6 per card | $60 per card | 3 minimum, up to 100 | Priced per card; the customer picks how many with a stepper. Brand lock and team admin are marked "coming soon". |
 
 - Amounts live in `src/lib/plans.ts` (screens) and `supabase/functions/_shared/okunami.ts` (what Stripe charges). Change both together.
 - Pro Plus card count: `PLUS_CARDS` in `plans.ts` and `when 'plus' then 1` in `fc_card_limit()` (migration 0014).
 - Stripe Payment Links: a purchase made through a Payment Link has no OKUNAMI metadata. The webhook identifies the plan by price id (if `OKUNAMI_PRICE_*` secrets are set) or by the amount charged, and finds the account by the email used at payment. An amount it does not recognise never grants a paid plan.
 - The founding promo code for Payment Links is not wired in. The database enforces the founding offer only for website checkout.
+
+## Pro Plus edits
+
+- Up to 2 small edits a month, made by Finesse Media. Shown everywhere as "Up to 2 small edits a month by Finesse Media (hours, photos, prices, links, text)".
+- A small edit is one change of about 15 minutes or less: swap a photo or logo; update hours, prices, services or menu; change or add a link or button; fix wording or add a promo or event line.
+- Not a small edit (quoted as Studio work): a new design or look, a brand-new section, anything bigger. A request Angel marks "Not a small edit" does not count toward the 2.
+- Turnaround: within 2 business days. The month runs on US Eastern time. No rollover, no cash value.
+- Members request edits from the "Request an edit" panel on their dashboard (Pro Plus only). The counter and the limit are enforced on the server: `fc_edit_limit()` and `fc_edit_submit` in migration 0028, `EDITS_PER_MONTH` in `src/lib/edits.ts`.
+- Angel gets an email for every request and works them from Admin > Edits ("Mark done" emails the member).
+- Keep in step: `src/lib/plans.ts`, `src/legal/content.ts` (Terms), `supabase/functions/okunami-reseller/prompts.ts` (Avira), and the hiram-okunami card copy.
