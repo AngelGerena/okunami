@@ -39,6 +39,12 @@ export interface AdminDomain {
   paid_cents: number; last_checked_at: string | null; connected_at: string | null; admin_note: string | null; created_at: string; updated_at: string;
 }
 
+export interface AdminEdit {
+  id: string; owner_id: string; owner_email: string | null; owner_name: string | null; card_id: string | null; slug: string | null;
+  card_name: string | null; business: string | null; details: string; photo_url: string | null; period: string;
+  status: 'open' | 'done' | 'declined'; admin_note: string | null; done_at: string | null; created_at: string; used_this_month: number;
+}
+
 export interface UsersQuery { q?: string; plan?: string; limit?: number; offset?: number }
 export interface CardsQuery { user?: string; q?: string; limit?: number }
 
@@ -53,6 +59,10 @@ export interface AdminApi {
   domains(): Promise<AdminDomain[]>;
   domainNote(id: string, note: string): Promise<void>;
   checkDomain(id: string): Promise<AdminDomain['status']>;
+  edits(): Promise<AdminEdit[]>;
+  editNote(id: string, note: string): Promise<void>;
+  editDone(id: string): Promise<void>;
+  editDecline(id: string, note: string): Promise<void>;
 }
 
 /* ------------------------------------------------------------------ real */
@@ -76,6 +86,16 @@ const realApi: AdminApi = {
     const { data, error } = await supabase.functions.invoke('okunami-domain', { body: { action: 'admin_check', domainId: id } });
     if (error || data?.error) throw new Error(data?.error ?? error?.message ?? 'Check failed.');
     return data.status;
+  },
+  edits: () => rpc<AdminEdit[]>('fc_admin_edits', { p_limit: 200 }),
+  editNote: (id, note) => rpc<void>('fc_admin_edit_note', { p_id: id, p_note: note }),
+  async editDone(id) {
+    const { data, error } = await supabase.functions.invoke('okunami-edits', { body: { action: 'admin_done', id } });
+    if (error || data?.error) throw new Error(data?.error ?? error?.message ?? 'Could not mark it done.');
+  },
+  async editDecline(id, note) {
+    const { data, error } = await supabase.functions.invoke('okunami-edits', { body: { action: 'admin_decline', id, note } });
+    if (error || data?.error) throw new Error(data?.error ?? error?.message ?? 'Could not update it.');
   },
 };
 
@@ -116,6 +136,10 @@ function makeDemo(): AdminApi {
     { id: 'd1', card_id: 'c3', slug: 'urban-cutz', owner_email: 'kay@urbancutz.com', full_name: 'Klara "Kay" Thomas', business: 'Urban Cutz', domain: 'vcard.urbancutz.com', method: 'hookup', provider: 'godaddy', contact_phone: '(407) 555-0123', status: 'requested', paid_cents: 3900, last_checked_at: null, connected_at: null, admin_note: null, created_at: iso(0.1 * day), updated_at: iso(0.1 * day) },
     { id: 'd2', card_id: 'c5', slug: 'confetti', owner_email: 'hello@confettiandco.com', full_name: 'Alana Price', business: 'Confetti & Co. Events', domain: 'card.confettiandco.com', method: 'diy', provider: 'squarespace', contact_phone: null, status: 'checking_ssl', paid_cents: 0, last_checked_at: iso(0.05 * day), connected_at: null, admin_note: null, created_at: iso(1 * day), updated_at: iso(0.05 * day) },
     { id: 'd3', card_id: 'c7', slug: 'grace-harbor', owner_email: 'pastor@gracechurch.org', full_name: 'Joanna Allen', business: 'Grace Harbor Church', domain: 'connect.graceharbor.org', method: 'hookup', provider: 'wix', contact_phone: '(321) 555-0188', status: 'connected', paid_cents: 0, last_checked_at: iso(2 * day), connected_at: iso(2 * day), admin_note: 'Free, yearly plan', created_at: iso(3 * day), updated_at: iso(2 * day) },
+  ];
+  const edits: AdminEdit[] = [
+    { id: 'e1', owner_id: 'u4', owner_email: 'hello@confettiandco.com', owner_name: 'Alana Price', card_id: 'c5', slug: 'confetti', card_name: 'Alana Price', business: 'Confetti & Co. Events', details: 'Change my Saturday hours to 10:00 AM - 4:00 PM and add our new holiday package to the services list.', photo_url: null, period: '2026-11', status: 'open', admin_note: null, done_at: null, created_at: iso(0.2 * day), used_this_month: 1 },
+    { id: 'e2', owner_id: 'u2', owner_email: 'kay@urbancutz.com', owner_name: 'Klara Thomas', card_id: 'c3', slug: 'urban-cutz', card_name: 'Klara "Kay" Thomas', business: 'Urban Cutz', details: 'Swap my profile photo for the new one.', photo_url: null, period: '2026-11', status: 'done', admin_note: null, done_at: iso(1 * day), created_at: iso(2 * day), used_this_month: 2 },
   ];
   let logId = 3;
   const note = (action: string, target_email: string | null, card_slug: string | null, detail: string | null) => {
@@ -197,6 +221,10 @@ function makeDemo(): AdminApi {
       d.last_checked_at = new Date().toISOString();
       return wait(d.status);
     },
+    async edits() { return wait([...edits].sort((a, b) => Number(b.status === 'open') - Number(a.status === 'open') || +new Date(b.created_at) - +new Date(a.created_at))); },
+    async editNote(id, n) { const e = edits.find((x) => x.id === id); if (e) e.admin_note = n.trim() || null; return wait(undefined); },
+    async editDone(id) { const e = edits.find((x) => x.id === id); if (!e) return fail('Not found.'); e.status = 'done'; e.done_at = new Date().toISOString(); return wait(undefined); },
+    async editDecline(id, n) { const e = edits.find((x) => x.id === id); if (!e) return fail('Not found.'); e.status = 'declined'; if (n.trim()) e.admin_note = n.trim(); return wait(undefined); },
   };
 }
 

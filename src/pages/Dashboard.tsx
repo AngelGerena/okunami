@@ -15,6 +15,7 @@ import { decorative } from '../lib/a11y';
 import { dollars, useOffer } from '../lib/offers';
 import { DESIGN_COUNT, nicheCountLabel } from '../lib/counts';
 import TeamDialog from '../components/TeamDialog';
+import EditRequests from '../components/EditRequests';
 import { refreshPlan } from '../lib/usePlan';
 import { INTENT_KEY } from './Login';
 import { PLANS, TEAM, isLocked, FREE_FALLBACK, BUSINESS_CONTACT, BUSINESS_SMS, MORE_CARDS_CONTACT, MORE_CARDS_SMS, cardLimit, clampCards, teamTotal, type PlanId } from '../lib/plans';
@@ -163,6 +164,7 @@ export default function Dashboard() {
             {(plan === 'pro' || plan === 'plus') && <a className="btn btn--ghost btn--sm" href={BUSINESS_SMS}>{t("Or send a text")}</a>}
           </div>
         )}
+        {plan === 'plus' && <EditRequests cards={cards} plan={plan} />}
         {err && <p className="err" role="alert">{err}</p>}
         {!cards && !err && <p className="center-msg"><Loader2 className="spin" /> {t("Loading")}</p>}
         {cards && cards.length === 0 && (
