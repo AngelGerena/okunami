@@ -96,8 +96,10 @@ Deno.serve(async (req) => {
           systemInstruction: { parts: [{ text: system }] },
           contents: messages.map((m) => ({ role: m.role === 'assistant' ? 'model' : 'user', parts: [{ text: m.content }] })),
           generationConfig: {
-            temperature: 0, maxOutputTokens: maxOut + 120,
-            thinkingConfig: { thinkingBudget: 0 },   // no hidden reasoning tokens: cheaper and predictable
+            maxOutputTokens: maxOut + 120,
+            // Keep hidden reasoning to a minimum: cheaper and predictable. Gemini 3 models take thinkingLevel and reject
+            // (or will reject) temperature; older models take thinkingBudget 0 and temperature 0.
+            ...(/^gemini-[3-9]/.test(model) ? { thinkingConfig: { thinkingLevel: 'minimal' } } : { temperature: 0, thinkingConfig: { thinkingBudget: 0 } }),
             responseMimeType: 'application/json',
             responseSchema: { type: 'OBJECT', properties: { found: { type: 'BOOLEAN' }, answer: { type: 'STRING' }, quote: { type: 'STRING' } }, required: ['found', 'answer', 'quote'] },
           },
@@ -105,7 +107,7 @@ Deno.serve(async (req) => {
         signal: AbortSignal.timeout(25_000),
       });
     } catch (e) { await refund(reserve, reqId); console.error('agent-chat fetch', e); return await pause(); }
-    if (!r.ok) { await refund(reserve, reqId); console.error('agent-chat model', r.status); return await pause(); }
+    if (!r.ok) { await refund(reserve, reqId); console.error('agent-chat model', r.status, (await r.text()).slice(0, 300)); return await pause(); }
 
     const j = await r.json();
     const u = geminiUsage(j.usageMetadata);
@@ -116,7 +118,7 @@ Deno.serve(async (req) => {
 
     // 8. Never trust the model's word: its quote must be in the owner's info, and every number it states must be too.
     let parsed: { answer?: string; quote?: string; found?: boolean } = {};
-    try { parsed = JSON.parse((j.candidates?.[0]?.content?.parts ?? []).map((p: any) => p.text ?? '').join('')); } catch { /* treated as not found */ }
+    try { parsed = JSON.parse((j.candidates?.[0]?.content?.parts ?? []).filter((p: any) => !p.thought).map((p: any) => p.text ?? '').join('')); } catch { /* treated as not found */ }
     const verdict = verifyAnswer(parsed, info);
     await log({ model, input_tokens: u.input, output_tokens: u.output, cached_tokens: u.cacheRead, cost_micros: cost, charge_micros: charge, answered_without_ai: false });
     if (!verdict.ok) {
