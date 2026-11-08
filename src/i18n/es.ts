@@ -714,7 +714,7 @@ export const ES: Record<string, string> = {
   "<x1>Lite</x1><x2>Pro</x2><x3>Pro Plus</x3><x4>Business</x4>": "<x1>Lite</x1><x2>Pro</x2><x3>Pro Plus</x3><x4>Business</x4>",
   "Upgrade to Pro Plus": "Mejorar a Pro Plus",
   "Pro is $8 a month, Pro Plus is $16 and Business is $6 a card.": "Pro cuesta $8 al mes, Pro Plus $16 y Business $6 por tarjeta.",
-  "Plus a OKUNAMI Pro, Pro Plus or Business subscription, which every Studio card needs": "Más una suscripción a OKUNAMI Pro, Pro Plus o Business, que toda tarjeta de Studio necesita",
+  "Plus an OKUNAMI Pro, Pro Plus or Business subscription, which every Studio card needs": "Más una suscripción a OKUNAMI Pro, Pro Plus o Business, que toda tarjeta de Studio necesita",
   "Yearly <x1>2 months free</x1>": "Anual <x1>2 meses gratis</x1>",
   "Referral code (optional)": "Código de referido (opcional)",
   "Who told you about OKUNAMI?": "¿Quién te habló de OKUNAMI?",
