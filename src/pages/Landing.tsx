@@ -14,7 +14,7 @@ import { sfx } from '../lib/sfx';
 import { decorative } from '../lib/a11y';
 import { DESIGN_COUNT, NICHE_COUNT, designsLabel } from '../lib/counts';
 import { HAS_LEGAL, LEGAL } from '../lib/legal';
-import { dollars, useOffer, useStudioOffer } from '../lib/offers';
+import { dollars, useStudioOffer } from '../lib/offers';
 import CardRenderer from '../components/CardRenderer';
 import { rich, useT } from '../lib/i18n';
 import LangToggle from '../components/LangToggle';
@@ -46,7 +46,6 @@ const KLARNA_MAX = 2000;
 export default function Landing() {
   const designsLabelT = (n: number) => designsLabel(n, lang);
   const { t, lang } = useT();
-  const offer = useOffer();
   const studio = useStudioOffer();
   const founding = studio.known && studio.active;
   const base = useMemo(() => sampleCard(), []);
@@ -244,9 +243,6 @@ export default function Landing() {
                   const due = perCard ? total : p.yearly;   // Klarna Pay in 4 covers $1 to $2,000
                   return due <= KLARNA_MAX ? <p className="mx-klarna">{t('or 4 payments of ${x} with Klarna', { x: (due / 4).toFixed(2) })}</p> : null;
                 })()}
-                {p.id === 'pro' && offer.known && offer.active && (
-                  <p className="mx-offernote">{yearly ? t("Founding price is for monthly billing only.") : t("Founding price {price} while spots last ({left} left)", { price: dollars(offer.cents), left: offer.left })}</p>
-                )}
                 <p className="mx-pitch">{t(p.pitch)}</p>
                 {perCard && (
                   <div className="mx-seats">
@@ -270,9 +266,6 @@ export default function Landing() {
             );
           })}
         </div>
-        {offer.known && offer.active && (
-          <p className="mx-founding">{rich(t("<b>Founding offer.</b> The first {spots} Pro customers pay {price} a month instead of {base}. {left} spots left. Pro monthly only, one per person. The price lasts while your subscription stays active. If you cancel, it ends and is not offered again.", { spots: offer.spots, price: dollars(offer.cents), base: dollars(PLANS[1].price * 100), left: offer.left }), { b: (c) => <b>{c}</b> })}</p>
-        )}
       </section>
 
       {/* ---------------------------------------------------------------- studio */}

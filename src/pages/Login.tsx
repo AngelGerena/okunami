@@ -9,7 +9,6 @@ import { CARDS_KEY } from '../lib/billing';
 import { takeAuthError } from '../lib/authLanding';
 import { DESIGN_COUNT } from '../lib/counts';
 import { HAS_LEGAL, LEGAL } from '../lib/legal';
-import { dollars, useOffer } from '../lib/offers';
 import { rich, useT, tr } from '../lib/i18n';
 import LangToggle from '../components/LangToggle';
 import { getRef, rememberRef } from '../lib/referral';
@@ -59,7 +58,6 @@ function GoogleMark() {
 export default function Login({ mode }: { mode: 'signup' | 'signin' }) {
   const { t } = useT();
   const { session, demo } = useAuth();
-  const offer = useOffer();
   const providers = useProviders();
   const [params] = useSearchParams();
   const nav = useNavigate();
@@ -255,7 +253,6 @@ export default function Login({ mode }: { mode: 'signup' | 'signin' }) {
               <div className="auth__plan">
                 <Crown size={20} />
                 <span>{rich(t("<b>You picked {name}, {v}</b>{v2}", { name: plan.name, v: plan.perCard ? (billing === 'year' ? t('{n} cards, ${total}/year', { n: cards, total: teamTotal(cards, true) }) : t('{n} cards, ${total}/month', { n: cards, total: teamTotal(cards, false) })) : billing === 'year' ? `$${plan.yearly}/year` : `$${plan.price}/month`, v2: isJoin ? 'Create your account first. You\u2019ll finish the upgrade on the next screen, or keep the free Lite plan.' : 'Sign in and you\u2019ll finish the upgrade on the next screen.' }), { b: (c) => <b>{c}</b> })}</span>
-                {plan.id === 'pro' && billing === 'month' && offer.known && offer.active && <small className="auth__offer">{t("Founding price: {price} a month if a spot is still open when you pay. One per person; it lasts while your subscription stays active.", { price: dollars(offer.cents) })}</small>}
               </div>
             )}
 

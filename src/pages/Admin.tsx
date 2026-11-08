@@ -186,7 +186,6 @@ function Overview({ rev }: { rev: number }) {
               <div key={p} className="adm-meter"><span>{PLAN_NAME[p]}</span><i><em style={{ width: `${(n / planTotal) * 100}%` }} /></i><b>{n}</b></div>
             );
           })}
-          <p className="adm-note">Founding members: {stats.founding} of 100</p>
         </section>
 
         <section className="adm-panel" aria-labelledby="h-designs">

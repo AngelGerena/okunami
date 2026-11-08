@@ -3,7 +3,7 @@
    whenever data practices, providers or pricing rules change. */
 export type LegalLang = 'en' | 'es';
 export interface LegalSection { id: string; title: Record<LegalLang, string>; body: Record<LegalLang, string[]> }
-export const LEGAL_UPDATED: Record<LegalLang, string> = {"en": "November 7, 2026", "es": "7 de noviembre de 2026"};
+export const LEGAL_UPDATED: Record<LegalLang, string> = {"en": "November 8, 2026", "es": "8 de noviembre de 2026"};
 export const PRIVACY: LegalSection[] = [
  {
   "id": "who",
@@ -137,10 +137,10 @@ export const PRIVACY: LegalSection[] = [
   },
   "body": {
    "en": [
-    "We keep account and card information while your account is open. When you delete a card or your account, we delete the related content, except information we must keep for legal, tax, security or fraud-prevention reasons, and records needed to enforce one-per-person offers such as the founding offer. Copies in backups are removed on a normal rotation. Card activity counts are deleted with the card."
+    "We keep account and card information while your account is open. When you delete a card or your account, we delete the related content, except information we must keep for legal, tax, security or fraud-prevention reasons, and records needed to enforce one-per-person offers. Copies in backups are removed on a normal rotation. Card activity counts are deleted with the card."
    ],
    "es": [
-    "Conservamos la información de la cuenta y de las tarjetas mientras tu cuenta esté abierta. Cuando eliminas una tarjeta o tu cuenta, borramos el contenido relacionado, salvo la información que debemos conservar por razones legales, fiscales, de seguridad o de prevención del fraude, y los registros necesarios para hacer cumplir ofertas de una por persona, como la oferta fundadora. Las copias en respaldos se eliminan con una rotación normal. Los conteos de actividad se borran junto con la tarjeta."
+    "Conservamos la información de la cuenta y de las tarjetas mientras tu cuenta esté abierta. Cuando eliminas una tarjeta o tu cuenta, borramos el contenido relacionado, salvo la información que debemos conservar por razones legales, fiscales, de seguridad o de prevención del fraude, y los registros necesarios para hacer cumplir ofertas de una por persona. Las copias en respaldos se eliminan con una rotación normal. Los conteos de actividad se borran junto con la tarjeta."
    ]
   }
  },
@@ -306,25 +306,10 @@ export const TERMS: LegalSection[] = [
   }
  },
  {
-  "id": "founding",
-  "title": {
-   "en": "5. Founding offer",
-   "es": "5. Oferta fundadora"
-  },
-  "body": {
-   "en": [
-    "When available, the founding offer lets the first 100 paying customers subscribe to Pro billed monthly at the founding price shown at checkout. It applies only to Pro billed monthly (not yearly, Pro Plus or Business), once per person, and cannot be combined with promo codes. The price lasts only while that subscription stays active. If it ends for any reason, the founding price ends, the spot is not reopened, and you cannot claim it again on any account. Spots are held briefly during checkout and released if payment is not completed. We may refuse or end a founding price obtained through multiple accounts, aliases or misleading information."
-   ],
-   "es": [
-    "Cuando está disponible, la oferta fundadora permite que los primeros 100 clientes de pago se suscriban a Pro facturado mensualmente al precio fundador que se muestra al pagar. Se aplica solo a Pro con facturación mensual (no anual, Pro Plus ni Business), una vez por persona, y no se puede combinar con códigos promocionales. El precio dura solo mientras esa suscripción siga activa. Si termina por cualquier motivo, el precio fundador termina, el lugar no se vuelve a abrir y no podrás reclamarlo de nuevo en ninguna cuenta. Los lugares se reservan brevemente durante el pago y se liberan si el pago no se completa. Podemos rechazar o terminar un precio fundador obtenido mediante varias cuentas, alias o información engañosa."
-   ]
-  }
- },
- {
   "id": "studio",
   "title": {
-   "en": "6. OKUNAMI Studio (done-for-you work)",
-   "es": "6. OKUNAMI Studio (trabajo hecho para ti)"
+   "en": "5. OKUNAMI Studio (done-for-you work)",
+   "es": "5. OKUNAMI Studio (trabajo hecho para ti)"
   },
   "body": {
    "en": [
@@ -338,8 +323,8 @@ export const TERMS: LegalSection[] = [
  {
   "id": "content",
   "title": {
-   "en": "7. Your content",
-   "es": "7. Tu contenido"
+   "en": "6. Your content",
+   "es": "6. Tu contenido"
   },
   "body": {
    "en": [
@@ -353,8 +338,8 @@ export const TERMS: LegalSection[] = [
  {
   "id": "use",
   "title": {
-   "en": "8. Acceptable use",
-   "es": "8. Uso aceptable"
+   "en": "7. Acceptable use",
+   "es": "7. Uso aceptable"
   },
   "body": {
    "en": [
@@ -368,8 +353,8 @@ export const TERMS: LegalSection[] = [
  {
   "id": "takedown",
   "title": {
-   "en": "9. Removal, suspension and copyright",
-   "es": "9. Retiro, suspensión y derechos de autor"
+   "en": "8. Removal, suspension and copyright",
+   "es": "8. Retiro, suspensión y derechos de autor"
   },
   "body": {
    "en": [
@@ -383,8 +368,8 @@ export const TERMS: LegalSection[] = [
  {
   "id": "ip",
   "title": {
-   "en": "10. Our property",
-   "es": "10. Nuestra propiedad"
+   "en": "9. Our property",
+   "es": "9. Nuestra propiedad"
   },
   "body": {
    "en": [
@@ -398,8 +383,8 @@ export const TERMS: LegalSection[] = [
  {
   "id": "third",
   "title": {
-   "en": "11. Third-party services and hardware",
-   "es": "11. Servicios y hardware de terceros"
+   "en": "10. Third-party services and hardware",
+   "es": "10. Servicios y hardware de terceros"
   },
   "body": {
    "en": [
@@ -413,8 +398,8 @@ export const TERMS: LegalSection[] = [
  {
   "id": "warranty",
   "title": {
-   "en": "12. Disclaimers",
-   "es": "12. Exclusión de garantías"
+   "en": "11. Disclaimers",
+   "es": "11. Exclusión de garantías"
   },
   "body": {
    "en": [
@@ -428,8 +413,8 @@ export const TERMS: LegalSection[] = [
  {
   "id": "liability",
   "title": {
-   "en": "13. Limits of liability",
-   "es": "13. Límites de responsabilidad"
+   "en": "12. Limits of liability",
+   "es": "12. Límites de responsabilidad"
   },
   "body": {
    "en": [
@@ -443,8 +428,8 @@ export const TERMS: LegalSection[] = [
  {
   "id": "indemnity",
   "title": {
-   "en": "14. Your responsibility",
-   "es": "14. Tu responsabilidad"
+   "en": "13. Your responsibility",
+   "es": "13. Tu responsabilidad"
   },
   "body": {
    "en": [
@@ -458,8 +443,8 @@ export const TERMS: LegalSection[] = [
  {
   "id": "end",
   "title": {
-   "en": "15. Ending the agreement",
-   "es": "15. Terminación del acuerdo"
+   "en": "14. Ending the agreement",
+   "es": "14. Terminación del acuerdo"
   },
   "body": {
    "en": [
@@ -473,8 +458,8 @@ export const TERMS: LegalSection[] = [
  {
   "id": "law",
   "title": {
-   "en": "16. Governing law and disputes",
-   "es": "16. Ley aplicable y disputas"
+   "en": "15. Governing law and disputes",
+   "es": "15. Ley aplicable y disputas"
   },
   "body": {
    "en": [
@@ -488,8 +473,8 @@ export const TERMS: LegalSection[] = [
  {
   "id": "misc",
   "title": {
-   "en": "17. Changes, language and contact",
-   "es": "17. Cambios, idioma y contacto"
+   "en": "16. Changes, language and contact",
+   "es": "16. Cambios, idioma y contacto"
   },
   "body": {
    "en": [
