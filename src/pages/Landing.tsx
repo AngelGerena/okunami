@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useLayoutEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Dices, Check, Palette, UserPlus, QrCode, Smartphone, Layers, Type, ArrowRight, MessageCircle, Minus, Plus } from 'lucide-react';
 import type { Card } from '../lib/types';
@@ -18,6 +18,7 @@ import { dollars, useStudioOffer } from '../lib/offers';
 import CardRenderer from '../components/CardRenderer';
 import { rich, useT } from '../lib/i18n';
 import LangToggle from '../components/LangToggle';
+import { FROM_LANDING, rememberLandingScroll, takeLandingScroll } from '../lib/demoReturn';
 
 /* In-page jumps use scrollIntoView, not #hash links: the demo build routes by hash. */
 const jump = (id: string) => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -64,6 +65,17 @@ export default function Landing() {
     const t = window.setInterval(() => setI((n) => (n + 1) % showcase.length), 3200);
     return () => window.clearInterval(t);
   }, [rolled, showcase.length]);
+
+  /* Coming back from a demo: put the visitor back on the design tile they opened, not the top of the page.
+     Re-applied briefly while the gallery's images settle the page height. */
+  useLayoutEffect(() => {
+    const y = takeLandingScroll();
+    if (y === null) return;
+    const go = () => window.scrollTo({ top: y, behavior: 'auto' });
+    go();
+    const timers = [60, 200, 500].map((ms) => window.setTimeout(go, ms));
+    return () => timers.forEach((t) => window.clearTimeout(t));
+  }, []);
 
   const cur = showcase[i];
   const heroCard = rolled ?? applyDesign(sampleFor(base, cur.niche), cur.niche, cur.design);
@@ -116,8 +128,8 @@ export default function Landing() {
           <button type="button" className="mx-dice" onClick={roll} aria-label={t("Roll a random look")}><Dices size={28} /></button>
           <p className="mx-caption">
             {rolled
-              ? <>{rich(t("Roll {rolls}: <b>{name}</b> layout. <x2>Open this demo</x2> <x3>Back to the showcase</x3>", { rolls, name: TEMPLATES.find((t) => t.id === rolled.template)?.name }), { b: (c) => <b>{c}</b>, x2: (c) => <Link className="mx-link" to={`/demo/${rolled.template}`}>{c}</Link>, x3: (c) => <button type="button" className="mx-link" onClick={() => setRolled(null)}>{c}</button> })}</>
-              : <>Now showing <b>{cur.design.name}</b> for {cur.niche.name.toLowerCase()}. <Link className="mx-link" to={`/demo/${cur.design.template}`}>{rich(t("Open this demo<x1> of the {name} design</x1>", { name: cur.design.name }), { x1: (c) => <span className="sr">{c}</span> })}</Link></>}
+              ? <>{rich(t("Roll {rolls}: <b>{name}</b> layout. <x2>Open this demo</x2> <x3>Back to the showcase</x3>", { rolls, name: TEMPLATES.find((t) => t.id === rolled.template)?.name }), { b: (c) => <b>{c}</b>, x2: (c) => <Link className="mx-link" to={`/demo/${rolled.template}`} state={FROM_LANDING} onClick={rememberLandingScroll}>{c}</Link>, x3: (c) => <button type="button" className="mx-link" onClick={() => setRolled(null)}>{c}</button> })}</>
+              : <>Now showing <b>{cur.design.name}</b> for {cur.niche.name.toLowerCase()}. <Link className="mx-link" to={`/demo/${cur.design.template}`} state={FROM_LANDING} onClick={rememberLandingScroll}>{rich(t("Open this demo<x1> of the {name} design</x1>", { name: cur.design.name }), { x1: (c) => <span className="sr">{c}</span> })}</Link></>}
           </p>
         </div>
       </section>
@@ -177,7 +189,7 @@ export default function Landing() {
                 </div></div>
                 <figcaption>
                   <b>{hit?.design.name ?? tpl.name}</b><small>{hit ? hit.niche.name : demo.niche?.name ?? tpl.bestFor}</small>
-                  <Link className="mx-demo" to={`/demo/${tpl.id}`}>{t("Open demo")}<span className="sr">{t(" of the {v} design", { v: hit?.design.name ?? tpl.name })}</span> <ArrowRight size={14} aria-hidden /></Link>
+                  <Link className="mx-demo" to={`/demo/${tpl.id}`} state={FROM_LANDING} onClick={rememberLandingScroll}>{t("Open demo")}<span className="sr">{t(" of the {v} design", { v: hit?.design.name ?? tpl.name })}</span> <ArrowRight size={14} aria-hidden /></Link>
                 </figcaption>
               </figure>
             );
