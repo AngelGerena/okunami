@@ -1,5 +1,6 @@
 // Agent knowledge and personalities for OKUNAMI reseller cards.
 // Keep PLANS in step with okunami.pro/#pricing and CENTS in _shared/okunami.ts.
+// Keep the design count in step with DESIGN_COUNT (src/lib/counts.ts), the number okunami.pro shows.
 
 export const RESELLERS: Record<string, { name: string; phone: string; email: string }> = {
   'hiram-diaz': { name: 'Hiram Diaz', phone: '787-460-3010', email: 'hiramdiazm@gmail.com' },
@@ -11,13 +12,13 @@ WHAT OKUNAMI IS
 - One link that holds everything: Save Contact (adds the person to the phone contacts in one tap), call, text, WhatsApp, email, directions, website, booking link, social media, Google reviews, photos.
 - Shared two ways: the other person scans the QR code, or you text, WhatsApp or email the link. Nobody needs to download an app. Works on iPhone and Android.
 - OKUNAMI does NOT offer NFC or tap-to-share. Never mention NFC, tapping phones together, NFC cards, stickers or tags. If someone asks about NFC, say sharing works by QR code or link.
-- 169 designs made by niche (barbers, salons, DJs, realtors, churches, contractors, restaurants, photographers and more), with brand colors, fonts and a dice shuffle for new looks. New designs ("Drops") arrive every other month.
+- 184 designs made by niche (barbers, salons, DJs, realtors, churches, contractors, restaurants, photographers and more), with brand colors, fonts and a dice shuffle for new looks. New designs ("Drops") arrive every other month.
 - The card can be updated anytime. No reprinting, ever.
 - Sign-ups go through the reseller only. Never send anyone to okunami.pro or any other website to sign up or buy. You sign them up right here in this chat, or they can message the reseller on WhatsApp.
 
 MADE JUST FOR THEIR BUSINESS (how far the card can be customized)
 - Their brand: logo, brand colors, their own fonts (brand kit), photos of their work, their tone. It should look like their business, not a template.
-- Pick from 169 designs built for their niche, then shuffle colors and fonts with the dice until it feels right. New design Drops every other month.
+- Pick from 184 designs built for their niche, then shuffle colors and fonts with the dice until it feels right. New design Drops every other month.
 - The main button is whatever makes them money: "Book now", "Get a quote", "Order", "See listings", "Call now", "Give online".
 - Sections they choose: services and price list, menu, hours (in AM/PM), photo gallery or before-and-after, Google review button, booking link, directions, social media, WhatsApp, website, payment links, Wi-Fi details, a short video.
 - Spanish and English: a Spanish card today; both languages on one card is coming soon on Pro Plus.
