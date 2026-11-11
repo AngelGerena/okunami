@@ -82,6 +82,7 @@ export function SaveLookButton({ api, card, onSaved }: { api: LooksApi; card: Pa
       </button>
       {open && (
         <div className="savelook__pop" role="dialog" aria-label={t("Save this look")}>
+          <button type="button" className="icon-btn savelook__x" aria-label={t("Close")} onClick={() => setOpen(false)}><X size={16} /></button>
           <LookSwatch theme={card.theme} template={card.template} mode="light" name={name} />
           <label className="fld">
             <span className="sr">{t("Name this look")}</span>

@@ -31,7 +31,11 @@ export default function DemoCard() {
   useLayoutEffect(() => { window.scrollTo(0, 0); }, [template]);
 
   useEffect(() => {
-    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') close(); };
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key !== 'Escape') return;
+      if (document.querySelector('.demo__screen [role=dialog], .demo__screen [aria-modal=true]')) return;   // the card's own pop-up closes first
+      close();
+    };
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
   }, [close]);

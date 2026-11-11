@@ -11,6 +11,7 @@ import { Phone, Mail, CalendarDays, Globe, UserPlus, X } from 'lucide-react';
 import { BrandGlyph, Gallery, Highlights, Logo, Photo, QrBtn, ShareBtn, SocialLinks, el, useCard } from './blocks';
 import { NETWORK_BY_ID, socialUrl } from '../lib/socials';
 import { formatPhone, telHref, waHref, webHref } from '../lib/links';
+import { useBackToClose } from '../lib/useBackToClose';
 
 const ext = (h: string) => (/^https?:/.test(h) ? { target: '_blank', rel: 'noopener' } : {});
 const EXPO = { shutter: '1/200', aperture: '2.8', iso: '100', focal: '85mm' };
@@ -89,6 +90,7 @@ const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 
 const fmtDate = (d: Date) => d.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' });
 
 export function BookSheet({ onClose }: { onClose: () => void }) {
+  useBackToClose(onClose);
   const { data, play } = useCard();
   const first = (data.fullName || 'me').split(' ')[0];
   const shoots = [...(data.highlights.length ? data.highlights.map((h) => h.title).filter(Boolean) : DEFAULT_SHOOTS), 'Something else'];

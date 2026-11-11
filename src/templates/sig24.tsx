@@ -22,6 +22,7 @@ import { CalendarDays, ChevronLeft, ChevronRight, Mail, MessageSquare, Phone, Qr
 import { BrandGlyph, Gallery, HIcon, el, useCard } from './blocks';
 import { NETWORK_BY_ID, socialUrl } from '../lib/socials';
 import { formatPhone, telHref, waHref } from '../lib/links';
+import { useBackToClose } from '../lib/useBackToClose';
 
 const ext = (href: string) => (/^https?:/i.test(href) ? { target: '_blank', rel: 'noopener' } : {});
 /** sms: link with the same number format as the Call button (telHref adds the country code). */
@@ -86,6 +87,7 @@ function themeOf(node: HTMLElement | null): CSSProperties {
 }
 
 function BookSheet({ a, onClose, theme }: { a: Au; onClose: () => void; theme: CSSProperties }) {
+  useBackToClose(onClose);
   const today = new Date(); today.setHours(0, 0, 0, 0);
   const minDay = new Date(today); minDay.setDate(minDay.getDate() + 1);
   const firstView = new Date(minDay.getFullYear(), minDay.getMonth(), 1);

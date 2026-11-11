@@ -29,6 +29,7 @@ import Brand from '../components/Brand';
 import CardRenderer from '../components/CardRenderer';
 import { rich, useT } from '../lib/i18n';
 import LangToggle from '../components/LangToggle';
+import { onOverlayEntry, useBackToClose } from '../lib/useBackToClose';
 
 export default function Dashboard() {
   const { t, lang } = useT();
@@ -85,12 +86,20 @@ export default function Dashboard() {
   const [chosen, setChosen] = useState<Niche | null>(null);
   const sample = useMemo(() => sampleCard(), []);
   const closePicker = () => { setPicking(false); setChosen(null); setQ(''); };
+  useBackToClose(() => { if (!busy) closePicker(); }, picking);
+  useEffect(() => {
+    if (!picking) return;
+    const key = (e: KeyboardEvent) => { if (e.key === 'Escape' && !busy) closePicker(); };
+    window.addEventListener('keydown', key);
+    return () => window.removeEventListener('keydown', key);
+  }, [picking, busy]);
   const create = async (niche?: Niche, design?: Design, quick = false) => {
     setBusy(true);
     try {
       let c = await store.create();
       if (niche && design) { c = applyDesign(c, niche, design); await store.save(c); }
-      nav(`/app/cards/${c.id}${quick ? '?quick=1' : ''}`);
+      // From the picker, the new card replaces the picker's history entry, so Back from the editor lands on My cards once.
+      nav(`/app/cards/${c.id}${quick ? '?quick=1' : ''}`, { replace: onOverlayEntry() });
     }
     catch (e) {
       const m = e instanceof Error ? e.message : '';

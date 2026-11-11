@@ -6,6 +6,7 @@ import { usePlan } from '../../lib/usePlan';
 import { FREE_FALLBACK, isLocked } from '../../lib/plans';
 import { TEMPLATES } from '../../templates';
 import { rich, useT } from '../../lib/i18n';
+import { useBackToClose } from '../../lib/useBackToClose';
 
 /** Publishing makes a card public, so it is always a deliberate step with the consequences spelled out.
     Previewing never opens this dialog and never publishes. */
@@ -21,6 +22,7 @@ export default function PublishDialog({ card, onConfirm, onClose, onChangeAddres
   const autoAddress = /^card-/.test(card.data.slug);
   const locked = isLocked(plan, card.template);
   const nameOf = (id: string) => TEMPLATES.find((t) => t.id === id)?.name ?? id;
+  useBackToClose(() => { if (!busy) onClose(); });
 
   useEffect(() => {
     const prev = document.activeElement as HTMLElement | null;

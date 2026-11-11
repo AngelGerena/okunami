@@ -3,6 +3,7 @@ import { Crown, Loader2, Minus, Plus, X } from 'lucide-react';
 import { TEAM, clampCards, teamTotal } from '../lib/plans';
 import type { Interval } from '../lib/billing';
 import { useT } from '../lib/i18n';
+import { useBackToClose } from '../lib/useBackToClose';
 
 /** "How many cards does your team need?" Shown before Business checkout, because Business is priced per card. */
 export default function TeamDialog({ initialCards = TEAM.initial, initialInterval = 'month', busy, onClose, onContinue }: {
@@ -14,6 +15,7 @@ export default function TeamDialog({ initialCards = TEAM.initial, initialInterva
   const cards = clampCards(parseInt(raw, 10));
   const yearly = interval === 'year';
   const total = teamTotal(cards, yearly);
+  useBackToClose(onClose);
 
   useEffect(() => {
     const key = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose(); };
