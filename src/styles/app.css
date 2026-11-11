@@ -822,3 +822,4 @@ a { color: var(--ink); }
   .edits__go { grid-column: 1 / -1; width: 100%; justify-content: center; }
   .edits__rules { grid-template-columns: 1fr; }
 }
+.savelook__x { position: absolute; top: 8px; right: 8px; z-index: 1; width: 34px; height: 34px; background: var(--white); }

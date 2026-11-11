@@ -22,6 +22,7 @@ import { VIEW_KEY } from '../lib/editorView';
 import { tr } from '../lib/i18n';
 import { rich, useT } from '../lib/i18n';
 import LangToggle from '../components/LangToggle';
+import { useBackToClose } from '../lib/useBackToClose';
 
 const STEPS = [
   { id: 'profile', label: 'Profile', icon: User, Panel: ProfilePanel },
@@ -334,6 +335,13 @@ function PhonePreview({ toolbar, note, closeRef, children }: { toolbar: ReactNod
   const sheet = useRef<HTMLDivElement>(null);
   const box = useRef<HTMLDivElement>(null);
   closeRef.current = () => setOpen(false);
+  useBackToClose(() => setOpen(false), open);
+  useEffect(() => {
+    if (!open) return;
+    const key = (e: KeyboardEvent) => { if (e.key === 'Escape' && !document.querySelector('.pv-sheet [role=dialog]:not(.pv-sheet)')) setOpen(false); };
+    window.addEventListener('keydown', key);
+    return () => window.removeEventListener('keydown', key);
+  }, [open]);
   useEffect(() => {
     sheet.current?.toggleAttribute('inert', !open);   // closed: invisible and unreachable
     if (!open || !box.current) return;

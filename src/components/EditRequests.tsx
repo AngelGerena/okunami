@@ -4,6 +4,7 @@ import { editsApi, type EditRequest, type EditsStatus } from '../lib/edits';
 import { store } from '../lib/store';
 import type { Card } from '../lib/types';
 import { rich, useT } from '../lib/i18n';
+import { useBackToClose } from '../lib/useBackToClose';
 
 /** Pro Plus: "Up to 2 small edits a month, done for you." A counter on the dashboard plus a short request form. */
 export default function EditRequests({ cards, plan }: { cards: Card[] | null; plan: string }) {
@@ -68,6 +69,7 @@ function EditDialog({ cards, plan, left, limit, onClose, onSent }: { cards: Card
   const [uploading, setUploading] = useState(false);
   const [busy, setBusy] = useState(false);
   const [err, setErr] = useState('');
+  useBackToClose(() => { if (!busy) onClose(); });
 
   useEffect(() => {
     const key = (e: KeyboardEvent) => { if (e.key === 'Escape' && !busy) onClose(); };

@@ -9,6 +9,7 @@ import { Ctx, type CardActions } from '../templates/blocks';
 import { TEMPLATE_COMPONENTS } from '../templates';
 import { sfx } from '../lib/sfx';
 import { TEMPLATE_EXTRA_FONTS, effectiveSound } from '../lib/niches';
+import { useBackToClose } from '../lib/useBackToClose';
 
 /** Loads Google fonts and any uploaded brand-kit fonts once per family. */
 export function useCardFonts(card: Card) {
@@ -123,6 +124,7 @@ function linkKind(href: string): string {
 
 function QrSheet({ png, url, onClose }: { png: string; url: string; onClose: () => void }) {
   const [copied, setCopied] = useState(false);
+  useBackToClose(onClose);
   useEffect(() => {
     const k = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose(); };
     window.addEventListener('keydown', k); return () => window.removeEventListener('keydown', k);
