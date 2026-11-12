@@ -181,21 +181,27 @@ button{font:inherit;color:inherit}
 .l6 .btn.save{background:#fff}
 .l6 .panel{border-radius:26px}
 
-/* ---------------- 7 Breathe */
-.l7{--hbg:linear-gradient(180deg,#e4e1f1 0%,#efedf6 70%);--hink:#2c2843;--bg:#f7f6fb;--ink:#29253d;--muted:#5d5878;--accent:#585187;--panel:#fff;--line:#e2dff0;--fd:"Cormorant",Georgia,serif;--r:18px}
-.l7 .breath{position:relative;width:200px;height:200px;margin:18px auto 0;display:grid;place-items:center}
-.l7 .rings i{position:absolute;inset:0;margin:auto;border-radius:50%;border:1px solid #8c84c0;animation:breathe 8s ease-in-out infinite}
-.l7 .rings i:nth-child(1){width:70px;height:70px;background:rgba(140,132,192,.18)}
-.l7 .rings i:nth-child(2){width:110px;height:110px;animation-delay:.25s;opacity:.8}
-.l7 .rings i:nth-child(3){width:150px;height:150px;animation-delay:.5s;opacity:.55}
-.l7 .rings i:nth-child(4){width:194px;height:194px;animation-delay:.75s;opacity:.3}
-@keyframes breathe{0%,100%{transform:scale(.82)}45%,55%{transform:scale(1)}}
-.l7 .ml{position:relative;font:italic 500 50px/1 "Cormorant",serif;color:#3a3466}
-.l7 .cue{position:relative;height:20px;margin:6px 0 0;font:600 11.5px/20px var(--fb);letter-spacing:.3em;text-transform:uppercase;color:#585187}
-.l7 .cue b{position:absolute;left:0;right:0;font-weight:600;animation:cue 8s ease-in-out infinite}
-.l7 .cue b:nth-child(2){animation-delay:-4s}
-@keyframes cue{0%,40%{opacity:1}50%,90%{opacity:0}100%{opacity:1}}
-.l7 .name{font:italic 500 70px/1 var(--fd);margin-top:4px}
+/* ---------------- 7 Bordeaux Silk */
+.l7{--hbg:#3a0b16;--hink:#f6e9e2;--bg:#1f070d;--ink:#f6ebe4;--muted:#d4b9b3;--accent:#e4c690;--on:#2a0a12;--panel:#2b0c14;--line:#4a1a25;--fd:"Cormorant",Georgia,serif;--r:6px;
+  --foil:linear-gradient(105deg,#b88d4f 0%,#f6e2b0 30%,#c9a062 52%,#fff0c9 72%,#b88d4f 100%)}
+.l7 .hero{padding-top:34px}
+.l7 .tex{position:absolute;inset:0;z-index:-1;background:url(../images/silk.svg) center/cover}
+.l7 .lozenge{position:relative;width:84px;height:84px;margin:22px auto 30px;display:grid;place-items:center}
+.l7 .lozenge::before,.l7 .lozenge::after{content:"";position:absolute;inset:0;transform:rotate(45deg);border:1.5px solid #d9b877}
+.l7 .lozenge::after{inset:7px;border-width:1px;opacity:.55}
+.l7 .lozenge span{font:italic 500 50px/1 "Cormorant",serif;background:var(--foil);-webkit-background-clip:text;background-clip:text;color:transparent;transform:translateY(-2px)}
+.l7 .kick{color:#e4c690;opacity:1}
+.l7 .name{font:600 56px/1 var(--fd);letter-spacing:.28em;margin-left:.28em;text-transform:uppercase;background:var(--foil);-webkit-background-clip:text;background-clip:text;color:transparent}
+.l7 .role{color:#f6e9e2}
+.l7 .orn{display:flex;align-items:center;justify-content:center;gap:8px;margin:14px auto 0}
+.l7 .orn i{width:46px;height:1px;background:var(--foil)}
+.l7 .orn b{width:7px;height:7px;transform:rotate(45deg);background:#e4c690}
+.l7 .tag{color:#f3dccf}
+.l7 .btn.primary{position:relative;overflow:hidden;background:var(--foil);color:#2a0a12;letter-spacing:.16em;text-transform:uppercase;font-size:14px;box-shadow:inset 0 1px 0 rgba(255,255,255,.6),0 14px 28px -14px #c9a062}
+.l7 .btn.save{letter-spacing:.1em;text-transform:uppercase;font-size:13.5px}
+.l7 .panel{background:linear-gradient(180deg,#2e0d16,#240911);border-color:#4a1a25}
+.l7 .panel h2{font-style:italic}
+.l7 .vagaro,.l7 .full summary{color:#e4c690}
 
 /* ---------------- 8 Washi */
 .l8{--hbg:#f3efe6;--hink:#1d1b18;--bg:#faf8f2;--ink:#1d1b18;--muted:#5d5850;--accent:#a8372b;--panel:#fff;--line:#e6e0d3;--fd:"Shippori",Georgia,serif;--r:2px}
@@ -271,10 +277,9 @@ button{font:inherit;color:inherit}
 .bk-fine{margin:12px 0 0;font-size:12.5px;color:var(--muted,#6a5d53);text-align:center}
 
 @media (max-width:380px){
-  .name{font-size:56px}.l1 .name{font-size:60px}.l2 .name{font-size:46px}.l4 .name{font-size:60px}.l5 .name{font-size:48px}.l10 .name{font-size:50px}
+  .name{font-size:56px}.l1 .name{font-size:60px}.l2 .name{font-size:46px}.l4 .name{font-size:60px}.l7 .name{font-size:46px}.l5 .name{font-size:48px}.l10 .name{font-size:50px}
   .l9 .giant{font-size:112px}.row3{gap:8px}.btn{font-size:14px}
 }
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition:none!important}
-  .l7 .cue b:nth-child(2){display:none}
 }
