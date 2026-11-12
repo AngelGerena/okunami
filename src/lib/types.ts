@@ -106,6 +106,8 @@ export type TemplateId =
   | 'reellive' | 'goldenhour' | 'vellum' | 'glossbar' | 'stillwater' | 'glowedit'
   // Redo alternates (the second look for each Redo design)
   | 'headliner' | 'listingsheet' | 'letterpress' | 'lacquer' | 'eucalyptus' | 'frosted'
+  // Spa collection (massage therapists and day spas, first made for Dali)
+  | 'spalinen' | 'spahotstone' | 'spaeuca' | 'spamarble' | 'spaonyx' | 'spablush' | 'spabordeaux' | 'spawashi' | 'sparecovery' | 'spahinoki'
   // Vocalist collection (singers)
   | 'voiceprint' | 'lyricbook' | 'vocalrange' | 'spotlight' | 'nowplaying'
   // Bling collection (jewelry and accessory sellers)

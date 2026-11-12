@@ -38,6 +38,7 @@ import {
 } from './blocks';
 import { addressLine, mapsHref, prettyUrl, webHref } from '../lib/links';
 import { Chat, Duotone, Intro, Local, MonoStudio, ServiceMenu, Sheet, Status, Trust } from './sig25';
+import { SpaBlush, SpaBordeaux, SpaEucalyptus, SpaHinoki, SpaHotStone, SpaLinen, SpaMarble, SpaOnyx, SpaRecovery, SpaWashi } from './sig26';
 
 export interface TemplateMeta { id: TemplateId; name: string; blurb: string; bestFor: string; niche?: string;
   /** Not offered in galleries or counts (OKUNAMI Studio custom cards). */
@@ -321,6 +322,16 @@ export const TEMPLATES: TemplateMeta[] = [
   { id: 'menu',       name: 'Service Menu',      niche: 'Beauty', blurb: 'Swipeable service cards with prices and a booking button.', bestFor: 'Salons, nails, barbers, spas' },
   { id: 'status',     name: 'Live Status',       niche: 'Home services', blurb: 'An availability badge, hours and service area up front.', bestFor: 'Mobile notaries, cleaners, handymen' },
   { id: 'chat',       name: 'Conversation',      niche: 'Professional', blurb: 'Your card as a text thread with quick replies and a message box.', bestFor: 'Travel agents, creators, assistants' },
+  { id: 'spalinen', name: 'Linen and Oil', niche: 'Massage and Day Spas', blurb: 'Ivory linen, a fine double-ring monogram or your logo, and a calm treatment menu.', bestFor: 'Massage therapists and day spas' },
+  { id: 'spahotstone', name: 'Hot Stone', niche: 'Massage and Day Spas', blurb: 'Warm basalt with a stack of heated stones and rising steam, and a glossy gold book button.', bestFor: 'Massage therapists and day spas' },
+  { id: 'spaeuca', name: 'Eucalyptus Branch', niche: 'Massage and Day Spas', blurb: 'Sage and cream with a hand-drawn eucalyptus branch sweeping behind your logo.', bestFor: 'Massage therapists and day spas' },
+  { id: 'spamarble', name: 'Marble and Brass', niche: 'Massage and Day Spas', blurb: 'White marble veining and a brushed-brass medallion, like a luxury treatment room.', bestFor: 'Massage therapists and day spas' },
+  { id: 'spaonyx', name: 'Onyx and Gold', niche: 'Massage and Day Spas', blurb: 'Black and gold foil inside a fine double frame, five-star hotel spa.', bestFor: 'Massage therapists and day spas' },
+  { id: 'spablush', name: 'Blush Glow', niche: 'Massage and Day Spas', blurb: 'Blush and rose with a glossy oil-drop orb, a script name and candy gloss buttons.', bestFor: 'Massage therapists and day spas' },
+  { id: 'spabordeaux', name: 'Bordeaux Silk', niche: 'Massage and Day Spas', blurb: 'Deep wine silk with satin folds and a champagne-foil monogram in a diamond frame.', bestFor: 'Massage therapists and day spas' },
+  { id: 'spawashi', name: 'Washi', niche: 'Massage and Day Spas', blurb: 'Zen paper, an ink brush circle and a red seal with your initial.', bestFor: 'Massage therapists and day spas' },
+  { id: 'sparecovery', name: 'Recovery Issue', niche: 'Massage and Day Spas', blurb: 'A wellness magazine cover: your first name in oversized type, thin rules and a rust accent.', bestFor: 'Massage therapists and day spas' },
+  { id: 'spahinoki', name: 'Hinoki Wood', niche: 'Massage and Day Spas', blurb: 'Warm cedar wood grain and cream, like a Nordic sauna.', bestFor: 'Massage therapists and day spas' },
 ];
 
 /* ------------------------------------------------------------ 1 Editorial Cover */
@@ -639,4 +650,5 @@ export const TEMPLATE_COMPONENTS: Record<TemplateId, () => ReactElement> = {
   rougeedit: RougeEdit, blushatelier: BlushAtelier, noirlash: NoirLash, botanical: Botanical,
   blacklabel: BlackLabel, barberclub: BarberClub, copperforge: CopperForge, cedarsmoke: CedarSmoke, voltsport: VoltSport,
   sheet: Sheet, monostudio: MonoStudio, intro: Intro, duotone: Duotone, trust: Trust, local: Local, menu: ServiceMenu, status: Status, chat: Chat,
+  spalinen: SpaLinen, spahotstone: SpaHotStone, spaeuca: SpaEucalyptus, spamarble: SpaMarble, spaonyx: SpaOnyx, spablush: SpaBlush, spabordeaux: SpaBordeaux, spawashi: SpaWashi, sparecovery: SpaRecovery, spahinoki: SpaHinoki,
 };
