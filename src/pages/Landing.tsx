@@ -283,7 +283,7 @@ export default function Landing() {
       {/* ---------------------------------------------------------------- studio */}
       <section className="mx-studio" id="studio" aria-labelledby="studio-h">
         <div className="mx-studio__in">
-          <header className="mx-studio__head">{rich(t("<x1>OKUNAMI Studio by Finesse Media</x1><x2>Want me to build it for you?</x2><x3>I'm a creative director and photographer. I design your card and shoot your portrait.</x3>"), { x1: (c) => <p className="mx-eyebrow">{c}</p>, x2: (c) => <h2 id="studio-h" className="mx-dir__h">{c}</h2>, x3: (c) => <p className="mx-dir__sub">{c}</p> })}</header>
+          <header className="mx-studio__head">{rich(t("<x1>OKUNAMI Studio by Finesse Media</x1><x2>Want us to build it for you?</x2><x3>We're a creative studio led by a creative director and photographer. We design your card and shoot your portrait.</x3>"), { x1: (c) => <p className="mx-eyebrow">{c}</p>, x2: (c) => <h2 id="studio-h" className="mx-dir__h">{c}</h2>, x3: (c) => <p className="mx-dir__sub">{c}</p> })}</header>
 
           <div className="mx-studio__two">
             <section className="mx-studio__box" aria-labelledby="pay-h">
@@ -302,10 +302,10 @@ export default function Landing() {
             <section className="mx-studio__box" aria-labelledby="how-h">
               <h3 id="how-h">{t("How it works")}</h3>
               <ol>
-                <li>{rich(t("<b>Request a free consult.</b> Tell me about your business."), { b: (c) => <b>{c}</b> })}</li>
-                <li>{rich(t("<b>I build a private preview.</b> You review it before you pay."), { b: (c) => <b>{c}</b> })}</li>
+                <li>{rich(t("<b>Request a free consult.</b> Tell us about your business."), { b: (c) => <b>{c}</b> })}</li>
+                <li>{rich(t("<b>We build a private preview.</b> You review it before you pay."), { b: (c) => <b>{c}</b> })}</li>
                 <li>{rich(t("<b>You approve it and pay through Stripe.</b>"), { b: (c) => <b>{c}</b> })}</li>
-                <li>{rich(t("<b>I set up your live address by hand.</b> It is an address on okunami.pro that I provide. Already own a domain? I can connect it for you."), { b: (c) => <b>{c}</b> })}</li>
+                <li>{rich(t("<b>We set up your live address by hand.</b> It is an address on okunami.pro that we provide. Already own a domain? We can connect it for you."), { b: (c) => <b>{c}</b> })}</li>
               </ol>
             </section>
           </div>
@@ -326,7 +326,7 @@ export default function Landing() {
           <div className="mx-dir__foot">
             <a className="mx-btn mx-btn--pink" href={founding ? STUDIO_CONTACT.founding : STUDIO_CONTACT.whatsapp} target="_blank" rel="noopener"><MessageCircle size={18} aria-hidden /> {t("Request a free consult on WhatsApp")}</a>
             <p className="mx-studio__alt"><a href={founding ? STUDIO_CONTACT.foundingSms : STUDIO_CONTACT.sms}>{t("No WhatsApp? Send a text")}</a><a href={STUDIO_CONTACT.email}>{t("or email angel@finessemedia.pro")}</a></p>
-            <span>{t("The button opens a WhatsApp chat with me. Prices are starting points; every project is quoted.")}</span>
+            <span>{t("The button opens a WhatsApp chat with us. Prices are starting points; every project is quoted.")}</span>
           </div>
         </div>
       </section>
@@ -337,7 +337,7 @@ export default function Landing() {
           <header className="mx-studio__head">
             <p className="mx-eyebrow">{t("Custom AI agents")}</p>
             <h2 id="agents-h" className="mx-dir__h">{t("Your card can work for you 24/7.")}</h2>
-            <p className="mx-dir__sub">{t("I build an assistant around your business and put it right inside your card. It answers your customers, sells for you and brings you leads, in English and Spanish.")}</p>
+            <p className="mx-dir__sub">{t("We build an assistant around your business and put it right inside your card. It answers your customers, sells for you and brings you leads, in English and Spanish.")}</p>
           </header>
           <div className="mx-studio__grid">
             <article className="mx-studio__card">
@@ -382,7 +382,7 @@ export default function Landing() {
           </div>
           <p className="mx-agents__price">{rich(t("<b>${price} per agent</b>, one time, plus prepaid credits you control. No surprise bills: when credits run out, the agent pauses and your card keeps working.", { price: AGENT_PRICE }), { b: (c) => <b>{c}</b> })}</p>
           <div className="mx-dir__foot">
-            <a className="mx-btn mx-btn--pink" href={AGENT_CONTACT.whatsapp} target="_blank" rel="noopener"><MessageCircle size={18} aria-hidden /> {t("Talk to me about an AI agent")}</a>
+            <a className="mx-btn mx-btn--pink" href={AGENT_CONTACT.whatsapp} target="_blank" rel="noopener"><MessageCircle size={18} aria-hidden /> {t("Talk to us about an AI agent")}</a>
             <p className="mx-studio__alt"><a href={AGENT_CONTACT.sms}>{t("No WhatsApp? Send a text")}</a></p>
           </div>
         </div>
