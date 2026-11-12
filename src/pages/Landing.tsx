@@ -218,13 +218,13 @@ export default function Landing() {
             <article className="mx-path mx-path--studio">
               <p className="mx-eyebrow">{t("Done for you")}</p>
               <h3>{t("OKUNAMI Studio")}</h3>
-              <p>{t("I design and set up your card for you, starting with a free consult.")}</p>
+              <p>{t("We design and set up your card for you, starting with a free consult.")}</p>
               <ul>
                 {founding
                   ? <li><Check size={16} aria-hidden /> <span>{rich(t("<b>Founding 50:</b> custom design {price} instead of {base}. {left} of {spots} spots left, ends Dec 31.", { price: dollars(studio.cents), base: dollars(studio.regular), left: studio.left, spots: studio.spots }), { b: (c) => <b>{c}</b> })}</span></li>
                   : <li><Check size={16} aria-hidden /> {t("Custom card from $149, custom team design $249")}</li>}
                 <li><Check size={16} aria-hidden /> {t("Plus an OKUNAMI Pro, Pro Plus or Business subscription, which every Studio card needs")}</li>
-                <li><Check size={16} aria-hidden /> {t("I handle the design, copy and setup")}</li>
+                <li><Check size={16} aria-hidden /> {t("We handle the design, copy and setup")}</li>
               </ul>
               <button type="button" className="mx-btn mx-btn--ghost" onClick={() => jump('studio')}>{t("See what Studio includes")} <ArrowRight size={18} aria-hidden /></button>
             </article>
