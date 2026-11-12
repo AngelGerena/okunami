@@ -139,14 +139,20 @@ button{font:inherit;color:inherit}
 .l3 .panel{border-radius:24px}
 .l3 .panel h2{font-size:27px}
 
-/* ---------------- 4 Terracotta Arch */
-.l4{--hbg:#ecdccb;--hink:#3a2219;--bg:#f6ece2;--ink:#3a2219;--muted:#6c5345;--accent:#a6503a;--panel:#fffaf4;--line:#e6d2bf;--fd:"Italiana",Georgia,serif;--r:12px}
-.l4 .arch{width:170px;height:200px;margin:22px auto 0;border-radius:85px 85px 0 0;background:linear-gradient(180deg,#c06a4c,#a6503a);position:relative;overflow:hidden;display:grid;place-items:center;box-shadow:inset 0 0 0 6px #ecdccb,inset 0 0 0 7px #a6503a}
-.l4 .sun{position:absolute;width:120px;height:120px;border-radius:50%;background:#e9a874;bottom:-40px;left:25px;opacity:.9}
-.l4 .ml{position:relative;font:400 92px/1 "Italiana",Georgia,serif;color:#fff6ec;margin-top:-20px}
-.l4 .name{font-size:70px;letter-spacing:.06em}
-.l4 .role,.l4 .kick{color:#7f3a28}
-.l4 .panel h2{font-size:30px}
+/* ---------------- 4 Marble & Brass */
+.l4{--hbg:#f4f2ee;--hink:#25221f;--bg:#f8f6f2;--ink:#25221f;--muted:#5f5850;--accent:#7f6233;--on:#fff;--panel:#fff;--line:#e4ded4;--fd:"Italiana",Georgia,serif;--r:10px;--brass:linear-gradient(115deg,#8a6a35 0%,#d9bd84 30%,#a8864c 50%,#ecd9a8 70%,#8a6a35 100%)}
+.l4 .hero{padding-top:30px}
+.l4 .tex{position:absolute;inset:0;z-index:-1;background:url(../images/marble.svg) center/cover;opacity:.75}
+.l4 .medal{width:112px;height:112px;margin:16px auto 0;border-radius:50%;padding:3px;background:var(--brass);box-shadow:0 14px 26px -16px rgba(60,40,10,.6)}
+.l4 .medal span{display:grid;place-items:center;width:100%;height:100%;border-radius:50%;background:#f8f6f2;box-shadow:inset 0 0 0 5px #f8f6f2,inset 0 0 0 6px #b99659;font:400 62px/1 "Italiana",serif;color:#6e5328}
+.l4 .kick{color:#7f6233;opacity:1}
+.l4 .name{font-size:72px;letter-spacing:.08em;margin-left:.08em}
+.l4 .rule{display:block;width:70px;height:2px;margin:14px auto 0;background:var(--brass)}
+.l4 .tag{color:#4a443d}
+.l4 .btn.primary{position:relative;overflow:hidden;background:linear-gradient(180deg,#a07f45 0%,#7f6233 55%,#6b5229 100%);letter-spacing:.08em;box-shadow:inset 0 1px 0 rgba(255,236,190,.55),0 12px 24px -14px #6b5229}
+.l4 .btn.save{border-color:#a8864c}
+.l4 .panel{border-top:2px solid #c8ab72}
+.l4 .panel h2{font-size:30px;letter-spacing:.02em}
 
 /* ---------------- 5 Onyx & Gold */
 .l5{--hbg:#0d0c0b;--hink:#f3ece0;--bg:#121110;--ink:#f1eadf;--muted:#b9ae9c;--accent:#d6b26a;--on:#141210;--panel:#1b1916;--line:#332e27;--fd:"Bodoni",Georgia,serif;--r:4px;--gold:linear-gradient(100deg,#a7803a 0%,#f2d891 35%,#c69c4e 55%,#f7e3a6 75%,#a7803a 100%)}
@@ -265,7 +271,7 @@ button{font:inherit;color:inherit}
 .bk-fine{margin:12px 0 0;font-size:12.5px;color:var(--muted,#6a5d53);text-align:center}
 
 @media (max-width:380px){
-  .name{font-size:56px}.l1 .name{font-size:60px}.l2 .name{font-size:46px}.l5 .name{font-size:48px}.l10 .name{font-size:50px}
+  .name{font-size:56px}.l1 .name{font-size:60px}.l2 .name{font-size:46px}.l4 .name{font-size:60px}.l5 .name{font-size:48px}.l10 .name{font-size:50px}
   .l9 .giant{font-size:112px}.row3{gap:8px}.btn{font-size:14px}
 }
 @media (prefers-reduced-motion:reduce){

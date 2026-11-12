@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 520" preserveAspectRatio="xMidYMid slice">
+<defs>
+<filter id="soft"><feGaussianBlur stdDeviation="2.2"/></filter>
+<filter id="fine"><feGaussianBlur stdDeviation=".45"/></filter>
+<filter id="w" x="-20%" y="-20%" width="140%" height="140%"><feTurbulence type="fractalNoise" baseFrequency=".035" numOctaves="2" seed="3" result="t"/><feDisplacementMap in="SourceGraphic" in2="t" scale="14"/></filter>
+<radialGradient id="cloud" cx="70%" cy="20%" r="80%"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#ebe7e0"/></radialGradient>
+</defs>
+<rect width="400" height="520" fill="url(#cloud)"/>
+<g fill="none" stroke-linecap="round" filter="url(#w)">
+<g stroke="#a59d92" opacity=".35" filter="url(#soft)">
+<path d="M-20 140C60 120 110 190 170 170S270 90 330 120 420 100 430 90" stroke-width="10"/>
+<path d="M-10 420C70 380 120 430 190 400S300 300 420 330" stroke-width="12"/>
+</g>
+<g stroke="#8d857a" opacity=".55" filter="url(#fine)">
+<path d="M-20 140C60 120 110 190 170 170S270 90 330 120 420 100 430 90" stroke-width="1.6"/>
+<path d="M170 170C190 210 175 250 210 290S260 360 250 410" stroke-width="1"/>
+<path d="M-10 420C70 380 120 430 190 400S300 300 420 330" stroke-width="1.9"/>
+<path d="M330 120C320 160 350 200 340 250S380 300 420 290" stroke-width=".9"/>
+<path d="M40 -10C60 40 30 70 70 110" stroke-width=".8"/>
+<path d="M260 330C230 360 245 400 210 440S200 500 230 540" stroke-width="1.1"/>
+<path d="M90 260C130 250 150 280 190 270" stroke-width=".7"/>
+</g>
+</g>
+</svg>
