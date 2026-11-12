@@ -348,7 +348,7 @@ const METHOD_NAME: Record<AdminDomain['method'], string> = { diy: 'Do it myself 
 const waLink = (phone: string, who: string, domain: string) => {
   const d = phone.replace(/\D/g, '');
   const n = d.length === 10 ? `1${d}` : d;
-  return `https://wa.me/${n}?text=${encodeURIComponent(`Hi ${who.split(' ')[0]}, it's Angel from Finesse Media. I'm ready to connect ${domain} to your OKUNAMI card. When is a good time?`)}`;
+  return `https://wa.me/${n}?text=${encodeURIComponent(`Hi ${who.split(' ')[0]}, it's Angel from Finesse Media. We're ready to connect ${domain} to your OKUNAMI card. When is a good time?`)}`;
 };
 
 function DomainRow({ d, ctx }: { d: AdminDomain; ctx: Ctx }) {

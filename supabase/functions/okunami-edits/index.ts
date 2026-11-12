@@ -114,8 +114,8 @@ Deno.serve(async (req) => {
       await db.from('fc_edit_requests').update({ status: 'declined', admin_note: note || row.admin_note, updated_at: new Date().toISOString() }).eq('id', id);
       await mailMember(profile?.email,
         memberEs ? 'Sobre tu solicitud de edición' : 'About your edit request',
-        memberEs ? [name ? `Hola ${name},` : 'Hola,', 'Lo que pediste es más grande que una edición pequeña, así que no cuenta para tus 2 ediciones del mes.', `Lo que pediste: ${row.details}`, ...(note ? [note] : []), 'Te escribo con una cotización para hacerlo. Si prefieres, responde a este correo.', 'Angel\nOKUNAMI by Finesse Media']
-                 : [name ? `Hi ${name},` : 'Hi there,', 'What you asked for is bigger than a small edit, so it does not count toward your 2 edits this month.', `What you asked for: ${row.details}`, ...(note ? [note] : []), 'I will reach out with a quote to get it done. You can also just reply to this email.', 'Angel\nOKUNAMI by Finesse Media']);
+        memberEs ? [name ? `Hola ${name},` : 'Hola,', 'Lo que pediste es más grande que una edición pequeña, así que no cuenta para tus 2 ediciones del mes.', `Lo que pediste: ${row.details}`, ...(note ? [note] : []), 'Te escribimos con una cotización para hacerlo. Si prefieres, responde a este correo.', 'Angel\nOKUNAMI by Finesse Media']
+                 : [name ? `Hi ${name},` : 'Hi there,', 'What you asked for is bigger than a small edit, so it does not count toward your 2 edits this month.', `What you asked for: ${row.details}`, ...(note ? [note] : []), 'We will reach out with a quote to get it done. You can also just reply to this email.', 'Angel\nOKUNAMI by Finesse Media']);
       return json({ ok: true });
     }
 

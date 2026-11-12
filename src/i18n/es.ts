@@ -671,7 +671,7 @@ export const ES: Record<string, string> = {
   "Your photo becomes a short looping video of you smiling and waving.": "Tu foto se convierte en un video corto en bucle donde sonríes y saludas.",
   "Animated from a photo you already have, or filmed live at a headshot session": "Animado a partir de una foto que ya tienes, o grabado en vivo en una sesión de retratos",
   "Team setup": "Configuración de equipo",
-  "I set up every staff card so the whole team matches.": "Configuro cada tarjeta del personal para que todo el equipo luzca igual.",
+  "We set up every staff card so the whole team matches.": "Configuramos cada tarjeta del personal para que todo el equipo luzca igual.",
   "Every staff card built": "Cada tarjeta del personal creada",
   "Matching headshots": "Retratos a juego",
   "Neon signs, straight razors, turntables, passports, wax seals. Pro members get new drops every other month.": "Letreros de neón, navajas, tornamesas, pasaportes, lacres de cera. Los miembros Pro reciben novedades cada dos meses.",
