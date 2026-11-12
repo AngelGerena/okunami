@@ -59,16 +59,16 @@ function linkEmail(lang: string, first: string, token: string) {
   const hi = first ? (es ? `Hola ${first},` : `Hi ${first},`) : (es ? 'Hola,' : 'Hi there,');
   const lines = es ? [
     'Gracias por tu compra. Ya podemos empezar a diseñar tu tarjeta.',
-    'Para hacerla a tu medida, necesito tu logo, una buena foto tuya, tus colores y el estilo que te gusta. Toma unos 5 minutos y puedes volver cuando quieras.',
+    'Para hacerla a tu medida, necesitamos tu logo, una buena foto tuya, tus colores y el estilo que te gusta. Toma unos 5 minutos y puedes volver cuando quieras.',
     '__LINK__',
-    'Cuando lo envíes, empiezo tu diseño y te mando una vista previa para aprobar. Incluye una ronda de cambios.',
+    'Cuando lo envíes, empezamos tu diseño y te mandamos una vista previa para aprobar. Incluye una ronda de cambios.',
     'Cualquier pregunta, responde a este correo.',
     'Angel\nOKUNAMI Studio',
   ] : [
     'Thank you for your order. We are ready to design your card.',
-    'To make it truly yours, I need your logo, a good photo of you, your colors and the style you like. It takes about 5 minutes, and you can come back to it any time.',
+    'To make it truly yours, we need your logo, a good photo of you, your colors and the style you like. It takes about 5 minutes, and you can come back to it any time.',
     '__LINK__',
-    'Once you send it, I start your design and send you a preview to approve. One round of changes is included.',
+    'Once you send it, we start your design and send you a preview to approve. One round of changes is included.',
     'Any questions, just reply to this email.',
     'Angel\nOKUNAMI Studio',
   ];
