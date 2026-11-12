@@ -1,0 +1,141 @@
+/* =================================================================
+   The Spa Collection (src/templates/sig26.tsx). Heroes are fixed
+   materials (linen, basalt, sage, marble, onyx, blush, bordeaux silk,
+   washi paper, newsprint, cedar) so they read as real; the page below
+   follows the element variables (--c-*) so owners can recolor.
+   Prefixes: tpl-sp, sp-, sp1__ to sp10__.
+   ================================================================= */
+.tpl-sp .sp-hero { position: relative; isolation: isolate; overflow: hidden; padding: 30px 22px 64px; text-align: center; }
+.tpl-sp .sp-tex { position: absolute; inset: 0; z-index: -1; pointer-events: none; }
+.tpl-sp .sp-kick { margin-top: 14px !important; font: 500 11.5px/1.35 'Jost', var(--f-body); letter-spacing: .3em; text-transform: uppercase; opacity: .9; overflow-wrap: anywhere; }
+.tpl-sp .sp-name { margin-top: 8px !important; font: 500 min(62px, 15vw)/1.02 'Cormorant Garamond', var(--f-display); overflow-wrap: anywhere; }
+.tpl-sp .sp-role { margin-top: 8px !important; font: 500 14.5px/1.35 'Jost', var(--f-body); letter-spacing: .05em; }
+.tpl-sp .sp-lic { margin-top: 4px !important; font: 400 12.5px/1.3 'Jost', var(--f-body); letter-spacing: .08em; opacity: .82; }
+.tpl-sp .sp-tag { margin: 14px auto 0 !important; max-width: 300px; font: italic 500 19px/1.3 'Cormorant Garamond', serif; }
+.tpl-sp .sp-rule { display: block; width: 64px; height: 2px; margin: 14px auto 0; }
+.tpl-sp .sp-ring { position: relative; width: 96px; height: 96px; margin: 6px auto 0; border-radius: 50%; border: 1px solid currentColor; display: grid; place-items: center; }
+.tpl-sp .sp-ring::after { content: ""; position: absolute; inset: 5px; border-radius: 50%; border: 1px solid currentColor; opacity: .5; }
+.tpl-sp .sp-ring span { font: 500 46px/1 'Cormorant Garamond', serif; }
+.tpl-sp .sp-logo { width: 72%; height: 72%; object-fit: contain; border-radius: 50%; }
+.tpl-sp .sp-curve { display: block; width: 100%; height: 48px; margin-top: -47px; position: relative; z-index: 2; fill: var(--c-pageBg); }
+.tpl-sp .sp-body { padding-top: 6px; }
+.tpl-sp .sp-menu { padding: 18px 18px 8px; border-radius: 18px; background: color-mix(in srgb, var(--c-pageBg) 90%, var(--c-body)); border: 1px solid var(--c-dividers); }
+.tpl-sp .sp-menu ul { list-style: none; margin: 10px 0 0; padding: 0; }
+.tpl-sp .sp-menu li { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 12px; align-items: baseline; padding: 11px 0; border-bottom: 1px solid var(--c-dividers); }
+.tpl-sp .sp-menu li:last-child { border-bottom: 0; }
+.tpl-sp .sp-menu b { font: 500 16px/1.3 var(--f-body); color: var(--c-name); overflow-wrap: anywhere; }
+.tpl-sp .sp-menu small { font-size: 13.5px; color: var(--c-caption); text-align: right; }
+.tpl-sp .sp-hours p { margin: 8px 0 10px !important; font-size: 14.5px; line-height: 1.5; white-space: pre-line; }
+.tpl-sp .rx-main { min-height: 58px; font-size: 16.5px; letter-spacing: .02em; }
+
+/* 1 LINEN AND OIL */
+.sp1__hero { background: #EFE7DC; color: #3B2F27; }
+.tpl-sp1 .sp-tex { background: url(../assets/spa/linen.svg); opacity: .55; }
+.tpl-sp1 .sp-name { font-size: min(70px, 17vw); }
+
+/* 2 HOT STONE */
+.sp2__hero { background: radial-gradient(120% 80% at 50% 0%, #3A312B 0%, #1D1916 70%); color: #F3EBE1; padding-top: 14px; }
+.sp2__stones { width: 200px; margin: 0 auto -6px; }
+.sp2__steam path { animation: sp-rise 4s ease-in-out infinite; }
+.sp2__steam path:nth-child(2) { animation-delay: .8s; } .sp2__steam path:nth-child(3) { animation-delay: 1.6s; }
+@keyframes sp-rise { 0%, 100% { opacity: .2; transform: translateY(4px); } 50% { opacity: .8; transform: translateY(-4px); } }
+.sp2__hero .sp-kick { color: #D2B07F; opacity: 1; }
+.sp2__hero .sp-name { font: 400 min(54px, 13vw)/1.05 'Marcellus', serif; letter-spacing: .14em; margin-left: .14em !important; }
+.tpl-sp2 .rx-main { background: linear-gradient(180deg, color-mix(in srgb, var(--c-accentDetail) 70%, #fff), var(--c-accentDetail) 48%, color-mix(in srgb, var(--c-accentDetail) 82%, #000)); box-shadow: inset 0 1px 0 rgba(255,255,255,.5), 0 12px 26px -14px var(--c-accentDetail); }
+
+/* 3 EUCALYPTUS BRANCH */
+.sp3__hero { background: #DDE5D5; color: #2C3829; }
+.sp3__euca { position: absolute; z-index: -1; width: 120%; left: -10%; top: -46px; color: #5E7A53; opacity: .55; }
+.sp3__hero .sp-ring { margin-top: 40px; background: #F5F6F0; border-color: #4C6244; }
+.sp3__hero .sp-name { font: 400 min(62px, 15vw)/1.05 'DM Serif Display', serif; margin-top: 12px !important; }
+.tpl-sp3 .rx-main, .tpl-sp3 .rx-save, .tpl-sp3 .rx-key { border-radius: 999px; }
+.tpl-sp3 .sp-menu { border-radius: 24px; }
+
+/* 4 MARBLE AND BRASS */
+.sp4__hero { background: #F4F2EE; color: #25221F; }
+.tpl-sp4 .sp-tex { background: url(../assets/spa/marble.svg) center / cover; opacity: .75; }
+.sp4__medal { width: 112px; height: 112px; margin: 0 auto; border-radius: 50%; padding: 3px; background: linear-gradient(115deg, #8A6A35 0%, #D9BD84 30%, #A8864C 50%, #ECD9A8 70%, #8A6A35 100%); box-shadow: 0 14px 26px -16px rgba(60,40,10,.6); }
+.sp4__medal span, .sp4__medal .sp-logo { display: grid; place-items: center; width: 100%; height: 100%; border-radius: 50%; background: #F8F6F2; box-shadow: inset 0 0 0 5px #F8F6F2, inset 0 0 0 6px #B99659; font: 400 62px/1 'Italiana', serif; color: #6E5328; }
+.sp4__medal .sp-logo { padding: 16px; }
+.sp4__hero .sp-kick { color: #7F6233; opacity: 1; }
+.sp4__hero .sp-name { font: 400 min(70px, 16vw)/1.05 'Italiana', serif; letter-spacing: .08em; }
+.sp4__hero .sp-rule { background: linear-gradient(115deg, #8A6A35, #D9BD84, #A8864C, #ECD9A8, #8A6A35); }
+.tpl-sp4 .rx-main { background: linear-gradient(180deg, #A07F45 0%, #7F6233 55%, #6B5229 100%); color: #fff; letter-spacing: .08em; box-shadow: inset 0 1px 0 rgba(255,236,190,.55), 0 12px 24px -14px #6B5229; }
+.tpl-sp4 .sp-menu { border-top: 2px solid #C8AB72; }
+
+/* 5 ONYX AND GOLD */
+.sp5__hero { --gold: linear-gradient(100deg, #A7803A 0%, #F2D891 35%, #C69C4E 55%, #F7E3A6 75%, #A7803A 100%); background: #0D0C0B; color: #F3ECE0; }
+.sp5__frame { position: absolute; inset: 14px 14px 30px; border: 1px solid #6D5A33; z-index: -1; }
+.sp5__frame::after { content: ""; position: absolute; inset: 5px; border: 1px solid #3D3322; }
+.sp5__mark { width: 84px; height: 84px; margin: 6px auto 0; display: grid; place-items: center; }
+.sp5__mark span, .sp5__hero .sp-name { background: var(--gold); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.sp5__mark span { font: italic 500 72px/1 'Bodoni Moda', serif; }
+.sp5__hero .sp-kick { color: #D6B26A; opacity: 1; }
+.sp5__hero .sp-name { font: 500 min(54px, 13vw)/1.05 'Bodoni Moda', serif; letter-spacing: .2em; margin-left: .2em !important; text-transform: uppercase; }
+.sp5__hero .sp-rule { height: 1px; width: 60px; background: var(--gold); }
+.tpl-sp5 .rx-main { background: linear-gradient(100deg, #A7803A 0%, #F2D891 35%, #C69C4E 55%, #F7E3A6 75%, #A7803A 100%); color: #141210; letter-spacing: .14em; text-transform: uppercase; font-size: 14.5px; border-radius: 4px; }
+.tpl-sp5 .rx-save, .tpl-sp5 .rx-key, .tpl-sp5 .sp-menu { border-radius: 4px; }
+
+/* 6 BLUSH GLOW */
+.sp6__hero { background: linear-gradient(165deg, #F8DFDB 0%, #EFC3C0 60%, #E6B0AE 100%); color: #4A272B; }
+.sp6__orb { position: relative; width: 118px; height: 118px; margin: 0 auto; border-radius: 50%; display: grid; place-items: center;
+  background: radial-gradient(circle at 34% 28%, #fff 0 9%, rgba(255,255,255,0) 22%), radial-gradient(circle at 50% 55%, #F3A9AD 0%, #D06D7A 60%, #A8485A 100%);
+  box-shadow: inset -10px -14px 26px rgba(110,30,50,.35), inset 8px 10px 20px rgba(255,255,255,.35), 0 18px 30px -16px #9B3E50; }
+.sp6__orb span { font: 400 64px/1 'Pinyon Script', cursive; color: #fff; text-shadow: 0 2px 8px rgba(120,30,50,.35); transform: translate(2px, 4px); }
+.sp6__hero .sp-name { font: 400 min(80px, 19vw)/1.1 'Pinyon Script', cursive; margin-top: 10px !important; }
+.tpl-sp6 .rx-main, .tpl-sp6 .rx-save, .tpl-sp6 .rx-key { border-radius: 999px; }
+.tpl-sp6 .rx-main { position: relative; overflow: hidden; background: linear-gradient(180deg, color-mix(in srgb, var(--c-accentDetail) 70%, #fff), var(--c-accentDetail) 48%, color-mix(in srgb, var(--c-accentDetail) 82%, #000)); box-shadow: inset 0 1px 0 rgba(255,255,255,.55), 0 12px 26px -14px var(--c-accentDetail); }
+.tpl-sp6 .sp-menu { border-radius: 26px; }
+
+/* 7 BORDEAUX SILK */
+.sp7__hero { --foil: linear-gradient(105deg, #B88D4F 0%, #F6E2B0 30%, #C9A062 52%, #FFF0C9 72%, #B88D4F 100%); background: #3A0B16; color: #F6E9E2; padding-top: 34px; }
+.tpl-sp7 .sp-tex { background: url(../assets/spa/silk.svg) center / cover; }
+.sp7__lozenge { position: relative; width: 84px; height: 84px; margin: 14px auto 30px; display: grid; place-items: center; }
+.sp7__lozenge::before, .sp7__lozenge::after { content: ""; position: absolute; inset: 0; transform: rotate(45deg); border: 1.5px solid #D9B877; }
+.sp7__lozenge::after { inset: 7px; border-width: 1px; opacity: .55; }
+.sp7__lozenge span { font: italic 500 50px/1 'Cormorant Garamond', serif; background: var(--foil); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.sp7__lozenge .sp-logo { position: relative; z-index: 1; width: 60px; height: 60px; }
+.sp7__hero .sp-kick { color: #E4C690; opacity: 1; }
+.sp7__hero .sp-name { font: 600 min(46px, 11vw)/1.1 'Cormorant Garamond', serif; letter-spacing: .26em; margin-left: .26em !important; text-transform: uppercase; background: var(--foil); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.sp7__orn { display: flex; align-items: center; justify-content: center; gap: 8px; margin: 14px auto 0; }
+.sp7__orn i { width: 46px; height: 1px; background: var(--foil); }
+.sp7__orn b { width: 7px; height: 7px; transform: rotate(45deg); background: #E4C690; }
+.sp7__hero .sp-tag { color: #F3DCCF; }
+.tpl-sp7 .rx-main { background: linear-gradient(105deg, #B88D4F 0%, #F6E2B0 30%, #C9A062 52%, #FFF0C9 72%, #B88D4F 100%); color: #2A0A12; letter-spacing: .16em; text-transform: uppercase; font-size: 14px; border-radius: 6px; box-shadow: inset 0 1px 0 rgba(255,255,255,.6), 0 14px 28px -14px #C9A062; }
+.tpl-sp7 .rx-save, .tpl-sp7 .rx-key, .tpl-sp7 .sp-menu { border-radius: 6px; }
+
+/* 8 WASHI */
+.sp8__hero { background: #F3EFE6 url(../assets/spa/linen.svg); color: #1D1B18; text-align: left; padding: 30px 52px 66px 26px; }
+.sp8__vert { position: absolute; top: 34px; right: 22px; margin: 0; writing-mode: vertical-rl; font: 500 11.5px/1 'Jost', sans-serif; letter-spacing: .34em; text-transform: uppercase; color: #5D5850; white-space: nowrap; max-height: 230px; overflow: hidden; text-overflow: ellipsis; }
+.sp8__ensow { position: relative; width: 150px; height: 150px; margin-left: -6px; color: #1D1B18; }
+.sp8__seal { position: absolute; right: -6px; bottom: 8px; width: 46px; height: 46px; display: grid; place-items: center; background: #A8372B; color: #FBF6EE; border-radius: 4px; transform: rotate(-4deg); box-shadow: inset 0 0 0 3px #A8372B, inset 0 0 0 4.5px #F3D9CF; overflow: hidden; }
+.sp8__seal span { font: 700 26px/1 'Shippori Mincho', serif; }
+.sp8__seal .sp-logo { width: 80%; height: 80%; border-radius: 2px; filter: brightness(0) invert(1); }
+.sp8__hero .sp-name { font: 500 min(58px, 14vw)/1.05 'Shippori Mincho', serif; margin-top: 16px !important; letter-spacing: .04em; }
+.sp8__hero .sp-tag { margin-left: 0 !important; font: 500 16px/1.4 'Shippori Mincho', serif; }
+.tpl-sp8 .rx-main, .tpl-sp8 .rx-save, .tpl-sp8 .rx-key, .tpl-sp8 .sp-menu { border-radius: 2px; }
+.tpl-sp8 .rx-main { letter-spacing: .12em; }
+
+/* 9 RECOVERY ISSUE */
+.sp9__hero { background: #EBE5DA; color: #141210; text-align: left; padding: 58px 20px 66px; }
+.sp9__mast { display: flex; justify-content: space-between; gap: 8px; padding: 8px 0; border-top: 2px solid #141210; border-bottom: 1px solid #141210; font: 600 11px/1.2 'Jost', sans-serif; letter-spacing: .18em; text-transform: uppercase; }
+.sp9__mast span { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.sp9__mast span:first-child { flex: none; }
+.sp9__mast span:last-child:not(:nth-child(2)) { flex: none; max-width: 34%; }
+.sp9__giant { margin: 6px 0 0 -4px !important; font: 700 var(--sp9-size, 120px)/.86 'Bodoni Moda', serif; letter-spacing: -.02em; text-transform: uppercase; white-space: nowrap; overflow: hidden; }
+.sp9__cover { margin-top: 10px !important; font: italic 500 22px/1.2 'Bodoni Moda', serif; color: #8A3A20; }
+.sp9__hero .sp-name { font: 600 13px/1.3 'Jost', sans-serif; letter-spacing: .3em; text-transform: uppercase; margin-top: 14px !important; padding-top: 12px; border-top: 1px solid #141210; }
+.sp9__hero .sp-role { font-size: 14px; letter-spacing: .04em; margin-top: 4px !important; }
+.sp9__hero .sp-tag { margin: 12px 0 0 !important; max-width: none; font: 500 17px/1.4 'Bodoni Moda', serif; font-style: normal; }
+.tpl-sp9 .rx-main { background: #141210; color: #fff; letter-spacing: .14em; text-transform: uppercase; font-size: 14px; border-radius: 0; }
+.tpl-sp9 .rx-save, .tpl-sp9 .rx-key { border-radius: 0; }
+.tpl-sp9 .sp-menu { border-radius: 0; border-width: 1px 0 0; background: transparent; border-color: var(--c-name); padding: 16px 2px 4px; }
+
+/* 10 HINOKI WOOD */
+.sp10__hero { background: linear-gradient(180deg, #9A6A43 0%, #7C5133 100%); color: #FBF3E7; }
+.tpl-sp10 .sp-tex { background: url(../assets/spa/wood.svg) center / cover; opacity: .5; mix-blend-mode: multiply; }
+.sp10__hero .sp-ring { border-color: #F1DCC0; }
+.sp10__hero .sp-name { font: 600 min(56px, 13vw)/1.05 'Cormorant Garamond', serif; letter-spacing: .22em; margin-left: .22em !important; text-transform: uppercase; }
+.sp10__hero .sp-tag { color: #F6E6CF; }
+
+@media (prefers-reduced-motion: reduce) { .sp2__steam path { animation: none; } }
