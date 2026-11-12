@@ -43,11 +43,11 @@ export const PLANS: PlanDef[] = [
     pitch: 'Every design, forever growing.',
     features: ['Up to 3 cards', 'All {designs} designs', 'Every new OKUNAMI Drop, 3 to 5 designs every other month', 'Brand kit and custom fonts', 'No badge', 'Scan and save stats (coming soon)'] },
   { id: 'plus', name: 'Pro Plus', price: 16, yearly: 159, per: 'month', cards: PLUS_CARDS,
-    pitch: 'Everything in Pro, plus hands-on help from me.',
+    pitch: 'Everything in Pro, plus hands-on help from our team.',
     features: ['Everything in Pro', '1 card', 'Event sections (coming soon)', 'Multiple languages on your card (coming soon)', 'Connect a domain you already own', 'Up to 2 small edits a month by Finesse Media (hours, photos, prices, links, text)'] },
   { id: 'team', name: 'Business', price: TEAM.monthly, yearly: TEAM.yearly, per: 'card / month', perCard: true,
     pitch: 'Matching cards for your whole team. Pay only for the cards you need.',
-    features: ['Everything in Pro', 'Pay per card, from 3 cards', 'Connect a domain you already own', 'Matching designs with brand lock (coming soon)', 'Team admin (coming soon)', 'Priority support, straight from me'] },
+    features: ['Everything in Pro', 'Pay per card, from 3 cards', 'Connect a domain you already own', 'Matching designs with brand lock (coming soon)', 'Team admin (coming soon)', 'Priority support, straight from our team'] },
 ];
 
 /** How many cards an account may have. Keep in step with fc_card_limit() in the database. */
@@ -60,13 +60,13 @@ export const isPaid = (plan: PlanId) => plan !== 'free';
     `includes` lists only what has been approved for each package: add to it when you confirm more. */
 export const STUDIO = [
   { id: 'signature', name: 'Custom card', from: 149, needs: 'One-time fee. Your card also needs an OKUNAMI Pro or Pro Plus subscription, billed separately.',
-    blurb: 'I design your card from scratch in your exact brand.',
+    blurb: 'We design your card from scratch in your exact brand.',
     includes: ['A card designed from scratch in your exact brand', 'Custom animation', 'Copywriting', 'Full setup', 'One round of revisions'] },
   { id: 'portrait', name: 'Living Portrait', from: 49,
     blurb: 'Your photo becomes a short looping video of you smiling and waving.',
     includes: ['Animated from a photo you already have, or filmed live at a headshot session'] },
   { id: 'team', name: 'Custom team design', from: 249, needs: 'One-time fee. Each card also needs an OKUNAMI Business subscription, billed separately.',
-    blurb: 'One custom design in your brand for the whole team, and I build every staff card so it all matches.',
+    blurb: 'One custom design in your brand for the whole team, and we build every staff card so it all matches.',
     includes: ['One brand design for the whole team', 'Your first 3 staff cards built', '$35 for each extra person', 'Matching headshots'] },
 ] as const;
 
