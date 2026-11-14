@@ -221,7 +221,12 @@
     bk.hidden = true; document.body.classList.remove("bk-open");
     if(lastBtn) lastBtn.focus();
   }
-  document.querySelectorAll("[data-book]").forEach(function(b){ b.addEventListener("click", function(){ openBk(b); }); });
+  document.querySelectorAll("[data-book]").forEach(function(b){ b.addEventListener("click", function(){ openVg(b); }); });
+  document.querySelectorAll("[data-request]").forEach(function(b){
+    b.addEventListener("click", function(){
+      if(b.closest("#vg")){ var src = vgLast; closeVg(true); openBk(src); } else openBk(b);
+    });
+  });
   bk.querySelector("[data-bk-close]").addEventListener("click", closeBk);
   bk.addEventListener("click", function(e){ if(e.target === bk) closeBk(); });
   document.addEventListener("keydown", function(e){
@@ -229,6 +234,47 @@
     if(e.key === "Escape") closeBk();
     if(e.key === "Tab"){
       var f = [].slice.call(bk.querySelectorAll("button:not([disabled]),a:not([aria-disabled]),input,select")).filter(function(x){ return x.offsetParent; });
+      if(!f.length) return;
+      if(e.shiftKey && document.activeElement === f[0]){ e.preventDefault(); f[f.length-1].focus(); }
+      else if(!e.shiftKey && document.activeElement === f[f.length-1]){ e.preventDefault(); f[0].focus(); }
+    }
+  });
+
+  // Vagaro booking pop-up. Paste the script src from Daly's Vagaro booking widget code
+  // (Vagaro: Settings > Booking Widget) into VAGARO_WIDGET_SRC to show her live calendar right in the card.
+  var VAGARO_WIDGET_SRC = "";
+  var vg = document.getElementById("vg"), vgLast = null, vgLoaded = false;
+  var VT = {
+    en:{kicker:"Book with Daly", title:"Pick your treatment and time", sub:"See Daly's open times and book instantly on Vagaro. You'll get a confirmation right away.",
+      open:"Open Daly's Vagaro booking", st1:"Choose a facial or body sculpting service", st2:"Pick a day and an open time",
+      st3:"Confirm, and Vagaro sends your reminder", req:"Can't find a time? Send Daly a request", close:"Close"},
+    es:{kicker:"Reserva con Daly", title:"Elige tu tratamiento y tu hora", sub:"Mira las horas disponibles de Daly y reserva al instante en Vagaro. Recibirás tu confirmación enseguida.",
+      open:"Abrir las reservas de Daly en Vagaro", st1:"Elige un facial o un servicio de moldeo corporal", st2:"Elige un día y una hora disponible",
+      st3:"Confirma, y Vagaro te envía tu recordatorio", req:"¿No encuentras hora? Envíale una solicitud a Daly", close:"Cerrar"}
+  };
+  function openVg(btn){
+    vgLast = btn; var card = btn.closest(".card"), isEs = card && card.dataset.lang === "es", t = VT[isEs ? "es" : "en"];
+    var cs = getComputedStyle(card);
+    VARS.forEach(function(v){ vg.style.setProperty(v, cs.getPropertyValue(v)); });
+    vg.querySelectorAll("[data-vi18n]").forEach(function(el){ el.textContent = t[el.dataset.vi18n]; });
+    vg.querySelector(".bk-x").setAttribute("aria-label", t.close);
+    if(VAGARO_WIDGET_SRC && !vgLoaded){
+      vgLoaded = true; var w = document.getElementById("vgWidget"), sc = document.createElement("script");
+      sc.src = VAGARO_WIDGET_SRC; sc.async = true; w.appendChild(sc); vg.classList.add("has-widget");
+    }
+    vg.hidden = false; document.body.classList.add("bk-open");
+    vg.querySelector(".bk-sheet").scrollTop = 0; vg.querySelector(".bk-x").focus();
+  }
+  function closeVg(keep){
+    vg.hidden = true; if(!keep){ document.body.classList.remove("bk-open"); if(vgLast) vgLast.focus(); }
+  }
+  vg.querySelector("[data-vg-close]").addEventListener("click", function(){ closeVg(); });
+  vg.addEventListener("click", function(e){ if(e.target === vg) closeVg(); });
+  document.addEventListener("keydown", function(e){
+    if(vg.hidden) return;
+    if(e.key === "Escape") closeVg();
+    if(e.key === "Tab"){
+      var f = [].slice.call(vg.querySelectorAll("button,a,iframe")).filter(function(x){ return x.offsetParent; });
       if(!f.length) return;
       if(e.shiftKey && document.activeElement === f[0]){ e.preventDefault(); f[f.length-1].focus(); }
       else if(!e.shiftKey && document.activeElement === f[f.length-1]){ e.preventDefault(); f[0].focus(); }
