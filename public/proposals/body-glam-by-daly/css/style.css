@@ -262,3 +262,90 @@ button{font:inherit;color:inherit}
 .vg-steps li{display:flex;gap:10px;align-items:flex-start;font-size:14.5px}
 .vg-steps .ico{color:var(--accent);margin-top:1px}
 .vg-req{display:block;width:100%;min-height:48px;margin-top:12px;border:0;border-top:1px solid var(--line);background:none;color:var(--accent);font-size:14.5px;text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+
+/* ---------- L6 Emerald Velvet ---------- */
+.l6{--bg:#0b2a20;--bg2:#0e3127;--ink:#f3ecd9;--muted:#bfcbb9;--accent:#e2bf6d;--on:#0b2a20;--panel:rgba(255,255,255,.05);--line:rgba(226,191,109,.24);
+  --fd:"Bodoni",Georgia,serif;background:#0b2a20}
+.l6 .velvet{position:absolute;inset:0;background:radial-gradient(90% 60% at 85% 10%,rgba(46,125,92,.55),transparent 60%),radial-gradient(70% 50% at 10% 90%,rgba(4,20,15,.8),transparent 70%),repeating-linear-gradient(115deg,rgba(255,255,255,.018) 0 2px,transparent 2px 5px);pointer-events:none}
+.l6 .hero{text-align:left;padding:26px 22px 22px}
+.l6 .medal{position:relative;float:right;width:44%;max-width:170px;margin:34px -6px 0 10px;padding:6px;border-radius:50%;background:var(--gold);box-shadow:0 16px 34px rgba(0,0,0,.45)}
+.l6 .medal .logo{width:100%;border-radius:50%;background:#071c15}
+.l6 .kick{position:relative;margin:0 56px 0 0;font-size:10px;letter-spacing:.15em;white-space:nowrap}
+.l6 .name{position:relative;font-size:54px;line-height:.98;font-weight:500;margin-top:14px}
+.l6 .name i{display:block;font-size:34px;margin-top:6px;color:var(--accent)}
+.l6 .role{position:relative;clear:both;padding-top:16px;margin-top:0;border-top:1px solid var(--line);color:var(--ink)}
+.tiles{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.tile{display:flex;flex-direction:column;align-items:flex-start;gap:4px;min-height:96px;padding:14px;border-radius:16px;border:1px solid var(--line);background:var(--panel);color:var(--ink);text-decoration:none;text-align:left;cursor:pointer;font:inherit}
+.tile .ico{color:var(--accent);margin-bottom:4px}
+.tile b{font-size:16px;font-weight:600}
+.tile small{font-size:12.5px;color:var(--muted)}
+.tile:active{transform:scale(.97)}
+.l6 .btn.primary{background:var(--gold);color:#13241b;border-radius:16px}
+.l6 .btn.primary::before{content:none}
+
+/* ---------- L7 Champagne Glass ---------- */
+.l7{--bg:#f6e6d8;--bg2:transparent;--ink:#3b2716;--muted:#6d5440;--accent:#8a5a1c;--on:#fff8ef;--panel:rgba(255,255,255,.42);--line:rgba(255,255,255,.7);
+  --fd:"Cormorant",Georgia,serif;background:linear-gradient(160deg,#fbe3cf 0%,#f3d7c9 40%,#efd9b4 100%);box-shadow:0 30px 70px rgba(0,0,0,.35)}
+.l7 .blobs{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+.l7 .blobs span{position:absolute;border-radius:50%;filter:blur(40px);opacity:.75;animation:drift 16s ease-in-out infinite alternate}
+.l7 .blobs span:nth-child(1){width:260px;height:260px;left:-60px;top:-40px;background:#f7b996}
+.l7 .blobs span:nth-child(2){width:240px;height:240px;right:-70px;top:120px;background:#ecc46e;animation-delay:-5s}
+.l7 .blobs span:nth-child(3){width:200px;height:200px;left:40px;top:300px;background:#f1a9b4;animation-delay:-9s}
+@keyframes drift{to{transform:translate(30px,40px) scale(1.12)}}
+.l7 .hero{padding-top:30px}
+.glass-orb{position:relative;width:min(68%,250px);margin:0 auto;padding:14px;border-radius:50%;background:rgba(255,255,255,.35);border:1px solid rgba(255,255,255,.8);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);box-shadow:0 20px 40px rgba(120,70,30,.18),inset 0 1px 0 rgba(255,255,255,.9)}
+.l7 .glass-orb .logo{width:100%;border-radius:50%;background:#1a120c}
+.l7 .name{position:relative;font-weight:600;font-size:38px;margin-top:16px}
+.l7 .role,.l7 .kick{position:relative}
+.l7 .body{position:relative}
+.l7 .panel,.l7 .btn,.l7 .lang,.l7 .seg{background:rgba(255,255,255,.42);border-color:rgba(255,255,255,.75);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
+.l7 .panel{border-radius:24px;box-shadow:0 10px 30px rgba(120,70,30,.10)}
+.l7 .menu li{background:rgba(255,255,255,.5);border-color:rgba(255,255,255,.8)}
+.l7 .btn.primary{background:linear-gradient(135deg,#3b2716,#6b4423);color:#fff1dc;border:0;border-radius:99px}
+.glassbar{display:grid;grid-template-columns:repeat(4,1fr);padding:6px;border-radius:22px;background:rgba(255,255,255,.4);border:1px solid rgba(255,255,255,.8);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);box-shadow:0 10px 26px rgba(120,70,30,.12)}
+.glassbar a,.glassbar button{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;min-height:62px;border:0;border-radius:16px;background:none;color:var(--ink);text-decoration:none;font:inherit;font-size:13px;font-weight:500;cursor:pointer}
+.glassbar a:active,.glassbar button:active{background:rgba(255,255,255,.55)}
+.glassbar .ico{color:var(--accent)}
+.l7 .foot{background:rgba(255,255,255,.3);border-top-color:rgba(255,255,255,.7)}
+
+/* ---------- L8 Plum Cover ---------- */
+.l8{--bg:#2a0f24;--bg2:#331429;--ink:#f8e9ee;--muted:#d6b4c3;--accent:#efb59c;--on:#2a0f24;--panel:rgba(255,255,255,.05);--line:rgba(239,181,156,.26);
+  --fd:"Bodoni",Georgia,serif;--gold:linear-gradient(135deg,#ffe2d2 0%,#efb59c 30%,#b8735a 58%,#f6c9b2 80%,#a8644d 100%);
+  background:radial-gradient(110% 60% at 50% 30%,#4d1a40 0%,#2a0f24 62%)}
+.l8 .hero{padding:16px 16px 18px}
+.l8 .lang{top:auto;bottom:auto;margin-top:0;top:clamp(62px,19vw,80px)}
+.mast{margin:4px 0 0;font-family:"Bodoni",Georgia,serif;font-weight:500;font-size:clamp(40px,13.4vw,54px);line-height:1;letter-spacing:.02em;background:var(--gold);-webkit-background-clip:text;background-clip:text;color:transparent;white-space:nowrap}
+.mast-by{margin:-2px 0 0;font-family:"Pinyon",cursive;font-size:30px;color:var(--ink)}
+.cover{display:grid;grid-template-columns:1fr 1.5fr 1fr;align-items:center;gap:4px;margin-top:6px}
+.cover .logo{width:100%}
+.lines{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:18px;font-size:12px;line-height:1.3;color:var(--muted)}
+.lines.l{text-align:left}.lines.r{text-align:right}
+.lines b{display:block;font-family:"Bodoni",Georgia,serif;font-style:italic;font-weight:500;font-size:18px;color:var(--accent)}
+.l8 .name{font-size:22px;font-style:italic;font-weight:500;margin-top:14px}
+.l8 .kick{margin-top:6px}
+.a-num{gap:0;border-top:1px solid var(--line)}
+.nrow{display:flex;align-items:center;gap:14px;width:100%;min-height:66px;padding:10px 4px;border:0;border-bottom:1px solid var(--line);background:none;color:var(--ink);text-decoration:none;text-align:left;font:inherit;cursor:pointer}
+.nrow .n{font-family:"Bodoni",Georgia,serif;font-style:italic;font-size:26px;color:var(--accent);min-width:38px}
+.n-t{flex:1;display:flex;flex-direction:column;min-width:0}
+.n-t b{font-size:16px;font-weight:500}
+.n-t small{font-size:13px;color:var(--muted);overflow-wrap:anywhere}
+.nrow .ico.sm{color:var(--muted)}
+.nrow.book{background:var(--gold);color:#2a0f24;border-radius:14px;padding:10px 14px;border:0;margin-bottom:6px}
+.nrow.book .n,.nrow.book small,.nrow.book .ico.sm{color:#2a0f24}
+.a-num .vagaro{margin-top:6px}
+
+/* ---------- L9 Desert Sand ---------- */
+.l9{--bg:#efe4d6;--bg2:#f6eee3;--ink:#3a2a20;--muted:#6f5a4b;--accent:#a24e2c;--on:#fff7ee;--panel:#fbf6ef;--line:rgba(162,78,44,.2);
+  --fd:"Italiana",Georgia,serif;background:#efe4d6;box-shadow:0 30px 70px rgba(0,0,0,.35)}
+.l9 .hero{padding-top:28px}
+.window{position:relative;width:min(72%,260px);margin:0 auto;padding:22px 18px 18px;border-radius:999px 999px 18px 18px;background:linear-gradient(180deg,#c2603a 0%,#a24e2c 55%,#6e2f1a 100%);overflow:hidden;box-shadow:0 18px 40px rgba(110,47,26,.3)}
+.window .sun{position:absolute;left:50%;top:38%;width:150%;aspect-ratio:1;transform:translate(-50%,0);border-radius:50%;background:radial-gradient(circle,rgba(255,206,140,.55),rgba(255,206,140,0) 60%)}
+.window .logo{position:relative;width:100%;filter:drop-shadow(0 8px 16px rgba(0,0,0,.35))}
+.l9 .name{font-size:36px;font-weight:400;letter-spacing:.06em;margin-top:18px}
+.l9 .role{letter-spacing:.08em;text-transform:uppercase;font-size:12.5px}
+.pchips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+.pchip{display:inline-flex;align-items:center;gap:7px;min-height:44px;padding:0 16px;border-radius:99px;border:1px solid var(--line);background:var(--panel);color:var(--ink);text-decoration:none;font-size:14.5px;font-weight:500}
+.pchip .ico{width:18px;height:18px;color:var(--accent)}
+.l9 .btn.primary{background:var(--accent);color:var(--on);border-radius:99px}
+.l9 .btn.save{border-radius:99px;background:transparent;color:var(--accent);border-color:rgba(162,78,44,.5)}
+.l9 .panel{border-radius:22px}
