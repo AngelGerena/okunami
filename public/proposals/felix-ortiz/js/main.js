@@ -3,28 +3,8 @@
   var SMS = "sms:+14079609004?&body=";
   var FX_WA = "https://wa.me/13212038541?text=";
   var FX_SMS = "sms:+13212038541?&body=";
-  var LOOKS = window.LOOKS;
 
-  // Look picker
-  var tabs = document.querySelectorAll(".tab");
-  var pick = document.getElementById("pickBtn");
-  var pickSms = document.getElementById("pickSms");
-  var note = document.getElementById("note");
-  function show(id){
-    tabs.forEach(function(t){ t.setAttribute("aria-selected", t.dataset.look === id ? "true" : "false"); });
-    document.querySelectorAll(".card").forEach(function(c){ c.hidden = c.id !== id; });
-    note.textContent = LOOKS[id].note;
-    var msg = "Hi Angel, this is Felix Ortiz. I want the " + LOOKS[id].name + " design for my U-MUVO vCard.";
-    pick.href = WA + encodeURIComponent(msg);
-    pickSms.href = SMS + encodeURIComponent(msg);
-    try{ localStorage.setItem("fo-look", id); }catch(e){}
-  }
-  tabs.forEach(function(t){ t.addEventListener("click", function(){ show(t.dataset.look); window.scrollTo({top:0}); }); });
-  var start = "l1";
-  try{ start = localStorage.getItem("fo-look") || "l1"; }catch(e){}
-  if(!LOOKS[start]) start = "l1";
-  show(start);
-
+  // Final card: a single look, no picker
   // Get your own vCard (to Angel). Stays in English in every language.
   var own = "Hi Angel, I really like the vCard you made for Emely & Felix, and I would like you to create one for me as well. Please contact me at your earliest convenience. Thank you!";
   document.querySelectorAll("[data-own]").forEach(function(a){ a.href = WA + encodeURIComponent(own); });
