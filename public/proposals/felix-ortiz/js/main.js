@@ -26,7 +26,7 @@
   show(start);
 
   // Get your own vCard (to Angel). Stays in English in every language.
-  var own = "Hi Angel, I really like the vCard you made for Emily & Felix, and I would like you to create one for me as well. Please contact me at your earliest convenience. Thank you!";
+  var own = "Hi Angel, I really like the vCard you made for Emely & Felix, and I would like you to create one for me as well. Please contact me at your earliest convenience. Thank you!";
   document.querySelectorAll("[data-own]").forEach(function(a){ a.href = WA + encodeURIComponent(own); });
   document.querySelectorAll("[data-own-sms]").forEach(function(a){ a.href = SMS + encodeURIComponent(own); });
 
@@ -47,8 +47,8 @@
     var b = card.querySelector("[data-lang]");
     if(b) b.textContent = es ? "EN" : "ES";
   }
-  var ORDER_EN = "Hi Emily and Felix, I saw your U-MUVO catalog and I'd like to place an order.";
-  var ORDER_ES = "Hola Emily y Felix, vi su cat\u00e1logo de U-MUVO y me gustar\u00eda hacer un pedido.";
+  var ORDER_EN = "Hi Emely and Felix, I saw your U-MUVO catalog and I'd like to place an order.";
+  var ORDER_ES = "Hola Emely y Felix, vi su cat\u00e1logo de U-MUVO y me gustar\u00eda hacer un pedido.";
   document.querySelectorAll("[data-order]").forEach(function(o){ o.href = FX_WA + encodeURIComponent(ORDER_EN); });
   document.querySelectorAll(".card").forEach(function(card){
     var b = card.querySelector("[data-lang]");
@@ -66,14 +66,14 @@
   // Booking pop-up (messages go to Felix): calendar, AM/PM slots, details
   var bk = document.getElementById("bk"), lastBtn = null, bkEs = false;
   var T = {
-    en:{kicker:"Emily & Felix · U-MUVO", title:"Book a free consultation", s1:"1. Pick the day", s2:"2. Pick the time", s3:"3. What can we help you with?",
+    en:{kicker:"Emely & Felix · U-MUVO", title:"Book a free consultation", s1:"1. Pick the day", s2:"2. Pick the time", s3:"3. What can we help you with?",
       fName:"Your name", fCity:"City", fSize:"Best way to reach you", sms:"Text", close:"Close", prev:"Previous month", next:"Next month",
       months:["January","February","March","April","May","June","July","August","September","October","November","December"],
       dow:["Sun","Mon","Tue","Wed","Thu","Fri","Sat"], days:["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
       types:["Product info","Place an order","Join the team","Business presentation","Video call"],
       sizes:["Phone call","Text message","WhatsApp","Email"], pick:"Pick a day and a time to send your request.",
       at:"at", none:"To be confirmed"},
-    es:{kicker:"Emily & Felix · U-MUVO", title:"Agenda una consulta gratis", s1:"1. Elige el día", s2:"2. Elige la hora", s3:"3. ¿En qué te podemos ayudar?",
+    es:{kicker:"Emely & Felix · U-MUVO", title:"Agenda una consulta gratis", s1:"1. Elige el día", s2:"2. Elige la hora", s3:"3. ¿En qué te podemos ayudar?",
       fName:"Tu nombre", fCity:"Ciudad", fSize:"Mejor forma de contactarte", sms:"Texto", close:"Cerrar", prev:"Mes anterior", next:"Mes siguiente",
       months:["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"],
       dow:["Dom","Lun","Mar","Mié","Jue","Vie","Sáb"], days:["domingo","lunes","martes","miércoles","jueves","viernes","sábado"],
@@ -150,9 +150,9 @@
     var sizeEl = document.getElementById("bkSize"), how = sizeEl.selectedIndex > 0 ? sizeEl.value : "";
     var type = sel.type === null ? "" : t.types[sel.type];
     var msg = bkEs
-      ? "Hola Emily y Felix" + (name ? ", soy " + name : "") + ". Me gustaría agendar una consulta gratis de U-MUVO.\nFecha: " + dateText() + "\nHora: " + ampm(sel.hour) +
+      ? "Hola Emely y Felix" + (name ? ", soy " + name : "") + ". Me gustaría agendar una consulta gratis de U-MUVO.\nFecha: " + dateText() + "\nHora: " + ampm(sel.hour) +
         "\nTema: " + (type || t.none) + "\nCiudad: " + (city || t.none) + "\nMejor forma de contactarme: " + (how || t.none)
-      : "Hi Emily and Felix" + (name ? ", this is " + name : "") + ". I'd like to book a free U-MUVO consultation.\nDate: " + dateText() + "\nTime: " + ampm(sel.hour) +
+      : "Hi Emely and Felix" + (name ? ", this is " + name : "") + ". I'd like to book a free U-MUVO consultation.\nDate: " + dateText() + "\nTime: " + ampm(sel.hour) +
         "\nTopic: " + (type || t.none) + "\nCity: " + (city || t.none) + "\nBest way to reach me: " + (how || t.none);
     wa.href = FX_WA + encodeURIComponent(msg); sms.href = FX_SMS + encodeURIComponent(msg);
     wa.removeAttribute("aria-disabled"); sms.removeAttribute("aria-disabled");
@@ -197,7 +197,7 @@
   });
 
   // Save Contact
-  var vcf = ["BEGIN:VCARD","VERSION:3.0","N:;Emily & Felix;;;","FN:Emily & Felix",
+  var vcf = ["BEGIN:VCARD","VERSION:3.0","N:;Emely & Felix;;;","FN:Emely & Felix",
     "ORG:U-MUVO · One More International",
     "TITLE:Founders",
     "TEL;TYPE=CELL,VOICE:+13212038541",
@@ -209,7 +209,7 @@
   document.querySelectorAll("[data-save]").forEach(function(b){
     b.addEventListener("click", function(){
       var url = URL.createObjectURL(new Blob([vcf], {type:"text/vcard;charset=utf-8"}));
-      var a = document.createElement("a"); a.href = url; a.download = "Emily-and-Felix.vcf";
+      var a = document.createElement("a"); a.href = url; a.download = "Emely-and-Felix.vcf";
       document.body.appendChild(a); a.click(); a.remove();
       setTimeout(function(){ URL.revokeObjectURL(url); }, 1500);
     });
