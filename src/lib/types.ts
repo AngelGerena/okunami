@@ -120,6 +120,8 @@ export type TemplateId =
   | 'coverstory' | 'backcover' | 'fullfeature' | 'colorblock' | 'signedprint' | 'proofsheet'
   // OKUNAMI Studio: the configurable base for done-for-you custom cards (not listed in the public gallery)
   | 'studio'
+  // Wellness collection (wellness and network-marketing sellers, first made for a U-MUVO couple)
+  | 'freshleaf' | 'forestband' | 'thepack' | 'executive' | 'limeglass'
   // photo-led collection (sig25)
   | 'sheet' | 'monostudio' | 'intro' | 'duotone' | 'trust' | 'local' | 'menu' | 'status' | 'chat';
 

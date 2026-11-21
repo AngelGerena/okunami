@@ -1,0 +1,98 @@
+/* =================================================================
+   The Wellness Collection (src/templates/sig27.tsx): Fresh Leaf,
+   Forest Band, The Pack, Executive and Lime Glass, for wellness and
+   network-marketing sellers. Light pages, the brand color for bands
+   and the accent (lime) for rings, rules and the join button. Every
+   color is an element variable (--c-*). The body and booking pop-up
+   come from the Author collection (sig24.css, au- classes).
+   Prefixes: wl-, wlf__, wlb__, wlp__, wlx__, wlg__.
+   ================================================================= */
+.tpl-wl { padding-bottom: 26px; }
+.wl-hero { position: relative; overflow: hidden; }
+.wl-logo { display: block; height: auto; max-width: 62%; max-height: 64px; object-fit: contain; }
+.wl-word { margin: 0; font-family: var(--f-display); font-weight: 600; font-size: 20px; letter-spacing: .32em; text-transform: uppercase; color: var(--c-name); line-height: 1.15; overflow-wrap: anywhere; }
+.wl-id { position: relative; z-index: 2; }
+.wl-name { margin: 0; font-family: var(--f-display); font-weight: 700; font-size: clamp(30px, 9vw, 38px); line-height: 1.04; letter-spacing: -.01em; color: var(--c-name); overflow-wrap: anywhere; text-wrap: balance; }
+.wl-role { margin: 7px 0 0; font-family: var(--f-body); font-size: 14.5px; line-height: 1.45; color: var(--c-caption); }
+.wl-motto { font-style: normal; font-weight: 500; font-size: 18px; }
+.wl-cut { display: block; width: 100%; height: 34px; margin-top: -1px; fill: var(--c-heroBand); }
+
+/* Shop, Order and Join: candy gloss buttons */
+.wl-sell { display: flex; flex-direction: column; gap: 10px; }
+.wl-btn { position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; gap: 9px; min-height: 54px; padding: 0 16px; border-radius: 999px; text-decoration: none;
+  font-family: var(--f-body); font-weight: 700; font-size: 15.5px; transition: transform .12s;
+  background: linear-gradient(180deg, color-mix(in srgb, var(--c-btnPrimaryBg) 66%, #fff) 0%, var(--c-btnPrimaryBg) 50%, color-mix(in srgb, var(--c-btnPrimaryBg) 82%, #000) 100%);
+  color: var(--c-btnPrimaryText); box-shadow: inset 0 1px 0 rgba(255,255,255,.45), 0 12px 24px -14px rgba(var(--shadow-rgb), .75); }
+.wl-btn::after { content: ""; position: absolute; inset: 3px 16px auto; height: 44%; border-radius: 999px 999px 40px 40px; background: linear-gradient(180deg, rgba(255,255,255,.42), rgba(255,255,255,0)); pointer-events: none; }
+.wl-btn span { position: relative; z-index: 1; color: inherit; }
+.wl-btn svg { position: relative; z-index: 1; flex: none; }
+.wl-btn.is-join { background: linear-gradient(180deg, color-mix(in srgb, var(--c-accentDetail) 55%, #fff) 0%, var(--c-accentDetail) 50%, color-mix(in srgb, var(--c-accentDetail) 86%, #000) 100%);
+  color: var(--c-onAccent); }
+.wl-btn:active { transform: scale(.98); }
+
+/* ---------------------------------------------------------------- 1 FRESH LEAF */
+.tpl-wlf .wl-hero { padding: 24px 22px 6px; text-align: center; background: linear-gradient(180deg, color-mix(in srgb, var(--c-accentDetail) 14%, var(--c-pageBg)) 0%, var(--c-pageBg) 100%); }
+.wlf__mark { margin: 0 auto; }
+.wlf__ring { position: relative; width: min(74%, 290px); aspect-ratio: 1; margin: 20px auto 18px; }
+.wlf__glow { position: absolute; inset: -6%; border-radius: 50%; background: radial-gradient(circle at 50% 40%, color-mix(in srgb, var(--c-accentDetail) 30%, #fff) 0%, color-mix(in srgb, var(--c-accentDetail) 75%, #fff) 60%, var(--c-accentDetail) 100%); }
+.wlf__photo { position: absolute; inset: 4%; border-radius: 50%; overflow: hidden; border: 6px solid var(--c-pageBg); box-shadow: 0 18px 34px -18px rgba(var(--shadow-rgb), .7); -webkit-transform: translateZ(0); transform: translateZ(0); }
+.wlf__img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 22%; }
+.wlf__leaf { position: absolute; right: -6%; bottom: 2%; width: 30%; color: var(--c-heroBand); filter: drop-shadow(0 6px 10px rgba(var(--shadow-rgb), .3)); }
+.tpl-wlf .wl-name { font-size: clamp(32px, 10vw, 40px); }
+
+/* ---------------------------------------------------------------- 2 FOREST BAND */
+.tpl-wlb .wl-hero { text-align: center; padding-bottom: 4px; }
+.wlb__band { position: relative; height: 196px; display: flex; justify-content: center; padding-top: 34px; overflow: hidden;
+  background: radial-gradient(120% 120% at 18% 0%, color-mix(in srgb, var(--c-heroBand) 72%, #fff) 0%, var(--c-heroBand) 46%, color-mix(in srgb, var(--c-heroBand) 82%, #000) 100%);
+  border-radius: 0 0 50% 50% / 0 0 48px 48px; }
+.wlb__mark { position: relative; z-index: 1; }
+.wlb__band .wl-word { color: var(--c-onBand); }
+.wlb__band .wl-logo { max-width: 58%; }
+.wlb__leaf { position: absolute; right: -24px; bottom: -34px; width: 160px; color: var(--c-accentDetail); opacity: .25; }
+.wlb__avatar { position: relative; z-index: 2; width: 154px; height: 154px; margin: -80px auto 0; border-radius: 50%; overflow: hidden; border: 6px solid var(--c-pageBg);
+  box-shadow: 0 0 0 3px var(--c-accentDetail), 0 18px 32px -16px rgba(var(--shadow-rgb), .75); background: var(--c-pageBg); }
+.wlb__img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 22%; }
+.tpl-wlb .wl-id { padding: 14px 20px 0; }
+
+/* ---------------------------------------------------------------- 3 THE PACK */
+.tpl-wlp .wl-hero { padding-top: 132px; text-align: center; }
+.wlp__shape { position: absolute; top: 0; height: 300px; background: color-mix(in srgb, var(--c-heroBand) 62%, var(--c-accentDetail)); }
+.wlp__shape.a { left: -6%; width: 44%; clip-path: polygon(0 0, 62% 0, 100% 100%, 0 100%); }
+.wlp__shape.b { right: -6%; width: 44%; clip-path: polygon(38% 0, 100% 0, 100% 100%, 0 100%); }
+.wlp__shape.c { left: 50%; width: 36%; height: 88px; transform: translateX(-50%); clip-path: polygon(12% 0, 88% 0, 100% 100%, 0 100%); }
+.wlp__window { position: relative; z-index: 1; width: 72%; margin: 0 auto; border-radius: 26px; overflow: hidden; border: 6px solid var(--c-pageBg); box-shadow: 0 20px 36px -20px rgba(var(--shadow-rgb), .8); }
+.wlp__img { object-position: 50% 20%; }
+.wlp__label { position: relative; z-index: 2; margin: -26px 16px 0; padding: 16px 14px 4px; border-radius: 22px; background: var(--c-pageBg); }
+.wlp__mark { margin: 0 auto 8px; max-height: 40px; }
+.wlp__label .wl-word { font-size: 14px; }
+.wlp__tag { margin: 0; font-family: var(--f-display); font-weight: 500; font-size: 20px; color: color-mix(in srgb, var(--c-heroBand) 62%, var(--c-accentDetail)); }
+.wlp__name { font-weight: 600; font-size: clamp(34px, 11vw, 44px); letter-spacing: -.02em; }
+.wlp__band { margin: 14px 0 0; padding: 13px 20px; background: color-mix(in srgb, var(--c-heroBand) 62%, var(--c-accentDetail)); color: var(--c-onBand); font-family: var(--f-body); font-weight: 600; font-size: 14.5px; }
+
+/* ---------------------------------------------------------------- 4 EXECUTIVE */
+.tpl-wlx .wl-hero { padding: 30px 22px 8px; }
+.wlx__mark { max-width: 48%; max-height: 46px; }
+.wlx__mark.wl-word { font-size: 15px; }
+.wlx__row { display: flex; align-items: center; gap: 16px; margin-top: 26px; }
+.wlx__avatar { width: 96px; height: 96px; flex: none; border-radius: 50%; overflow: hidden; box-shadow: 0 0 0 2px var(--c-pageBg), 0 0 0 3.5px var(--c-accentDetail); }
+.wlx__img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 22%; }
+.tpl-wlx .wl-name { font-weight: 600; font-size: clamp(26px, 8vw, 31px); }
+.tpl-wlx .wl-role { font-size: 13.5px; }
+.wlx__rule { display: block; height: 2px; margin-top: 22px; background: linear-gradient(90deg, var(--c-accentDetail) 0 70px, var(--c-dividers) 70px 100%); }
+.tpl-wlx .au-panel { background: var(--c-pageBg); }
+
+/* ---------------------------------------------------------------- 5 LIME GLASS */
+.tpl-wlg { background: linear-gradient(165deg, color-mix(in srgb, var(--c-accentDetail) 10%, var(--c-pageBg)) 0%, color-mix(in srgb, var(--c-accentDetail) 24%, var(--c-pageBg)) 40%, color-mix(in srgb, var(--c-heroBand) 8%, var(--c-pageBg)) 80%, var(--c-pageBg) 100%); }
+.tpl-wlg .wl-hero { padding: 24px 20px 10px; text-align: center; }
+.wlg__blob { position: absolute; border-radius: 50%; filter: blur(32px); opacity: .55; }
+.wlg__blob.b1 { width: 240px; height: 240px; left: -70px; top: 70px; background: var(--c-accentDetail); }
+.wlg__blob.b2 { width: 210px; height: 210px; right: -60px; top: 230px; background: color-mix(in srgb, var(--c-heroBand) 45%, #fff); }
+.wlg__mark { position: relative; margin: 0 auto; }
+.wlg__frame { position: relative; width: 80%; margin: 18px auto 0; border-radius: 28px; overflow: hidden; border: 6px solid rgba(255,255,255,.85); box-shadow: 0 22px 40px -22px rgba(var(--shadow-rgb), .7); }
+.wlg__img { object-position: 50% 20%; }
+.wlg__glass { position: relative; margin: -56px 10px 0; padding: 14px 12px; border-radius: 22px; background: rgba(255,255,255,.66); border: 1px solid rgba(255,255,255,.9);
+  -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); box-shadow: 0 14px 30px -20px rgba(var(--shadow-rgb), .6); }
+.tpl-wlg .wl-cut { fill: transparent; height: 10px; }
+.tpl-wlg :is(.au-panel, .au-c, .au-tool) { background: rgba(255,255,255,.62); border-color: rgba(255,255,255,.85); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); }
+
+@media (prefers-reduced-motion: reduce) { .wl-btn { transition: none; } }
