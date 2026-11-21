@@ -29,7 +29,7 @@ const ext = (href: string) => (/^https?:/i.test(href) ? { target: '_blank', rel:
 const smsTo = (phone: string) => telHref(phone).replace(/^tel:/, 'sms:');
 const smsHref = (phone: string, body: string) => `${smsTo(phone)}?&body=${encodeURIComponent(body)}`;
 
-function useAuthor() {
+export function useAuthor() {
   const { data, actions, play, still } = useCard();
   const name = (data.fullName || data.business || 'Your Name').trim();
   const parts = name.split(/\s+/);
@@ -47,7 +47,7 @@ function useAuthor() {
   const canBook = !!(data.whatsapp || data.phone || data.email);
   return { data, actions, play, still, name, first, last, role, brand, motto, contacts: contacts.slice(0, 4), links, canBook };
 }
-type Au = ReturnType<typeof useAuthor>;
+export type Au = ReturnType<typeof useAuthor>;
 
 function Shell({ cls, a, children }: { cls: string; a: Au; children: ReactNode }) {
   return <div className={`tpl tpl-au ${cls}${a.still ? ' is-still' : ''}`}>{children}</div>;
@@ -69,8 +69,17 @@ const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 
 const DOW = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 const DAYS = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 const HOURS = [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19];
-const TYPES = ['Keynote', 'Company', 'Church', "Women's event", 'Workshop', 'Virtual'];
-const SIZES = ['Under 50', '50 to 150', '150 to 500', 'Over 500'];
+/* Booking copy. 'speaker' is the Author collection; 'wellness' is the Wellness collection (sig27), which books a free consultation. */
+export type BookKind = 'speaker' | 'wellness';
+const COPY: Record<BookKind, { kicker: (a: Au) => string; title: string; step3: (a: Au) => string; types: string[]; sizeLabel: string; sizes: string[];
+  ask: string; typeLabel: string; sizeMsg: string; button: string; subject: string }> = {
+  speaker: { kicker: (a) => `Book ${a.name}`, title: 'Request a date', step3: (a) => `Tell ${a.first} about the event`,
+    types: ['Keynote', 'Company', 'Church', "Women's event", 'Workshop', 'Virtual'], sizeLabel: 'Audience size', sizes: ['Under 50', '50 to 150', '150 to 500', 'Over 500'],
+    ask: "I'd like to book you for an event.", typeLabel: 'Event type', sizeMsg: 'Audience size', button: 'Request a date', subject: 'Booking request' },
+  wellness: { kicker: (a) => a.name, title: 'Book a free consultation', step3: (a) => `What can ${a.first} help you with?`,
+    types: ['Product info', 'Place an order', 'Join the team', 'Business presentation', 'Video call'], sizeLabel: 'Best way to reach you', sizes: ['Phone call', 'Text message', 'WhatsApp', 'Email'],
+    ask: "I'd like to book a free consultation.", typeLabel: 'Topic', sizeMsg: 'Best way to reach me', button: 'Book a free consultation', subject: 'Consultation request' },
+};
 const ampm = (h: number) => `${h % 12 || 12}:00 ${h < 12 ? 'AM' : 'PM'}`;
 const dateText = (d: Date) => `${DAYS[d.getDay()]}, ${MONTHS[d.getMonth()]} ${d.getDate()}, ${d.getFullYear()}`;
 
@@ -86,8 +95,9 @@ function themeOf(node: HTMLElement | null): CSSProperties {
   return out as CSSProperties;
 }
 
-function BookSheet({ a, onClose, theme }: { a: Au; onClose: () => void; theme: CSSProperties }) {
+function BookSheet({ a, onClose, theme, kind = 'speaker' }: { a: Au; onClose: () => void; theme: CSSProperties; kind?: BookKind }) {
   useBackToClose(onClose);
+  const C = COPY[kind]; const TYPES = C.types; const SIZES = C.sizes;
   const today = new Date(); today.setHours(0, 0, 0, 0);
   const minDay = new Date(today); minDay.setDate(minDay.getDate() + 1);
   const firstView = new Date(minDay.getFullYear(), minDay.getMonth(), 1);
@@ -124,18 +134,18 @@ function BookSheet({ a, onClose, theme }: { a: Au; onClose: () => void; theme: C
   const ready = !!day && hour !== null;
   const tbc = 'To be confirmed';
   const msg = ready
-    ? `Hi ${a.first}${who.trim() ? `, this is ${who.trim()}` : ''}. I'd like to book you for an event.\nDate: ${dateText(day!)}\nTime: ${ampm(hour!)}\nEvent type: ${type === null ? tbc : TYPES[type]}\nCity: ${city.trim() || tbc}\nAudience size: ${size || tbc}`
+    ? `Hi ${a.first}${who.trim() ? `, this is ${who.trim()}` : ''}. ${C.ask}\nDate: ${dateText(day!)}\nTime: ${ampm(hour!)}\n${C.typeLabel}: ${type === null ? tbc : TYPES[type]}\nCity: ${city.trim() || tbc}\n${C.sizeMsg}: ${size || tbc}`
     : '';
   const sends: { key: string; label: string; href: string; icon: ReactNode; primary?: boolean }[] = [];
   if (a.data.whatsapp) sends.push({ key: 'wa', label: 'WhatsApp', href: ready ? waHref(a.data.whatsapp, msg) : '', icon: <BrandGlyph network="whatsapp" size={18} />, primary: true });
   if (a.data.phone) sends.push({ key: 'sms', label: 'Text', href: ready ? smsHref(a.data.phone, msg) : '', icon: <MessageSquare size={18} /> });
-  if (!sends.length && a.data.email) sends.push({ key: 'mail', label: 'Email', href: ready ? `mailto:${a.data.email}?subject=${encodeURIComponent('Booking request')}&body=${encodeURIComponent(msg)}` : '', icon: <Mail size={18} />, primary: true });
+  if (!sends.length && a.data.email) sends.push({ key: 'mail', label: 'Email', href: ready ? `mailto:${a.data.email}?subject=${encodeURIComponent(C.subject)}&body=${encodeURIComponent(msg)}` : '', icon: <Mail size={18} />, primary: true });
 
   return createPortal(
     <div className="au-bk" style={theme} onClick={(e) => { if (e.target === e.currentTarget) onClose(); }}>
       <div className="au-bk__sheet" role="dialog" aria-modal="true" aria-labelledby="au-bk-title" ref={sheetRef}>
         <div className="au-bk__head">
-          <div><p className="au-bk__kicker">Book {a.name}</p><h2 id="au-bk-title">Request a date</h2></div>
+          <div><p className="au-bk__kicker">{C.kicker(a)}</p><h2 id="au-bk-title">{C.title}</h2></div>
           <button ref={closeRef} type="button" className="au-bk__x" onClick={onClose} aria-label="Close"><X size={20} /></button>
         </div>
         <div className="au-bk__body">
@@ -165,14 +175,14 @@ function BookSheet({ a, onClose, theme }: { a: Au; onClose: () => void; theme: C
           <div className="au-slots">
             {HOURS.map((h) => <button key={h} type="button" className="au-slot" aria-pressed={hour === h} onClick={() => setHour(h)}>{ampm(h)}</button>)}
           </div>
-          <p className="au-bk__step">3. Tell {a.first} about the event</p>
+          <p className="au-bk__step">3. {C.step3(a)}</p>
           <div className="au-chips">
             {TYPES.map((t, i) => <button key={t} type="button" className="au-chip" aria-pressed={type === i} onClick={() => setType(type === i ? null : i)}>{t}</button>)}
           </div>
           <div className="au-fields">
             <label><span>Your name</span><input value={who} onChange={(e) => setWho(e.target.value)} autoComplete="name" /></label>
             <label><span>City</span><input value={city} onChange={(e) => setCity(e.target.value)} autoComplete="address-level2" /></label>
-            <label className="is-full"><span>Audience size</span>
+            <label className="is-full"><span>{C.sizeLabel}</span>
               <select value={size} onChange={(e) => setSize(e.target.value)}><option value="">-</option>{SIZES.map((s) => <option key={s}>{s}</option>)}</select>
             </label>
           </div>
@@ -195,7 +205,7 @@ function BookSheet({ a, onClose, theme }: { a: Au; onClose: () => void; theme: C
 }
 
 /* ---------------------------------------------------------------- shared body */
-function Body({ a, topicsTitle = 'Speaking topics' }: { a: Au; topicsTitle?: string }) {
+export function Body({ a, topicsTitle = 'Speaking topics', kind = 'speaker', before }: { a: Au; topicsTitle?: string; kind?: BookKind; before?: ReactNode }) {
   const [theme, setTheme] = useState<CSSProperties | null>(null);
   const bodyRef = useRef<HTMLDivElement>(null);
   const { data } = a;
@@ -214,6 +224,7 @@ function Body({ a, topicsTitle = 'Speaking topics' }: { a: Au; topicsTitle?: str
           ))}
         </nav>
       )}
+      {before}
       {(a.canBook || data.highlights.length > 0) && (
         <section className="au-panel" {...el('cardBg')}>
           <h2 className="au-h" {...el('caption')}>{data.highlightsTitle || topicsTitle}</h2>
@@ -226,7 +237,7 @@ function Body({ a, topicsTitle = 'Speaking topics' }: { a: Au; topicsTitle?: str
           )}
           {a.canBook && (
             <button type="button" className="au-book" aria-haspopup="dialog" onClick={openSheet} {...el('heroBand')}>
-              <CalendarDays size={19} strokeWidth={2} aria-hidden /><span {...el('accentDetail')}>Request a date</span>
+              <CalendarDays size={19} strokeWidth={2} aria-hidden /><span {...el('accentDetail')}>{COPY[kind].button}</span>
             </button>
           )}
           {a.canBook && <p className="au-note" {...el('caption')}>Pick the day and time, then send it by {data.whatsapp ? 'WhatsApp or text' : data.phone ? 'text' : 'email'}.</p>}
@@ -245,7 +256,7 @@ function Body({ a, topicsTitle = 'Speaking topics' }: { a: Au; topicsTitle?: str
         <button type="button" className="au-tool" onClick={a.actions.qr} {...el('btnSecondaryBg')}><QrCode size={18} aria-hidden /><span {...el('btnSecondaryText')}>QR code</span></button>
       </div>
       {data.phone && <p className="au-num" {...el('caption')}>{formatPhone(data.phone)}</p>}
-      {theme && <BookSheet a={a} theme={theme} onClose={() => setTheme(null)} />}
+      {theme && <BookSheet a={a} theme={theme} kind={kind} onClose={() => setTheme(null)} />}
     </div>
   );
 }

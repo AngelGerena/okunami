@@ -542,6 +542,8 @@ export const ES: Record<string, string> = {
   "Soft pastels, polaroids and Y2K chrome for nail and lash artists.": "Pasteles suaves, polaroids y cromo Y2K para artistas de uñas y pestañas.",
   "Esthetics and Med Spa": "Estética y spa médico",
   "Glowing, calm and clinical-luxe designs for skin pros.": "Diseños luminosos, calmados y de lujo clínico para profesionales de la piel.",
+  "Wellness Sellers": "Vendedores de bienestar",
+  "The Wellness Collection for patch, supplement and skin care sellers: catalog, order on WhatsApp, join my team and a free consultation calendar.": "La Colección Bienestar para vendedores de parches, suplementos y cuidado de la piel: catálogo, pedidos por WhatsApp, únete a mi equipo y un calendario de consulta gratis.",
   "Massage and Day Spas": "Masajes y spas",
   "Hot stones, a blooming lotus, swaying bamboo and slow silk for calm, restorative spas.": "Piedras calientes, un loto en flor, bambú que se mece y seda lenta para spas tranquilos y reparadores.",
   "Real Estate": "Bienes raíces",

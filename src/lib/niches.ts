@@ -534,6 +534,26 @@ const NICHE_LIST: Niche[] = [
       d('intro', 'Video Intro', 'A short intro video up top, then one clear booking button.', ['#FF7A59', '#FF7A59', '#F5F3EF'], 'dark', ['Manrope', 'Manrope'], ['soft', 'large', 'solid', 'none'], 'bright', 1.1, true),
     ],
   },
+  {
+    id: 'wellness', name: 'Wellness Sellers', group: 'Wellness and fitness', icon: 'leaf',
+    blurb: 'The Wellness Collection for patch, supplement and skin care sellers: catalog, order on WhatsApp, join my team and a free consultation calendar.',
+    highlightsTitle: 'Products',
+    highlights: [
+      { icon: 'leaf', title: 'Wellness patches', subtitle: 'Energy, rest and relief' },
+      { icon: 'drop', title: 'Skin care', subtitle: 'Collagen and anti-aging' },
+      { icon: 'pill', title: 'Supplements', subtitle: 'Daily wellness' },
+      { icon: 'heart', title: 'Join my team', subtitle: 'Build your own business' },
+    ],
+    tagline: 'Feel the difference, naturally.',
+    suggestedLinks: ['facebook', 'instagram', 'tiktok', 'youtube'],
+    designs: [
+      d('freshleaf', 'Fresh Leaf', 'A round photo on a glowing lime disk with a leaf and candy gloss buttons.', ['#0F3D22', '#8DC63F', '#FFFFFF'], 'light', ['Outfit', 'Outfit'], ['pill', 'large', 'raised', 'none'], 'calm', 1, true),
+      d('forestband', 'Forest Band', 'A deep green header on a big curve and a round photo with a lime ring.', ['#0F3D22', '#8DC63F', '#FFFFFF'], 'light', ['Outfit', 'Outfit'], ['pill', 'large', 'raised', 'none'], 'calm', 1, true),
+      d('thepack', 'The Pack', 'Bold green shapes like product packaging over a photo window.', ['#14532D', '#8DC63F', '#FFFFFF'], 'light', ['Outfit', 'Outfit'], ['pill', 'large', 'raised', 'none'], 'bright', 1, true),
+      d('executive', 'Executive', 'A serif name beside a small round photo, a thin lime rule and lots of white space.', ['#0F3D22', '#8DC63F', '#FFFFFF'], 'light', ['Fraunces', 'Outfit'], ['rounded', 'large', 'raised', 'none'], 'calm', 0.7, true),
+      d('limeglass', 'Lime Glass', 'Soft lime light, a framed photo and your name on frosted glass.', ['#0F3D22', '#8DC63F', '#F6FBF1'], 'light', ['Outfit', 'Outfit'], ['pill', 'large', 'raised', 'none'], 'calm', 1.2, true),
+    ],
+  },
 
   /* ================================================================ FOOD AND DRINK */
   {
@@ -969,6 +989,7 @@ export const TEMPLATE_EXTRA_FONTS: Partial<Record<TemplateId, string[]>> = {
   midnightset: ['DM Mono', 'Pinyon Script'], velvetroom: ['DM Mono'], blacktie: ['DM Mono', 'Pinyon Script'],
   reverb: [], selah: ['Pinyon Script'], admitone: ['IBM Plex Mono'], linernotes: [],
   coverstory: [], backcover: [], fullfeature: [], colorblock: [], signedprint: ['Pinyon Script'], proofsheet: [],
+  freshleaf: [], forestband: [], thepack: [], executive: [], limeglass: [],
   cinescreen: ['JetBrains Mono'], cinebrain: ['JetBrains Mono'], focusguide: ['JetBrains Mono'], punchin: ['JetBrains Mono'], slate: ['JetBrains Mono'],
   terminal: ['VT323', 'IBM Plex Mono'],
   radar: ['Share Tech Mono'],
@@ -1051,6 +1072,7 @@ export const NICHE_SAMPLES: Record<string, NicheSample> = {
   jewelry:      { business: 'Bling by Jasmine', fullName: 'Jasmine Rivera', jobTitle: 'Independent Jewelry Consultant', tagline: 'Bling for every budget', hours: 'Live parties Thursdays 7:00 PM' },
   retail:       { business: 'The Corner Nook', fullName: 'Hannah Lee', jobTitle: 'Owner', tagline: 'Your neighborhood shop', hours: 'Mon-Sat 10am-7pm' },
   grooming:     { business: 'Black Label Grooming', fullName: 'Marco Delgado', jobTitle: 'Independent Influencer', tagline: 'Grooming that keeps it simple', hours: 'Orders ship weekly' },
+  wellness:     { business: 'Vital Roots Wellness', fullName: 'Daniela Cruz', jobTitle: 'Independent Wellness Distributor', tagline: 'Feel the difference, naturally.', hours: 'Orders ship weekly' },
   consultant:   { business: 'Glow Society', fullName: 'Valeria Santos', jobTitle: 'Beauty Influencer', tagline: 'Makeup, skincare and fragrance I actually use', hours: 'Orders ship weekly' },
   worship:      { business: 'Kingdom Harmony', fullName: 'Isabel Rivera', jobTitle: 'Psalmist | Worship Ministry', tagline: '"Sing to the Lord a new song; sing to the Lord, all the earth." Psalm 96:1', hours: 'Booking conferences and worship nights' },
   speaker:      { business: 'Rise & Lead', fullName: 'Elena Vaughn', jobTitle: 'Speaker · Life Coach · Author', tagline: 'Your next chapter starts today.', hours: 'Booking events year-round' },

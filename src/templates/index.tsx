@@ -39,6 +39,7 @@ import {
 import { addressLine, mapsHref, prettyUrl, webHref } from '../lib/links';
 import { Chat, Duotone, Intro, Local, MonoStudio, ServiceMenu, Sheet, Status, Trust } from './sig25';
 import { SpaBlush, SpaBordeaux, SpaEucalyptus, SpaHinoki, SpaHotStone, SpaLinen, SpaMarble, SpaOnyx, SpaRecovery, SpaWashi } from './sig26';
+import { Executive, ForestBand, FreshLeaf, LimeGlass, ThePack } from './sig27';
 
 export interface TemplateMeta { id: TemplateId; name: string; blurb: string; bestFor: string; niche?: string;
   /** Not offered in galleries or counts (OKUNAMI Studio custom cards). */
@@ -332,6 +333,12 @@ export const TEMPLATES: TemplateMeta[] = [
   { id: 'spawashi', name: 'Washi', niche: 'Massage and Day Spas', blurb: 'Zen paper, an ink brush circle and a red seal with your initial.', bestFor: 'Massage therapists and day spas' },
   { id: 'sparecovery', name: 'Recovery Issue', niche: 'Massage and Day Spas', blurb: 'A wellness magazine cover: your first name in oversized type, thin rules and a rust accent.', bestFor: 'Massage therapists and day spas' },
   { id: 'spahinoki', name: 'Hinoki Wood', niche: 'Massage and Day Spas', blurb: 'Warm cedar wood grain and cream, like a Nordic sauna.', bestFor: 'Massage therapists and day spas' },
+  // ---- Wellness collection (wellness and network-marketing sellers)
+  { id: 'freshleaf', name: 'Fresh Leaf', niche: 'Wellness Sellers', blurb: 'A round photo on a glowing lime disk with a leaf, your logo up top and candy gloss shop and join buttons.', bestFor: 'Wellness, supplement and patch sellers' },
+  { id: 'forestband', name: 'Forest Band', niche: 'Wellness Sellers', blurb: 'A deep green header on a big smooth curve, your logo in white and a round photo with a lime ring.', bestFor: 'Wellness distributors and teams' },
+  { id: 'thepack', name: 'The Pack', niche: 'Wellness Sellers', blurb: 'Bold green shapes like product packaging over a photo window, a #hashtag, your name and a green band.', bestFor: 'Product sellers who want the card to look like the product' },
+  { id: 'executive', name: 'Executive', niche: 'Wellness Sellers', blurb: 'A serif name beside a small round photo, thin lime rule and lots of white space.', bestFor: 'Team leaders and founders' },
+  { id: 'limeglass', name: 'Lime Glass', niche: 'Wellness Sellers', blurb: 'Soft lime light, a framed photo and your name on frosted glass.', bestFor: 'Wellness and beauty sellers' },
 ];
 
 /* ------------------------------------------------------------ 1 Editorial Cover */
@@ -651,4 +658,5 @@ export const TEMPLATE_COMPONENTS: Record<TemplateId, () => ReactElement> = {
   blacklabel: BlackLabel, barberclub: BarberClub, copperforge: CopperForge, cedarsmoke: CedarSmoke, voltsport: VoltSport,
   sheet: Sheet, monostudio: MonoStudio, intro: Intro, duotone: Duotone, trust: Trust, local: Local, menu: ServiceMenu, status: Status, chat: Chat,
   spalinen: SpaLinen, spahotstone: SpaHotStone, spaeuca: SpaEucalyptus, spamarble: SpaMarble, spaonyx: SpaOnyx, spablush: SpaBlush, spabordeaux: SpaBordeaux, spawashi: SpaWashi, sparecovery: SpaRecovery, spahinoki: SpaHinoki,
+  freshleaf: FreshLeaf, forestband: ForestBand, thepack: ThePack, executive: Executive, limeglass: LimeGlass,
 };
