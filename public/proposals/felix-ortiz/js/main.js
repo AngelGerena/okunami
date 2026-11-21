@@ -41,11 +41,15 @@
       img.src = es ? img.dataset.esSrc : img.dataset.enSrc;
     });
     card.querySelectorAll("[data-cat]").forEach(function(a){ a.href = es ? "files/catalog-es.pdf" : "files/catalog-en.pdf"; });
+    card.querySelectorAll("[data-order]").forEach(function(o){ o.href = FX_WA + encodeURIComponent(es ? ORDER_ES : ORDER_EN); });
     card.dataset.lang = es ? "es" : "en";
     card.setAttribute("lang", es ? "es" : "en");
     var b = card.querySelector("[data-lang]");
     if(b) b.textContent = es ? "EN" : "ES";
   }
+  var ORDER_EN = "Hi Emily and Felix, I saw your U-MUVO catalog and I'd like to place an order.";
+  var ORDER_ES = "Hola Emily y Felix, vi su cat\u00e1logo de U-MUVO y me gustar\u00eda hacer un pedido.";
+  document.querySelectorAll("[data-order]").forEach(function(o){ o.href = FX_WA + encodeURIComponent(ORDER_EN); });
   document.querySelectorAll(".card").forEach(function(card){
     var b = card.querySelector("[data-lang]");
     if(b) b.addEventListener("click", function(){ setLang(card, card.dataset.lang !== "es"); });
@@ -197,9 +201,10 @@
     "ORG:U-MUVO · One More International",
     "TITLE:Founders",
     "TEL;TYPE=CELL,VOICE:+13212038541",
+    "X-SOCIALPROFILE;TYPE=whatsapp:https://wa.me/13212038541",
     "EMAIL;TYPE=INTERNET:sistersspeakeasy@hotmail.com",
     "URL:https://okunami.pro/proposals/felix-ortiz/",
-    "NOTE:U-MUVO wellness products and business opportunity. Catalog and join link on my card.",
+    "NOTE:U-MUVO wellness products and business opportunity. Order and questions by WhatsApp.",
     "END:VCARD"].join("\r\n");
   document.querySelectorAll("[data-save]").forEach(function(b){
     b.addEventListener("click", function(){
