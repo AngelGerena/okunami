@@ -26,7 +26,7 @@
   show(start);
 
   // Get your own vCard (to Angel). Stays in English in every language.
-  var own = "Hi Angel, I really like the vCard you made for Felix Ortiz, and I would like you to create one for me as well. Please contact me at your earliest convenience. Thank you!";
+  var own = "Hi Angel, I really like the vCard you made for Emily & Felix, and I would like you to create one for me as well. Please contact me at your earliest convenience. Thank you!";
   document.querySelectorAll("[data-own]").forEach(function(a){ a.href = WA + encodeURIComponent(own); });
   document.querySelectorAll("[data-own-sms]").forEach(function(a){ a.href = SMS + encodeURIComponent(own); });
 
@@ -62,14 +62,14 @@
   // Booking pop-up (messages go to Felix): calendar, AM/PM slots, details
   var bk = document.getElementById("bk"), lastBtn = null, bkEs = false;
   var T = {
-    en:{kicker:"Felix Ortiz · U-MUVO", title:"Book a free consultation", s1:"1. Pick the day", s2:"2. Pick the time", s3:"3. What can I help you with?",
+    en:{kicker:"Emily & Felix · U-MUVO", title:"Book a free consultation", s1:"1. Pick the day", s2:"2. Pick the time", s3:"3. What can we help you with?",
       fName:"Your name", fCity:"City", fSize:"Best way to reach you", sms:"Text", close:"Close", prev:"Previous month", next:"Next month",
       months:["January","February","March","April","May","June","July","August","September","October","November","December"],
       dow:["Sun","Mon","Tue","Wed","Thu","Fri","Sat"], days:["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
       types:["Product info","Place an order","Join the team","Business presentation","Video call"],
       sizes:["Phone call","Text message","WhatsApp","Email"], pick:"Pick a day and a time to send your request.",
       at:"at", none:"To be confirmed"},
-    es:{kicker:"Felix Ortiz · U-MUVO", title:"Agenda una consulta gratis", s1:"1. Elige el día", s2:"2. Elige la hora", s3:"3. ¿En qué te puedo ayudar?",
+    es:{kicker:"Emily & Felix · U-MUVO", title:"Agenda una consulta gratis", s1:"1. Elige el día", s2:"2. Elige la hora", s3:"3. ¿En qué te podemos ayudar?",
       fName:"Tu nombre", fCity:"Ciudad", fSize:"Mejor forma de contactarte", sms:"Texto", close:"Cerrar", prev:"Mes anterior", next:"Mes siguiente",
       months:["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"],
       dow:["Dom","Lun","Mar","Mié","Jue","Vie","Sáb"], days:["domingo","lunes","martes","miércoles","jueves","viernes","sábado"],
@@ -146,9 +146,9 @@
     var sizeEl = document.getElementById("bkSize"), how = sizeEl.selectedIndex > 0 ? sizeEl.value : "";
     var type = sel.type === null ? "" : t.types[sel.type];
     var msg = bkEs
-      ? "Hola Felix" + (name ? ", soy " + name : "") + ". Me gustaría agendar una consulta gratis de U-MUVO.\nFecha: " + dateText() + "\nHora: " + ampm(sel.hour) +
+      ? "Hola Emily y Felix" + (name ? ", soy " + name : "") + ". Me gustaría agendar una consulta gratis de U-MUVO.\nFecha: " + dateText() + "\nHora: " + ampm(sel.hour) +
         "\nTema: " + (type || t.none) + "\nCiudad: " + (city || t.none) + "\nMejor forma de contactarme: " + (how || t.none)
-      : "Hi Felix" + (name ? ", this is " + name : "") + ". I'd like to book a free U-MUVO consultation.\nDate: " + dateText() + "\nTime: " + ampm(sel.hour) +
+      : "Hi Emily and Felix" + (name ? ", this is " + name : "") + ". I'd like to book a free U-MUVO consultation.\nDate: " + dateText() + "\nTime: " + ampm(sel.hour) +
         "\nTopic: " + (type || t.none) + "\nCity: " + (city || t.none) + "\nBest way to reach me: " + (how || t.none);
     wa.href = FX_WA + encodeURIComponent(msg); sms.href = FX_SMS + encodeURIComponent(msg);
     wa.removeAttribute("aria-disabled"); sms.removeAttribute("aria-disabled");
@@ -193,9 +193,9 @@
   });
 
   // Save Contact
-  var vcf = ["BEGIN:VCARD","VERSION:3.0","N:Ortiz;Felix;;;","FN:Felix Ortiz",
+  var vcf = ["BEGIN:VCARD","VERSION:3.0","N:;Emily & Felix;;;","FN:Emily & Felix",
     "ORG:U-MUVO · One More International",
-    "TITLE:Independent Distributor",
+    "TITLE:Founders",
     "TEL;TYPE=CELL,VOICE:+13212038541",
     "EMAIL;TYPE=INTERNET:sistersspeakeasy@hotmail.com",
     "URL:https://okunami.pro/proposals/felix-ortiz/",
@@ -204,7 +204,7 @@
   document.querySelectorAll("[data-save]").forEach(function(b){
     b.addEventListener("click", function(){
       var url = URL.createObjectURL(new Blob([vcf], {type:"text/vcard;charset=utf-8"}));
-      var a = document.createElement("a"); a.href = url; a.download = "Felix-Ortiz.vcf";
+      var a = document.createElement("a"); a.href = url; a.download = "Emily-and-Felix.vcf";
       document.body.appendChild(a); a.click(); a.remove();
       setTimeout(function(){ URL.revokeObjectURL(url); }, 1500);
     });
