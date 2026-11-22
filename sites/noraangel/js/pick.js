@@ -52,7 +52,7 @@
       return;
     }
     var a = e.target.closest && e.target.closest("a[href]"); if (!a) return;
-    if (a.hasAttribute("data-own") || a.hasAttribute("data-own-sms") || a.getAttribute("aria-disabled") === "true") return;
+    if (a.hasAttribute("data-own") || a.hasAttribute("data-own-sms") || a.hasAttribute("data-direct") || a.getAttribute("aria-disabled") === "true") return;
     var k = kind(a.getAttribute("href")); if (!k) return;
     e.preventDefault(); open(a, k);
   }, true);

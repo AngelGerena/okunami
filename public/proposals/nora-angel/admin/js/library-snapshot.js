@@ -1,0 +1,158 @@
+/* Saved copy of the team's Google Drive folder "Summit Networkers Team - Marketing" (Nov 21, 2026).
+   Used only until the live Drive connection is turned on (GOOGLE_API_KEY in config.js).
+   Each item: [id, name, type, size in bytes]. type "f" = folder, otherwise the file's MIME type. */
+window.DRIVE_SNAPSHOT = {
+  date: "2026-11-21",
+  folders: {
+    "1Wp-sJA50Le6g3mI_rdxj1soE7nu-yw-V": [
+      ["1h4uBt-jNaMHaHvqa3V0V4n1WTvrIuMqP","Branding U-MUVO","f"],
+      ["19v93cRt8fliaTNMxh4umbd78Nx9tmKjUTSk19l-yLo8","Enlaces importantes","application/vnd.google-apps.document",3188],
+      ["1KYso83UfmFDNmLB2kUMYlMlek3wTPV8B","Videos y Flyers - Promos y anuncios importantes","f"],
+      ["1KjNOvMEcFcYN3VphGPBQss_FoexNYvg1","Programa Fundadores.pdf","application/pdf",14940885],
+      ["1LibSWk3ePZENTiy9AnxlKPnULvOmmIM-","Atencion al socio Mex-USA-Puerto Rico-Canada.jpeg","image/jpeg",218394],
+      ["1C-ff7Drv_tV3-NSueVZ7Xd6M7joMnqO7","Productos Monau","f"],
+      ["1u7ow6fz0v7KnrC3Q_RKfNk8xM5xXsL2V","Optimizacion y nuevo back office","f"],
+      ["1vFt-_Uy9eR93b5VO9gQAsa0TeGKhvtBv","Calendario de Presentaciones y capacitaciones.pdf","application/pdf",1521833],
+      ["1AgVsg-wr-_Vy2U0MhBX8hXW0-xGWNCIe","Atencion al socio LATAM.jpeg","image/jpeg",164486],
+      ["1x4NLSkGL8KdhGOKZFi9063XXRpZQNcgb","Lista de precios OM 24-04-2026.pdf","application/pdf",361954],
+      ["1OUqbOzjuUfjojO8Y9p7noZREu676qStn","Costos de Envio One More America.png","image/png",1529800],
+      ["1GHfYtZcwN8CqejWpBptVDLjT7Mi-z1t6","Detalles del Plan de Compensacion - Ideal para seguimiento o capacitacion.pdf","application/pdf",77426741],
+      ["1O7r3x_pEIFcLZLv-w5KvTM7FOZq2Ac_e","Redes Sociales - contenido","f"],
+      ["1XbaUwYwdLKakzoIL6upZLuXNDSYcbNNB","GlutaNAD+","f"],
+      ["136kY33y8lFgbvXKqIovij-FJtNQPSJ-Z","English","f"],
+      ["1jxAYP2av9OM9z7KCKK8uuHwAA-L7ZHym","*Cual es el siguiente paso - Summit Networkers Team.pdf","application/pdf",103264],
+      ["1S49PgZ05njilMMQzAExjhOVDnScTn0GZ","Videos para prospeccion","f"],
+      ["1oEoaOQud93PP9huTkg7ZNtUtrwth9hGe","Caracteristicas y beneficios de los productos de One More International.pdf","application/pdf",58355950],
+      ["1Ji4UG4TdbcuopDGZNCifJECL4qahp8wf","CALENDARIOS","f"],
+      ["1h17kJ7Fm-DaRRKJaS-QMy9kt10aD_S6N","Social Media U-MUVO","f"],
+      ["1Mhbv9-xSy3__Yf0H_cc8PxBvw6bzldgU","Business Presentation U-MUVO","f"],
+      ["1SoaDFW09_ZUmm1itsTtIAOKcTcTxnz0D","Videos U-MUVO","f"],
+      ["1jP9jkooWov2JKifURpmrjwWSX5gb71Pm","NOTICIAS MES DE NOVIEMBRE","f"],
+      ["12hdNVALJb5EosYfCpsC-KiWCCHBRhfAw","NOWSITE OMENORE IA","f"],
+      ["1JzLytKS9Ul9HNfmaRiNRoWN3YYMz7nWg","Catálogos (distintos paises)","f"],
+      ["1WEFKa6Igcd3Rqu7E4Ysj3s-hD_xi_YsA","Productos One more","f"],
+      ["1a3ALmfoQulIYY2K1LrCeZjzFi1Yk6z1_","Presentaciones ","f"],
+      ["18-GseRY8Hesk57KHmJKF4dVwtbP4DtRQ","Videos para Estados","f"]
+    ],
+    "1h4uBt-jNaMHaHvqa3V0V4n1WTvrIuMqP": [
+      ["1IP7N8nhgAb6lbxLYZeQir0mYqd3bG7CH","Pines de reconocimiento","f"],
+      ["10jBTe4m4BG_kzQlqzylUpGmpoF9xZLlu","Logos","f"]
+    ],
+    "1IP7N8nhgAb6lbxLYZeQir0mYqd3bG7CH": [
+      ["1jpt6wKUEwAw8AJsrvubUomgitB59fZCX","Videos de pines de rangos","f"],
+      ["1fZaN1Qc7AxucU9peBHvq5lZ1Dp6Pc53K","Fotos de pines de rango","f"]
+    ],
+    "10jBTe4m4BG_kzQlqzylUpGmpoF9xZLlu": [
+      ["1RmaqKpxWkYZ3jPaDzSx41VLrDSTR806r","U-MUVO - Logo negro con eslogan.png","image/png",86112],
+      ["1BSg2DJH04C3-I8qqlEr96cAheJK_8REt","U-MUVO - Logo blanco con eslogan.png","image/png",109993],
+      ["1muUKrAFmTj91Y8cqDJHzjKgDkK6ycrEK","TDS NEXGEN - Logo color.png","image/png",87792],
+      ["1gsTeiJRHapuFCZH72agVerK6i2MOfWJq","SnapRelease - Logo color.png","image/png",98634],
+      ["1hSQvhjF0n8C0NHiIZx_iT28tLPuzvg53","Velenique - Logo color.png","image/png",54299],
+      ["1B3-nurbkRrUBY7CnmevxyzEq6Pp-AokL","Velenique - Logo blanco.png","image/png",47892],
+      ["1ihdaTqp__sxtEkGBc-Bk03fosPbDzzQZ","TDS NEXGEN - Logo blanco.png","image/png",74997],
+      ["1dh7520-Jqtfnc1eGG0c20bVMbk4-Pt3p","SnapRelease - Logo blanco.png","image/png",83681],
+      ["1e0Ei_OsRaN8Fix-kOm9ndKxgBXrke9Ih","Monau - Logo blanco.png","image/png",56139],
+      ["1yXEc2XPupKB7obNN96gbknLlEI_SdjTu","Monau - Logo color.png","image/png",62596],
+      ["1LSQ4hWArsFjcIIIES4Yk8Rm9_yjF73Vv","Byon Quantic - Logo color.png","image/png",57593],
+      ["1hmhktJgf_lDHd4ThG5sLvt8zIArs7tDL","Byon Quantic - Logo blanco.png","image/png",50601],
+      ["1lkBE1ykM5W-lMIr80EkHocOPXQWoZA9V","Logo Summit Networker.png","image/png",51218],
+      ["12mML5BNfGpRmMcAW4BtzkgYrUbHWGmD4","U-MUVO - Logo negro.png","image/png",144596],
+      ["1jB9_v1szPxUAj166DPjrL1cQDjoYvxk-","U-MUVO - Logo blanco.png","image/png",162938]
+    ],
+    "1KYso83UfmFDNmLB2kUMYlMlek3wTPV8B": [
+      ["1wFkJr0f70xALDvLsmS8dqZ87dvUm0hHV","Listo para alcanzar tu proximo nivel.jpeg","image/jpeg",242555],
+      ["12KVstEzDE7B6AfyQDOiBYHsoiX5oQQpD","BONO ESPECIAL EXTRA.jpeg","image/jpeg",455194],
+      ["12LLGThJIG5ToSVT_XrU0MvEPLk8ri56s","BONO ESPECIAL EXTRA 20%.jpeg","image/jpeg",328257],
+      ["1R3u4Y_RWCCbKXVYZBlUIK7TjmY6Zzdwd","PROMOCIÓN CIERRE DE MES.jpeg","image/jpeg",239918],
+      ["1Jp_-8Gdkr3kqdBjTvcuv-qKTiN6tcKuW","SUPER PACK AHORRA 227$.jpeg","image/jpeg",524723],
+      ["1KRiHidEIU8Skk_1C1A_oC7ng1z-vB-SY","SUPER PACK (2).jpeg","image/jpeg",425047],
+      ["1EGimwkFfAERyU2Pt5ja8tzFNxcXTOjxx","SUPER PACK.jpeg","image/jpeg",228593],
+      ["1ryDB1CfGs1nQU4pjn-D8iNgNIqY4UxPW","PACK FUNDADOR.jpeg","image/jpeg",269048],
+      ["1NQkrs8LI5k20FPBoT7cze9V44QW0QSl7","PACK RUBI.jpeg","image/jpeg",454317],
+      ["1rppjQa_M-b8Yk9Luz2izWxvEyswUe5iG","VIAJE RUBI 1 PERSONA.jpeg","image/jpeg",232912],
+      ["1MSOTW3k0UBrfttGRyX8nOUG4DAPli8I0","COMPRA TU PACK RUBI.jpeg","image/jpeg",472238],
+      ["1fpN89qvQEuzMX9PupXfZ0CM-dJRTkOtk","VIAJE RUBI 2 PERSONAS.jpeg","image/jpeg",211131],
+      ["1XdpEOPHvJX1qUl7Dub_h_bKih6oMy6Dy","TOP ENROLLER.jpeg","image/jpeg",154418]
+    ],
+    "1C-ff7Drv_tV3-NSueVZ7Xd6M7joMnqO7": [
+      ["1PQdJV9IzdqdW3vkHDBoGkGpPC2cBtw8x","men x onemore.pdf","application/pdf",10765130],
+      ["1jdmA6U30k_An_cTgluPfxIxdNOEVYBOO","woman onemore.pdf","application/pdf",21631972],
+      ["1FuJH9bA81UIC2UdDBB8DYGQoqIJowxEI","shicor onemore.pdf","application/pdf",8756924],
+      ["1eZAOhGOpt1ij-9jsdIqRy6J11kmBQciW","vera juice onemore.pdf","application/pdf",3154084],
+      ["1xGSMat2TXPDlDqXgH2OL_DaRj8DVLex-","Kleantea1.pdf","application/pdf",6343986],
+      ["1mKGf5tvhiAIO1vWVALK_qkQdttyiUiZ-","Precios QV CV Productos Monau Exclusivo para Mexico.jpeg","image/jpeg",197038]
+    ],
+    "1u7ow6fz0v7KnrC3Q_RKfNk8xM5xXsL2V": [
+      ["1LpsukGWUnap1_YmIoHq7vwEEreVjrKtp","Diamond Status - Unica opcion para Upgrade.jpeg","image/jpeg",125941],
+      ["1i6tHjVoPvQQ2X3FRqFWhO_mLIUQ96qDv","Diamon Status - Unica opcion para Upgrade.mp4","video/mp4",5105925],
+      ["1fZcJFlNrpFV6xpk7XQn8g7sS2nc-9caV","Como hacer la solicitud de retiro de comisiones.mp4","video/mp4",40249019],
+      ["1jHnc6w6jDbOGn7ZXBL4-PwG0V8IMmZ_E","Primer compra de un nuevo socio.mp4","video/mp4",12335570],
+      ["1PGQoAZIji7IrsHtwdEL_EVwM5veKRfZV","Como hacer una orden de productos.mp4","video/mp4",8604742],
+      ["1KLGDj1LFoC3SRlgrE9jdajqIaBcb3ro1","Proceso para hacer el registro de un socio.mp4","video/mp4",4637816],
+      ["1YIGAe0k8KI1YtVyPD6gpgte8V_bSXyHT","Proceso de registro de nuevo socio One More International.pdf","application/pdf",8061697]
+    ],
+    "1O7r3x_pEIFcLZLv-w5KvTM7FOZq2Ac_e": [
+      ["1_rG9fBUWhlzNYaTL5Jwyz_iBIFC9zwr0","SORNIE","f"],
+      ["1cVLWYZSeX64MbgaZQvMk1aUzsr7n5Lgz","PARCHES GENERAL","f"],
+      ["1zsJDef3VcKo1DEb4wLBEF6VRzVjXaO6c","GLUTANAD+","f"],
+      ["1jhgE2VPwJAu-XHJxH79Q75kidoC_6npS","DEKAMIN","f"],
+      ["1XEQvRB4bgye4AQFMk0LzLii8s0Lqml-p","OMEVIA","f"],
+      ["129Bw_TLdYpRWzhTZq5CrYa3mHoGMlyIL","B12 PLUS","f"],
+      ["1trNniwGz_7hVsTD-EVM9ypSofSJsPacV","LADIES NIGHT","f"],
+      ["14Kv1FdyUot6F91PyijpswyZPeWK60ePH","GLUTAMORE","f"],
+      ["1zOQeHqfXG5WHfApOhve-fJejovNTEtVM","PAINLESS NIGHT","f"],
+      ["1myC3JKP8F9Mdal1MVqhfCeDVQSlfuO5i","SLIM STYLE","f"],
+      ["1GglXt0OwkldgWGZrWxF2YQU_P0_q-MeE","GENTLEMEN NIGHT","f"],
+      ["1DmlSmfiUEfomiX_v18hIPYfCLLii9vv6","MELATONIN PLUS - contenido para redes ","f"],
+      ["1HlovW6j9eYKJ7hUKM7GSVQeP6VMYGI3G","post SORNIE MASK Ig.png","image/png",1179974],
+      ["1_1VWQb1d-YoyaDy-P0FYlL9cvH7oxlDf","reel Sornie Mask.mp4","video/mp4",3235448],
+      ["1eRNR2s9soXb9d-GXDNfCmxafcQBTV5Xu","REEL dormir.mp4","video/mp4",5182829],
+      ["1J-Rm6YLwAF8nAwQ0DJhqdVcyQShB7afU","bienestar femenino.mp4","video/mp4",4701611],
+      ["1cQWWFDsILiwlzzMHqoDhzZnJgGpf9usG","CARRUSEL PROBLEMA FEMENINO.mp4","video/mp4",3680827],
+      ["1qqzs3WGPFj5s-zMH1ewQrxcDZkQn8Hlr","POST dolor de espalda (1).zip","application/zip",228580],
+      ["1hc2eMYxjsrmfmtPT_q7kCThytwZTEdwx","_REEL 3 RAZONES PARA ELEGIR PARCHES TRANSDERMICOS.mp4","video/mp4",4460351],
+      ["1QYOYMcmBQhOjQ3YWAGYXM9_JIGDpS1kS","melatonin (1).png","image/png",1065394],
+      ["13RyKhkyW63ibVL_4agbBhZXHP9r9ElZo","carrusel OMEVIA.mp4","video/mp4",1886688],
+      ["1IV41qO3ryFNP75HlTzDZJDL1zxFWLsH4","osteoporosis.png","image/png",1103874],
+      ["1SUoKpAxUJZM4NWWqEgcuGLrK_dLLIFxz","himher .mp4","video/mp4",2207024],
+      ["1huQyrExS9L9rWKNftUIymclknj7JfEVX","Copia de reel pregunta parche.mp4","video/mp4",3223259],
+      ["1tRGkzhVRGR-Pk8CwtamIWkBtV60jB-Wc","vitamina c vitamina d3 vitamina k12.png","image/png",879722],
+      ["1SLzP1HlaBPsKwoURWa-lVxUnwpSQPDR7","Reel dekamin.mp4","video/mp4",2544330],
+      ["15VOzmThU7Sds5UdbkaYQ_DULMlzG-fyL","post facebook b12 plus.zip","application/zip",2683629],
+      ["1ibb850r3BkE-L19ZdKfUT_p06Kq1QkP8","post b12 plus.mp4","video/mp4",2297057],
+      ["1qt8qIdQ6Tz1lidKJMa-53SP9c65EqgnK","post SLIM STYLE.jpg","image/jpeg",137464],
+      ["10id29o7LtieZjAv75i-fFHA7YGyle-8u","mitos y verdades sobre salud sexual - carrusel.zip","application/zip",5221694],
+      ["1xMMZ5LJheev66chioOKLWzesCh1hX2ML","3 razones por las que rejuvenecer con productos naturales es mejor que con tratamientos invasivos.zip","application/zip",4641559],
+      ["1HPjKPndFSUPAk61mY7iAvayKN6VEJ46f","reel productos (efecto cámara).mp4","video/mp4",4436123],
+      ["1ds56j5FKNSxYnXvJ-YLtAtAbzvJYaqVG","Painless Animación.mp4","video/mp4",704734],
+      ["18mfV5ZqIICCgEODZVpNlAc5DcDAqr69D","Melatonin.png","image/png",1272287],
+      ["1ZLYdo9eJsTtdDS4w7sGik5rIVxMdQCx5","One More Gentlemen.mp4","video/mp4",818340],
+      ["1jdfwYPPaSpTidmDK5uQTr8vq0TJmO4_d","video corto Dolor.mp4","video/mp4",3789169],
+      ["15atKQ4V8Zb5qpzR-O_QWU5KSgBTj30YF","Painless Night Glu.mp4","video/mp4",3145957],
+      ["1OMYNKvIRv6U9s98_yrQkQcDoL_fmif_a","Carrusel Beneficio Parche Transdermico.zip","application/zip",4805413]
+    ],
+    "1XbaUwYwdLKakzoIL6upZLuXNDSYcbNNB": [
+      ["10h_UfEER7Eez-gnwl5wvH-wxOjqvnjWC","GlutaNAD+ ENG.pdf","application/pdf",2327705],
+      ["1jsu2A8TPB2IMfNbyNNbTP5nzQS4XASjB","Ciencia GlutaNAD+.pdf","application/pdf",2347309],
+      ["1gTWg8ANlDdJjI1-v-RiVkA6Sr6_Ul-32","Technical Sheet GlutaNAD+.pdf","application/pdf",2302761],
+      ["1a55uAUZJ7DJmFSeqSrOjEhYzcSwttr4G","Ficha Tecnica GlutaNAD+.pdf","application/pdf",2308230],
+      ["1sy2BStjP_jqnu7B94h2GNOoN1CuwQBgk","32.png","image/png",2866302],
+      ["1iQFEzD5x2mdqT1WOmKEn7OpxeNtwRJ_x","28.png","image/png",4259548],
+      ["1-4BXRFHCWja0TVtY4ZoCEfJ4v9288IvT","8.png","image/png",7218872],
+      ["1oMjn3Jo5xxqbKMJr1kj_j09OmFGkRkgm","33.png","image/png",3587092],
+      ["1-XQ_9ODs9VMel2DLrWzAt13tYDab98nd","7.png","image/png",10014095],
+      ["1e0bheT2wTgudInasE4wP_C6pQ2ng6E7x","29.png","image/png",4710974],
+      ["1kx3QVvvbNc6qkIUhv8P-FpiABgY-MijU","14.png","image/png",6093466],
+      ["1oC62BVbqdF94hZMNZkOqdMx24KPPc5-5","9.png","image/png",9982713]
+    ],
+    "1S49PgZ05njilMMQzAExjhOVDnScTn0GZ": [
+      ["1qtJ5vl11Chq3RZuStkWsvuoz_7p64Fr4","GlutaNAD (whatsapp).mp4","video/mp4",54950236],
+      ["1M4LzsDx59t1cQKImZXCIikAx7wweN9c8","Productos OneMore.mp4","video/mp4",308369275]
+    ],
+    "1SoaDFW09_ZUmm1itsTtIAOKcTcTxnz0D": [
+      ["1maugzzXdbWL7X-JX_QkEADUpoIA0Tug5","Video alta resolucion eventos","f"],
+      ["1nFzh4xRsVjS0Wny2TxNP0xD-OyJqO_c3","Whatsapp","f"],
+      ["1FgG-cocc4ldYKnaJ_twTShg7s1fSwzr2","Promociones","f"]
+    ]
+  }
+};

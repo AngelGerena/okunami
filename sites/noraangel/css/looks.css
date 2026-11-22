@@ -1,0 +1,124 @@
+/* Nora & Angel - 4 card looks (OKUNAMI proposal). One working card, restyled per look.
+   Palette pulled from their burgundy suits and the U-MUVO greens. */
+:root{
+  --wine:#6d1a2b;--wine-2:#8e2638;--wine-soft:#f7ecec;--gold:#b48a3c;--gold-2:#d9b56a;--ivory:#fbf7f0;--cream:#f3eadb;--sand:#e8dcc6;
+  --candy-wine:linear-gradient(180deg,#a8384b 0%,#86233a 46%,#6d1a2b 54%,#561322 100%);
+  --candy-gold:linear-gradient(180deg,#f6e3ad 0%,#e1bf6c 46%,#cfa752 54%,#b98f3d 100%);
+  --script:"Great Vibes",cursive;
+}
+.proposal .stage{padding-top:14px}
+@media (max-width:479px){.proposal .stage{padding:10px 0 0}.proposal .card{border-radius:22px 22px 0 0;max-width:none}}
+
+/* hidden by default, each look turns on what it needs */
+.seal-ring,.duo{display:none}
+.frame{position:relative}
+.over h1 em{font-style:normal}
+
+/* ================= 1. LOUNGE: ivory, wine and gold, framed portrait ================= */
+.lk-lounge .card{background:var(--ivory)}
+.lk-lounge .hero{padding:14px 14px 0}
+.lk-lounge .frame{border-radius:22px;padding:6px;background:linear-gradient(140deg,var(--gold-2),#f4e4bd 40%,var(--gold) 100%);box-shadow:0 18px 34px -22px rgba(80,20,30,.7)}
+.lk-lounge .photo{width:100%;aspect-ratio:4/4.3;object-fit:cover;object-position:50% 12%;border-radius:17px;-webkit-mask-image:none;mask-image:none}
+.lk-lounge .lang{top:26px;right:26px;background:rgba(251,247,240,.9);color:var(--wine);border-color:rgba(109,26,43,.2)}
+.lk-lounge .over{margin-top:0;padding:20px 18px 2px;text-align:center}
+.lk-lounge .over .logo{width:40%;margin:0 auto 12px}
+.lk-lounge h1{font:600 44px/1 var(--serif);color:var(--wine);letter-spacing:-.01em}
+.lk-lounge h1 em{font:400 52px/1 var(--script);color:var(--gold);padding:0 2px}
+.lk-lounge h1::after{content:"";display:block;width:120px;height:1px;margin:14px auto 0;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.lk-lounge .role{color:#7a6650;letter-spacing:.14em;text-transform:uppercase;font-size:11.5px;font-weight:600}
+.lk-lounge .role .u{letter-spacing:.06em;text-transform:none;font-size:13px;font-weight:500;margin-top:4px}
+.lk-lounge .actions .btn:not(.save){background:var(--candy-gold);color:#4a1420;box-shadow:inset 0 1px 0 rgba(255,255,255,.75),inset 0 -2px 0 rgba(0,0,0,.08),0 8px 16px -12px rgba(109,26,43,.7)}
+.lk-lounge .actions .btn:not(.save) .ico{color:#4a1420}
+.lk-lounge .btn.save{background:var(--candy-wine);color:#fff}
+.lk-lounge .panel{background:#fffaf2;border-color:var(--sand)}
+.lk-lounge .sec{color:var(--gold)}
+.lk-lounge .panel h2,.lk-lounge .facts b{font-family:var(--serif);font-weight:600;color:var(--wine)}
+.lk-lounge .cta{background:var(--candy-gold);color:#3d2608}
+.lk-lounge .cta.order,.lk-lounge .join-btn{background:var(--candy-wine);color:#fff}
+.lk-lounge .pill,.lk-lounge .products li,.lk-lounge .facts li{border-color:var(--sand);color:var(--wine)}
+.lk-lounge .pill .ico,.lk-lounge .badges li,.lk-lounge .badges .ico{color:var(--wine)}
+.lk-lounge .qr{border-color:var(--gold-2)}
+.lk-lounge .qr b{color:var(--wine)}
+.lk-lounge .foot{border-top-color:var(--sand)}
+
+/* ================= 2. DUO: green slant hero, one contact row each ================= */
+.lk-duo .card{background:#fff}
+.lk-duo .hero{background:linear-gradient(160deg,#1f6b38 0%,var(--forest) 70%);padding:0 0 70px;clip-path:polygon(0 0,100% 0,100% calc(100% - 56px),0 100%)}
+.lk-duo .photo{width:100%;aspect-ratio:1/1;object-fit:cover;object-position:50% 10%;-webkit-mask-image:linear-gradient(#000 60%,transparent 98%);mask-image:linear-gradient(#000 60%,transparent 98%)}
+.lk-duo .lang{background:rgba(15,61,34,.55);color:#fff;border-color:rgba(255,255,255,.35)}
+.lk-duo .over{margin-top:-96px;padding:0 22px;text-align:left}
+.lk-duo .over .logo{width:42%;margin-bottom:8px;filter:brightness(0) invert(1)}
+.lk-duo h1{font-size:46px;line-height:.98;letter-spacing:-.03em;color:#fff}
+.lk-duo h1 em{color:var(--lime)}
+.lk-duo h1::after{display:none}
+.lk-duo .role{color:#d9ecc6}
+.lk-duo .body{margin-top:-40px;position:relative}
+.lk-duo .duo{display:grid;gap:10px}
+.lk-duo .who{display:flex;align-items:center;gap:12px;background:#fff;border:1px solid var(--line);border-radius:20px;padding:10px 10px 10px 10px;box-shadow:0 14px 26px -20px rgba(15,61,34,.8)}
+.lk-duo .who img{width:56px;height:56px;border-radius:50%;object-fit:cover;border:3px solid var(--lime);flex:0 0 auto}
+.lk-duo .who-n{flex:1;min-width:0;display:flex;flex-direction:column}
+.lk-duo .who-n b{font:700 18px var(--display);color:var(--forest)}
+.lk-duo .who-n small{font-size:13px;color:var(--muted)}
+.lk-duo .who-a{display:flex;gap:6px}
+.lk-duo .who-a a{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:var(--mint);color:var(--forest);border:1px solid var(--line)}
+.lk-duo .who-a a:first-child{background:var(--candy);color:#fff;border:0}
+.lk-duo .who-a .ico{width:20px;height:20px}
+.lk-duo .actions{grid-template-columns:1fr 2fr}
+.lk-duo .actions .btn.wa,.lk-duo .actions a[href^="tel:"],.lk-duo .actions a[href^="sms:"]{display:none}
+.lk-duo .actions .btn.save{grid-column:auto}
+.lk-duo .actions .btn{flex-direction:row;min-height:54px}
+
+/* ================= 3. GOLD SEAL: round portrait in an engraved ring, list buttons ================= */
+.lk-seal .card{background:radial-gradient(120% 60% at 50% 0%,#fdfaf2 0%,#fff 60%)}
+.lk-seal .hero{padding:26px 18px 0;text-align:center}
+.lk-seal .frame{width:286px;height:286px;margin:4px auto 0}
+.lk-seal .photo{position:absolute;inset:38px;width:210px;height:210px;border-radius:50%;object-fit:cover;object-position:50% 14%;-webkit-mask-image:none;mask-image:none;box-shadow:0 0 0 4px #fff,0 16px 30px -16px rgba(80,50,10,.8)}
+.lk-seal .seal-ring{display:block;position:absolute;inset:-7px;width:300px;height:300px;animation:sealspin 60s linear infinite}
+.lk-seal .seal-ring .sr-o{fill:none;stroke:var(--gold);stroke-width:2}
+.lk-seal .seal-ring .sr-i{fill:none;stroke:var(--gold-2);stroke-width:1}
+.lk-seal .seal-ring text{font:600 12.5px var(--body);letter-spacing:.26em;fill:var(--gold)}
+@keyframes sealspin{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion:reduce){.lk-seal .seal-ring{animation:none}}
+.lk-seal .lang{background:#fff;color:var(--forest)}
+.lk-seal .over{margin-top:0;padding:16px 4px 0;text-align:center}
+.lk-seal .over .logo{width:38%;margin:0 auto 10px}
+.lk-seal h1{font:600 40px/1.02 var(--serif);color:var(--forest)}
+.lk-seal h1 em{font-style:italic;color:var(--gold)}
+.lk-seal h1::after{content:"";display:block;width:44px;height:44px;margin:12px auto 0;background:none;border-top:1px solid var(--gold-2);width:90px;height:0}
+.lk-seal .role{text-align:center}
+.lk-seal .actions{grid-template-columns:1fr;gap:8px}
+.lk-seal .btn{flex-direction:row;justify-content:flex-start;gap:14px;min-height:56px;padding:0 18px;border-radius:16px;font-size:15.5px;position:relative}
+.lk-seal .btn:not(.save)::after{content:"\203A\FE0E";position:absolute;right:18px;font-size:24px;color:var(--gold);line-height:1}
+.lk-seal .actions .btn:not(.save){background:linear-gradient(180deg,#ffffff 0%,#fbf6ea 50%,#f3e9d2 100%);color:var(--forest);border:1px solid #eadcbd;box-shadow:inset 0 1px 0 #fff,0 8px 16px -14px rgba(80,50,10,.7)}
+.lk-seal .actions .btn:not(.save) .ico{width:22px;height:22px;color:var(--gold)}
+.lk-seal .actions .btn.wa .ico{color:#1f9d55}
+.lk-seal .btn.save{justify-content:center;background:var(--candy-gold);color:#3d2608;border-radius:16px}
+.lk-seal .btn.save .ico{color:#3d2608}
+.lk-seal .panel{background:#fffdf7;border-color:#eee2c8}
+.lk-seal .panel h2{font-family:var(--serif);font-weight:600}
+.lk-seal .sec{color:var(--gold)}
+.lk-seal .qr{border-color:var(--gold-2)}
+
+/* ================= 4. SIGNATURE: wide photo, curved lime divider, stacked script names ================= */
+.lk-signature .card{background:#fff}
+.lk-signature .hero{position:relative}
+.lk-signature .photo{width:100%;aspect-ratio:16/12;object-fit:cover;object-position:50% 16%;-webkit-mask-image:none;mask-image:none}
+.lk-signature .frame::after{content:"";position:absolute;left:-2%;right:-2%;bottom:-1px;height:64px;background:#fff;border-radius:100% 100% 0 0/100% 100% 0 0;box-shadow:0 -6px 0 0 var(--lime)}
+.lk-signature .lang{background:rgba(255,255,255,.9)}
+.lk-signature .over{margin-top:-20px;padding:0 20px;text-align:center;position:relative;z-index:1}
+.lk-signature .over .logo{width:36%;margin:0 auto 6px}
+.lk-signature h1{display:flex;flex-direction:column;align-items:center;font:700 44px/.9 var(--display);letter-spacing:-.02em;color:var(--forest)}
+.lk-signature h1 em{font:400 46px/.9 var(--script);color:var(--lime);margin:4px 0 2px;filter:saturate(1.3) brightness(.85)}
+.lk-signature h1::after{display:none}
+.lk-signature .role{margin-top:12px}
+.lk-signature .actions{grid-template-columns:1fr 1fr;gap:8px}
+.lk-signature .btn{flex-direction:row;min-height:58px;border-radius:16px;font-size:15px;gap:8px}
+.lk-signature .actions .btn.wa{background:var(--candy);color:#fff}
+.lk-signature .actions .btn.wa .ico{color:#fff}
+.lk-signature .btn.save{background:var(--forest);border-radius:16px}
+.lk-signature .panel{border-radius:26px;background:linear-gradient(180deg,var(--mint),#fff)}
+/* Lounge: catalog buttons in wine and gold instead of green */
+.lk-lounge .two .pill:first-child{background:var(--candy-wine);color:#fff;border:0}
+.lk-lounge .two .pill:last-child{background:var(--candy-gold);color:#4a1420;border:0}
+.lk-lounge .two .pill:first-child .ico{color:#fff}
+.lk-lounge .two .pill:last-child .ico{color:#4a1420}

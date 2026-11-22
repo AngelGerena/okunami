@@ -122,6 +122,7 @@ export type TemplateId =
   | 'studio'
   // Wellness collection (wellness and network-marketing sellers, first made for a U-MUVO couple)
   | 'freshleaf' | 'forestband' | 'thepack' | 'executive' | 'limeglass'
+  | 'wdlounge' | 'wdduo' | 'wdseal' | 'wdcurve'
   // photo-led collection (sig25)
   | 'sheet' | 'monostudio' | 'intro' | 'duotone' | 'trust' | 'local' | 'menu' | 'status' | 'chat';
 

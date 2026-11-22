@@ -40,6 +40,7 @@ import { addressLine, mapsHref, prettyUrl, webHref } from '../lib/links';
 import { Chat, Duotone, Intro, Local, MonoStudio, ServiceMenu, Sheet, Status, Trust } from './sig25';
 import { SpaBlush, SpaBordeaux, SpaEucalyptus, SpaHinoki, SpaHotStone, SpaLinen, SpaMarble, SpaOnyx, SpaRecovery, SpaWashi } from './sig26';
 import { Executive, ForestBand, FreshLeaf, LimeGlass, ThePack } from './sig27';
+import { WdCurve, WdDuo, WdLounge, WdSeal } from './sig28';
 
 export interface TemplateMeta { id: TemplateId; name: string; blurb: string; bestFor: string; niche?: string;
   /** Not offered in galleries or counts (OKUNAMI Studio custom cards). */
@@ -339,6 +340,11 @@ export const TEMPLATES: TemplateMeta[] = [
   { id: 'thepack', name: 'The Pack', niche: 'Wellness Sellers', blurb: 'Bold green shapes like product packaging over a photo window, a #hashtag, your name and a green band.', bestFor: 'Product sellers who want the card to look like the product' },
   { id: 'executive', name: 'Executive', niche: 'Wellness Sellers', blurb: 'A serif name beside a small round photo, thin lime rule and lots of white space.', bestFor: 'Team leaders and founders' },
   { id: 'limeglass', name: 'Lime Glass', niche: 'Wellness Sellers', blurb: 'Soft lime light, a framed photo and your name on frosted glass.', bestFor: 'Wellness and beauty sellers' },
+  // ---- Wellness Duo collection (wellness sellers, couples and partners)
+  { id: 'wdlounge', name: 'Lounge', niche: 'Wellness Sellers', blurb: 'A gold-framed photo, an elegant serif name with a script ampersand and gold gloss buttons.', bestFor: 'Couples and partners who sell together' },
+  { id: 'wdduo', name: 'Duo', niche: 'Wellness Sellers', blurb: 'A deep green slanted header over your photo and a contact row with round WhatsApp, Call, Text and Email buttons.', bestFor: 'Sellers who want people to reach them in one press' },
+  { id: 'wdseal', name: 'Gold Seal', niche: 'Wellness Sellers', blurb: 'A round photo inside a slowly turning engraved ring with your brand name, and buttons stacked as a clean list.', bestFor: 'Team leaders and established distributors' },
+  { id: 'wdcurve', name: 'Script Curve', niche: 'Wellness Sellers', blurb: 'A wide photo, a smooth accent curve and your name stacked big with a script ampersand.', bestFor: 'Couples, duos and fresh modern brands' },
 ];
 
 /* ------------------------------------------------------------ 1 Editorial Cover */
@@ -659,4 +665,5 @@ export const TEMPLATE_COMPONENTS: Record<TemplateId, () => ReactElement> = {
   sheet: Sheet, monostudio: MonoStudio, intro: Intro, duotone: Duotone, trust: Trust, local: Local, menu: ServiceMenu, status: Status, chat: Chat,
   spalinen: SpaLinen, spahotstone: SpaHotStone, spaeuca: SpaEucalyptus, spamarble: SpaMarble, spaonyx: SpaOnyx, spablush: SpaBlush, spabordeaux: SpaBordeaux, spawashi: SpaWashi, sparecovery: SpaRecovery, spahinoki: SpaHinoki,
   freshleaf: FreshLeaf, forestband: ForestBand, thepack: ThePack, executive: Executive, limeglass: LimeGlass,
+  wdlounge: WdLounge, wdduo: WdDuo, wdseal: WdSeal, wdcurve: WdCurve,
 };
