@@ -1,8 +1,9 @@
 (function(){
   var WA = "https://wa.me/14079609004?text=";
   var SMS = "sms:+14079609004?&body=";
-  var FX_WA = "https://wa.me/13212038541?text=";
-  var FX_SMS = "sms:+13212038541?&body=";
+  // Their number can be changed in the back office (content.js sets body[data-phone])
+  function fxNum(){ return document.body.dataset.phone || "13212038541"; }
+  var FX = { get wa(){ return "https://wa.me/" + fxNum() + "?text="; }, get sms(){ return "sms:+" + fxNum() + "?&body="; } };
 
   // Final card: a single look, no picker
   // Get your own vCard (to Angel). Stays in English in every language.
@@ -20,8 +21,8 @@
       if(!img.dataset.enSrc) img.dataset.enSrc = img.getAttribute("src");
       img.src = es ? img.dataset.esSrc : img.dataset.enSrc;
     });
-    card.querySelectorAll("[data-cat]").forEach(function(a){ a.href = es ? "files/catalog-es.pdf" : "files/catalog-en.pdf"; });
-    card.querySelectorAll("[data-order]").forEach(function(o){ o.href = FX_WA + encodeURIComponent(es ? ORDER_ES : ORDER_EN); });
+    card.querySelectorAll("[data-cat]").forEach(function(a){ a.href = es ? (a.dataset.esHref || "files/catalog-es.pdf") : (a.dataset.enHref || "files/catalog-en.pdf"); });
+    card.querySelectorAll("[data-order]").forEach(function(o){ o.href = FX.wa + encodeURIComponent(es ? ORDER_ES : ORDER_EN); });
     card.dataset.lang = es ? "es" : "en";
     card.setAttribute("lang", es ? "es" : "en");
     var b = card.querySelector("[data-lang]");
@@ -29,7 +30,7 @@
   }
   var ORDER_EN = "Hi Emely and Felix, I saw your U-MUVO catalog and I'd like to place an order.";
   var ORDER_ES = "Hola Emely y Felix, vi su cat\u00e1logo de U-MUVO y me gustar\u00eda hacer un pedido.";
-  document.querySelectorAll("[data-order]").forEach(function(o){ o.href = FX_WA + encodeURIComponent(ORDER_EN); });
+  document.querySelectorAll("[data-order]").forEach(function(o){ o.href = FX.wa + encodeURIComponent(ORDER_EN); });
   document.querySelectorAll(".card").forEach(function(card){
     var b = card.querySelector("[data-lang]");
     if(b) b.addEventListener("click", function(){ setLang(card, card.dataset.lang !== "es"); });
@@ -123,7 +124,7 @@
     if(!ok){
       sum.textContent = t.pick;
       wa.setAttribute("aria-disabled","true"); sms.setAttribute("aria-disabled","true");
-      wa.href = "https://wa.me/13212038541"; sms.href = "sms:+13212038541"; return;
+      wa.href = "https://wa.me/" + fxNum(); sms.href = "sms:+" + fxNum(); lastBooking = null; return;
     }
     sum.innerHTML = "<b>" + dateText() + "</b> " + t.at + " <b>" + ampm(sel.hour) + "</b>";
     var name = document.getElementById("bkName").value.trim(), city = document.getElementById("bkCity").value.trim();
@@ -134,7 +135,10 @@
         "\nTema: " + (type || t.none) + "\nCiudad: " + (city || t.none) + "\nMejor forma de contactarme: " + (how || t.none)
       : "Hi Emely and Felix" + (name ? ", this is " + name : "") + ". I'd like to book a free U-MUVO consultation.\nDate: " + dateText() + "\nTime: " + ampm(sel.hour) +
         "\nTopic: " + (type || t.none) + "\nCity: " + (city || t.none) + "\nBest way to reach me: " + (how || t.none);
-    wa.href = FX_WA + encodeURIComponent(msg); sms.href = FX_SMS + encodeURIComponent(msg);
+    wa.href = FX.wa + encodeURIComponent(msg); sms.href = FX.sms + encodeURIComponent(msg);
+    var dd = sel.date;
+    lastBooking = { day: dd.getFullYear() + "-" + String(dd.getMonth()+1).padStart(2,"0") + "-" + String(dd.getDate()).padStart(2,"0"),
+      time: ampm(sel.hour), type: type, name: name, city: city, how: how, lang: bkEs ? "es" : "en", message: msg };
     wa.removeAttribute("aria-disabled"); sms.removeAttribute("aria-disabled");
   }
   ["bkName","bkCity","bkSize"].forEach(function(id){
@@ -147,7 +151,16 @@
     bk.querySelector(".bk-x").setAttribute("aria-label", t.close);
     prevB.setAttribute("aria-label", t.prev); nextB.setAttribute("aria-label", t.next);
   }
+  // Log each sent booking once for the back office (Bookings)
+  var lastBooking = null, logged = false;
+  ["bkWa","bkSms"].forEach(function(id){
+    document.getElementById(id).addEventListener("click", function(){
+      if(!lastBooking || logged || !window.cbLogBooking) return;
+      logged = true; lastBooking.channel = id === "bkWa" ? "whatsapp" : "text"; window.cbLogBooking(lastBooking);
+    });
+  });
   function openBk(btn){
+    logged = false;
     lastBtn = btn; var card = btn.closest(".card"); bkEs = !!card && card.dataset.lang === "es";
     bk.className = "bk " + (card ? card.id : "");
     sel = {date:null, hour:null, type:null};
@@ -177,18 +190,21 @@
   });
 
   // Save Contact
-  var vcf = ["BEGIN:VCARD","VERSION:3.0","N:;Emely & Felix;;;","FN:Emely & Felix",
-    "ORG:U-MUVO · One More International",
-    "TITLE:Founders",
-    "TEL;TYPE=CELL,VOICE:+13212038541",
-    "X-SOCIALPROFILE;TYPE=whatsapp:https://wa.me/13212038541",
-    "EMAIL;TYPE=INTERNET:sistersspeakeasy@hotmail.com",
+  function vcfText(){
+    var d = window.CB_CONTENT || {}, nm = (d.name || "Emely & Felix"), em = document.body.dataset.email || "sistersspeakeasy@hotmail.com";
+    return ["BEGIN:VCARD","VERSION:3.0","N:;" + nm + ";;;","FN:" + nm,
+    "ORG:" + (d.company || "U-MUVO · One More International"),
+    "TITLE:" + (d.role_en || "Founders"),
+    "TEL;TYPE=CELL,VOICE:+" + fxNum(),
+    "X-SOCIALPROFILE;TYPE=whatsapp:https://wa.me/" + fxNum(),
+    "EMAIL;TYPE=INTERNET:" + em,
     "URL:https://emelyfelix.okunami.pro/",
     "NOTE:U-MUVO wellness products and business opportunity. Order and questions by WhatsApp.",
     "END:VCARD"].join("\r\n");
+  }
   document.querySelectorAll("[data-save]").forEach(function(b){
     b.addEventListener("click", function(){
-      var url = URL.createObjectURL(new Blob([vcf], {type:"text/vcard;charset=utf-8"}));
+      var url = URL.createObjectURL(new Blob([vcfText()], {type:"text/vcard;charset=utf-8"}));
       var a = document.createElement("a"); a.href = url; a.download = "Emely-and-Felix.vcf";
       document.body.appendChild(a); a.click(); a.remove();
       setTimeout(function(){ URL.revokeObjectURL(url); }, 1500);
