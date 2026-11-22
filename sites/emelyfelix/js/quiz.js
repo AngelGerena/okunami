@@ -23,19 +23,8 @@
     intimacy: ["Ladies Night", "Gentlemen Night"],
     income:   []
   };
-  var INFO = {
-    "Painless Night":         ["Transdermal patch with glucosamine and Korean red ginseng", "Parche transdérmico con glucosamina y ginseng rojo coreano"],
-    "Dekamin":                ["Transdermal patch with vitamins D3, K2 and C plus magnesium", "Parche transdérmico con vitaminas D3, K2 y C, y magnesio"],
-    "Sornie Collagen Patch":  ["Patch with collagen, hydrolyzed keratin, vitamin E and coenzyme Q10", "Parche con colágeno, queratina hidrolizada, vitamina E y coenzima Q10"],
-    "Sornie Anti-Aging Mask": ["Weekly mask with collagen, hyaluronic acid and retinol A", "Mascarilla semanal con colágeno, ácido hialurónico y retinol A"],
-    "GlutaMore":              ["Sublingual glutathione drops with vitamin C, taurine and arginine", "Gotas sublinguales de glutatión con vitamina C, taurina y arginina"],
-    "B12 Plus":               ["Vitamins B12, B1, B3 and folic acid with vitamins C, D and E", "Vitaminas B12, B1, B3 y ácido fólico con vitaminas C, D y E"],
-    "Melatonin Plus":         ["4.4 mg melatonin with lavender and rose essential oils", "4.4 mg de melatonina con aceites esenciales de lavanda y rosa"],
-    "SlimStyle":              ["Green tea, guarana, garcinia cambogia and L-carnitine", "Té verde, guaraná, garcinia cambogia y L-carnitina"],
-    "Omevia":                 ["Omega 3, coenzyme Q10, DHEA and pregnenolone", "Omega 3, coenzima Q10, DHEA y pregnenolona"],
-    "Ladies Night":           ["For her: ginseng, maca, L-arginine, zinc and red clover", "Para ella: ginseng, maca, L-arginina, zinc y trébol rojo"],
-    "Gentlemen Night":        ["For him: ginseng, maca, L-arginine, zinc and eurycoma longifolia", "Para él: ginseng, maca, L-arginina, zinc y eurycoma longifolia"]
-  };
+  /* product facts live in js/products.js (shared with the tappable product sheets) */
+  var INFO = {}; Object.keys(window.UMUVO_PRODUCTS || {}).forEach(function (k) { INFO[k] = window.UMUVO_PRODUCTS[k].info; });
 
   var T = {
     en: {
