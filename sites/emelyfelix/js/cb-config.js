@@ -9,7 +9,7 @@ window.CB_CONFIG = {
   driveRoot: "1Wp-sJA50Le6g3mI_rdxj1soE7nu-yw-V",
   driveRootName: "Summit Networkers Team - Marketing",
   /* Google API key (Drive API, restricted to emelyfelix.okunami.pro). Empty = use the saved copy. */
-  googleKey: ""
+  googleKey: "AIzaSyBoqvEt3QhMk9TWEPXK1O_my4XiNJ-Cf90"
 };
 window.cbRpc = function (fn, args) {
   var c = window.CB_CONFIG;
