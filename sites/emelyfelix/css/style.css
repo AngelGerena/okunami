@@ -249,3 +249,44 @@ html body .qr-full p small{color:#566a5c}
 .qr-full:not([hidden]) img{animation:qrIn .5s .3s ease both}
 @keyframes qrIn{from{transform:scale(.85);opacity:0}to{transform:none;opacity:1}}
 @media (prefers-reduced-motion:reduce){.qr-full *,.qr-full::before,.qr-full:not([hidden]){animation:none!important}}
+
+/* Hidden owner door: hold the name 5 seconds */
+.gate-target{position:relative;-webkit-touch-callout:none;-webkit-user-select:none;user-select:none;touch-action:manipulation}
+.gate-ring{position:absolute;left:50%;top:50%;width:64px;height:64px;margin:-32px 0 0 -32px;pointer-events:none;opacity:0;transition:opacity .2s}
+.gate-ring.on{opacity:1}
+.gate-ring svg{width:100%;height:100%;transform:rotate(-90deg);filter:drop-shadow(0 2px 6px rgba(15,61,34,.35))}
+.gate-ring circle{fill:rgba(255,255,255,.75);stroke-width:4}
+.gate-ring .gr-bg{stroke:rgba(15,61,34,.15)}
+.gate-ring .gr-fg{fill:none;stroke:#82b733;stroke-linecap:round;stroke-dasharray:100;stroke-dashoffset:100}
+.gate-tip{position:absolute;left:50%;top:calc(100% + 8px);transform:translateX(-50%);white-space:nowrap;background:#0f3d22;color:#fff;font:600 12px/1 var(--body,system-ui);padding:7px 10px;border-radius:8px;letter-spacing:.02em}
+body.gate-open{overflow:hidden}
+.gate{position:fixed;inset:0;z-index:300;background:rgba(8,30,17,.62);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);display:grid;place-items:center;padding:16px;animation:gateIn .2s ease-out}
+@keyframes gateIn{from{opacity:0}to{opacity:1}}
+.gate-card{width:min(340px,100%);background:#fff;color:#0f3d22;border-radius:22px;padding:22px 20px 12px;text-align:center;box-shadow:0 30px 60px -20px rgba(0,0,0,.45);border-top:6px solid #99cc45}
+.gate-logo{width:120px;height:auto;margin:0 auto 12px;display:block}
+.gate-card h2{font:700 22px/1.2 var(--display,Georgia,serif);margin:0;color:#0f3d22}
+.gate-sub{margin:4px 0 14px;color:#566a5c;font-size:15px}
+.gate-dots{display:flex;justify-content:center;gap:14px;margin-bottom:6px}
+.gate-dots i{width:14px;height:14px;border-radius:50%;border:2px solid #9db59f;transition:background .15s,border-color .15s}
+.gate-dots i.on{background:#82b733;border-color:#82b733}
+.gate-dots.shake{animation:gShake .35s}
+@keyframes gShake{25%{transform:translateX(-8px)}50%{transform:translateX(8px)}75%{transform:translateX(-4px)}}
+.gate-msg{min-height:20px;margin:0 0 8px;color:#b3261e;font-size:13.5px}
+.gate-keys{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.gk{height:58px;border-radius:16px;border:1px solid #dbe8cf;background:#f4f9ec;color:#0f3d22;font:600 24px/1 var(--body,system-ui);cursor:pointer;-webkit-tap-highlight-color:transparent}
+.gk:active{background:linear-gradient(180deg,#e2f5ad,#99cc45);border-color:#99cc45}
+.gk-txt{font-size:15px}
+.gk-del svg{width:26px;height:26px;margin:auto;fill:none;stroke:#0f3d22;stroke-width:2;stroke-linejoin:round;stroke-linecap:round}
+.gk:focus-visible,.gw:focus-visible,.gate-cancel:focus-visible{outline:3px solid #82b733;outline-offset:2px}
+.gate-cancel{margin-top:10px;min-height:44px;width:100%;border:0;background:none;color:#566a5c;font:600 15px var(--body,system-ui);cursor:pointer;text-decoration:underline}
+.gate-who{display:grid;gap:10px;margin-top:16px}
+.gw{display:flex;align-items:center;gap:12px;min-height:62px;padding:0 16px;border-radius:16px;border:1px solid #dbe8cf;background:#f4f9ec;color:#0f3d22;font:700 18px var(--body,system-ui);cursor:pointer;text-align:left}
+.gw:hover{border-color:#82b733}
+.gw-av{width:40px;height:40px;border-radius:50%;background:linear-gradient(180deg,#e2f5ad 0%,#b3dd5c 46%,#99cc45 54%,#82b733 100%);color:#0f3d22;display:grid;place-items:center;font-weight:800}
+.gate-welcome{padding:26px 20px 26px}
+.gate-check{width:56px;height:56px;border-radius:50%;margin:4px auto 12px;display:grid;place-items:center;background:linear-gradient(180deg,#e2f5ad,#82b733);animation:gPop .4s cubic-bezier(.3,1.6,.5,1) both}
+.gate-check svg{width:30px;height:30px;fill:none;stroke:#0f3d22;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
+@keyframes gPop{from{transform:scale(.3);opacity:0}to{transform:none;opacity:1}}
+.gate-spin{display:block;width:28px;height:28px;margin:14px auto 0;border-radius:50%;border:3px solid #dbe8cf;border-top-color:#82b733;animation:gSpin .8s linear infinite}
+@keyframes gSpin{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion:reduce){.gate,.gate-dots.shake,.gate-check,.gate-spin{animation:none}}
