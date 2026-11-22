@@ -226,3 +226,11 @@ body.bk-open{overflow:hidden}
 .actions .btn:not(.save){border:0;color:#0f3d22;background:linear-gradient(180deg,#e2f5ad 0%,#b3dd5c 46%,#99cc45 54%,#82b733 100%);box-shadow:inset 0 1px 0 rgba(255,255,255,.75),inset 0 -2px 0 rgba(0,0,0,.08),0 8px 16px -10px rgba(15,61,34,.7)}
 .actions .btn:not(.save) .ico,.actions .btn.wa .ico{color:#0f3d22}
 .actions .btn:not(.save):active{transform:scale(.97)}
+
+/* Language switch: a pill with a sliding lime candy knob (EN | ES) */
+.lang{display:inline-flex;align-items:center;width:96px;min-width:0;height:42px;padding:3px;border-radius:999px;border:1px solid rgba(15,61,34,.2);background:rgba(255,255,255,.92);box-shadow:0 8px 18px -10px rgba(15,61,34,.6);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);letter-spacing:0;overflow:hidden}
+.lang .l-en,.lang .l-es{position:relative;z-index:1;flex:1;text-align:center;font:700 12.5px var(--body);letter-spacing:.1em;color:#6f8274;transition:color .25s}
+.lang-knob{position:absolute;top:3px;left:3px;width:calc(50% - 3px);height:calc(100% - 6px);border-radius:999px;background:linear-gradient(180deg,#e2f5ad 0%,#b3dd5c 46%,#99cc45 54%,#82b733 100%);box-shadow:inset 0 1px 0 rgba(255,255,255,.8),inset 0 -2px 0 rgba(0,0,0,.08),0 3px 8px -3px rgba(15,61,34,.6);transition:transform .32s cubic-bezier(.3,1.35,.5,1)}
+.lang[aria-checked="true"] .lang-knob{transform:translateX(100%)}
+.lang[aria-checked="false"] .l-en,.lang[aria-checked="true"] .l-es{color:#0f3d22}
+@media (prefers-reduced-motion:reduce){.lang-knob,.lang .l-en,.lang .l-es{transition:none}}
