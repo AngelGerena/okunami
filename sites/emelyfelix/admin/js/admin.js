@@ -149,7 +149,7 @@
   function route() {
     var h = (location.hash || "#home").slice(1).split("/")[0];
     if (!NAV.some(function (n) { return n.id === h; })) h = "home";
-    cur = h; paintNav(); render(); showTip(false);
+    cur = h; paintNav(); render();
     window.scrollTo(0, 0);
   }
   window.addEventListener("hashchange", function () { if (S) route(); });
@@ -163,24 +163,15 @@
     else if (cur === "library") { v.innerHTML = vLibrary(); libLoad(); }
     else if (cur === "card") { v.innerHTML = vCard(); edInit(); }
     else if (cur === "settings") { v.innerHTML = vSettings(); loadAudit(); }
+    if (cur !== "library" && cur !== "card") fire();
   }
 
-  /* ---------- help tips ---------- */
-  var TIPS = {
-    home: ["<b>This is your back office.</b> New booking requests from your card show up here, plus quick links to everything else.", "<b>Esta es tu oficina.</b> Aquí aparecen las citas nuevas que llegan de tu tarjeta, con accesos rápidos a todo lo demás."],
-    bookings: ["<b>Every booking someone sends from your card lands here.</b> The message also goes to your WhatsApp. Mark each one Confirmed when you set it up, then Done after you meet.", "<b>Cada cita que alguien envía desde tu tarjeta llega aquí.</b> El mensaje también te llega por WhatsApp. Marca cada una Confirmada cuando la cuadres y Lista después de reunirte."],
-    library: ["<b>Your team's Google Drive, right here.</b> Same folders and names. Press a file to open it, play a video, download it or share it with a prospect.", "<b>El Google Drive del equipo, aquí mismo.</b> Las mismas carpetas y nombres. Presiona un archivo para abrirlo, ver un video, descargarlo o compartirlo con un prospecto."],
-    card: ["<b>Change what your card shows.</b> Nothing changes on your live card until you press Save. Every save is kept, so you can go back to an earlier version anytime.", "<b>Cambia lo que muestra tu tarjeta.</b> Nada cambia en tu tarjeta hasta que presiones Guardar. Cada versión se guarda, así puedes volver a una anterior cuando quieras."],
-    settings: ["<b>Change your PIN here.</b> Each of you has your own. You can also turn these tips off.", "<b>Cambia tu PIN aquí.</b> Cada uno tiene el suyo. También puedes apagar estos consejos."]
-  };
+  /* ---------- guided tips (tips.js) ---------- */
   function tipsOn() { try { return localStorage.getItem(TKEY) !== "off"; } catch (e) { return true; } }
-  function tipSeen(id) { try { return localStorage.getItem(TKEY + "-" + id) === "1"; } catch (e) { return false; } }
-  function showTip(force) {
-    var t = $("#tip"), tx = TIPS[cur];
-    if (!tx || (!force && (!tipsOn() || tipSeen(cur)))) { t.hidden = true; return; }
-    t.hidden = false;
-    t.innerHTML = ic("help") + '<div class="tip-b">' + tx[lang === "es" ? 1 : 0] + '<div class="tip-acts"><button type="button" data-act="tipOk">' + L("Got it", "Entendido") + '</button><button type="button" data-act="tipOff">' + L("Turn off tips", "Apagar consejos") + "</button></div></div>";
-  }
+  function fire(view) { try { document.dispatchEvent(new CustomEvent("cb:render", { detail: { view: view || cur } })); } catch (e) {} }
+  window.CB_USER = function () { return S ? S.name : ""; };
+  window.CB_LANG = function () { return lang; };
+  window.CB_TIPS_KEY = TKEY;
 
   /* ---------- home ---------- */
   function greet() { var h = new Date().getHours(); return h < 12 ? L("Good morning, ", "Buenos días, ") : h < 18 ? L("Good afternoon, ", "Buenas tardes, ") : L("Good evening, ", "Buenas noches, "); }
@@ -337,6 +328,7 @@
     }).join("") + "</div>";
     if (!items.length) html += '<div class="cardx empty">' + ic("search") + "<b>" + (q ? L("No matches", "Sin resultados") : L("This folder is empty", "Esta carpeta está vacía")) + "</b>" + (q ? L("Try a different word.", "Prueba otra palabra.") : "") + "</div>";
     body.innerHTML = html;
+    fire("library");
   }
   function libItem(id) { return (lib.items || []).filter(function (x) { return x.id === id; })[0]; }
   function gType(m) { return /spreadsheet/.test(m) ? "spreadsheets" : /presentation/.test(m) ? "presentation" : "document"; }
@@ -438,7 +430,7 @@
   function edInit() {
     var load = ed.loaded ? Promise.resolve() : fetch(C.url + "/rest/v1/cb_content?card_slug=eq." + C.slug + "&select=data", { headers: { apikey: C.anon, Authorization: "Bearer " + C.anon } })
       .then(function (r) { return r.json(); }).then(function (rows) { ed.saved = (rows && rows[0] && rows[0].data) || {}; ed.draft = JSON.parse(JSON.stringify(ed.saved)); ed.loaded = true; $("#view").innerHTML = vCard(); });
-    load.then(function () { edBind(); edState(); loadHistory(); }).catch(function () { toast(L("Couldn't load your card. Try again.", "No se pudo cargar tu tarjeta.")); });
+    load.then(function () { edBind(); edState(); loadHistory(); fire("card"); }).catch(function () { toast(L("Couldn't load your card. Try again.", "No se pudo cargar tu tarjeta.")); });
   }
   function fieldDef(k) { var out = null; FIELDS.forEach(function (g) { g.items.forEach(function (f) { if (f.k === k || k.indexOf(f.k + "_") === 0 && f.pair) out = f; }); }); return out; }
   function edBind() {
@@ -539,7 +531,8 @@
       '<div class="pair"><div class="f"><label for="pNew">' + L("New PIN (4 numbers)", "PIN nuevo (4 números)") + '</label><input id="pNew" type="password" inputmode="numeric" maxlength="4" autocomplete="new-password"></div>' +
       '<div class="f"><label for="pNew2">' + L("Type it again", "Escríbelo otra vez") + '</label><input id="pNew2" type="password" inputmode="numeric" maxlength="4" autocomplete="new-password"></div></div>' +
       '<p class="si-msg" id="pinMsg" role="status" style="text-align:left"></p><button type="submit" class="btn dark">' + L("Save new PIN", "Guardar PIN nuevo") + "</button></form></section>" +
-      '<section class="cardx"><h3 class="h2" style="margin-bottom:12px">' + L("Help tips", "Consejos de ayuda") + '</h3><label class="row" style="border:0;cursor:pointer"><input type="checkbox" id="tipsT" ' + (tipsOn() ? "checked" : "") + ' style="width:22px;height:22px;accent-color:#5f8f1f"><span class="row-b"><b>' + L("Show help tips", "Mostrar consejos") + "</b><span>" + L("A short note at the top of each screen.", "Una nota corta arriba de cada pantalla.") + "</span></span></label></section>" +
+      '<section class="cardx"><h3 class="h2" style="margin-bottom:12px">' + L("Help tips", "Consejos de ayuda") + '</h3><label class="row" style="border:0;cursor:pointer"><input type="checkbox" id="tipsT" ' + (tipsOn() ? "checked" : "") + ' style="width:22px;height:22px;accent-color:#5f8f1f"><span class="row-b"><b>' + L("Show help tips", "Mostrar consejos") + "</b><span>" + L("A short step-by-step guide the first time you open each screen.", "Una guía corta, paso a paso, la primera vez que abres cada pantalla.") + "</span></span></label>" +
+      '<button type="button" class="btn ghost sm" id="tourAgain" style="margin-top:8px">' + ic("help") + L("Show me the full tour again", "Mostrarme el recorrido completo otra vez") + "</button></section>" +
       '<section class="cardx"><h3 class="h2" style="margin-bottom:6px">' + L("Recent activity", "Actividad reciente") + '</h3><div id="audit"><p class="muted">' + L("Loading…", "Cargando…") + "</p></div></section>" +
       '<section class="cardx"><button type="button" class="btn ghost" data-act="signOut">' + ic("out") + L("Sign out", "Cerrar sesión") + "</button></section>";
   }
@@ -555,7 +548,8 @@
         else m.textContent = r && r.error === "wrong" ? L("Your current PIN didn't match.", "Tu PIN actual no coincide.") : L("Use 4 numbers.", "Usa 4 números.");
       }).catch(function () { m.textContent = L("That didn't save. Try again.", "No se guardó. Intenta otra vez."); });
     });
-    var t = $("#tipsT"); if (t) t.addEventListener("change", function () { try { localStorage.setItem(TKEY, t.checked ? "on" : "off"); } catch (e) {} if (t.checked) showTip(true); else $("#tip").hidden = true; });
+    var t = $("#tipsT"); if (t) t.addEventListener("change", function () { try { localStorage.setItem(TKEY, t.checked ? "on" : "off"); } catch (e) {} document.dispatchEvent(new CustomEvent("cb:tips-toggle", { detail: { on: t.checked } })); });
+    var rp = $("#tourAgain"); if (rp) rp.addEventListener("click", function () { document.dispatchEvent(new CustomEvent("cb:tour", { detail: { reset: true } })); });
     rpc("cb_audit_list", { p_token: S.token }).then(function (rows) {
       var a = $("#audit"); if (!a) return;
       var tr = function (s) { if (lang !== "es") return s; return s.replace("signed in", "entró").replace("saved card changes", "guardó cambios en la tarjeta").replace("changed PIN", "cambió su PIN").replace(/^removed booking/, "quitó la cita").replace(/^marked booking (\d+) /, "marcó la cita $1 como "); };
@@ -576,21 +570,20 @@
     $("#modal").hidden = false; var f = $("#modal .modal-f button, #modal .modal-f a, #modal input"); if (f) f.focus();
   }
   function closeModal() { $("#modal").hidden = true; if (lastFocus && lastFocus.focus) lastFocus.focus(); }
+  window.cbToast = function (m) { toast(m); };
   function toast(msg) { var t = $("#toast"); t.textContent = msg; t.classList.add("show"); clearTimeout(t._h); t._h = setTimeout(function () { t.classList.remove("show"); }, 2600); }
 
   /* ---------- events ---------- */
   document.addEventListener("click", function (e) {
     var g = e.target.closest("[data-go]"); if (g && S) { e.preventDefault(); go(g.dataset.go); return; }
     var l = e.target.closest(".lang button");
-    if (l) { lang = l.dataset.lang; try { localStorage.setItem(LKEY, lang); } catch (x) {} paintLang(); paintNav(); if (cur === "card") { var y = window.scrollY; $("#view").innerHTML = vCard(); edBind(); edState(); loadHistory(); window.scrollTo(0, y); } else render(); showTip(false); return; }
-    if (e.target.closest("#tipsBtn")) { showTip(true); return; }
+    if (l) { lang = l.dataset.lang; try { localStorage.setItem(LKEY, lang); } catch (x) {} paintLang(); paintNav(); if (cur === "card") { var y = window.scrollY; $("#view").innerHTML = vCard(); edBind(); edState(); loadHistory(); window.scrollTo(0, y); } else render(); return; }
+    if (e.target.closest("#tipsBtn")) { document.dispatchEvent(new CustomEvent("cb:tips-menu")); return; }
     if (e.target === $("#modal")) { closeModal(); return; }
     if (e.target.classList && e.target.classList.contains("viewer")) { closeViewer(); return; }
     var a = e.target.closest("[data-act]"); if (!a) return;
     var act = a.dataset.act, id = a.dataset.id;
     if (act === "closeModal") closeModal();
-    else if (act === "tipOk") { try { localStorage.setItem(TKEY + "-" + cur, "1"); } catch (x) {} $("#tip").hidden = true; }
-    else if (act === "tipOff") { try { localStorage.setItem(TKEY, "off"); } catch (x) {} $("#tip").hidden = true; toast(L("Tips are off. Turn them back on in Settings.", "Consejos apagados. Puedes prenderlos en Ajustes.")); }
     else if (act === "bkFilter") { bkFilter = a.dataset.v; render(); }
     else if (act === "bkSet") bkSet(id, a.dataset.v);
     else if (act === "bkIcs") bkIcs(id);
