@@ -25,7 +25,7 @@
     card.dataset.lang = es ? "es" : "en";
     card.setAttribute("lang", es ? "es" : "en");
     var b = card.querySelector("[data-lang]");
-    if(b) b.textContent = es ? "EN" : "ES";
+    if(b){ b.setAttribute("aria-checked", es ? "true" : "false"); b.setAttribute("aria-label", es ? "English / Inglés" : "Español / Spanish"); }
   }
   var ORDER_EN = "Hi Emely and Felix, I saw your U-MUVO catalog and I'd like to place an order.";
   var ORDER_ES = "Hola Emely y Felix, vi su cat\u00e1logo de U-MUVO y me gustar\u00eda hacer un pedido.";
