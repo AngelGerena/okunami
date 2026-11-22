@@ -237,3 +237,26 @@ legend{font:700 17px var(--font-display);color:var(--brand);padding:0 6px}
   .bk-meta{grid-template-columns:minmax(0,1fr)}
 }
 @media (prefers-reduced-motion:reduce){.spin,.si-dots.shake{animation:none}.toast{transition:none}}
+
+/* guided help tips (tips.js) */
+.tour{position:fixed;inset:0;z-index:300}
+.tour-block{position:absolute;inset:0;background:transparent}
+.tour.center .tour-block{background:rgba(8,30,17,.55)}
+.tour-spot{position:fixed;border-radius:16px;box-shadow:0 0 0 3px #b3dd5c,0 0 0 9999px rgba(8,30,17,.55);pointer-events:none;transition:top .25s,left .25s,width .25s,height .25s}
+.tour-pop{position:fixed;background:var(--surface-card);color:var(--text);border-radius:18px;padding:16px 16px 10px;box-shadow:0 24px 50px -18px rgba(0,0,0,.55);border-top:5px solid var(--accent);outline:none;transition:top .25s,left .25s}
+.tour-count{margin:0 0 2px;font-size:12px;font-weight:700;letter-spacing:.08em;color:var(--accent-deep)}
+.tour-pop h3{margin:0 0 6px;font:700 19px/1.25 var(--font-display);color:var(--brand)}
+.tour-d{margin:0 0 12px;font-size:15px;line-height:1.5;color:var(--text)}
+.tour-dots{display:flex;gap:6px;margin-bottom:12px}
+.tour-dots i{width:7px;height:7px;border-radius:50%;background:var(--line)}
+.tour-dots i.on{background:var(--accent-deep);width:18px;border-radius:4px}
+.tour-acts{display:flex;gap:8px;justify-content:flex-end}
+.tour-b{min-height:44px;padding:0 18px;border-radius:999px;border:0;background:var(--accent-grad);color:var(--brand);font-weight:700;font-size:15px;cursor:pointer}
+.tour-b.ghost{background:var(--surface);border:1px solid var(--line);margin-right:auto}
+.tour-off{display:block;margin:8px auto 0;min-height:36px;border:0;background:none;color:var(--muted);font-size:13.5px;text-decoration:underline;cursor:pointer}
+.tour-menu-wrap{position:fixed;inset:0;z-index:310;background:rgba(8,30,17,.5);display:grid;place-items:center;padding:16px}
+.tour-menu{width:min(360px,100%);background:var(--surface-card);border-radius:20px;padding:18px;display:grid;gap:8px;border-top:5px solid var(--accent)}
+.tour-menu h3{margin:0 0 6px;font:700 20px var(--font-display);color:var(--brand)}
+.tour-menu button{min-height:50px;border-radius:14px;border:1px solid var(--line);background:var(--accent-soft);color:var(--brand);font-weight:600;font-size:15.5px;text-align:left;padding:0 14px;cursor:pointer}
+.tour-menu .tm-x{background:none;border:0;text-align:center;text-decoration:underline;color:var(--muted);min-height:44px}
+@media (prefers-reduced-motion:reduce){.tour-spot,.tour-pop{transition:none}}
