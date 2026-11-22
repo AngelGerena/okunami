@@ -226,3 +226,10 @@ body.bk-open{overflow:hidden}
 .actions .btn:not(.save){border:0;color:#0f3d22;background:linear-gradient(180deg,#e2f5ad 0%,#b3dd5c 46%,#99cc45 54%,#82b733 100%);box-shadow:inset 0 1px 0 rgba(255,255,255,.75),inset 0 -2px 0 rgba(0,0,0,.08),0 8px 16px -10px rgba(15,61,34,.7)}
 .actions .btn:not(.save) .ico,.actions .btn.wa .ico{color:#0f3d22}
 .actions .btn:not(.save):active{transform:scale(.97)}
+
+/* Language toggle: Lime Bubble. Shows the language you switch to (ES or EN) */
+.lang{display:grid;place-items:center;width:46px;height:46px;min-width:0;padding:0;border:0;border-radius:50%;color:#0f3d22;font:700 14px var(--body);letter-spacing:.04em;
+  background:linear-gradient(180deg,#e2f5ad 0%,#b3dd5c 46%,#99cc45 54%,#82b733 100%);box-shadow:inset 0 1px 0 rgba(255,255,255,.8),inset 0 -2px 0 rgba(0,0,0,.08),0 8px 16px -8px rgba(15,61,34,.7);-webkit-backdrop-filter:none;backdrop-filter:none;transition:transform .12s}
+.lang:active{transform:scale(.94)}
+.lang .l-en,.lang .l-es{display:none}
+.lang[aria-checked="false"] .l-es,.lang[aria-checked="true"] .l-en{display:inline}
