@@ -116,27 +116,31 @@
   var NAV = [
     { id: "home", en: "Home", es: "Inicio", icon: "home" },
     { id: "bookings", en: "Bookings", es: "Citas", icon: "cal" },
+    { id: "leads", en: "Leads", es: "Prospectos", icon: "spark" },
     { id: "library", en: "Library", es: "Biblioteca", icon: "folder" },
     { id: "card", en: "My card", es: "Mi tarjeta", icon: "card" },
     { id: "settings", en: "Settings", es: "Ajustes", icon: "gear" }
   ];
-  var cur = "home", bookings = null, newCount = 0;
+  var cur = "home", bookings = null, newCount = 0, leads = null, leadNew = 0;
   function startApp() {
     $("#boot").hidden = true; $("#signin").hidden = true; $("#app").hidden = false; $("#tabBar").hidden = false;
     $("#avatar").textContent = S.name.charAt(0);
     $("#avatar").setAttribute("aria-label", L("Signed in as ", "Sesión de ") + S.name);
     paintLang();
     loadBookings().then(function () { paintNav(); if (cur === "home" || cur === "bookings") render(); });
+    loadLeads().then(function () { paintNav(); if (cur === "home" || cur === "leads") render(); });
     route();
   }
   function paintNav() {
     $("#sideNav").innerHTML = NAV.map(function (n) {
       return '<button type="button" class="nav-item' + (n.id === cur ? " on" : "") + '" data-go="' + n.id + '"' + (n.id === cur ? ' aria-current="page"' : "") + ">" + ic(n.icon) + "<span>" + L(n.en, n.es) + "</span>" +
-        (n.id === "bookings" && newCount ? '<span class="nav-count">' + newCount + "</span>" : "") + "</button>";
+        (n.id === "bookings" && newCount ? '<span class="nav-count">' + newCount + "</span>" : "") +
+        (n.id === "leads" && leadNew ? '<span class="nav-count">' + leadNew + "</span>" : "") + "</button>";
     }).join("");
     $("#tabBar").innerHTML = NAV.map(function (n) {
       return '<button type="button" class="tab' + (n.id === cur ? " on" : "") + '" data-go="' + n.id + '"' + (n.id === cur ? ' aria-current="page"' : "") + ">" + ic(n.icon) + "<span>" + L(n.en, n.es) + "</span>" +
-        (n.id === "bookings" && newCount ? '<span class="dot">' + newCount + "</span>" : "") + "</button>";
+        (n.id === "bookings" && newCount ? '<span class="dot">' + newCount + "</span>" : "") +
+        (n.id === "leads" && leadNew ? '<span class="dot">' + leadNew + "</span>" : "") + "</button>";
     }).join("");
   }
   function paintLang() {
@@ -160,6 +164,7 @@
     var v = $("#view");
     if (cur === "home") { v.innerHTML = vHome(); libFetch(C.driveRoot).then(function (it) { var k = $("#kpiLib"); if (k && it) k.textContent = it.length; }); }
     else if (cur === "bookings") v.innerHTML = vBookings();
+    else if (cur === "leads") v.innerHTML = vLeads();
     else if (cur === "library") { v.innerHTML = vLibrary(); libLoad(); }
     else if (cur === "card") { v.innerHTML = vCard(); edInit(); }
     else if (cur === "settings") { v.innerHTML = vSettings(); loadAudit(); }
@@ -176,12 +181,12 @@
   /* ---------- home ---------- */
   function greet() { var h = new Date().getHours(); return h < 12 ? L("Good morning, ", "Buenos días, ") : h < 18 ? L("Good afternoon, ", "Buenas tardes, ") : L("Good evening, ", "Buenas noches, "); }
   function vHome() {
-    var list = (bookings || []), week = list.filter(function (b) { return Date.now() - new Date(b.created_at) < 7 * 864e5; }).length;
+    var list = (bookings || []);
     var upcoming = list.filter(function (b) { return b.status !== "done"; }).slice(0, 3);
     return '<h2 class="h-greet">' + greet() + esc(S.name) + '</h2><p class="h-sub">' + L("Here's what's happening with your U-MUVO card.", "Esto es lo que está pasando con tu tarjeta U-MUVO.") + "</p>" +
       '<div class="kpis">' +
       '<button type="button" class="kpi" data-go="bookings">' + ic("cal") + "<b>" + (bookings ? newCount : "–") + "</b><span>" + L("New bookings", "Citas nuevas") + "</span></button>" +
-      '<button type="button" class="kpi" data-go="bookings">' + ic("clock") + "<b>" + (bookings ? week : "–") + "</b><span>" + L("This week", "Esta semana") + "</span></button>" +
+      '<button type="button" class="kpi" data-go="leads">' + ic("spark") + "<b>" + (leads ? leadNew : "–") + "</b><span>" + L("New leads", "Prospectos nuevos") + "</span></button>" +
       '<button type="button" class="kpi" data-go="library">' + ic("folder") + "<b id=\"kpiLib\">" + (lib.cache[C.driveRoot] || DRIVE_SNAPSHOT.folders[C.driveRoot] || []).length + "</b><span>" + L("In the main folder", "En la carpeta principal") + "</span></button></div>" +
       '<section class="cardx"><div class="card-h"><h3 class="h2">' + L("Latest bookings", "Últimas citas") + '</h3><button type="button" class="link" data-go="bookings">' + L("See all", "Ver todas") + "</button></div>" +
       (bookings === null ? '<div class="empty"><span class="spin" style="display:inline-block"></span></div>' :
@@ -194,6 +199,86 @@
       '<button type="button" class="tile" data-go="card">' + ic("card") + L("Edit my card", "Editar mi tarjeta") + "<small>" + L("Photo, text, links and catalogs", "Foto, textos, enlaces y catálogos") + "</small></button>" +
       '<a class="tile" href="../" target="_blank" rel="noopener">' + ic("ext") + L("View my card", "Ver mi tarjeta") + "<small>emelyfelix.okunami.pro</small></a>" +
       "</div></section>";
+  }
+
+
+  /* ---------- leads (Natural Wellness Quiz on the card, js/quiz.js) ---------- */
+  var ldFilter = "new";
+  var LD_ST = ["new", "contacted", "customer", "team"];
+  function ldLabel(s) { return { new: L("New", "Nuevo"), contacted: L("Contacted", "Contactado"), customer: L("Customer", "Cliente"), team: L("Joined team", "En el equipo") }[s] || s; }
+  function ldBadge(s) { return '<span class="badge ld-' + esc(s) + '">' + esc(ldLabel(s)) + "</span>"; }
+  var LD_GOAL = { comfort: ["Body comfort", "Comodidad del cuerpo"], energy: ["More energy", "Más energía"], sleep: ["Better sleep", "Dormir mejor"], skin: ["Skin and glow", "Piel y brillo"], weight: ["Feeling lighter", "Sentirse más ligero"], heart: ["Heart and healthy aging", "Corazón y envejecer saludable"], intimacy: ["Intimacy and vitality", "Intimidad y vitalidad"], income: ["Extra income", "Ingresos extra"] };
+  var LD_ANS = {
+    often: { daily: ["Every day", "Todos los días"], weekly: ["A few times a week", "Varias veces por semana"], sometimes: ["Now and then", "De vez en cuando"] },
+    tried: { nothing: ["Nothing yet", "Nada todavía"], pills: ["Store pills", "Pastillas de tienda"], creams: ["Creams or rubs", "Cremas"], supps: ["Other supplements", "Otros suplementos"] },
+    want: { natural: ["Natural ingredients", "Ingredientes naturales"], easy: ["Easy to use", "Fácil de usar"], price: ["Good price", "Buen precio"], guide: ["Someone to guide them", "Alguien que le guíe"] },
+    team: { yes: ["Yes", "Sí"], maybe: ["Maybe", "Quizás"], no: ["No, just products", "No, solo productos"] }
+  };
+  function ldT(map, k) { var v = map[k]; return v ? L(v[0], v[1]) : (k || "–"); }
+  function loadLeads() {
+    return rpc("cb_leads_list", { p_token: S.token }).then(function (rows) {
+      leads = rows || []; leadNew = leads.filter(function (x) { return x.status === "new"; }).length;
+    }).catch(function (e) { if (/not signed in/i.test(e.message)) return signOut(true); leads = leads || []; });
+  }
+  function waNum(p) { var d = String(p || "").replace(/\D/g, ""); if (d.length === 10) d = "1" + d; return d; }
+  function ldMsg(x) {
+    var gv = LD_GOAL[x.goal], g = (gv ? gv[x.lang === "es" ? 1 : 0] : (x.goal || "")).toLowerCase();
+    var first = String(x.name || "").split(" ")[0], picks = (x.answers && x.answers.picks) || [];
+    return x.lang === "es"
+      ? "¡Hola " + first + "! Soy " + S.name + " de U-MUVO. Gracias por hacer el quiz de bienestar en nuestra tarjeta. Vi que tu meta es " + g + (picks.length ? " y te sugerimos " + picks.join(", ") : "") + ". ¿Tienes unos minutos para que te cuente cómo empezar?"
+      : "Hi " + first + "! It's " + S.name + " from U-MUVO. Thanks for taking the wellness quiz on our card. I saw your goal is " + g + (picks.length ? " and we suggested " + picks.join(", ") : "") + ". Do you have a few minutes so I can show you how to get started?";
+  }
+  function vLeads() {
+    if (leads === null) return '<div class="empty"><span class="spin" style="display:inline-block"></span></div>';
+    var counts = { new: 0, contacted: 0, customer: 0, team: 0 }; leads.forEach(function (x) { counts[x.status] = (counts[x.status] || 0) + 1; });
+    var list = leads.filter(function (x) { return ldFilter === "all" || x.status === ldFilter; });
+    var chips = LD_ST.concat(["all"]).map(function (k) {
+      return '<button type="button" class="chip" data-act="ldFilter" data-v="' + k + '" aria-pressed="' + (ldFilter === k) + '">' + (k === "all" ? L("All", "Todos") : ldLabel(k)) + (k !== "all" ? " (" + (counts[k] || 0) + ")" : "") + "</button>";
+    }).join("");
+    var link = "https://emelyfelix.okunami.pro/?quiz=1";
+    return '<h2 class="h-greet">' + L("Leads", "Prospectos") + '</h2><p class="h-sub">' + L("People who took the Natural Wellness Quiz on your card. Message them while they're interested.", "Personas que hicieron el Quiz de Bienestar Natural en tu tarjeta. Escríbeles mientras están interesados.") + "</p>" +
+      '<section class="cardx ld-share"><div><b>' + L("Your quiz link", "Tu enlace del quiz") + "</b><span>" + L("Share it on social media, in WhatsApp status or on flyers. Add ?src= to see where leads come from, like ", "Compártelo en redes, en tu estado de WhatsApp o en flyers. Agrega ?src= para saber de dónde vienen, por ejemplo ") + "<code>&amp;src=facebook</code></span></div>" +
+      '<div class="ld-share-a"><button type="button" class="btn sm" data-act="copy" data-v="' + link + '">' + ic("copy") + L("Copy link", "Copiar enlace") + "</button>" +
+      (leads.length ? '<button type="button" class="btn sm ghost" data-act="ldCsv">' + ic("down") + L("Export CSV", "Exportar CSV") + "</button>" : "") + "</div></section>" +
+      '<div class="chips" role="group" aria-label="' + L("Filter", "Filtrar") + '">' + chips + "</div>" +
+      (list.length ? '<div class="bk-list">' + list.map(function (x) {
+        var a = x.answers || {}, wn = waNum(x.phone), acts = "";
+        if (wn) acts += '<a class="btn sm" href="https://wa.me/' + wn + "?text=" + encodeURIComponent(ldMsg(x)) + '" target="_blank" rel="noopener" data-act="ldTouch" data-id="' + x.id + '">' + ic("wa") + "WhatsApp</a>";
+        if (wn) acts += '<a class="btn sm ghost" href="sms:+' + wn + "?&body=" + encodeURIComponent(ldMsg(x)) + '" data-act="ldTouch" data-id="' + x.id + '">' + ic("sms") + L("Text", "Texto") + "</a>";
+        if (x.email) acts += '<a class="btn sm ghost" href="mailto:' + esc(x.email) + "?subject=" + encodeURIComponent(L("Your U-MUVO routine", "Tu rutina U-MUVO")) + "&body=" + encodeURIComponent(ldMsg(x)) + '" data-act="ldTouch" data-id="' + x.id + '">Email</a>';
+        acts += '<label class="ld-sel"><span class="sr">' + L("Status", "Estado") + '</span><select data-ld-status="' + x.id + '">' + LD_ST.map(function (k) { return '<option value="' + k + '"' + (k === x.status ? " selected" : "") + ">" + esc(ldLabel(k)) + "</option>"; }).join("") + "</select></label>";
+        acts += '<button type="button" class="btn sm ghost" data-act="ldDel" data-id="' + x.id + '" aria-label="' + L("Remove", "Quitar") + '">' + ic("trash") + "</button>";
+        return '<article class="bk-item"><div class="bk-top"><div><div class="bk-when">' + esc(x.name) + '</div><div class="bk-who">' + esc(ldT(LD_GOAL, x.goal)) +
+          (x.wants_team === "yes" || x.wants_team === "maybe" || x.goal === "income" ? ' · <span class="ld-team">' + L("Interested in the team", "Le interesa el equipo") + "</span>" : "") + "</div></div>" + ldBadge(x.status) + "</div>" +
+          '<div class="bk-meta"><div><span>' + L("Phone", "Teléfono") + "</span><b>" + esc(x.phone || "–") + "</b></div><div><span>Email</span><b>" + esc(x.email || "–") + "</b></div>" +
+          "<div><span>" + L("How often", "Frecuencia") + "</span><b>" + esc(ldT(LD_ANS.often, a.often)) + "</b></div><div><span>" + L("Has tried", "Ha probado") + "</span><b>" + esc(ldT(LD_ANS.tried, a.tried)) + "</b></div>" +
+          "<div><span>" + L("Cares most about", "Le importa más") + "</span><b>" + esc(ldT(LD_ANS.want, a.want)) + "</b></div><div><span>" + L("Suggested", "Sugerido") + "</span><b>" + esc((a.picks || []).join(", ") || "–") + "</b></div>" +
+          "<div><span>" + L("Came from", "Vino de") + "</span><b>" + esc(x.source || "card") + "</b></div><div><span>" + L("Received", "Recibido") + "</span><b>" + esc(fmtStamp(x.created_at)) + " · " + (x.lang === "es" ? "ES" : "EN") + "</b></div></div>" +
+          '<div class="bk-acts">' + acts + "</div></article>";
+      }).join("") + "</div>" : '<div class="cardx empty">' + ic("spark") + "<b>" + (leads.length ? L("Nothing here", "No hay nada aquí") : L("No leads yet", "Todavía no hay prospectos")) + "</b>" +
+        L("When someone finishes the quiz on your card, they show up here with their answers and a ready-to-send WhatsApp message.", "Cuando alguien termina el quiz en tu tarjeta, aparece aquí con sus respuestas y un mensaje de WhatsApp listo para enviar.") + "</div>");
+  }
+  function ldById(id) { return (leads || []).filter(function (x) { return String(x.id) === String(id); })[0]; }
+  function ldSet(id, v, del) {
+    var x = ldById(id); if (!x) return;
+    var prev = x.status, list = leads.slice();
+    if (del) leads = leads.filter(function (y) { return y !== x; }); else x.status = v;
+    leadNew = leads.filter(function (y) { return y.status === "new"; }).length; paintNav(); render();
+    rpc("cb_lead_update", { p_token: S.token, p_id: +id, p_status: v || prev, p_delete: !!del }).then(function () {
+      toast(del ? L("Lead removed", "Prospecto quitado") : L("Saved", "Guardado"));
+    }).catch(function () {
+      leads = list; x.status = prev; leadNew = leads.filter(function (y) { return y.status === "new"; }).length; paintNav(); render();
+      toast(L("That didn't save. Try again.", "No se guardó. Intenta otra vez."));
+    });
+  }
+  function ldCsv() {
+    var cols = ["created_at", "name", "phone", "email", "goal", "often", "tried", "want", "wants_team", "picks", "source", "lang", "status"];
+    function cell(v) { v = v == null ? "" : String(v); if (/^[=+\-@]/.test(v)) v = "'" + v; return '"' + v.replace(/"/g, '""') + '"'; }
+    var rows = leads.map(function (x) { var a = x.answers || {}; return [x.created_at, x.name, x.phone, x.email, x.goal, a.often, a.tried, a.want, x.wants_team, (a.picks || []).join("; "), x.source, x.lang, x.status].map(cell).join(","); });
+    var blob = new Blob(["﻿" + cols.join(",") + "\n" + rows.join("\n")], { type: "text/csv;charset=utf-8" });
+    var u = URL.createObjectURL(blob), el = document.createElement("a");
+    el.href = u; el.download = "emelyfelix-leads-" + new Date().toISOString().slice(0, 10) + ".csv"; document.body.appendChild(el); el.click();
+    setTimeout(function () { URL.revokeObjectURL(u); el.remove(); }, 500);
   }
 
   /* ---------- bookings ---------- */
@@ -585,6 +670,12 @@
     var act = a.dataset.act, id = a.dataset.id;
     if (act === "closeModal") closeModal();
     else if (act === "bkFilter") { bkFilter = a.dataset.v; render(); }
+    else if (act === "ldFilter") { ldFilter = a.dataset.v; render(); }
+    else if (act === "ldCsv") ldCsv();
+    else if (act === "ldTouch") { var lx = ldById(id); if (lx && lx.status === "new") setTimeout(function () { ldSet(id, "contacted"); }, 400); }
+    else if (act === "ldDel") modal(L("Remove this lead?", "¿Quitar este prospecto?"), "<p>" + L("They disappear from your list. Any messages you already sent stay on your phone.", "Desaparece de tu lista. Los mensajes que ya enviaste se quedan en tu teléfono.") + "</p>",
+      '<button type="button" class="btn ghost" data-act="closeModal">' + L("Keep", "Dejar") + '</button><button type="button" class="btn danger" data-act="ldDelYes" data-id="' + id + '">' + L("Remove", "Quitar") + "</button>");
+    else if (act === "ldDelYes") { closeModal(); ldSet(id, null, true); }
     else if (act === "bkSet") bkSet(id, a.dataset.v);
     else if (act === "bkIcs") bkIcs(id);
     else if (act === "bkDel") modal(L("Remove this booking?", "¿Quitar esta cita?"), "<p>" + L("It disappears from your list. The WhatsApp message stays on your phone.", "Desaparece de tu lista. El mensaje de WhatsApp se queda en tu teléfono.") + "</p>",
@@ -611,6 +702,7 @@
     else if (act === "signOut") signOut(false);
   });
   document.addEventListener("input", function (e) { if (e.target.id === "libQ") { lib.q = e.target.value; libPaint(); } });
+  document.addEventListener("change", function (e) { var id = e.target.getAttribute && e.target.getAttribute("data-ld-status"); if (id) ldSet(id, e.target.value); });
   document.addEventListener("keydown", function (e) { if (e.key === "Escape") { if ($(".viewer")) closeViewer(); else if (!$("#modal").hidden) closeModal(); } });
   window.addEventListener("beforeunload", function (e) { if (cur === "card" && edDirty()) { e.preventDefault(); e.returnValue = ""; } });
 
