@@ -233,3 +233,19 @@ body.bk-open{overflow:hidden}
 .lang:active{transform:scale(.94)}
 .lang .l-en,.lang .l-es{display:none}
 .lang[aria-checked="false"] .l-es,.lang[aria-checked="true"] .l-en{display:inline}
+
+/* QR full screen: Lime Ripple open animation, kit recolored to the card palette */
+html body .qr-zoom .qr-badge{background:linear-gradient(180deg,#e2f5ad,#99cc45);color:#0f3d22}
+html body .qr-full{color:#0f3d22;isolation:isolate;overflow:hidden}
+html body .qr-full .qr-x{background:#0f3d22}
+html body .qr-full p small{color:#566a5c}
+.qr-full:not([hidden]){animation:qrBg .35s ease both}
+@keyframes qrBg{from{background:rgba(255,255,255,0)}to{background:#fff}}
+.qr-full:not([hidden]) p,.qr-full:not([hidden]) .qr-x{animation:qrUp .45s .35s ease both}
+@keyframes qrUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.qr-full::before{content:"";position:absolute;left:50%;top:50%;width:40px;height:40px;margin:-20px 0 0 -20px;border-radius:50%;background:radial-gradient(circle,#c8f07a 0%,#8dc63f 60%,rgba(141,198,63,0) 72%);pointer-events:none;z-index:-1}
+.qr-full:not([hidden])::before{animation:qrRipple .9s ease-out both}
+@keyframes qrRipple{from{transform:scale(0);opacity:.95}to{transform:scale(40);opacity:0}}
+.qr-full:not([hidden]) img{animation:qrIn .5s .3s ease both}
+@keyframes qrIn{from{transform:scale(.85);opacity:0}to{transform:none;opacity:1}}
+@media (prefers-reduced-motion:reduce){.qr-full *,.qr-full::before,.qr-full:not([hidden]){animation:none!important}}
