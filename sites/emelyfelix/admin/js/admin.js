@@ -158,7 +158,7 @@
     $("#crumb").textContent = L(n.en, n.es);
     document.title = L(n.en, n.es) + " | Emely & Felix";
     var v = $("#view");
-    if (cur === "home") v.innerHTML = vHome();
+    if (cur === "home") { v.innerHTML = vHome(); libFetch(C.driveRoot).then(function (it) { var k = $("#kpiLib"); if (k && it) k.textContent = it.length; }); }
     else if (cur === "bookings") v.innerHTML = vBookings();
     else if (cur === "library") { v.innerHTML = vLibrary(); libLoad(); }
     else if (cur === "card") { v.innerHTML = vCard(); edInit(); }
@@ -191,7 +191,7 @@
       '<div class="kpis">' +
       '<button type="button" class="kpi" data-go="bookings">' + ic("cal") + "<b>" + (bookings ? newCount : "–") + "</b><span>" + L("New bookings", "Citas nuevas") + "</span></button>" +
       '<button type="button" class="kpi" data-go="bookings">' + ic("clock") + "<b>" + (bookings ? week : "–") + "</b><span>" + L("This week", "Esta semana") + "</span></button>" +
-      '<button type="button" class="kpi" data-go="library">' + ic("folder") + "<b>" + (DRIVE_SNAPSHOT.folders[C.driveRoot] || []).length + "</b><span>" + L("Library items", "En la biblioteca") + "</span></button></div>" +
+      '<button type="button" class="kpi" data-go="library">' + ic("folder") + "<b id=\"kpiLib\">" + (lib.cache[C.driveRoot] || DRIVE_SNAPSHOT.folders[C.driveRoot] || []).length + "</b><span>" + L("In the main folder", "En la carpeta principal") + "</span></button></div>" +
       '<section class="cardx"><div class="card-h"><h3 class="h2">' + L("Latest bookings", "Últimas citas") + '</h3><button type="button" class="link" data-go="bookings">' + L("See all", "Ver todas") + "</button></div>" +
       (bookings === null ? '<div class="empty"><span class="spin" style="display:inline-block"></span></div>' :
         upcoming.length ? upcoming.map(function (b) {
@@ -268,7 +268,7 @@
   function kind(m) {
     if (m === "f" || m === "application/vnd.google-apps.folder") return "folder";
     if (/^image\//.test(m)) return "img"; if (/^video\//.test(m)) return "video"; if (m === "application/pdf") return "pdf";
-    if (/zip/.test(m)) return "zip"; if (/google-apps/.test(m)) return "gdoc"; return "doc";
+    if (/zip/.test(m)) return "zip"; if (/google-apps\.(document|spreadsheet|presentation)/.test(m)) return "gdoc"; return "doc";
   }
   function norm(a) { return { id: a[0], name: a[1], mime: a[2] === "f" ? "application/vnd.google-apps.folder" : a[2], size: a[3] || 0 }; }
   function sortItems(arr) {
@@ -284,10 +284,13 @@
       var all = [];
       var page = function (tok) {
         var u = "https://www.googleapis.com/drive/v3/files?pageSize=1000&orderBy=folder,name_natural" +
-          "&fields=nextPageToken,files(id,name,mimeType,size,thumbnailLink,modifiedTime)&supportsAllDrives=true&includeItemsFromAllDrives=true" +
+          "&fields=nextPageToken,files(id,name,mimeType,size,shortcutDetails)&supportsAllDrives=true&includeItemsFromAllDrives=true" +
           "&q=" + encodeURIComponent("'" + id + "' in parents and trashed=false") + "&key=" + encodeURIComponent(C.googleKey) + (tok ? "&pageToken=" + tok : "");
         return fetch(u).then(function (r) { if (!r.ok) throw new Error("drive " + r.status); return r.json(); }).then(function (d) {
-          (d.files || []).forEach(function (f) { all.push({ id: f.id, name: f.name, mime: f.mimeType, size: +f.size || 0 }); });
+          (d.files || []).forEach(function (f) {
+            var sc = f.mimeType === "application/vnd.google-apps.shortcut" && f.shortcutDetails;
+            all.push({ id: sc ? f.shortcutDetails.targetId : f.id, name: f.name, mime: sc ? f.shortcutDetails.targetMimeType : f.mimeType, size: +f.size || 0 });
+          });
           return d.nextPageToken ? page(d.nextPageToken) : all;
         });
       };
@@ -336,12 +339,13 @@
     body.innerHTML = html;
   }
   function libItem(id) { return (lib.items || []).filter(function (x) { return x.id === id; })[0]; }
-  function viewUrl(x) { return kind(x.mime) === "gdoc" ? "https://docs.google.com/document/d/" + x.id + "/edit" : "https://drive.google.com/file/d/" + x.id + "/view"; }
+  function gType(m) { return /spreadsheet/.test(m) ? "spreadsheets" : /presentation/.test(m) ? "presentation" : "document"; }
+  function viewUrl(x) { return kind(x.mime) === "gdoc" ? "https://docs.google.com/" + gType(x.mime) + "/d/" + x.id + "/edit" : "https://drive.google.com/file/d/" + x.id + "/view"; }
   function openViewer(x) {
     var k = kind(x.mime);
-    var src = k === "gdoc" ? "https://docs.google.com/document/d/" + x.id + "/preview" : "https://drive.google.com/file/d/" + x.id + "/preview";
+    var src = k === "gdoc" ? "https://docs.google.com/" + gType(x.mime) + "/d/" + x.id + "/preview" : "https://drive.google.com/file/d/" + x.id + "/preview";
     var v = document.createElement("div"); v.className = "viewer"; v.setAttribute("role", "dialog"); v.setAttribute("aria-modal", "true"); v.setAttribute("aria-label", x.name);
-    var dl = k === "gdoc" ? "https://docs.google.com/document/d/" + x.id + "/export?format=pdf" : "https://drive.google.com/uc?export=download&id=" + x.id;
+    var dl = k === "gdoc" ? "https://docs.google.com/" + gType(x.mime) + "/d/" + x.id + "/export?format=pdf" : "https://drive.google.com/uc?export=download&id=" + x.id;
     v.innerHTML = '<div class="viewer-h"><b>' + esc(x.name) + '</b><button type="button" class="icon-btn" data-act="closeViewer" aria-label="' + L("Close", "Cerrar") + '">' + ic("x") + "</button></div>" +
       '<div class="viewer-frame">' + (k === "zip" ? '<div class="nopv"><div>' + ic("zip") + "<p>" + L("ZIP files can't be previewed. Download it to see what's inside.", "Los archivos ZIP no se pueden ver aquí. Descárgalo para ver lo que tiene.") + "</p></div></div>"
         : '<iframe src="' + src + '" title="' + esc(x.name) + '" allow="autoplay; fullscreen" allowfullscreen></iframe>') + "</div>" +
