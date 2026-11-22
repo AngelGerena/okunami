@@ -11,14 +11,31 @@
   var card = document.querySelector(".card"); if (!card) return;
   var root = document.getElementById("qz"); if (!root) return;
 
-  /* goal -> products (names exactly as on the card). Edit here to change suggestions. */
+  /* goal -> products, built from the U-MUVO catalog (files/catalog-en.pdf). Edit here to change suggestions.
+     Each product shows what's IN it (ingredients from the catalog), never what it cures. */
   var PICKS = {
-    comfort: ["Painless Night"],
-    energy:  ["Png #energy", "B12 Plus"],
-    sleep:   ["Melatonin Plus", "Painless Night"],
-    skin:    ["Sornie Collagen Patch", "Sornie Anti-Aging Mask", "GlutaMore"],
-    weight:  ["SlimStyle", "Png #energy"],
-    income:  []
+    comfort:  ["Painless Night", "Dekamin", "Sornie Collagen Patch"],
+    energy:   ["B12 Plus", "GlutaMore", "Png #energy"],
+    sleep:    ["Melatonin Plus"],
+    skin:     ["Sornie Collagen Patch", "Sornie Anti-Aging Mask", "GlutaMore"],
+    weight:   ["SlimStyle"],
+    heart:    ["Omevia", "B12 Plus", "Dekamin"],
+    intimacy: ["Ladies Night", "Gentlemen Night"],
+    income:   []
+  };
+  var INFO = {
+    "Painless Night":         ["Transdermal patch with glucosamine and Korean red ginseng", "Parche transdérmico con glucosamina y ginseng rojo coreano"],
+    "Dekamin":                ["Transdermal patch with vitamins D3, K2 and C plus magnesium", "Parche transdérmico con vitaminas D3, K2 y C, y magnesio"],
+    "Sornie Collagen Patch":  ["Patch with collagen, hydrolyzed keratin, vitamin E and coenzyme Q10", "Parche con colágeno, queratina hidrolizada, vitamina E y coenzima Q10"],
+    "Sornie Anti-Aging Mask": ["Weekly mask with collagen, hyaluronic acid and retinol A", "Mascarilla semanal con colágeno, ácido hialurónico y retinol A"],
+    "GlutaMore":              ["Sublingual glutathione drops with vitamin C, taurine and arginine", "Gotas sublinguales de glutatión con vitamina C, taurina y arginina"],
+    "B12 Plus":               ["Vitamins B12, B1, B3 and folic acid with vitamins C, D and E", "Vitaminas B12, B1, B3 y ácido fólico con vitaminas C, D y E"],
+    "Png #energy":            ["Energy formula. Ask us for the details", "Fórmula de energía. Pregúntanos los detalles"],
+    "Melatonin Plus":         ["4.4 mg melatonin with lavender and rose essential oils", "4.4 mg de melatonina con aceites esenciales de lavanda y rosa"],
+    "SlimStyle":              ["Green tea, guarana, garcinia cambogia and L-carnitine", "Té verde, guaraná, garcinia cambogia y L-carnitina"],
+    "Omevia":                 ["Omega 3, coenzyme Q10, DHEA and pregnenolone", "Omega 3, coenzima Q10, DHEA y pregnenolona"],
+    "Ladies Night":           ["For her: ginseng, maca, L-arginine, zinc and red clover", "Para ella: ginseng, maca, L-arginina, zinc y trébol rojo"],
+    "Gentlemen Night":        ["For him: ginseng, maca, L-arginine, zinc and eurycoma longifolia", "Para él: ginseng, maca, L-arginina, zinc y eurycoma longifolia"]
   };
 
   var T = {
@@ -28,7 +45,8 @@
       qs: [
         { k: "goal", q: "What would you most like to feel better?", o: [
           ["comfort", "Body comfort (aches, tension)"], ["energy", "More energy during the day"], ["sleep", "Better, deeper sleep"],
-          ["skin", "Skin and natural glow"], ["weight", "Weight and feeling lighter"], ["income", "Earning extra income"]] },
+          ["skin", "Skin and natural glow"], ["weight", "Weight and feeling lighter"], ["heart", "Heart health and healthy aging"],
+          ["intimacy", "Intimacy and vitality"], ["income", "Earning extra income"]] },
         { k: "often", q: "How often is this on your mind?", o: [["daily", "Every day"], ["weekly", "A few times a week"], ["sometimes", "Now and then"]] },
         { k: "tried", q: "What have you tried so far?", o: [["nothing", "Nothing yet"], ["pills", "Pills from the store"], ["creams", "Creams or rubs"], ["supps", "Other supplements"]] },
         { k: "want", q: "What matters most to you?", o: [["natural", "Natural ingredients"], ["easy", "Easy to use"], ["price", "A good price"], ["guide", "Someone to guide me"]] },
@@ -44,7 +62,7 @@
       rIncome: "You're a great fit for our team. Emely & Felix will show you how the business works, step by step.",
       waBtn: "Send my results on WhatsApp", catBtn: "Open the catalog", joinBtn: "See the business opportunity",
       fine: "Natural wellness products. Not a medicine and not meant to diagnose or treat any condition. Results vary. Talk to your doctor if you have a health concern.",
-      goals: { comfort: "body comfort", energy: "more energy", sleep: "better sleep", skin: "skin and glow", weight: "feeling lighter", income: "extra income" },
+      goals: { comfort: "body comfort", energy: "more energy", sleep: "better sleep", skin: "skin and glow", weight: "feeling lighter", heart: "heart health and healthy aging", intimacy: "intimacy and vitality", income: "extra income" },
       wa: function (n, g, p, t) {
         return "Hi Emely and Felix! I'm " + n + ". I just took the wellness quiz on your card. My goal: " + g + "." +
           (p.length ? " Suggested for me: " + p.join(", ") + "." : "") + (t === "yes" || t === "maybe" ? " I'm also interested in joining the team." : "") + " Can you help me get started?";
@@ -56,7 +74,8 @@
       qs: [
         { k: "goal", q: "¿Qué te gustaría sentir mejor?", o: [
           ["comfort", "Comodidad del cuerpo (molestias, tensión)"], ["energy", "Más energía durante el día"], ["sleep", "Dormir mejor y más profundo"],
-          ["skin", "Piel y brillo natural"], ["weight", "Peso y sentirme más ligero"], ["income", "Ganar ingresos extra"]] },
+          ["skin", "Piel y brillo natural"], ["weight", "Peso y sentirme más ligero"], ["heart", "Corazón y envejecer saludable"],
+          ["intimacy", "Intimidad y vitalidad"], ["income", "Ganar ingresos extra"]] },
         { k: "often", q: "¿Con qué frecuencia piensas en esto?", o: [["daily", "Todos los días"], ["weekly", "Varias veces por semana"], ["sometimes", "De vez en cuando"]] },
         { k: "tried", q: "¿Qué has probado hasta ahora?", o: [["nothing", "Nada todavía"], ["pills", "Pastillas de la tienda"], ["creams", "Cremas o ungüentos"], ["supps", "Otros suplementos"]] },
         { k: "want", q: "¿Qué es lo más importante para ti?", o: [["natural", "Ingredientes naturales"], ["easy", "Fácil de usar"], ["price", "Un buen precio"], ["guide", "Alguien que me guíe"]] },
@@ -72,7 +91,7 @@
       rIncome: "Eres perfecto para nuestro equipo. Emely y Felix te enseñan cómo funciona el negocio, paso a paso.",
       waBtn: "Enviar mis resultados por WhatsApp", catBtn: "Abrir el catálogo", joinBtn: "Ver la oportunidad de negocio",
       fine: "Productos naturales de bienestar. No son medicina y no son para diagnosticar ni tratar ninguna condición. Los resultados varían. Consulta a tu médico si tienes una preocupación de salud.",
-      goals: { comfort: "comodidad del cuerpo", energy: "más energía", sleep: "dormir mejor", skin: "piel y brillo", weight: "sentirme más ligero", income: "ingresos extra" },
+      goals: { comfort: "comodidad del cuerpo", energy: "más energía", sleep: "dormir mejor", skin: "piel y brillo", weight: "sentirme más ligero", heart: "corazón y envejecer saludable", intimacy: "intimidad y vitalidad", income: "ingresos extra" },
       wa: function (n, g, p, t) {
         return "¡Hola Emely y Felix! Soy " + n + ". Acabo de hacer el quiz de bienestar en su tarjeta. Mi meta: " + g + "." +
           (p.length ? " Me sugirieron: " + p.join(", ") + "." : "") + (t === "yes" || t === "maybe" ? " También me interesa unirme al equipo." : "") + " ¿Me ayudan a empezar?";
@@ -142,7 +161,7 @@
     var join = card.querySelector(".join-btn"), cat = card.querySelector(".cover");
     var wa = "https://wa.me/" + phone() + "?text=" + encodeURIComponent(t.wa(st.name || "", t.goals[g] || "", p, st.a.team));
     body.innerHTML = '<p class="qz-step">' + esc(t.rKicker) + '</p><h3 class="qz-q" tabindex="-1">' + esc(t.rFor + (t.goals[g] || "")) + "</h3>" +
-      (p.length ? '<ul class="qz-picks">' + p.map(function (x) { return "<li>" + esc(x) + "</li>"; }).join("") + "</ul><p class=\"qz-sub\">" + esc(t.rNote) + "</p>" : "") +
+      (p.length ? '<ul class="qz-picks">' + p.map(function (x) { var d = INFO[x]; return "<li><span><b>" + esc(x) + "</b>" + (d ? "<small>" + esc(d[st.es ? 1 : 0]) + "</small>" : "") + "</span></li>"; }).join("") + "</ul><p class=\"qz-sub\">" + esc(t.rNote) + "</p>" : "") +
       (team ? '<p class="qz-team">' + esc(t.rIncome) + "</p>" : "") +
       '<p class="qz-fine">' + esc(t.fine) + "</p>";
     foot.innerHTML = '<div class="qz-res">' +

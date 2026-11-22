@@ -207,7 +207,7 @@
   var LD_ST = ["new", "contacted", "customer", "team"];
   function ldLabel(s) { return { new: L("New", "Nuevo"), contacted: L("Contacted", "Contactado"), customer: L("Customer", "Cliente"), team: L("Joined team", "En el equipo") }[s] || s; }
   function ldBadge(s) { return '<span class="badge ld-' + esc(s) + '">' + esc(ldLabel(s)) + "</span>"; }
-  var LD_GOAL = { comfort: ["Body comfort", "Comodidad del cuerpo"], energy: ["More energy", "Más energía"], sleep: ["Better sleep", "Dormir mejor"], skin: ["Skin and glow", "Piel y brillo"], weight: ["Feeling lighter", "Sentirse más ligero"], income: ["Extra income", "Ingresos extra"] };
+  var LD_GOAL = { comfort: ["Body comfort", "Comodidad del cuerpo"], energy: ["More energy", "Más energía"], sleep: ["Better sleep", "Dormir mejor"], skin: ["Skin and glow", "Piel y brillo"], weight: ["Feeling lighter", "Sentirse más ligero"], heart: ["Heart and healthy aging", "Corazón y envejecer saludable"], intimacy: ["Intimacy and vitality", "Intimidad y vitalidad"], income: ["Extra income", "Ingresos extra"] };
   var LD_ANS = {
     often: { daily: ["Every day", "Todos los días"], weekly: ["A few times a week", "Varias veces por semana"], sometimes: ["Now and then", "De vez en cuando"] },
     tried: { nothing: ["Nothing yet", "Nada todavía"], pills: ["Store pills", "Pastillas de tienda"], creams: ["Creams or rubs", "Cremas"], supps: ["Other supplements", "Otros suplementos"] },
