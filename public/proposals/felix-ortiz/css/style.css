@@ -249,7 +249,3 @@ html body .qr-full p small{color:#566a5c}
 .qr-full:not([hidden]) img{animation:qrIn .5s .3s ease both}
 @keyframes qrIn{from{transform:scale(.85);opacity:0}to{transform:none;opacity:1}}
 @media (prefers-reduced-motion:reduce){.qr-full *,.qr-full::before,.qr-full:not([hidden]){animation:none!important}}
-
-/* Finesse Media credit under the OKUNAMI line */
-.credit.crafted{margin-top:2px}
-.credit.crafted a{letter-spacing:0;font-weight:500;color:#6f7f74;text-decoration:underline;text-underline-offset:2px}

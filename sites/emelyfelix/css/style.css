@@ -290,7 +290,3 @@ body.gate-open{overflow:hidden}
 .gate-spin{display:block;width:28px;height:28px;margin:14px auto 0;border-radius:50%;border:3px solid #dbe8cf;border-top-color:#82b733;animation:gSpin .8s linear infinite}
 @keyframes gSpin{to{transform:rotate(360deg)}}
 @media (prefers-reduced-motion:reduce){.gate,.gate-dots.shake,.gate-check,.gate-spin{animation:none}}
-
-/* Finesse Media credit under the OKUNAMI line */
-.credit.crafted{margin-top:2px}
-.credit.crafted a{letter-spacing:0;font-weight:500;color:#6f7f74;text-decoration:underline;text-underline-offset:2px}
