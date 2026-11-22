@@ -458,7 +458,7 @@
     { group: ["Products", "Productos"], items: [
       { k: "shop_title", pair: true, label: ["Heading", "Título"], def: ["Feel the difference", "Siente la diferencia"], max: 60 },
       { k: "shop_lead", pair: true, area: true, label: ["Short description", "Descripción corta"], def: ["Transdermal patches, skin care and supplements from One More International. Browse the catalog and order through us.", "Parches transdérmicos, cuidado de la piel y suplementos de One More International. Mira el catálogo y ordena con nosotros."], max: 240 },
-      { k: "products", type: "list", label: ["Products shown (one per line)", "Productos que se muestran (uno por línea)"], def: "Sornie Collagen Patch\nSornie Anti-Aging Mask\nGlutaMore\nPng #energy\nPainless Night\nSlimStyle\nOmevia\nB12 Plus\nDekamin\nMelatonin Plus\nLadies Night\nGentlemen Night" }
+      { k: "products", type: "list", label: ["Products shown (one per line)", "Productos que se muestran (uno por línea)"], def: "Sornie Collagen Patch\nSornie Anti-Aging Mask\nGlutaMore\nPainless Night\nSlimStyle\nOmevia\nB12 Plus\nDekamin\nMelatonin Plus\nLadies Night\nGentlemen Night" }
     ]},
     { group: ["Catalogs", "Catálogos"], items: [
       { k: "catalog_en", type: "pdf", kind: "catalog_en", label: ["English catalog (PDF)", "Catálogo en inglés (PDF)"], def: "../files/catalog-en.pdf" },

@@ -15,7 +15,7 @@
      Each product shows what's IN it (ingredients from the catalog), never what it cures. */
   var PICKS = {
     comfort:  ["Painless Night", "Dekamin", "Sornie Collagen Patch"],
-    energy:   ["B12 Plus", "GlutaMore", "Png #energy"],
+    energy:   ["B12 Plus", "GlutaMore"],
     sleep:    ["Melatonin Plus"],
     skin:     ["Sornie Collagen Patch", "Sornie Anti-Aging Mask", "GlutaMore"],
     weight:   ["SlimStyle"],
@@ -30,7 +30,6 @@
     "Sornie Anti-Aging Mask": ["Weekly mask with collagen, hyaluronic acid and retinol A", "Mascarilla semanal con colágeno, ácido hialurónico y retinol A"],
     "GlutaMore":              ["Sublingual glutathione drops with vitamin C, taurine and arginine", "Gotas sublinguales de glutatión con vitamina C, taurina y arginina"],
     "B12 Plus":               ["Vitamins B12, B1, B3 and folic acid with vitamins C, D and E", "Vitaminas B12, B1, B3 y ácido fólico con vitaminas C, D y E"],
-    "Png #energy":            ["Energy formula. Ask us for the details", "Fórmula de energía. Pregúntanos los detalles"],
     "Melatonin Plus":         ["4.4 mg melatonin with lavender and rose essential oils", "4.4 mg de melatonina con aceites esenciales de lavanda y rosa"],
     "SlimStyle":              ["Green tea, guarana, garcinia cambogia and L-carnitine", "Té verde, guaraná, garcinia cambogia y L-carnitina"],
     "Omevia":                 ["Omega 3, coenzyme Q10, DHEA and pregnenolone", "Omega 3, coenzima Q10, DHEA y pregnenolona"],
