@@ -1,0 +1,79 @@
+/* =================================================================
+   The Wellness Duo Collection (src/templates/sig28.tsx): Lounge, Duo,
+   Gold Seal and Script Curve. Light pages; the brand color for bands
+   and names, the accent for frames, rings, curves and the ampersand.
+   Every color is an element variable (--c-*). Body and booking pop-up
+   come from the Author collection (sig24.css, au- classes); shop, order
+   and join buttons from the Wellness Collection (sig27.css, wl- classes).
+   Prefixes: wd-, wdl__, wdd__, wds__, wdc__.
+   ================================================================= */
+.wd-name em.wd-amp { font-style: normal; color: var(--c-accentDetail); }
+.wd-role { text-wrap: balance; }
+
+/* ---------------------------------------------------------------- 1 LOUNGE */
+.tpl-wdl .wl-hero { padding: 14px 14px 8px; text-align: center; }
+.wdl__frame { padding: 6px; border-radius: calc(var(--r-sm) + 12px);
+  background: linear-gradient(140deg, color-mix(in srgb, var(--c-accentDetail) 70%, #fff) 0%, color-mix(in srgb, var(--c-accentDetail) 30%, #fff) 40%, var(--c-accentDetail) 100%);
+  box-shadow: 0 18px 34px -22px rgba(var(--shadow-rgb), .75); }
+.wdl__frame .au-ratio { border-radius: calc(var(--r-sm) + 7px); }
+.wdl__img { object-position: 50% 14%; }
+.wdl__mark { margin: 20px auto 10px; max-height: 44px; }
+.tpl-wdl .wd-name { margin-top: 6px; font-weight: 600; font-size: clamp(34px, 11vw, 44px); line-height: 1.02; }
+.tpl-wdl .wd-amp { font-family: 'Great Vibes', cursive; font-weight: 400; font-size: 1.2em; padding: 0 2px; }
+.wdl__rule { display: block; width: 120px; height: 1px; margin: 14px auto 0; background: linear-gradient(90deg, transparent, var(--c-accentDetail), transparent); }
+.tpl-wdl .wd-role { text-transform: uppercase; letter-spacing: .14em; font-size: 12px; font-weight: 600; }
+
+/* ---------------------------------------------------------------- 2 DUO */
+.tpl-wdd .wl-hero { padding-bottom: 4px; }
+.wdd__band { position: relative; padding-bottom: 70px; clip-path: polygon(0 0, 100% 0, 100% calc(100% - 56px), 0 100%);
+  background: linear-gradient(160deg, color-mix(in srgb, var(--c-heroBand) 80%, #fff) 0%, var(--c-heroBand) 70%); }
+.wdd__photo { position: relative; aspect-ratio: 1; overflow: hidden; -webkit-mask-image: linear-gradient(#000 58%, transparent 98%); mask-image: linear-gradient(#000 58%, transparent 98%); }
+.wdd__img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 12%; }
+.wdd__id { position: relative; margin-top: -96px; padding: 0 22px; }
+.wdd__mark { max-width: 46%; max-height: 40px; margin-bottom: 8px; filter: brightness(0) invert(1); }
+.wdd__id .wl-word { color: var(--c-onBand); font-size: 14px; }
+.tpl-wdd .wd-name { color: var(--c-onBand); font-size: clamp(36px, 12vw, 46px); line-height: .98; letter-spacing: -.03em; }
+.tpl-wdd .wd-role { color: color-mix(in srgb, var(--c-onBand) 82%, transparent); }
+.wdd__row { position: relative; z-index: 2; display: flex; flex-wrap: wrap; align-items: center; gap: 10px 12px; margin: -34px 16px 0; padding: 10px; border-radius: calc(var(--r-sm) + 10px);
+  background: var(--c-pageBg); border: 1px solid var(--c-dividers); box-shadow: 0 14px 26px -20px rgba(var(--shadow-rgb), .85); }
+.wdd__av { width: 54px; height: 54px; flex: none; border-radius: 50%; object-fit: cover; object-position: 50% 18%; border: 3px solid var(--c-accentDetail); min-height: 0; }
+.wdd__who { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+.wdd__who b { font-family: var(--f-display); font-size: 18px; color: var(--c-name); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.wdd__who small { font-size: 13px; color: var(--c-caption); }
+.wdd__acts { display: flex; gap: 8px; width: 100%; }
+.wdd__act { flex: 1; height: 46px; border-radius: 999px; display: grid; place-items: center; text-decoration: none;
+  background: color-mix(in srgb, var(--c-accentDetail) 14%, var(--c-pageBg)); color: var(--c-name); border: 1px solid var(--c-dividers); }
+.wdd__act.is-wa { background: linear-gradient(180deg, color-mix(in srgb, var(--c-btnPrimaryBg) 66%, #fff), var(--c-btnPrimaryBg) 55%, color-mix(in srgb, var(--c-btnPrimaryBg) 82%, #000)); color: var(--c-btnPrimaryText); border: 0; }
+.tpl-wdd .au-grid { display: none; }
+
+
+/* ---------------------------------------------------------------- 3 GOLD SEAL */
+.tpl-wds .wl-hero { padding: 26px 18px 8px; text-align: center; background: radial-gradient(120% 70% at 50% 0%, color-mix(in srgb, var(--c-accentDetail) 8%, var(--c-pageBg)) 0%, var(--c-pageBg) 70%); }
+.wds__seal { position: relative; width: min(78vw, 290px); aspect-ratio: 1; margin: 0 auto; }
+.wds__ring { position: absolute; inset: 0; width: 100%; height: 100%; animation: wdsSpin 60s linear infinite; }
+.wds__o { fill: none; stroke: var(--c-accentDetail); stroke-width: 2; }
+.wds__i { fill: none; stroke: color-mix(in srgb, var(--c-accentDetail) 60%, #fff); stroke-width: 1; }
+.wds__ring text { font-family: var(--f-body); font-weight: 600; font-size: 12.5px; letter-spacing: .22em; fill: var(--c-accentDetail); }
+.wds__photo { position: absolute; inset: 14%; border-radius: 50%; overflow: hidden; box-shadow: 0 0 0 4px var(--c-pageBg), 0 16px 30px -16px rgba(var(--shadow-rgb), .8); }
+.wds__img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 16%; }
+.wds__mark { margin: 16px auto 8px; max-height: 40px; }
+.tpl-wds .wd-name { font-weight: 600; font-size: clamp(32px, 10vw, 40px); }
+.tpl-wds .wd-amp { font-style: italic; }
+.tpl-wds .au-grid { grid-template-columns: minmax(0, 1fr); }
+.tpl-wds .au-c { justify-content: flex-start; min-height: 54px; padding: 0 18px; position: relative; font-size: 15px; }
+.tpl-wds .au-c::after { content: "\203A\FE0E"; position: absolute; right: 18px; font-size: 22px; line-height: 1; color: var(--c-accentDetail); }
+@keyframes wdsSpin { to { transform: rotate(360deg); } }
+.is-still .wds__ring { animation: none; }
+@media (prefers-reduced-motion: reduce) { .wds__ring { animation: none; } }
+
+/* ---------------------------------------------------------------- 4 SCRIPT CURVE */
+.tpl-wdc .wl-hero { text-align: center; padding-bottom: 8px; }
+.wdc__photo { position: relative; }
+.wdc__img { object-position: 50% 16%; }
+.wdc__curve { position: absolute; left: 0; right: 0; bottom: -1px; width: 100%; height: 56px; }
+.wdc__line { fill: var(--c-accentDetail); }
+.wdc__fill { fill: var(--c-pageBg); }
+.wdc__mark { margin: 0 auto 6px; max-height: 40px; position: relative; }
+.wdc__name { display: flex; flex-direction: column; align-items: center; font-size: clamp(38px, 12vw, 46px); line-height: .92; letter-spacing: -.02em; }
+.wdc__name .wd-amp { font-family: 'Great Vibes', cursive; font-weight: 400; font-size: 1.05em; margin: 2px 0; }
+.tpl-wdc .wd-role { margin-top: 12px; }

@@ -26,13 +26,13 @@ function Shell({ cls, a, children }: { cls: string; a: Au; children: ReactNode }
 }
 
 /** The logo when there is one, otherwise the business name set as a wordmark. */
-function Mark({ a, cls = '' }: { a: Au; cls?: string }) {
+export function Mark({ a, cls = '' }: { a: Au; cls?: string }) {
   if (a.data.logoUrl) return <img className={`wl-logo ${cls}`} src={a.data.logoUrl} alt={a.brand || a.name} />;
   if (!a.brand) return null;
   return <p className={`wl-word ${cls}`} {...el('name')}>{a.brand}</p>;
 }
 
-function Pic({ a, cls }: { a: Au; cls: string }) {
+export function Pic({ a, cls }: { a: Au; cls: string }) {
   if (!a.data.photoUrl) return <span className={`${cls} au-nophoto`} aria-hidden {...el('heroBand')} />;
   return <img className={cls} src={a.data.photoUrl} alt={a.name} />;
 }
@@ -48,7 +48,7 @@ function Id({ a, cls = '' }: { a: Au; cls?: string }) {
 }
 
 /** Order on WhatsApp, Shop and Join, as big candy buttons above the product list. */
-function Sell({ a }: { a: Au }) {
+export function Sell({ a }: { a: Au }) {
   const { data } = a;
   const rows: { key: string; label: string; href: string; icon: ReactNode; kind: string }[] = [];
   if (data.website) rows.push({ key: 'shop', label: 'Shop my catalog', href: webHref(data.website), icon: <ShoppingBag size={19} strokeWidth={2} aria-hidden />, kind: 'is-shop' });

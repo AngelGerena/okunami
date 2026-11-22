@@ -552,6 +552,10 @@ const NICHE_LIST: Niche[] = [
       d('thepack', 'The Pack', 'Bold green shapes like product packaging over a photo window.', ['#14532D', '#8DC63F', '#FFFFFF'], 'light', ['Outfit', 'Outfit'], ['pill', 'large', 'raised', 'none'], 'bright', 1, true),
       d('executive', 'Executive', 'A serif name beside a small round photo, a thin lime rule and lots of white space.', ['#0F3D22', '#8DC63F', '#FFFFFF'], 'light', ['Fraunces', 'Outfit'], ['rounded', 'large', 'raised', 'none'], 'calm', 0.7, true),
       d('limeglass', 'Lime Glass', 'Soft lime light, a framed photo and your name on frosted glass.', ['#0F3D22', '#8DC63F', '#F6FBF1'], 'light', ['Outfit', 'Outfit'], ['pill', 'large', 'raised', 'none'], 'calm', 1.2, true),
+      d('wdlounge', 'Lounge', 'A gold-framed photo, a serif name with a script ampersand and gold gloss buttons.', ['#6D1A2B', '#B48A3C', '#FBF7F0'], 'light', ['Fraunces', 'Outfit'], ['pill', 'large', 'raised', 'none'], 'calm', 1, true),
+      d('wdduo', 'Duo', 'A deep green slanted header and a contact row with round WhatsApp, Call and Text buttons.', ['#0F3D22', '#8DC63F', '#FFFFFF'], 'light', ['Outfit', 'Outfit'], ['pill', 'large', 'raised', 'none'], 'calm', 1, true),
+      d('wdseal', 'Gold Seal', 'A round photo in a slowly turning engraved gold ring, buttons stacked as a list.', ['#0F3D22', '#B48A3C', '#FFFDF7'], 'light', ['Fraunces', 'Outfit'], ['rounded', 'large', 'raised', 'none'], 'calm', 0.8, true),
+      d('wdcurve', 'Script Curve', 'A wide photo, a smooth lime curve and your name stacked big with a script ampersand.', ['#0F3D22', '#8DC63F', '#FFFFFF'], 'light', ['Outfit', 'Outfit'], ['rounded', 'large', 'raised', 'none'], 'bright', 0.9, true),
     ],
   },
 
@@ -990,6 +994,7 @@ export const TEMPLATE_EXTRA_FONTS: Partial<Record<TemplateId, string[]>> = {
   reverb: [], selah: ['Pinyon Script'], admitone: ['IBM Plex Mono'], linernotes: [],
   coverstory: [], backcover: [], fullfeature: [], colorblock: [], signedprint: ['Pinyon Script'], proofsheet: [],
   freshleaf: [], forestband: [], thepack: [], executive: [], limeglass: [],
+  wdlounge: ['Great Vibes'], wdduo: [], wdseal: [], wdcurve: ['Great Vibes'],
   cinescreen: ['JetBrains Mono'], cinebrain: ['JetBrains Mono'], focusguide: ['JetBrains Mono'], punchin: ['JetBrains Mono'], slate: ['JetBrains Mono'],
   terminal: ['VT323', 'IBM Plex Mono'],
   radar: ['Share Tech Mono'],
