@@ -249,3 +249,13 @@ html body .qr-full p small{color:#566a5c}
 .qr-full:not([hidden]) img{animation:qrIn .5s .3s ease both}
 @keyframes qrIn{from{transform:scale(.85);opacity:0}to{transform:none;opacity:1}}
 @media (prefers-reduced-motion:reduce){.qr-full *,.qr-full::before,.qr-full:not([hidden]){animation:none!important}}
+
+/* Catalog buttons: candy style. English = dark green, Spanish = light lime */
+.two .pill{border:0;border-radius:999px;min-height:50px;font-weight:700;font-size:14px}
+.two .pill:first-child{background:var(--candy);color:#fff;box-shadow:inset 0 1px 0 rgba(255,255,255,.4),inset 0 -2px 0 rgba(0,0,0,.12),0 10px 20px -12px rgba(15,61,34,.8)}
+.two .pill:first-child .ico{color:#e2f5ad}
+.two .pill:last-child{background:linear-gradient(180deg,#f3fbdf 0%,#dcf2a8 48%,#cdea8c 54%,#bfe274 100%);color:#0f3d22;box-shadow:inset 0 1px 0 rgba(255,255,255,.85),inset 0 -2px 0 rgba(0,0,0,.07),0 10px 20px -14px rgba(15,61,34,.6)}
+.two .pill:last-child .ico{color:#0f3d22}
+.two .pill:active{transform:translateY(1px)}
+.two .pill{white-space:nowrap;font-size:13.5px;padding:0 10px;letter-spacing:-.01em}
+@media (max-width:370px){.two .pill .ico{display:none}.two .pill{font-size:13px;padding:0 6px}}
