@@ -1,0 +1,25 @@
+/* Tappable products (js/products.js). The sheet reuses the quiz sheet styles (css/quiz.css). */
+.pd-hint{margin-top:14px;font:500 12.5px var(--body);color:var(--muted);display:flex;align-items:center;gap:6px}
+.pd-hint::before{content:"";width:16px;height:16px;flex:0 0 auto;background:no-repeat center/contain url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232e8b3e' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9 11V5a1.5 1.5 0 0 1 3 0v5'/%3E%3Cpath d='M12 10V9a1.5 1.5 0 0 1 3 0v2'/%3E%3Cpath d='M15 10.5a1.5 1.5 0 0 1 3 0V15a6 6 0 0 1-6 6h-1a6 6 0 0 1-5-2.7L4 15a1.5 1.5 0 0 1 2.4-1.8L9 15'/%3E%3C/svg%3E")}
+.pd-hint+.products{margin-top:8px}
+.products li:has(.pd-chip){padding:0;border:0;background:none}
+.pd-chip{display:inline-flex;align-items:center;gap:6px;min-height:36px;padding:0 12px;border-radius:999px;border:1px solid #cfe7a6;background:#fff;font:600 13px var(--body);color:var(--forest);cursor:pointer;box-shadow:0 1px 0 rgba(15,61,34,.06);transition:background .15s,border-color .15s,transform .1s}
+.pd-chip::after{content:"";width:7px;height:7px;border-right:2px solid var(--green);border-top:2px solid var(--green);transform:rotate(45deg);margin-left:1px;opacity:.8}
+.pd-chip:hover{background:var(--lime-soft);border-color:#99cc45}
+.pd-chip:active{transform:scale(.97)}
+.l6 .pd-chip{background:rgba(255,255,255,.85)}
+
+.pd .qz-head h2{font-size:24px}
+.pd-logo{display:flex;align-items:center;justify-content:center;min-height:96px;margin:4px 0 6px;padding:12px;border-radius:16px;background:#fff;border:1px solid var(--line)}
+.pd-logo img{max-width:100%;max-height:90px;width:auto;height:auto;display:block}
+.pd-sec{font:600 11px var(--body);letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin:16px 0 6px}
+.pd-txt{font:500 15px/1.45 var(--body);color:var(--ink)}
+.pd-tags{list-style:none;display:flex;flex-wrap:wrap;gap:6px;padding:0;margin:0}
+.pd-tags li{font:600 13px var(--body);color:var(--forest);background:var(--lime-soft);border:1px solid #cfe7a6;border-radius:999px;padding:5px 11px}
+.pd-fine{margin-top:16px;font-size:11.5px;line-height:1.45;color:#83927f}
+.pd-foot{display:grid;gap:8px;border-top:1px solid var(--line);padding:12px 18px calc(14px + env(safe-area-inset-bottom,0px));background:#fff}
+.pd-two{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.pd-wa,.pd-ghost{display:flex;align-items:center;justify-content:center;gap:7px;min-height:50px;padding:0 14px;border-radius:999px;text-decoration:none;font:600 15px var(--body);text-align:center}
+.pd-wa{background:var(--candy);color:#fff;box-shadow:inset 0 1px 0 rgba(255,255,255,.35)}
+.pd-ghost{background:#fff;border:1px solid var(--line);color:var(--forest);font-size:14px;line-height:1.2}
+@media (max-width:360px){.pd-two{grid-template-columns:1fr}}
