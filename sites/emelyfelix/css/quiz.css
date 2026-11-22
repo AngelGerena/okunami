@@ -1,0 +1,41 @@
+/* Natural Wellness Quiz (js/quiz.js). Uses the card's tokens from style.css. */
+.quiz-panel{background:linear-gradient(160deg,#f3fae7 0%,var(--mint) 60%);border-color:#cfe7a6;position:relative;overflow:hidden}
+.quiz-panel .qz-tag{display:inline-flex;align-items:center;gap:6px;margin-top:10px;font:600 12px var(--body);color:var(--forest-2);background:#fff;border:1px solid var(--line);border-radius:999px;padding:4px 10px}
+.quiz-panel .cta{margin-top:14px}
+
+.qz{position:fixed;inset:0;z-index:55;display:flex;align-items:flex-end;justify-content:center;background:rgba(15,40,24,.5);backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);padding-top:env(safe-area-inset-top,0px)}
+.qz[hidden]{display:none!important}
+.qz-sheet{width:100%;max-width:440px;max-height:92vh;max-height:92dvh;display:flex;flex-direction:column;background:#fff;color:var(--ink);border-radius:24px 24px 0 0;box-shadow:0 -20px 50px -20px rgba(0,0,0,.5);animation:bkUp .28s ease-out}
+.qz-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;padding:18px 18px 10px}
+.qz-kicker{font:600 10.5px var(--body);letter-spacing:.22em;text-transform:uppercase;color:var(--green)}
+.qz-head h2{font:700 23px/1.1 var(--display);color:var(--forest);margin-top:4px}
+.qz-x{width:44px;height:44px;flex:0 0 auto;border-radius:50%;border:1px solid var(--line);background:var(--mint);color:var(--forest);display:grid;place-items:center;cursor:pointer}
+.qz-bar{height:6px;margin:0 18px;border-radius:3px;background:var(--lime-soft);overflow:hidden}
+.qz-bar i{display:block;height:100%;width:0;background:var(--candy);border-radius:3px;transition:width .3s ease}
+.qz-body{overflow-y:auto;overscroll-behavior:contain;padding:12px 18px 14px;-webkit-overflow-scrolling:touch}
+.qz-step{font:600 11px var(--body);letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin:6px 0 8px}
+.qz-q{font:700 21px/1.25 var(--display);color:var(--forest);outline:none}
+.qz-sub{font-size:14px;line-height:1.45;color:var(--muted);margin-top:8px}
+.qz-opts{display:grid;gap:8px;margin-top:14px}
+.qz-opt{min-height:52px;text-align:left;padding:10px 16px;border-radius:16px;border:1px solid var(--line);background:#fff;font:500 15.5px/1.3 var(--body);color:var(--ink);cursor:pointer;transition:background .15s,border-color .15s}
+.qz-opt:hover{border-color:#b3dd5c}
+.qz-opt[aria-checked="true"]{background:var(--candy-lime);border-color:#99cc45;color:var(--forest);font-weight:700}
+.qz-fields{display:grid;gap:10px;margin-top:14px}
+.qz-fields label{display:flex;flex-direction:column;gap:5px;font:500 12px var(--body);color:var(--muted)}
+.qz-fields input[type=text],.qz-fields input[type=tel],.qz-fields input[type=email]{min-height:46px;border-radius:12px;border:1px solid var(--line);background:#fff;padding:0 12px;font:500 16px var(--body);color:var(--ink);width:100%}
+.qz-fields .qz-consent{flex-direction:row;align-items:flex-start;gap:10px;font-size:12.5px;line-height:1.45;color:var(--muted);cursor:pointer}
+.qz-consent input{width:20px;height:20px;flex:0 0 auto;margin-top:1px;accent-color:#2e8b3e}
+.qz-err{min-height:1.3em;margin-top:8px;font-size:13.5px;color:#b3261e}
+.qz-picks{list-style:none;display:grid;gap:8px;margin-top:14px;padding:0}
+.qz-picks li{display:flex;align-items:center;gap:10px;min-height:48px;padding:8px 14px;border-radius:14px;background:var(--mint);border:1px solid var(--line);font:600 15.5px var(--body);color:var(--forest)}
+.qz-picks li::before{content:"";width:10px;height:10px;border-radius:50%;background:var(--candy);flex:0 0 auto}
+.qz-team{margin-top:14px;padding:12px 14px;border-radius:14px;background:#fff8e6;border:1px solid #f0dca6;font-size:14.5px;line-height:1.45;color:#5c4300}
+.qz-fine{margin-top:14px;font-size:11.5px;line-height:1.45;color:#83927f}
+.qz-foot{display:flex;gap:8px;border-top:1px solid var(--line);padding:12px 18px calc(14px + env(safe-area-inset-bottom,0px));background:#fff}
+.qz-foot:empty{display:none}
+.qz-res{display:grid;gap:8px;width:100%}
+.qz-go,.qz-wa,.qz-ghost{display:flex;align-items:center;justify-content:center;gap:7px;min-height:50px;padding:0 18px;border-radius:999px;text-decoration:none;font:600 15px var(--body);cursor:pointer;border:0}
+.qz-go{flex:1;background:var(--candy-lime);color:var(--forest);box-shadow:inset 0 1px 0 rgba(255,255,255,.7)}
+.qz-wa{background:var(--candy);color:#fff;box-shadow:inset 0 1px 0 rgba(255,255,255,.35)}
+.qz-ghost{background:#fff;border:1px solid var(--line);color:var(--forest)}
+@media (prefers-reduced-motion:reduce){.qz-sheet{animation:none}.qz-bar i{transition:none}}

@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Emely &amp; Felix | U-MUVO</title>
-<meta name="description" content="Emely &amp; Felix, Founders. U-MUVO catalog, orders by WhatsApp and our team.">
+<meta name="description" content="Emely &amp; Felix, Founders. Take the free natural wellness quiz, browse the U-MUVO catalog, order by WhatsApp and join our team.">
 <meta property="og:title" content="Emely &amp; Felix | U-MUVO">
 <meta property="og:description" content="Products, catalog and team. Save our contact in one step.">
 <meta property="og:type" content="website">
@@ -29,6 +29,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&display=swap">
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/qr-zoom.css">
+<link rel="stylesheet" href="css/quiz.css">
 </head>
 <body class="final" data-qr-name="Emely &amp; Felix">
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -82,6 +83,14 @@
       <ul class="products" aria-label="Products"><li>Sornie Collagen Patch</li><li>Sornie Anti-Aging Mask</li><li>GlutaMore</li><li>Png #energy</li><li>Painless Night</li><li>SlimStyle</li><li>Omevia</li><li>B12 Plus</li><li>Dekamin</li><li>Melatonin Plus</li><li>Ladies Night</li><li>Gentlemen Night</li></ul>
       <button class="cta" type="button" data-hire aria-haspopup="dialog"><svg class="ico"><use href="#i-cal"/></svg><span data-es="Agenda una consulta gratis">Book a free consultation</span></button>
       <p class="cta-note"><span data-es="Elige el d&amp;iacute;a y la hora, y env&amp;iacute;anosla por WhatsApp o texto.">Pick a day and time, then send it to us by WhatsApp or text.</span></p>
+    </section>
+
+    <section class="panel quiz-panel" id="quiz">
+      <p class="sec"><svg class="ico"><use href="#i-check"/></svg><span data-es="Quiz gratis de 60 segundos">Free 60-second quiz</span></p>
+      <h2><span data-es="Encuentra tu rutina natural">Find your natural routine</span></h2>
+      <p class="lead"><span data-es="Contesta 5 preguntas r&amp;aacute;pidas sobre energ&amp;iacute;a, descanso, comodidad o piel y recibe una sugerencia personal de Emely y Felix.">Answer 5 quick questions about energy, rest, body comfort or skin, and get a personal suggestion from Emely &amp; Felix.</span></p>
+      <button class="cta glow" type="button" data-quiz aria-haspopup="dialog"><svg class="ico"><use href="#i-leaf"/></svg><span data-es="Empezar el quiz">Start the quiz</span></button>
+      <p class="cta-note"><span data-es="Gratis. Sin compromiso. Tus respuestas son privadas.">Free. No commitment. Your answers stay private.</span></p>
     </section>
 
     <section class="panel join">
@@ -156,11 +165,24 @@
 
 
 
+<div class="qz" id="qz" hidden>
+  <div class="qz-sheet" role="dialog" aria-modal="true" aria-labelledby="qzTitle">
+    <div class="qz-head">
+      <div><p class="qz-kicker">Emely &amp; Felix &middot; U-MUVO</p><h2 id="qzTitle">Natural Wellness Quiz</h2></div>
+      <button class="qz-x" type="button" aria-label="Close"><svg class="ico"><use href="#i-x"/></svg></button>
+    </div>
+    <div class="qz-bar" aria-hidden="true"><i></i></div>
+    <div class="qz-body" aria-live="polite"></div>
+    <div class="qz-foot"></div>
+  </div>
+</div>
+
 <script>window.LOOKS = {l4:{name:"Editorial",note:"Full photo on top, fading into white with his name in big letters. Like a magazine cover."}};</script>
 <script src="js/cb-config.js"></script>
 <script src="js/content.js"></script>
 <script src="js/main.js"></script>
 <script src="js/sound.js"></script>
+<script src="js/quiz.js"></script>
 <script src="js/gate.js"></script>
 <script src="js/qr-zoom.js"></script>
 </body>
