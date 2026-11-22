@@ -20,14 +20,14 @@
   var TRAILS = {
     home: [
       { sel: null, t: ["Welcome to your back office, {name}", "Bienvenido a tu oficina, {name}"],
-        d: ["This is where you run your U-MUVO card: booking requests, your team's library and what your card shows. Here's a quick tour. It only takes a minute.",
-            "Aquí manejas tu tarjeta U-MUVO: las citas que te piden, la biblioteca del equipo y lo que muestra tu tarjeta. Te damos un recorrido rápido. Toma un minuto."] },
+        d: ["This is where you run your U-MUVO card: booking requests, new leads from your wellness quiz, your team's library and what your card shows. Here's a quick tour. It only takes a minute.",
+            "Aquí manejas tu tarjeta U-MUVO: las citas que te piden, los prospectos nuevos de tu quiz de bienestar, la biblioteca del equipo y lo que muestra tu tarjeta. Te damos un recorrido rápido. Toma un minuto."] },
       { sel: ".lang", t: ["English or Spanish", "Inglés o español"],
         d: ["Press EN or ES to switch the whole back office. Your choice is saved for next time.", "Presiona EN o ES para cambiar toda la oficina de idioma. Tu elección se queda guardada."] },
-      { sel: "#tabBar, #sideNav", t: ["Your five pages", "Tus cinco páginas"],
-        d: ["Home, Bookings, Library, My card and Settings. Press any of them to jump there.", "Inicio, Citas, Biblioteca, Mi tarjeta y Ajustes. Presiona cualquiera para ir ahí."] },
+      { sel: "#tabBar, #sideNav", t: ["Your six pages", "Tus seis páginas"],
+        d: ["Home, Bookings, Leads, Library, My card and Settings. Press any of them to jump there. A red number means something new is waiting.", "Inicio, Citas, Prospectos, Biblioteca, Mi tarjeta y Ajustes. Presiona cualquiera para ir ahí. Un número rojo quiere decir que hay algo nuevo esperándote."] },
       { sel: "#view .kpis", t: ["Your numbers at a glance", "Tus números de un vistazo"],
-        d: ["New bookings waiting for you, bookings this week, and what's in the team library. Press a box to open that page.", "Citas nuevas esperándote, citas de esta semana y lo que hay en la biblioteca del equipo. Presiona un cuadro para abrir esa página."] },
+        d: ["New bookings waiting for you, new leads from your quiz, and what's in the team library. Press a box to open that page.", "Citas nuevas esperándote, prospectos nuevos de tu quiz y lo que hay en la biblioteca del equipo. Presiona un cuadro para abrir esa página."] },
       { sel: "#view .cardx", t: ["Latest bookings", "Últimas citas"],
         d: ["When someone books a free consultation on your card, it shows up here and the message goes to your WhatsApp too.", "Cuando alguien agenda una consulta gratis en tu tarjeta, aparece aquí y el mensaje también te llega por WhatsApp."] },
       { sel: "#view .tiles", t: ["Shortcuts", "Atajos"],
@@ -38,6 +38,42 @@
       { sel: "#tipsBtn", t: ["Need help again?", "¿Necesitas ayuda otra vez?"],
         d: ["Press this button anytime to replay the tips for the page you're on. Each page has its own short guide the first time you open it.",
             "Presiona este botón cuando quieras para repetir los consejos de la página donde estás. Cada página tiene su propia guía corta la primera vez que la abres."] }
+    ],
+    whatsnew: [
+      { sel: null, t: ["New: a wellness quiz on your card", "Nuevo: un quiz de bienestar en tu tarjeta"],
+        d: ["Your card now has a free 60-second quiz called \"Find your natural routine\". Visitors answer 5 quick questions (energy, sleep, body comfort, skin, weight, heart, intimacy or extra income), leave their name and WhatsApp, and get products from your catalog suggested for their goal.",
+            "Tu tarjeta ahora tiene un quiz gratis de 60 segundos llamado \"Encuentra tu rutina natural\". Los visitantes contestan 5 preguntas rápidas (energía, sueño, comodidad del cuerpo, piel, peso, corazón, intimidad o ingresos extra), dejan su nombre y WhatsApp, y reciben productos de tu catálogo sugeridos para su meta."] },
+      { sel: "#tabBar [data-go=leads], #sideNav [data-go=leads]", t: ["Your new Leads page", "Tu nueva página de Prospectos"],
+        d: ["Everyone who finishes the quiz is saved here with their answers, so you know what they want before you write to them.", "Todos los que terminan el quiz se guardan aquí con sus respuestas, así sabes lo que buscan antes de escribirles."] },
+      { sel: "#view .kpis [data-go=leads]", t: ["New leads at a glance", "Prospectos nuevos de un vistazo"],
+        d: ["This box counts the leads you haven't contacted yet. Press it to open your Leads page.", "Este cuadro cuenta los prospectos que todavía no has contactado. Presiónalo para abrir tu página de Prospectos."] },
+      { sel: null, t: ["What to expect", "Qué esperar"],
+        d: ["At the end of the quiz, visitors can tap \"Send my results on WhatsApp\". If they do, their message reaches your WhatsApp right away. If they don't, they still show up in Leads, but you won't get a WhatsApp. So check Leads once a day and reach out first. Answer the same day while they're still interested.",
+            "Al final del quiz, los visitantes pueden tocar \"Enviar mis resultados por WhatsApp\". Si lo hacen, su mensaje te llega al WhatsApp enseguida. Si no, igual aparecen en Prospectos, pero no te llega WhatsApp. Por eso revisa Prospectos una vez al día y escríbeles tú primero. Contesta el mismo día, mientras siguen interesados."] }
+    ],
+    leads: [
+      { sel: null, t: ["Your leads", "Tus prospectos"],
+        d: ["These are people who took the Natural Wellness Quiz on your card. Every one of them left their name and number and agreed to hear from you.", "Estas son personas que hicieron el Quiz de Bienestar Natural en tu tarjeta. Cada una dejó su nombre y número, y aceptó que la contactes."] },
+      { sel: "#view .ld-share", t: ["Your quiz link", "Tu enlace del quiz"],
+        d: ["Copy this link to share the quiz on Facebook, Instagram, your WhatsApp status or a flyer. It opens the quiz right away. Add &src=facebook (or instagram, flyer...) to the end and each lead shows where it came from.",
+            "Copia este enlace para compartir el quiz en Facebook, Instagram, tu estado de WhatsApp o un flyer. Abre el quiz directo. Agrega &src=facebook (o instagram, flyer...) al final y cada prospecto te dice de dónde vino."] },
+      { sel: "#view .chips", t: ["Sort your leads", "Ordena tus prospectos"],
+        d: ["New: you haven't reached out yet. Contacted: you wrote to them. Customer: they bought. Joined team: they signed up with you. All: everyone.", "Nuevo: todavía no le escribes. Contactado: ya le escribiste. Cliente: ya compró. En el equipo: se unió contigo. Todos: todo el mundo."] },
+      { sel: "#view .bk-item", t: ["Everything about each lead", "Todo sobre cada prospecto"],
+        d: ["Their goal, how often it's on their mind, what they've tried, what matters most to them, the products the quiz suggested and where they came from. \"Interested in the team\" means they'd like to hear about the business too.",
+            "Su meta, qué tan seguido piensa en eso, qué ha probado, qué le importa más, los productos que sugirió el quiz y de dónde vino. \"Le interesa el equipo\" quiere decir que también quiere saber del negocio."] },
+      { sel: "#view a[data-act=ldTouch]", t: ["Message them in one tap", "Escríbeles con un toque"],
+        d: ["WhatsApp, Text and Email open with a friendly message already written in their language, mentioning their goal and suggested products. Read it, change anything you like, and send. The lead moves to Contacted by itself.",
+            "WhatsApp, Texto y Email abren con un mensaje amable ya escrito en su idioma, que menciona su meta y los productos sugeridos. Léelo, cambia lo que quieras y envíalo. El prospecto pasa a Contactado solo."] },
+      { sel: "#view .ld-sel", t: ["Keep it up to date", "Mantenlo al día"],
+        d: ["When they buy, change it to Customer. When they join your team, change it to Joined team. That way you always know who still needs a follow-up.", "Cuando compre, cámbialo a Cliente. Cuando se una a tu equipo, cámbialo a En el equipo. Así siempre sabes a quién le falta seguimiento."] },
+      { sel: "#view [data-act=ldCsv]", t: ["Take your list with you", "Llévate tu lista"],
+        d: ["Export CSV downloads all your leads as a spreadsheet you can open in Excel or Google Sheets.", "Exportar CSV descarga todos tus prospectos en una hoja que puedes abrir en Excel o Google Sheets."] },
+      { sel: "#view .empty", t: ["No leads yet", "Todavía no hay prospectos"],
+        d: ["When someone finishes the quiz, they land right here. Share your quiz link to get your first ones.", "Cuando alguien termine el quiz, aparece aquí mismo. Comparte tu enlace del quiz para conseguir los primeros."] },
+      { sel: null, t: ["What to expect", "Qué esperar"],
+        d: ["Some people tap \"Send my results on WhatsApp\" at the end, and that message reaches you right away. Others only show up here, with no WhatsApp. Check this page once a day, reach out first, and answer the same day. Talk about how the products fit their routine, never as a cure or medicine.",
+            "Algunas personas tocan \"Enviar mis resultados por WhatsApp\" al final, y ese mensaje te llega enseguida. Otras solo aparecen aquí, sin WhatsApp. Revisa esta página una vez al día, escríbeles tú primero y contesta el mismo día. Habla de cómo los productos encajan en su rutina, nunca como cura ni medicina."] }
     ],
     bookings: [
       { sel: null, t: ["Your bookings", "Tus citas"],
@@ -76,7 +112,8 @@
       { sel: "#view #f_phone", t: ["One number for everything", "Un número para todo"],
         d: ["This number is used for Call, Text, WhatsApp, orders and bookings on your card.", "Este número se usa para Llamar, Texto, WhatsApp, pedidos y citas en tu tarjeta."] },
       { sel: "#view #f_products", t: ["Your product list", "Tu lista de productos"],
-        d: ["One product per line. Add, remove or reorder them however you like.", "Un producto por línea. Agrega, quita o cambia el orden como quieras."] },
+        d: ["One product per line. Add, remove or reorder them however you like. This list is only what your card shows. The quiz suggestions come from your catalog, so if a product is discontinued, let Finesse Media know and we'll take it out of the quiz too.",
+            "Un producto por línea. Agrega, quita o cambia el orden como quieras. Esta lista es solo lo que muestra tu tarjeta. Las sugerencias del quiz salen de tu catálogo, así que si un producto se descontinúa, avísale a Finesse Media y lo quitamos del quiz también."] },
       { sel: "#view [data-up=catalog_en]", up: true, t: ["New catalog?", "¿Catálogo nuevo?"],
         d: ["When One More sends a new catalog, upload the PDF here in English and Spanish. Your card's catalog buttons update after you Save.", "Cuando One More mande un catálogo nuevo, sube el PDF aquí en inglés y en español. Los botones del catálogo se actualizan después de guardar."] },
       { sel: "#view #edHist", t: ["Changed your mind?", "¿Cambiaste de idea?"],
@@ -88,7 +125,7 @@
       { sel: "#view #tipsT", up: true, t: ["Tips on or off", "Consejos sí o no"],
         d: ["Turn these guides off when you know your way around, or show the full tour again anytime.", "Apaga estas guías cuando ya conozcas todo, o muestra el recorrido completo otra vez cuando quieras."] },
       { sel: "#view #audit", t: ["Who did what", "Quién hizo qué"],
-        d: ["A simple log of who signed in, saved the card or changed a booking.", "Un registro sencillo de quién entró, guardó la tarjeta o cambió una cita."] }
+        d: ["A simple log of who signed in, saved the card, or changed a booking or a lead.", "Un registro sencillo de quién entró, guardó la tarjeta, o cambió una cita o un prospecto."] }
     ]
   };
 
@@ -150,7 +187,9 @@
     pop.style.top = Math.round(y) + "px"; pop.style.left = Math.round(x) + "px";
   }
   function end(off) {
+    var was = view;
     if (view) markSeen(view);
+    if (!off && was === "home" && seen().indexOf("whatsnew") < 0) setTimeout(function () { start("whatsnew"); }, 300);
     if (off) { store(key(), "off"); var t = document.getElementById("tipsT"); if (t) t.checked = false; if (window.cbToast) window.cbToast(es() ? "Consejos apagados. Puedes prenderlos en Ajustes." : "Tips are off. Turn them back on in Settings."); }
     if (ov) { ov.remove(); ov = null; }
     trail = []; target = null; view = "";
@@ -189,7 +228,12 @@
 
   document.addEventListener("cb:render", function (e) {
     var v = e.detail && e.detail.view; if (!v) return;
-    setTimeout(function () { if ((location.hash || "#home").slice(1).split("/")[0] === v || (v === "home" && !location.hash)) start(v); }, 450);
+    setTimeout(function () {
+      if (!((location.hash || "#home").slice(1).split("/")[0] === v || (v === "home" && !location.hash))) return;
+      if (v === "home" && seen().indexOf("home") > -1 && seen().indexOf("whatsnew") < 0) { start("whatsnew"); return; }
+      if (document.querySelector("#view > .empty .spin")) return; /* page still loading: wait for the next render */
+      start(v);
+    }, 450);
   });
   document.addEventListener("cb:tips-menu", openMenu);
   document.addEventListener("cb:tour", fullTour);
