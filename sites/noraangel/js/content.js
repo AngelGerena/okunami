@@ -25,11 +25,17 @@
     var ph10 = digits(d.phone);
     if (ph10) {
       document.body.dataset.phone = ph10;
-      card.querySelectorAll('a[href^="tel:"]').forEach(function (a) { a.href = "tel:+" + ph10; });
-      card.querySelectorAll('a[href^="sms:"]:not([data-own-sms])').forEach(function (a) { a.href = "sms:+" + ph10; });
-      card.querySelectorAll('a[href^="https://wa.me/"]:not([data-own])').forEach(function (a) { a.href = "https://wa.me/" + ph10; });
+      card.querySelectorAll('a[href^="tel:"]:not([data-direct])').forEach(function (a) { a.href = "tel:+" + ph10; });
+      card.querySelectorAll('a[href^="sms:"]:not([data-own-sms]):not([data-direct])').forEach(function (a) { a.href = "sms:+" + ph10; });
+      card.querySelectorAll('a[href^="https://wa.me/"]:not([data-own]):not([data-direct])').forEach(function (a) { a.href = "https://wa.me/" + ph10; });
     }
     var ph2 = digits(d.phone2); if (ph2) document.body.dataset.phone2 = ph2;
+    [["nora", ph10], ["angel", ph2]].forEach(function (p) {
+      if (!p[1]) return;
+      card.querySelectorAll('a[data-direct="' + p[0] + '"]').forEach(function (a) {
+        a.href = a.href.replace(/^(https:\/\/wa\.me\/)\d+/, "$1" + p[1]).replace(/^tel:\+?\d+/, "tel:+" + p[1]).replace(/^sms:\+?\d+/, "sms:+" + p[1]);
+      });
+    });
     if (d.email) { card.querySelectorAll('a[href^="mailto:"]').forEach(function (a) { a.href = "mailto:" + d.email; }); document.body.dataset.email = d.email; }
     pair($(".shop h2 > span"), d.shop_title_en, d.shop_title_es);
     pair($(".shop .lead > span"), d.shop_lead_en, d.shop_lead_es);
