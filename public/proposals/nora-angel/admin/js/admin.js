@@ -162,7 +162,7 @@
     $("#crumb").textContent = L(n.en, n.es);
     document.title = L(n.en, n.es) + " | Nora & Angel";
     var v = $("#view");
-    if (cur === "home") { v.innerHTML = vHome(); libFetch(C.driveRoot).then(function (it) { var k = $("#kpiLib"); if (k && it) k.textContent = it.length; }); }
+    if (cur === "home") { v.innerHTML = vHome(); libFetch("root").then(function (it) { var k = $("#kpiLib"); if (k && it) k.textContent = it.length; }); }
     else if (cur === "bookings") v.innerHTML = vBookings();
     else if (cur === "leads") v.innerHTML = vLeads();
     else if (cur === "library") { v.innerHTML = vLibrary(); libLoad(); }
@@ -187,7 +187,7 @@
       '<div class="kpis">' +
       '<button type="button" class="kpi" data-go="bookings">' + ic("cal") + "<b>" + (bookings ? newCount : "–") + "</b><span>" + L("New bookings", "Citas nuevas") + "</span></button>" +
       '<button type="button" class="kpi" data-go="leads">' + ic("spark") + "<b>" + (leads ? leadNew : "–") + "</b><span>" + L("New leads", "Prospectos nuevos") + "</span></button>" +
-      '<button type="button" class="kpi" data-go="library">' + ic("folder") + "<b id=\"kpiLib\">" + (lib.cache[C.driveRoot] || DRIVE_SNAPSHOT.folders[C.driveRoot] || []).length + "</b><span>" + L("In the main folder", "En la carpeta principal") + "</span></button></div>" +
+      '<button type="button" class="kpi" data-go="library">' + ic("folder") + "<b id=\"kpiLib\">" + (lib.cache.root ? lib.cache.root.length : "–") + "</b><span>" + L("In the main folder", "En la carpeta principal") + "</span></button></div>" +
       '<section class="cardx"><div class="card-h"><h3 class="h2">' + L("Latest bookings", "Últimas citas") + '</h3><button type="button" class="link" data-go="bookings">' + L("See all", "Ver todas") + "</button></div>" +
       (bookings === null ? '<div class="empty"><span class="spin" style="display:inline-block"></span></div>' :
         upcoming.length ? upcoming.map(function (b) {
@@ -340,13 +340,12 @@
   }
 
   /* ---------- library (live mirror of the team's Google Drive) ---------- */
-  var lib = { path: [{ id: C.driveRoot, name: C.driveRootName }], items: null, q: "", live: !!C.googleKey, cache: {} };
+  var lib = { path: [{ id: "root", name: "" }], items: null, q: "", cache: {} };
   function kind(m) {
     if (m === "f" || m === "application/vnd.google-apps.folder") return "folder";
     if (/^image\//.test(m)) return "img"; if (/^video\//.test(m)) return "video"; if (m === "application/pdf") return "pdf";
     if (/zip/.test(m)) return "zip"; if (/google-apps\.(document|spreadsheet|presentation)/.test(m)) return "gdoc"; return "doc";
   }
-  function norm(a) { return { id: a[0], name: a[1], mime: a[2] === "f" ? "application/vnd.google-apps.folder" : a[2], size: a[3] || 0 }; }
   function sortItems(arr) {
     return arr.sort(function (a, b) {
       var fa = kind(a.mime) === "folder", fb = kind(b.mime) === "folder";
@@ -354,27 +353,19 @@
       return a.name.localeCompare(b.name, "es", { sensitivity: "base", numeric: true });
     });
   }
+  /* The folder list comes from the cb-drive server function, which checks the owner's session
+     first. Folder IDs and the Google key never ship with the public card. */
   function libFetch(id) {
     if (lib.cache[id]) return Promise.resolve(lib.cache[id]);
-    if (C.googleKey) {
-      var all = [];
-      var page = function (tok) {
-        var u = "https://www.googleapis.com/drive/v3/files?pageSize=1000&orderBy=folder,name_natural" +
-          "&fields=nextPageToken,files(id,name,mimeType,size,shortcutDetails)&supportsAllDrives=true&includeItemsFromAllDrives=true" +
-          "&q=" + encodeURIComponent("'" + id + "' in parents and trashed=false") + "&key=" + encodeURIComponent(C.googleKey) + (tok ? "&pageToken=" + tok : "");
-        return fetch(u).then(function (r) { if (!r.ok) throw new Error("drive " + r.status); return r.json(); }).then(function (d) {
-          (d.files || []).forEach(function (f) {
-            var sc = f.mimeType === "application/vnd.google-apps.shortcut" && f.shortcutDetails;
-            all.push({ id: sc ? f.shortcutDetails.targetId : f.id, name: f.name, mime: sc ? f.shortcutDetails.targetMimeType : f.mimeType, size: +f.size || 0 });
-          });
-          return d.nextPageToken ? page(d.nextPageToken) : all;
-        });
-      };
-      return page().then(function (items) { lib.live = true; return (lib.cache[id] = sortItems(items)); }).catch(function () { lib.live = false; return snap(id); });
-    }
-    return Promise.resolve(snap(id));
+    return fetch(C.url + "/functions/v1/cb-drive", { method: "POST", headers: { apikey: C.anon, Authorization: "Bearer " + C.anon, "Content-Type": "application/json" }, body: JSON.stringify({ token: S.token, folder: id }) })
+      .then(function (r) {
+        if (r.status === 401) { signOut(true); throw new Error("signed out"); }
+        if (!r.ok) throw new Error("drive " + r.status);
+        return r.json();
+      })
+      .then(function (d) { return (lib.cache[id] = sortItems(d.files || [])); })
+      .catch(function () { return null; });
   }
-  function snap(id) { var s = DRIVE_SNAPSHOT.folders[id]; return s ? sortItems(s.map(norm)) : null; }
   function vLibrary() {
     var p = lib.path, crumbs = p.map(function (f, i) {
       var nm = i === 0 ? L("Library", "Biblioteca") : f.name;
@@ -392,17 +383,17 @@
     var body = $("#libBody"); if (!body) return;
     var f = lib.path[lib.path.length - 1];
     if (!lib.items) {
-      body.innerHTML = '<div class="cardx empty">' + ic("folder") + "<b>" + esc(f.name) + "</b>" +
-        L("This folder opens here once the live Drive connection is on. For now you can open it in Google Drive.", "Esta carpeta se abrirá aquí cuando la conexión con Drive esté activa. Por ahora puedes abrirla en Google Drive.") +
-        '<p style="margin-top:14px"><a class="btn" href="https://drive.google.com/drive/folders/' + esc(f.id) + '" target="_blank" rel="noopener">' + ic("ext") + L("Open in Google Drive", "Abrir en Google Drive") + "</a></p></div>";
+      body.innerHTML = '<div class="cardx empty">' + ic("folder") + "<b>" + L("Couldn't load this folder", "No se pudo abrir esta carpeta") + "</b>" +
+        L("Check your connection and try again.", "Revisa tu conexión e inténtalo de nuevo.") +
+        '<p style="margin-top:14px"><button type="button" class="btn" data-act="libRetry">' + L("Try again", "Intentar de nuevo") + "</button></p></div>";
       return;
     }
     var q = lib.q.trim().toLowerCase();
     var items = q ? lib.items.filter(function (x) { return x.name.toLowerCase().indexOf(q) > -1; }) : lib.items;
     var folders = items.filter(function (x) { return kind(x.mime) === "folder"; }), files = items.filter(function (x) { return kind(x.mime) !== "folder"; });
-    var html = (!lib.live ? '<p class="lib-note">' + L("Showing the team folder as of ", "Mostrando la carpeta del equipo al ") + esc(fmtDay(DRIVE_SNAPSHOT.date)) + ".</p>" : "");
+    var html = "";
     if (folders.length) html += '<p class="sec-label">' + L("Folders", "Carpetas") + " · " + folders.length + '</p><div class="folders">' + folders.map(function (x) {
-      return '<button type="button" class="fold" data-act="libOpen" data-id="' + esc(x.id) + '">' + ic("folder") + "<span>" + esc(x.name.trim()) + "</span></button>";
+      return '<button type="button" class="fold" data-act="libOpen" data-id="' + esc(x.ref || x.id) + '">' + ic("folder") + "<span>" + esc(x.name.trim()) + "</span></button>";
     }).join("") + "</div>";
     if (files.length) html += '<p class="sec-label">' + L("Files", "Archivos") + " · " + files.length + '</p><div class="files">' + files.map(function (x) {
       var k = kind(x.mime), th;
@@ -683,7 +674,8 @@
     else if (act === "bkDel") modal(L("Remove this booking?", "¿Quitar esta cita?"), "<p>" + L("It disappears from your list. The WhatsApp message stays on your phone.", "Desaparece de tu lista. El mensaje de WhatsApp se queda en tu teléfono.") + "</p>",
       '<button type="button" class="btn ghost" data-act="closeModal">' + L("Keep it", "Dejarla") + '</button><button type="button" class="btn danger" data-act="bkDelYes" data-id="' + id + '">' + L("Remove", "Quitar") + "</button>");
     else if (act === "bkDelYes") { closeModal(); bkSet(id, null, true); }
-    else if (act === "libOpen") { var it = libItem(id); if (it) { lib.path.push({ id: it.id, name: it.name.trim() }); lib.q = ""; $("#view").innerHTML = vLibrary(); libLoad(); window.scrollTo(0, 0); } }
+    else if (act === "libRetry") { $("#view").innerHTML = vLibrary(); libLoad(); }
+    else if (act === "libOpen") { var it = (lib.items || []).filter(function (x) { return x.ref === id; })[0]; if (it) { lib.path.push({ id: it.ref, name: it.name.trim() }); lib.q = ""; $("#view").innerHTML = vLibrary(); libLoad(); window.scrollTo(0, 0); } }
     else if (act === "libUp") { lib.path = lib.path.slice(0, +a.dataset.i + 1); lib.q = ""; $("#view").innerHTML = vLibrary(); libLoad(); }
     else if (act === "libFile") { var x = libItem(id); if (x) openViewer(x); }
     else if (act === "closeViewer") closeViewer();
