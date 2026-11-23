@@ -4,7 +4,7 @@ window.CB_CONFIG = {
   url: "https://hrwzzpmltpsqyynmmeof.supabase.co",
   anon: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhyd3p6cG1sdHBzcXl5bm1tZW9mIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTA3MzE5MzIsImV4cCI6MjEwNjMwNzkzMn0.ow0CSZg0PkEv-rJ28Ggj2WkvzRrKQ0oI_V-GW6fFxlo",
   slug: "noraangel",
-  owners: [{ id: "nora", name: "Nora" }, { id: "angel", name: "Angel" }],
+  owners: [{ id: "angel", name: "Angel" }, { id: "nora", name: "Nora" }],
   /* Team Google Drive folder mirrored in the Library */
   driveRoot: "1Wp-sJA50Le6g3mI_rdxj1soE7nu-yw-V",
   driveRootName: "Summit Networkers Team - Marketing",

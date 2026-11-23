@@ -1,8 +1,8 @@
-/* Nora & Angel back office: guided help tips (JA Paint Pro pattern).
+/* Angel & Nora back office: guided help tips (JA Paint Pro pattern).
    The first time each person opens a page, a short trail of tips walks through it,
    pointing at the real buttons one step at a time. The ? button in the top bar replays
    the tips for the page, starts the full tour again, or turns tips on or off; Settings
-   has the same switch. Remembered per person, so Nora and Angel each get the tour.
+   has the same switch. Remembered per person, so Angel and Nora each get the tour.
    Listens for "cb:render" from admin.js. */
 (function () {
   "use strict";
@@ -33,8 +33,8 @@
       { sel: "#view .tiles", t: ["Shortcuts", "Atajos"],
         d: ["Open the team library, edit your card, or see your card the way your customers see it.", "Abre la biblioteca del equipo, edita tu tarjeta o mira tu tarjeta como la ven tus clientes."] },
       { sel: null, t: ["Your secret door", "Tu puerta secreta"],
-        d: ["To come back here anytime: open your card, press and hold your names \"Nora & Angel\" for 5 seconds, choose who you are and type your PIN. Customers never see it.",
-            "Para volver aquí cuando quieras: abre tu tarjeta, mantén presionados sus nombres \"Nora & Angel\" por 5 segundos, escoge quién eres y escribe tu PIN. Los clientes nunca lo ven."] },
+        d: ["To come back here anytime: open your card, press and hold your names \"Angel & Nora\" for 5 seconds, choose who you are and type your PIN. Customers never see it.",
+            "Para volver aquí cuando quieras: abre tu tarjeta, mantén presionados sus nombres \"Angel & Nora\" por 5 segundos, escoge quién eres y escribe tu PIN. Los clientes nunca lo ven."] },
       { sel: "#tipsBtn", t: ["Need help again?", "¿Necesitas ayuda otra vez?"],
         d: ["Press this button anytime to replay the tips for the page you're on. Each page has its own short guide the first time you open it.",
             "Presiona este botón cuando quieras para repetir los consejos de la página donde estás. Cada página tiene su propia guía corta la primera vez que la abres."] }

@@ -1,11 +1,11 @@
-# Nora & Angel U-MUVO card (noraangel.okunami.pro)
+# Angel & Nora U-MUVO card (noraangel.okunami.pro)
 
 Standalone copy of their U-MUVO card, deployed as its own Netlify site (noraangel).
 Netlify site settings: repository AngelGerena/okunami, branch main,
 base directory `sites/noraangel`, build command empty, publish directory `sites/noraangel`.
 Every merge to main that touches this folder updates the live card.
 
-Cloned from `sites/emelyfelix` (Nov 2026). Two phones: every WhatsApp, Call and Text button asks the visitor "Nora or Angel?" first (`js/pick.js`).
+Cloned from `sites/emelyfelix` (Nov 2026). Two phones: every WhatsApp, Call and Text button asks the visitor "Angel or Nora?" first (`js/pick.js`).
 
 ## Natural Wellness Quiz (lead funnel)
 - Card panel "Find your natural routine" opens a 5-question quiz (`js/quiz.js`, `css/quiz.css`).

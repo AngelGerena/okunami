@@ -1,4 +1,4 @@
-/* Nora & Angel back office (OKUNAMI). Finesse OS method, JA Paint Pro pattern.
+/* Angel & Nora back office (OKUNAMI). Finesse OS method, JA Paint Pro pattern.
    Sign-in: the hidden door on the card (hold the name 5 s) or this page's own PIN screen.
    Every private action is checked on the server with the owner's session token. */
 (function () {
@@ -160,7 +160,7 @@
   function render() {
     var n = NAV.filter(function (x) { return x.id === cur; })[0];
     $("#crumb").textContent = L(n.en, n.es);
-    document.title = L(n.en, n.es) + " | Nora & Angel";
+    document.title = L(n.en, n.es) + " | Angel & Nora";
     var v = $("#view");
     if (cur === "home") { v.innerHTML = vHome(); libFetch(C.driveRoot).then(function (it) { var k = $("#kpiLib"); if (k && it) k.textContent = it.length; }); }
     else if (cur === "bookings") v.innerHTML = vBookings();
@@ -447,13 +447,13 @@
   var FIELDS = [
     { group: ["Photo and name", "Foto y nombre"], items: [
       { k: "photo", type: "image", kind: "photo", label: ["Main photo", "Foto principal"], hint: ["A tall photo works best. We resize it for you.", "Una foto vertical se ve mejor. La ajustamos por ti."], def: "../images/portrait.jpg" },
-      { k: "name", label: ["Name on the card", "Nombre en la tarjeta"], def: "Nora & Angel", max: 40 },
+      { k: "name", label: ["Name on the card", "Nombre en la tarjeta"], def: "Angel & Nora", max: 40 },
       { k: "role", pair: true, label: ["Title", "Título"], def: ["Independent Distributors", "Distribuidores Independientes"], max: 40 },
       { k: "company", label: ["Company line", "Línea de la empresa"], def: "U·MUVO · One More International", max: 60 }
     ]},
     { group: ["Contact", "Contacto"], items: [
-      { k: "phone", type: "tel", label: ["Nora's phone and WhatsApp", "Teléfono y WhatsApp de Nora"], hint: ["Visitors pick Nora or Angel for Call, Text, WhatsApp, orders and bookings.", "Los visitantes escogen a Nora o a Angel para Llamar, Texto, WhatsApp, pedidos y citas."], def: "(407) 731-0427" },
       { k: "phone2", type: "tel", label: ["Angel's phone and WhatsApp", "Teléfono y WhatsApp de Angel"], def: "(407) 960-9004" },
+      { k: "phone", type: "tel", label: ["Nora's phone and WhatsApp", "Teléfono y WhatsApp de Nora"], hint: ["Visitors pick Angel or Nora for Call, Text, WhatsApp, orders and bookings.", "Los visitantes escogen a Nora o a Angel para Llamar, Texto, WhatsApp, pedidos y citas."], def: "(407) 731-0427" },
       { k: "email", type: "email", label: ["Email", "Correo"], def: "angel@finessemedia.pro" }
     ]},
     { group: ["Products", "Productos"], items: [
