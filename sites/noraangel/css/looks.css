@@ -102,7 +102,7 @@
 /* ================= 4. SIGNATURE: wide photo, curved lime divider, stacked script names ================= */
 .lk-signature .card{background:#fff}
 .lk-signature .hero{position:relative}
-.lk-signature .photo{width:100%;aspect-ratio:16/12;object-fit:cover;object-position:50% 16%;-webkit-mask-image:none;mask-image:none}
+.lk-signature .photo{width:100%;aspect-ratio:1/1;object-fit:cover;object-position:50% 0%;-webkit-mask-image:none;mask-image:none}
 .lk-signature .frame::after{content:"";position:absolute;left:-2%;right:-2%;bottom:-1px;height:64px;background:#fff;border-radius:100% 100% 0 0/100% 100% 0 0;box-shadow:0 -6px 0 0 var(--lime)}
 .lk-signature .lang{background:rgba(255,255,255,.9)}
 .lk-signature .over{margin-top:-20px;padding:0 20px;text-align:center;position:relative;z-index:1}
