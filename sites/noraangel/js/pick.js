@@ -1,4 +1,4 @@
-/* Two phones on one card: Nora and Angel.
+/* Two phones on one card: Angel and Nora.
    Every WhatsApp, Call and Text link on the card (buttons, orders, products, quiz, bookings, join)
    first asks "Who do you want to reach?" and then opens it with that person's number.
    Numbers can be changed in the back office (Nora = phone, Angel = phone2). */
@@ -33,7 +33,7 @@
       return '<button type="button" class="pk-p" data-pk="' + who + '"><img src="' + img + '" alt="" width="56" height="56"><span><b>' + name + '</b><small>' + fmt(num(who)) + '</small></span><svg class="ico"><use href="' + ico + '"/></svg></button>';
     }
     ov.innerHTML = '<div class="pk-sheet"><p class="pk-k">U&middot;MUVO</p><h2 id="pkT">' + t.t[k] + '</h2><p class="pk-sub">' + t.sub + '</p>' +
-      row("nora", "Nora", "images/nora.jpg") + row("angel", "Angel", "images/angel.jpg") +
+      row("angel", "Angel", "images/angel.jpg") + row("nora", "Nora", "images/nora.jpg") +
       '<button type="button" class="pk-x" data-pk="x">' + t.cancel + '</button></div>';
     document.body.appendChild(ov); document.body.classList.add("pk-open");
     var f = ov.querySelector(".pk-p"); if (f) f.focus();

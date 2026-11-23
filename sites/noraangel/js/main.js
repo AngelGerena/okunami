@@ -28,8 +28,8 @@
     var b = card.querySelector("[data-lang]");
     if(b){ b.setAttribute("aria-checked", es ? "true" : "false"); b.setAttribute("aria-label", es ? "English / Inglés" : "Español / Spanish"); }
   }
-  var ORDER_EN = "Hi Nora and Angel, I saw your U-MUVO catalog and I'd like to place an order.";
-  var ORDER_ES = "Hola Nora y Angel, vi su cat\u00e1logo de U-MUVO y me gustar\u00eda hacer un pedido.";
+  var ORDER_EN = "Hi Angel and Nora, I saw your U-MUVO catalog and I'd like to place an order.";
+  var ORDER_ES = "Hola Angel y Nora, vi su cat\u00e1logo de U-MUVO y me gustar\u00eda hacer un pedido.";
   document.querySelectorAll("[data-order]").forEach(function(o){ o.href = FX.wa + encodeURIComponent(ORDER_EN); });
   document.querySelectorAll(".card").forEach(function(card){
     var b = card.querySelector("[data-lang]");
@@ -44,17 +44,17 @@
     });
   });
 
-  // Booking pop-up (messages go to Nora or Angel, visitor picks): calendar, AM/PM slots, details
+  // Booking pop-up (messages go to Angel or Nora, visitor picks): calendar, AM/PM slots, details
   var bk = document.getElementById("bk"), lastBtn = null, bkEs = false;
   var T = {
-    en:{kicker:"Nora & Angel · U-MUVO", title:"Book a free consultation", s1:"1. Pick the day", s2:"2. Pick the time", s3:"3. What can we help you with?",
+    en:{kicker:"Angel & Nora · U-MUVO", title:"Book a free consultation", s1:"1. Pick the day", s2:"2. Pick the time", s3:"3. What can we help you with?",
       fName:"Your name", fCity:"City", fSize:"Best way to reach you", sms:"Text", close:"Close", prev:"Previous month", next:"Next month",
       months:["January","February","March","April","May","June","July","August","September","October","November","December"],
       dow:["Sun","Mon","Tue","Wed","Thu","Fri","Sat"], days:["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
       types:["Product info","Place an order","Join the team","Business presentation","Video call"],
       sizes:["Phone call","Text message","WhatsApp","Email"], pick:"Pick a day and a time to send your request.",
       at:"at", none:"To be confirmed"},
-    es:{kicker:"Nora & Angel · U-MUVO", title:"Agenda una consulta gratis", s1:"1. Elige el día", s2:"2. Elige la hora", s3:"3. ¿En qué te podemos ayudar?",
+    es:{kicker:"Angel & Nora · U-MUVO", title:"Agenda una consulta gratis", s1:"1. Elige el día", s2:"2. Elige la hora", s3:"3. ¿En qué te podemos ayudar?",
       fName:"Tu nombre", fCity:"Ciudad", fSize:"Mejor forma de contactarte", sms:"Texto", close:"Cerrar", prev:"Mes anterior", next:"Mes siguiente",
       months:["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"],
       dow:["Dom","Lun","Mar","Mié","Jue","Vie","Sáb"], days:["domingo","lunes","martes","miércoles","jueves","viernes","sábado"],
@@ -131,9 +131,9 @@
     var sizeEl = document.getElementById("bkSize"), how = sizeEl.selectedIndex > 0 ? sizeEl.value : "";
     var type = sel.type === null ? "" : t.types[sel.type];
     var msg = bkEs
-      ? "Hola Nora y Angel" + (name ? ", soy " + name : "") + ". Me gustaría agendar una consulta gratis de U-MUVO.\nFecha: " + dateText() + "\nHora: " + ampm(sel.hour) +
+      ? "Hola Angel y Nora" + (name ? ", soy " + name : "") + ". Me gustaría agendar una consulta gratis de U-MUVO.\nFecha: " + dateText() + "\nHora: " + ampm(sel.hour) +
         "\nTema: " + (type || t.none) + "\nCiudad: " + (city || t.none) + "\nMejor forma de contactarme: " + (how || t.none)
-      : "Hi Nora and Angel" + (name ? ", this is " + name : "") + ". I'd like to book a free U-MUVO consultation.\nDate: " + dateText() + "\nTime: " + ampm(sel.hour) +
+      : "Hi Angel and Nora" + (name ? ", this is " + name : "") + ". I'd like to book a free U-MUVO consultation.\nDate: " + dateText() + "\nTime: " + ampm(sel.hour) +
         "\nTopic: " + (type || t.none) + "\nCity: " + (city || t.none) + "\nBest way to reach me: " + (how || t.none);
     wa.href = FX.wa + encodeURIComponent(msg); sms.href = FX.sms + encodeURIComponent(msg);
     var dd = sel.date;
@@ -191,12 +191,12 @@
 
   // Save Contact
   function vcfText(){
-    var d = window.CB_CONTENT || {}, nm = (d.name || "Nora & Angel"), em = document.body.dataset.email || "angel@finessemedia.pro";
+    var d = window.CB_CONTENT || {}, nm = (d.name || "Angel & Nora"), em = document.body.dataset.email || "angel@finessemedia.pro";
     return ["BEGIN:VCARD","VERSION:3.0","N:;" + nm + ";;;","FN:" + nm,
     "ORG:" + (d.company || "U-MUVO · One More International"),
     "TITLE:" + (d.role_en || "Independent Distributors"),
-    "item1.TEL;TYPE=CELL,VOICE:+" + fxNum(), "item1.X-ABLabel:Nora",
-    "item2.TEL;TYPE=CELL,VOICE:+" + (document.body.dataset.phone2 || "14079609004"), "item2.X-ABLabel:Angel",
+    "item1.TEL;TYPE=CELL,VOICE:+" + (document.body.dataset.phone2 || "14079609004"), "item1.X-ABLabel:Angel",
+    "item2.TEL;TYPE=CELL,VOICE:+" + fxNum(), "item2.X-ABLabel:Nora",
     "X-SOCIALPROFILE;TYPE=whatsapp:https://wa.me/" + fxNum(),
     "EMAIL;TYPE=INTERNET:" + em,
     "URL:https://noraangel.okunami.pro/",
@@ -206,7 +206,7 @@
   document.querySelectorAll("[data-save]").forEach(function(b){
     b.addEventListener("click", function(){
       var url = URL.createObjectURL(new Blob([vcfText()], {type:"text/vcard;charset=utf-8"}));
-      var a = document.createElement("a"); a.href = url; a.download = "Nora-and-Angel.vcf";
+      var a = document.createElement("a"); a.href = url; a.download = "Angel-and-Nora.vcf";
       document.body.appendChild(a); a.click(); a.remove();
       setTimeout(function(){ URL.revokeObjectURL(url); }, 1500);
     });

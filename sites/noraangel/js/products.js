@@ -53,18 +53,18 @@
   if (!card || !list || !root) return;
 
   var T = {
-    en: { kicker: "Nora & Angel · U-MUVO", close: "Close", inside: "What's in it", how: "How it comes", chosen: "People choose it for",
+    en: { kicker: "Angel & Nora · U-MUVO", close: "Close", inside: "What's in it", how: "How it comes", chosen: "People choose it for",
       order: "Order on WhatsApp", ask: "Ask us a question", cat: "See it in the catalog", hint: "Tap a product to see what's in it and order",
       fine: "Natural wellness product. Not a medicine and not meant to diagnose or treat any condition. Results vary.",
       goals: { comfort: "Body comfort", energy: "Energy", sleep: "Rest and sleep", skin: "Skin and glow", weight: "Feeling lighter", heart: "Heart and healthy aging", intimacy: "Intimacy and vitality" },
-      orderMsg: function (n) { return "Hi Nora and Angel, I'd like to order " + n + ". Can you help me?"; },
-      askMsg: function (n) { return "Hi Nora and Angel, I have a question about " + n + "."; } },
-    es: { kicker: "Nora & Angel · U-MUVO", close: "Cerrar", inside: "Qué contiene", how: "Cómo viene", chosen: "Lo escogen para",
+      orderMsg: function (n) { return "Hi Angel and Nora, I'd like to order " + n + ". Can you help me?"; },
+      askMsg: function (n) { return "Hi Angel and Nora, I have a question about " + n + "."; } },
+    es: { kicker: "Angel & Nora · U-MUVO", close: "Cerrar", inside: "Qué contiene", how: "Cómo viene", chosen: "Lo escogen para",
       order: "Ordenar por WhatsApp", ask: "Haznos una pregunta", cat: "Verlo en el catálogo", hint: "Toca un producto para ver qué contiene y ordenarlo",
       fine: "Producto natural de bienestar. No es medicina y no es para diagnosticar ni tratar ninguna condición. Los resultados varían.",
       goals: { comfort: "Comodidad del cuerpo", energy: "Energía", sleep: "Descanso y sueño", skin: "Piel y brillo", weight: "Sentirse más ligero", heart: "Corazón y envejecer saludable", intimacy: "Intimidad y vitalidad" },
-      orderMsg: function (n) { return "Hola Nora y Angel, me gustaría pedir " + n + ". ¿Me ayudan?"; },
-      askMsg: function (n) { return "Hola Nora y Angel, tengo una pregunta sobre " + n + "."; } }
+      orderMsg: function (n) { return "Hola Angel y Nora, me gustaría pedir " + n + ". ¿Me ayudan?"; },
+      askMsg: function (n) { return "Hola Angel y Nora, tengo una pregunta sobre " + n + "."; } }
   };
   function es() { return card.dataset.lang === "es"; }
   function L() { return T[es() ? "es" : "en"]; }

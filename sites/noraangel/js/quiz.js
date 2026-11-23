@@ -1,7 +1,7 @@
 /* Natural Wellness Quiz: the card's lead magnet.
    5 quick questions -> name + WhatsApp -> a suggested routine from the products on this card.
    The lead is saved for the back office (Leads tab) before the result shows, and the visitor
-   can send their result to Nora & Angel on WhatsApp in one tap.
+   can send their result to Angel & Nora on WhatsApp in one tap.
    Deep link: add ?quiz=1 (or #quiz) to the card URL to open it straight away.
    Source tag: ?src=google-ads, ?src=flyer, ?utm_source=... is saved with the lead.
    Copy rule: no medical claims. Products "support" a routine; results vary. */
@@ -28,7 +28,7 @@
 
   var T = {
     en: {
-      kicker: "Nora & Angel · U-MUVO", title: "Natural Wellness Quiz", close: "Close", back: "Back", next: "Next",
+      kicker: "Angel & Nora · U-MUVO", title: "Natural Wellness Quiz", close: "Close", back: "Back", next: "Next",
       step: function (a, b) { return "Question " + a + " of " + b; },
       qs: [
         { k: "goal", q: "What would you most like to feel better?", o: [
@@ -40,24 +40,24 @@
         { k: "want", q: "What matters most to you?", o: [["natural", "Natural ingredients"], ["easy", "Easy to use"], ["price", "A good price"], ["guide", "Someone to guide me"]] },
         { k: "team", q: "Would you like to earn by sharing products you love?", o: [["yes", "Yes, tell me more"], ["maybe", "Maybe, I'm curious"], ["no", "No, just the products"]] }
       ],
-      cTitle: "Where should we send your routine?", cSub: "Nora & Angel will send it to you personally. No spam.",
+      cTitle: "Where should we send your routine?", cSub: "Angel & Nora will send it to you personally. No spam.",
       fName: "Your name", fPhone: "WhatsApp or phone", fEmail: "Email (optional)",
-      consent: "I agree that Nora & Angel may contact me by WhatsApp, text or email about my results. I can ask them to stop any time.",
+      consent: "I agree that Angel & Nora may contact me by WhatsApp, text or email about my results. I can ask them to stop any time.",
       see: "See my routine", saving: "One moment...",
       eName: "Please add your name.", eContact: "Please add a phone number or email.", eConsent: "Please check the box so we can reach you.",
       eNet: "We couldn't save that. Check your connection and try again.",
-      rKicker: "Your suggested routine", rFor: "For ", rNote: "People with the same goal often start with these. Nora & Angel will help you pick what fits you.",
-      rIncome: "You're a great fit for our team. Nora & Angel will show you how the business works, step by step.",
+      rKicker: "Your suggested routine", rFor: "For ", rNote: "People with the same goal often start with these. Angel & Nora will help you pick what fits you.",
+      rIncome: "You're a great fit for our team. Angel & Nora will show you how the business works, step by step.",
       waBtn: "Send my results on WhatsApp", catBtn: "Open the catalog", joinBtn: "See the business opportunity",
       fine: "Natural wellness products. Not a medicine and not meant to diagnose or treat any condition. Results vary. Talk to your doctor if you have a health concern.",
       goals: { comfort: "body comfort", energy: "more energy", sleep: "better sleep", skin: "skin and glow", weight: "feeling lighter", heart: "heart health and healthy aging", intimacy: "intimacy and vitality", income: "extra income" },
       wa: function (n, g, p, t) {
-        return "Hi Nora and Angel! I'm " + n + ". I just took the wellness quiz on your card. My goal: " + g + "." +
+        return "Hi Angel and Nora! I'm " + n + ". I just took the wellness quiz on your card. My goal: " + g + "." +
           (p.length ? " Suggested for me: " + p.join(", ") + "." : "") + (t === "yes" || t === "maybe" ? " I'm also interested in joining the team." : "") + " Can you help me get started?";
       }
     },
     es: {
-      kicker: "Nora & Angel · U-MUVO", title: "Quiz de Bienestar Natural", close: "Cerrar", back: "Atrás", next: "Siguiente",
+      kicker: "Angel & Nora · U-MUVO", title: "Quiz de Bienestar Natural", close: "Cerrar", back: "Atrás", next: "Siguiente",
       step: function (a, b) { return "Pregunta " + a + " de " + b; },
       qs: [
         { k: "goal", q: "¿Qué te gustaría sentir mejor?", o: [
@@ -69,19 +69,19 @@
         { k: "want", q: "¿Qué es lo más importante para ti?", o: [["natural", "Ingredientes naturales"], ["easy", "Fácil de usar"], ["price", "Un buen precio"], ["guide", "Alguien que me guíe"]] },
         { k: "team", q: "¿Te gustaría ganar compartiendo productos que te encantan?", o: [["yes", "Sí, cuéntame más"], ["maybe", "Quizás, tengo curiosidad"], ["no", "No, solo los productos"]] }
       ],
-      cTitle: "¿A dónde te enviamos tu rutina?", cSub: "Nora y Angel te la envían personalmente. Sin spam.",
+      cTitle: "¿A dónde te enviamos tu rutina?", cSub: "Angel y Nora te la envían personalmente. Sin spam.",
       fName: "Tu nombre", fPhone: "WhatsApp o teléfono", fEmail: "Email (opcional)",
-      consent: "Acepto que Nora y Angel me contacten por WhatsApp, texto o email sobre mis resultados. Puedo pedirles que paren cuando quiera.",
+      consent: "Acepto que Angel y Nora me contacten por WhatsApp, texto o email sobre mis resultados. Puedo pedirles que paren cuando quiera.",
       see: "Ver mi rutina", saving: "Un momento...",
       eName: "Por favor escribe tu nombre.", eContact: "Por favor escribe un teléfono o email.", eConsent: "Marca la casilla para poder contactarte.",
       eNet: "No pudimos guardarlo. Revisa tu conexión e intenta otra vez.",
-      rKicker: "Tu rutina sugerida", rFor: "Para ", rNote: "Las personas con tu misma meta suelen empezar con estos. Nora y Angel te ayudan a escoger lo que va contigo.",
-      rIncome: "Eres perfecto para nuestro equipo. Nora y Angel te enseñan cómo funciona el negocio, paso a paso.",
+      rKicker: "Tu rutina sugerida", rFor: "Para ", rNote: "Las personas con tu misma meta suelen empezar con estos. Angel y Nora te ayudan a escoger lo que va contigo.",
+      rIncome: "Eres perfecto para nuestro equipo. Angel y Nora te enseñan cómo funciona el negocio, paso a paso.",
       waBtn: "Enviar mis resultados por WhatsApp", catBtn: "Abrir el catálogo", joinBtn: "Ver la oportunidad de negocio",
       fine: "Productos naturales de bienestar. No son medicina y no son para diagnosticar ni tratar ninguna condición. Los resultados varían. Consulta a tu médico si tienes una preocupación de salud.",
       goals: { comfort: "comodidad del cuerpo", energy: "más energía", sleep: "dormir mejor", skin: "piel y brillo", weight: "sentirme más ligero", heart: "corazón y envejecer saludable", intimacy: "intimidad y vitalidad", income: "ingresos extra" },
       wa: function (n, g, p, t) {
-        return "¡Hola Nora y Angel! Soy " + n + ". Acabo de hacer el quiz de bienestar en su tarjeta. Mi meta: " + g + "." +
+        return "¡Hola Angel y Nora! Soy " + n + ". Acabo de hacer el quiz de bienestar en su tarjeta. Mi meta: " + g + "." +
           (p.length ? " Me sugirieron: " + p.join(", ") + "." : "") + (t === "yes" || t === "maybe" ? " También me interesa unirme al equipo." : "") + " ¿Me ayudan a empezar?";
       }
     }

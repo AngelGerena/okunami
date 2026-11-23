@@ -1,5 +1,5 @@
 /* Hidden owner door (OKUNAMI back office).
-   Press and hold the name "Nora & Angel" for 5 seconds -> who's signing in -> that person's PIN
+   Press and hold the name "Angel & Nora" for 5 seconds -> who's signing in -> that person's PIN
    -> personal welcome -> back office. Visitors never see anything: the ring only appears after
    the first second of holding. The PIN is checked on the server, with a lockout after 5 misses. */
 (function () {
