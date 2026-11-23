@@ -1,7 +1,7 @@
 /* Tappable products: tap a product on the card -> a sheet with its logo, what's in it,
    how it comes, what people choose it for, and "Order on WhatsApp" with the product named.
-   All facts come from the U-MUVO catalog (files/catalog-en.pdf). No health claims:
-   ingredients and format only. Shared with js/quiz.js (window.UMUVO_PRODUCTS).
+   All facts come from the U-MUVO catalog (files/catalog-en.pdf). "What it's for" and the
+   ingredient notes live in js/product-details.js and stay in "supports" language. Shared with js/quiz.js (window.UMUVO_PRODUCTS).
    Works with the product list the owners edit in the back office: any name not listed
    here still opens a sheet with the order button. */
 (function () {
@@ -53,15 +53,15 @@
   if (!card || !list || !root) return;
 
   var T = {
-    en: { kicker: "Emely & Felix · U-MUVO", close: "Close", inside: "What's in it", how: "How it comes", chosen: "People choose it for",
+    en: { kicker: "Emely & Felix · U-MUVO", close: "Close", inside: "What's in it", what: "What it's for", ingr: "Ingredients and where they come from", how: "How it comes", chosen: "People choose it for",
       order: "Order on WhatsApp", ask: "Ask us a question", cat: "See it in the catalog", hint: "Tap a product to see what's in it and order",
-      fine: "Natural wellness product. Not a medicine and not meant to diagnose or treat any condition. Results vary.",
+      fine: "One More International describes its products as natural wellness products, not medicine. These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure or prevent any disease. Results vary. Ask your doctor before use if you are pregnant, nursing, take medication or have a health condition.",
       goals: { comfort: "Body comfort", energy: "Energy", sleep: "Rest and sleep", skin: "Skin and glow", weight: "Feeling lighter", heart: "Heart and healthy aging", intimacy: "Intimacy and vitality" },
       orderMsg: function (n) { return "Hi Emely and Felix, I'd like to order " + n + ". Can you help me?"; },
       askMsg: function (n) { return "Hi Emely and Felix, I have a question about " + n + "."; } },
-    es: { kicker: "Emely & Felix · U-MUVO", close: "Cerrar", inside: "Qué contiene", how: "Cómo viene", chosen: "Lo escogen para",
+    es: { kicker: "Emely & Felix · U-MUVO", close: "Cerrar", inside: "Qué contiene", what: "Para qué es", ingr: "Ingredientes y de dónde vienen", how: "Cómo viene", chosen: "Lo escogen para",
       order: "Ordenar por WhatsApp", ask: "Haznos una pregunta", cat: "Verlo en el catálogo", hint: "Toca un producto para ver qué contiene y ordenarlo",
-      fine: "Producto natural de bienestar. No es medicina y no es para diagnosticar ni tratar ninguna condición. Los resultados varían.",
+      fine: "One More International describe sus productos como productos naturales de bienestar, no como medicina. Estas declaraciones no han sido evaluadas por la Administración de Alimentos y Medicamentos (FDA). Este producto no está destinado a diagnosticar, tratar, curar ni prevenir ninguna enfermedad. Los resultados varían. Consulta a tu médico antes de usarlo si estás embarazada, lactando, tomas medicamentos o tienes alguna condición de salud.",
       goals: { comfort: "Comodidad del cuerpo", energy: "Energía", sleep: "Descanso y sueño", skin: "Piel y brillo", weight: "Sentirse más ligero", heart: "Corazón y envejecer saludable", intimacy: "Intimidad y vitalidad" },
       orderMsg: function (n) { return "Hola Emely y Felix, me gustaría pedir " + n + ". ¿Me ayudan?"; },
       askMsg: function (n) { return "Hola Emely y Felix, tengo una pregunta sobre " + n + "."; } }
@@ -92,15 +92,18 @@
 
   var sheet = root.querySelector(".pd-sheet"), body = root.querySelector(".pd-body"), foot = root.querySelector(".pd-foot"), last = null;
   function open(name, btn) {
-    var t = L(), p = P[name], i = es() ? 1 : 0, goals = FOR[name] || [];
+    var t = L(), p = P[name], i = es() ? 1 : 0, goals = FOR[name] || [], d = (window.UMUVO_DETAILS || {})[name];
     last = btn || null;
     root.querySelector(".pd-kicker").textContent = t.kicker;
     root.querySelector("#pdTitle").textContent = name;
     root.querySelector(".pd-x").setAttribute("aria-label", t.close);
     body.innerHTML =
       (p && p.img ? '<div class="pd-logo"><img src="images/products/' + p.img + '.jpg" alt="' + esc(name) + ' logo"></div>' : "") +
+      (d ? '<p class="pd-sec">' + esc(t.what) + '</p><p class="pd-txt">' + esc(d.what[i]) + "</p>" : "") +
       (p && p.kind ? '<p class="pd-sec">' + esc(t.how) + '</p><p class="pd-txt">' + esc(p.kind[i]) + "</p>" : "") +
-      (p ? '<p class="pd-sec">' + esc(t.inside) + '</p><p class="pd-txt">' + esc(p.all[i]) + "</p>" : "") +
+      (d ? '<p class="pd-sec">' + esc(t.ingr) + '</p><ul class="pd-ing">' + d.ing.map(function (x) {
+            return "<li><b>" + esc(x[i]) + "</b><span>" + esc(x[i + 2]) + "</span></li>"; }).join("") + "</ul>"
+         : (p ? '<p class="pd-sec">' + esc(t.inside) + '</p><p class="pd-txt">' + esc(p.all[i]) + "</p>" : "")) +
       (goals.length ? '<p class="pd-sec">' + esc(t.chosen) + '</p><ul class="pd-tags">' + goals.map(function (g) { return "<li>" + esc(t.goals[g]) + "</li>"; }).join("") + "</ul>" : "") +
       '<p class="pd-fine">' + esc(t.fine) + "</p>";
     var cat = card.querySelector(".cover");
