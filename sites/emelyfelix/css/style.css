@@ -308,3 +308,14 @@ body.gate-open{overflow:hidden}
 .learn-vid{margin-top:14px;border-radius:18px;overflow:hidden;background:#0b2416;box-shadow:0 14px 28px -18px rgba(15,61,34,.8)}
 .learn-vid[hidden]{display:none}
 .learn-vid video{display:block;width:100%;aspect-ratio:16/9;max-width:100%;background:#0b2416}
+
+/* What is U-MUVO? product video at the top of Products; plays inside the card */
+.whatis{position:relative;margin-top:14px;border-radius:16px;overflow:hidden;background:#0b2416;aspect-ratio:16/9;box-shadow:0 14px 28px -18px rgba(15,61,34,.8)}
+.whatis video{position:absolute;inset:0;width:100%;height:100%;display:block;object-fit:cover;background:#0b2416}
+.wi-play{position:absolute;inset:0;width:100%;height:100%;border:0;padding:0;margin:0;cursor:pointer;background:linear-gradient(180deg,rgba(0,0,0,0) 45%,rgba(8,30,17,.55));color:#fff;-webkit-tap-highlight-color:transparent}
+.wi-circle{position:absolute;left:57%;top:46%;width:64px;height:64px;margin:-32px 0 0 -32px;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle at 35% 30%,#d6f58f,#8cc63f 55%,#4f8a1e);color:#0f3d22;box-shadow:0 10px 24px -8px rgba(0,0,0,.55),inset 0 2px 0 rgba(255,255,255,.55)}
+.wi-circle svg{width:28px;height:28px;margin-left:4px}
+.wi-lbl{position:absolute;left:10px;bottom:10px;display:inline-flex;align-items:center;gap:8px;max-width:calc(100% - 20px);background:rgba(255,255,255,.95);color:var(--forest);font:700 14px var(--body);padding:8px 12px;border-radius:999px;box-shadow:0 6px 14px -8px rgba(0,0,0,.4);white-space:nowrap}
+.wi-lbl em{font-style:normal;font-weight:600;font-size:12px;opacity:.7}
+.wi-play:active .wi-circle{transform:scale(.96)}
+.whatis.is-on .wi-play{display:none}
