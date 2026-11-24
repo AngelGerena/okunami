@@ -39,6 +39,7 @@
   <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="m4 7 8 6 8-6"/></symbol>
   <symbol id="i-save" viewBox="0 0 24 24"><circle cx="10" cy="8" r="4" fill="none" stroke="currentColor" stroke-width="1.8"/><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" d="M3 20c.8-3.6 3.7-6 7-6 1.4 0 2.6.3 3.7 1M18 14v6M15 17h6"/></symbol>
   <symbol id="i-leaf" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" d="M5 19c0-8 5-13 15-14-1 10-6 15-14 15"/><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" d="M5 19c3-4 6-7 10-9"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.8"/><path fill="currentColor" d="M10 8.6v6.8l5.6-3.4z"/></symbol>
   <symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" d="M2.5 20c.7-3.4 3.3-5.5 6.5-5.5s5.8 2.1 6.5 5.5M16 4.8a3.5 3.5 0 0 1 0 6.4M18 14.8c2 .7 3.2 2.5 3.6 5.2"/></symbol>
   <symbol id="i-file" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" d="M6 3h8l4 4v14H6z"/><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M14 3v4h4M9 12h6M9 15.5h6"/></symbol>
   <symbol id="i-arrow" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M13 6l6 6-6 6"/></symbol>
@@ -73,7 +74,7 @@
       <h2><span data-es="Siente la diferencia">Feel the difference</span></h2>
       <p class="lead"><span data-es="Parches transd&amp;eacute;rmicos, cuidado de la piel y suplementos de One More International. Mira el cat&amp;aacute;logo y ordena con nosotros.">Transdermal patches, skin care and supplements from One More International. Browse the catalog and order through us.</span></p>
       <a class="cover" href="files/catalog-en.pdf" target="_blank" rel="noopener" data-cat>
-        <img src="images/catalog-en.jpg" data-es-src="images/catalog-es.jpg" alt="U-MUVO product catalog" width="720" height="509" loading="lazy">
+        <img src="images/catalog-en.jpg?v=2" data-es-src="images/catalog-es.jpg?v=2" alt="U-MUVO product catalog" width="720" height="509" loading="lazy">
         <span><span data-es="Abrir el cat&amp;aacute;logo">Open the catalog</span><svg class="ico"><use href="#i-arrow"/></svg></span>
       </a>
       <div class="two">
@@ -103,7 +104,13 @@
         <li><b>100+</b><span data-es="Pa&amp;iacute;ses">Countries</span></li>
         <li><b>1M+</b><span data-es="Distribuidores">Distributors</span></li>
       </ul>
-      <a class="cta join-btn glow" href="https://onemore.global/!vtwkfkl" target="_blank" rel="noopener"><svg class="ico"><use href="#i-users"/></svg><span data-es="&amp;Uacute;nete al equipo">Join the team</span></a>
+      <div class="join-row">
+        <a class="cta join-btn glow" href="https://onemore.global/!vtwkfkl" target="_blank" rel="noopener"><svg class="ico"><use href="#i-users"/></svg><span data-es="&amp;Uacute;nete al equipo">Join the team</span></a>
+        <button class="cta learn-btn" type="button" data-learn aria-expanded="false" aria-controls="learn-video"><svg class="ico"><use href="#i-play"/></svg><span class="learn-lbl" data-es="Saber m&amp;aacute;s">Learn More</span></button>
+      </div>
+      <div class="learn-vid" id="learn-video" hidden>
+        <video src="media/learn-more.mp4" data-en-src="media/learn-more.mp4" data-es-src="media/learn-more-es.mp4" poster="images/learn-more-poster.jpg" controls playsinline webkit-playsinline preload="none" controlslist="nodownload"></video>
+      </div>
     </section>
 
     <ul class="badges" aria-label="Product standards">
@@ -196,6 +203,7 @@
 <script src="js/sound.js"></script>
 <script src="js/product-details.js"></script>
 <script src="js/products.js"></script>
+<script src="js/learn-more.js"></script>
 <script src="js/quiz.js"></script>
 <script src="js/gate.js"></script>
 <script src="js/qr-zoom.js"></script>
