@@ -300,3 +300,10 @@ body.gate-open{overflow:hidden}
 .two .pill:active{transform:translateY(1px)}
 .two .pill{white-space:nowrap;font-size:13.5px;padding:0 10px;letter-spacing:-.01em}
 @media (max-width:370px){.two .pill .ico{display:none}.two .pill{font-size:13px;padding:0 6px}}
+
+/* Join the team + Learn More side by side; Learn More plays the opportunity video inside the card */
+.join-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}
+.join-row .cta{margin-top:0;min-width:0;padding:0 8px;gap:6px;font-size:clamp(12.5px,3.9vw,15px);white-space:nowrap}
+.learn-vid{margin-top:14px;border-radius:18px;overflow:hidden;background:#0b2416;box-shadow:0 14px 28px -18px rgba(15,61,34,.8)}
+.learn-vid[hidden]{display:none}
+.learn-vid video{display:block;width:100%;aspect-ratio:16/9;max-width:100%;background:#0b2416}
