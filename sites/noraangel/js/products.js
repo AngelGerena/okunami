@@ -7,45 +7,48 @@
 (function () {
   "use strict";
   var P = {
-    "Sornie Collagen Patch": { img: "sornie-patch", kind: ["Transdermal patch", "Parche transdérmico"],
+    "Sornie Collagen Patch": { photo: "sornie-patch", img: "sornie-patch", kind: ["Transdermal patch", "Parche transdérmico"],
       info: ["Patch with collagen, hydrolyzed keratin, vitamin E and coenzyme Q10", "Parche con colágeno, queratina hidrolizada, vitamina E y coenzima Q10"],
       all: ["Collagen, hydrolyzed keratin, seaweed extract, vitamin E, acacia honey, coenzyme Q10", "Colágeno, queratina hidrolizada, extracto de algas, vitamina E, miel de acacia, coenzima Q10"] },
-    "Sornie Anti-Aging Mask": { img: "sornie-mask", kind: ["Face mask, once a week", "Mascarilla facial, una vez por semana"],
+    "Sornie Anti-Aging Mask": { photo: "sornie-mask", img: "sornie-mask", kind: ["Face mask, once a week", "Mascarilla facial, una vez por semana"],
       info: ["Weekly mask with collagen, hyaluronic acid and retinol A", "Mascarilla semanal con colágeno, ácido hialurónico y retinol A"],
       all: ["Collagen, aloe barbadensis, hyaluronic acid, ginseng, retinol A, lecithin, peptides, organic oils", "Colágeno, aloe barbadensis, ácido hialurónico, ginseng, retinol A, lecitina, péptidos, aceites orgánicos"] },
     "GlutaMore": { img: "glutamore", kind: ["Sublingual drops (under the tongue)", "Gotas sublinguales (debajo de la lengua)"],
       info: ["Sublingual glutathione drops with vitamin C, taurine and arginine", "Gotas sublinguales de glutatión con vitamina C, taurina y arginina"],
       all: ["L-glutathione, vitamin C, taurine, arginine, L-valine", "L-glutatión, vitamina C, taurina, arginina, L-valina"] },
-    "Painless Night": { img: "painless-night", kind: ["Transdermal patch", "Parche transdérmico"],
+    "Painless Night": { photo: "painless-night", img: "painless-night", kind: ["Transdermal patch", "Parche transdérmico"],
       info: ["Transdermal patch with glucosamine and Korean red ginseng", "Parche transdérmico con glucosamina y ginseng rojo coreano"],
       all: ["Glucosamine, Korean red ginseng, silver ions, saponins, organic germanium", "Glucosamina, ginseng rojo coreano, iones de plata, saponinas, germanio orgánico"] },
-    "SlimStyle": { img: "slimstyle", kind: null,
+    "SlimStyle": { photo: "slimstyle", img: "slimstyle", kind: null,
       info: ["Green tea, guarana, garcinia cambogia and L-carnitine", "Té verde, guaraná, garcinia cambogia y L-carnitina"],
       all: ["Spirulina, palmitoyl tripeptide, L-carnitine, organic ginger, green tea, guarana, garcinia cambogia", "Espirulina, palmitoil tripéptido, L-carnitina, jengibre orgánico, té verde, guaraná, garcinia cambogia"] },
-    "Omevia": { img: "omevia", kind: null,
+    "Omevia": { photo: "omevia", img: "omevia", kind: null,
       info: ["Omega 3, coenzyme Q10, DHEA and pregnenolone", "Omega 3, coenzima Q10, DHEA y pregnenolona"],
       all: ["Omega 3, coenzyme Q10, DHEA, pregnenolone", "Omega 3, coenzima Q10, DHEA, pregnenolona"] },
-    "B12 Plus": { img: "b12-plus", kind: null,
+    "B12 Plus": { photo: "b12-plus", img: "b12-plus", kind: null,
       info: ["Vitamins B12, B1, B3 and folic acid with vitamins C, D and E", "Vitaminas B12, B1, B3 y ácido fólico con vitaminas C, D y E"],
       all: ["Vitamin B3, vitamin B12, vitamin B1, folic acid, vitamin E, vitamin C, vitamin D", "Vitamina B3, vitamina B12, vitamina B1, ácido fólico, vitamina E, vitamina C, vitamina D"] },
-    "Dekamin": { img: "dekamin", kind: ["Transdermal patch", "Parche transdérmico"],
+    "Dekamin": { photo: "dekamin", img: "dekamin", kind: ["Transdermal patch", "Parche transdérmico"],
       info: ["Transdermal patch with vitamins D3, K2 and C plus magnesium", "Parche transdérmico con vitaminas D3, K2 y C, y magnesio"],
       all: ["Vitamin D3, vitamin K2, vitamin C, magnesium", "Vitamina D3, vitamina K2, vitamina C, magnesio"] },
-    "Melatonin Plus": { img: "melatonin-plus", kind: null,
+    "Melatonin Plus": { photo: "melatonin-plus", img: "melatonin-plus", kind: null,
       info: ["4.4 mg melatonin with lavender and rose essential oils", "4.4 mg de melatonina con aceites esenciales de lavanda y rosa"],
       all: ["4.4 mg melatonin, lavender essential oil, rose essential oil", "4.4 mg de melatonina, aceite esencial de lavanda, aceite esencial de rosa"] },
-    "Ladies Night": { img: "ladies-night", kind: null,
+    "Ladies Night": { photo: "ladies-night", img: "ladies-night", kind: null,
       info: ["For her: ginseng, L-arginine, zinc, ginger and red clover", "Para ella: ginseng, L-arginina, zinc, jengibre y trébol rojo"],
       all: ["Omega 3, L-arginine, zinc, ginger, ginseng, dioscorea bulbifera, red clover", "Omega 3, L-arginina, zinc, jengibre, ginseng, dioscorea bulbifera, trébol rojo"] },
-    "Gentlemen Night": { img: "gentlemen-night", kind: ["Transdermal patch, for him", "Parche transdérmico, para él"],
+    "Gentlemen Night": { photo: "gentlemen-night", img: "gentlemen-night", kind: ["Transdermal patch, for him", "Parche transdérmico, para él"],
       info: ["For him: ginseng, maca, L-arginine, zinc and eurycoma longifolia", "Para él: ginseng, maca, L-arginina, zinc y eurycoma longifolia"],
-      all: ["Omega 3, L-arginine, zinc, ginger, ginseng, maca, eurycoma longifolia", "Omega 3, L-arginina, zinc, jengibre, ginseng, maca, eurycoma longifolia"] }
+      all: ["Omega 3, L-arginine, zinc, ginger, ginseng, maca, eurycoma longifolia", "Omega 3, L-arginina, zinc, jengibre, ginseng, maca, eurycoma longifolia"] },
+    "GlutaNAD+ Boost": { photo: "glutanad-boost", img: null, kind: ["Transdermal strips, 30 per box (SnapRelease)", "Tiras transdérmicas, 30 por caja (SnapRelease)"],
+      info: ["Glutathione with NMN (NAD+ precursor), astaxanthin and quercetin", "Glutatión con NMN (precursor de NAD+), astaxantina y quercetina"],
+      all: ["Glutathione, NMN (NAD+ precursor), astaxanthin, quercetin, vitamins B6, B12, D3 and A", "Glutatión, NMN (precursor de NAD+), astaxantina, quercetina, vitaminas B6, B12, D3 y A"] }
   };
   /* what people choose it for (same goals as the quiz) */
   var FOR = {
     "Sornie Collagen Patch": ["skin", "comfort"], "Sornie Anti-Aging Mask": ["skin"], "GlutaMore": ["skin", "energy"],
     "Painless Night": ["comfort"], "SlimStyle": ["weight"], "Omevia": ["heart"], "B12 Plus": ["energy", "heart"],
-    "Dekamin": ["comfort", "heart"], "Melatonin Plus": ["sleep"], "Ladies Night": ["intimacy"], "Gentlemen Night": ["intimacy"]
+    "Dekamin": ["comfort", "heart"], "Melatonin Plus": ["sleep"], "Ladies Night": ["intimacy"], "Gentlemen Night": ["intimacy"], "GlutaNAD+ Boost": ["skin", "energy"]
   };
   window.UMUVO_PRODUCTS = P;
 
@@ -54,13 +57,13 @@
 
   var T = {
     en: { kicker: "Angel & Nora · U-MUVO", close: "Close", inside: "What's in it", what: "What it's for", ingr: "Ingredients and where they come from", how: "How it comes", chosen: "People choose it for",
-      order: "Order on WhatsApp", ask: "Ask us a question", cat: "See it in the catalog", hint: "Tap a product to see what's in it and order",
+      order: "Order on WhatsApp", ask: "Ask us a question", cat: "See it in the catalog", hint: "Tap a product to see it up close, what's in it and order", zoom: "Tap the photo to see it full screen", zoomClose: "Close photo",
       fine: "One More International describes its products as natural wellness products, not medicine. These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure or prevent any disease. Results vary. Ask your doctor before use if you are pregnant, nursing, take medication or have a health condition.",
       goals: { comfort: "Body comfort", energy: "Energy", sleep: "Rest and sleep", skin: "Skin and glow", weight: "Feeling lighter", heart: "Heart and healthy aging", intimacy: "Intimacy and vitality" },
       orderMsg: function (n) { return "Hi Angel and Nora, I'd like to order " + n + ". Can you help me?"; },
       askMsg: function (n) { return "Hi Angel and Nora, I have a question about " + n + "."; } },
     es: { kicker: "Angel & Nora · U-MUVO", close: "Cerrar", inside: "Qué contiene", what: "Para qué es", ingr: "Ingredientes y de dónde vienen", how: "Cómo viene", chosen: "Lo escogen para",
-      order: "Ordenar por WhatsApp", ask: "Haznos una pregunta", cat: "Verlo en el catálogo", hint: "Toca un producto para ver qué contiene y ordenarlo",
+      order: "Ordenar por WhatsApp", ask: "Haznos una pregunta", cat: "Verlo en el catálogo", hint: "Toca un producto para verlo de cerca, qué contiene y ordenarlo", zoom: "Toca la foto para verla en pantalla completa", zoomClose: "Cerrar foto",
       fine: "One More International describe sus productos como productos naturales de bienestar, no como medicina. Estas declaraciones no han sido evaluadas por la Administración de Alimentos y Medicamentos (FDA). Este producto no está destinado a diagnosticar, tratar, curar ni prevenir ninguna enfermedad. Los resultados varían. Consulta a tu médico antes de usarlo si estás embarazada, lactando, tomas medicamentos o tienes alguna condición de salud.",
       goals: { comfort: "Comodidad del cuerpo", energy: "Energía", sleep: "Descanso y sueño", skin: "Piel y brillo", weight: "Sentirse más ligero", heart: "Corazón y envejecer saludable", intimacy: "Intimidad y vitalidad" },
       orderMsg: function (n) { return "Hola Angel y Nora, me gustaría pedir " + n + ". ¿Me ayudan?"; },
@@ -98,7 +101,9 @@
     root.querySelector("#pdTitle").textContent = name;
     root.querySelector(".pd-x").setAttribute("aria-label", t.close);
     body.innerHTML =
-      (p && p.img ? '<div class="pd-logo"><img src="images/products/' + p.img + '.jpg" alt="' + esc(name) + ' logo"></div>' : "") +
+      (p && p.photo
+        ? '<button class="pd-photo" type="button" data-src="images/products/photo/' + p.photo + '.webp" aria-label="' + esc(t.zoom) + '"><img src="images/products/photo/' + p.photo + '.webp" alt="' + esc(name) + '" decoding="async"><span class="pd-zoomhint"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>' + esc(t.zoom) + '</span></button>'
+        : (p && p.img ? '<div class="pd-logo"><img src="images/products/' + p.img + '.jpg" alt="' + esc(name) + ' logo"></div>' : "")) +
       (d ? '<p class="pd-sec">' + esc(t.what) + '</p><p class="pd-txt">' + esc(d.what[i]) + "</p>" : "") +
       (p && p.kind ? '<p class="pd-sec">' + esc(t.how) + '</p><p class="pd-txt">' + esc(p.kind[i]) + "</p>" : "") +
       (d ? '<p class="pd-sec">' + esc(t.ingr) + '</p><ul class="pd-ing">' + d.ing.map(function (x) {
@@ -115,7 +120,23 @@
     root.querySelector(".pd-x").focus();
     try { if (window.gtag) window.gtag("event", "product_view", { item_name: name }); } catch (e) {}
   }
-  function close() { root.hidden = true; document.body.classList.remove("bk-open"); if (last && last.focus) last.focus(); }
+  /* full-screen photo viewer: tap the product photo in the sheet */
+  var zv = document.createElement("div"); zv.className = "pd-zoom"; zv.hidden = true;
+  zv.setAttribute("role", "dialog"); zv.setAttribute("aria-modal", "true");
+  zv.innerHTML = '<button class="pd-zoom-x" type="button"><svg class="ico"><use href="#i-x"/></svg></button><img alt="">';
+  document.body.appendChild(zv);
+  var zImg = zv.querySelector("img"), zBtn = null;
+  function zoomOpen(btn) {
+    zBtn = btn; zImg.src = btn.dataset.src; zImg.alt = root.querySelector("#pdTitle").textContent;
+    zv.setAttribute("aria-label", zImg.alt); zv.querySelector(".pd-zoom-x").setAttribute("aria-label", L().zoomClose);
+    zv.hidden = false; zv.querySelector(".pd-zoom-x").focus();
+  }
+  function zoomClose() { if (zv.hidden) return; zv.hidden = true; zImg.removeAttribute("src"); if (zBtn && zBtn.focus) zBtn.focus(); }
+  zv.addEventListener("click", zoomClose);
+  zv.addEventListener("keydown", function (e) { if (e.key === "Escape" || e.key === "Tab") { e.preventDefault(); if (e.key === "Escape") zoomClose(); } });
+  body.addEventListener("click", function (e) { var b = e.target.closest(".pd-photo"); if (b) zoomOpen(b); });
+
+  function close() { zoomClose(); root.hidden = true; document.body.classList.remove("bk-open"); if (last && last.focus) last.focus(); }
 
   list.addEventListener("click", function (e) { var b = e.target.closest(".pd-chip"); if (b) open(b.dataset.p, b); });
   root.addEventListener("click", function (e) { if (e.target === root || e.target.closest(".pd-x")) close(); });
