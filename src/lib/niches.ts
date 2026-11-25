@@ -48,6 +48,21 @@ function d(
 }
 
 /* ----------------------------------------------------------- designs reused across niches */
+/* ----------------------------------------------------------- Daylight collection (sig29): light designs for photographers and creative founders */
+const DL_LENS = d('dllens', 'Daylight Lens', 'Your photo inside a lens barrel with rim text, an exposure line and a bold red Save button.', ['#D7262E', '#D7262E', '#FFFFFF'], 'light', ['Archivo', 'Inter'], ['pill', 'large', 'solid', 'none'], 'camera', 1, true);
+const DL_SHEET = d('dlsheet', 'Grease Pencil', 'A contact sheet with your frame circled in orange grease pencil and big stacked type.', ['#FF6B1A', '#FF6B1A', '#E9EBEE'], 'light', ['Archivo', 'Inter'], ['rounded', 'large', 'solid', 'none'], 'camera', 0.4, true);
+const DL_COVER = d('dlcover', 'Newsstand', 'You on the cover of your own magazine, with a red masthead and cover lines from your services.', ['#E01E37', '#14151A', '#FFFFFF'], 'light', ['Oswald', 'Inter'], ['square', 'large', 'solid', 'none'], 'bright', 0, true);
+const DL_GLASS = d('dlglass', 'Sunset Glass', 'Frosted glass panels over a warm sunset gradient with glossy white buttons.', ['#E0177F', '#FFB21A', '#FFF1F5'], 'light', ['Space Grotesk', 'Inter'], ['pill', 'large', 'glass', 'none'], 'bright', 1.3, true);
+const DL_SWISS = d('dlswiss', 'Poster Grid', 'Swiss poster type on a strict grid, your photo in a yellow block and a numbered services list.', ['#FF3B1F', '#FFD400', '#FFFFFF'], 'light', ['Inter', 'Inter'], ['square', 'large', 'solid', 'none'], 'calm', 0, true);
+const DL_GALLERY = d('dlgallery', 'Gallery Wall', 'Your portrait framed and matted on a lit gallery wall, with a museum placard.', ['#7A1F2B', '#7A1F2B', '#FFFFFF'], 'light', ['Fraunces', 'Inter'], ['square', 'large', 'solid', 'none'], 'calm', 0, true);
+const DL_BROWSER = d('dlbrowser', 'Browser Window', 'The card inside a browser window with tabs, and your roles typing out beside your photo.', ['#FF6A00', '#28A745', '#F2F3F6'], 'light', ['Space Grotesk', 'Inter'], ['rounded', 'large', 'solid', 'none'], 'tech', 0.8, true);
+const DL_CANDY = d('dlcandy', 'Candy Gloss', 'A cherry and gold frame around your photo and big candy gloss buttons.', ['#FF2D55', '#FFB800', '#FFF0F3'], 'light', ['Archivo', 'Inter'], ['pill', 'large', 'raised', 'none'], 'bright', 1.3, true);
+const DL_LIVE = d('dllive', 'Live View', 'A camera screen that locks focus on your face, then a clean sheet slides up with everything else.', ['#1F9D63', '#2BB673', '#FFFFFF'], 'light', ['Archivo', 'Inter'], ['rounded', 'large', 'solid', 'none'], 'camera', 1, true);
+const DL_PRINTS = d('dlprints', 'Instant Wall', 'Instant prints taped to a white wall with handwritten captions.', ['#C98F00', '#F7C948', '#FFFFFF'], 'light', ['Archivo', 'Inter'], ['rounded', 'large', 'solid', 'none'], 'calm', 0.3, true);
+const DL_STAMP = d('dlstamp', 'Postage Stamp', 'Your portrait as a perforated stamp on an airmail envelope, postmarked with your town.', ['#E0263A', '#2457D6', '#FFFFFF'], 'light', ['Fraunces', 'Inter'], ['rounded', 'large', 'solid', 'none'], 'calm', 0.6, true);
+const DL_TILES = d('dltiles', 'Color Tiles', 'An app-style tile grid with your photo, your name and every way to reach you on one screen.', ['#FF5A36', '#2F9E6E', '#F4F2EE'], 'light', ['Archivo', 'Inter'], ['rounded', 'large', 'solid', 'none'], 'bright', 1.2, true);
+const DL_HORIZON = d('dlhorizon', 'Horizon Curve', 'A warm color band that sweeps into a big smooth curve over your round photo.', ['#FF3D5A', '#FFB347', '#FFFFFF'], 'light', ['Archivo', 'Inter'], ['pill', 'large', 'solid', 'none'], 'bright', 1, true);
+
 const MAINFRAME = d('tech', 'Mainframe', 'Amber-phosphor boot sequence, terminal grid, glitch name, holographic tilt, keyboard commands.', ['#0E0B05', '#FFB000', '#F7F1E3'], 'dark', ['Space Grotesk', 'IBM Plex Sans'], ['chamfer', 'regular', 'hud', 'scanline'], 'tech', 0.35);
 const QUANTUM = d('quantum', 'Quantum', 'Orbiting rings circle your photo in 3D, particle dust, frosted glass tiles.', ['#0A0F1F', '#8B7CFF', '#F1F0FA'], 'dark', ['Syncopate', 'Manrope'], ['pill', 'regular', 'glass', 'none'], 'tech', 1, true);
 const CYBER = d('cyber', 'Neon District', 'Cyberpunk panels, falling neon rain, slashed buttons and glitch type.', ['#12031F', '#FF2BD6', '#F7F0FA'], 'dark', ['Chakra Petch', 'Rajdhani'], ['chamfer', 'large', 'neon', 'none'], 'tech', 0.2, true);
@@ -624,6 +639,7 @@ const NICHE_LIST: Niche[] = [
       d('intro', 'Video Intro', 'A short intro video up top, then one clear booking button.', ['#FF7A59', '#FF7A59', '#F5F3EF'], 'dark', ['Manrope', 'Manrope'], ['soft', 'large', 'solid', 'none'], 'bright', 1.1, true),
       d('chat', 'Conversation', 'Your card as a text thread with quick replies and a message box.', ['#0E7490', '#0E7490', '#FFFFFF'], 'light', ['Onest', 'Onest'], ['pill', 'large', 'solid', 'none'], 'calm', 1, true),
       d('monostudio', 'Monochrome Studio', 'Black-and-white portrait, a huge name over it and a numbered link list.', ['#111111', '#77756E', '#F3F2EE'], 'light', ['Bodoni Moda', 'Archivo'], ['square', 'large', 'solid', 'none'], 'calm', 0, true),
+      DL_COVER, DL_GLASS, DL_CANDY, DL_TILES, DL_HORIZON,
     ],
   },
   {
@@ -688,6 +704,8 @@ const NICHE_LIST: Niche[] = [
       d('punchin', '8K Punch', 'Your full 8K frame on a thirds grid. Punch in 5x on the eyes to show every detail, then pull back out.', ['#0C0B09', '#F2A93B', '#F4EFE6'], 'dark', ['Big Shoulders Display', 'Inter Tight'], ['rounded', 'large', 'raised', 'none'], 'camera', 1, true),
       d('slate', 'Slate', 'A clapperboard with your production name, a take that counts up on every clap and running LED timecode.', ['#0B0B0B', '#F2C200', '#F2F2F0'], 'dark', ['Big Shoulders Display', 'Inter Tight'], ['rounded', 'large', 'raised', 'none'], 'camera', 1, true),
       d('monostudio', 'Monochrome Studio', 'Black-and-white portrait, a huge name over it and a numbered link list.', ['#111111', '#77756E', '#F3F2EE'], 'light', ['Bodoni Moda', 'Archivo'], ['square', 'large', 'solid', 'none'], 'calm', 0, true),
+      // Daylight collection: light designs for photographers and creative founders
+      DL_LENS, DL_LIVE, DL_SHEET, DL_GALLERY, DL_PRINTS, DL_STAMP, DL_COVER, DL_SWISS, DL_BROWSER, DL_GLASS, DL_CANDY, DL_TILES, DL_HORIZON,
     ],
   },
   {
@@ -995,6 +1013,8 @@ export const TEMPLATE_EXTRA_FONTS: Partial<Record<TemplateId, string[]>> = {
   coverstory: [], backcover: [], fullfeature: [], colorblock: [], signedprint: ['Pinyon Script'], proofsheet: [],
   freshleaf: [], forestband: [], thepack: [], executive: [], limeglass: [],
   wdlounge: ['Great Vibes'], wdduo: [], wdseal: [], wdcurve: ['Great Vibes'],
+  dllens: ['JetBrains Mono'], dlsheet: ['JetBrains Mono', 'Caveat'], dlcover: [], dlglass: [], dlswiss: [], dlgallery: [], dlbrowser: ['JetBrains Mono'],
+  dlcandy: [], dllive: ['JetBrains Mono'], dlprints: ['Caveat'], dlstamp: ['JetBrains Mono'], dltiles: [], dlhorizon: [],
   cinescreen: ['JetBrains Mono'], cinebrain: ['JetBrains Mono'], focusguide: ['JetBrains Mono'], punchin: ['JetBrains Mono'], slate: ['JetBrains Mono'],
   terminal: ['VT323', 'IBM Plex Mono'],
   radar: ['Share Tech Mono'],

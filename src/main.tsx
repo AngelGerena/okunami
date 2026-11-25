@@ -38,6 +38,7 @@ import './styles/sig25.css';
 import './styles/sig26.css';
 import './styles/sig27.css';
 import './styles/sig28.css';
+import './styles/sig29.css';
 import './styles/worship-engine.css';
 import './styles/worship-okunami.css';
 import './styles/miami.css';
