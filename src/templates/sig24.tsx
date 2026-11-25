@@ -70,7 +70,7 @@ const DOW = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 const DAYS = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 const HOURS = [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19];
 /* Booking copy. 'speaker' is the Author collection; 'wellness' is the Wellness collection (sig27), which books a free consultation. */
-export type BookKind = 'speaker' | 'wellness';
+export type BookKind = 'speaker' | 'wellness' | 'creative';
 const COPY: Record<BookKind, { kicker: (a: Au) => string; title: string; step3: (a: Au) => string; types: string[]; sizeLabel: string; sizes: string[];
   ask: string; typeLabel: string; sizeMsg: string; button: string; subject: string }> = {
   speaker: { kicker: (a) => `Book ${a.name}`, title: 'Request a date', step3: (a) => `Tell ${a.first} about the event`,
@@ -79,6 +79,9 @@ const COPY: Record<BookKind, { kicker: (a: Au) => string; title: string; step3: 
   wellness: { kicker: (a) => a.name, title: 'Book a free consultation', step3: (a) => `What can ${a.first} help you with?`,
     types: ['Product info', 'Place an order', 'Join the team', 'Business presentation', 'Video call'], sizeLabel: 'Best way to reach you', sizes: ['Phone call', 'Text message', 'WhatsApp', 'Email'],
     ask: "I'd like to book a free consultation.", typeLabel: 'Topic', sizeMsg: 'Best way to reach me', button: 'Book a free consultation', subject: 'Consultation request' },
+  creative: { kicker: (a) => a.name, title: 'Book a free call', step3: (a) => `What can ${a.first} help you with?`,
+    types: ['Photo session', 'Wedding or event', 'Website', 'Branding', 'Something else'], sizeLabel: 'Best way to reach you', sizes: ['Phone call', 'Text message', 'WhatsApp', 'Email'],
+    ask: "I'd like to book a free call.", typeLabel: 'Project', sizeMsg: 'Best way to reach me', button: 'Book a free call', subject: 'Call request' },
 };
 const ampm = (h: number) => `${h % 12 || 12}:00 ${h < 12 ? 'AM' : 'PM'}`;
 const dateText = (d: Date) => `${DAYS[d.getDay()]}, ${MONTHS[d.getMonth()]} ${d.getDate()}, ${d.getFullYear()}`;

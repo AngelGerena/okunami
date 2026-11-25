@@ -123,6 +123,8 @@ export type TemplateId =
   // Wellness collection (wellness and network-marketing sellers, first made for a U-MUVO couple)
   | 'freshleaf' | 'forestband' | 'thepack' | 'executive' | 'limeglass'
   | 'wdlounge' | 'wdduo' | 'wdseal' | 'wdcurve'
+  // Daylight collection (light designs for photographers and creative founders, first made for Angel Gerena)
+  | 'dllens' | 'dlsheet' | 'dlcover' | 'dlglass' | 'dlswiss' | 'dlgallery' | 'dlbrowser' | 'dlcandy' | 'dllive' | 'dlprints' | 'dlstamp' | 'dltiles' | 'dlhorizon'
   // photo-led collection (sig25)
   | 'sheet' | 'monostudio' | 'intro' | 'duotone' | 'trust' | 'local' | 'menu' | 'status' | 'chat';
 

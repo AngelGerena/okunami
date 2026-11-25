@@ -41,6 +41,7 @@ import { Chat, Duotone, Intro, Local, MonoStudio, ServiceMenu, Sheet, Status, Tr
 import { SpaBlush, SpaBordeaux, SpaEucalyptus, SpaHinoki, SpaHotStone, SpaLinen, SpaMarble, SpaOnyx, SpaRecovery, SpaWashi } from './sig26';
 import { Executive, ForestBand, FreshLeaf, LimeGlass, ThePack } from './sig27';
 import { WdCurve, WdDuo, WdLounge, WdSeal } from './sig28';
+import { DlBrowser, DlCandy, DlCover, DlGallery, DlGlass, DlHorizon, DlLens, DlLive, DlPrints, DlSheet, DlStamp, DlSwiss, DlTiles } from './sig29';
 
 export interface TemplateMeta { id: TemplateId; name: string; blurb: string; bestFor: string; niche?: string;
   /** Not offered in galleries or counts (OKUNAMI Studio custom cards). */
@@ -345,6 +346,20 @@ export const TEMPLATES: TemplateMeta[] = [
   { id: 'wdduo', name: 'Duo', niche: 'Wellness Sellers', blurb: 'A deep green slanted header over your photo and a contact row with round WhatsApp, Call, Text and Email buttons.', bestFor: 'Sellers who want people to reach them in one press' },
   { id: 'wdseal', name: 'Gold Seal', niche: 'Wellness Sellers', blurb: 'A round photo inside a slowly turning engraved ring with your brand name, and buttons stacked as a clean list.', bestFor: 'Team leaders and established distributors' },
   { id: 'wdcurve', name: 'Script Curve', niche: 'Wellness Sellers', blurb: 'A wide photo, a smooth accent curve and your name stacked big with a script ampersand.', bestFor: 'Couples, duos and fresh modern brands' },
+  // ---- Daylight collection (light designs for photographers and creative founders)
+  { id: 'dllens', name: 'Daylight Lens', niche: 'Photo and Video', blurb: 'Your photo inside a lens barrel with rim text, an exposure line and a bold Save button.', bestFor: 'Photographers, videographers' },
+  { id: 'dlsheet', name: 'Grease Pencil', niche: 'Photo and Video', blurb: 'A contact sheet with your frame circled in grease pencil, "this one!", and big stacked type.', bestFor: 'Photographers, creative studios' },
+  { id: 'dlcover', name: 'Newsstand', niche: 'Photo and Video', blurb: 'You on the cover of your own magazine: masthead, cover lines from your services and a big name.', bestFor: 'Personal brands, founders, creators' },
+  { id: 'dlglass', name: 'Sunset Glass', niche: 'Photo and Video', blurb: 'Frosted glass panels over a warm sunset gradient with glossy white buttons.', bestFor: 'Creators, founders, beauty and lifestyle' },
+  { id: 'dlswiss', name: 'Poster Grid', niche: 'Photo and Video', blurb: 'Swiss poster type on a strict grid, your photo in a color block and a numbered services list.', bestFor: 'Designers, agencies, web developers' },
+  { id: 'dlgallery', name: 'Gallery Wall', niche: 'Photo and Video', blurb: 'Your portrait framed and matted on a lit gallery wall, with a museum placard.', bestFor: 'Photographers, artists, galleries' },
+  { id: 'dlbrowser', name: 'Browser Window', niche: 'Photo and Video', blurb: 'The card inside a browser window with tabs, and your roles typing out beside your photo.', bestFor: 'Web developers, designers, tech founders' },
+  { id: 'dlcandy', name: 'Candy Gloss', niche: 'Photo and Video', blurb: 'A glossy gradient frame around your photo and big candy gloss buttons.', bestFor: 'Creators, beauty, bold personal brands' },
+  { id: 'dllive', name: 'Live View', niche: 'Photo and Video', blurb: 'A camera screen that locks focus on your face, then a clean sheet slides up with everything else.', bestFor: 'Photographers, videographers' },
+  { id: 'dlprints', name: 'Instant Wall', niche: 'Photo and Video', blurb: 'Instant prints taped to a white wall with handwritten captions.', bestFor: 'Photographers, family and wedding shooters' },
+  { id: 'dlstamp', name: 'Postage Stamp', niche: 'Photo and Video', blurb: 'Your portrait as a perforated stamp on an airmail envelope, postmarked with your town.', bestFor: 'Photographers, travel, local businesses' },
+  { id: 'dltiles', name: 'Color Tiles', niche: 'Photo and Video', blurb: 'An app-style tile grid: your photo, your name and every way to reach you on one screen.', bestFor: 'Busy owners, creators, anyone who wants fast contact' },
+  { id: 'dlhorizon', name: 'Horizon Curve', niche: 'Photo and Video', blurb: 'A warm color band that sweeps into a big smooth curve over your round photo.', bestFor: 'Founders, coaches, modern brands' },
 ];
 
 /* ------------------------------------------------------------ 1 Editorial Cover */
@@ -666,4 +681,5 @@ export const TEMPLATE_COMPONENTS: Record<TemplateId, () => ReactElement> = {
   spalinen: SpaLinen, spahotstone: SpaHotStone, spaeuca: SpaEucalyptus, spamarble: SpaMarble, spaonyx: SpaOnyx, spablush: SpaBlush, spabordeaux: SpaBordeaux, spawashi: SpaWashi, sparecovery: SpaRecovery, spahinoki: SpaHinoki,
   freshleaf: FreshLeaf, forestband: ForestBand, thepack: ThePack, executive: Executive, limeglass: LimeGlass,
   wdlounge: WdLounge, wdduo: WdDuo, wdseal: WdSeal, wdcurve: WdCurve,
+  dllens: DlLens, dlsheet: DlSheet, dlcover: DlCover, dlglass: DlGlass, dlswiss: DlSwiss, dlgallery: DlGallery, dlbrowser: DlBrowser, dlcandy: DlCandy, dllive: DlLive, dlprints: DlPrints, dlstamp: DlStamp, dltiles: DlTiles, dlhorizon: DlHorizon,
 };
