@@ -1,0 +1,17 @@
+{
+  "name": "Nora Ivelisse · Armonía del Reino",
+  "short_name": "Nora Ivelisse",
+  "description": "Salmista y ministra de adoración · Armonía del Reino Ministries",
+  "id": "/armonia/",
+  "start_url": "/armonia/",
+  "scope": "/armonia/",
+  "display": "standalone",
+  "background_color": "#140726",
+  "theme_color": "#140726",
+  "lang": "es",
+  "icons": [
+    { "src": "/armonia/images/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/armonia/images/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/armonia/images/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
